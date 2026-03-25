@@ -1,28 +1,35 @@
 {
   "date": "2026-03-25",
-  "title": "大模型推理与效率优化洞察报告",
-  "topic": "大模型推理与效率优化",
+  "title": "AI Agent与自主系统洞察报告",
+  "topic": "AI Agent与自主系统",
   "directions": [
-    "llm",
-    "infra"
+    "agentic",
+    "llm"
   ],
-  "paper_count": 2,
+  "paper_count": 3,
   "papers": [
     {
-      "id": "2603.23496",
-      "title": "Estimating Flow Velocity and Vehicle Angle-of-Attack from Non-invasive Piezoelectric Structural Measurements Using Deep Learning",
-      "chinese_title": "基于深度学习的非侵入式压电结构测量流速与攻角估计",
-      "authors": "Chandler B. Smith et al.",
-      "url": "https://arxiv.org/abs/2603.23496"
+      "id": "2603.23485",
+      "title": "Failure of contextual invariance in gender inference with large language models",
+      "chinese_title": "大语言模型性别推断的语境不变性失效",
+      "authors": "Sagar Kumar et al.",
+      "url": "https://arxiv.org/abs/2603.23485"
     },
     {
-      "id": "2603.23495",
-      "title": "VISion On Request: Enhanced VLLM efficiency with sparse, dynamically selected, vision-language interactions",
-      "chinese_title": "按需视觉：稀疏动态交互提升VLLM效率",
-      "authors": "Adrian Bulat et al.",
-      "url": "https://arxiv.org/abs/2603.23495"
+      "id": "2603.23483",
+      "title": "SpecEyes: Accelerating Agentic Multimodal LLMs via Speculative Perception and Planning",
+      "chinese_title": "SpecEyes：通过推测感知与规划加速多模态智能体",
+      "authors": "Haoyu Huang et al.",
+      "url": "https://arxiv.org/abs/2603.23483"
+    },
+    {
+      "id": "2603.23414",
+      "title": "SortedRL: Accelerating RL Training for LLMs through Online Length-Aware Scheduling",
+      "chinese_title": "SortedRL：基于在线长度感知调度加速大语言模型强化学习训练",
+      "authors": "Yiqi Zhang et al.",
+      "url": "https://arxiv.org/abs/2603.23414"
     }
   ],
-  "generated_at": "2026-03-25T12:14:10.392Z",
+  "generated_at": "2026-03-25T13:07:23.034Z",
   "org": "AI研究室"
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大模型推理与效率优化洞察报告 | 2026/3/25</title>
+    <title>AI Agent与自主系统洞察报告 | 2026/3/25</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -340,7 +340,7 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <h1>大模型推理与效率优化洞察报告 | 2026/3/25</h1>
+                <h1>AI Agent与自主系统洞察报告 | 2026/3/25</h1>
                 <div class="date">2026/3/25 | AI研究室</div>
             </div>
             <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
@@ -351,7 +351,7 @@
             <div class="executive-summary">
                 <h2>摘要</h2>
                 <div class="summary-content">
-                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦于大模型推理效率优化的前沿技术路径，揭示出从“信息压缩”到“交互优化”的范式转变趋势。两篇论文分别从物理感知和视觉语言模型两个领域切入，共同指向一个核心主题：通过更智能的计算资源分配，而非简单的输入信息削减，来实现效率与性能的平衡。<br><br>提炼出的共同技术方向包括：第一，<strong>计算路径的动态稀疏化</strong>。论文1通过深度学习从高维传感器信号中反演关键物理量，本质上是选择性关注与目标最相关的特征；论文2则显式地稀疏化视觉与语言令牌间的交互层，动态选择必要的计算路径。第二，<strong>面向任务的信息保真度优先</strong>。两者均摒弃了以损失原始信息为代价的压缩思路，论文1保留完整的结构振动信号，论文2保留完整的视觉令牌，转而优化后续的信息处理流程，从而在提升效率的同时最大限度地保持模型能力。<br><br>这对行业与研究具有重要启示：纯粹追求输入端的压缩或量化已非唯一解，未来效率优化的竞争焦点将转向模型内部计算图与注意力机制的动态、稀疏化重构。这种“精准计算”范式不仅能降低部署成本，更有望在自动驾驶感知、多模态交互等对信息完整性要求严苛的场景中开辟新的高性能应用路径。</p>
+                                        <p style="line-height:1.8;text-align:justify;">本次分析聚焦于AI Agent与自主系统的效率优化与鲁棒性评估两大前沿主题。三篇论文共同揭示了当前技术发展正从单纯追求能力扩展，转向对系统底层执行效率与行为可靠性的深度优化。核心趋势体现为通过创新性系统架构与调度策略，突破顺序计算或训练瓶颈，同时以更严谨的评估方法检验模型的基础行为假设。<br><br>具体技术方向呈现两个鲜明共性：一是<strong>推测与调度优化以提升效率</strong>。SpecEyes通过轻量级模型的“推测性感知与规划”实现早期终止，SortedRL则利用“在线长度感知调度”优先处理短样本以加速RL训练，两者均通过打破严格顺序执行来显著降低延迟或训练时间。二是<strong>对模型行为一致性与假设的严格检验</strong>。关于性别推断的研究系统性地揭示了LLM违反“语境不变性”这一基础假设，警示了在复杂应用中依赖模型表面一致性的风险。<br><br>这些工作为行业与研究提供了关键启示：一方面，面向复杂任务的智能体系统，其落地亟需此类软硬件协同的系统级加速方案；另一方面，在追求性能与效率的同时，必须建立更细致、更符合认知科学的评估基准，以检验智能体决策与交互的底层鲁棒性与公平性。这标志着领域正迈向更高效、更可靠、更可预测的下一代自主系统构建。</p>
                 </div>
             </div>
 
@@ -359,7 +359,7 @@
             <div class="stats-grid">
                 
                 <div class="stat-item">
-                    <div class="stat-value">2</div>
+                    <div class="stat-value">3</div>
                     <div class="stat-label">核心论文</div>
                 </div>
                 <div class="stat-item">
@@ -381,75 +381,112 @@
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">1</div>
-                    <h2>Estimating Flow Velocity and Vehicle Angle-of-Attack from Non-invasive Piezoelectric Structural Measurements Using Deep Learning</h2>
+                    <h2>Failure of contextual invariance in gender inference with large language models</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23496</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">基于深度学习的非侵入式压电结构测量流速与攻角估计</span>
-                        <span style="color:#666;font-size:12px;">Chandler B. Smith et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23485</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">大语言模型性别推断的语境不变性失效</span>
+                        <span style="color:#666;font-size:12px;">Sagar Kumar et al.</span>
                     </div>
                     
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本研究提出了一种非侵入式方法，通过结构振动测量来估计飞行器的来流速度和攻角，避免了传统皮托管等直接流场测量仪器的使用。该方法在机翼内部蒙皮上安装密集的压电传感器阵列，采集湍流边界层压力脉动引起的振动信号，并训练卷积神经网络从这些结构响应中反演速度和攻角。通过在桑迪亚高超声速风洞中进行受控实验验证，该方法在相同实验条件下的测试数据上取得了良好的精度。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本研究挑战了大型语言模型（LLM）输出在任务表述语境等效时保持稳定的标准评估假设。通过在性别推断任务中引入受控的代词选择实验，研究者发现，即使添加理论上无信息量的最小话语语境，也会导致模型输出产生巨大且系统性的偏移。这表明LLM的输出违反了语境不变性，对偏见基准测试和高风险场景部署具有重要影响。</div>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>采用密集压电传感器阵列非侵入式采集结构振动信号，替代传统流场测量仪器</li><li>利用卷积神经网络作为核心模型，学习从振动信号到流场状态变量的复杂映射关系</li><li>设计包含训练、验证和测试的数据集划分策略，并评估模型在实验运行内的时序泛化能力</li><li>引入短窗口移动中值后处理步骤，有效抑制连续变化条件下的预测方差，提升鲁棒性</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>采用受控的代词选择任务，精确测试模型在性别推断中的表现。</li><li>引入最小且理论上无信息量的话语语境，观察其对模型输出的扰动效应。</li><li>使用相关性分析，测量文化性别刻板印象与模型行为在不同语境下的关联变化。</li><li>应用Contextuality-by-Default分析框架，量化语境依赖性的程度并排除边际效应干扰。</li><li>通过设计排除简单代词重复影响的对照实验，确保发现的稳健性。</li></ul>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出基于结构振动反演流场状态的新思路，实现非侵入式、无需直接流场测量的速度和攻角估计</li><li>将深度学习应用于高超声速风洞实验数据，解决从复杂振动信号中提取流场信息的逆问题</li><li>在实验设计中涵盖零与非零攻角、马赫数5和8、定常与连续变化等多种工况，验证方法的广泛适用性</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>首次在性别推断任务中系统验证LLM违反语境不变性假设，挑战了标准评估实践的基础。</li><li>揭示了无关语境特征（如无关指代词的性别）能成为模型行为的最强预测因子，这一发现反直觉。</li><li>证明了语境引入会削弱或消除去语境化设置中存在的文化性别刻板印象相关性，转变了偏见的表现形式。</li><li>采用理论驱动的微语境扰动方法，而非大规模语料库分析，实现了对模型敏感性的精细探测。</li><li>将量子认知的Contextuality-by-Default分析框架创新性地应用于LLM行为研究，提供了新的形式化工具。</li></ul>
                         </div>
                         
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>经过后处理，方法在测试数据上的平均速度误差低于2.27 m/s（相对误差0.21%），平均攻角误差为0.44°（相对误差8.25%）</li><li>CNN原始预测在连续变化条件下方差较大，但移动中值后处理能有效抑制方差，显著提升估计稳定性</li><li>研究在受控实验室环境中证明了基于振动信号估计速度和攻角的可行性，为未来实际应用奠定了基础</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>LLM在近乎相同的句法表述下，其输出仍会因微小语境变化而发生系统性偏移，违反了语境不变性。</li><li>引入语境后，原本在去语境化设置中明显的文化性别刻板印象相关性减弱或消失，偏见以更隐蔽的方式呈现。</li><li>理论上无关的语境特征（如句子中其他代词的性别）反而成为预测模型行为的最具信息量的因素。</li><li>Contextuality-by-Default分析显示，19%至52%的案例中存在无法用边际效应解释的语境依赖性，表明其本质性。</li><li>这些发现对基于稳定输出假设的偏见基准测试构成挑战，并警示了LLM在高风险部署场景中的不可预测性。</li></ul>
                         </div>
                     </div>
                     
-                    <a href="https://arxiv.org/abs/2603.23496" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23496</a>
+                    <a href="https://arxiv.org/abs/2603.23485" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23485</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">2</div>
-                    <h2>VISion On Request: Enhanced VLLM efficiency with sparse, dynamically selected, vision-language interactions</h2>
+                    <h2>SpecEyes: Accelerating Agentic Multimodal LLMs via Speculative Perception and Planning</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23495</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">按需视觉：稀疏动态交互提升VLLM效率</span>
-                        <span style="color:#666;font-size:12px;">Adrian Bulat et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23483</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">SpecEyes：通过推测感知与规划加速多模态智能体</span>
+                        <span style="color:#666;font-size:12px;">Haoyu Huang et al.</span>
                     </div>
                     
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出VISOR方法，旨在提升大型视觉语言模型（LVLM）的推理效率。与现有方法通过压缩视觉令牌来降低计算成本不同，VISOR通过稀疏化和动态选择视觉-语言交互来减少计算开销，同时保留完整的视觉信息。该方法的核心是使用少量精心放置的注意力层，让语言模型访问完整的高分辨率视觉令牌，并通过轻量级策略机制根据样本复杂度动态分配视觉计算资源。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对智能体多模态大语言模型（MLLMs）因迭代调用视觉工具而产生的顺序执行开销（即智能体深度）问题，提出了SpecEyes加速框架。该框架的核心思想是利用一个轻量级、无需工具的MLLM作为推测性规划器来预测执行轨迹，从而提前终止昂贵的工具链，在不牺牲准确性的前提下显著降低延迟并提升系统吞吐量。</div>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>稀疏化视觉-语言交互：通过减少图像与文本令牌之间的交互层数来降低计算成本，而非压缩视觉信息本身。</li><li>动态计算分配：引入轻量级策略机制，根据输入样本的复杂度（如任务难度）动态决定使用多少视觉自注意力层进行计算。</li><li>分层注意力设计：结合高效的文本-图像交叉注意力层提供通用视觉上下文，以及少量精心放置的自注意力层来细化视觉表示。</li><li>通用网络训练：首先在多种计算预算下（通过改变自注意力层数量）训练一个单一通用网络，然后在此基础上应用动态策略。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>采用轻量级、无需工具的MLLM作为推测性规划器，预测主模型的执行轨迹，实现早期终止。</li><li>引入基于答案可分离性的认知门控机制，量化模型置信度以进行自我验证，无需真实标签。</li><li>设计异构并行漏斗架构，利用小模型的无状态并发性来掩盖大模型的有状态串行执行，最大化系统吞吐量。</li></ul>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>范式转变：挑战了主流的“视觉令牌压缩”效率提升范式，提出通过稀疏化交互而非丢弃信息来保持模型性能。</li><li>动态适应性：实现了根据样本需求动态调整视觉计算资源，在简单任务上节省成本，在复杂任务上投入更多资源以保证精度。</li><li>结构创新：设计了“按需视觉”的注意力架构，将高分辨率视觉推理能力集中在少数关键层，平衡了效率与细粒度理解能力。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出了首个针对智能体MLLMs的推测性加速框架，通过推测性感知与规划打破顺序执行瓶颈。</li><li>创新性地使用答案可分离性作为认知门控的自监督信号，实现了无需标注的推测验证机制。</li><li>将推测执行思想从传统语言模型推理扩展至多模态智能体场景，并设计了异构并行执行架构。</li></ul>
                         </div>
                         
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>高效且高性能：VISOR大幅降低了计算成本，同时在多样化基准测试中达到或超过了最先进模型的性能。</li><li>挑战任务表现出色：在需要细致视觉理解和推理的困难任务上表现优异，证明了保留完整视觉信息的优势。</li><li>可扩展性强：通过单一通用网络配合动态策略，能够灵活适应不同的计算预算和任务复杂度，具有良好的实用性和泛化能力。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>在V* Bench、HR-Bench和POPE等基准测试中，SpecEyes相比基线实现了1.1-3.35倍的加速。</li><li>在显著提升速度的同时，准确率得以保持甚至提升（最高提升6.7%），实现了速度与精度的双赢。</li><li>框架能有效提升系统在并发工作负载下的服务吞吐量，解决了智能体深度带来的延迟与并发限制问题。</li></ul>
                         </div>
                     </div>
                     
-                    <a href="https://arxiv.org/abs/2603.23495" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23495</a>
+                    <a href="https://arxiv.org/abs/2603.23483" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23483</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>SortedRL: Accelerating RL Training for LLMs through Online Length-Aware Scheduling</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23414</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">SortedRL：基于在线长度感知调度加速大语言模型强化学习训练</span>
+                        <span style="color:#666;font-size:12px;">Yiqi Zhang et al.</span>
+                    </div>
+                    
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出SortedRL，一种在线长度感知调度策略，旨在解决大语言模型强化学习训练中因长轨迹生成导致的效率瓶颈。该方法通过基于输出长度对样本进行排序和分组，实现了大rollout批次、灵活更新批次和近策略微课程构建，显著提升了训练效率。实验表明，SortedRL能将RL训练气泡比降低50%以上，并在相同数据量下获得3.9%至18.4%的性能提升。</div>
+                        </div>
+                        
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>在线长度感知调度：根据输出长度对rollout样本进行排序，优先处理短样本以形成早期更新组</li><li>缓存机制控制离策略训练：通过基于缓存的机制灵活调节离策略训练的程度，平衡效率与稳定性</li><li>专用RL基础设施：采用状态控制器和rollout缓冲区管理rollout和更新流程，支持高效调度</li></ul>
+                        </div>
+                        
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出长度感知的样本排序策略：将短样本优先分组更新，实现大rollout批次与灵活更新的并行优化</li><li>构建近策略微课程：通过在线调度动态调整训练样本难度，模拟课程学习提升训练稳定性</li><li>集成离策略控制机制：创新性地结合缓存控制离策略训练强度，避免策略漂移同时加速训练</li></ul>
+                        </div>
+                        
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>训练效率显著提升：SortedRL将RL训练气泡比降低超过50%，有效缓解了rollout阶段的时间瓶颈</li><li>性能优势明显：在LLaMA-3.1-8B和Qwen-2.5-32B模型上，相同数据量下性能较基线提升3.9%-18.4%</li><li>广泛任务有效性：在逻辑谜题、AIME 24、Math 500和Minerval等数学挑战任务上均验证了方法的通用性</li></ul>
+                        </div>
+                    </div>
+                    
+                    <a href="https://arxiv.org/abs/2603.23414" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23414</a>
                 </div>
             </div>
         </div>
