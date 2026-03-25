@@ -1,17 +1,37 @@
 {
   "date": "2026-03-25",
-  "title": "AI Agent与自主系统洞察报告",
-  "topic": "AI Agent与自主系统",
+  "title": "AI基础技术洞察报告",
+  "topic": "AI基础技术",
   "directions": [
-    "agentic",
     "llm"
   ],
-  "paper_count": 3,
+  "paper_count": 5,
   "papers": [
+    {
+      "id": "2603.23501",
+      "title": "MedObvious: Exposing the Medical Moravec's Paradox in VLMs via Clinical Triage",
+      "chinese_title": "MedObvious：临床分诊揭示VLM医学莫拉维克悖论",
+      "authors": "Ufaq Khan et al.",
+      "url": "https://arxiv.org/abs/2603.23501"
+    },
+    {
+      "id": "2603.23496",
+      "title": "Estimating Flow Velocity and Vehicle Angle-of-Attack from Non-invasive Piezoelectric Structural Measurements Using Deep Learning",
+      "chinese_title": "基于深度学习的非侵入式压电结构测量流速与攻角估计",
+      "authors": "Chandler B. Smith et al.",
+      "url": "https://arxiv.org/abs/2603.23496"
+    },
+    {
+      "id": "2603.23495",
+      "title": "VISion On Request: Enhanced VLLM efficiency with sparse, dynamically selected, vision-language interactions",
+      "chinese_title": "按需视觉：稀疏动态交互提升VLLM效率",
+      "authors": "Adrian Bulat et al.",
+      "url": "https://arxiv.org/abs/2603.23495"
+    },
     {
       "id": "2603.23485",
       "title": "Failure of contextual invariance in gender inference with large language models",
-      "chinese_title": "大语言模型性别推断的语境不变性失效",
+      "chinese_title": "大语言模型性别推断的语境失稳",
       "authors": "Sagar Kumar et al.",
       "url": "https://arxiv.org/abs/2603.23485"
     },
@@ -21,15 +41,8 @@
       "chinese_title": "SpecEyes：通过推测感知与规划加速多模态智能体",
       "authors": "Haoyu Huang et al.",
       "url": "https://arxiv.org/abs/2603.23483"
-    },
-    {
-      "id": "2603.23414",
-      "title": "SortedRL: Accelerating RL Training for LLMs through Online Length-Aware Scheduling",
-      "chinese_title": "SortedRL：基于在线长度感知调度加速大语言模型强化学习训练",
-      "authors": "Yiqi Zhang et al.",
-      "url": "https://arxiv.org/abs/2603.23414"
     }
   ],
-  "generated_at": "2026-03-25T13:07:23.034Z",
+  "generated_at": "2026-03-25T13:20:09.013Z",
   "org": "AI研究室"
 }
