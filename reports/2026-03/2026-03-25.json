@@ -1,48 +1,49 @@
 {
   "date": "2026-03-25",
-  "title": "AI基础技术洞察报告",
-  "topic": "AI基础技术",
+  "title": "AI Agent与自主系统洞察报告",
+  "topic": "AI Agent与自主系统",
   "directions": [
+    "agentic",
     "llm"
   ],
   "paper_count": 5,
   "papers": [
     {
-      "id": "2603.23501",
-      "title": "MedObvious: Exposing the Medical Moravec's Paradox in VLMs via Clinical Triage",
-      "chinese_title": "MedObvious：临床分诊揭示VLM医学莫拉维克悖论",
-      "authors": "Ufaq Khan et al.",
-      "url": "https://arxiv.org/abs/2603.23501"
+      "id": "2603.23448",
+      "title": "Code Review Agent Benchmark",
+      "chinese_title": "代码审查智能体基准测试",
+      "authors": "Yuntong Zhang et al.",
+      "url": "https://arxiv.org/abs/2603.23448"
     },
     {
-      "id": "2603.23496",
-      "title": "Estimating Flow Velocity and Vehicle Angle-of-Attack from Non-invasive Piezoelectric Structural Measurements Using Deep Learning",
-      "chinese_title": "基于深度学习的非侵入式压电结构测量流速与攻角估计",
-      "authors": "Chandler B. Smith et al.",
-      "url": "https://arxiv.org/abs/2603.23496"
+      "id": "2603.23433",
+      "title": "Mecha-nudges for Machines",
+      "chinese_title": "机械助推机制",
+      "authors": "Giulio Frey et al.",
+      "url": "https://arxiv.org/abs/2603.23433"
     },
     {
-      "id": "2603.23495",
-      "title": "VISion On Request: Enhanced VLLM efficiency with sparse, dynamically selected, vision-language interactions",
-      "chinese_title": "按需视觉：稀疏动态交互提升VLLM效率",
-      "authors": "Adrian Bulat et al.",
-      "url": "https://arxiv.org/abs/2603.23495"
+      "id": "2603.23419",
+      "title": "Biased Error Attribution in Multi-Agent Human-AI Systems Under Delayed Feedback",
+      "chinese_title": "延迟反馈下多智能体人机系统的偏差归因",
+      "authors": "Teerthaa Parakh et al.",
+      "url": "https://arxiv.org/abs/2603.23419"
     },
     {
-      "id": "2603.23485",
-      "title": "Failure of contextual invariance in gender inference with large language models",
-      "chinese_title": "大语言模型性别推断的语境失稳",
-      "authors": "Sagar Kumar et al.",
-      "url": "https://arxiv.org/abs/2603.23485"
+      "id": "2603.23406",
+      "title": "Beyond Preset Identities: How Agents Form Stances and Boundaries in Generative Societies",
+      "chinese_title": "超越预设身份：生成社会中立场与边界的形成机制",
+      "authors": "Hanzhong Zhang et al.",
+      "url": "https://arxiv.org/abs/2603.23406"
     },
     {
-      "id": "2603.23483",
-      "title": "SpecEyes: Accelerating Agentic Multimodal LLMs via Speculative Perception and Planning",
-      "chinese_title": "SpecEyes：通过推测感知与规划加速多模态智能体",
-      "authors": "Haoyu Huang et al.",
-      "url": "https://arxiv.org/abs/2603.23483"
+      "id": "2603.23405",
+      "title": "Planning over MAPF Agent Dependencies via Multi-Dependency PIBT",
+      "chinese_title": "基于多依赖PIBT的MAPF代理依赖规划",
+      "authors": "Zixiang Jiang et al.",
+      "url": "https://arxiv.org/abs/2603.23405"
     }
   ],
-  "generated_at": "2026-03-25T13:20:09.013Z",
+  "generated_at": "2026-03-25T13:29:56.922Z",
   "org": "AI研究室"
 }

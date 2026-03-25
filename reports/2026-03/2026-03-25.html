@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI基础技术洞察报告 | 2026/3/25</title>
+    <title>AI Agent与自主系统洞察报告 | 2026/3/25</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -340,7 +340,7 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <h1>AI基础技术洞察报告 | 2026/3/25</h1>
+                <h1>AI Agent与自主系统洞察报告 | 2026/3/25</h1>
                 <div class="date">2026/3/25 | AI研究室</div>
             </div>
             <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
@@ -351,7 +351,7 @@
             <div class="executive-summary">
                 <h2>摘要</h2>
                 <div class="summary-content">
-                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦于AI基础模型在迈向可靠、高效实际应用过程中暴露的关键瓶颈与创新解法，核心主题是<strong>模型能力评估的深度化与推理效率的极致化</strong>。趋势表明，单纯追求任务性能的基准测试已不足够，行业正转向对模型<strong>鲁棒性、一致性及计算可持续性</strong>的严苛检验。<br><br>共同技术方向凸显为两点：一是<strong>对模型失效模式的系统性挖掘</strong>，从医疗VLM的“莫拉维克悖论”（MedObvious）到LLM性别推断的语境敏感性（论文4），揭示表面流畅下的深层逻辑矛盾与偏见，推动评估范式从“结果正确”转向“过程可靠”。二是<strong>面向部署的效率革命</strong>，通过稀疏交互（VISOR）与推测执行（SpecEyes）等跨模态创新，在保持性能的同时大幅压缩计算成本，为高分辨率视觉理解与复杂智能体任务的实际落地扫清障碍。<br><br>这些研究对行业的启示在于：下一代AI系统的竞争力将不仅取决于能力上限，更取决于其<strong>失效边界是否可知、可控</strong>，以及<strong>在资源约束下的可持续运行能力</strong>。这要求研究从粗放的能力评测转向精细的“压力测试”，并推动算法与底层硬件协同设计，以实现真正稳健、高效的人工智能应用。</p>
+                                        <p style="line-height:1.8;text-align:justify;">本次分析的五篇论文共同指向AI Agent与自主系统领域向更深层次社会集成与复杂系统协调演进的核心趋势。研究焦点已从单一任务性能评估，转向智能体在动态、交互及延迟反馈环境中的认知行为、社会性表现与系统性影响。<br><br>技术方向呈现两大共性创新：一是<strong>评估范式的系统化与场景化</strong>，从代码审查基准到生成式社会实验，强调在贴近真实交互的复杂环境中（如延迟反馈、多代理协作、身份协商）度量智能体行为与影响；二是<strong>决策与规划框架的认知建模升级</strong>，通过引入贝叶斯说服、依赖关系抽象等理论工具，将行为经济学、社会认知机制融入系统设计，以优化智能体决策质量与多智能体协调效率。<br><br>这些研究对行业及学术界具有重要启示：首先，标准化、场景驱动的评估工具（如c-CRAB）是推动技术成熟的关键基础设施；其次，AI系统的设计需充分考虑其社会技术属性，包括对人类行为的影响（如机械助推）、归因偏差以及动态身份形成机制；最后，面向超大规模协同（如万级智能体路径规划）的算法创新，需依赖更高层次的抽象（如依赖关系建模）来保证可扩展性与鲁棒性。整体而言，领域正从“性能优化”迈向“协同智能与负责任集成”的新阶段。</p>
                 </div>
             </div>
 
@@ -381,186 +381,186 @@
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">1</div>
-                    <h2>MedObvious: Exposing the Medical Moravec's Paradox in VLMs via Clinical Triage</h2>
+                    <h2>Code Review Agent Benchmark</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23501</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">MedObvious：临床分诊揭示VLM医学莫拉维克悖论</span>
-                        <span style="color:#666;font-size:12px;">Ufaq Khan et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23448</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">代码审查智能体基准测试</span>
+                        <span style="color:#666;font-size:12px;">Yuntong Zhang et al.</span>
                     </div>
                     
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">视觉语言模型（VLMs）越来越多地应用于医疗报告生成和视觉问答等任务。然而，流畅的诊断文本并不能确保安全的视觉理解。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对AI代码生成时代日益凸显的代码质量问题，提出了一个专门用于评估代码审查智能体性能的基准数据集c-CRAB。该研究构建了一个系统化的评估框架，能够基于人类对Pull Request的审查生成相应测试，从而客观衡量代码审查智能体生成的审查质量。论文使用该框架评估了包括开源PR-agent以及Devin、Claude Code、Codex等商业智能体在内的当前先进技术，揭示了现有智能体的能力局限与未来研究方向。</div>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>视觉语言模型（VLMs）在医疗报告生成和视觉问答等任务中的应用日益广泛。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>构建了c-CRAB代码审查数据集，基于真实人类对Pull Request的审查记录系统化生成评估测试</li><li>设计了针对代码审查智能体的评估框架，能够客观量化其审查能力与生成审查的质量</li><li>采用基于人类审查生成对应测试的方法，确保评估标准与真实软件工程实践对齐</li><li>将评估对象覆盖开源与商业多类智能体，包括PR-agent、Devin、Claude Code和Codex</li></ul>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>然而，流畅的诊断文本并不能确保安全的视觉理解。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>首次提出专门针对代码审查智能体的系统性评估基准，填补了该领域标准化评估工具的空白</li><li>创新性地通过人类审查生成对应测试用例，使评估既能反映人类标准又具备可自动化执行的特性</li><li>构建的c-CRAB数据集可作为独立测试套件，为智能体生成的代码审查提供质量门槛</li><li>研究视角从单一代码生成扩展到代码生成、测试生成与代码审查智能体的协同工作流</li></ul>
                         </div>
                         
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>现有基准大多默认该步骤已解决，因而忽略了一个关键失效模式：即使输入内容存在矛盾或无效，模型仍可能生成看似合理的叙述。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>现有最先进的代码审查智能体整体仅能解决约40%的c-CRAB任务，表明该领域仍有巨大改进空间</li><li>智能体生成的审查与人类审查关注点存在差异，揭示了未来人机协同代码审查的潜在价值</li><li>c-CRAB数据集可作为持续评估智能体代码审查能力的基准，推动该技术方向的迭代发展</li><li>研究为代码生成、测试生成与审查智能体三者如何协同工作提出了新的探索方向</li></ul>
                         </div>
                     </div>
                     
-                    <a href="https://arxiv.org/abs/2603.23501" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23501</a>
+                    <a href="https://arxiv.org/abs/2603.23448" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23448</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">2</div>
-                    <h2>Estimating Flow Velocity and Vehicle Angle-of-Attack from Non-invasive Piezoelectric Structural Measurements Using Deep Learning</h2>
+                    <h2>Mecha-nudges for Machines</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23496</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">基于深度学习的非侵入式压电结构测量流速与攻角估计</span>
-                        <span style="color:#666;font-size:12px;">Chandler B. Smith et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23433</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">机械助推机制</span>
+                        <span style="color:#666;font-size:12px;">Giulio Frey et al.</span>
                     </div>
                     
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本研究提出了一种基于深度学习的非侵入式方法来估计飞行器的自由流速度和攻角。该方法通过在飞行器蒙皮内部安装压电传感器阵列，采集湍流边界层压力波动引起的结构振动信号，并利用卷积神经网络从这些振动响应中反演速度和攻角信息。研究在桑迪亚高超声速风洞中进行了概念验证实验，涵盖了多种工况，证明了该方法的可行性。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出'机械助推'概念，指在不改变人类决策环境的前提下，通过调整选择呈现方式来系统性地影响AI代理的决策行为。研究将贝叶斯说服框架与V-可用信息理论相结合，构建了统一的量化框架，并以Etsy平台为案例，发现ChatGPT发布后商品列表中的机器可用信息显著增加，证实了系统性机械助推现象的存在。</div>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>使用密集压电传感器阵列非侵入式采集结构振动信号，替代传统的皮托管等直接流场测量仪器</li><li>采用卷积神经网络作为核心算法，从振动信号中学习并反演速度和攻角等气动状态变量</li><li>设计了包含训练、验证和测试的数据集划分策略，并评估了实验运行内部的时间泛化能力</li><li>引入短窗口移动中值后处理步骤，有效抑制了连续变化工况下预测结果的方差，提高了鲁棒性</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>贝叶斯说服框架：用于建模选择呈现方式对决策者的影响机制</li><li>V-可用信息理论：作为香农信息的泛化形式，能够衡量观察者相对的信息效用</li><li>统一量化尺度：以'可用信息比特数'作为比较不同干预措施、情境和模型的共同标准</li><li>实证分析框架：结合理论模型与平台数据验证机械助推的实际效应</li></ul>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出了一种全新的非侵入式气动状态估计范式，从结构振动测量间接反演流场信息，避免了在流场中安装探头</li><li>将深度学习技术应用于高超声速风洞实验数据的分析与反演，实现了从复杂振动信号到关键气动参数的端到端映射</li><li>方法不依赖于直接流场测量，为飞行控制、载荷预测和模型验证提供了潜在的替代或补充测量手段</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>首次提出'机械助推'概念，将行为经济学中的助推理论扩展至AI决策领域</li><li>建立人机决策环境的兼容性框架，确保干预措施不影响人类决策质量</li><li>创造性地将贝叶斯说服与信息理论结合，为量化干预效果提供新方法论</li><li>提出机器可用信息的测量标准，实现跨模型和情境的干预效果可比性</li></ul>
                         </div>
                         
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>在受控实验室环境下，该方法证明了基于振动进行速度和攻角估计的可行性，为实际应用奠定了基础</li><li>经过后处理，在测试数据上取得了平均速度误差低于2.27 m/s (0.21%)、平均攻角误差为0.44° (8.25%)的精度</li><li>原始CNN预测在连续变化工况下方差增大，而移动中值后处理显著抑制了方差，提升了方法的稳定性和实用性</li><li>实验涵盖了马赫数5和8、零与非零攻角、恒定与连续变化风洞运行等多种条件，验证了方法的广泛适用性</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>ChatGPT发布后，Etsy商品列表中的机器可用信息显著增加，证实系统性机械助推的存在</li><li>机械助推能够在不损害人类决策环境的前提下有效影响AI代理的决策行为</li><li>可用信息比特数作为统一度量标准，可有效比较不同干预措施的效果差异</li><li>平台设计者可通过优化信息呈现方式，同时满足人类和机器决策者的需求</li></ul>
                         </div>
                     </div>
                     
-                    <a href="https://arxiv.org/abs/2603.23496" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23496</a>
+                    <a href="https://arxiv.org/abs/2603.23433" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23433</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">3</div>
-                    <h2>VISion On Request: Enhanced VLLM efficiency with sparse, dynamically selected, vision-language interactions</h2>
+                    <h2>Biased Error Attribution in Multi-Agent Human-AI Systems Under Delayed Feedback</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23495</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">按需视觉：稀疏动态交互提升VLLM效率</span>
-                        <span style="color:#666;font-size:12px;">Adrian Bulat et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23419</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">延迟反馈下多智能体人机系统的偏差归因</span>
+                        <span style="color:#666;font-size:12px;">Teerthaa Parakh et al.</span>
                     </div>
                     
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出VISOR方法，旨在提升大型视觉语言模型（LVLM）的推理效率。不同于现有方法通过压缩视觉令牌导致信息瓶颈，VISOR通过稀疏化图像与文本令牌之间的交互来降低成本，同时保留完整的视觉信息。该方法采用动态选择的自注意力层来精炼视觉表示，并引入轻量级策略机制根据样本复杂度动态分配计算资源，从而在多种基准测试中实现计算成本大幅降低且性能匹配或超越现有最优方法。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本研究探讨了在延迟反馈和多AI代理环境下的人类决策与责任归因偏差。通过受控游戏实验，发现参与者对正负结果存在不对称反应，更倾向于在负面结果后做出更强的行为调整。然而，参与者常错误识别导致失败的行为，并在多个AI代理间错误归责，导致决策修订与绩效不佳的根本原因关联较弱。这种现象被称为归因偏差，表现为延迟反馈下的错误归因偏差。</div>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>稀疏化视觉-语言交互：通过少量精心放置的注意力层实现文本与高分辨率视觉令牌的高效交互，避免视觉信息丢弃</li><li>动态自注意力层选择：根据任务需求动态启用少量自注意力层来精炼视觉表示，支持复杂高分辨率推理</li><li>轻量级策略机制：引入策略网络实时评估样本复杂度，动态分配视觉计算资源，实现自适应计算分配</li><li>通用网络训练：在多种计算预算下训练单一通用网络，通过调整自注意力层数量适应不同计算需求</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>采用受控游戏实验设计，模拟多代理人机协作任务环境</li><li>分析参与者在延迟反馈条件下对正负结果的行为调整模式</li><li>研究责任归因偏差在多AI代理系统中的表现机制</li></ul>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>挑战视觉令牌压缩范式：提出不丢弃视觉信息的高效化新思路，避免传统方法造成的信息瓶颈问题</li><li>交互稀疏化而非视觉压缩：通过减少跨模态交互次数而非压缩视觉内容来提升效率，保持原始视觉信息完整性</li><li>动态计算分配机制：首次在LVLM中实现基于样本复杂度的实时计算资源动态分配，提升计算效率</li><li>通用网络架构设计：单一网络支持多计算预算，通过自注意力层数量调整实现灵活的效率-性能平衡</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>首次系统研究延迟反馈下多AI代理系统中的人类归因偏差</li><li>揭示错误责任归因导致决策修订与根本原因脱节的现象</li><li>提出延迟反馈会放大认知偏差的新视角</li></ul>
                         </div>
                         
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>计算成本显著降低：VISOR大幅减少推理计算成本，同时在多样化基准测试中匹配或超越现有最优方法性能</li><li>复杂任务表现优异：在需要细粒度视觉理解和推理的挑战性任务中表现突出，证明完整视觉信息保留的重要性</li><li>动态机制有效性：轻量级策略机制能准确评估样本复杂度并实现高效计算分配，验证自适应方法的可行性</li><li>通用架构实用性：单一网络在不同计算预算下均表现良好，展示方法的灵活性和实际部署潜力</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>参与者对损失的反应比对收益更强烈，表现出不对称调整行为</li><li>在多代理系统中，参与者常错误识别失败原因并误判责任归属</li><li>延迟反馈会显著放大人类在复杂人机系统中的认知偏差</li></ul>
                         </div>
                     </div>
                     
-                    <a href="https://arxiv.org/abs/2603.23495" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23495</a>
+                    <a href="https://arxiv.org/abs/2603.23419" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23419</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">4</div>
-                    <h2>Failure of contextual invariance in gender inference with large language models</h2>
+                    <h2>Beyond Preset Identities: How Agents Form Stances and Boundaries in Generative Societies</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23485</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">大语言模型性别推断的语境失稳</span>
-                        <span style="color:#666;font-size:12px;">Sagar Kumar et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23406</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">超越预设身份：生成社会中立场与边界的形成机制</span>
+                        <span style="color:#666;font-size:12px;">Hanzhong Zhang et al.</span>
                     </div>
                     
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本研究挑战了大型语言模型（LLM）输出在任务表述语境等效时保持稳定的标准评估假设。通过在性别推断任务中引入受控的代词选择实验，研究者发现，即使添加理论上无信息量的最小话语语境，也会导致模型输出发生显著且系统性的偏移。这表明LLM的输出违反了语境不变性，对偏见基准测试和高风险场景部署具有重要影响。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">尽管大型语言模型能够模拟社会行为，但其在复杂干预过程中形成稳定立场和进行身份协商的能力尚不明确。为突破静态评估的局限性，本文提出一种创新混合方法框架，将计算虚拟民族志与定量社会认知特征分析相结合。</div>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>采用受控的代词选择任务，系统测试模型在性别推断中的表现</li><li>引入最小且理论上无信息量的话语语境，观察其对模型输出的影响</li><li>使用相关性分析，评估文化性别刻板印象与模型行为的关系变化</li><li>应用Contextuality-by-Default分析框架，量化语境依赖的持续性</li><li>设计实验分离简单代词重复效应与深层语境依赖效应</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>尽管大型语言模型能够模拟社会行为，但它们在复杂干预过程中形成稳定立场和进行身份协商的能力仍不明确。</li></ul>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>首次在性别推断任务中系统检验LLM的语境不变性假设</li><li>揭示最小语境引入即可导致模型输出系统性偏移，挑战标准评估实践</li><li>发现语境引入后文化刻板印象相关性减弱，无关特征预测性增强</li><li>采用理论驱动的语境分析框架，量化不可归因于边际效应的语境依赖</li><li>将语境敏感性研究从语义差异扩展到近同句法表述下的输出不稳定性</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>为克服静态评估的局限性，本文提出一种新颖的混合方法框架，将计算虚拟民族志与定量社会认知画像相结合。</li></ul>
                         </div>
                         
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>LLM输出违反语境不变性，即使句法表述近乎相同，输出也会随最小语境变化而系统偏移</li><li>引入语境后，文化性别刻板印象与模型行为的相关性减弱或消失，而理论上无关的特征（如无关指代词的性别）成为最具预测性的因素</li><li>Contextuality-by-Default分析显示，19-52%的案例中，语境依赖持续存在且不能归因于简单代词重复或边际效应</li><li>研究结果对偏见基准测试构成挑战，因为模型行为高度依赖于具体的语境表述方式</li><li>在高风险部署场景中，LLM的语境敏感性可能导致不可预测的输出变异，需要新的评估框架</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>通过将人类研究者嵌入生成式多智能体社区，我们实施受控的话语干预以追踪集体认知的演化过程。</li></ul>
                         </div>
                     </div>
                     
-                    <a href="https://arxiv.org/abs/2603.23485" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23485</a>
+                    <a href="https://arxiv.org/abs/2603.23406" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23406</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">5</div>
-                    <h2>SpecEyes: Accelerating Agentic Multimodal LLMs via Speculative Perception and Planning</h2>
+                    <h2>Planning over MAPF Agent Dependencies via Multi-Dependency PIBT</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23483</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">SpecEyes：通过推测感知与规划加速多模态智能体</span>
-                        <span style="color:#666;font-size:12px;">Haoyu Huang et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23405</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">基于多依赖PIBT的MAPF代理依赖规划</span>
+                        <span style="color:#666;font-size:12px;">Zixiang Jiang et al.</span>
                     </div>
                     
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出SpecEyes框架，旨在解决智能多模态大语言模型（如OpenAI o3和Gemini Agentic Vision）因迭代调用视觉工具而产生的序列化开销问题。该框架通过引入轻量级无工具MLLM作为推测性规划器，预测执行轨迹并提前终止昂贵工具链，同时设计认知门控机制和异构并行漏斗，在保持甚至提升准确性的前提下实现1.1-3.35倍加速，显著提升系统吞吐量。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对传统多智能体路径规划算法PIBT及其扩展EPIBT在规划过程中只能处理单智能体冲突的局限性，提出了一种基于智能体依赖关系规划的新视角。通过定义智能体依赖关系并开发多依赖PIBT框架，该研究不仅能够复现现有算法，还能生成新的规划策略，有效支持大规模同质智能体在多种运动学约束下的路径规划。</div>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>推测性规划：使用轻量级无工具MLLM预测智能体执行轨迹，实现早期终止以减少计算开销</li><li>认知门控机制：基于答案可分离性量化模型置信度，实现无需真实标签的自验证与规划调控</li><li>异构并行漏斗：利用小模型无状态并发性掩盖大模型有状态串行执行，最大化系统吞吐量</li><li>工具链优化：通过推测性感知与规划打破感知-推理-工具调用的序列化瓶颈，降低智能体深度延迟</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>基于智能体依赖关系的规划框架，将路径规划问题转化为依赖关系搜索问题</li><li>多依赖PIBT算法框架，通过参数化配置实现不同规划策略的灵活切换</li><li>继承PIBT的优先级继承逻辑，但扩展了冲突处理能力至多智能体依赖关系</li><li>支持多种运动学约束的规划，包括卵石运动、旋转运动和带速度加速度限制的差速驱动机器人</li></ul>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出首个智能体级推测加速框架，将推测执行思想扩展至多模态智能体领域</li><li>设计无需真实标签的自验证机制，通过答案可分离性实现可靠置信度评估</li><li>创新性地将轻量级MLLM作为推测规划器，平衡计算效率与轨迹预测准确性</li><li>构建异构并行执行架构，有效协调不同规模模型的并发与串行执行模式</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出智能体依赖关系的新概念，为MAPF问题提供全新的解决视角</li><li>开发多依赖PIBT框架，突破传统PIBT只能处理单智能体冲突的限制</li><li>框架具有高度通用性，特定参数配置可复现PIBT和EPIBT算法</li><li>能够生成PIBT和EPIBT无法表达的新型规划策略，扩展了算法表达能力</li></ul>
                         </div>
                         
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>在V* Bench、HR-Bench和POPE基准测试中实现1.1-3.35倍加速，超越智能体基线方法</li><li>在加速同时保持甚至提升准确性，最高提升达6.7%，打破速度-精度权衡困境</li><li>认知门控机制有效调控推测规划，确保早期终止决策不影响最终任务准确性</li><li>异构并行设计显著提升系统级并发能力，为高负载场景提供可扩展服务方案</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>MD-PIBT能够有效规划多达10000个同质智能体的路径，展现出强大的扩展能力</li><li>在多种运动学约束条件下均表现良好，包括复杂机器人运动模型</li><li>在大规模智能体MAPF问题中表现尤为突出，特别适合大型智能体场景</li><li>通过实验验证了框架在不同MAPF变体上的有效性，证明了方法的通用性</li></ul>
                         </div>
                     </div>
                     
-                    <a href="https://arxiv.org/abs/2603.23483" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23483</a>
+                    <a href="https://arxiv.org/abs/2603.23405" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23405</a>
                 </div>
             </div>
         </div>
