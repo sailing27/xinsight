@@ -1,20 +1,35 @@
 {
   "date": "2026-03-25",
-  "title": "Agentic AI应用洞察报告",
-  "topic": "Agentic AI应用",
+  "title": "多模态AI与视觉语言模型洞察报告",
+  "topic": "多模态AI与视觉语言模型",
   "directions": [
-    "agentic"
+    "multimodal",
+    "llm"
   ],
-  "paper_count": 1,
+  "paper_count": 3,
   "papers": [
     {
-      "id": "2603.23448",
-      "title": "Code Review Agent Benchmark",
-      "chinese_title": "代码审查智能体基准测试",
-      "authors": "Yuntong Zhang et al.",
-      "url": "https://arxiv.org/abs/2603.23448"
+      "id": "2603.23501",
+      "title": "MedObvious: Exposing the Medical Moravec's Paradox in VLMs via Clinical Triage",
+      "chinese_title": "MedObvious：临床分诊揭示VLM医学莫拉维克悖论",
+      "authors": "Ufaq Khan et al.",
+      "url": "https://arxiv.org/abs/2603.23501"
+    },
+    {
+      "id": "2603.23500",
+      "title": "UniGRPO: Unified Policy Optimization for Reasoning-Driven Visual Generation",
+      "chinese_title": "UniGRPO：推理驱动视觉生成的统一策略优化",
+      "authors": "Jie Liu et al.",
+      "url": "https://arxiv.org/abs/2603.23500"
+    },
+    {
+      "id": "2603.23455",
+      "title": "DetPO: In-Context Learning with Multi-Modal LLMs for Few-Shot Object Detection",
+      "chinese_title": "DetPO：多模态大模型少样本目标检测的上下文学习",
+      "authors": "Gautam Rajendrakumar Gare et al.",
+      "url": "https://arxiv.org/abs/2603.23455"
     }
   ],
-  "generated_at": "2026-03-25T11:38:22.877Z",
+  "generated_at": "2026-03-25T12:08:31.501Z",
   "org": "AI研究室"
 }
