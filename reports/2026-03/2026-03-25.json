@@ -1,35 +1,28 @@
 {
   "date": "2026-03-25",
-  "title": "多模态AI与视觉语言模型洞察报告",
-  "topic": "多模态AI与视觉语言模型",
+  "title": "大模型推理与效率优化洞察报告",
+  "topic": "大模型推理与效率优化",
   "directions": [
-    "multimodal",
-    "llm"
+    "llm",
+    "infra"
   ],
-  "paper_count": 3,
+  "paper_count": 2,
   "papers": [
     {
-      "id": "2603.23501",
-      "title": "MedObvious: Exposing the Medical Moravec's Paradox in VLMs via Clinical Triage",
-      "chinese_title": "MedObvious：临床分诊揭示VLM医学莫拉维克悖论",
-      "authors": "Ufaq Khan et al.",
-      "url": "https://arxiv.org/abs/2603.23501"
+      "id": "2603.23496",
+      "title": "Estimating Flow Velocity and Vehicle Angle-of-Attack from Non-invasive Piezoelectric Structural Measurements Using Deep Learning",
+      "chinese_title": "基于深度学习的非侵入式压电结构测量流速与攻角估计",
+      "authors": "Chandler B. Smith et al.",
+      "url": "https://arxiv.org/abs/2603.23496"
     },
     {
-      "id": "2603.23500",
-      "title": "UniGRPO: Unified Policy Optimization for Reasoning-Driven Visual Generation",
-      "chinese_title": "UniGRPO：推理驱动视觉生成的统一策略优化",
-      "authors": "Jie Liu et al.",
-      "url": "https://arxiv.org/abs/2603.23500"
-    },
-    {
-      "id": "2603.23455",
-      "title": "DetPO: In-Context Learning with Multi-Modal LLMs for Few-Shot Object Detection",
-      "chinese_title": "DetPO：多模态大模型少样本目标检测的上下文学习",
-      "authors": "Gautam Rajendrakumar Gare et al.",
-      "url": "https://arxiv.org/abs/2603.23455"
+      "id": "2603.23495",
+      "title": "VISion On Request: Enhanced VLLM efficiency with sparse, dynamically selected, vision-language interactions",
+      "chinese_title": "按需视觉：稀疏动态交互提升VLLM效率",
+      "authors": "Adrian Bulat et al.",
+      "url": "https://arxiv.org/abs/2603.23495"
     }
   ],
-  "generated_at": "2026-03-25T12:08:31.501Z",
+  "generated_at": "2026-03-25T12:14:10.392Z",
   "org": "AI研究室"
 }
