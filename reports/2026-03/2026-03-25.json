@@ -1,0 +1,20 @@
+{
+  "date": "2026-03-25",
+  "title": "AI基础设施与推理优化洞察报告",
+  "topic": "AI基础设施与推理优化",
+  "directions": [
+    "infra"
+  ],
+  "paper_count": 1,
+  "papers": [
+    {
+      "id": "2603.23329",
+      "title": "Communication-Aware Diffusion Load Balancing for Persistently Interacting Objects",
+      "chinese_title": "持续交互对象的通信感知扩散负载均衡",
+      "authors": "Maya Taylor et al.",
+      "url": "https://arxiv.org/abs/2603.23329"
+    }
+  ],
+  "generated_at": "2026-03-25T11:26:42.616Z",
+  "org": "AI研究室"
+}
