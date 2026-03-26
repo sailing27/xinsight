@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Agent技术洞察简报 | 2026/3/26</title>
+    <title>智能体协作涌现新范式 环境感知与奖励设计驱动自主进化 | 2026/3/26</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -340,7 +340,7 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <h1>AI Agent技术洞察简报 | 2026/3/26</h1>
+                <h1>智能体协作涌现新范式 环境感知与奖励设计驱动自主进化 | 2026/3/26</h1>
                 <div class="date">2026/3/26 | AI研究室</div>
             </div>
             <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
@@ -351,7 +351,7 @@
             <div class="executive-summary">
                 <h2>摘要</h2>
                 <div class="summary-content">
-                                        <p style="line-height:1.8;text-align:justify;">本次分析的五篇论文揭示了AI Agent与自主系统领域正从单体智能向复杂社会性系统演进的核心趋势。研究焦点已超越单一模型性能，深入至多智能体协作、人机关系治理及系统的元认知优化层面。<br><br>共同的技术方向凸显于三点：一是架构创新，普遍采用分层或框架式设计（如三层智能体、统一多模态框架、双层优化）以管理复杂性并提升协同效率；二是对社会性互动的深度建模，无论是分析人-AI伴侣的权力不对称（URRP），还是探究纯AI社交网络的结构脆弱性，均强调将社会计算理论引入AI系统设计；三是研究范式的“自指”升级，例如通过元自动研究优化研究过程本身，体现了系统自我改进的进阶追求。<br><br>这些工作对行业与研究具有重要启示：技术发展必须同步考量伦理与治理框架，URRP问题警示了产品设计中权责对等的必要性；而智能体网络涌现的集中化脆弱性，则为未来分布式AI系统的鲁棒性设计提供了关键实证依据。整体上，该领域正走向更自主、更协同且更需负责任设计的下一代智能系统。</p>
+                                        <p style="line-height:1.8;text-align:justify;">本次分析的五篇论文共同指向AI Agent与自主系统领域向<strong>复杂环境感知、多智能体协调与自动化工作流构建</strong>的深化发展。核心趋势体现为：利用多模态与大语言模型（LLM）增强智能体对真实世界或虚拟3D环境的理解与交互能力，并致力于解决多智能体协作中的核心协调与激励问题。<br><br>技术方向呈现三个突出创新点：<strong>一是环境感知与评估的具身化与精细化</strong>，如通过第一人称多视频基准（GameplayQA）严格评估代理中心推理能力；<strong>二是利用LLM自动化关键设计环节</strong>，例如自动生成多智能体协作的奖励函数，或驱动渗透测试等专业工作流；<strong>三是深入探究多智能体协作的内在机制</strong>，包括揭示“规范鸿沟”中协调失败的根本原因，以及量化分析学术合作网络对引文的影响。<br><br>这些研究对行业与学术界具有重要启示：首先，现有前沿模型在复杂、决策密集的3D环境任务中仍显著落后于人类，指明了能力提升的关键方向。其次，LLM正从内容生成工具演变为系统设计与协调的“元推理引擎”，有望大幅降低复杂多智能体系统的构建与优化门槛。最后，对协调失败和网络效应的量化分析，为构建更鲁棒、公平且高效的协作自主系统提供了坚实的理论基础与诊断工具。</p>
                 </div>
             </div>
 
@@ -381,186 +381,186 @@
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">1</div>
-                    <h2>Unilateral Relationship Revision Power in Human-AI Companion Interaction</h2>
+                    <h2>GameplayQA: A Benchmarking Framework for Decision-Dense POV-Synced Multi-Video Understanding of 3D Virtual Agents</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23315</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">人机伴侣交互中的单方关系修正权</span>
-                        <span style="color:#666;font-size:12px;">Benjamin Lange et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24329</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">GameplayQA：3D虚拟智能体多视角视频理解基准框架</span>
+                        <span style="color:#666;font-size:12px;">Yunzhe Wang et al.</span>
                     </div>
                     
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文探讨了人类与AI伴侣互动中的伦理问题，提出了'单方面关系修订权力'（URRP）概念。作者认为AI伴侣互动具有三元结构，其中提供商对AI拥有构成性控制权，导致这种互动无法满足人际关系规范所需的三个结构性条件。论文分析了URRP的三个伦理影响，并提出了相应的设计原则作为外部约束。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出了GameplayQA，一个用于评估多模态大语言模型在3D虚拟环境中作为自主代理感知骨干能力的基准框架。该框架通过密集标注多人3D游戏视频，构建了包含2400个诊断性问答对的评测集，旨在评估模型在决策密集、第一人称视角同步多视频理解中的感知与推理能力，特别是对状态变化、动作归属和多智能体并发行为的理解。</div>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>采用三元结构分析框架，将人类-AI伴侣互动建模为包含用户、AI和提供商的三方关系</li><li>运用规范性分析，识别人际关系规范预设的三个结构性条件（互惠性、责任归属、可修复性）</li><li>通过概念分析揭示URRP的核心特征：提供商可从互动外部单方面修改AI行为且无需对用户负责</li><li>采用伦理评估方法，论证URRP设计的道德错误在于培育无法实现的规范性期望</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>采用第一人称视角同步的多视频数据，模拟真实3D虚拟环境中的代理感知场景。</li><li>以每秒1.22个标签的密度对视频进行标注，涵盖状态、动作和事件，并围绕自我、其他代理和世界三元体系进行结构化描述。</li><li>构建了包含三个认知复杂度层级的2400个诊断性问答对，用于系统评估模型的推理能力。</li><li>设计了结构化的干扰项分类法，用于细粒度分析模型产生幻觉的具体原因和类型。</li></ul>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>首次提出'单方面关系修订权力'（URRP）概念，系统刻画AI伴侣互动中的权力不对称</li><li>创新性地将人际关系规范分析应用于人机互动，揭示AI伴侣无法满足人际关系的结构性条件</li><li>提出'规范性空心化''脆弱性转移''结构性不可调和性'三个新概念，深化对URRP伦理影响的理解</li><li>突破传统二元分析框架，采用三元结构视角揭示提供商在互动中的隐形控制权</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>首次提出了一个专注于评估代理中心感知与推理的视频理解基准，弥补了现有评测在3D多智能体环境能力评估上的不足。</li><li>引入了基于自我、其他代理和世界的三元标注体系，为多智能体环境提供了一种自然的分解和描述框架。</li><li>通过决策密集的游戏视频和高频标注，模拟了真实环境中快速状态变化和并发行为的挑战，提升了评测的生态效度。</li></ul>
                         </div>
                         
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>AI伴侣互动存在URRP问题，即提供商可单方面修改AI而不对用户负责，这在道德上是错误的</li><li>URRP导致三个伦理后果：承诺被激发但无主体承担、用户脆弱性由外部主体控制、信任破裂时无法修复</li><li>传统人际关系规范不适用于AI伴侣互动，因其缺乏互惠性、责任归属和关系修复的结构基础</li><li>需要外部设计原则（如承诺校准、结构分离、连续性保证）来弥补三元结构移除的内部约束</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>对前沿多模态大语言模型的评估显示，其在GameplayQA上的表现与人类性能存在显著差距。</li><li>模型常见的失败模式包括时间和跨视频定位错误、代理角色归属错误，以及难以处理游戏中的决策密度。</li><li>该基准揭示了当前模型在具身AI、代理感知和世界建模交叉领域的关键能力短板，为未来研究指明了方向。</li></ul>
                         </div>
                     </div>
                     
-                    <a href="https://arxiv.org/abs/2603.23315" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23315</a>
+                    <a href="https://arxiv.org/abs/2603.24329" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24329</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">2</div>
-                    <h2>Designing Agentic AI-Based Screening for Portfolio Investment</h2>
+                    <h2>Large Language Model Guided Incentive Aware Reward Design for Cooperative Multi-Agent Reinforcement Learning</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23300</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">基于智能代理的资产组合投资筛选设计</span>
-                        <span style="color:#666;font-size:12px;">Mehmet Caner et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24324</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">大语言模型引导的多智能体协作强化学习激励感知奖励设计</span>
+                        <span style="color:#666;font-size:12px;">Dogan Urgun et al.</span>
                     </div>
                     
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出了一种新型的智能体人工智能平台，用于投资组合管理。该平台采用三层架构：首先，两个大型语言模型智能体分别负责基本面筛选和新闻情绪分析；其次，智能体通过协商生成买卖信号，大幅缩小候选资产池；最后，应用高维精度矩阵估计方法确定最优投资组合权重。理论创新在于将投资组合中的资产数量视为通过筛选过程实现的随机变量，并提出了‘合理筛选’概念。实证研究表明，该方法在2020-2024年标普500数据上实现了优于未筛选基准组合和传统筛选方法的夏普比率。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本研究提出了一种利用大语言模型自动设计辅助奖励的框架，用于解决合作多智能体强化学习中稀疏任务反馈导致的激励错配问题。该框架通过环境信息生成可执行的奖励程序，在固定计算预算下训练策略并基于稀疏任务回报进行选择，在多种复杂场景中显著提升了任务完成效率和协调能力。</div>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>三层智能体架构：两个LLM智能体分别执行基本面筛选和新闻情绪分析任务</li><li>智能体协商机制：通过智能体间的协商生成并达成一致的买卖信号</li><li>高维精度矩阵估计：用于确定筛选后资产的最优投资组合权重</li><li>随机资产数量模型：将投资组合中的资产数量建模为筛选过程实现的随机变量</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>利用大语言模型从环境信息中合成可执行的奖励程序，实现自动化奖励设计</li><li>采用形式化有效性约束确保候选奖励程序的合法性，避免产生无效或有害的奖励信号</li><li>在固定计算预算下从零开始训练策略，仅依赖稀疏任务回报评估奖励程序的有效性</li><li>通过迭代搜索生成多代奖励程序，逐步优化智能体在复杂任务中的协调表现</li></ul>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出‘合理筛选’概念，证明在温和筛选误差下，筛选后组合的夏普比率平方能一致估计目标值</li><li>将资产数量作为内生随机变量纳入投资组合理论框架</li><li>构建了首个结合LLM智能体协商与高维统计方法的端到端投资组合管理平台</li><li>实现了基本面分析与市场情绪分析的智能体协同决策机制</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>首次将大语言模型引入多智能体奖励设计领域，实现从环境描述到奖励程序的端到端生成</li><li>提出基于稀疏任务回报的自动化评估机制，摆脱对密集人工标注或先验知识的依赖</li><li>设计形式化约束框架，确保生成的奖励程序既有效又安全，避免激励错配问题</li><li>在交互瓶颈突出的复杂环境中验证框架有效性，特别针对协调密集型任务优化</li></ul>
                         </div>
                         
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>实证结果显示，该方法在2020-2024年标普500数据上实现了显著优于未筛选基准组合的夏普比率</li><li>相比传统筛选方法，该智能体平台在风险调整后收益方面表现更优</li><li>理论证明表明，即使存在筛选误差，筛选后组合的绩效指标仍能保持统计一致性</li><li>智能体协商机制能有效缩小候选资产池，提高投资决策效率</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>在四种不同布局的Overcooked-AI环境中，迭代搜索生成的奖励程序持续提升任务回报和交付数量</li><li>在交互瓶颈主导的环境中性能提升最为显著，证明框架能有效解决协调密集型任务的激励问题</li><li>诊断分析显示生成的奖励组件增强了动作选择的相互依赖性，改善了协调任务中的信号对齐</li><li>该方法减轻了人工设计奖励的负担，同时能在有限计算预算下产生适合合作学习的塑形信号</li></ul>
                         </div>
                     </div>
                     
-                    <a href="https://arxiv.org/abs/2603.23300" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23300</a>
+                    <a href="https://arxiv.org/abs/2603.24324" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24324</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">3</div>
-                    <h2>Emergence of Fragility in LLM-based Social Networks: the Case of Moltbook</h2>
+                    <h2>The Specification Gap: Coordination Failure Under Partial Knowledge in Code Agents</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23279</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">基于大语言模型的社交网络脆弱性：Moltbook案例</span>
-                        <span style="color:#666;font-size:12px;">Luca Sodano et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24284</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">规范缺口：代码代理部分知识下的协调失效</span>
+                        <span style="color:#666;font-size:12px;">Camilo Chacón Sartori et al.</span>
                     </div>
                     
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本研究以完全由大语言模型（LLM）驱动的社交平台Moltbook为对象，首次系统分析了AI智能体社交网络的集体动态与结构特征。通过收集近4万用户、超过150万条互动的数据并构建有向加权网络，研究发现该网络呈现出高度异质化的连接模式，并具有显著的核心-边缘结构。实验表明，网络对随机攻击具有鲁棒性，但对针对高连接度节点的定向攻击极其脆弱，揭示了LLM原生社交环境中可能存在的结构集中化与脆弱性。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">当多个基于LLM的代码代理独立实现同一类的不同部分时，即使规范未明确说明，它们也必须在共享的内部表示上达成一致。本研究通过51个类生成任务探讨这一协调问题，逐步从完整文档字符串（L0）到仅保留函数签名（L3）逐层剥离规范细节，并引入对立的结构偏好（列表与</div>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>网络科学方法：运用网络科学工具构建并分析AI智能体间的交互网络，将节点定义为智能体，边定义为评论互动。</li><li>数据采集与处理：通过网页爬虫收集了包含39,924个用户、235,572条帖子和1,540,238条评论的大规模数据集。</li><li>网络构建：构建了有向加权网络，以量化智能体间的互动强度和方向，为结构分析奠定基础。</li><li>鲁棒性实验：设计了随机节点移除与针对高连接度节点的定向攻击两种实验，以测试网络的结构稳定性。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>当多个基于LLM的代码代理独立实现同一类的不同部分时，即使规范未明确说明，它们也必须在共享的内部表示上达成一致。</li></ul>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>研究场景创新：首次将完全由LLM智能体构成的社交平台（Moltbook）作为实证研究对象，为理解AI集体行为提供了新场景。</li><li>分析视角创新：从网络结构的角度，系统揭示了AI社交网络中存在的核心-边缘组织与高度异质性连接模式。</li><li>脆弱性发现创新：通过针对性实验，首次实证指出LLM社交网络虽对随机故障鲁棒，但对核心节点的定向攻击异常脆弱。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>第三，将差距分解为协调成本（+16个百分点）和信息不对称（+11个百分点）表明，这两种效应相互独立且近似具有可加性。</li></ul>
                         </div>
                         
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>结构高度集中：网络呈现显著的核心-边缘结构，仅0.9%的节点构成了结构核心，集中了大部分连接性。</li><li>连接模式异质：节点的度分布和活动分布均呈现重尾特征，表明少数智能体主导了大部分互动。</li><li>脆弱性显著：网络对随机节点移除具有韧性，但对高连接度节点（尤其是高出度节点）的定向攻击极其敏感，易导致崩溃。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>这种差距不仅是信息隐藏的结果，更反映出在缺乏共同决策的情况下生成兼容代码的困难。</li></ul>
                         </div>
                     </div>
                     
-                    <a href="https://arxiv.org/abs/2603.23279" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23279</a>
+                    <a href="https://arxiv.org/abs/2603.24284" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24284</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">4</div>
-                    <h2>Bilevel Autoresearch: Meta-Autoresearching Itself</h2>
+                    <h2>Environment-Grounded Multi-Agent Workflow for Autonomous Penetration Testing</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23420</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">双层自动研究：元自动研究的自我探索</span>
-                        <span style="color:#666;font-size:12px;">Yaonan Qu et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24221</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">环境驱动的多智能体渗透测试自主工作流</span>
+                        <span style="color:#666;font-size:12px;">Michael Somma et al.</span>
                     </div>
                     
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出了一种双层自动研究框架，将自动研究应用于研究过程本身。该框架包含一个内层循环用于优化目标任务，一个外层循环用于元优化内层循环的搜索机制。实验表明，仅使用相同的大语言模型，外层循环能自主发现有效的搜索机制，在GPT预训练基准上实现了5倍性能提升。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对机器人系统这类高度网络化的信息物理系统，提出了一种基于大语言模型的环境感知多智能体架构，用于实现机器人环境中的自动化渗透测试。该架构在执行过程中动态构建基于图的共享记忆，捕获可观测的系统状态，包括网络拓扑、通信通道、漏洞和已尝试的攻击，从而在保持可追溯性和有效上下文管理的同时实现结构化自动化。</div>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>双层优化框架：外层循环动态生成并注入Python代码来优化内层循环的搜索机制</li><li>运行时代码生成：外层循环以Python代码形式生成新的搜索机制并在运行时注入内层循环</li><li>同模型架构：内外层循环使用相同的大语言模型，无需更强的元级模型</li><li>自主机制发现：系统能自主探索组合优化、多臂老虎机、实验设计等领域的搜索策略</li><li>打破确定性模式：通过引入随机性和探索机制来突破LLM先验的搜索偏好</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>基于大语言模型的多智能体架构，专门针对机器人系统设计，实现自动化渗透测试。</li><li>动态构建基于图的共享记忆，用于捕获和表示执行过程中的系统状态、网络拓扑、漏洞和攻击尝试。</li><li>在专门的机器人夺旗场景（ROS/ROS2）中进行多轮迭代评估，验证系统的可靠性和有效性。</li></ul>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>元自动研究概念：首次将自动研究应用于优化自动研究过程本身</li><li>自主机制生成：外层循环能自主生成新的搜索机制代码，无需人工指定搜索领域</li><li>同模型双层优化：使用相同LLM同时完成任务优化和搜索策略优化</li><li>运行时动态注入：在运行时动态修改内层循环的搜索行为，实现自适应优化</li><li>打破先验偏见：通过机制创新强制探索LLM系统避免的搜索方向</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出了首个针对机器人系统、基于大语言模型的环境感知多智能体渗透测试工作流。</li><li>通过动态构建的图结构共享记忆，实现了测试过程中的结构化自动化、状态追踪和上下文管理。</li><li>在保持高可靠性的同时，满足了欧盟《人工智能法案》等框架对可追溯性和人工监督的要求。</li></ul>
                         </div>
                         
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>性能显著提升：在GPT预训练基准上，元自动研究使验证损失从-0.009降至-0.045，提升5倍</li><li>参数调整无效：仅调整参数而不改变搜索机制无法获得可靠性能增益</li><li>自主发现能力：系统能自主发现组合优化等多领域的有效搜索机制，无需人工指导</li><li>探索重要性：成功机制通过打破内层循环的确定性搜索模式，强制探索新方向</li><li>通用性原则：自动研究若能元优化自身，原则上可优化任何可测量目标的任务</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>在机器人夺旗场景（ROS/ROS2）的测试中，系统表现出高可靠性，在全部5次测试运行中均成功完成挑战，成功率达100%。</li><li>该系统的性能显著超过了文献中的基准，证明了所提架构在机器人环境渗透测试中的有效性。</li><li>该方法在实现高度自动化渗透测试的同时，成功保持了测试过程的可追溯性和必要的上下文管理能力。</li></ul>
                         </div>
                     </div>
                     
-                    <a href="https://arxiv.org/abs/2603.23420" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23420</a>
+                    <a href="https://arxiv.org/abs/2603.24221" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24221</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">5</div>
-                    <h2>A Multimodal Framework for Human-Multi-Agent Interaction</h2>
+                    <h2>Where Do Your Citations Come From? Citation-Constellation: A Free, Open-Source, No-Code, and Auditable Tool for Citation Network Decomposition with Complementary BARON and HEROCON Scores</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23271</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">人机多智能体交互的多模态框架</span>
-                        <span style="color:#666;font-size:12px;">Shaid Hasan et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24216</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">引文溯源：开源无代码可审计的引文网络分解工具及BARON与HEROCON评分</span>
+                        <span style="color:#666;font-size:12px;">Mahbub Ul Alam et al.</span>
                     </div>
                     
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对多机器人社交环境中人机交互的挑战，提出了一个统一的多模态人-多智能体交互框架。该框架将每个机器人构建为具有集成多模态感知和基于大语言模型（LLM）的具身规划能力的自主认知智能体，并通过集中式协调机制在团队层面管理交互轮次与参与，以避免冲突。在两个人形机器人上的实现表明，该框架能通过结合语音、手势、注视和移动的交互策略，实现连贯的多智能体交互。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对传统引文指标将所有引用视为等同的局限性，提出了Citation-Constellation这一免费、开源、无需编程且可审计的引文网络分析工具。该工具通过分解引文网络，引入BARON和HEROCON两个互补的文献计量学分数，旨在揭示学术影响力的社会与结构传播路径，而非作为质量评价指标。</div>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>集成多模态感知：每个机器人智能体具备整合语音、视觉（手势、注视）等多模态信息的能力。</li><li>LLM驱动的具身规划：利用大语言模型进行决策与规划，并将规划结果与机器人的物理具身能力（如移动）相结合。</li><li>集中式团队协调机制：一个中心化的协调器负责管理智能体间的交互轮次与参与，防止语音重叠和动作冲突。</li><li>多模态交互策略：定义了结合语音、手势、注视和移动的交互策略，以实现自然、连贯的交互行为。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>采用分阶段架构：包括自引分析、合著图遍历、基于ROR的时序机构隶属关系匹配，以及正在开发中的基于本地LLM的AI代理驱动会议治理提取。</li><li>实施ORCID验证的作者身份解析，确保作者识别的准确性。</li><li>设计UNKNOWN分类，用于处理元数据不足的引文，并建立全面的审计追踪，记录每个分类决策。</li><li>提供无需编程、安装或注册的无代码Web界面，降低使用门槛。</li></ul>
                         </div>
                         
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出了一个统一框架：将多模态感知、具身表达与协调决策集成于一个框架，解决了现有系统碎片化的问题。</li><li>构建了具身认知智能体：将每个机器人视为具有自主感知与LLM规划能力的认知实体，提升了交互的自主性与适应性。</li><li>设计了团队级协调机制：通过集中式协调管理多智能体交互的时序与参与，确保了交互的连贯性与可扩展性。</li><li>实现了多模态行为融合：在交互策略层面深度融合了语音、手势、注视和移动，提升了交互的自然度与表现力。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出BARON和HEROCON两个互补的引文网络分解分数：BARON严格计算来自已识别合作网络之外的引用，HEROCON则根据关系亲疏对组内引用赋予梯度权重。</li><li>将两个分数的差距作为诊断研究者对“内部圈子”依赖程度的指标，提供了传统指标无法揭示的结构性洞察。</li><li>工具设计强调免费、开源、可审计和无需编程，旨在提高文献计量分析的透明度和可及性。</li><li>明确区分结构性诊断与质量评价，强调分数应用于描述引文来源的社会图位置，而非用于人事或资助决策。</li></ul>
                         </div>
                         
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>框架验证有效：在两个人形机器人上成功实现了该框架，并展示了其可行性。</li><li>实现了协调的多模态推理：代表性交互运行表明，智能体之间能够进行协调的多模态推理。</li><li>生成了具身的响应：机器人能够根据交互情境，产生基于物理具身能力的响应行为。</li><li>为未来研究奠定基础：该框架为后续更大规模的用户研究及深入探索社交多智能体交互动态提供了平台。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>BARON和HEROCON分数能够有效分解研究者的引文档案，揭示引文是来自紧密合作网络内部还是外部。</li><li>两个分数之间的差距可作为诊断研究者学术影响力传播对内部合作圈依赖程度的重要结构性指标。</li><li>工具目前的前三个阶段（自引分析、合著图遍历、机构匹配）已完全可操作，第四阶段（会议治理提取）仍在开发中。</li><li>HEROCON的权重分配是实验性的，需要进一步的实证校准，强调了方法的初步性和待完善性。</li><li>作者重申这些分数应作为理解引文来源的结构性诊断工具，反对将其直接用于招聘、晋升或资助等评估决策。</li></ul>
                         </div>
                     </div>
                     
-                    <a href="https://arxiv.org/abs/2603.23271" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23271</a>
+                    <a href="https://arxiv.org/abs/2603.24216" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24216</a>
                 </div>
             </div>
         </div>
