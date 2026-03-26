@@ -1,6 +1,6 @@
 {
   "date": "2026-03-26",
-  "title": "智能体协作涌现新范式 环境感知与奖励设计驱动自主进化",
+  "title": "智能体安全与协同新范式 从隐蔽攻击到公平规划",
   "topic": "AI Agent与自主系统",
   "directions": [
     "agentic"
@@ -8,41 +8,41 @@
   "paper_count": 5,
   "papers": [
     {
-      "id": "2603.24329",
-      "title": "GameplayQA: A Benchmarking Framework for Decision-Dense POV-Synced Multi-Video Understanding of 3D Virtual Agents",
-      "chinese_title": "GameplayQA：3D虚拟智能体多视角视频理解基准框架",
-      "authors": "Yunzhe Wang et al.",
-      "url": "https://arxiv.org/abs/2603.24329"
+      "id": "2603.24203",
+      "title": "Invisible Threats from Model Context Protocol: Generating Stealthy Injection Payload via Tree-based Adaptive Search",
+      "chinese_title": "模型上下文协议的隐形威胁：基于树的自适应搜索生成隐蔽注入载荷",
+      "authors": "Yulin Shen et al.",
+      "url": "https://arxiv.org/abs/2603.24203"
     },
     {
-      "id": "2603.24324",
-      "title": "Large Language Model Guided Incentive Aware Reward Design for Cooperative Multi-Agent Reinforcement Learning",
-      "chinese_title": "大语言模型引导的多智能体协作强化学习激励感知奖励设计",
-      "authors": "Dogan Urgun et al.",
-      "url": "https://arxiv.org/abs/2603.24324"
+      "id": "2603.24058",
+      "title": "Mitigating Object Hallucinations in LVLMs via Attention Imbalance Rectification",
+      "chinese_title": "注意力失衡矫正缓解LVLM物体幻觉",
+      "authors": "Han Sun et al.",
+      "url": "https://arxiv.org/abs/2603.24058"
     },
     {
-      "id": "2603.24284",
-      "title": "The Specification Gap: Coordination Failure Under Partial Knowledge in Code Agents",
-      "chinese_title": "规范缺口：代码代理部分知识下的协调失效",
-      "authors": "Camilo Chacón Sartori et al.",
-      "url": "https://arxiv.org/abs/2603.24284"
+      "id": "2603.24160",
+      "title": "Towards Automated Crowdsourced Testing via Personified-LLM",
+      "chinese_title": "基于拟人化大模型的众包测试自动化研究",
+      "authors": "Shengcheng Yu et al.",
+      "url": "https://arxiv.org/abs/2603.24160"
     },
     {
-      "id": "2603.24221",
-      "title": "Environment-Grounded Multi-Agent Workflow for Autonomous Penetration Testing",
-      "chinese_title": "环境驱动的多智能体渗透测试自主工作流",
-      "authors": "Michael Somma et al.",
-      "url": "https://arxiv.org/abs/2603.24221"
+      "id": "2603.24083",
+      "title": "Knowledge-Guided Manipulation Using Multi-Task Reinforcement Learning",
+      "chinese_title": "知识引导的多任务强化学习操控",
+      "authors": "Aditya Narendra et al.",
+      "url": "https://arxiv.org/abs/2603.24083"
     },
     {
-      "id": "2603.24216",
-      "title": "Where Do Your Citations Come From? Citation-Constellation: A Free, Open-Source, No-Code, and Auditable Tool for Citation Network Decomposition with Complementary BARON and HEROCON Scores",
-      "chinese_title": "引文溯源：开源无代码可审计的引文网络分解工具及BARON与HEROCON评分",
-      "authors": "Mahbub Ul Alam et al.",
-      "url": "https://arxiv.org/abs/2603.24216"
+      "id": "2603.24014",
+      "title": "Language-Grounded Multi-Agent Planning for Personalized and Fair Participatory Urban Sensing",
+      "chinese_title": "语言驱动的个性化公平城市感知多智能体规划",
+      "authors": "Xusen Guo et al.",
+      "url": "https://arxiv.org/abs/2603.24014"
     }
   ],
-  "generated_at": "2026-03-26T01:48:44.014Z",
+  "generated_at": "2026-03-26T01:54:45.630Z",
   "org": "AI研究室"
 }
