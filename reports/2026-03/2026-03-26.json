@@ -1,6 +1,6 @@
 {
   "date": "2026-03-26",
-  "title": "智能体协同与编排技术演进驱动自主系统新范式",
+  "title": "智能体架构演进 混合边缘云与可解释编排重塑自主系统",
   "topic": "AI Agent与自主系统",
   "directions": [
     "agentic"
@@ -8,41 +8,41 @@
   "paper_count": 5,
   "papers": [
     {
-      "id": "2603.23566",
-      "title": "AscendOptimizer: Episodic Agent for Ascend NPU Operator Optimization",
-      "chinese_title": "AscendOptimizer：昇腾NPU算子优化情景代理",
-      "authors": "Jiehao Wu et al.",
-      "url": "https://arxiv.org/abs/2603.23566"
+      "id": "2603.23791",
+      "title": "The Cognitive Firewall:Securing Browser Based AI Agents Against Indirect Prompt Injection Via Hybrid Edge Cloud Defense",
+      "chinese_title": "认知防火墙：基于混合边缘云防御的浏览器AI代理间接提示注入防护",
+      "authors": "Qianlong Lan et al.",
+      "url": "https://arxiv.org/abs/2603.23791"
     },
     {
-      "id": "2603.23252",
-      "title": "AI Lifecycle-Aware Feasibility Framework for Split-RIC Orchestration in NTN O-RAN",
-      "chinese_title": "NTN O-RAN中切分RIC编排的AI生命周期感知可行性框架",
-      "authors": "Daniele Tarchi et al.",
-      "url": "https://arxiv.org/abs/2603.23252"
+      "id": "2603.23990",
+      "title": "From Untamed Black Box to Interpretable Pedagogical Orchestration: The Ensemble of Specialized LLMs Architecture for Adaptive Tutoring",
+      "chinese_title": "从黑盒到可解释教学编排：自适应辅导的专用大模型集成架构",
+      "authors": "Nizam Kadir et al.",
+      "url": "https://arxiv.org/abs/2603.23990"
     },
     {
-      "id": "2603.22862",
-      "title": "The Evolution of Tool Use in LLM Agents: From Single-Tool Call to Multi-Tool Orchestration",
-      "chinese_title": "LLM智能体工具使用演进：从单工具调用到多工具协同",
-      "authors": "Haoyuan Xu et al.",
-      "url": "https://arxiv.org/abs/2603.22862"
+      "id": "2603.23886",
+      "title": "AgentChemist: A Multi-Agent Experimental Robotic Platform Integrating Chemical Perception and Precise Control",
+      "chinese_title": "AgentChemist：集成化学感知与精准控制的多智能体实验平台",
+      "authors": "Xiangyi Wei et al.",
+      "url": "https://arxiv.org/abs/2603.23886"
     },
     {
-      "id": "2603.22823",
-      "title": "Empirical Comparison of Agent Communication Protocols for Task Orchestration",
-      "chinese_title": "任务编排中智能体通信协议的实证比较",
-      "authors": "Ivan Dobrovolskyi et al.",
-      "url": "https://arxiv.org/abs/2603.22823"
+      "id": "2603.23966",
+      "title": "Policy-Guided Threat Hunting: An LLM enabled Framework with Splunk SOC Triage",
+      "chinese_title": "策略引导的威胁狩猎：基于LLM与Splunk SOC的框架",
+      "authors": "Rishikesh Sahay et al.",
+      "url": "https://arxiv.org/abs/2603.23966"
     },
     {
-      "id": "2603.22717",
-      "title": "Does Teaming-Up LLMs Improve Secure Code Generation? A Comprehensive Evaluation with Multi-LLMSecCodeEval",
-      "chinese_title": "多LLM协作能否提升代码生成安全性？",
-      "authors": "Bushra Sabir et al.",
-      "url": "https://arxiv.org/abs/2603.22717"
+      "id": "2603.24402",
+      "title": "AI-Supervisor: Autonomous AI Research Supervision via a Persistent Research World Model",
+      "chinese_title": "AI-Supervisor：基于持久研究世界模型的自主科研监督",
+      "authors": "Yunbo Long et al.",
+      "url": "https://arxiv.org/abs/2603.24402"
     }
   ],
-  "generated_at": "2026-03-26T02:22:25.913Z",
+  "generated_at": "2026-03-26T02:46:31.305Z",
   "org": "AI研究室"
 }
