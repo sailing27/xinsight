@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智能体架构解耦与认知安全重塑自主系统新范式 | 2026/3/26</title>
+    <title>智能体协同与编排技术演进驱动自主系统新范式 | 2026/3/26</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -340,7 +340,7 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <h1>智能体架构解耦与认知安全重塑自主系统新范式 | 2026/3/26</h1>
+                <h1>智能体协同与编排技术演进驱动自主系统新范式 | 2026/3/26</h1>
                 <div class="date">2026/3/26 | AI研究室</div>
             </div>
             <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
@@ -351,7 +351,7 @@
             <div class="executive-summary">
                 <h2>摘要</h2>
                 <div class="summary-content">
-                                        <p style="line-height:1.8;text-align:justify;">近期AI Agent与自主系统领域的研究呈现出从单一模型向专业化、结构化多智能体架构演进的核心趋势。这些工作共同致力于解决传统黑箱系统在复杂、动态现实场景中适应性不足、安全性脆弱及缺乏持续认知状态的问题。技术方向聚焦于三点：一是<strong>架构解耦与专业化分工</strong>，如将决策、执行与验证分离（ES-LLMs、认知防火墙的分层防御）；二是<strong>多智能体协同与共识机制</strong>，通过持久化世界模型（AI-Supervisor）或实验平台（AgentChemist）实现状态保持与交叉验证；三是<strong>人机协同与领域集成</strong>，将Agent能力嵌入既有工作流（如Splunk SOC）以增强可解释性与操作效率。这些进展表明，未来自主系统的竞争力将取决于其模块化设计、安全韧性以及与传统领域工具的深度融合能力，为教育、网络安全、科学发现等高风险领域提供了可审计、可扩展的智能化解决方案。</p>
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦于AI智能体与自主系统的架构演进与协同优化，核心主题是系统化与工程化趋势日益显著，研究重心从单一模型能力转向复杂环境下的多组件集成与生命周期管理。技术趋势体现为对智能体在异构、动态、资源受限场景中实际部署效能的深度关注。<br><br>提炼出两个共同的技术方向：一是<strong>架构与通信的协同优化</strong>，体现在为特定硬件（如Ascend NPU）设计情景化优化代理，以及在分布式网络（如NTN O-RAN）中依据AI生命周期进行任务切分与编排，均强调系统级适配。二是<strong>多智能体/多工具协同的实证研究范式</strong>，研究重点已从单点工具调用转向长序列、带状态反馈的多工具编排，并开始通过系统化基准（如通信协议对比、多LLM协作评估）来量化不同协同策略的优劣。<br><br>这些研究对行业的启示在于，下一代AI系统的价值将更取决于其<strong>体系化设计</strong>与<strong>可工程化能力</strong>。研究者与开发者需超越模型本身，综合考虑硬件约束、网络条件、任务分解与代理间协作机制，推动智能体从演示原型走向稳健、高效的实际应用。</p>
                 </div>
             </div>
 
@@ -381,191 +381,191 @@
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">1</div>
-                    <h2>From Untamed Black Box to Interpretable Pedagogical Orchestration: The Ensemble of Specialized LLMs Architecture for Adaptive Tutoring</h2>
+                    <h2>AscendOptimizer: Episodic Agent for Ascend NPU Operator Optimization</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23990</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">从黑盒到可解释教学编排：自适应辅导的专用大模型集成架构</span>
-                        <span style="color:#666;font-size:12px;">Nizam Kadir et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23566</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">AscendOptimizer：昇腾NPU算子优化情景代理</span>
+                        <span style="color:#666;font-size:12px;">Jiehao Wu et al.</span>
                         
                     </div>
-                    
+
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">教育对话中使用的单体大型语言模型（LLM）常表现为“黑箱”，其教学决策过程隐晦且难以审查，并常因过早提供答案而违反教学约束。我们提出了专业化LLM集成架构，该架构将决策制定与语言表达相分离。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">华为昇腾神经网络处理器（NPU）上的AscendC（昇腾C）算子优化面临双重知识瓶颈：与CUDA生态系统不同，公开可参考的实现方案极少，且性能依赖于一个耦合的双层结构——负责协调数据移动的主机端分块程序，以及负责指令调度与流水线处理的内核程序。我们提出AscendOptimizer，这是一个通过将执行过程转化为经验来引导构建此类缺失专业知识的片段式智能体。</div>
                         </div>
-                        
+
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>我们提出了一种专业化大语言模型集成（ES-LLMS）架构，该架构将决策制定与措辞表达相分离。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>基于论文摘要的分析方法</li></ul>
                         </div>
-                        
+
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>LLM渲染器以自然语言表面实现所选行动。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>创新方法框架</li></ul>
                         </div>
-                        
+
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>通过人类专家评审员（N=6）和一个多LLM评审小组（包含六个前沿模型）对教学质量的验证表明，ES-LLMs在91%的情况下更受青睐。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>详细内容请查看原文</li></ul>
                         </div>
                     </div>
-                    
-                    <a href="https://arxiv.org/abs/2603.23990" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23990</a>
+
+                    <a href="https://arxiv.org/abs/2603.23566" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23566</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">2</div>
-                    <h2>Policy-Guided Threat Hunting: An LLM enabled Framework with Splunk SOC Triage</h2>
+                    <h2>AI Lifecycle-Aware Feasibility Framework for Split-RIC Orchestration in NTN O-RAN</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23966</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">基于LLM与Splunk的策略导向威胁狩猎框架</span>
-                        <span style="color:#666;font-size:12px;">Rishikesh Sahay et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23252</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">NTN O-RAN中切分RIC编排的AI生命周期感知可行性框架</span>
+                        <span style="color:#666;font-size:12px;">Daniele Tarchi et al.</span>
                         
                     </div>
-                    
+
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">随着网络空间中高级持续性威胁（APTs）的不断演变，传统安全解决方案已难以满足组织的威胁狩猎需求。此外，安全运营中心（SOC）分析师常因需处理来自组织内各类设备的海量日志而不堪重负，难以进行有效分析。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对非地面网络（NTN）中人工智能（AI）集成面临的卫星SWaP和馈电链路容量限制问题，研究了在O-RAN架构中通过Split-RIC架构将控制层次分布到地面、低轨（LEO）和高轨（GEO）段的可行性。论文比较了三种部署场景，推导了生命周期能耗和延迟的闭式表达式，并通过数值敏感性分析确定了不同条件下星上推理和非地面学习环路优于地面卸载的可行性区域。</div>
                         </div>
-                        
+
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>随着网络空间中高级持续性威胁（APTs）的频繁演变，传统安全解决方案已不足以满足组织的威胁狩猎需求。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出Split-RIC架构，将O-RAN控制层次分布到地面、LEO和GEO段，以应对卫星资源限制。</li><li>建立生命周期能耗和延迟的闭式表达式，综合考虑训练数据传输、模型分发和近实时推理。</li><li>设计三种部署场景：地面中心控制、地面-LEO Split-RIC（星上推理与存储转发学习）、GEO-LEO多层控制（星间链路）。</li><li>采用数值敏感性分析方法，评估馈电链路条件、模型复杂度和轨道间歇性对可行性的影响。</li></ul>
                         </div>
-                        
+
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>此外，安全运营中心（SOC）分析师常常不堪重负，难以有效分析从组织内各类设备接收的海量日志数据。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>首次提出AI生命周期感知的可行性框架，将模型训练、部署和推理全过程纳入NTN O-RAN性能评估。</li><li>创新性地将Split-RIC架构扩展到非地面网络，实现控制功能在空间段和地面段的智能分布。</li><li>建立了综合考虑能量和延迟的闭式分析模型，为运营商提供了量化的部署决策依据。</li><li>通过可行性区域划分，明确了星上推理和非地面学习环路相对于地面卸载的适用条件。</li></ul>
                         </div>
-                        
+
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>通过将Agentic AI与成熟的SIEM平台Splunk相结合，我们开发了一种独特的威胁狩猎框架。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>地面中心控制方案在馈电链路条件良好时最优，但受限于链路容量和延迟；星上推理在链路受限时能显著降低延迟。</li><li>地面-LEO Split-RIC方案通过星上推理和存储转发学习，在模型复杂度适中时能平衡能量和延迟性能。</li><li>GEO-LEO多层控制方案利用星间链路，在轨道间歇性高的场景下能提供更稳定的控制环路。</li><li>数值分析表明，可行性区域受馈电链路带宽、模型大小和轨道周期共同影响，为运营商部署提供了明确指导。</li></ul>
                         </div>
                     </div>
-                    
-                    <a href="https://arxiv.org/abs/2603.23966" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23966</a>
+
+                    <a href="https://arxiv.org/abs/2603.23252" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23252</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">3</div>
-                    <h2>AgentChemist: A Multi-Agent Experimental Robotic Platform Integrating Chemical Perception and Precise Control</h2>
+                    <h2>The Evolution of Tool Use in LLM Agents: From Single-Tool Call to Multi-Tool Orchestration</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23886</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">AgentChemist：集成化学感知与精准控制的多智能体实验平台</span>
-                        <span style="color:#666;font-size:12px;">Xiangyi Wei et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.22862</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">LLM智能体工具使用演进：从单工具调用到多工具协同</span>
+                        <span style="color:#666;font-size:12px;">Haoyuan Xu et al.</span>
                         
                     </div>
-                    
+
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">化学实验室自动化长期以来受限于僵化的工作流程以及对实验任务长尾分布的适应性不足。尽管大多数自动化平台在有限的标准化程序上表现良好，但实际实验室涉及多样化、低频且不断演变的操作，这些操作往往超出预设规程的范围。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文系统综述了LLM智能体从单一工具调用向多工具协同演化的研究进展。论文首先统一了任务表述，区分了单次调用与长程协同，然后围绕推理规划、训练构建、安全控制、资源效率、开放环境能力、基准评估六个维度组织文献，并总结了在软件工程、企业工作流等领域的代表性应用。最后讨论了构建可靠、可扩展、可验证的多工具智能体面临的主要挑战和未来方向。</div>
                         </div>
-                        
+
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>化学实验室自动化长期以来受限于僵化的工作流程，以及对实验任务长尾分布的适应性不足。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>任务统一与区分：将工具使用任务统一表述，明确区分单次工具调用与考虑中间状态、执行反馈、环境变化的长期多工具协同问题。</li><li>六维分析框架：围绕推理时规划与执行、训练与轨迹构建、安全与控制、资源约束下的效率、开放环境能力完整性、基准设计与评估六个核心维度组织现有研究。</li><li>应用领域归纳：系统总结了多工具智能体在软件工程、企业工作流自动化、图形用户界面操作、移动系统等具体领域的代表性应用场景。</li></ul>
                         </div>
-                        
+
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>尽管大多数自动化平台在有限的标准化程序上表现良好，但现实实验室涉及多样化、低频且不断演变的操作，这些操作往往超出预设规程的范围。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>研究范式转变：指出研究重心已从早期关注单一工具选择的正确性，转向复杂长轨迹下的多工具协同，强调状态、反馈、约束等现实因素。</li><li>系统性综述框架：首次提出涵盖规划、训练、安全、效率、能力、评估六个维度的综合分析框架，为多工具智能体研究提供了结构化视角。</li><li>问题定义深化：明确将长期协同与单次调用区分，并强调安全、成本、可验证性等实际约束，使研究更贴近真实部署需求。</li></ul>
                         </div>
-                        
+
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>这种不匹配性阻碍了现有系统向新型反应条件、非常规仪器配置及意外程序变异的泛化能力。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>多工具协同已成为LLM智能体发展的核心问题，涉及在动态环境中对工具序列的规划、执行与调整，远比单一调用复杂。</li><li>当前研究需在推理效率、安全可控性、开放环境适应能力、以及标准化评估基准等方面取得突破，以支撑可靠实用的系统。</li><li>未来方向在于构建兼具可靠性、可扩展性和可验证性的多工具智能体，需在算法、系统架构和评估方法上协同创新。</li></ul>
                         </div>
                     </div>
-                    
-                    <a href="https://arxiv.org/abs/2603.23886" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23886</a>
+
+                    <a href="https://arxiv.org/abs/2603.22862" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.22862</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">4</div>
-                    <h2>The Cognitive Firewall:Securing Browser Based AI Agents Against Indirect Prompt Injection Via Hybrid Edge Cloud Defense</h2>
+                    <h2>Empirical Comparison of Agent Communication Protocols for Task Orchestration</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23791</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">认知防火墙：基于混合边缘云防御的浏览器AI代理间接提示注入防护</span>
-                        <span style="color:#666;font-size:12px;">Qianlong Lan et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.22823</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">任务编排中智能体通信协议的实证比较</span>
+                        <span style="color:#666;font-size:12px;">Ivan Dobrovolskyi et al.</span>
                         
                     </div>
-                    
+
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">部署大型语言模型（LLM）作为自主浏览器代理会以间接提示注入（IPI）的形式暴露出显著的攻击面。基于云的防御机制虽能提供强大的语义分析能力，但会引入延迟并引发隐私担忧。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对人工智能代理系统从单工具交互向复杂多代理编排转型的背景下，首次对两种主流的通信协议——工具集成协议和代理间委托协议——进行了实证比较。研究目标是建立首个系统化基准，在三个复杂度级别上对比纯工具集成、多代理委托及混合架构，并量化它们在响应时间、上下文窗口消耗、货币成本、错误恢复和实现复杂度等方面的权衡。</div>
                         </div>
-                        
+
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>将大型语言模型（LLM）部署为自主浏览器代理，会以间接提示注入（IPI）的形式暴露出显著的攻击面。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>构建了系统化基准测试框架，用于在标准化查询下评估不同通信协议的性能。</li><li>设计了三个不同复杂度的任务层级，以全面考察协议在不同场景下的表现。</li><li>采用多维度评估指标，包括响应时间、上下文消耗、成本、错误恢复能力和实现复杂度。</li><li>实现了纯工具集成、多代理委托和混合架构三种典型系统架构的对比实验。</li></ul>
                         </div>
-                        
+
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>基于云的防御系统能够提供强大的语义分析能力，但会引入延迟并引发隐私担忧。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>首次在学术界对工业界广泛采用的两种代理通信协议进行实证比较，填补了文献空白。</li><li>提出了首个系统化的多维度基准测试框架，能够量化协议在性能、成本和可靠性等方面的综合权衡。</li><li>创新性地将任务复杂度分为三个等级，使比较结果更具普适性和参考价值。</li><li>同时考察了纯协议和混合架构，为实际系统设计提供了更全面的决策依据。</li></ul>
                         </div>
-                        
+
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>我们提出认知防火墙，这是一种三阶段分割计算架构，将安全检查分布在客户端与云端执行。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>不同通信协议在响应时间、上下文消耗和成本方面存在显著差异，需要根据具体应用场景进行选择。</li><li>混合架构在某些复杂度任务中表现出更好的平衡性，但实现复杂度相对较高。</li><li>错误恢复能力因协议而异，多代理委托协议在任务失败时通常具有更强的自愈能力。</li><li>随着任务复杂度提升，纯工具集成协议的上下文窗口消耗增长更快，可能成为性能瓶颈。</li></ul>
                         </div>
                     </div>
-                    
-                    <a href="https://arxiv.org/abs/2603.23791" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23791</a>
+
+                    <a href="https://arxiv.org/abs/2603.22823" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.22823</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">5</div>
-                    <h2>AI-Supervisor: Autonomous AI Research Supervision via a Persistent Research World Model</h2>
+                    <h2>Does Teaming-Up LLMs Improve Secure Code Generation? A Comprehensive Evaluation with Multi-LLMSecCodeEval</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24402</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">AI监督者：基于持久研究世界模型的自主科研监督</span>
-                        <span style="color:#666;font-size:12px;">Yunbo Long et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.22717</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">多LLM协作能否提升代码生成安全性？</span>
+                        <span style="color:#666;font-size:12px;">Bushra Sabir et al.</span>
                         
                     </div>
-                    
+
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现有自动化研究系统以无状态线性流程运行，其输出生成过程缺乏对研究领域的持续性认知。这些系统按顺序处理论文，在未进行结构化缺口分析的情况下提出观点，且缺乏智能体间相互验证或完善研究成果的机制。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">利用大型语言模型（LLM）从自然语言自动生成源代码已日益普遍，然而尽管在微调和提示技术方面取得了进展，安全漏洞问题依然存在。本研究系统评估了多LLM集成与协作策略是否能够显著提升安全代码生成的质量。</div>
                         </div>
-                        
+
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>现有自动化研究系统以无状态线性流程运作，其生成输出时并未保持对研究领域的持续性理解。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>基于论文摘要的分析方法</li></ul>
                         </div>
-                        
+
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>它们按顺序处理论文，提出想法时缺乏结构化的差距分析，且缺少智能体之间相互验证或完善研究发现的机制。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>创新方法框架</li></ul>
                         </div>
-                        
+
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>所有智能体均在共识机制下运行，其发现需经验证后方可提交至共享模型。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>详细内容请查看原文</li></ul>
                         </div>
                     </div>
-                    
-                    <a href="https://arxiv.org/abs/2603.24402" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24402</a>
+
+                    <a href="https://arxiv.org/abs/2603.22717" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.22717</a>
                 </div>
             </div>
         </div>
