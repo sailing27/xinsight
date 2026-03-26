@@ -1,6 +1,6 @@
 {
   "date": "2026-03-26",
-  "title": "智能体自主协同进化开启开放系统自组织新范式",
+  "title": "智能体自主协同进化开启开放复杂系统优化新范式",
   "topic": "AI Agent与自主系统",
   "directions": [
     "agentic"
@@ -17,7 +17,7 @@
     {
       "id": "2603.24582",
       "title": "The Stochastic Gap: A Markovian Framework for Pre-Deployment Reliability and Oversight-Cost Auditing in Agentic Artificial Intelligence",
-      "chinese_title": "随机性鸿沟：智能体人工智能部署前可靠性与监管成本审计的马尔可夫框架",
+      "chinese_title": "随机性鸿沟：智能体人工智能预部署可靠性与监管成本审计的马尔可夫框架",
       "authors": "Biplab Pal et al.",
       "url": "https://arxiv.org/abs/2603.24582"
     },
@@ -43,6 +43,6 @@
       "url": "https://arxiv.org/abs/2603.24533"
     }
   ],
-  "generated_at": "2026-03-26T03:22:31.512Z",
+  "generated_at": "2026-03-26T03:34:25.034Z",
   "org": "AI研究室"
 }
