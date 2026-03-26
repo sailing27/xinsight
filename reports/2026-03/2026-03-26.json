@@ -1,6 +1,6 @@
 {
   "date": "2026-03-26",
-  "title": "智能体架构演进 混合边缘云与可解释编排重塑自主系统",
+  "title": "智能体自主进化与可靠部署引领人机协同新范式",
   "topic": "AI Agent与自主系统",
   "directions": [
     "agentic"
@@ -8,41 +8,41 @@
   "paper_count": 5,
   "papers": [
     {
-      "id": "2603.23791",
-      "title": "The Cognitive Firewall:Securing Browser Based AI Agents Against Indirect Prompt Injection Via Hybrid Edge Cloud Defense",
-      "chinese_title": "认知防火墙：基于混合边缘云防御的浏览器AI代理间接提示注入防护",
-      "authors": "Qianlong Lan et al.",
-      "url": "https://arxiv.org/abs/2603.23791"
+      "id": "2603.24558",
+      "title": "LensWalk: Agentic Video Understanding by Planning How You See in Videos",
+      "chinese_title": "LensWalk：基于视觉规划的智能视频理解",
+      "authors": "Keliang Li et al.",
+      "url": "https://arxiv.org/abs/2603.24558"
     },
     {
-      "id": "2603.23990",
-      "title": "From Untamed Black Box to Interpretable Pedagogical Orchestration: The Ensemble of Specialized LLMs Architecture for Adaptive Tutoring",
-      "chinese_title": "从黑盒到可解释教学编排：自适应辅导的专用大模型集成架构",
-      "authors": "Nizam Kadir et al.",
-      "url": "https://arxiv.org/abs/2603.23990"
+      "id": "2603.24533",
+      "title": "UI-Voyager: A Self-Evolving GUI Agent Learning via Failed Experience",
+      "chinese_title": "UI-Voyager：基于失败经验自进化的GUI智能体",
+      "authors": "Zichuan Lin et al.",
+      "url": "https://arxiv.org/abs/2603.24533"
     },
     {
-      "id": "2603.23886",
-      "title": "AgentChemist: A Multi-Agent Experimental Robotic Platform Integrating Chemical Perception and Precise Control",
-      "chinese_title": "AgentChemist：集成化学感知与精准控制的多智能体实验平台",
-      "authors": "Xiangyi Wei et al.",
-      "url": "https://arxiv.org/abs/2603.23886"
+      "id": "2603.24582",
+      "title": "The Stochastic Gap: A Markovian Framework for Pre-Deployment Reliability and Oversight-Cost Auditing in Agentic Artificial Intelligence",
+      "chinese_title": "随机性鸿沟：智能体人工智能部署前可靠性与监管成本审计的马尔可夫框架",
+      "authors": "Biplab Pal et al.",
+      "url": "https://arxiv.org/abs/2603.24582"
     },
     {
-      "id": "2603.23966",
-      "title": "Policy-Guided Threat Hunting: An LLM enabled Framework with Splunk SOC Triage",
-      "chinese_title": "策略引导的威胁狩猎：基于LLM与Splunk SOC的框架",
-      "authors": "Rishikesh Sahay et al.",
-      "url": "https://arxiv.org/abs/2603.23966"
+      "id": "2603.24576",
+      "title": "Chameleon: Episodic Memory for Long-Horizon Robotic Manipulation",
+      "chinese_title": "变色龙：长程机器人操作的片段记忆",
+      "authors": "Xinying Guo et al.",
+      "url": "https://arxiv.org/abs/2603.24576"
     },
     {
-      "id": "2603.24402",
-      "title": "AI-Supervisor: Autonomous AI Research Supervision via a Persistent Research World Model",
-      "chinese_title": "AI-Supervisor：基于持久研究世界模型的自主科研监督",
-      "authors": "Yunbo Long et al.",
-      "url": "https://arxiv.org/abs/2603.24402"
+      "id": "2603.24559",
+      "title": "The Free-Market Algorithm: Self-Organizing Optimization for Open-Ended Complex Systems",
+      "chinese_title": "自由市场算法：开放复杂系统的自组织优化",
+      "authors": "Martin Jaraiz et al.",
+      "url": "https://arxiv.org/abs/2603.24559"
     }
   ],
-  "generated_at": "2026-03-26T02:46:31.305Z",
+  "generated_at": "2026-03-26T02:52:16.099Z",
   "org": "AI研究室"
 }
