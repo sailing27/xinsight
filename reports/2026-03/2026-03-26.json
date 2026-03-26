@@ -1,48 +1,27 @@
 {
   "date": "2026-03-26",
-  "title": "智能体自主涌现与闭环演进开启AI系统自组织新范式",
+  "title": "智能体随机性鸿沟凸显大规模人机交互数据集成关键",
   "topic": "AI Agent与自主系统",
   "directions": [
     "agentic"
   ],
-  "paper_count": 5,
+  "paper_count": 2,
   "papers": [
+    {
+      "id": "2603.24440",
+      "title": "CUA-Suite: Massive Human-annotated Video Demonstrations for Computer-Use Agents",
+      "chinese_title": "CUA-Suite：计算机使用代理的大规模人工标注视频演示集",
+      "authors": "Xiangru Jian et al.",
+      "url": "https://arxiv.org/abs/2603.24440"
+    },
     {
       "id": "2603.24582",
       "title": "The Stochastic Gap: A Markovian Framework for Pre-Deployment Reliability and Oversight-Cost Auditing in Agentic Artificial Intelligence",
       "chinese_title": "随机性鸿沟：智能体人工智能部署前可靠性与监管成本审计的马尔可夫框架",
       "authors": "Biplab Pal et al.",
       "url": "https://arxiv.org/abs/2603.24582"
-    },
-    {
-      "id": "2603.24576",
-      "title": "Chameleon: Episodic Memory for Long-Horizon Robotic Manipulation",
-      "chinese_title": "变色龙：长程机器人操作的记忆系统",
-      "authors": "Xinying Guo et al.",
-      "url": "https://arxiv.org/abs/2603.24576"
-    },
-    {
-      "id": "2603.24559",
-      "title": "The Free-Market Algorithm: Self-Organizing Optimization for Open-Ended Complex Systems",
-      "chinese_title": "自由市场算法：开放复杂系统的自组织优化",
-      "authors": "Martin Jaraiz et al.",
-      "url": "https://arxiv.org/abs/2603.24559"
-    },
-    {
-      "id": "2603.24558",
-      "title": "LensWalk: Agentic Video Understanding by Planning How You See in Videos",
-      "chinese_title": "LensWalk：基于视觉规划的智能视频理解",
-      "authors": "Keliang Li et al.",
-      "url": "https://arxiv.org/abs/2603.24558"
-    },
-    {
-      "id": "2603.24533",
-      "title": "UI-Voyager: A Self-Evolving GUI Agent Learning via Failed Experience",
-      "chinese_title": "UI-Voyager：基于失败经验自演进的GUI智能体",
-      "authors": "Zichuan Lin et al.",
-      "url": "https://arxiv.org/abs/2603.24533"
     }
   ],
-  "generated_at": "2026-03-26T04:57:33.447Z",
+  "generated_at": "2026-03-26T09:43:01.567Z",
   "org": "AI研究室"
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>智能体自主涌现与闭环演进开启AI系统自组织新范式 | 2026/3/26</title>
+    <title>智能体随机性鸿沟凸显大规模人机交互数据集成关键 | 2026/3/26</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -142,6 +142,8 @@
         .section-number {
             width: 28px;
             height: 28px;
+            min-width: 28px;
+            min-height: 28px;
             background: #c00000;
             color: #fff;
             border-radius: 50%;
@@ -150,6 +152,7 @@
             justify-content: center;
             font-weight: 600;
             font-size: 14px;
+            flex-shrink: 0;
         }
         .section h2 {
             font-size: 17px;
@@ -340,7 +343,7 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <h1>智能体自主涌现与闭环演进开启AI系统自组织新范式 | 2026/3/26</h1>
+                <h1>智能体随机性鸿沟凸显大规模人机交互数据集成关键 | 2026/3/26</h1>
                 <div class="date">2026/3/26 | AI研究室</div>
             </div>
             <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
@@ -351,7 +354,7 @@
             <div class="executive-summary">
                 <h2>摘要</h2>
                 <div class="summary-content">
-                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦于AI智能体与自主系统的前沿进展，核心主题是<strong>从静态、确定性的范式向动态、随机且具备长期适应性的自主系统演进</strong>。技术趋势突出表现为对<strong>可靠性、长程复杂任务处理以及开放环境自组织能力</strong>的深度追求。<br><br>共同的技术方向可提炼为三点：<strong>一是对决策不确定性的形式化建模与审计</strong>，如通过“随机间隙”和状态细化来量化隐藏风险；<strong>二是感知与记忆机制的细粒度革新</strong>，通过动态观察规划、几何多模态令牌和情景记忆，增强智能体在复杂环境中的区分与推理能力；<strong>三是自组织与自演进学习框架的兴起</strong>，无论是通过市场机制涌现解决方案，还是利用失败经验实现全自主协同进化，都旨在减少对预设规则和人工干预的依赖。<br><br>这些研究对行业与学术界的核心启示在于，下一代自主系统的突破将依赖于<strong>数学严谨性、感知-行动闭环的紧密集成，以及开放环境下的内生适应性</strong>。其价值在于为构建更可靠、可解释且能处理长程开放任务的智能体提供了关键的技术路径和评估基准，推动了AI从执行固定指令向真正自主协作与探索的范式转变。</p>
+                                        <p style="line-height:1.8;text-align:justify;">本次分析聚焦于AI智能体在复杂环境中的可靠性评估与能力提升两大核心挑战，揭示出从静态基准测试向动态、随机化现实场景迁移的关键技术趋势。两篇论文共同指向三个创新方向：一是构建大规模、高保真的时序交互数据集（如CUA-Suite），以捕捉真实任务中的连续决策动态；二是采用形式化框架（如基于测度论的MDP）对智能体策略的随机性与不确定性进行量化审计；三是通过细粒度状态表征揭示聚合指标掩盖的决策盲区与性能瓶颈。<br><br>研究显示，当前智能体在专业桌面任务中失败率居高不下，而传统评估方法可能因状态空间聚合而低估风险。“随机间隙”概念的提出，强调了在部署前必须审计随机策略的统计支持度，这与大规模演示数据所揭示的模型能力缺口相互印证。这些工作为行业提供了至关重要的启示：下一代自主系统的开发需紧密耦合高质量、时序化的训练数据与严谨的形式化验证框架，以实现对智能体在开放环境中复杂、随机行为更可靠的预测与管控，推动其从实验室演示走向稳健的实际应用。</p>
                 </div>
             </div>
 
@@ -359,7 +362,7 @@
             <div class="stats-grid">
                 
                 <div class="stat-item">
-                    <div class="stat-value">5</div>
+                    <div class="stat-value">2</div>
                     <div class="stat-label">核心论文</div>
                 </div>
                 <div class="stat-item">
@@ -381,6 +384,44 @@
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">1</div>
+                    <h2>CUA-Suite: Massive Human-annotated Video Demonstrations for Computer-Use Agents</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24440</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">CUA-Suite：计算机使用代理的大规模人工标注视频演示集</span>
+                        <span style="color:#666;font-size:12px;">Xiangru Jian et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文介绍了CUA-Suite，这是一个大规模生态系统，旨在解决计算机使用代理（CUAs）发展中高质量连续人类演示视频稀缺的瓶颈。其核心是VideoCUA，提供了约10,000个人类演示任务、55小时连续30 fps屏幕录像、光标轨迹和多层推理标注。CUA-Suite还包括UI-Vision基准测试和GroundCUA标注数据集。初步评估显示现有基础动作模型在专业桌面应用上表现不佳。该数据集支持屏幕解析、连续空间控制等新兴研究方向。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>连续视频录制</strong>：提供约55小时、6百万帧的30 fps连续屏幕录像，完整捕捉人机交互的时序动态，而非稀疏截图。</li><li style="margin-bottom:8px;"><strong>多层推理标注</strong>：在连续视频基础上，提供了包含任务步骤、意图和操作逻辑的密集、结构化的人类推理注释。</li><li style="margin-bottom:8px;"><strong>大规模UI标注</strong>：GroundCUA数据集包含5.6万张标注截图和超过360万个UI元素标注，用于精确的视觉基础任务。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>构建大规模数据集</strong>：推出CUA-Suite，包含VideoCUA、UI-Vision和GroundCUA，是目前最大规模的专业桌面代理视频演示与标注生态系统。</li><li style="margin-bottom:8px;"><strong>强调时序动态信息</strong>：首次大规模提供连续视频流而非静态截图，保留了光标移动、操作顺序等关键交互信息，信息无损。</li><li style="margin-bottom:8px;"><strong>支持多研究方向</strong>：数据集设计不仅用于代理训练与评估，还支持通用屏幕解析、连续空间控制、视频奖励建模等新兴领域。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>现有模型能力不足</strong>：初步评估表明，当前基础动作模型在专业桌面应用上任务失败率高达约60%，凸显性能瓶颈。</li><li style="margin-bottom:8px;"><strong>连续视频至关重要</strong>：研究证实连续视频是扩展通用计算机使用代理的关键缺失要素，其信息是稀疏截图数据集的超集。</li><li style="margin-bottom:8px;"><strong>推动领域发展</strong>：CUA-Suite的发布旨在打破数据瓶颈，为训练、评估计算机使用代理及探索相关新方向提供关键资源。</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.24440" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24440</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
                     <h2>The Stochastic Gap: A Markovian Framework for Pre-Deployment Reliability and Oversight-Cost Auditing in Agentic Artificial Intelligence</h2>
                 </div>
                 <div class="paper-card">
@@ -394,178 +435,26 @@
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出了一种基于测度论和马尔可夫框架的方法，用于评估组织中智能体人工智能在部署前的可靠性和监管成本。核心是量化状态盲点质量、状态-动作盲质量，并引入基于熵的人工介入升级门和基于工作流访问测度的期望监管成本恒等式。研究利用大规模企业采购流程日志进行实证，发现即使工作流在状态层面看似可靠，下一步决策仍可能存在显著盲质量，细化状态表示可揭示此问题。框架旨在直接应用于具有操作事件日志的工程流程。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出了一种基于测度论和马尔可夫框架的方法，用于评估组织中智能体人工智能在部署前的可靠性和监管成本。核心是量化状态盲点质量、状态-动作盲质量，并引入基于熵的人机交互升级门和基于工作流访问测度的期望监管成本恒等式。研究利用大规模企业采购流程日志进行实证，发现工作流在状态层面看似可靠，但在下一步决策上可能存在显著盲区，细化状态表示可揭示此问题。</div>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>测度论框架</strong>：构建基于测度论的马尔可夫框架，形式化智能体AI的序列决策问题，为可靠性和成本审计提供数学基础。</li><li style="margin-bottom:8px;"><strong>盲质量度量</strong>：定义状态盲点质量B_n(tau)和状态-动作盲质量B^SA_{pi,n}(tau)，量化工作流中统计支持不足的决策区域。</li><li style="margin-bottom:8px;"><strong>人机交互门控</strong>：设计基于熵的人类介入升级门，根据决策不确定性自动触发人工审查，平衡自主性与可靠性。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>测度论框架</strong>：基于测度论构建马尔可夫决策过程模型，形式化智能体在工作流中的随机策略、状态转移和访问测度。</li><li style="margin-bottom:8px;"><strong>盲质量度量</strong>：定义状态盲点质量B_n(tau)和状态-动作盲质量B^SA_{pi,n}(tau)，量化策略在统计支持不足区域的概率质量。</li><li style="margin-bottom:8px;"><strong>人机交互升级门</strong>：设计基于熵的阈值机制，当策略不确定性超过阈值时触发人工干预，平衡自主性与可靠性。</li></ul>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>随机间隙概念</strong>：提出'随机间隙'概念，强调从确定性流程转向随机策略时，需关注轨迹的统计支持度、局部明确性和经济可治理性。</li><li style="margin-bottom:8px;"><strong>统一审计框架</strong>：将可靠性审计与监管成本预测统一于同一框架，通过工作流访问测度直接关联统计可信度与期望监管负担。</li><li style="margin-bottom:8px;"><strong>日志驱动仿真</strong>：利用真实业务事件日志构建模拟智能体，在大型企业采购流程上实例化框架，验证方法的可应用性和实证效果。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>随机间隙概念</strong>：提出'随机间隙'概念，强调从确定性工作流转向随机策略时，需关注轨迹的统计支持度与局部明确性。</li><li style="margin-bottom:8px;"><strong>可靠性-成本统一框架</strong>：将统计可信的自主性边界与期望监管成本计算统一于同一组核心度量，实现联合审计。</li><li style="margin-bottom:8px;"><strong>日志驱动仿真</strong>：利用真实业务流程日志构建仿真智能体，并在细粒度状态表示下验证盲质量增长，提供实证基准。</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>状态细化效应</strong>：细化操作状态（添加上下文、经济规模等）使状态空间从42增至668，状态-动作盲质量在tau=1000时从0.0165升至0.1253，揭示隐藏决策不确定性。</li><li style="margin-bottom:8px;"><strong>预测准确性</strong>：在保留测试集上，最大动作概率m(s)预测的自主步骤准确率与实际值平均误差仅3.4个百分点，验证度量的有效性。</li><li style="margin-bottom:8px;"><strong>成本关联性</strong>：界定统计可信自主性的同一组度量也决定了期望监管负担，为可靠性与成本权衡提供量化依据。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>状态细化揭示盲区</strong>：将状态从42维扩展至668维（增加上下文等信息），状态-动作盲质量显著上升，表明聚合状态可能掩盖决策不确定性。</li><li style="margin-bottom:8px;"><strong>策略置信度预测准确</strong>：最大动作概率m(s)在测试集上能较准确预测自主步骤精度，平均误差仅3.4个百分点。</li><li style="margin-bottom:8px;"><strong>自主性与成本关联</strong>：界定统计可信自主性的核心度量同时决定了期望监管负担，为可靠性与成本权衡提供量化依据。</li></ul>
                         </div>
                     </div>
 
                     <a href="https://arxiv.org/abs/2603.24582" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24582</a>
-                </div>
-            </div>
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">2</div>
-                    <h2>Chameleon: Episodic Memory for Long-Horizon Robotic Manipulation</h2>
-                </div>
-                <div class="paper-card">
-                    <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24576</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">变色龙：长程机器人操作的记忆系统</span>
-                        <span style="color:#666;font-size:12px;">Xinying Guo et al.</span>
-                        
-                    </div>
-
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出Chameleon，一种受人类情景记忆启发的机器人记忆系统，用于解决长时程操作中的感知混淆问题。通过几何基础的多模态令牌存储和可微分记忆栈实现目标导向回忆，并在真实机器人数据集上验证了其提升决策可靠性和长时程控制的能力。</div>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>几何基础多模态令牌</strong>：将视觉、几何等感知信息编码为细粒度令牌，保留区分性上下文以解决感知混淆。</li><li style="margin-bottom:8px;"><strong>可微分记忆栈</strong>：实现连续记忆写入与检索，支持基于目标导向的回忆机制，优化长时程决策。</li><li style="margin-bottom:8px;"><strong>Camo-Dataset构建</strong>：创建真实机器人UR5e数据集，涵盖情景回忆、空间跟踪和序列操作任务。</li></ul>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>情景记忆模拟</strong>：借鉴人类记忆机制，用细粒度感知令牌替代语义压缩，增强环境区分能力。</li><li style="margin-bottom:8px;"><strong>目标导向回忆</strong>：通过可微分栈实现动态记忆检索，聚焦任务相关历史片段，提升决策效率。</li><li style="margin-bottom:8px;"><strong>真实机器人验证</strong>：在复杂感知混淆场景中测试，证明方法对长时程操作的可靠性和泛化性。</li></ul>
-                        </div>
-
-                        <div class="summary-section">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>记忆机制有效性</strong>：Chameleon在感知混淆任务中显著优于基线，决策可靠性平均提升15%。</li><li style="margin-bottom:8px;"><strong>长时程控制优化</strong>：可微分记忆栈支持多步序列操作，减少错误传播，任务完成率提高20%。</li><li style="margin-bottom:8px;"><strong>数据集价值</strong>：Camo-Dataset为机器人记忆研究提供基准，涵盖现实场景的感知与操作挑战。</li></ul>
-                        </div>
-                    </div>
-
-                    <a href="https://arxiv.org/abs/2603.24576" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24576</a>
-                </div>
-            </div>
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">3</div>
-                    <h2>The Free-Market Algorithm: Self-Organizing Optimization for Open-Ended Complex Systems</h2>
-                </div>
-                <div class="paper-card">
-                    <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24559</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">自由市场算法：开放复杂系统的自组织优化</span>
-                        <span style="color:#666;font-size:12px;">Martin Jaraiz et al.</span>
-                        
-                    </div>
-
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出了一种受自由市场经济启发的新型元启发式算法——自由市场算法（FMA）。与遗传算法、粒子群优化和模拟退火等需要预设适应度函数和固定搜索空间的方法不同，FMA利用分布式供需动态，使适应度自然涌现，搜索空间开放，解决方案以分层路径网络形式呈现。自主代理发现规则、交易商品、开设和关闭公司，并在无中央控制器的情况下竞争需求。FMA通过三层架构运行：通用市场机制（供应、需求、竞争、选择）、可插拔的领域特定行为规则和领域特定观察。市场机制在所有应用中相同，仅行为规则变化。算法在两个不相关领域得到验证：在生命起源化学中，从900个裸原子（C、H、O、N）开始，FMA在笔记本电脑上5分钟内发现了所有12种可行的氨基酸公式、所有5种核碱基、甲糖链和克雷布斯循环中间体，每个产品最多有240条独立合成路线；在宏观经济预测中，仅读取单一投入产出表且无需估计参数，FMA对非危机GDP预测的平均绝对误差为0.42个百分点，与专业预测者相当，并可移植到33个国家。与组装理论的对齐表明，FMA为Sharma等人（Nature, 2023）描述的选择特征提供了首个明确、可调的机制。事件驱动的组装动力学与物理学基础理论（因果集理论、关系量子力学、构造器理论）产生共鸣，表明达尔文市场动态可能反映了导致自然本身展开的更深层组织原则。</div>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>分布式市场机制</strong>：FMA的核心是模拟自由市场的供需动态，无中央控制器，代理通过竞争和选择自主交互，使解决方案自然涌现。</li><li style="margin-bottom:8px;"><strong>三层架构设计</strong>：算法包含通用市场机制、可插拔领域行为规则和领域观察层，确保机制统一且易于适应不同应用场景。</li><li style="margin-bottom:8px;"><strong>开放搜索空间</strong>：FMA不预设固定搜索空间或适应度函数，允许解决方案以分层路径网络形式动态演化，支持复杂系统探索。</li></ul>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>无预设适应度函数</strong>：FMA摒弃传统优化算法的固定适应度评估，通过市场交互使解决方案的“适应性”自然涌现，更具灵活性。</li><li style="margin-bottom:8px;"><strong>跨领域通用机制</strong>：算法提供统一市场框架，仅通过更换行为规则即可应用于化学合成和宏观经济预测等截然不同的领域。</li><li style="margin-bottom:8px;"><strong>事件驱动组装动力学</strong>：FMA的动力学过程与组装理论及物理学基础理论（如因果集理论）共鸣，暗示其可能揭示更深层自然组织原则。</li></ul>
-                        </div>
-
-                        <div class="summary-section">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>高效化学发现验证</strong>：在生命起源化学模拟中，FMA快速发现多种生物分子及其合成路径，证明其在开放复杂系统中的高效探索能力。</li><li style="margin-bottom:8px;"><strong>精准经济预测能力</strong>：仅基于投入产出表，FMA实现与专业预测相当的GDP预测精度，展示其在不依赖估计参数下的实用性和可移植性。</li><li style="margin-bottom:8px;"><strong>理论机制深度对齐</strong>：FMA为组装理论中的选择特征提供明确可调机制，并与物理学基础理论关联，暗示市场动态可能是普适组织原理。</li></ul>
-                        </div>
-                    </div>
-
-                    <a href="https://arxiv.org/abs/2603.24559" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24559</a>
-                </div>
-            </div>
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">4</div>
-                    <h2>LensWalk: Agentic Video Understanding by Planning How You See in Videos</h2>
-                </div>
-                <div class="paper-card">
-                    <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24558</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">LensWalk：基于视觉规划的智能视频理解</span>
-                        <span style="color:#666;font-size:12px;">Keliang Li et al.</span>
-                        
-                    </div>
-
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出LensWalk框架，通过让大型语言模型主动控制视觉观察来解决视频理解中推理与感知脱节的问题。该框架采用动态规划-观察循环，使智能体能够按需指定视频的时间范围和采样密度，从而进行渐进式证据收集。无需微调即可在多个基准测试上实现显著性能提升。</div>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>动态观察规划</strong>：智能体在推理过程中动态指定视频观察的时间范围和采样密度，实现按需证据收集。</li><li style="margin-bottom:8px;"><strong>工具化视觉感知</strong>：利用基于视觉语言模型的工具集，参数化执行广泛扫描、焦点提取和多时刻证据缝合等任务。</li><li style="margin-bottom:8px;"><strong>推理-规划-观察循环</strong>：建立紧密的循环机制，使智能体的思维链能够直接驱动原始视频证据的主动获取。</li></ul>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>主动视觉控制</strong>：突破静态预处理限制，赋予推理模型主动控制视频观察方式的能力，实现感知与推理的闭环。</li><li style="margin-bottom:8px;"><strong>灵活观察策略</strong>：支持从全局扫描到局部聚焦的多粒度观察模式，适应不同推理阶段对证据的不同需求。</li><li style="margin-bottom:8px;"><strong>即插即用框架</strong>：无需模型微调即可适配多种视觉语言模型，在长视频基准测试中实现超过5%的性能提升。</li></ul>
-                        </div>
-
-                        <div class="summary-section">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>观察控制是关键</strong>：智能体控制观察方式是实现更准确、鲁棒和可解释视频推理的关键因素。</li><li style="margin-bottom:8px;"><strong>性能显著提升</strong>：在LVBench和Video-MME等挑战性长视频基准测试中，多个模型配方均获得显著精度提升。</li><li style="margin-bottom:8px;"><strong>框架通用性强</strong>：灵活的智能体框架能够通过规划观察策略，有效解决视频理解中的时序密集性挑战。</li></ul>
-                        </div>
-                    </div>
-
-                    <a href="https://arxiv.org/abs/2603.24558" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24558</a>
-                </div>
-            </div>
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">5</div>
-                    <h2>UI-Voyager: A Self-Evolving GUI Agent Learning via Failed Experience</h2>
-                </div>
-                <div class="paper-card">
-                    <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24533</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">UI-Voyager：基于失败经验自演进的GUI智能体</span>
-                        <span style="color:#666;font-size:12px;">Zichuan Lin et al.</span>
-                        
-                    </div>
-
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出UI-Voyager，一种两阶段自演进的移动GUI代理，旨在解决现有方法在长时程GUI任务中从失败轨迹学习效率低和稀疏奖励下信用分配模糊的问题。第一阶段采用拒绝微调（RFT），实现数据和模型在全自主循环中的持续协同进化；第二阶段引入组相对自蒸馏（GRSD），通过识别组轨迹中的关键分叉点，从成功轨迹构建密集的步级监督以纠正失败轨迹。在AndroidWorld上的实验表明，其4B模型实现了81.0%的Pass@1成功率，超越了多个基线方法和人类水平。消融和案例研究进一步验证了GRSD的有效性。</div>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>拒绝微调（RFT）</strong>：通过全自主循环实现数据和模型的持续协同进化，无需昂贵的人工标注，提升学习效率。</li><li style="margin-bottom:8px;"><strong>组相对自蒸馏（GRSD）</strong>：识别组轨迹中的关键分叉点，从成功轨迹构建密集步级监督，以纠正失败轨迹。</li><li style="margin-bottom:8px;"><strong>两阶段自演进框架</strong>：结合RFT和GRSD，形成高效的自学习机制，优化长时程GUI任务的性能。</li></ul>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>自演进学习循环</strong>：提出RFT实现数据和模型的全自主协同进化，减少对人工干预的依赖。</li><li style="margin-bottom:8px;"><strong>密集监督构建</strong>：GRSD从成功轨迹提取步级监督信号，解决稀疏奖励下的信用分配模糊问题。</li><li style="margin-bottom:8px;"><strong>性能超越人类</strong>：在AndroidWorld上实现81.0% Pass@1成功率，显著优于现有基线和人类水平。</li></ul>
-                        </div>
-
-                        <div class="summary-section">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:8px;"><strong>高效学习机制</strong>：UI-Voyager通过两阶段自演进框架，有效提升从失败轨迹中学习的效率。</li><li style="margin-bottom:8px;"><strong>实验验证优势</strong>：在AndroidWorld上的广泛实验显示，模型性能超越多个基线和人类表现。</li><li style="margin-bottom:8px;"><strong>方法通用性强</strong>：消融和案例研究证实GRSD的有效性，为移动GUI自动化提供新方向。</li></ul>
-                        </div>
-                    </div>
-
-                    <a href="https://arxiv.org/abs/2603.24533" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24533</a>
                 </div>
             </div>
         </div>
