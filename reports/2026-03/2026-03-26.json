@@ -1,0 +1,48 @@
+{
+  "date": "2026-03-26",
+  "title": "AI Agent技术洞察简报",
+  "topic": "AI Agent与自主系统",
+  "directions": [
+    "agentic"
+  ],
+  "paper_count": 5,
+  "papers": [
+    {
+      "id": "2603.23315",
+      "title": "Unilateral Relationship Revision Power in Human-AI Companion Interaction",
+      "chinese_title": "人机伴侣交互中的单方关系修正权",
+      "authors": "Benjamin Lange et al.",
+      "url": "https://arxiv.org/abs/2603.23315"
+    },
+    {
+      "id": "2603.23300",
+      "title": "Designing Agentic AI-Based Screening for Portfolio Investment",
+      "chinese_title": "基于智能代理的资产组合投资筛选设计",
+      "authors": "Mehmet Caner et al.",
+      "url": "https://arxiv.org/abs/2603.23300"
+    },
+    {
+      "id": "2603.23279",
+      "title": "Emergence of Fragility in LLM-based Social Networks: the Case of Moltbook",
+      "chinese_title": "基于大语言模型的社交网络脆弱性：Moltbook案例",
+      "authors": "Luca Sodano et al.",
+      "url": "https://arxiv.org/abs/2603.23279"
+    },
+    {
+      "id": "2603.23420",
+      "title": "Bilevel Autoresearch: Meta-Autoresearching Itself",
+      "chinese_title": "双层自动研究：元自动研究的自我探索",
+      "authors": "Yaonan Qu et al.",
+      "url": "https://arxiv.org/abs/2603.23420"
+    },
+    {
+      "id": "2603.23271",
+      "title": "A Multimodal Framework for Human-Multi-Agent Interaction",
+      "chinese_title": "人机多智能体交互的多模态框架",
+      "authors": "Shaid Hasan et al.",
+      "url": "https://arxiv.org/abs/2603.23271"
+    }
+  ],
+  "generated_at": "2026-03-26T00:21:01.020Z",
+  "org": "AI研究室"
+}
