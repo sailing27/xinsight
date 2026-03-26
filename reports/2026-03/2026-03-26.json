@@ -1,34 +1,12 @@
 {
   "date": "2026-03-26",
-  "title": "自主攻防与协同进化 AI智能体安全与校准新范式",
+  "title": "AI技术每日洞察报告",
   "topic": "AI Agent与自主系统",
   "directions": [
     "agentic"
   ],
-  "paper_count": 3,
-  "papers": [
-    {
-      "id": "2603.24511",
-      "title": "Claudini: Autoresearch Discovers State-of-the-Art Adversarial Attack Algorithms for LLMs",
-      "chinese_title": "Claudini：自研大语言模型先进对抗攻击算法",
-      "authors": "Alexander Panfilov et al.",
-      "url": "https://arxiv.org/abs/2603.24511"
-    },
-    {
-      "id": "2603.24481",
-      "title": "Multi-Agent Reasoning with Consistency Verification Improves Uncertainty Calibration in Medical MCQA",
-      "chinese_title": "多智能体一致性验证提升医学多选题不确定性校准",
-      "authors": "John Ray B. Martinez et al.",
-      "url": "https://arxiv.org/abs/2603.24481"
-    },
-    {
-      "id": "2603.24414",
-      "title": "ClawKeeper: Comprehensive Safety Protection for OpenClaw Agents Through Skills, Plugins, and Watchers",
-      "chinese_title": "ClawKeeper：基于技能、插件与监控器的OpenClaw智能体安全防护",
-      "authors": "Songyang Liu et al.",
-      "url": "https://arxiv.org/abs/2603.24414"
-    }
-  ],
-  "generated_at": "2026-03-26T02:58:16.522Z",
+  "paper_count": 0,
+  "papers": [],
+  "generated_at": "2026-03-26T03:12:35.643Z",
   "org": "AI研究室"
 }
