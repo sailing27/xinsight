@@ -1,6 +1,6 @@
 {
   "date": "2026-03-26",
-  "title": "智能体安全与协同新范式 从隐蔽攻击到公平规划",
+  "title": "智能体架构解耦与认知安全重塑自主系统新范式",
   "topic": "AI Agent与自主系统",
   "directions": [
     "agentic"
@@ -8,41 +8,41 @@
   "paper_count": 5,
   "papers": [
     {
-      "id": "2603.24203",
-      "title": "Invisible Threats from Model Context Protocol: Generating Stealthy Injection Payload via Tree-based Adaptive Search",
-      "chinese_title": "模型上下文协议的隐形威胁：基于树的自适应搜索生成隐蔽注入载荷",
-      "authors": "Yulin Shen et al.",
-      "url": "https://arxiv.org/abs/2603.24203"
+      "id": "2603.23990",
+      "title": "From Untamed Black Box to Interpretable Pedagogical Orchestration: The Ensemble of Specialized LLMs Architecture for Adaptive Tutoring",
+      "chinese_title": "从黑盒到可解释教学编排：自适应辅导的专用大模型集成架构",
+      "authors": "Nizam Kadir et al.",
+      "url": "https://arxiv.org/abs/2603.23990"
     },
     {
-      "id": "2603.24058",
-      "title": "Mitigating Object Hallucinations in LVLMs via Attention Imbalance Rectification",
-      "chinese_title": "注意力失衡矫正缓解LVLM物体幻觉",
-      "authors": "Han Sun et al.",
-      "url": "https://arxiv.org/abs/2603.24058"
+      "id": "2603.23966",
+      "title": "Policy-Guided Threat Hunting: An LLM enabled Framework with Splunk SOC Triage",
+      "chinese_title": "基于LLM与Splunk的策略导向威胁狩猎框架",
+      "authors": "Rishikesh Sahay et al.",
+      "url": "https://arxiv.org/abs/2603.23966"
     },
     {
-      "id": "2603.24160",
-      "title": "Towards Automated Crowdsourced Testing via Personified-LLM",
-      "chinese_title": "基于拟人化大模型的众包测试自动化研究",
-      "authors": "Shengcheng Yu et al.",
-      "url": "https://arxiv.org/abs/2603.24160"
+      "id": "2603.23886",
+      "title": "AgentChemist: A Multi-Agent Experimental Robotic Platform Integrating Chemical Perception and Precise Control",
+      "chinese_title": "AgentChemist：集成化学感知与精准控制的多智能体实验平台",
+      "authors": "Xiangyi Wei et al.",
+      "url": "https://arxiv.org/abs/2603.23886"
     },
     {
-      "id": "2603.24083",
-      "title": "Knowledge-Guided Manipulation Using Multi-Task Reinforcement Learning",
-      "chinese_title": "知识引导的多任务强化学习操控",
-      "authors": "Aditya Narendra et al.",
-      "url": "https://arxiv.org/abs/2603.24083"
+      "id": "2603.23791",
+      "title": "The Cognitive Firewall:Securing Browser Based AI Agents Against Indirect Prompt Injection Via Hybrid Edge Cloud Defense",
+      "chinese_title": "认知防火墙：基于混合边缘云防御的浏览器AI代理间接提示注入防护",
+      "authors": "Qianlong Lan et al.",
+      "url": "https://arxiv.org/abs/2603.23791"
     },
     {
-      "id": "2603.24014",
-      "title": "Language-Grounded Multi-Agent Planning for Personalized and Fair Participatory Urban Sensing",
-      "chinese_title": "语言驱动的个性化公平城市感知多智能体规划",
-      "authors": "Xusen Guo et al.",
-      "url": "https://arxiv.org/abs/2603.24014"
+      "id": "2603.24402",
+      "title": "AI-Supervisor: Autonomous AI Research Supervision via a Persistent Research World Model",
+      "chinese_title": "AI监督者：基于持久研究世界模型的自主科研监督",
+      "authors": "Yunbo Long et al.",
+      "url": "https://arxiv.org/abs/2603.24402"
     }
   ],
-  "generated_at": "2026-03-26T01:54:45.630Z",
+  "generated_at": "2026-03-26T02:07:42.753Z",
   "org": "AI研究室"
 }
