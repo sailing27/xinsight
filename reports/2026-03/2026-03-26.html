@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI技术每日洞察报告 | 2026/3/26</title>
+    <title>智能体自主协同进化开启开放系统自组织新范式 | 2026/3/26</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -340,7 +340,7 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <h1>AI技术每日洞察报告 | 2026/3/26</h1>
+                <h1>智能体自主协同进化开启开放系统自组织新范式 | 2026/3/26</h1>
                 <div class="date">2026/3/26 | AI研究室</div>
             </div>
             <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
@@ -351,7 +351,7 @@
             <div class="executive-summary">
                 <h2>摘要</h2>
                 <div class="summary-content">
-                                        <p style="line-height:1.8;text-align:justify;">AI Agent与自主系统领域最新研究进展和技术突破，涵盖多维度技术趋势分析、重点论文核心观点和实验成果，以及产业化应用现状和未来发展方向。</p>
+                                        <p style="line-height:1.8;text-align:justify;">本次分析的五篇论文共同指向AI Agent与自主系统领域向<strong>开放环境下的自适应与可信演化</strong>这一核心趋势发展。技术焦点从预设封闭任务转向应对真实世界的复杂性、不确定性与长时程交互。<br><br>研究呈现出三个突出的共同技术方向：一是<strong>引入生物或经济启发的自组织与演化机制</strong>（如FMA的分布式供需动态、UI-Voyager的自演进框架），以在开放环境中实现自主探索与优化。二是<strong>致力于提升系统的状态感知与长期推理可靠性</strong>，通过构建更精细的马尔可夫状态分析框架（Stochastic Gap）、模拟人类情景记忆（Chameleon）或实现推理-感知闭环（LensWalk）来量化和弥合决策盲区。三是普遍采用<strong>失败驱动与经验复用的学习范式</strong>，将错误或次优结果转化为系统演进的关键数据源，推动智能体在复杂环境（如机器人操控、GUI交互）中的持续适应。<br><br>这些工作对行业与研究具有重要启示：一方面，它们为构建能在动态、模糊现实场景中可靠运行且可审计的自主系统提供了新的方法论与评估工具；另一方面，强调系统内生的自适应与演化能力，预示着AI开发范式可能从一次性模型训练转向支持终身学习与自主进化的智能体架构。这为迈向更通用、稳健且可信的自主智能奠定了关键的技术基石。</p>
                 </div>
             </div>
 
@@ -359,7 +359,7 @@
             <div class="stats-grid">
                 
                 <div class="stat-item">
-                    <div class="stat-value">0</div>
+                    <div class="stat-value">5</div>
                     <div class="stat-label">核心论文</div>
                 </div>
                 <div class="stat-item">
@@ -378,6 +378,196 @@
 
             <!-- 报告章节 -->
             
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>The Free-Market Algorithm: Self-Organizing Optimization for Open-Ended Complex Systems</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24559</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">自由市场算法：开放复杂系统的自组织优化</span>
+                        <span style="color:#666;font-size:12px;">Martin Jaraiz et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文介绍了受自由市场经济启发的元启发式算法——自由市场算法（FMA）。与遗传算法、粒子群优化和模拟退火等需要预设适应度函数和固定搜索空间的方法不同，FMA利用分布式供需动态，使适应度自然涌现，搜索空间开放，解决方案以分层路径网络形式呈现。自主代理发现规则、交易商品、开设和关闭公司，并在无中央控制器的情况下竞争需求。FMA通过三层架构运行：通用市场机制（供应、需求、竞争、选择）、可插拔的领域特定行为规则和领域特定观察。市场机制在不同应用中保持一致，仅行为规则变化。算法在两个不相关领域得到验证：在生命起源化学中，从900个裸原子（C、H、O、N）开始，FMA在笔记本电脑上5分钟内发现了所有12种可行的氨基酸公式、所有5种核碱基、福尔摩斯糖链和克雷布斯循环中间体，每个产品最多有240条独立合成路径；在宏观经济预测中，仅读取单一投入产出表且无需估计参数，FMA在非危机GDP预测中实现了0.42个百分点的平均绝对误差，与专业预测者相当，并可推广至33个国家。与装配理论的对齐表明，FMA为Sharma等人（Nature, 2023）描述的选择特征提供了首个明确、可调的机制。事件驱动的装配动力学与物理学基础理论（如因果集理论、关系量子力学、构造理论）产生共鸣，暗示达尔文市场动态可能反映了导致自然本身展开的更深层组织原则。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>分布式供需动态</li><li>三层架构（通用市场机制、可插拔行为规则、领域特定观察）</li><li>事件驱动的装配动力学</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出无需预设适应度函数和固定搜索空间的元启发式算法</li><li>将自由市场经济原理应用于优化问题，实现开放搜索和适应度涌现</li><li>在生命起源化学和宏观经济预测两个不相关领域验证算法的通用性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>FMA在生命起源化学中高效发现多种生物分子及其合成路径</li><li>FMA在宏观经济预测中达到与专业预测相当的精度，且无需参数估计</li><li>算法与装配理论及物理学基础理论对齐，暗示其可能反映深层自然组织原则</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.24559" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24559</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>The Stochastic Gap: A Markovian Framework for Pre-Deployment Reliability and Oversight-Cost Auditing in Agentic Artificial Intelligence</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24582</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">随机性鸿沟：智能体人工智能部署前可靠性与监管成本审计的马尔可夫框架</span>
+                        <span style="color:#666;font-size:12px;">Biplab Pal et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出了一种基于测度论马尔可夫框架的随机间隙分析方法，用于评估组织内智能体人工智能（AI）在部署前的可靠性和监督成本。该方法将确定性工作流替换为基于动作和工具调用的随机策略，核心关注点在于评估轨迹是否在统计上可靠、局部明确且经济上可管理。研究定义了状态盲点质量、状态-动作盲质量、基于熵的人机交互升级门以及基于工作流访问度量的期望监督成本恒等式等核心指标，并在BPI 2019采购到支付日志数据集上进行了实例验证。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>测度论马尔可夫框架</li><li>状态盲点质量（B_n(tau)）与状态-动作盲质量（B^SA_{pi,n}(tau)）</li><li>基于熵的人机交互升级门机制</li><li>工作流访问度量的期望监督成本恒等式</li><li>日志驱动的模拟智能体构建方法</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出了'随机间隙'概念，将可靠性与监督成本统一于同一分析框架</li><li>开发了基于测度论的马尔可夫形式化模型，用于量化智能体决策的不确定性</li><li>引入了状态细化方法（如案例上下文、经济规模、执行者类别），显著提高了盲质量检测灵敏度</li><li>建立了自主决策准确率（m(s)）与监督成本之间的量化关联</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>大型工作流在状态层面可能表现良好，但在下一步决策中存在显著盲质量（状态细化后盲质量从0.0165升至0.1253）</li><li>最大动作概率m(s)能够较准确预测实际自主步骤准确率（平均误差3.4个百分点）</li><li>界定统计可信自主性的指标同时决定了期望监督负担</li><li>框架可直接应用于具有操作事件日志的工程流程</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.24582" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24582</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Chameleon: Episodic Memory for Long-Horizon Robotic Manipulation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24576</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">变色龙：长程机器人操作的片段记忆</span>
+                        <span style="color:#666;font-size:12px;">Xinying Guo et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出Chameleon，一种受人类情景记忆启发的机器人操作记忆系统，用于解决感知混淆环境下的长时程操作任务。该系统通过写入几何基础的多模态令牌来保留区分性上下文，并利用可微分记忆栈实现目标导向的回忆。同时，作者引入了Camo-Dataset，一个包含情景回忆、空间跟踪和感知混淆下顺序操作的真实机器人UR5e数据集。实验表明，Chameleon在感知混淆环境中显著提升了决策可靠性和长时程控制能力。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>几何基础的多模态令牌表示</li><li>可微分记忆栈</li><li>目标导向的回忆机制</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出Chameleon系统，模拟人类情景记忆以处理感知混淆</li><li>引入几何基础的多模态令牌，保留细粒度感知线索以区分上下文</li><li>构建Camo-Dataset，提供真实机器人数据集支持相关研究</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>Chameleon在感知混淆环境中能有效提升决策可靠性和长时程控制性能</li><li>几何基础的多模态令牌和可微分记忆栈有助于保留和检索区分性上下文</li><li>Camo-Dataset为机器人记忆研究提供了有价值的实验基准</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.24576" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24576</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>LensWalk: Agentic Video Understanding by Planning How You See in Videos</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24558</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">LensWalk：基于视觉规划的智能视频理解</span>
+                        <span style="color:#666;font-size:12px;">Keliang Li et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出LensWalk，一种灵活的代理框架，使大型语言模型推理器能够主动控制其视觉观察，以解决视频理解中推理与感知脱节的问题。该框架通过动态指定时间范围和采样密度，实现按需证据收集，无需模型微调即可在多个基准测试中提升性能。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>动态时间范围与采样密度控制</li><li>基于视觉语言模型的多功能工具套件</li><li>渐进式按需证据收集机制</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>引入代理框架实现推理与感知的紧密闭环</li><li>允许模型主动规划视觉观察策略</li><li>通过即插即用方式提升现有模型性能</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>LensWalk在LVBench和Video-MME等长视频基准测试中准确率提升超过5%</li><li>代理控制视觉观察是提高视频推理准确性、鲁棒性和可解释性的关键</li><li>框架无需微调即可实现即插即用的性能增益</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.24558" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24558</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>UI-Voyager: A Self-Evolving GUI Agent Learning via Failed Experience</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.24533</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">UI-Voyager：基于失败经验自演进的GUI智能体</span>
+                        <span style="color:#666;font-size:12px;">Zichuan Lin et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出UI-Voyager，一种两阶段自演进的移动GUI代理，旨在解决现有方法在长时程GUI任务中从失败轨迹学习效率低下和稀疏奖励下信用分配模糊的问题。第一阶段采用拒绝微调（RFT），实现数据和模型在全自主循环中的持续协同演进；第二阶段引入组相对自蒸馏（GRSD），通过识别组推演中的关键分叉点，从成功轨迹构建密集的步级监督以修正失败轨迹。在AndroidWorld上的实验表明，其4B模型实现了81.0%的Pass@1成功率，超越了多个基线方法并达到人类水平性能。消融和案例研究进一步验证了GRSD的有效性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>拒绝微调（RFT）</li><li>组相对自蒸馏（GRSD）</li><li>多模态大语言模型（MLLMs）</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出两阶段自演进GUI代理框架，实现数据和模型的自主协同进化</li><li>引入GRSD方法，通过成功轨迹的密集监督修正失败轨迹，优化稀疏奖励下的信用分配</li><li>在AndroidWorld基准上实现超越人类水平的性能，无需昂贵人工标注</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>UI-Voyager在AndroidWorld上达到81.0% Pass@1成功率，显著优于现有基线</li><li>GRSD能有效识别关键决策点并提升从失败中学习的能力</li><li>方法证明了全自主、高效GUI自动化的可行性，减少对人工数据的依赖</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.24533" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.24533</a>
+                </div>
+            </div>
         </div>
 
         <div class="footer">
