@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI智能体迈向协同优化 多工具编排与生命周期感知成关键趋势 | 2026/3/26</title>
+    <title>AI技术每日洞察报告 | 2026/3/26</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -340,7 +340,7 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <h1>AI智能体迈向协同优化 多工具编排与生命周期感知成关键趋势 | 2026/3/26</h1>
+                <h1>AI技术每日洞察报告 | 2026/3/26</h1>
                 <div class="date">2026/3/26 | AI研究室</div>
             </div>
             <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
@@ -351,7 +351,7 @@
             <div class="executive-summary">
                 <h2>摘要</h2>
                 <div class="summary-content">
-                                        <p style="line-height:1.8;text-align:justify;">本次分析的三篇论文共同指向AI Agent与自主系统领域向<strong>分布式、协同化与生命周期感知</strong>演进的明确趋势。核心主题聚焦于如何通过架构与流程创新，使AI系统在复杂、动态环境中实现更高效、自主的决策与执行。<br><br>技术方向呈现两大共性创新点：其一，<strong>架构解耦与协同编排</strong>成为关键，无论是非地面网络（NTN）中的Split-RIC星地协同、LLM Agent的多工具动态编排，均强调通过模块化分工与智能调度提升系统整体效能与适应性。其二，<strong>优化过程的经验化与持续学习</strong>受到重视，AscendOptimizer将算子优化构建为经验引导的阶段性学习任务，而AI生命周期感知框架则强调根据模型演进动态调整部署策略，这标志着从静态优化向持续学习闭环的转变。<br><br>这些研究对行业具有重要启示：在边缘计算、通信网络及硬件加速等场景中，未来的系统设计需超越单点性能优化，转而构建具备<strong>环境感知、长期记忆与动态协调能力</strong>的自主智能体生态。其价值在于为构建下一代可进化、高可靠的自主系统提供了切实的架构范式与方法论指导。</p>
+                                        <p style="line-height:1.8;text-align:justify;">AI Agent与自主系统领域最新研究进展和技术突破，涵盖多维度技术趋势分析、重点论文核心观点和实验成果，以及产业化应用现状和未来发展方向。</p>
                 </div>
             </div>
 
@@ -359,7 +359,7 @@
             <div class="stats-grid">
                 
                 <div class="stat-item">
-                    <div class="stat-value">3</div>
+                    <div class="stat-value">0</div>
                     <div class="stat-label">核心论文</div>
                 </div>
                 <div class="stat-item">
@@ -378,120 +378,6 @@
 
             <!-- 报告章节 -->
             
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">1</div>
-                    <h2>AI Lifecycle-Aware Feasibility Framework for Split-RIC Orchestration in NTN O-RAN</h2>
-                </div>
-                <div class="paper-card">
-                    <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23252</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">NTN O-RAN中切分RIC编排的AI生命周期感知可行性框架</span>
-                        <span style="color:#666;font-size:12px;">Daniele Tarchi et al.</span>
-                        
-                    </div>
-
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究了在非地面网络（NTN）中通过Split-RIC架构将O-RAN控制层次分布到地面、低地球轨道（LEO）和地球静止轨道（GEO）段的可行性。针对卫星SWaP和馈线链路容量的限制，论文比较了三种部署场景：地面中心控制与遥测流、地面-LEO Split-RIC（含星上推理和存储转发学习）、GEO-LEO多层控制（通过星间链路实现）。通过推导生命周期能量和延迟的闭式表达式，并基于馈线链路条件、模型复杂性和轨道间歇性进行数值敏感性分析，确定了星上推理和非地面学习环路优于地面卸载的可行性区域。</div>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>Split-RIC架构</li><li>生命周期能量与延迟建模</li><li>数值敏感性分析</li></ul>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>提出AI生命周期感知的可行性框架</li><li>比较三种NTN O-RAN部署场景</li><li>推导闭式表达式量化能量与延迟</li></ul>
-                        </div>
-
-                        <div class="summary-section">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>星上推理和非地面学习环路在特定条件下优于地面卸载</li><li>馈线链路条件和模型复杂性是关键影响因素</li><li>Split-RIC架构可缓解卫星SWaP和链路容量限制</li></ul>
-                        </div>
-                    </div>
-
-                    <a href="https://arxiv.org/abs/2603.23252" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23252</a>
-                </div>
-            </div>
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">2</div>
-                    <h2>AscendOptimizer: Episodic Agent for Ascend NPU Operator Optimization</h2>
-                </div>
-                <div class="paper-card">
-                    <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.23566</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">AscendOptimizer：昇腾NPU算子优化情景代理</span>
-                        <span style="color:#666;font-size:12px;">Jiehao Wu et al.</span>
-                        
-                    </div>
-
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文介绍了AscendOptimizer，一种用于华为昇腾NPU上AscendC算子优化的阶段性代理。针对昇腾生态中公开参考实现少、性能依赖于主机端分块程序与内核程序耦合的双重知识瓶颈，该代理通过将执行转化为经验来引导优化。在主机端，它采用基于性能分析的进化搜索，直接从硬件反馈中发现高效的分块与数据移动配置；在内核端，通过逆向优化已优化的内核，合成'从坏到好'的优化轨迹，提取可迁移的优化模式并存入经验库，用于指导重写。通过主机调优与内核重写的闭环交替，AscendOptimizer逐步扩展可行性并降低延迟。在127个真实AscendC算子的基准测试中，实现了相对于开源基线1.19倍的几何平均加速，49.61%的算子优于参考实现，且优于其他代理与搜索基线。</div>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>基于性能分析的进化搜索（主机端调优）</li><li>内核逆向优化与优化轨迹合成（内核端经验提取）</li><li>闭环交替优化（主机调优与内核重写迭代）</li></ul>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>将算子优化转化为经验引导的阶段性学习过程</li><li>通过逆向优化合成'从坏到好'的轨迹以提取可迁移优化模式</li><li>结合硬件反馈的进化搜索与经验库驱动的重写实现闭环优化</li></ul>
-                        </div>
-
-                        <div class="summary-section">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>AscendOptimizer在127个真实AscendC算子基准上实现1.19倍几何平均加速</li><li>49.61%的算子性能超过参考实现，优于现有代理与搜索方法</li><li>该方法有效解决了昇腾NPU生态中知识匮乏与耦合优化的双重瓶颈</li></ul>
-                        </div>
-                    </div>
-
-                    <a href="https://arxiv.org/abs/2603.23566" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.23566</a>
-                </div>
-            </div>
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">3</div>
-                    <h2>The Evolution of Tool Use in LLM Agents: From Single-Tool Call to Multi-Tool Orchestration</h2>
-                </div>
-                <div class="paper-card">
-                    <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.22862</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">LLM智能体工具使用演进：从单工具调用到多工具协同</span>
-                        <span style="color:#666;font-size:12px;">Haoyuan Xu et al.</span>
-                        
-                    </div>
-
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文全面回顾了大型语言模型（LLM）智能体在多工具协同使用方面的最新进展，从早期的单一工具调用研究转向长期轨迹下的多工具编排，涉及中间状态、执行反馈、环境变化及安全、成本、可验证性等实际约束。文章统一了任务表述，区分了单次调用与长期编排，并围绕推理时规划与执行、训练与轨迹构建、安全与控制、资源约束下的效率、开放环境中的能力完备性以及基准设计与评估六个核心维度组织文献，总结了在软件工程、企业工作流、图形用户界面和移动系统等领域的代表性应用，最后讨论了构建可靠、可扩展和可验证的多工具智能体的主要挑战和未来方向。</div>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>多工具编排（Multi-Tool Orchestration）</li><li>推理时规划与执行（Inference-Time Planning and Execution）</li><li>训练与轨迹构建（Training and Trajectory Construction）</li></ul>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>从单一工具调用到多工具协同的范式转变分析</li><li>提出六个核心维度系统化组织多工具LLM智能体研究</li><li>强调实际约束（如安全、成本、可验证性）在智能体设计中的重要性</li></ul>
-                        </div>
-
-                        <div class="summary-section">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:600;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li>多工具编排已成为LLM智能体发展的核心问题，需处理长期轨迹和动态环境</li><li>当前研究需在安全、效率、能力完备性和评估基准方面进一步突破</li><li>未来方向包括构建更可靠、可扩展和可验证的多工具智能体系统</li></ul>
-                        </div>
-                    </div>
-
-                    <a href="https://arxiv.org/abs/2603.22862" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.22862</a>
-                </div>
-            </div>
         </div>
 
         <div class="footer">

@@ -1,34 +1,12 @@
 {
   "date": "2026-03-26",
-  "title": "AI智能体迈向协同优化 多工具编排与生命周期感知成关键趋势",
+  "title": "AI技术每日洞察报告",
   "topic": "AI Agent与自主系统",
   "directions": [
     "agentic"
   ],
-  "paper_count": 3,
-  "papers": [
-    {
-      "id": "2603.23252",
-      "title": "AI Lifecycle-Aware Feasibility Framework for Split-RIC Orchestration in NTN O-RAN",
-      "chinese_title": "NTN O-RAN中切分RIC编排的AI生命周期感知可行性框架",
-      "authors": "Daniele Tarchi et al.",
-      "url": "https://arxiv.org/abs/2603.23252"
-    },
-    {
-      "id": "2603.23566",
-      "title": "AscendOptimizer: Episodic Agent for Ascend NPU Operator Optimization",
-      "chinese_title": "AscendOptimizer：昇腾NPU算子优化情景代理",
-      "authors": "Jiehao Wu et al.",
-      "url": "https://arxiv.org/abs/2603.23566"
-    },
-    {
-      "id": "2603.22862",
-      "title": "The Evolution of Tool Use in LLM Agents: From Single-Tool Call to Multi-Tool Orchestration",
-      "chinese_title": "LLM智能体工具使用演进：从单工具调用到多工具协同",
-      "authors": "Haoyuan Xu et al.",
-      "url": "https://arxiv.org/abs/2603.22862"
-    }
-  ],
-  "generated_at": "2026-03-26T03:15:55.101Z",
+  "paper_count": 0,
+  "papers": [],
+  "generated_at": "2026-03-26T03:17:14.135Z",
   "org": "AI研究室"
 }
