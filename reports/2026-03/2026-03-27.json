@@ -1,0 +1,64 @@
+{
+  "date": "2026-03-27",
+  "title": "大模型推理进化与安全博弈 多智能体协作与自主进化重塑AI可靠性",
+  "topic": "AI技术每日洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2603.24012",
+      "title": "CVPD at QIAS 2026: RAG-Guided LLM Reasoning for Al-Mawarith Share Computation and Heir Allocation",
+      "chinese_title": "基于RAG的伊斯兰遗产计算与分配推理",
+      "authors": "Wassim Swaileh et al.",
+      "url": "https://arxiv.org/abs/2603.24012"
+    },
+    {
+      "id": "2603.24517",
+      "title": "AVO: Agentic Variation Operators for Autonomous Evolutionary Search",
+      "chinese_title": "AVO：自主进化搜索的智能体变异算子",
+      "authors": "Terry Chen et al.",
+      "url": "https://arxiv.org/abs/2603.24517"
+    },
+    {
+      "id": "2603.24586",
+      "title": "Comparing Developer and LLM Biases in Code Evaluation",
+      "chinese_title": "开发者与LLM代码评估偏见比较",
+      "authors": "Aditya Mittal et al.",
+      "url": "https://arxiv.org/abs/2603.24586"
+    },
+    {
+      "id": "2603.24579",
+      "title": "MARCH: Multi-Agent Reinforced Self-Check for LLM Hallucination",
+      "chinese_title": "MARCH：多智能体强化自检消解大模型幻觉",
+      "authors": "Zhuo Li et al.",
+      "url": "https://arxiv.org/abs/2603.24579"
+    },
+    {
+      "id": "2603.24543",
+      "title": "Analysing the Safety Pitfalls of Steering Vectors",
+      "chinese_title": "导向向量安全风险分析",
+      "authors": "Yuxiao Li et al.",
+      "url": "https://arxiv.org/abs/2603.24543"
+    },
+    {
+      "id": "2603.24518",
+      "title": "TuneShift-KD: Knowledge Distillation and Transfer for Fine-tuned Models",
+      "chinese_title": "TuneShift-KD：微调模型的知识蒸馏与迁移",
+      "authors": "Yushi Guan et al.",
+      "url": "https://arxiv.org/abs/2603.24518"
+    },
+    {
+      "id": "2603.24511",
+      "title": "Claudini: Autoresearch Discovers State-of-the-Art Adversarial Attack Algorithms for LLMs",
+      "chinese_title": "Claudini：自研大语言模型先进对抗攻击算法",
+      "authors": "Alexander Panfilov et al.",
+      "url": "https://arxiv.org/abs/2603.24511"
+    }
+  ],
+  "generated_at": "2026-03-27T00:36:06.120Z",
+  "org": "AI研究室"
+}
