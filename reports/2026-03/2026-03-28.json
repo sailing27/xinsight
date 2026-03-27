@@ -1,0 +1,64 @@
+{
+  "date": "2026-03-28",
+  "title": "模型自演进与可信计算引领AI技术新范式",
+  "topic": "AI技术每日洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2603.25740",
+      "title": "Drive My Way: Preference Alignment of Vision-Language-Action Model for Personalized Driving",
+      "chinese_title": "《驾我所好：视觉-语言-动作模型的个性化驾驶偏好对齐》",
+      "authors": "Zehao Wang et al.",
+      "url": "https://arxiv.org/abs/2603.25740"
+    },
+    {
+      "id": "2603.25722",
+      "title": "No Hard Negatives Required: Concept Centric Learning Leads to Compositionality without Degrading Zero-shot Capabilities of Contrastive Models",
+      "chinese_title": "无需负样本：概念中心学习实现组合性且保持对比模型零样本能力",
+      "authors": "Hai X. Pham et al.",
+      "url": "https://arxiv.org/abs/2603.25722"
+    },
+    {
+      "id": "2603.25702",
+      "title": "S2D2: Fast Decoding for Diffusion LLMs via Training-Free Self-Speculation",
+      "chinese_title": "S2D2：基于免训练自推测的扩散大语言模型快速解码",
+      "authors": "Ligong Han et al.",
+      "url": "https://arxiv.org/abs/2603.25702"
+    },
+    {
+      "id": "2603.25692",
+      "title": "A Unified Memory Perspective for Probabilistic Trustworthy AI",
+      "chinese_title": "概率可信AI的统一记忆视角",
+      "authors": "Xueji Zhao et al.",
+      "url": "https://arxiv.org/abs/2603.25692"
+    },
+    {
+      "id": "2603.25687",
+      "title": "On Neural Scaling Laws for Weather Emulation through Continual Training",
+      "chinese_title": "持续训练下天气模拟的神经标度律研究",
+      "authors": "Shashank Subramanian et al.",
+      "url": "https://arxiv.org/abs/2603.25687"
+    },
+    {
+      "id": "2603.25681",
+      "title": "Self-Improvement of Large Language Models: A Technical Overview and Future Outlook",
+      "chinese_title": "大语言模型自改进：技术综述与未来展望",
+      "authors": "Haoyan Yang et al.",
+      "url": "https://arxiv.org/abs/2603.25681"
+    },
+    {
+      "id": "2603.25674",
+      "title": "Measuring What Matters -- or What's Convenient?: Robustness of LLM-Based Scoring Systems to Construct-Irrelevant Factors",
+      "chinese_title": "测量关键还是便利？——基于大语言模型的评分系统对构念无关因素的稳健性",
+      "authors": "Cole Walsh et al.",
+      "url": "https://arxiv.org/abs/2603.25674"
+    }
+  ],
+  "generated_at": "2026-03-27T21:05:49.118Z",
+  "org": "AI研究室"
+}
