@@ -1,0 +1,64 @@
+{
+  "date": "2026-03-31",
+  "title": "模型压缩与推理革新 边缘智能与自适应学习并进",
+  "topic": "AI技术每日洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2603.26595",
+      "title": "PQuantML: A Tool for End-to-End Hardware-aware Model Compression",
+      "chinese_title": "PQuantML：端到端硬件感知模型压缩工具",
+      "authors": "Roope Niemi et al.",
+      "url": "https://arxiv.org/abs/2603.26595"
+    },
+    {
+      "id": "2603.26664",
+      "title": "Learning to Commit: Generating Organic Pull Requests via Online Repository Memory",
+      "chinese_title": "基于在线仓库记忆的有机拉取请求生成",
+      "authors": "Mo Li et al.",
+      "url": "https://arxiv.org/abs/2603.26664"
+    },
+    {
+      "id": "2603.26663",
+      "title": "Weight Tying Biases Token Embeddings Towards the Output Space",
+      "chinese_title": "权重绑定引导词嵌入向输出空间偏移",
+      "authors": "Antonio Lopardo et al.",
+      "url": "https://arxiv.org/abs/2603.26663"
+    },
+    {
+      "id": "2603.26657",
+      "title": "Tunable Soft Equivariance with Guarantees",
+      "chinese_title": "可调软等变性的保证研究",
+      "authors": "Md Ashiqur Rahman et al.",
+      "url": "https://arxiv.org/abs/2603.26657"
+    },
+    {
+      "id": "2603.26653",
+      "title": "PerceptionComp: A Video Benchmark for Complex Perception-Centric Reasoning",
+      "chinese_title": "感知推理视频基准：PerceptionComp",
+      "authors": "Shaoxuan Li et al.",
+      "url": "https://arxiv.org/abs/2603.26653"
+    },
+    {
+      "id": "2603.26647",
+      "title": "An LP-based Sampling Policy for Multi-Armed Bandits with Side-Observations and Stochastic Availability",
+      "chinese_title": "基于线性规划的边观测随机可用多臂老虎机采样策略",
+      "authors": "Ashutosh Soni et al.",
+      "url": "https://arxiv.org/abs/2603.26647"
+    },
+    {
+      "id": "2603.26644",
+      "title": "Automatic Laplace Collapsed Sampling: Scalable Marginalisation of Latent Parameters via Automatic Differentiation",
+      "chinese_title": "自动拉普拉斯坍缩采样：基于自动微分的隐参数边缘化",
+      "authors": "Toby Lovick et al.",
+      "url": "https://arxiv.org/abs/2603.26644"
+    }
+  ],
+  "generated_at": "2026-03-30T21:05:36.617Z",
+  "org": "AI研究室"
+}

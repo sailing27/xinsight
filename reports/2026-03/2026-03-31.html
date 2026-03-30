@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模型压缩与推理革新 边缘智能与自适应学习并进 | 2026/3/31</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffeaea 100%);
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #8b0000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffeaea 100%);
+            border: 1px solid #ffc8c8;
+            color: #8b0000;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            border: 1px solid #ffc8c8;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>模型压缩与推理革新 边缘智能与自适应学习并进 | 2026/3/31</h1>
+                <div class="date">2026/3/31 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦于AI模型的高效部署与适应性优化，核心趋势体现为从追求单一性能指标转向对计算效率、领域适配及推理复杂性的综合考量。技术演进呈现出明显的“硬件感知”与“软性约束”导向，旨在弥合模型能力与真实世界应用需求之间的差距。<br><br>共同的技术方向可归纳为两点：一是<strong>模型效率与部署的深度协同</strong>，如PQuantML的硬件感知压缩和ALCS的自动微分边缘化，均致力于通过算法创新（联合压缩、维度坍缩）来克服计算和内存瓶颈。二是<strong>对模型行为与数据特性的“柔性”控制</strong>，例如通过权重投影实现“软等变”以适应非理想数据分布，以及通过在线仓库记忆学习项目特定约束以生成“有机”代码，这反映了从强假设、硬约束向可调节、可学习适应性机制的转变。<br><br>这些研究对行业与研究的启示在于，下一代AI系统的竞争力将不仅取决于其精度，更在于其<strong>可部署性、领域融合度与复杂环境下的稳健推理能力</strong>。这要求研究范式更紧密地结合硬件特性、领域知识（如代码库惯例）和真实数据的复杂性（如长时程视频推理），推动技术从实验室原型向高效、可靠、可用的生产系统演进。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>PQuantML: A Tool for End-to-End Hardware-aware Model Compression</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.26595</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">PQuantML：端到端硬件感知模型压缩工具</span>
+                        <span style="color:#666;font-size:12px;">Roope Niemi et al.</span>
+                        <span style="background:linear-gradient(135deg,#2196F3 0%,#1976D2 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏛️ MIT</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">PQuantML是一个新的开源、硬件感知的神经网络模型压缩库，专为端到端工作流设计。它旨在将高性能模型部署到具有严格延迟限制的环境中，通过提供统一接口来联合或单独应用剪枝和量化，简化压缩模型的训练。该库实现了多种不同粒度的剪枝方法，以及支持高粒度量化的定点量化。作者在喷注子结构分类（喷注重建）等代表性任务上评估了PQuantML，这是与实时LHC数据处理相关的边缘问题。使用各种剪枝方法和定点量化，PQuantML在保持准确性的同时实现了显著的参数和比特宽度减少。其压缩效果进一步与QKeras和HGQ等现有工具进行了比较。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>统一压缩接口</strong>：提供单一接口，支持联合或单独应用剪枝与量化，简化端到端压缩流程。</li><li style="margin-bottom:0;"><strong>多粒度剪枝</strong>：实现多种不同粒度的剪枝方法，灵活适应不同模型结构与压缩需求。</li><li style="margin-bottom:0;"><strong>高粒度定点量化</strong>：支持高粒度定点量化，精细控制权重和激活值的比特宽度以减少计算开销。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>硬件感知压缩</strong>：库设计考虑硬件特性，优化模型以在严格延迟约束的边缘环境中高效部署。</li><li style="margin-bottom:0;"><strong>端到端工作流</strong>：专门针对完整训练流程优化，提供从模型压缩到评估的一体化解决方案。</li><li style="margin-bottom:0;"><strong>开源工具集成</strong>：作为开源库，与现有工具（如QKeras、HGQ）比较，推动社区协作与改进。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>显著压缩效果</strong>：在喷注重建等任务中，大幅减少参数和比特宽度，同时保持模型准确性。</li><li style="margin-bottom:0;"><strong>优于现有工具</strong>：压缩性能与QKeras和HGQ等工具相比具有竞争力或更优，验证了其有效性。</li><li style="margin-bottom:0;"><strong>实用部署价值</strong>：适用于实时LHC数据处理等边缘计算场景，满足低延迟、高效率的部署需求。</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.26595" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.26595</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Learning to Commit: Generating Organic Pull Requests via Online Repository Memory</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.26664</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">基于在线仓库记忆的有机拉取请求生成</span>
+                        <span style="color:#666;font-size:12px;">Mo Li et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">基于大语言模型的编码代理在受控基准测试中表现出色，但其生成的拉取请求常被实际维护者拒绝。主要问题并非功能错误，而是缺乏有机性：生成的代码忽略了项目特定惯例、重复了内部API已提供的功能，并违反了多年开发积累的隐式架构约束。仅向代理展示最新仓库快照是不够的，因为快照只显示代码库的最终状态，而非达成该状态的仓库特定变更模式。本文提出了Learning to Commit框架，通过在线仓库记忆来弥补这一差距。该框架让代理在严格按时间划分的仓库早期提交上进行监督对比反思：盲目尝试解决每个历史问题，将其预测与真实差异进行比较，并将差距提炼为持续增长的技能集——这些可重用模式捕捉了编码风格、内部API使用和架构不变量。当新的PR描述到来时，代理基于这些积累的技能生成代码，产生植根于项目自身演变的变更，而非通用的预训练先验。评估在技能构建阶段未见的、真正未来的已合并拉取请求上进行，涵盖功能正确性、代码风格一致性、内部API重用率和修改区域合理性等多个维度。在具有丰富提交历史的专家维护仓库上的实验表明，在线仓库记忆有效提高了在保留的未来任务上的有机性分数。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>在线仓库记忆</strong>：持续从历史提交中学习并提炼可重用技能的模式库，用于指导新代码生成。</li><li style="margin-bottom:0;"><strong>监督对比反思</strong>：代理盲目尝试解决历史问题，对比预测与真实差异，从中提炼项目特定模式。</li><li style="margin-bottom:0;"><strong>技能条件生成</strong>：基于积累的技能集生成新PR代码，确保变更符合项目演变的特定惯例和约束。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>有机性驱动学习</strong>：聚焦于学习项目特定惯例和约束，而非仅功能正确性，以生成更易被接受的PR。</li><li style="margin-bottom:0;"><strong>历史演变建模</strong>：通过分析仓库历史提交模式来学习项目演变路径，而非仅依赖最终代码快照。</li><li style="margin-bottom:0;"><strong>技能蒸馏框架</strong>：将历史提交差异提炼为可重用技能，使代理能基于项目自身模式进行条件生成。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>有机性显著提升</strong>：在线仓库记忆框架有效提高了生成代码在风格、API使用和架构上的有机性分数。</li><li style="margin-bottom:0;"><strong>未来任务泛化强</strong>：在未见过的未来合并PR上评估，证明所学技能能泛化到新任务并改善生成质量。</li><li style="margin-bottom:0;"><strong>多维度评估有效</strong>：综合功能正确性、风格一致性、API重用率和修改合理性等多维度验证了方法优势。</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.26664" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.26664</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Weight Tying Biases Token Embeddings Towards the Output Space</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.26663</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">权重绑定引导词嵌入向输出空间偏移</span>
+                        <span style="color:#666;font-size:12px;">Antonio Lopardo et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究了语言模型中权重绑定（即输入与输出嵌入矩阵共享参数）对嵌入空间学习的影响。研究发现，绑定矩阵更接近输出（解嵌入）矩阵而非输入嵌入，表明共享矩阵主要为输出预测而非输入表示而优化。这种解嵌入偏置源于训练早期输出梯度占主导，通过调焦透镜分析发现这会损害早期层计算对残差流的贡献。通过缩放输入梯度可减少此偏置，为梯度失衡的作用提供了因果证据。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>权重绑定分析</strong>：比较绑定与未绑定模型的嵌入矩阵，揭示绑定矩阵更接近输出矩阵，表明其优化目标偏向预测任务。</li><li style="margin-bottom:0;"><strong>调焦透镜分析</strong>：使用该方法分析早期层计算，发现解嵌入偏置导致早期层对残差流的贡献效率降低。</li><li style="margin-bottom:0;"><strong>梯度缩放实验</strong>：在训练中缩放输入梯度以减少输出梯度主导，为梯度失衡导致偏置提供因果证据。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>揭示解嵌入偏置</strong>：首次证明权重绑定使嵌入矩阵偏向输出空间，削弱其输入表示能力，源于训练早期输出梯度主导。</li><li style="margin-bottom:0;"><strong>机制性证据</strong>：通过梯度缩放实验，提供因果证据表明梯度失衡是偏置根源，优化了嵌入矩阵用于输出预测。</li><li style="margin-bottom:0;"><strong>影响模型性能</strong>：解释了权重绑定可能损害大规模模型性能的原因，对小模型设计有重要启示。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>绑定优化输出预测</strong>：权重绑定使共享矩阵更适应输出预测任务，而非输入表示，导致嵌入空间偏向解嵌入矩阵。</li><li style="margin-bottom:0;"><strong>早期梯度主导</strong>：训练初期输出梯度占优，塑造了绑定矩阵的解嵌入偏置，影响早期层计算有效性。</li><li style="margin-bottom:0;"><strong>缩放梯度减偏置</strong>：通过平衡输入与输出梯度，可减轻偏置，提升嵌入表示能力，对小模型参数效率有应用价值。</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.26663" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.26663</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Tunable Soft Equivariance with Guarantees</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.26657</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">可调软等变性的保证研究</span>
+                        <span style="color:#666;font-size:12px;">Md Ashiqur Rahman et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出了一种构建软等变模型的通用框架，通过将模型权重投影到设计子空间来控制等变程度。该方法适用于任何预训练架构，并提供了理论上的等变误差界限。在多个任务和骨干网络上验证了其有效性，在ImageNet基准上同时提升了性能并降低了等变误差。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>权重投影</strong>：通过将预训练模型的权重投影到一个精心设计的子空间，实现对模型等变程度的软控制。</li><li style="margin-bottom:0;"><strong>理论误差界</strong>：为所诱导的等变误差提供了严格的理论上界，保证了方法的可靠性。</li><li style="margin-bottom:0;"><strong>通用框架</strong>：该框架不依赖于特定架构，可应用于ViT、ResNet等多种预训练骨干网络。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>软等变控制</strong>：提出通过投影控制等变程度的新范式，突破了严格等变的限制，适应真实数据。</li><li style="margin-bottom:0;"><strong>理论保证</strong>：首次为软等变模型提供了可量化的理论误差界限，增强了方法的可信度。</li><li style="margin-bottom:0;"><strong>即插即用</strong>：框架无需重新训练，可直接应用于现有预训练模型，实用性强且易于部署。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能提升</strong>：在ImageNet等基准上，该方法在提升模型性能的同时，有效降低了等变误差。</li><li style="margin-bottom:0;"><strong>任务普适性</strong>：在图像分类、语义分割和轨迹预测等多个视觉任务上均验证了框架的有效性。</li><li style="margin-bottom:0;"><strong>灵活调控</strong>：实现了对模型等变程度的连续、可控调节，为模型设计提供了新的自由度。</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.26657" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.26657</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>PerceptionComp: A Video Benchmark for Complex Perception-Centric Reasoning</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.26653</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">感知推理视频基准：PerceptionComp</span>
+                        <span style="color:#666;font-size:12px;">Shaoxuan Li et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文介绍了PerceptionComp，一个用于复杂、长时程、以感知为中心的视频推理的人工标注基准。该基准要求回答每个问题需要多个时间上分离的视觉证据和组合约束，涵盖对象、属性、关系、位置、动作和事件等感知子任务，并需要语义识别、视觉对应、时间推理和空间推理等技能。基准包含来自城市步行游览、室内别墅游览、视频游戏和极限户外运动等多样领域的279个视频上的1,114个高度复杂问题，全部为人工标注。人类研究表明，PerceptionComp需要大量的测试时思考和重复感知步骤：参与者耗时远超先前基准，且禁止重看时准确率降至接近随机水平（18.97%）。最先进的多模态大语言模型在PerceptionComp上的表现也远差于现有基准：评估中最佳模型Gemini-3-Flash在五选一设置下仅达到45.96%的准确率，而开源模型低于40%。这些结果表明，以感知为中心的长时程视频推理仍是一个主要瓶颈，作者希望PerceptionComp能推动感知推理的进展。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多证据组合推理</strong>：要求整合多个时间分离的视觉证据，在合取和顺序逻辑下进行组合约束，实现复杂推理。</li><li style="margin-bottom:0;"><strong>全人工标注基准</strong>：基于279个多样领域视频，人工标注了1,114个高度复杂问题，确保数据质量和挑战性。</li><li style="margin-bottom:0;"><strong>多维度感知任务</strong>：涵盖对象、属性、关系、位置、动作和事件等感知子任务，综合评估视觉理解能力。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>长时程感知基准</strong>：首个专注于需要多时刻证据和重复感知步骤的复杂视频推理的人工标注基准。</li><li style="margin-bottom:0;"><strong>组合逻辑约束设计</strong>：问题设计强调合取与顺序逻辑，确保单时刻信息不足，必须进行跨时间推理。</li><li style="margin-bottom:0;"><strong>多技能综合评估</strong>：同时测试语义识别、视觉对应、时间推理和空间推理，全面衡量模型感知推理能力。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>人类表现受限于重看</strong>：人类在禁止重看视频时准确率骤降至18.97%，表明任务需大量测试时思考和重复感知。</li><li style="margin-bottom:0;"><strong>现有模型性能不足</strong>：最佳模型Gemini-3-Flash准确率仅45.96%，开源模型低于40%，显示当前技术存在明显瓶颈。</li><li style="margin-bottom:0;"><strong>推动感知推理进展</strong>：PerceptionComp揭示了长时程视频推理的挑战，有望驱动该领域未来研究和发展。</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.26653" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.26653</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>An LP-based Sampling Policy for Multi-Armed Bandits with Side-Observations and Stochastic Availability</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.26647</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">基于线性规划的边观测随机可用多臂老虎机采样策略</span>
+                        <span style="color:#666;font-size:12px;">Ashutosh Soni et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究了具有边观测和随机可用性的随机多臂老虎机问题。通过二分图将动作与未知参数关联，选择动作可观测其连接的所有未知参数。与以往假设所有动作始终可用的研究不同，本文考虑了更实际的随机可用性场景，即每轮可行动作集动态变化。为应对此挑战，提出了UCB-LP-A策略，利用线性规划优化随机可用性下的探索-利用权衡。理论分析了遗憾上界，数值模拟表明其优于忽略边信息或可用性约束的启发式方法。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>二分图建模</strong>：使用二分图将动作与未知参数连接，选择动作可同时观测其关联的所有未知参数，实现边观测。</li><li style="margin-bottom:0;"><strong>随机可用性</strong>：每轮可行动作集（激活集）动态变化，由随机过程决定，更贴合实际系统如用户在线状态波动。</li><li style="margin-bottom:0;"><strong>线性规划优化</strong>：基于线性规划计算最优采样分布，针对当前激活集优化探索与利用，确保有效收集必要观测。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>动态可用性建模</strong>：首次在边观测老虎机中引入随机可用性，扩展了传统网络老虎机假设，增强模型实用性。</li><li style="margin-bottom:0;"><strong>UCB-LP-A策略</strong>：结合UCB与线性规划，设计新策略处理随机激活集，优化有限可用动作下的决策效率。</li><li style="margin-bottom:0;"><strong>理论遗憾分析</strong>：推导遗憾上界，量化网络结构和激活概率的影响，为策略性能提供理论保证。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>策略性能优越</strong>：UCB-LP-A在模拟中显著优于忽略边信息或可用性约束的启发式方法，验证其有效性。</li><li style="margin-bottom:0;"><strong>结构概率影响</strong>：遗憾上界明确依赖于网络连接拓扑和动作激活概率，揭示了系统参数的关键作用。</li><li style="margin-bottom:0;"><strong>实用框架扩展</strong>：所提框架适用于社交网络等现实场景，为具有依赖性和波动的系统提供解决方案。</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.26647" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.26647</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Automatic Laplace Collapsed Sampling: Scalable Marginalisation of Latent Parameters via Automatic Differentiation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2603.26644</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">自动拉普拉斯坍缩采样：基于自动微分的隐参数边缘化</span>
+                        <span style="color:#666;font-size:12px;">Toby Lovick et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出了自动拉普拉斯坍缩采样（ALCS）框架，利用自动微分边缘化贝叶斯模型中的潜参数，并结合嵌套采样高效探索超参数空间。ALCS通过最大后验优化和拉普拉斯近似将高维潜变量压缩为标量贡献，降低计算维度，无需手动推导梯度或Hessian矩阵，并支持GPU并行化。该方法还扩展至Student-t等局部近似，提升了重尾分布下的证据估计精度，并通过基准测试验证了高斯近似的适用范围及后验ESS诊断能力。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>自动微分边缘化</strong>：利用自动微分计算最大后验优化和拉普拉斯近似，无需手动推导梯度或Hessian矩阵，实现潜参数的高效边缘化。</li><li style="margin-bottom:0;"><strong>嵌套采样集成</strong>：将ALCS与嵌套采样结合，在每次似然评估时压缩潜变量维度，使高维贝叶斯证据计算变得可行且可扩展。</li><li style="margin-bottom:0;"><strong>GPU并行优化</strong>：在GPU硬件上并行执行最大后验优化和Hessian评估，提升计算效率，支持大规模模型的实际应用。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>维度压缩框架</strong>：通过最大后验和拉普拉斯近似将高维潜变量坍缩为标量，将有效维度从d_θ+d_z降至d_θ，解决高维计算难题。</li><li style="margin-bottom:0;"><strong>局部近似扩展</strong>：利用自动微分实现超越高斯分布的局部近似（如Student-t），提升重尾潜变量下的证据估计准确性。</li><li style="margin-bottom:0;"><strong>后验诊断机制</strong>：提供后验ESS诊断，定位超参数空间中的近似失败区域，避免昂贵的联合采样开销。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>高效计算验证</strong>：在层次模型、时间序列和离散似然模型等基准测试中验证ALCS的有效性，确立高斯近似的适用范围。</li><li style="margin-bottom:0;"><strong>可扩展性证明</strong>：GPU并行化和自动微分使方法具备实际可扩展性，适用于高维贝叶斯推断而无须模型特定工程。</li><li style="margin-bottom:0;"><strong>近似灵活性</strong>：局部近似家族（如Student-t）的引入改善了证据估计，尤其适用于重尾潜变量场景。</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.26644" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.26644</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/3/31</p>
+        </div>
+    </div>
+</body>
+</html>
