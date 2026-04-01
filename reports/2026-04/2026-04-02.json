@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-02",
+  "title": "大模型后训练与推理优化开启可监督性与效率新范式",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2603.30036",
+      "title": "Aligned, Orthogonal or In-conflict: When can we safely optimize Chain-of-Thought?",
+      "chinese_title": "思维链优化时机：对齐、正交或冲突？",
+      "authors": "Max Kaufmann et al.",
+      "url": "https://arxiv.org/abs/2603.30036"
+    },
+    {
+      "id": "2603.30035",
+      "title": "Reward-Based Online LLM Routing via NeuralUCB",
+      "chinese_title": "基于神经UCB的奖励型在线大语言模型路由",
+      "authors": "Ming-Hua Tsai et al.",
+      "url": "https://arxiv.org/abs/2603.30035"
+    },
+    {
+      "id": "2603.30025",
+      "title": "ContextClaim: A Context-Driven Paradigm for Verifiable Claim Detection",
+      "chinese_title": "ContextClaim：可验证声明检测的上下文驱动范式",
+      "authors": "Yufeng Li et al.",
+      "url": "https://arxiv.org/abs/2603.30025"
+    },
+    {
+      "id": "2603.30017",
+      "title": "Refined Detection for Gumbel Watermarking",
+      "chinese_title": "冈贝尔水印的精细检测",
+      "authors": "Tor Lattimore et al.",
+      "url": "https://arxiv.org/abs/2603.30017"
+    },
+    {
+      "id": "2603.30002",
+      "title": "Tracking Equivalent Mechanistic Interpretations Across Neural Networks",
+      "chinese_title": "追踪神经网络等效机理解释",
+      "authors": "Alan Sun et al.",
+      "url": "https://arxiv.org/abs/2603.30002"
+    },
+    {
+      "id": "2603.29997",
+      "title": "Enhancing Structural Mapping with LLM-derived Abstractions for Analogical Reasoning in Narratives",
+      "chinese_title": "基于LLM抽象增强叙事类比推理的结构映射",
+      "authors": "Mohammadhossein Khojasteh et al.",
+      "url": "https://arxiv.org/abs/2603.29997"
+    },
+    {
+      "id": "2603.29979",
+      "title": "Structural Feature Engineering for Generative Engine Optimization: How Content Structure Shapes Citation Behavior",
+      "chinese_title": "生成引擎优化的结构特征工程：内容结构如何影响引用行为",
+      "authors": "Junwei Yu et al.",
+      "url": "https://arxiv.org/abs/2603.29979"
+    }
+  ],
+  "generated_at": "2026-04-01T21:53:04.949Z",
+  "org": "AI研究室"
+}
