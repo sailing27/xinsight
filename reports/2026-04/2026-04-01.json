@@ -1,0 +1,62 @@
+{
+  "date": "2026-04-01",
+  "title": "智能体迈向自主研究 技能库与评估体系驱动专业进化",
+  "topic": "AI Agent与自主系统",
+  "directions": [
+    "agentic"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2603.28589",
+      "title": "Towards a Medical AI Scientist",
+      "chinese_title": "迈向医学AI科学家",
+      "authors": "Hongtao Wu et al.",
+      "url": "https://arxiv.org/abs/2603.28589"
+    },
+    {
+      "id": "2603.28407",
+      "title": "MiroEval: Benchmarking Multimodal Deep Research Agents in Process and Outcome",
+      "chinese_title": "MiroEval：多模态深度研究智能体过程与结果基准评测",
+      "authors": "Fangda Ye et al.",
+      "url": "https://arxiv.org/abs/2603.28407"
+    },
+    {
+      "id": "2603.28569",
+      "title": "CirrusBench: Evaluating LLM-based Agents Beyond Correctness in Real-World Cloud Service Environments",
+      "chinese_title": "CirrusBench：云服务环境中LLM智能体综合评估",
+      "authors": "Yi Yu et al.",
+      "url": "https://arxiv.org/abs/2603.28569"
+    },
+    {
+      "id": "2603.28716",
+      "title": "Dynamic Dual-Granularity Skill Bank for Agentic RL",
+      "chinese_title": "动态双粒度技能库的智能体强化学习",
+      "authors": "Songjun Tu et al.",
+      "url": "https://arxiv.org/abs/2603.28716"
+    },
+    {
+      "id": "2603.28662",
+      "title": "AMIGO: Agentic Multi-Image Grounding Oracle Benchmark",
+      "chinese_title": "AMIGO：智能多图像定位基准测试",
+      "authors": "Min Wang et al.",
+      "url": "https://arxiv.org/abs/2603.28662"
+    },
+    {
+      "id": "2603.28653",
+      "title": "BACE: LLM-based Code Generation through Bayesian Anchored Co-Evolution of Code and Test Populations",
+      "chinese_title": "BACE：基于贝叶斯锚定协同进化的LLM代码生成",
+      "authors": "Kaushitha Silva et al.",
+      "url": "https://arxiv.org/abs/2603.28653"
+    },
+    {
+      "id": "2603.28625",
+      "title": "Dynamic Lookahead Distance via Reinforcement Learning-Based Pure Pursuit for Autonomous Racing",
+      "chinese_title": "基于强化学习的动态前瞻距离纯追踪赛车控制",
+      "authors": "Mohamed Elgouhary et al.",
+      "url": "https://arxiv.org/abs/2603.28625"
+    }
+  ],
+  "generated_at": "2026-04-01T00:26:53.424Z",
+  "org": "AI研究室"
+}
