@@ -1,87 +1,68 @@
 {
   "date": "2026-04-01",
-  "title": "大模型创新全景：从几何优化到跨模态应用的核心突破",
+  "title": "大模型智能体迈向专业化评估与动态技能进化新范式",
   "topic": "大模型创新与应用全景洞察",
   "directions": [
     "llm",
     "agentic",
     "infra",
-    "industry",
-    "openclaw"
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
   ],
-  "paper_count": 10,
+  "paper_count": 7,
   "papers": [
     {
-      "id": "2603.28743",
-      "title": "Rethinking Language Model Scaling under Transferable Hypersphere Optimization",
-      "chinese_title": "可迁移超球面优化下的语言模型缩放再思考",
-      "authors": "Liliang Ren et al.",
-      "url": "https://arxiv.org/abs/2603.28743"
+      "id": "2603.28589",
+      "title": "Towards a Medical AI Scientist",
+      "chinese_title": "迈向医学人工智能科学家",
+      "authors": "Hongtao Wu et al.",
+      "url": "https://arxiv.org/abs/2603.28589"
     },
     {
-      "id": "2603.28733",
-      "title": "See it to Place it: Evolving Macro Placements with Vision-Language Models",
-      "chinese_title": "视觉语言模型驱动的宏布局演化",
-      "authors": "Ikechukwu Uchendu et al.",
-      "url": "https://arxiv.org/abs/2603.28733"
+      "id": "2603.28569",
+      "title": "CirrusBench: Evaluating LLM-based Agents Beyond Correctness in Real-World Cloud Service Environments",
+      "chinese_title": "CirrusBench：云服务环境中基于LLM的智能体综合评估",
+      "authors": "Yi Yu et al.",
+      "url": "https://arxiv.org/abs/2603.28569"
     },
     {
-      "id": "2603.28730",
-      "title": "SOLE-R1: Video-Language Reasoning as the Sole Reward for On-Robot Reinforcement Learning",
-      "chinese_title": "SOLE-R1：视频语言推理作为机器人强化学习的唯一奖励",
-      "authors": "Philip Schroeder et al.",
-      "url": "https://arxiv.org/abs/2603.28730"
+      "id": "2603.28407",
+      "title": "MiroEval: Benchmarking Multimodal Deep Research Agents in Process and Outcome",
+      "chinese_title": "MiroEval：多模态深度研究智能体过程与结果基准评测",
+      "authors": "Fangda Ye et al.",
+      "url": "https://arxiv.org/abs/2603.28407"
     },
     {
-      "id": "2603.28765",
-      "title": "Adaptive Block-Scaled Data Types",
-      "chinese_title": "自适应块缩放数据类型",
-      "authors": "Jack Cook et al.",
-      "url": "https://arxiv.org/abs/2603.28765"
+      "id": "2603.28716",
+      "title": "Dynamic Dual-Granularity Skill Bank for Agentic RL",
+      "chinese_title": "动态双粒度技能库的智能体强化学习",
+      "authors": "Songjun Tu et al.",
+      "url": "https://arxiv.org/abs/2603.28716"
     },
     {
-      "id": "2603.28764",
-      "title": "Geometry-aware similarity metrics for neural representations on Riemannian and statistical manifolds",
-      "chinese_title": "黎曼与统计流形上神经表示的几何感知相似性度量",
-      "authors": "N Alex Cayco Gajic et al.",
-      "url": "https://arxiv.org/abs/2603.28764"
+      "id": "2603.28662",
+      "title": "AMIGO: Agentic Multi-Image Grounding Oracle Benchmark",
+      "chinese_title": "AMIGO：多图像智能体基准评测",
+      "authors": "Min Wang et al.",
+      "url": "https://arxiv.org/abs/2603.28662"
     },
     {
-      "id": "2603.28762",
-      "title": "On-the-fly Repulsion in the Contextual Space for Rich Diversity in Diffusion Transformers",
-      "chinese_title": "扩散变换器中上下文空间的即时排斥实现丰富多样性",
-      "authors": "Omer Dahary et al.",
-      "url": "https://arxiv.org/abs/2603.28762"
+      "id": "2603.28653",
+      "title": "BACE: LLM-based Code Generation through Bayesian Anchored Co-Evolution of Code and Test Populations",
+      "chinese_title": "BACE：基于贝叶斯锚定协同进化的LLM代码生成",
+      "authors": "Kaushitha Silva et al.",
+      "url": "https://arxiv.org/abs/2603.28653"
     },
     {
-      "id": "2603.28737",
-      "title": "ParaSpeechCLAP: A Dual-Encoder Speech-Text Model for Rich Stylistic Language-Audio Pretraining",
-      "chinese_title": "ParaSpeechCLAP：面向丰富风格化语言音频预训练的双编码器语音文本模型",
-      "authors": "Anuj Diwan et al.",
-      "url": "https://arxiv.org/abs/2603.28737"
-    },
-    {
-      "id": "2603.28718",
-      "title": "Stepwise Credit Assignment for GRPO on Flow-Matching Models",
-      "chinese_title": "流匹配模型GRPO的逐步信用分配",
-      "authors": "Yash Savani et al.",
-      "url": "https://arxiv.org/abs/2603.28718"
-    },
-    {
-      "id": "2603.28708",
-      "title": "GPU-Accelerated Optimization of Transformer-Based Neural Networks for Real-Time Inference",
-      "chinese_title": "GPU加速Transformer神经网络实时推理优化",
-      "authors": "Soutrik Mukherjee et al.",
-      "url": "https://arxiv.org/abs/2603.28708"
-    },
-    {
-      "id": "2603.28698",
-      "title": "EpiScreen: Early Epilepsy Detection from Electronic Health Records with Large Language Models",
-      "chinese_title": "EpiScreen：基于大语言模型的电子病历癫痫早期检测",
-      "authors": "Shuang Zhou et al.",
-      "url": "https://arxiv.org/abs/2603.28698"
+      "id": "2603.28625",
+      "title": "Dynamic Lookahead Distance via Reinforcement Learning-Based Pure Pursuit for Autonomous Racing",
+      "chinese_title": "基于强化学习的动态前瞻距离纯追踪赛车控制",
+      "authors": "Mohamed Elgouhary et al.",
+      "url": "https://arxiv.org/abs/2603.28625"
     }
   ],
-  "generated_at": "2026-04-01T00:46:03.910Z",
+  "generated_at": "2026-04-01T01:05:44.720Z",
   "org": "AI研究室"
 }
