@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-03",
+  "title": "大模型架构革新与推理效率跃升全景洞察",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.01215",
+      "title": "The Recipe Matters More Than the Kitchen:Mathematical Foundations of the AI Weather Prediction Pipeline",
+      "chinese_title": "AI气象预测流程的数学基础：方法重于工具",
+      "authors": "Piyush Garg et al.",
+      "url": "https://arxiv.org/abs/2604.01215"
+    },
+    {
+      "id": "2604.01178",
+      "title": "Screening Is Enough",
+      "chinese_title": "筛查足矣",
+      "authors": "Ken M. Nakanishi et al.",
+      "url": "https://arxiv.org/abs/2604.01178"
+    },
+    {
+      "id": "2604.01220",
+      "title": "Universal YOCO for Efficient Depth Scaling",
+      "chinese_title": "通用YOCO的高效深度扩展",
+      "authors": "Yutao Sun et al.",
+      "url": "https://arxiv.org/abs/2604.01220"
+    },
+    {
+      "id": "2604.01216",
+      "title": "LAtent Phase Inference from Short time sequences using SHallow REcurrent Decoders (LAPIS-SHRED)",
+      "chinese_title": "基于浅层循环解码器的短时序潜相推断",
+      "authors": "Yuxuan Bao et al.",
+      "url": "https://arxiv.org/abs/2604.01216"
+    },
+    {
+      "id": "2604.01212",
+      "title": "$\\texttt{YC-Bench}$: Benchmarking AI Agents for Long-Term Planning and Consistent Execution",
+      "chinese_title": "YC-Bench：AI智能体长期规划与持续执行基准评测",
+      "authors": "Muyu He et al.",
+      "url": "https://arxiv.org/abs/2604.01212"
+    },
+    {
+      "id": "2604.01206",
+      "title": "LLM REgression with a Latent Iterative State Head",
+      "chinese_title": "潜在迭代状态头的LLM回归",
+      "authors": "Yiheng Su et al.",
+      "url": "https://arxiv.org/abs/2604.01206"
+    },
+    {
+      "id": "2604.01204",
+      "title": "Neural Harmonic Textures for High-Quality Primitive Based Neural Reconstruction",
+      "chinese_title": "基于基元的神经谐波纹理高质量重建",
+      "authors": "Jorge Condor et al.",
+      "url": "https://arxiv.org/abs/2604.01204"
+    }
+  ],
+  "generated_at": "2026-04-02T23:31:25.154Z",
+  "org": "AI研究室"
+}
