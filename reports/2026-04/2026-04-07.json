@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-07",
+  "title": "大模型迈向细粒度推理与高效部署新范式",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.04932",
+      "title": "Beyond the Final Actor: Modeling the Dual Roles of Creator and Editor for Fine-Grained LLM-Generated Text Detection",
+      "chinese_title": "超越最终作者：细粒度LLM生成文本检测的创作者与编辑者双重角色建模",
+      "authors": "Yang Li et al.",
+      "url": "https://arxiv.org/abs/2604.04932"
+    },
+    {
+      "id": "2604.04930",
+      "title": "Early Stopping for Large Reasoning Models via Confidence Dynamics",
+      "chinese_title": "基于置信度动态的大型推理模型早停策略",
+      "authors": "Parsa Hosseini et al.",
+      "url": "https://arxiv.org/abs/2604.04930"
+    },
+    {
+      "id": "2604.04921",
+      "title": "TriAttention: Efficient Long Reasoning with Trigonometric KV Compression",
+      "chinese_title": "TriAttention：基于三角KV压缩的高效长程推理",
+      "authors": "Weian Mao et al.",
+      "url": "https://arxiv.org/abs/2604.04921"
+    },
+    {
+      "id": "2604.04917",
+      "title": "Vero: An Open RL Recipe for General Visual Reasoning",
+      "chinese_title": "Vero：通用视觉推理的开放强化学习方案",
+      "authors": "Gabriel Sarch et al.",
+      "url": "https://arxiv.org/abs/2604.04917"
+    },
+    {
+      "id": "2604.04916",
+      "title": "Empowering Power Outage Prediction with Spatially Aware Hybrid Graph Neural Networks and Contrastive Learning",
+      "chinese_title": "空间感知混合图神经网络与对比学习的停电预测",
+      "authors": "Xuyang Shen et al.",
+      "url": "https://arxiv.org/abs/2604.04916"
+    },
+    {
+      "id": "2604.04914",
+      "title": "Analyzing Symbolic Properties for DRL Agents in Systems and Networking",
+      "chinese_title": "系统与网络DRL智能体符号特性分析",
+      "authors": "Mohammad Zangooei et al.",
+      "url": "https://arxiv.org/abs/2604.04914"
+    },
+    {
+      "id": "2604.04908",
+      "title": "HI-MoE: Hierarchical Instance-Conditioned Mixture-of-Experts for Object Detection",
+      "chinese_title": "HI-MoE：面向目标检测的层次化实例条件专家混合模型",
+      "authors": "Vadim Vashkelis et al.",
+      "url": "https://arxiv.org/abs/2604.04908"
+    }
+  ],
+  "generated_at": "2026-04-07T04:00:38.276Z",
+  "org": "AI研究室"
+}
