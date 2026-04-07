@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-08",
+  "title": "大模型安全与架构创新揭示下一代AI核心趋势",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.04759",
+      "title": "Your Agent, Their Asset: A Real-World Safety Analysis of OpenClaw",
+      "chinese_title": "开放爪牙：现实世界安全分析",
+      "authors": "Zijun Wang et al.",
+      "url": "https://arxiv.org/abs/2604.04759"
+    },
+    {
+      "id": "2604.04756",
+      "title": "Darkness Visible: Reading the Exception Handler of a Language Model",
+      "chinese_title": "可见之暗：解读语言模型的异常处理器",
+      "authors": "Peter Balogh et al.",
+      "url": "https://arxiv.org/abs/2604.04756"
+    },
+    {
+      "id": "2604.04869",
+      "title": "Optimizing LLM Prompt Engineering with DSPy Based Declarative Learning",
+      "chinese_title": "基于DSPy的声明式学习优化LLM提示工程",
+      "authors": "Shiek Ruksana et al.",
+      "url": "https://arxiv.org/abs/2604.04869"
+    },
+    {
+      "id": "2604.04868",
+      "title": "Noise Immunity in In-Context Tabular Learning: An Empirical Robustness Analysis of TabPFN's Attention Mechanisms",
+      "chinese_title": "TabPFN注意力机制的抗噪性实证分析",
+      "authors": "James Hu et al.",
+      "url": "https://arxiv.org/abs/2604.04868"
+    },
+    {
+      "id": "2604.04858",
+      "title": "FairLogue: A Toolkit for Intersectional Fairness Analysis in Clinical Machine Learning Models",
+      "chinese_title": "FairLogue：临床机器学习模型交叉公平性分析工具包",
+      "authors": "Nick Souligne et al.",
+      "url": "https://arxiv.org/abs/2604.04858"
+    },
+    {
+      "id": "2604.04847",
+      "title": "Full-Duplex-Bench-v3: Benchmarking Tool Use for Full-Duplex Voice Agents Under Real-World Disfluency",
+      "chinese_title": "全双工语音代理现实非流畅性评测工具v3",
+      "authors": "Guan-Ting Lin et al.",
+      "url": "https://arxiv.org/abs/2604.04847"
+    },
+    {
+      "id": "2604.04842",
+      "title": "Do No Harm: Exposing Hidden Vulnerabilities of LLMs via Persona-based Client Simulation Attack in Psychological Counseling",
+      "chinese_title": "基于角色模拟的LLM心理咨询攻击：揭示隐藏脆弱性",
+      "authors": "Qingyang Xu et al.",
+      "url": "https://arxiv.org/abs/2604.04842"
+    }
+  ],
+  "generated_at": "2026-04-07T21:06:00.112Z",
+  "org": "AI研究室"
+}
