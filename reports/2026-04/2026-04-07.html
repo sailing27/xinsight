@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大模型迈向细粒度推理与高效部署新范式 | 2026/4/7</title>
+    <title>大模型技术瓶颈突破与数据驱动创新趋势洞察 | 2026/4/7</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -343,7 +343,7 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <h1>大模型迈向细粒度推理与高效部署新范式 | 2026/4/7</h1>
+                <h1>大模型技术瓶颈突破与数据驱动创新趋势洞察 | 2026/4/7</h1>
                 <div class="date">2026/4/7 | AI研究室</div>
             </div>
             <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
@@ -354,7 +354,7 @@
             <div class="executive-summary">
                 <h2>摘要</h2>
                 <div class="summary-content">
-                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦于大模型在推理效率、细粒度可控性及跨模态应用三大前沿方向的技术突破。核心趋势表明，研究重点正从单纯追求规模扩展转向对模型内部机制的精巧设计与外部行为的可靠验证，旨在实现更高性能、更低能耗与更可信的部署。<br><br>共同的技术方向体现在：第一，<strong>推理过程的动态优化与压缩</strong>，通过分析置信度动态（论文2）或利用注意力向量的集中性进行KV压缩（论文3），在保持精度的同时显著提升长序列处理效率。第二，<strong>模型行为的细粒度解析与增强控制</strong>，无论是通过双重角色建模实现更精准的文本溯源（论文1），还是通过定义符号属性来系统验证DRL智能体的行为（论文6），都致力于提升模型的可解释性与可控性。第三，<strong>面向复杂任务的架构与训练范式创新</strong>，例如在目标检测中引入分层MoE路由以优化计算（论文7），或构建完全开源的视觉推理RL方案以促进生态发展（论文4），同时结合空间感知图网络解决特定领域预测难题（论文5）。<br><br>这些研究为行业与研究提供了关键启示：首先，深入模型内部动态（如置信度、注意力）是解锁效率瓶颈的新途径；其次，构建更精细的评估与控制框架（如四分类检测、符号属性）是应对AIGC监管与安全挑战的必然要求；最后，推动关键方案（如视觉RL）的开源与特定领域架构的融合，将加速大模型在复杂现实场景中的可靠落地与价值创造。</p>
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦于大模型能力边界的系统性突破与评估范式的革新，核心主题是超越静态基准，追求在动态、复杂现实场景下的实用性能与效率。技术趋势呈现出从“模型中心”向“数据与评估中心”的深刻转变，强调通过高质量数据构造、动态环境模拟及对模型内部机制的精细分析来驱动进步。<br><br>共同的技术方向可提炼为三点：其一，<strong>动态与真实性评估</strong>，通过构建模拟信息演变（LiveFact）或保留技术复杂性（Synthetic Sandbox）的动态环境，迫使模型应对不确定性，暴露其在静态基准下隐藏的缺陷。其二，<strong>数据质量的极致优化</strong>，研究明确指出性能瓶颈常源于训练数据而非架构（MinerU2.5-Pro），并通过数据归因（Data Attribution）和合成数据生成（Synthetic Sandbox）等方法，系统性解决数据覆盖、一致性与反馈循环问题。其三，<strong>小型化与效率突破</strong>，证明通过针对性知识蒸馏（QED-Nano）和探索策略精炼（Rethinking Exploration），小型模型能在特定任务上逼近甚至超越更大模型，同时显著降低推理成本。<br><br>这些研究对行业与研究的启示在于：首先，评估体系需升级以匹配现实世界的动态性，否则将高估模型实际能力。其次，投资于数据基础设施与合成数据技术，其回报可能优于单纯扩大模型参数。最后，通过任务特化与算法创新实现“小而精”的模型部署，已成为一条兼具高性能与可行性的重要技术路径，推动大模型从演示走向深度集成与广泛应用。</p>
                 </div>
             </div>
 
@@ -384,267 +384,267 @@
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">1</div>
-                    <h2>Beyond the Final Actor: Modeling the Dual Roles of Creator and Editor for Fine-Grained LLM-Generated Text Detection</h2>
+                    <h2>LiveFact: A Dynamic, Time-Aware Benchmark for LLM-Driven Fake News Detection</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.04932</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">超越最终作者：细粒度LLM生成文本检测的创作者与编辑者双重角色建模</span>
-                        <span style="color:#666;font-size:12px;">Yang Li et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.04815</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">LiveFact：动态时序大语言模型假新闻检测基准</span>
+                        <span style="color:#666;font-size:12px;">Cheng Xu et al.</span>
                         
                     </div>
 
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对大语言模型（LLMs）生成文本的滥用问题，提出了一种细粒度检测方法。现有方法多为二元或三元分类，难以区分LLM润色的人类文本与人类化的LLM文本等细微差异。为此，作者探索了严格的四分类检测设置，并提出了RACE方法，通过建模创作者和编辑者的双重角色，结合修辞结构理论和基本语篇单元特征进行检测。实验表明，RACE在细粒度分类和低误报率上优于12个基线模型，为LLM监管提供了政策对齐的解决方案。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型（LLMs）的快速发展已将假新闻检测和事实核查任务从简单分类转变为复杂推理。然而，评估框架未能跟上步伐。现有基准是静态的，易受基准数据污染（BDC）影响，且无法有效评估时间不确定性下的推理能力。为此，我们引入了LiveFact，一个持续更新的基准，模拟了错误信息检测中现实世界的“战争迷雾”。LiveFact使用动态的、有时间性的证据集来评估模型利用不断演变、不完整信息进行推理的能力，而非依赖记忆的知识。我们提出了双模式评估：用于最终验证的分类模式和用于基于证据推理的推理模式，以及一个明确监控BDC的组件。对22个LLMs的测试表明，开源专家混合模型（如Qwen3-235B-A22B）现已达到或超越了专有的最先进系统。更重要的是，我们的分析发现了一个显著的“推理差距”。能力强的模型通过识别早期数据切片中不可验证的声明来展现认知谦逊——这是传统静态基准所忽视的方面。LiveFact为评估稳健、具有时间感知能力的人工智能验证设定了可持续的标准。</div>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>四分类检测框架</strong>：采用严格的四分类设置，区分纯人类文本、纯LLM文本、LLM润色的人类文本和人类化的LLM文本，以支持更精细的监管需求。</li><li style="margin-bottom:0;"><strong>修辞结构理论分析</strong>：利用修辞结构理论构建逻辑图，捕捉创作者在文本中建立的底层逻辑和结构关系，作为检测的基础特征。</li><li style="margin-bottom:0;"><strong>基本语篇单元特征</strong>：提取基本语篇单元级别的特征，以表征编辑者在文本风格上的修改痕迹，从而区分不同角色的贡献。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>动态时间基准</strong>：LiveFact是一个持续更新的基准，使用动态、有时间性的证据集来模拟现实世界信息演变过程。</li><li style="margin-bottom:0;"><strong>双模式评估</strong>：包含分类模式用于最终事实核查，以及推理模式用于评估基于证据的逐步推理能力。</li><li style="margin-bottom:0;"><strong>污染监控组件</strong>：专门设计用于明确监控和减轻基准数据污染对模型评估结果的影响。</li></ul>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双重角色建模</strong>：创新性地将文本生成过程分解为创作者和编辑者两个角色，分别建模其独特特征，以提升细粒度检测的准确性。</li><li style="margin-bottom:0;"><strong>RACE方法提出</strong>：提出RACE方法，结合修辞结构理论和语篇单元特征，实现了对LLM生成文本的细粒度分类，超越了传统二元或三元分类的局限。</li><li style="margin-bottom:0;"><strong>政策对齐检测</strong>：强调检测方法与实际监管政策的对齐，通过区分不同文本类型，为LLM滥用监管提供了更具操作性的解决方案。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模拟战争迷雾</strong>：通过动态证据集模拟信息不完整和演变的真实场景，评估模型在时间不确定性下的推理。</li><li style="margin-bottom:0;"><strong>超越静态评估</strong>：解决传统静态基准易受数据污染且无法有效评估时序推理的局限性。</li><li style="margin-bottom:0;"><strong>引入推理差距</strong>：发现并量化模型在早期信息不足时识别不可验证声明的能力，即认知谦逊。</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>RACE性能优越</strong>：RACE在实验中显著优于12个基线模型，尤其在细粒度文本类型识别上表现出更高的准确性和更低的误报率。</li><li style="margin-bottom:0;"><strong>细粒度检测有效</strong>：严格的四分类设置能够有效区分LLM润色的人类文本和人类化的LLM文本，证明了细粒度检测在LLM监管中的必要性。</li><li style="margin-bottom:0;"><strong>支持监管应用</strong>：该方法为LLM生成文本的监管提供了技术基础，有助于实现更精准、政策对齐的内容审核和风险控制。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>开源模型表现优异</strong>：测试显示开源专家混合模型（如Qwen3）已达到或超越专有最先进系统的性能。</li><li style="margin-bottom:0;"><strong>存在显著推理差距</strong>：能力强的模型能展现认知谦逊，在信息不足时承认不确定性，这是静态基准忽略的关键能力。</li><li style="margin-bottom:0;"><strong>设定可持续标准</strong>：LiveFact为评估具有时间感知和稳健推理能力的AI验证系统提供了新的、可持续的基准框架。</li></ul>
                         </div>
                     </div>
 
-                    <a href="https://arxiv.org/abs/2604.04932" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.04932</a>
+                    <a href="https://arxiv.org/abs/2604.04815" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.04815</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">2</div>
-                    <h2>Early Stopping for Large Reasoning Models via Confidence Dynamics</h2>
+                    <h2>MinerU2.5-Pro: Pushing the Limits of Data-Centric Document Parsing at Scale</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.04930</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">基于置信度动态的大型推理模型早停策略</span>
-                        <span style="color:#666;font-size:12px;">Parsa Hosseini et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.04771</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">MinerU2.5-Pro：数据驱动文档解析的规模化突破</span>
+                        <span style="color:#666;font-size:12px;">Bin Wang et al.</span>
                         
                     </div>
 
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型推理模型依赖长链思维生成解决复杂问题，但冗长推理会带来巨大计算成本，甚至因过度思考导致性能下降。本文研究推理过程中中间答案的置信度，发现正确推理轨迹往往早期达到高置信度，而错误推理则产生冗长、低效的轨迹且置信度动态不可靠。基于此，作者提出CoDE-Stop方法，利用中间答案置信度动态决定何时终止推理，无需额外训练且易于集成。实验表明，该方法在多个模型和基准测试中实现了更优的准确率-计算权衡，相比标准全长推理减少25-50%的令牌使用量。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">当前文档解析方法主要竞争模型架构创新，而训练数据的系统工程仍未充分探索。研究发现，不同架构和参数规模的SOTA模型在同一组困难样本上表现出高度一致的失败模式，表明性能瓶颈源于训练数据的共同缺陷而非架构本身。基于此，本文提出了MinerU2.5-Pro，仅通过数据工程和训练策略优化来推进技术前沿，同时保持1.2B参数架构完全固定。其核心是一个围绕覆盖性、信息量和标注准确性共同设计的数据引擎：多样性和难度感知采样将训练数据从不足1000万扩展到6550万样本，同时纠正分布偏移；跨模型一致性验证利用异构模型间的输出一致性来评估样本难度并生成可靠标注；判断与精炼管道通过渲染-验证迭代校正提高困难样本的标注质量。三阶段渐进训练策略——大规模预训练、困难样本微调和GRPO对齐——依次利用不同质量层级的数据。在评估方面，修复了OmniDocBench~v1.5中的元素匹配偏差并引入困难子集，建立了更具区分度的OmniDocBench~v1.6协议。在没有任何架构修改的情况下，MinerU2.5-Pro在OmniDocBench~v1.6上达到95.69分，比相同架构基线提高2.71分，并超越所有现有方法，包括参数多200B以上的模型。</div>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>置信度动态分析</strong>：分析推理过程中中间答案置信度的变化模式，识别正确与错误推理轨迹的置信度特征差异。</li><li style="margin-bottom:0;"><strong>无训练早停机制</strong>：基于置信度动态设计早停策略，无需额外训练或模型修改，可直接应用于现有推理模型。</li><li style="margin-bottom:0;"><strong>动态阈值决策</strong>：根据置信度变化趋势和稳定性设定早停阈值，实时判断推理是否应终止以避免无效计算。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>数据引擎设计</strong>：围绕覆盖性、信息量和标注准确性共同设计，包括多样性和难度感知采样、跨模型一致性验证及判断与精炼管道。</li><li style="margin-bottom:0;"><strong>渐进训练策略</strong>：采用三阶段训练，包括大规模预训练、困难样本微调和GRPO对齐，依次利用不同质量层级的数据。</li><li style="margin-bottom:0;"><strong>评估协议优化</strong>：修复OmniDocBench~v1.5的元素匹配偏差，引入困难子集，建立更具区分度的OmniDocBench~v1.6评估协议。</li></ul>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>置信度行为观察</strong>：首次系统观察并总结正确与错误推理轨迹中置信度动态的典型差异，为早停提供理论依据。</li><li style="margin-bottom:0;"><strong>动态早停方法</strong>：提出CoDE-Stop，利用置信度动态而非固定长度或单一阈值实现自适应早停，提升计算效率。</li><li style="margin-bottom:0;"><strong>即插即用集成</strong>：方法无需重新训练模型或增加参数，可无缝集成到现有推理流程中，实用性高。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>数据瓶颈识别</strong>：发现SOTA模型的失败模式高度一致，指出性能瓶颈源于训练数据缺陷而非架构，推动数据中心方法。</li><li style="margin-bottom:0;"><strong>数据工程驱动</strong>：仅通过数据工程和训练策略优化提升性能，保持1.2B参数架构固定，实现高效能提升。</li><li style="margin-bottom:0;"><strong>困难样本处理</strong>：通过跨模型验证和迭代校正，提高困难样本的标注质量和模型泛化能力。</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>早停提升效率</strong>：CoDE-Stop在多个推理和科学基准测试中减少25-50%令牌使用，保持或提升准确率。</li><li style="margin-bottom:0;"><strong>置信度揭示轨迹质量</strong>：正确推理早期达到高稳定置信度，错误推理置信度波动大且增长缓慢。</li><li style="margin-bottom:0;"><strong>通用性与鲁棒性</strong>：方法在不同模型和任务中均有效，优于现有早停方法，实现更优计算-精度权衡。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能显著提升</strong>：在OmniDocBench~v1.6上达到95.69分，比相同架构基线提高2.71分，超越所有现有方法。</li><li style="margin-bottom:0;"><strong>数据工程有效性</strong>：证明通过系统数据工程可突破性能瓶颈，无需架构修改，为文档解析提供新方向。</li><li style="margin-bottom:0;"><strong>评估标准改进</strong>：建立OmniDocBench~v1.6协议，更准确评估模型能力，推动领域标准化发展。</li></ul>
                         </div>
                     </div>
 
-                    <a href="https://arxiv.org/abs/2604.04930" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.04930</a>
+                    <a href="https://arxiv.org/abs/2604.04771" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.04771</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">3</div>
-                    <h2>TriAttention: Efficient Long Reasoning with Trigonometric KV Compression</h2>
+                    <h2>Are Latent Reasoning Models Easily Interpretable?</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.04921</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">TriAttention：基于三角KV压缩的高效长程推理</span>
-                        <span style="color:#666;font-size:12px;">Weian Mao et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.04902</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">潜在推理模型易于解释吗？</span>
+                        <span style="color:#666;font-size:12px;">Connor Dilgren et al.</span>
                         
                     </div>
 
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">论文提出TriAttention方法，通过利用RoPE前空间中查询和键向量的集中特性，设计基于三角级数的键重要性估计机制，以解决长序列推理中KV缓存的内存瓶颈问题，在保持推理精度的同时显著提升吞吐量并减少内存占用。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究了潜在推理模型（LRMs）的可解释性。研究发现，LRMs的潜在推理标记通常对预测并非必要，且当这些标记确实必要时，可以高比例解码出正确的推理路径。研究还提出了一种无需先验知识即可从潜在标记解码出已验证自然语言推理路径的方法，并指出可解释性本身可作为预测正确性的信号。</div>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>Q/K集中性</strong>：在RoPE前的嵌入空间中，查询和键向量高度集中在固定的非零中心附近，且在不同位置保持稳定。</li><li style="margin-bottom:0;"><strong>三角级数评分</strong>：利用Q/K中心通过三角级数表征的距离偏好，根据键的位置对其进行重要性评分。</li><li style="margin-bottom:0;"><strong>范数辅助信号</strong>：额外利用查询和键向量的范数作为重要性估计的补充信号，提升评估准确性。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>潜在推理分析</strong>：通过实验分析LRMs中潜在推理标记的实际使用情况及其对最终预测的必要性。</li><li style="margin-bottom:0;"><strong>推理路径解码</strong>：开发方法将LRMs的潜在标记解码为可理解的自然语言推理路径，以评估其内部过程。</li><li style="margin-bottom:0;"><strong>验证解码方法</strong>：提出一种无需已知正确推理路径即可从潜在标记解码并验证自然语言推理路径的新方法。</li></ul>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>预RoPE空间分析</strong>：转向RoPE前的稳定空间进行分析，避免了查询旋转导致的代表性问题。</li><li style="margin-bottom:0;"><strong>中心距离偏好</strong>：发现Q/K中心决定了对特定距离键的注意力偏好，并形式化为三角级数。</li><li style="margin-bottom:0;"><strong>高效重要性估计</strong>：基于中心与范数设计轻量级评分机制，实现精准且稳定的键选择压缩。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>必要性检验</strong>：首次系统检验LRMs中潜在推理标记对预测的必要性，发现其常被未充分利用。</li><li style="margin-bottom:0;"><strong>可解码性证明</strong>：证明当潜在标记必要时，可高比例解码出预期推理路径，表明LRMs常编码可解释过程。</li><li style="margin-bottom:0;"><strong>无监督解码</strong>：创新性地提出无需先验正确路径即可解码验证推理路径的方法，并关联可解释性与预测正确性。</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>精度效率兼得</strong>：在32K生成任务上匹配全注意力精度，同时实现2.5倍吞吐或10.7倍KV内存压缩。</li><li style="margin-bottom:0;"><strong>显著优于基线</strong>：在相同效率下，主流基线方法仅能达到约一半的推理准确率。</li><li style="margin-bottom:0;"><strong>实用部署突破</strong>：使OpenClaw模型能在单消费级GPU上部署，避免长上下文内存溢出问题。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>标记未充分利用</strong>：LRMs的潜在推理标记常非必要，模型可不依赖它们得出相同答案，这解释了其性能局限。</li><li style="margin-bottom:0;"><strong>过程常可解释</strong>：当潜在标记必要时，LRMs常编码预期解决方案而非不可解释过程，可解码性高。</li><li style="margin-bottom:0;"><strong>可解释性即信号</strong>：可解码出已验证推理路径的情况多见于正确预测，表明可解释性可作为正确性信号。</li></ul>
                         </div>
                     </div>
 
-                    <a href="https://arxiv.org/abs/2604.04921" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.04921</a>
+                    <a href="https://arxiv.org/abs/2604.04902" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.04902</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">4</div>
-                    <h2>Vero: An Open RL Recipe for General Visual Reasoning</h2>
+                    <h2>QED-Nano: Teaching a Tiny Model to Prove Hard Theorems</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.04917</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">Vero：通用视觉推理的开放强化学习方案</span>
-                        <span style="color:#666;font-size:12px;">Gabriel Sarch et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.04898</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">QED-Nano：小模型证明难定理的教学研究</span>
+                        <span style="color:#666;font-size:12px;">LM-Provers et al.</span>
                         
                     </div>
 
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文介绍了Vero，一个完全开放的视觉语言模型家族，旨在构建一个跨图表、科学、空间理解和开放式任务的通用视觉推理器。通过构建包含59个数据集的600K样本数据集Vero-600K，并设计任务路由奖励来处理异构答案格式，Vero在30个挑战性基准测试中实现了最先进的性能，平均提升3.7-5.5个百分点。所有数据、代码和模型均已开源。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文介绍了QED-Nano，一个4B参数的小型模型，通过专门训练在奥林匹克数学竞赛级别的证明问题上取得了有竞争力的推理性能。训练方法包括三个阶段：从DeepSeek-Math-V2进行监督微调以学习证明写作风格、基于规则的强化学习、以及引入推理缓存的扩展强化学习，将长证明分解为迭代的总结-精炼循环。QED-Nano在证明生成性能上超越了更大的开源模型，接近Gemini 3 Pro等专有模型，且推理成本显著降低。作者开源了完整的训练流程以促进开放数学推理研究。</div>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>大规模RL数据集构建</strong>：从59个数据集中构建了包含60万样本的Vero-600K数据集，覆盖六大任务类别，为强化学习提供广泛数据基础。</li><li style="margin-bottom:0;"><strong>任务路由奖励设计</strong>：设计了能够处理图表、科学等不同任务中异构答案格式的奖励机制，有效指导模型优化。</li><li style="margin-bottom:0;"><strong>多基准评估体系</strong>：建立了包含30个挑战性基准的VeroEval评估套件，全面衡量模型在多样化视觉推理任务上的性能。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>监督微调蒸馏</strong>：从DeepSeek-Math-V2进行知识蒸馏，使小型模型学习高质量的证明写作风格和结构。</li><li style="margin-bottom:0;"><strong>规则强化学习</strong>：使用基于规则的奖励机制进行强化学习，引导模型生成符合数学严谨性标准的证明步骤。</li><li style="margin-bottom:0;"><strong>推理缓存扩展</strong>：引入推理缓存技术，将复杂长证明分解为迭代的总结与精炼循环，提升测试时推理能力。</li></ul>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>完全开源视觉推理方案</strong>：首次提供了包含数据、代码和模型的完整开源视觉语言模型强化学习方案，打破了现有方案的封闭性。</li><li style="margin-bottom:0;"><strong>跨任务类别奖励路由</strong>：创新性地采用任务路由奖励机制，解决了多任务学习中答案格式异构性的关键挑战。</li><li style="margin-bottom:0;"><strong>广度驱动的RL扩展</strong>：通过系统消融实验证明，广泛的数据覆盖是强化学习扩展的主要驱动力，而非单一任务优化。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>小型模型高性能</strong>：证明仅4B参数的小型开源模型通过专门训练，能在高难度数学证明任务上达到接近专有大模型的性能。</li><li style="margin-bottom:0;"><strong>三阶段训练法</strong>：结合监督微调、规则强化学习和推理缓存扩展，形成高效训练配方，显著提升模型推理能力。</li><li style="margin-bottom:0;"><strong>开源完整流程</strong>：全面公开模型、数据集和代码，为开放数学推理研究提供可复现、可研究的完整工具链。</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>开源方案性能卓越</strong>：Vero在30个基准测试中平均提升3.7-5.5点，在23个测试上超越Qwen3-VL-8B-Thinking，无需专有思维数据。</li><li style="margin-bottom:0;"><strong>数据广度决定性能</strong>：不同任务类别引发本质不同的推理模式，孤立训练迁移效果差，表明广泛数据覆盖至关重要。</li><li style="margin-bottom:0;"><strong>Vero-600K数据集优势</strong>：从相同基础模型训练时，Vero-600K在所有任务类别上均超越现有强化学习数据集。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能超越大模型</strong>：QED-Nano在证明生成上超越Nomos-1等更大开源模型，接近Gemini 3 Pro，且推理成本极低。</li><li style="margin-bottom:0;"><strong>训练方法有效</strong>：三阶段训练法，特别是推理缓存技术，能有效提升小型模型处理复杂长证明的推理能力。</li><li style="margin-bottom:0;"><strong>推动开放研究</strong>：开源完整流程解决了专有系统不透明、成本高的问题，为社区提供了可改进的数学推理基准。</li></ul>
                         </div>
                     </div>
 
-                    <a href="https://arxiv.org/abs/2604.04917" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.04917</a>
+                    <a href="https://arxiv.org/abs/2604.04898" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.04898</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">5</div>
-                    <h2>Empowering Power Outage Prediction with Spatially Aware Hybrid Graph Neural Networks and Contrastive Learning</h2>
+                    <h2>Rethinking Exploration in RLVR: From Entropy Regularization to Refinement via Bidirectional Entropy Modulation</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.04916</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">空间感知混合图神经网络与对比学习的停电预测</span>
-                        <span style="color:#666;font-size:12px;">Xuyang Shen et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.04894</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">双向熵调制：从熵正则化到优化的强化学习探索再思考</span>
+                        <span style="color:#666;font-size:12px;">Hengrui Gu et al.</span>
                         
                     </div>
 
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">极端天气事件常导致大范围停电，现有预测模型未考虑其空间效应。本文提出空间感知混合图神经网络与对比学习，通过编码静态与动态特征的空间关系，并利用对比学习处理数据不平衡，提升停电预测性能。在四个地区的实证研究表明该方法达到先进水平。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对强化学习与可验证奖励（RLVR）中存在的探索受限问题，提出重新思考策略熵与探索的关系。通过推导组相对优势估计的参数化公式和分析熵动态，将策略熵分解为信息熵和虚假熵。研究发现有效探索需要熵精炼，而非盲目最大化。基于此，提出了AsymGRPO框架，通过解耦正负轨迹的调制来独立控制信息熵的保持和虚假噪声的抑制。实验表明该方法优于现有基线，并能与现有熵正则化方法协同。</div>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>空间感知图网络</strong>：编码静态特征（如土地覆盖）和动态特征（如风速）的空间关系，增强模型对极端天气空间效应的捕捉能力。</li><li style="margin-bottom:0;"><strong>对比学习机制</strong>：通过最小化同类事件内距离、最大化事件间距离，处理极端天气类型不平衡问题，生成位置特定嵌入。</li><li style="margin-bottom:0;"><strong>混合图神经网络</strong>：结合图结构处理空间依赖，整合多源特征，提升对复杂停电预测任务的建模能力。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>熵动态分析</strong>：通过分析策略熵在训练中的变化，将其概念性分解为信息熵和虚假熵，揭示了不同熵成分对探索的影响。</li><li style="margin-bottom:0;"><strong>组相对优势估计</strong>：推导了参数化的组相对优势估计公式，该估计方法隐含了熵精炼机制，能区分并调制不同质量的轨迹。</li><li style="margin-bottom:0;"><strong>双向熵调制</strong>：在AsymGRPO框架中，明确解耦了对正负轨迹的熵调制，实现对信息熵的保持和对虚假熵的抑制的独立控制。</li></ul>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>空间效应整合</strong>：首次在停电预测模型中引入空间感知机制，显式编码天气事件的空间影响，弥补现有系统不足。</li><li style="margin-bottom:0;"><strong>对比学习应用</strong>：利用对比学习解决数据不平衡，增强模型对不同极端天气事件的泛化性和鲁棒性。</li><li style="margin-bottom:0;"><strong>混合图网络设计</strong>：开发SA-HGNN框架，统一处理静态与动态空间特征，实现更精准的停电预测。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>熵分解理论</strong>：提出将策略熵分解为信息熵和虚假熵的新视角，为理解探索本质提供了概念框架。</li><li style="margin-bottom:0;"><strong>熵精炼机制</strong>：发现有效探索依赖于熵精炼，即维持正轨迹上的信息熵同时抑制负轨迹上的虚假熵，而非简单最大化总熵。</li><li style="margin-bottom:0;"><strong>非对称GRPO框架</strong>：设计AsymGRPO，首次显式实现正负轨迹的双向独立熵调制，提升了探索的针对性和效率。</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能优越</strong>：在四个公用事业服务区域实证中，SA-HGNN实现最先进的停电预测性能，验证其有效性。</li><li style="margin-bottom:0;"><strong>空间增强有效</strong>：引入空间感知显著提升预测精度，证明空间效应对极端天气停电预测的关键作用。</li><li style="margin-bottom:0;"><strong>泛化能力强</strong>：对比学习机制成功处理数据不平衡，使模型能适应多种极端天气事件，具备广泛适用性。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>探索需熵精炼</strong>：盲目最大化策略熵对LLMs效果有限；有效探索需精炼熵，即选择性保持信息熵并抑制虚假熵。</li><li style="margin-bottom:0;"><strong>组估计隐含机制</strong>：组相对优势估计内在地实现了熵精炼，能区分轨迹质量并相应调制熵，促进多样化有效探索。</li><li style="margin-bottom:0;"><strong>AsymGRPO性能优越</strong>：新框架在实验中表现优于强基线，展示了通过显式双向熵调制提升RLVR性能的潜力。</li></ul>
                         </div>
                     </div>
 
-                    <a href="https://arxiv.org/abs/2604.04916" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.04916</a>
+                    <a href="https://arxiv.org/abs/2604.04894" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.04894</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">6</div>
-                    <h2>Analyzing Symbolic Properties for DRL Agents in Systems and Networking</h2>
+                    <h2>Data Attribution in Adaptive Learning</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.04914</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">系统与网络DRL智能体符号特性分析</span>
-                        <span style="color:#666;font-size:12px;">Mohammad Zangooei et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.04892</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">自适应学习中的数据归因</span>
+                        <span style="color:#666;font-size:12px;">Amit Kiran Rege et al.</span>
                         
                     </div>
 
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究了系统和网络中深度强化学习（DRL）代理的符号属性，提出了一种通用框架来定义和分析这些属性，如单调性和鲁棒性。通过将符号属性编码为同一策略相关执行的比较，并将其分解为可处理的子属性，该方法利用现有DNN验证引擎进行广泛分析。实证研究覆盖自适应视频流、无线资源管理和拥塞控制，表明符号属性比点属性提供更广的覆盖范围，能揭示非显而易见的反例，并展示验证工具的权衡与限制。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">机器学习模型越来越多地生成自己的训练数据，例如在线赌博机、强化学习和语言模型的后训练流程。在这些自适应场景中，单个训练观测既更新学习器，又改变学习器未来收集数据的分布。为静态数据集设计的标准归因方法忽略了这种反馈。我们通过条件干预目标形式化了有限范围自适应学习中的发生级归因，证明重放侧信息通常无法恢复它，并识别了一个可从记录数据中识别该目标的结构类别。</div>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>符号属性定义</strong>：提出通用公式化方法，以单调性和鲁棒性为例，定义DRL代理在输入状态范围内的预期行为。</li><li style="margin-bottom:0;"><strong>属性编码分解</strong>：将符号属性编码为同一策略相关执行的比较，并分解为实际可处理的子属性，便于应用现有验证工具。</li><li style="margin-bottom:0;"><strong>验证框架应用</strong>：开发diffRL框架，利用DNN验证引擎对符号属性进行广泛分析，覆盖多个DRL控制系统案例。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>条件干预目标</strong>：通过定义条件干预目标来形式化自适应学习中的发生级数据归因问题。</li><li style="margin-bottom:0;"><strong>重放侧信息分析</strong>：证明仅使用重放侧信息通常无法恢复所定义的条件干预归因目标。</li><li style="margin-bottom:0;"><strong>结构类别识别</strong>：识别出一个特定的结构类别，使得归因目标可以从记录的数据中被识别出来。</li></ul>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>符号属性分析</strong>：首次系统研究系统和网络中DRL代理的符号属性，扩展了传统点属性的有限覆盖范围。</li><li style="margin-bottom:0;"><strong>通用框架设计</strong>：提出通用公式化和分解方法，使符号属性分析变得实际可行，降低手动努力。</li><li style="margin-bottom:0;"><strong>实证验证广泛性</strong>：通过多案例研究分析属性满足度、训练演变和模型大小影响，提供全面实证见解。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>形式化自适应归因</strong>：首次为有限范围自适应学习中的发生级数据归因问题提供形式化定义。</li><li style="margin-bottom:0;"><strong>揭示重放局限性</strong>：理论证明标准重放方法在自适应设置下存在根本性局限，无法解决归因问题。</li><li style="margin-bottom:0;"><strong>提出可识别条件</strong>：确定了一个结构条件，在该条件下，归因目标可以从观测数据中识别，为解决方案奠定基础。</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>覆盖范围更广</strong>：符号属性比点属性提供更广泛的覆盖，能揭示操作上有意义的非明显反例。</li><li style="margin-bottom:0;"><strong>训练演变洞察</strong>：属性满足度在训练过程中演变，有助于理解DRL代理行为动态。</li><li style="margin-bottom:0;"><strong>验证工具权衡</strong>：比较多个验证后端，揭示实际求解器的权衡与限制，指导工具选择。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>标准方法失效</strong>：为静态数据设计的标准归因方法不适用于存在数据反馈循环的自适应学习场景。</li><li style="margin-bottom:0;"><strong>重放信息不足</strong>：仅依靠重放侧信息通常不足以恢复自适应设置下的发生级数据归因。</li><li style="margin-bottom:0;"><strong>存在可解情形</strong>：在满足特定结构条件的类别中，所定义的归因目标可以从记录的数据日志中被识别。</li></ul>
                         </div>
                     </div>
 
-                    <a href="https://arxiv.org/abs/2604.04914" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.04914</a>
+                    <a href="https://arxiv.org/abs/2604.04892" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.04892</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">7</div>
-                    <h2>HI-MoE: Hierarchical Instance-Conditioned Mixture-of-Experts for Object Detection</h2>
+                    <h2>Synthetic Sandbox for Training Machine Learning Engineering Agents</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.04908</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">HI-MoE：面向目标检测的层次化实例条件专家混合模型</span>
-                        <span style="color:#666;font-size:12px;">Vadim Vashkelis et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.04872</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">机器学习工程代理训练合成沙箱</span>
+                        <span style="color:#666;font-size:12px;">Yuhang Zhou et al.</span>
                         
                     </div>
 
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出HI-MoE，一种用于目标检测的DETR风格架构，通过两阶段路由实现条件计算：轻量级场景路由器选择场景一致的专家子集，实例路由器将每个对象查询分配给该子集中的少数专家，以匹配检测的实例中心结构。在COCO和LVIS上的实验表明，其优于密集基线及简单路由变体，尤其在小物体上提升显著。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">随着大语言模型智能体从软件工程任务扩展到机器学习工程任务，验证其行为变得极其昂贵，因为需要运行完整的机器学习流程。现有方法通常退回到监督微调或离线代理奖励，牺牲了在线强化学习的探索和泛化优势。本文提出SandMLE，一个多智能体框架，通过生成多样、可验证的合成MLE环境，将数据集限制在微规模，从而大幅降低执行时间，首次在MLE领域实现大规模在线轨迹级强化学习。实验表明，SandMLE显著提升了模型性能，并展现出良好的泛化能力。</div>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>两阶段路由</strong>：轻量级场景路由器选择场景一致的专家子集，实例路由器为每个对象查询分配子集内专家，实现稀疏计算。</li><li style="margin-bottom:0;"><strong>实例条件计算</strong>：以对象查询为基本推理单元进行路由，而非图像或补丁级别，更好匹配目标检测的异构结构。</li><li style="margin-bottom:0;"><strong>DETR风格架构</strong>：基于DETR框架构建，通过分层路由机制优化专家激活，提升检测效率与精度。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>合成环境生成</strong>：通过多智能体框架从少量种子任务生成多样且可验证的合成MLE环境，保留真实问题的结构和技术复杂性。</li><li style="margin-bottom:0;"><strong>微规模数据集</strong>：每个合成任务仅包含50-200个训练样本，极大降低了数据预处理、模型训练和评估的计算开销。</li><li style="margin-bottom:0;"><strong>在线轨迹级RL</strong>：在微规模合成环境中实现大规模在线强化学习，允许智能体在完整轨迹上进行探索和学习。</li></ul>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分层路由设计</strong>：首次在目标检测中引入场景与实例两级路由，平衡计算稀疏性与任务对齐。</li><li style="margin-bottom:0;"><strong>实例中心对齐</strong>：将MoE路由粒度从图像级调整为实例级，直接服务于对象查询，提升检测针对性。</li><li style="margin-bottom:0;"><strong>稀疏计算优化</strong>：通过两阶段选择限制激活专家数量，保持高效计算同时增强专家专业化能力。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>瓶颈识别与解决</strong>：识别出沙盒数据规模是MLE任务验证的主要瓶颈，并提出通过合成微规模环境来突破此限制。</li><li style="margin-bottom:0;"><strong>框架设计创新</strong>：设计SandMLE多智能体框架，能自动生成结构复杂但数据量小的合成任务，平衡真实性与效率。</li><li style="margin-bottom:0;"><strong>训练范式突破</strong>：首次在MLE领域实现可行的大规模在线轨迹级强化学习，克服了传统方法依赖SFT或离线奖励的局限。</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能提升显著</strong>：HI-MoE在COCO上优于密集DINO基线和简单路由变体，小物体检测增益尤为突出。</li><li style="margin-bottom:0;"><strong>专家专业化初显</strong>：初步可视化显示专家出现专业化模式，支持不同场景或实例类型的处理。</li><li style="margin-bottom:0;"><strong>方法有效性验证</strong>：实验证明分层实例条件路由能更好匹配检测需求，为后续实验提供基础框架。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>效率大幅提升</strong>：SandMLE将执行时间降低超过13倍，使得在MLE任务上进行在线RL训练变得可行。</li><li style="margin-bottom:0;"><strong>性能显著改进</strong>：在MLE-bench-lite上，相比SFT基线，在不同规模模型上获得20.3%至66.9%的相对奖牌率提升。</li><li style="margin-bottom:0;"><strong>泛化能力验证</strong>：训练出的策略能泛化到未见过的智能体架构，在MLE-Dojo上获得最高32.4%的HumanRank分数提升。</li></ul>
                         </div>
                     </div>
 
-                    <a href="https://arxiv.org/abs/2604.04908" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.04908</a>
+                    <a href="https://arxiv.org/abs/2604.04872" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.04872</a>
                 </div>
             </div>
         </div>

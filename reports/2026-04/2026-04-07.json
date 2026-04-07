@@ -1,6 +1,6 @@
 {
   "date": "2026-04-07",
-  "title": "大模型迈向细粒度推理与高效部署新范式",
+  "title": "大模型技术瓶颈突破与数据驱动创新趋势洞察",
   "topic": "大模型创新与应用全景洞察",
   "directions": [
     "llm",
@@ -14,55 +14,55 @@
   "paper_count": 7,
   "papers": [
     {
-      "id": "2604.04932",
-      "title": "Beyond the Final Actor: Modeling the Dual Roles of Creator and Editor for Fine-Grained LLM-Generated Text Detection",
-      "chinese_title": "超越最终作者：细粒度LLM生成文本检测的创作者与编辑者双重角色建模",
-      "authors": "Yang Li et al.",
-      "url": "https://arxiv.org/abs/2604.04932"
+      "id": "2604.04815",
+      "title": "LiveFact: A Dynamic, Time-Aware Benchmark for LLM-Driven Fake News Detection",
+      "chinese_title": "LiveFact：动态时序大语言模型假新闻检测基准",
+      "authors": "Cheng Xu et al.",
+      "url": "https://arxiv.org/abs/2604.04815"
     },
     {
-      "id": "2604.04930",
-      "title": "Early Stopping for Large Reasoning Models via Confidence Dynamics",
-      "chinese_title": "基于置信度动态的大型推理模型早停策略",
-      "authors": "Parsa Hosseini et al.",
-      "url": "https://arxiv.org/abs/2604.04930"
+      "id": "2604.04771",
+      "title": "MinerU2.5-Pro: Pushing the Limits of Data-Centric Document Parsing at Scale",
+      "chinese_title": "MinerU2.5-Pro：数据驱动文档解析的规模化突破",
+      "authors": "Bin Wang et al.",
+      "url": "https://arxiv.org/abs/2604.04771"
     },
     {
-      "id": "2604.04921",
-      "title": "TriAttention: Efficient Long Reasoning with Trigonometric KV Compression",
-      "chinese_title": "TriAttention：基于三角KV压缩的高效长程推理",
-      "authors": "Weian Mao et al.",
-      "url": "https://arxiv.org/abs/2604.04921"
+      "id": "2604.04902",
+      "title": "Are Latent Reasoning Models Easily Interpretable?",
+      "chinese_title": "潜在推理模型易于解释吗？",
+      "authors": "Connor Dilgren et al.",
+      "url": "https://arxiv.org/abs/2604.04902"
     },
     {
-      "id": "2604.04917",
-      "title": "Vero: An Open RL Recipe for General Visual Reasoning",
-      "chinese_title": "Vero：通用视觉推理的开放强化学习方案",
-      "authors": "Gabriel Sarch et al.",
-      "url": "https://arxiv.org/abs/2604.04917"
+      "id": "2604.04898",
+      "title": "QED-Nano: Teaching a Tiny Model to Prove Hard Theorems",
+      "chinese_title": "QED-Nano：小模型证明难定理的教学研究",
+      "authors": "LM-Provers et al.",
+      "url": "https://arxiv.org/abs/2604.04898"
     },
     {
-      "id": "2604.04916",
-      "title": "Empowering Power Outage Prediction with Spatially Aware Hybrid Graph Neural Networks and Contrastive Learning",
-      "chinese_title": "空间感知混合图神经网络与对比学习的停电预测",
-      "authors": "Xuyang Shen et al.",
-      "url": "https://arxiv.org/abs/2604.04916"
+      "id": "2604.04894",
+      "title": "Rethinking Exploration in RLVR: From Entropy Regularization to Refinement via Bidirectional Entropy Modulation",
+      "chinese_title": "双向熵调制：从熵正则化到优化的强化学习探索再思考",
+      "authors": "Hengrui Gu et al.",
+      "url": "https://arxiv.org/abs/2604.04894"
     },
     {
-      "id": "2604.04914",
-      "title": "Analyzing Symbolic Properties for DRL Agents in Systems and Networking",
-      "chinese_title": "系统与网络DRL智能体符号特性分析",
-      "authors": "Mohammad Zangooei et al.",
-      "url": "https://arxiv.org/abs/2604.04914"
+      "id": "2604.04892",
+      "title": "Data Attribution in Adaptive Learning",
+      "chinese_title": "自适应学习中的数据归因",
+      "authors": "Amit Kiran Rege et al.",
+      "url": "https://arxiv.org/abs/2604.04892"
     },
     {
-      "id": "2604.04908",
-      "title": "HI-MoE: Hierarchical Instance-Conditioned Mixture-of-Experts for Object Detection",
-      "chinese_title": "HI-MoE：面向目标检测的层次化实例条件专家混合模型",
-      "authors": "Vadim Vashkelis et al.",
-      "url": "https://arxiv.org/abs/2604.04908"
+      "id": "2604.04872",
+      "title": "Synthetic Sandbox for Training Machine Learning Engineering Agents",
+      "chinese_title": "机器学习工程代理训练合成沙箱",
+      "authors": "Yuhang Zhou et al.",
+      "url": "https://arxiv.org/abs/2604.04872"
     }
   ],
-  "generated_at": "2026-04-07T04:00:38.276Z",
+  "generated_at": "2026-04-07T04:29:33.257Z",
   "org": "AI研究室"
 }
