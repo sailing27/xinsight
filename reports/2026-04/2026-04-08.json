@@ -1,6 +1,6 @@
 {
   "date": "2026-04-08",
-  "title": "大模型安全与架构创新揭示下一代AI核心趋势",
+  "title": "智能体范式重塑图学习 端到端联合决策突破传统分离边界",
   "topic": "大模型创新与应用全景洞察",
   "directions": [
     "llm",
@@ -14,55 +14,55 @@
   "paper_count": 7,
   "papers": [
     {
-      "id": "2604.04759",
-      "title": "Your Agent, Their Asset: A Real-World Safety Analysis of OpenClaw",
-      "chinese_title": "开放爪牙：现实世界安全分析",
-      "authors": "Zijun Wang et al.",
-      "url": "https://arxiv.org/abs/2604.04759"
+      "id": "2604.05845",
+      "title": "JD-BP: A Joint-Decision Generative Framework for Auto-Bidding and Pricing",
+      "chinese_title": "JD-BP：自动出价与定价的联合决策生成框架",
+      "authors": "Linghui Meng et al.",
+      "url": "https://arxiv.org/abs/2604.05845"
     },
     {
-      "id": "2604.04756",
-      "title": "Darkness Visible: Reading the Exception Handler of a Language Model",
-      "chinese_title": "可见之暗：解读语言模型的异常处理器",
-      "authors": "Peter Balogh et al.",
-      "url": "https://arxiv.org/abs/2604.04756"
+      "id": "2604.05912",
+      "title": "FrontierFinance: A Long-Horizon Computer-Use Benchmark of Real-World Financial Tasks",
+      "chinese_title": "FrontierFinance：面向真实金融任务的长程计算机使用基准",
+      "authors": "Michael Krumdick et al.",
+      "url": "https://arxiv.org/abs/2604.05912"
     },
     {
-      "id": "2604.04869",
-      "title": "Optimizing LLM Prompt Engineering with DSPy Based Declarative Learning",
-      "chinese_title": "基于DSPy的声明式学习优化LLM提示工程",
-      "authors": "Shiek Ruksana et al.",
-      "url": "https://arxiv.org/abs/2604.04869"
+      "id": "2604.05904",
+      "title": "Transfer Learning for Neural Parameter Estimation applied to Building RC Models",
+      "chinese_title": "迁移学习用于建筑RC模型神经参数估计",
+      "authors": "Fabian Raisch et al.",
+      "url": "https://arxiv.org/abs/2604.05904"
     },
     {
-      "id": "2604.04868",
-      "title": "Noise Immunity in In-Context Tabular Learning: An Empirical Robustness Analysis of TabPFN's Attention Mechanisms",
-      "chinese_title": "TabPFN注意力机制的抗噪性实证分析",
-      "authors": "James Hu et al.",
-      "url": "https://arxiv.org/abs/2604.04868"
+      "id": "2604.05890",
+      "title": "A Tensor-Train Framework for Bayesian Inference in High-Dimensional Systems: Applications to MIMO Detection and Channel Decoding",
+      "chinese_title": "基于张量列分解的高维系统贝叶斯推断：MIMO检测与信道译码应用",
+      "authors": "Luca Schmid et al.",
+      "url": "https://arxiv.org/abs/2604.05890"
     },
     {
-      "id": "2604.04858",
-      "title": "FairLogue: A Toolkit for Intersectional Fairness Analysis in Clinical Machine Learning Models",
-      "chinese_title": "FairLogue：临床机器学习模型交叉公平性分析工具包",
-      "authors": "Nick Souligne et al.",
-      "url": "https://arxiv.org/abs/2604.04858"
+      "id": "2604.05846",
+      "title": "AgentGL: Towards Agentic Graph Learning with LLMs via Reinforcement Learning",
+      "chinese_title": "AgentGL：基于强化学习的大语言模型图学习智能体方法",
+      "authors": "Yuanfu Sun et al.",
+      "url": "https://arxiv.org/abs/2604.05846"
     },
     {
-      "id": "2604.04847",
-      "title": "Full-Duplex-Bench-v3: Benchmarking Tool Use for Full-Duplex Voice Agents Under Real-World Disfluency",
-      "chinese_title": "全双工语音代理现实非流畅性评测工具v3",
-      "authors": "Guan-Ting Lin et al.",
-      "url": "https://arxiv.org/abs/2604.04847"
+      "id": "2604.05866",
+      "title": "Beyond Paper-to-Paper: Structured Profiling and Rubric Scoring for Paper-Reviewer Matching",
+      "chinese_title": "超越论文匹配：结构化画像与量规评分的审稿人分配方法",
+      "authors": "Yicheng Pan et al.",
+      "url": "https://arxiv.org/abs/2604.05866"
     },
     {
-      "id": "2604.04842",
-      "title": "Do No Harm: Exposing Hidden Vulnerabilities of LLMs via Persona-based Client Simulation Attack in Psychological Counseling",
-      "chinese_title": "基于角色模拟的LLM心理咨询攻击：揭示隐藏脆弱性",
-      "authors": "Qingyang Xu et al.",
-      "url": "https://arxiv.org/abs/2604.04842"
+      "id": "2604.05848",
+      "title": "Evaluating Learner Representations for Differentiation Prior to Instructional Outcomes",
+      "chinese_title": "教学成效前学习者表征的差异化评估",
+      "authors": "Junsoo Park et al.",
+      "url": "https://arxiv.org/abs/2604.05848"
     }
   ],
-  "generated_at": "2026-04-07T21:06:00.112Z",
+  "generated_at": "2026-04-08T01:55:24.065Z",
   "org": "AI研究室"
 }
