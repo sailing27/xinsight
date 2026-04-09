@@ -1,6 +1,6 @@
 {
   "date": "2026-04-09",
-  "title": "从黑箱到透明可信：AI智能体正迈向可审计、可约束与自主进化的新纪元",
+  "title": "智能体可信化与治理框架崛起 从环境构建到全链路评估的新范式",
   "topic": "AI Agent与自主系统",
   "directions": [
     "agentic"
@@ -8,46 +8,46 @@
   "paper_count": 7,
   "papers": [
     {
-      "id": "2604.05955",
-      "title": "Does Pass Rate Tell the Whole Story? Evaluating Design Constraint Compliance in LLM-based Issue Resolution",
-      "chinese_title": "Does Pass Rate Tell the Whole Story? Evaluating Design Constraint Compliance in LLM-based Issue Resolution",
-      "authors": "Kai Yu et al.",
-      "url": "https://arxiv.org/abs/2604.05955"
-    },
-    {
-      "id": "2604.06132",
-      "title": "Claw-Eval: Toward Trustworthy Evaluation of Autonomous Agents",
-      "chinese_title": "Claw-Eval：自主智能体可信评估研究",
-      "authors": "Bowen Ye et al.",
-      "url": "https://arxiv.org/abs/2604.06132"
-    },
-    {
       "id": "2604.06126",
       "title": "Gym-Anything: Turn any Software into an Agent Environment",
-      "chinese_title": "Gym-Anything：将任意软件转化为智能体环境",
+      "chinese_title": "Gym-Anything：任意软件智能体化环境构建",
       "authors": "Pranjal Aggarwal et al.",
       "url": "https://arxiv.org/abs/2604.06126"
     },
     {
+      "id": "2604.06148",
+      "title": "Who Governs the Machine? A Machine Identity Governance Taxonomy (MIGT) for AI Systems Operating Across Enterprise and Geopolitical Boundaries",
+      "chinese_title": "机器身份治理：跨越企业与地缘政治边界的人工智能系统分类框架",
+      "authors": "Andrew Kurtz et al.",
+      "url": "https://arxiv.org/abs/2604.06148"
+    },
+    {
+      "id": "2604.06132",
+      "title": "Claw-Eval: Toward Trustworthy Evaluation of Autonomous Agents",
+      "chinese_title": "Claw-Eval：迈向自主智能体的可信评估",
+      "authors": "Bowen Ye et al.",
+      "url": "https://arxiv.org/abs/2604.06132"
+    },
+    {
       "id": "2604.05969",
       "title": "A Formal Security Framework for MCP-Based AI Agents: Threat Taxonomy, Verification Models, and Defense Mechanisms",
-      "chinese_title": "基于MCP的AI智能体形式化安全框架：威胁分类、验证模型与防御机制",
+      "chinese_title": "MCP智能体安全框架：威胁分类、验证与防御机制",
       "authors": "Nirajan Acharya et al.",
       "url": "https://arxiv.org/abs/2604.05969"
     },
     {
-      "id": "2604.05939",
-      "title": "Context-Value-Action Architecture for Value-Driven Large Language Model Agents",
-      "chinese_title": "面向价值驱动大语言模型智能体的上下文-价值-行动架构",
-      "authors": "TianZe Zhang et al.",
-      "url": "https://arxiv.org/abs/2604.05939"
+      "id": "2604.05955",
+      "title": "Does Pass Rate Tell the Whole Story? Evaluating Design Constraint Compliance in LLM-based Issue Resolution",
+      "chinese_title": "通过率能否反映全貌？评估大模型问题修复中的设计约束遵循",
+      "authors": "Kai Yu et al.",
+      "url": "https://arxiv.org/abs/2604.05955"
     },
     {
-      "id": "2602.03786",
-      "title": "AOrchestra: Automating Sub-Agent Creation for Agentic Orchestration",
-      "chinese_title": "AOrchestra：智能体编排的子智能体自动化创建",
-      "authors": "Jianhao Ruan et al.",
-      "url": "https://arxiv.org/abs/2602.03786"
+      "id": "2604.05939",
+      "title": "Context-Value-Action Architecture for Value-Driven Large Language Model Agents",
+      "chinese_title": "价值驱动型大语言模型智能体的情境-价值-行动架构",
+      "authors": "TianZe Zhang et al.",
+      "url": "https://arxiv.org/abs/2604.05939"
     },
     {
       "id": "2604.06111",
@@ -57,6 +57,6 @@
       "url": "https://arxiv.org/abs/2604.06111"
     }
   ],
-  "generated_at": "2026-04-09T00:21:35.901Z",
+  "generated_at": "2026-04-09T00:23:57.960Z",
   "org": "AI研究室"
 }

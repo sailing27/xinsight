@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>从黑箱到透明可信：AI智能体正迈向可审计、可约束与自主进化的新纪元 | 2026/4/9</title>
+    <title>智能体可信化与治理框架崛起 从环境构建到全链路评估的新范式 | 2026/4/9</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -343,7 +343,7 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <h1>从黑箱到透明可信：AI智能体正迈向可审计、可约束与自主进化的新纪元 | 2026/4/9</h1>
+                <h1>智能体可信化与治理框架崛起 从环境构建到全链路评估的新范式 | 2026/4/9</h1>
                 <div class="date">2026/4/9 | AI研究室</div>
             </div>
             <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
@@ -354,7 +354,7 @@
             <div class="executive-summary">
                 <h2>摘要</h2>
                 <div class="summary-content">
-                                        <p style="line-height:1.8;text-align:justify;">当前AI Agent领域正经历从"功能实现"向"可信部署"的关键转型，评估体系重构与安全可信机制成为核心焦点。七篇论文共同揭示：传统性能指标严重失真，亟需建立透明、多维、设计感知的评估范式；同时，模块化抽象与自动化编排正在重塑智能体工程范式，而安全威胁的系统性认知仍是显著短板。<br><br>三大技术趋势凸显：其一，<strong>评估透明化革命</strong>——从黑箱通过率转向轨迹可审计、约束可验证的全链路评估，Claw-Eval的三重证据记录与论文1的约束挖掘共同指向"过程可信"而非"结果达标"；其二，<strong>价值对齐机制创新</strong>——Context-Value-Action架构突破自验证困境，揭示推理强度与价值保真度的非单调关系，为对齐研究提供反直觉洞见；其三，<strong>环境即代码的自动化</strong>——Gym-Anything与AOrchestra将环境构建与子智能体创建本身任务化，以多智能体协作实现规模化的基础设施自动化。<br><br>行业启示深远：一方面，MCP生态的安全框架空白（覆盖率不足34%）警示工具链集成风险；另一方面，小模型经蒸馏可超越大模型的发现，配合可扩展评测基准ACE-Bench，为资源受限场景的高效部署开辟路径。整体而言，该领域正从"能力展示"迈向"可信工程"，评估基础设施与安全框架的成熟度将决定下一代自主系统的落地边界。</p>
+                                        <p style="line-height:1.8;text-align:justify;">当前AI Agent领域正经历从"功能验证"向"可信治理"的范式转型，核心矛盾聚焦于<strong>环境标准化、评估透明化与安全系统化</strong>三大维度。技术趋势显示，研究者正致力于破解"黑箱执行"与"开放生态"带来的信任危机。<br><br><strong>共同技术方向</strong>包括：其一，<strong>可审计架构成为基础设施</strong>——Claw-Eval的三通道记录、Gym-Anything的审计智能体验证、MIGT的身份治理，均指向"过程可追溯"而非"结果可验证"的新标准；其二，<strong>静态化/形式化方法降低评估成本</strong>——ACE-Bench的JSON静态解析与MCP框架的形式化安全建模，通过解耦环境依赖实现规模化可控评估；其三，<strong>价值对齐机制深层重构</strong>——Context-Value-Action架构揭示推理强度与价值保真度的非线性关系，挑战"更多思考=更好决策"的直觉假设。<br><br><strong>行业启示</strong>显著：一方面，传统通过率指标存在系统性高估（设计违规普遍、轨迹评估漏检44%安全违规），亟需建立多维约束评估体系；另一方面，MCP等开放工具生态暴露严重防护缺口（单一防御覆盖率≤34%），机器身份治理已从合规选项升级为安全刚需。这些进展标志着Agent技术正从"能力展示"阶段迈向"可信运营"阶段，为金融、关键基础设施等高风险场景的规模化部署奠定方法论基础。</p>
                 </div>
             </div>
 
@@ -384,88 +384,12 @@
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">1</div>
-                    <h2>Does Pass Rate Tell the Whole Story? Evaluating Design Constraint Compliance in LLM-based Issue Resolution</h2>
-                </div>
-                <div class="paper-card">
-                    <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.05955</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">Does Pass Rate Tell the Whole Story? Evaluating Design Constraint Compliance in LLM-based Issue Resolution</span>
-                        <span style="color:#666;font-size:12px;">Kai Yu et al.</span>
-                        
-                    </div>
-
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">仓库级issue解决基准已成为评估基于LLM的智能体的标准测试平台，但成功仍主要通过测试通过率来衡量。然而，实践中可接受的补丁还必须遵守项目特定的设计约束，如架构约定、错误处理策略和可维护性要求，这些很少编码在测试中，通常仅在代码审查讨论中隐式记录。本文引入设计感知issue解决，并提出一个基准，使这些隐式设计约束显式且可测量。该基准通过挖掘和验证真实pull请求中的设计约束，将其链接到issue实例，并使用基于LLM的验证器自动检查补丁合规性，构建了495个issue和1787个验证约束，涵盖六个仓库，与SWE-bench-Verified和SWE-bench-Pro对齐。实验表明，基于测试的正确性严重高估了补丁质量：少于一半的已解决issue完全满足设计要求，设计违规普遍存在，功能正确性与设计满意度之间统计关联可忽略不计。虽然提供issue特定的设计指导可减少违规，但大量不合规仍然存在，凸显了当前智能体能力的基本差距，并推动了超越功能正确性的设计感知评估。</div>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>约束挖掘</strong>：从真实pull请求中自动挖掘和验证项目特定的设计约束</li><li style="margin-bottom:0;"><strong>约束链接</strong>：将设计约束与issue实例建立关联形成可测试的基准</li><li style="margin-bottom:0;"><strong>自动验证</strong>：使用LLM-based验证器自动检查补丁对设计约束的合规性</li></ul>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>设计感知评估</strong>：首次将隐式的设计约束显式化并纳入issue解决评估体系</li><li style="margin-bottom:0;"><strong>DABench基准</strong>：构建包含495个issue和1787个约束的跨仓库设计感知基准</li><li style="margin-bottom:0;"><strong>多维质量度量</strong>：突破单一测试通过率，建立功能正确性与设计满意度双重评估维度</li></ul>
-                        </div>
-
-                        <div class="summary-section">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>严重高估</strong>：测试通过率严重高估补丁质量，不足半数已解决issue完全满足设计约束</li><li style="margin-bottom:0;"><strong>普遍违规</strong>：设计违规在现有智能体生成的补丁中广泛存在</li><li style="margin-bottom:0;"><strong>弱相关性</strong>：功能正确性与设计满意度之间统计关联可忽略不计</li><li style="margin-bottom:0;"><strong>指导有限</strong>：即使提供issue特定设计指导，仍存大量不合规现象</li></ul>
-                        </div>
-                    </div>
-
-                    <a href="https://arxiv.org/abs/2604.05955" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.05955</a>
-                </div>
-            </div>
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">2</div>
-                    <h2>Claw-Eval: Toward Trustworthy Evaluation of Autonomous Agents</h2>
-                </div>
-                <div class="paper-card">
-                    <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.06132</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">Claw-Eval：自主智能体可信评估研究</span>
-                        <span style="color:#666;font-size:12px;">Bowen Ye et al.</span>
-                        
-                    </div>
-
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型日益作为自主智能体部署于真实软件环境中执行多步骤工作流，但现有基准存在三大局限：轨迹不透明评分、安全与鲁棒性评估不足、模态覆盖狭窄。Claw-Eval是端到端评估套件，包含300个人工验证任务，通过三重证据通道记录智能体行为，实现2159项细粒度规则项的轨迹感知评分，评估完成度、安全性和鲁棒性。对14个前沿模型的实验揭示了轨迹不透明评估的系统性不可靠性、错误注入主要降低一致性而非峰值能力、多模态性能差异显著等关键发现。</div>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>三重证据记录</strong>：通过执行轨迹、审计日志和环境快照三个独立通道记录每个智能体动作，确保评估的全面性和可审计性</li><li style="margin-bottom:0;"><strong>细粒度规则评分</strong>：基于2159项细粒度规则项目进行轨迹感知评分，超越仅检查最终输出的传统方法</li><li style="margin-bottom:0;"><strong>多维度评分协议</strong>：同时评估完成度、安全性和鲁棒性三个维度，并报告平均分、Pass@k和Pass^k三种指标</li></ul>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>轨迹透明评估</strong>：突破传统仅检查最终输出的黑箱模式，实现全轨迹可观测的细粒度能力评估</li><li style="margin-bottom:0;"><strong>可控错误注入</strong>：设计系统性的错误注入机制以测试智能体在扰动下的表现稳定性</li><li style="margin-bottom:0;"><strong>多模态全覆盖</strong>：涵盖通用服务编排、多模态感知生成和多轮专业对话三大任务群组及九类具体场景</li></ul>
-                        </div>
-
-                        <div class="summary-section">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>评估方法缺陷</strong>：轨迹不透明评估系统性地不可靠，遗漏44%的安全违规和13%的鲁棒性故障</li><li style="margin-bottom:0;"><strong>一致性脆弱性</strong>：受控错误注入主要降低一致性而非峰值能力，Pass^3下降达24%而Pass@3保持稳定</li><li style="margin-bottom:0;"><strong>模态能力分化</strong>：多模态性能差异显著，多数模型视频表现弱于文档和图像，且无单一模型全模态领先</li></ul>
-                        </div>
-                    </div>
-
-                    <a href="https://arxiv.org/abs/2604.06132" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.06132</a>
-                </div>
-            </div>
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">3</div>
                     <h2>Gym-Anything: Turn any Software into an Agent Environment</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
                         <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.06126</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">Gym-Anything：将任意软件转化为智能体环境</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">Gym-Anything：任意软件智能体化环境构建</span>
                         <span style="color:#666;font-size:12px;">Pranjal Aggarwal et al.</span>
                         
                     </div>
@@ -473,26 +397,102 @@
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出Gym-Anything框架，通过多智能体协作将任意软件自动转换为计算机使用环境，构建了涵盖200个软件应用、超过10K个长程任务的CUA-World基准，并验证了蒸馏训练与测试时审计的有效性。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出Gym-Anything框架，通过多智能体协作将任意软件转化为交互式计算机使用环境，构建了包含10K+长程任务的CUA-World基准，覆盖医疗、天文、工程等高经济价值领域，并验证了蒸馏轨迹训练小模型及测试时审计反馈的有效性。</div>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多智能体建环境</strong>：编码智能体编写安装脚本、下载真实数据并配置软件，审计智能体独立验证设置质量</li><li style="margin-bottom:0;"><strong>自动数据配置</strong>：基于美国GDP数据的职业分类学，为200个软件应用配置真实世界数据</li><li style="margin-bottom:0;"><strong>长程任务生成</strong>：构建CUA-World-Long基准，任务常需超过500步，远超现有基准</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多智能体建环</strong>：编码智能体编写配置脚本并生成证据，审计智能体独立验证环境质量</li><li style="margin-bottom:0;"><strong>自动化数据配置</strong>：下载真实世界数据并配置软件，确保任务场景的现实性和可用性</li><li style="margin-bottom:0;"><strong>测试时审计反馈</strong>：VLM审查完成轨迹并提供剩余任务反馈，提升长程任务完成率</li></ul>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>环境创建即任务</strong>：将环境构建本身框架化为多智能体协作任务，实现可扩展的软件环境自动化转换</li><li style="margin-bottom:0;"><strong>经济价值导向</strong>：基于GDP数据的职业分类学筛选软件，确保覆盖高经济价值领域</li><li style="margin-bottom:0;"><strong>双重审计机制</strong>：训练时审计环境质量，测试时审计轨迹完成度，提升智能体可靠性</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>任意软件转化</strong>：首次实现将任何软件自动转化为标准化智能体交互环境</li><li style="margin-bottom:0;"><strong>经济价值导向</strong>：基于美国GDP数据构建职业分类学，覆盖高经济价值应用领域</li><li style="margin-bottom:0;"><strong>超长程基准</strong>：CUA-World-Long包含超500步任务，远超现有基准的复杂度</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>小模型超越大模型</strong>：将成功轨迹蒸馏到2B视觉语言模型，性能超越两倍规模的模型</li><li style="margin-bottom:0;"><strong>测试时审计提效</strong>：独立VLM审查轨迹并提供反馈，使Gemini-3-Flash在CUA-World-Long上从11.5%提升至14.0%</li><li style="margin-bottom:0;"><strong>规模化环境可行</strong>：自动化流水线成功构建跨医疗、天文、工程、企业系统的多样化环境</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>小模型高效性</strong>：2B视觉语言模型经轨迹蒸馏，性能超越4倍规模模型</li><li style="margin-bottom:0;"><strong>审计机制有效</strong>：测试时VLM审计反馈将Gemini-3-Flash完成率从11.5%提升至14.0%</li><li style="margin-bottom:0;"><strong>规模可扩展性</strong>：成功应用于200款软件，证明框架的广泛适用性和可扩展性</li></ul>
                         </div>
                     </div>
 
                     <a href="https://arxiv.org/abs/2604.06126" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.06126</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Who Governs the Machine? A Machine Identity Governance Taxonomy (MIGT) for AI Systems Operating Across Enterprise and Geopolitical Boundaries</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.06148</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">机器身份治理：跨越企业与地缘政治边界的人工智能系统分类框架</span>
+                        <span style="color:#666;font-size:12px;">Andrew Kurtz et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对AI系统机器身份治理的盲区，提出AI身份风险分类法（AIRT）和机器身份治理分类法（MIGT），涵盖37个风险子类别和六域治理框架，建立外国国家行为者威胁模型，并构建跨司法管辖区监管对齐结构，为企业AI身份治理提供四阶段实施路线图。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>AIRT分类法</strong>：系统枚举37个风险子类别，涵盖八个领域，基于真实事件、监管认可和威胁情报数据</li><li style="margin-bottom:0;"><strong>MIGT框架</strong>：六域集成治理框架，同步解决技术治理、监管合规和跨境协调三大缺口</li><li style="margin-bottom:0;"><strong>威胁建模</strong>：针对Silk Typhoon等国家级行为者，建立AI身份漏洞的主动攻击向量分析模型</li><li style="margin-bottom:0;"><strong>监管映射</strong>：同时映射欧盟、美国、中国三大框架下的企业AI身份治理义务，识别不可调和冲突</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>身份盲区填补</strong>：首次将机器身份治理确立为AI治理的核心议题，揭示人机身份比例已达80:1</li><li style="margin-bottom:0;"><strong>三维缺口整合</strong>：突破现有框架孤立处理的模式，实现技术、合规、跨境三维度协同治理</li><li style="margin-bottom:0;"><strong>地缘风险量化</strong>：将2024年CrowdStrike事件54-100亿美元损失归因于单一未治理自动化代理</li><li style="margin-bottom:0;"><strong>冲突管理机制</strong>：为不可调和的跨境监管冲突提供可操作的治理机制，而非简单回避</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>攻击向量化</strong>：国家级行为者已将AI身份漏洞 operationalized 为针对关键基础设施的主要间谍通道</li><li style="margin-bottom:0;"><strong>治理紧迫性</strong>：未治理的机器身份已从运营风险升级为地缘政治安全威胁，需立即行动</li><li style="margin-bottom:0;"><strong>实施可行性</strong>：四阶段路线图可将MIGT转化为可执行的企业项目，具备落地操作性</li><li style="margin-bottom:0;"><strong>范式转移</strong>：机器身份治理必须从IT后台职能上升为企业AI战略的核心组成部分</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.06148" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.06148</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Claw-Eval: Toward Trustworthy Evaluation of Autonomous Agents</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.06132</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">Claw-Eval：迈向自主智能体的可信评估</span>
+                        <span style="color:#666;font-size:12px;">Bowen Ye et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大语言模型作为自主智能体在真实软件环境中执行多步工作流日益普及，但现有基准存在轨迹不透明评分、安全鲁棒性评估不足、模态覆盖狭窄三大局限。Claw-Eval通过300个人工验证任务、三通道证据记录（执行轨迹、审计日志、环境快照）、2159项细粒度评分标准，实现轨迹感知评分，从完成度、安全性、鲁棒性三维度评估，并采用Average Score、Pass@k、Pass^k三种指标区分真实能力与偶然成功。对14个前沿模型的实验揭示了轨迹不透明评估的系统性不可靠、错误注入主要降低一致性而非峰值能力、多模态性能差异显著等关键发现。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>三通道记录</strong>：通过执行轨迹、审计日志、环境快照三个独立证据通道记录智能体每个动作，实现全轨迹可追溯</li><li style="margin-bottom:0;"><strong>细粒度评分</strong>：建立2159项细粒度评分标准，支持对智能体行为的精准量化评估</li><li style="margin-bottom:0;"><strong>混合评分管道</strong>：结合自动化与人工审核的混合评估流程，有效识别安全违规与鲁棒性失败</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>轨迹感知评估</strong>：突破仅检查最终输出的传统模式，实现对整个执行过程的透明化评分与诊断</li><li style="margin-bottom:0;"><strong>三维评估框架</strong>：首次将完成度、安全性、鲁棒性统一纳入评估体系，覆盖可信部署的关键维度</li><li style="margin-bottom:0;"><strong>多指标区分机制</strong>：采用Pass@k与Pass^k双指标，有效区分智能体的真实能力与偶然成功</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>轨迹评估不可靠</strong>：传统轨迹不透明评估系统性不可靠，遗漏44%安全违规和13%鲁棒性失败</li><li style="margin-bottom:0;"><strong>错误影响一致性</strong>：受控错误注入主要降低一致性而非峰值能力，Pass^3下降达24%而Pass@3稳定</li><li style="margin-bottom:0;"><strong>模态性能差异</strong>：多模态性能差异显著，多数模型视频表现弱于文档图像，无单一模型全模态领先</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.06132" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.06132</a>
                 </div>
             </div>
             <div class="section">
@@ -503,7 +503,7 @@
                 <div class="paper-card">
                     <div class="paper-meta">
                         <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.05969</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">基于MCP的AI智能体形式化安全框架：威胁分类、验证模型与防御机制</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">MCP智能体安全框架：威胁分类、验证与防御机制</span>
                         <span style="color:#666;font-size:12px;">Nirajan Acharya et al.</span>
                         
                     </div>
@@ -511,22 +511,22 @@
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出MCPSHIELD，首个针对MCP协议AI代理的综合性形式化安全框架。MCP协议已成为连接大语言模型与外部工具的事实标准，但缺乏统一安全框架。本文贡献包括：分层威胁分类学（7类威胁、23种攻击向量）、基于标记转移系统的形式化验证模型、12种现有防御机制的系统评估，以及深度防御参考架构。分析表明单一防御最多覆盖34%威胁，而MCPSHIELD集成架构可达91%理论覆盖率。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出MCPSHIELD，首个面向MCP协议AI代理的正式安全框架，包含分层威胁分类法（7类23种攻击向量）、基于标记转换系统的形式化验证模型、12种现有防御机制对比评估，以及深度防御参考架构，实现91%威胁覆盖率。</div>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>威胁分类学</strong>：基于17.7万MCP工具分析构建7类23种攻击向量的四层攻击面层次化威胁体系</li><li style="margin-bottom:0;"><strong>形式验证模型</strong>：采用带信任边界标注的标记转移系统实现工具交互链的静态与运行时分析</li><li style="margin-bottom:0;"><strong>深度防御架构</strong>：整合能力访问控制、密码学工具证明、信息流追踪与运行时策略执行的纵深防御</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>威胁分类法</strong>：构建七类二十三种攻击向量的四层攻击面分层体系，基于超十七万MCP工具分析</li><li style="margin-bottom:0;"><strong>形式验证模型</strong>：采用带信任边界标注的标记转换系统，支持工具交互链的静态与运行时分析</li><li style="margin-bottom:0;"><strong>深度防御架构</strong>：整合基于能力的访问控制、密码学工具认证、信息流追踪与运行时策略执行</li></ul>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>系统性框架</strong>：首次建立覆盖MCP代理全生态的统一形式化安全框架MCPSHIELD，填补领域空白</li><li style="margin-bottom:0;"><strong>量化评估方法</strong>：建立威胁分类与防御覆盖的量化映射模型，精确度量各类防御机制的有效性边界</li><li style="margin-bottom:0;"><strong>集成防御设计</strong>：提出多机制协同的深度防御架构，突破单一防御能力上限实现91%威胁覆盖</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>统一安全框架</strong>：首次建立系统化表征、分析与缓解MCP代理生态威胁的正式安全框架</li><li style="margin-bottom:0;"><strong>工具链分析</strong>：基于标记转换系统实现MCP工具交互链的形式化建模与自动化验证</li><li style="margin-bottom:0;"><strong>覆盖差距量化</strong>：系统评估十二种现有防御机制，揭示单一防御最高仅覆盖34%威胁面</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>防御能力缺口</strong>：现有12种单一防御机制对威胁 landscape 的覆盖率均不超过34%，存在严重安全盲区</li><li style="margin-bottom:0;"><strong>集成架构优势</strong>：MCPSHIELD深度防御架构通过多机制协同实现91%理论威胁覆盖率，显著提升防护效能</li><li style="margin-bottom:0;"><strong>开放研究挑战</strong>：识别出7个关键开放研究挑战，为下一代代理式AI系统安全研究指明方向</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>覆盖差距显著</strong>：现有单一防御机制对威胁 landscape 覆盖率不超过34%，存在严重防护缺口</li><li style="margin-bottom:0;"><strong>集成架构高效</strong>：MCPSHIELD深度防御架构理论威胁覆盖率达91%，显著优于孤立防护</li><li style="margin-bottom:0;"><strong>开放挑战明确</strong>：识别七项关键开放研究挑战，为下一代代理式AI系统安全指明方向</li></ul>
                         </div>
                     </div>
 
@@ -536,12 +536,50 @@
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">5</div>
+                    <h2>Does Pass Rate Tell the Whole Story? Evaluating Design Constraint Compliance in LLM-based Issue Resolution</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.05955</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">通过率能否反映全貌？评估大模型问题修复中的设计约束遵循</span>
+                        <span style="color:#666;font-size:12px;">Kai Yu et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">当前基于大语言模型的代码问题修复评估主要依赖测试通过率，但实际可接受的补丁还需满足架构规范、错误处理策略、可维护性要求等项目特定设计约束。本文提出设计感知的问题修复方法，构建了DEEPConstr基准测试，通过挖掘真实代码审查中的设计约束并自动验证补丁合规性，发现测试正确性显著高估补丁质量：仅不足半数修复满足全部设计要求，功能正确性与设计满意度几乎无统计关联。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>约束挖掘</strong>：从真实Pull Request中挖掘并验证设计约束，建立可量化的设计规则库</li><li style="margin-bottom:0;"><strong>约束链接</strong>：将设计约束与问题实例关联，构建约束-问题映射关系</li><li style="margin-bottom:0;"><strong>自动验证</strong>：基于大语言模型的验证器自动检查补丁对设计约束的合规性</li><li style="margin-bottom:0;"><strong>基准构建</strong>：生成495个问题及1787条验证约束，覆盖六个代码仓库</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>设计显式化</strong>：将隐式存在于代码审查讨论中的设计约束转化为显式可测量标准</li><li style="margin-bottom:0;"><strong>评估范式转变</strong>：从单一功能正确性评估转向功能与设计双重合规评估</li><li style="margin-bottom:0;"><strong>验证自动化</strong>：开发大语言模型驱动的自动化设计约束验证机制</li><li style="margin-bottom:0;"><strong>实证揭示差距</strong>：系统证明当前智能体存在设计合规能力缺陷</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>高估现象严重</strong>：基于测试的评估显著高估补丁实际质量，设计违规普遍存在</li><li style="margin-bottom:0;"><strong>关联性极弱</strong>：功能正确性与设计满意度几乎无统计学关联，需独立评估</li><li style="margin-bottom:0;"><strong>指导效果有限</strong>：即使提供问题特定设计指导，仍存在大量不合规情况</li><li style="margin-bottom:0;"><strong>能力缺口凸显</strong>：当前智能体缺乏设计感知能力，亟需设计感知评估方法</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.05955" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.05955</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
                     <h2>Context-Value-Action Architecture for Value-Driven Large Language Model Agents</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
                         <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.05939</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">面向价值驱动大语言模型智能体的上下文-价值-行动架构</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">价值驱动型大语言模型智能体的情境-价值-行动架构</span>
                         <span style="color:#666;font-size:12px;">TianZe Zhang et al.</span>
                         
                     </div>
@@ -549,64 +587,26 @@
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现有LLM智能体存在行为僵化问题，且被自参照评估所掩盖。研究发现增强提示推理强度反而加剧价值极化、降低群体多样性。为此提出基于S-O-R模型和Schwartz价值理论的Context-Value-Action架构，通过价值验证器显式建模动态价值激活，在110万真实交互轨迹的CVABench上验证，有效缓解极化并提升行为保真度与可解释性。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现有LLM智能体存在行为僵化问题，且被LLM-as-a-judge评估的自我参照偏差所掩盖。基于实证真值评估发现，增强提示推理强度反而加剧价值极化、瓦解群体多样性。为此提出基于S-O-R模型和Schwartz价值理论的Context-Value-Action架构，通过Value Verifier解耦行动生成与认知推理，在超110万真实交互轨迹的CVABench上验证，有效缓解极化并提升行为保真度与可解释性。</div>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>价值验证器</strong>：基于真实人类数据训练，显式建模动态价值激活机制，实现认知推理与行为生成的解耦</li><li style="margin-bottom:0;"><strong>CVA架构</strong>：融合S-O-R心理学模型与Schwartz基础价值理论的三层上下文-价值-行动架构设计</li><li style="margin-bottom:0;"><strong>CVABench基准</strong>：包含110万真实世界交互轨迹的大规模评估数据集，提供经验性真实标准</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>价值验证器</strong>：基于真实人类数据训练，显式建模动态价值激活机制，替代传统自我验证方法</li><li style="margin-bottom:0;"><strong>CVA架构</strong>：遵循S-O-R模型，将上下文刺激、价值激活与行动响应三层解耦设计</li><li style="margin-bottom:0;"><strong>CVABench基准</strong>：包含110万真实世界交互轨迹的评估数据集，提供实证真值而非LLM评判</li></ul>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>解耦生成机制</strong>：突破自验证范式，将行动生成与认知推理分离，避免推理强度增加导致的负面效应</li><li style="margin-bottom:0;"><strong>动态价值建模</strong>：引入心理学理论指导，实现价值激活过程的显式可解释建模而非隐式推理</li><li style="margin-bottom:0;"><strong>极化缓解策略</strong>：针对价值极化现象提出系统性解决方案，恢复并保持智能体群体的行为多样性</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>推理解耦机制</strong>：突破性地分离行动生成与认知推理过程，避免过度推理导致的行为失真</li><li style="margin-bottom:0;"><strong>动态价值建模</strong>：基于Schwartz基础价值理论，实现情境依赖的价值观自适应激活</li><li style="margin-bottom:0;"><strong>反直觉发现</strong>：揭示提示推理强度与行为保真度呈负相关，极化强度随推理深度增加而加剧</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>反直觉现象</strong>：增强提示推理强度不仅未提升保真度，反而加剧价值极化并崩溃群体多样性</li><li style="margin-bottom:0;"><strong>评估偏差揭示</strong>：LLM-as-a-judge存在自参照偏差，需以经验真实标准替代才能准确评估行为</li><li style="margin-bottom:0;"><strong>架构有效性</strong>：CVA在行为保真度、可解释性和极化缓解三方面均显著优于现有基线方法</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>极化悖论</strong>：增强提示推理强度非但不提升保真度，反而加剧价值极化并压缩群体多样性</li><li style="margin-bottom:0;"><strong>架构优越性</strong>：CVA在行为保真度和可解释性上显著优于依赖自我验证的基线方法</li><li style="margin-bottom:0;"><strong>评估革新</strong>：LLM-as-a-judge存在自我参照偏差，需以实证真值评估替代以暴露真实缺陷</li></ul>
                         </div>
                     </div>
 
                     <a href="https://arxiv.org/abs/2604.05939" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.05939</a>
-                </div>
-            </div>
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">6</div>
-                    <h2>AOrchestra: Automating Sub-Agent Creation for Agentic Orchestration</h2>
-                </div>
-                <div class="paper-card">
-                    <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2602.03786</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">AOrchestra：智能体编排的子智能体自动化创建</span>
-                        <span style="color:#666;font-size:12px;">Jianhao Ruan et al.</span>
-                        
-                    </div>
-
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">语言智能体在任务自动化方面展现出巨大潜力，但现有子智能体即工具范式缺乏动态抽象视图，影响适应性。本文提出统一框架无关的智能体抽象（指令、上下文、工具、模型四元组），并基于此构建AOrchestra系统，通过中心编排器动态实例化该四元组，实现按需自动创建专用执行器。该系统减少人工工程投入，支持即插即用多样化智能体，并可控制性能成本权衡。在GAIA、SWE-Bench和Terminal-Bench三个基准测试中，搭配Gemini-3-Flash时相比最强基线取得16.28%的相对提升。</div>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>四元组抽象</strong>：将任意智能体建模为指令、上下文、工具、模型的组合配方，作为能力构建的基础单元</li><li style="margin-bottom:0;"><strong>动态实例化</strong>：中心编排器每步具体化四元组，策展任务相关上下文并选择工具模型</li><li style="margin-bottom:0;"><strong>自动子智能体</strong>：根据任务需求即时生成专用执行器，实现按需委托执行</li></ul>
-                        </div>
-
-                        <div class="summary-section" style="margin-bottom:12px;">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>框架无关设计</strong>：统一抽象不绑定特定框架，支持多样化智能体即插即用作为任务执行器</li><li style="margin-bottom:0;"><strong>动态编排机制</strong>：突破静态子智能体局限，通过运行时四元组实例化实现自适应能力组合</li><li style="margin-bottom:0;"><strong>成本可控权衡</strong>：支持性能与成本的可控平衡，使系统能够逼近帕累托最优前沿</li></ul>
-                        </div>
-
-                        <div class="summary-section">
-                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>工程效率提升</strong>：自动化子智能体创建显著减少人工设计和维护子智能体的工作量</li><li style="margin-bottom:0;"><strong>基准性能领先</strong>：在三个挑战性长程任务基准上取得16.28%相对改进，验证方法有效性</li><li style="margin-bottom:0;"><strong>扩展性验证</strong>：与Gemini-3-Flash等模型搭配表现优异，证明框架的模型兼容性和实用性</li></ul>
-                        </div>
-                    </div>
-
-                    <a href="https://arxiv.org/abs/2602.03786" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2602.03786</a>
                 </div>
             </div>
             <div class="section">
@@ -625,22 +625,22 @@
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现有智能体基准测试存在两大关键局限：环境交互开销高（占评估时间41%）以及任务跨度与难度分布不均衡导致聚合分数不可靠。为此提出ACE-Bench，基于统一网格规划任务，智能体需在部分完成的日程中填充隐藏槽位，满足局部槽位约束和全局约束。该基准通过两个正交轴实现细粒度控制：可扩展跨度（由隐藏槽位数量H控制）和可控难度（由诱饵预算B决定全局误导性候选数量）。关键设计在于轻量级环境，所有工具调用通过静态JSON文件解析，消除设置开销，实现快速可复现评估。实验验证了H和B对任务跨度和难度的可靠控制，ACE-Bench展现出强领域一致性和模型区分度；在13个不同规模家族的模型、6个领域的全面实验揭示了显著的跨模型性能差异。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现有智能体基准测试存在两大关键局限：环境交互开销高（占评估时间41%）以及任务跨度和难度分布不均衡导致聚合分数不可靠。为此提出ACE-Bench，基于统一网格规划任务，智能体需在部分完成的日程中填充隐藏槽位，受局部和全局约束。通过可扩展跨度（隐藏槽数H）和可控难度（诱饵预算B）实现细粒度控制，采用轻量级环境设计，所有工具调用通过静态JSON文件解析，消除设置开销，支持快速可复现评估。验证表明H和B可靠控制任务跨度和难度，ACE-Bench具有强领域一致性和模型可区分性。对13个跨规模家族模型在6个领域的实验揭示显著性能差异，证实ACE-Bench提供可解释可控的智能体推理评估。</div>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>网格规划任务</strong>：基于统一网格的日程填充任务，智能体需在部分完成结构中填充隐藏槽位</li><li style="margin-bottom:0;"><strong>双轴控制机制</strong>：通过隐藏槽位数量H和诱饵预算B两个正交维度精确控制任务属性</li><li style="margin-bottom:0;"><strong>轻量级环境设计</strong>：工具调用通过静态JSON文件解析，消除环境设置开销实现快速评估</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>轻量环境设计</strong>：所有工具调用通过静态JSON文件解析，消除环境设置开销，实现快速可复现的评估</li><li style="margin-bottom:0;"><strong>双轴控制机制</strong>：通过隐藏槽数H和诱饵预算B两个正交维度精细控制任务跨度与难度</li><li style="margin-bottom:0;"><strong>网格规划任务</strong>：基于统一网格的日程填充任务，结合局部槽位约束与全局约束测试智能体推理</li></ul>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>可扩展跨度设计</strong>：通过隐藏槽位数量H灵活调节任务时间跨度和推理步数</li><li style="margin-bottom:0;"><strong>可控难度机制</strong>：利用诱饵预算B引入全局误导性候选，精确调控任务难度水平</li><li style="margin-bottom:0;"><strong>零开销评估架构</strong>：静态JSON替代动态环境交互，支持训练时验证和可复现评估</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>静态解析架构</strong>：以JSON文件替代实时环境交互，将环境开销降为零，支持训练时验证</li><li style="margin-bottom:0;"><strong>诱饵难度机制</strong>：引入全局误导性候选作为难度控制手段，通过预算B量化调节任务复杂度</li><li style="margin-bottom:0;"><strong>可扩展跨度设计</strong>：以隐藏槽数量H线性扩展任务时间跨度，实现渐进式能力评估</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>参数有效性验证</strong>：H和B参数可靠控制任务跨度与难度，验证机制设计合理</li><li style="margin-bottom:0;"><strong>基准区分能力</strong>：ACE-Bench展现强领域一致性和模型区分度，评估结果可信</li><li style="margin-bottom:0;"><strong>性能差异显著</strong>：13个跨规模家族模型在6个领域呈现显著性能变化，评估具有解释性</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>参数有效性验证</strong>：H和B参数被证实能可靠控制任务跨度和难度，验证机制设计合理</li><li style="margin-bottom:0;"><strong>模型可区分性强</strong>：跨13个不同规模家族模型展现出显著性能差异，基准具有良好区分度</li><li style="margin-bottom:0;"><strong>领域一致性优异</strong>：在6个测试领域上表现稳定，证明评估结果具有跨领域泛化可靠性</li></ul>
                         </div>
                     </div>
 
