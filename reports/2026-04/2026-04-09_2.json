@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-09_2",
+  "title": "大模型创新与应用全景洞察：图神经孪生推演 · 代数化深度学习形式化 · 跨模态检索增强智能 · 归因...",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.07292",
+      "title": "Graph Neural ODE Digital Twins for Control-Oriented Reactor Thermal-Hydraulic Forecasting Under Partial Observability",
+      "chinese_title": "基于图神经ODE的数字孪生：部分可观条件下反应堆热工水力预测控制研究\n\n或更简洁版本：\n\n图神经ODE数字孪生：部分可观反应堆热工水力预测控制",
+      "authors": "Akzhol Almukhametov et al.",
+      "url": "https://arxiv.org/abs/2604.07292"
+    },
+    {
+      "id": "2604.07242",
+      "title": "Weaves, Wires, and Morphisms: Formalizing and Implementing the Algebra of Deep Learning",
+      "chinese_title": "基于代数化深度学习的线路与形态：形式化与实现",
+      "authors": "Vincent Abbott et al.",
+      "url": "https://arxiv.org/abs/2604.07242"
+    },
+    {
+      "id": "2604.07274",
+      "title": "A Systematic Study of Retrieval Pipeline Design for Retrieval-Augmented Medical Question Answering",
+      "chinese_title": "检索增强医疗问答的检索流程设计系统研究",
+      "authors": "Nusrat Sultana et al.",
+      "url": "https://arxiv.org/abs/2604.07274"
+    },
+    {
+      "id": "2604.07254",
+      "title": "Non-identifiability of Explanations from Model Behavior in Deep Networks of Image Authenticity Judgments",
+      "chinese_title": "深度网络图像真实性判断中模型行为解释的非可识别性",
+      "authors": "Icaro Re Depaolini et al.",
+      "url": "https://arxiv.org/abs/2604.07254"
+    },
+    {
+      "id": "2604.07236",
+      "title": "How Much LLM Does a Self-Revising Agent Actually Need?",
+      "chinese_title": "自修订智能体究竟需要多强的LLM能力",
+      "authors": "Seongwoo Jeong et al.",
+      "url": "https://arxiv.org/abs/2604.07236"
+    },
+    {
+      "id": "2604.07338",
+      "title": "Appear2Meaning: A Cross-Cultural Benchmark for Structured Cultural Metadata Inference from Images",
+      "chinese_title": "A2M：图像结构化文化元信息推断的跨文化基准研究\n\n或更简洁：\n\nA2M：图像文化元信息推断的跨文化基准研究\n\n或保留原名缩写+核心：\n\nAppear2Meaning：图像文化语义推断的跨文化基准研究",
+      "authors": "Yuechen Jiang et al.",
+      "url": "https://arxiv.org/abs/2604.07338"
+    },
+    {
+      "id": "2604.07320",
+      "title": "Evaluating In-Context Translation with Synchronous Context-Free Grammar Transduction",
+      "chinese_title": "基于同步上下文无关文法转导的语境翻译评估研究",
+      "authors": "Jackson Petty et al.",
+      "url": "https://arxiv.org/abs/2604.07320"
+    }
+  ],
+  "generated_at": "2026-04-09T12:23:06.196Z",
+  "org": "AI研究室"
+}
