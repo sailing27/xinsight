@@ -1,0 +1,62 @@
+{
+  "date": "2026-04-09",
+  "title": "从黑箱到透明可信：AI智能体正迈向可审计、可约束与自主进化的新纪元",
+  "topic": "AI Agent与自主系统",
+  "directions": [
+    "agentic"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.05955",
+      "title": "Does Pass Rate Tell the Whole Story? Evaluating Design Constraint Compliance in LLM-based Issue Resolution",
+      "chinese_title": "Does Pass Rate Tell the Whole Story? Evaluating Design Constraint Compliance in LLM-based Issue Resolution",
+      "authors": "Kai Yu et al.",
+      "url": "https://arxiv.org/abs/2604.05955"
+    },
+    {
+      "id": "2604.06132",
+      "title": "Claw-Eval: Toward Trustworthy Evaluation of Autonomous Agents",
+      "chinese_title": "Claw-Eval：自主智能体可信评估研究",
+      "authors": "Bowen Ye et al.",
+      "url": "https://arxiv.org/abs/2604.06132"
+    },
+    {
+      "id": "2604.06126",
+      "title": "Gym-Anything: Turn any Software into an Agent Environment",
+      "chinese_title": "Gym-Anything：将任意软件转化为智能体环境",
+      "authors": "Pranjal Aggarwal et al.",
+      "url": "https://arxiv.org/abs/2604.06126"
+    },
+    {
+      "id": "2604.05969",
+      "title": "A Formal Security Framework for MCP-Based AI Agents: Threat Taxonomy, Verification Models, and Defense Mechanisms",
+      "chinese_title": "基于MCP的AI智能体形式化安全框架：威胁分类、验证模型与防御机制",
+      "authors": "Nirajan Acharya et al.",
+      "url": "https://arxiv.org/abs/2604.05969"
+    },
+    {
+      "id": "2604.05939",
+      "title": "Context-Value-Action Architecture for Value-Driven Large Language Model Agents",
+      "chinese_title": "面向价值驱动大语言模型智能体的上下文-价值-行动架构",
+      "authors": "TianZe Zhang et al.",
+      "url": "https://arxiv.org/abs/2604.05939"
+    },
+    {
+      "id": "2602.03786",
+      "title": "AOrchestra: Automating Sub-Agent Creation for Agentic Orchestration",
+      "chinese_title": "AOrchestra：智能体编排的子智能体自动化创建",
+      "authors": "Jianhao Ruan et al.",
+      "url": "https://arxiv.org/abs/2602.03786"
+    },
+    {
+      "id": "2604.06111",
+      "title": "ACE-Bench: Agent Configurable Evaluation with Scalable Horizons and Controllable Difficulty under Lightweight Environments",
+      "chinese_title": "ACE-Bench：轻量环境下可配置智能体评测基准",
+      "authors": "Wang Yang et al.",
+      "url": "https://arxiv.org/abs/2604.06111"
+    }
+  ],
+  "generated_at": "2026-04-09T00:21:35.901Z",
+  "org": "AI研究室"
+}
