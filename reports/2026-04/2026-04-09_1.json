@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-09_1",
+  "title": "大模型创新突破 从个性化对齐到多模态智能与高效架构",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.07343",
+      "title": "Personalized RewardBench: Evaluating Reward Models with Human Aligned Personalization",
+      "chinese_title": "个性化奖励基准：评估人类对齐的个性化奖励模型",
+      "authors": "Qiyao Ma et al.",
+      "url": "https://arxiv.org/abs/2604.07343"
+    },
+    {
+      "id": "2601.17883",
+      "title": "EEG Foundation Models: Progresses, Benchmarking, and Open Problems",
+      "chinese_title": "基于EEG的基础模型：进展、基准测试与开放性问题",
+      "authors": "Dingkun Liu et al.",
+      "url": "https://arxiv.org/abs/2601.17883"
+    },
+    {
+      "id": "2604.07292",
+      "title": "Graph Neural ODE Digital Twins for Control-Oriented Reactor Thermal-Hydraulic Forecasting Under Partial Observability",
+      "chinese_title": "基于图神经ODE的部分可观测反应堆热工水力预测数字孪生模型",
+      "authors": "Akzhol Almukhametov et al.",
+      "url": "https://arxiv.org/abs/2604.07292"
+    },
+    {
+      "id": "2604.07277",
+      "title": "Android Coach: Improve Online Agentic Training Efficiency with Single State Multiple Actions",
+      "chinese_title": "安卓教练：单状态多动作提升在线智能体训练效率",
+      "authors": "Guo Gan et al.",
+      "url": "https://arxiv.org/abs/2604.07277"
+    },
+    {
+      "id": "2604.07272",
+      "title": "ClickGuard: A Trustworthy Adaptive Fusion Framework for Clickbait Detection",
+      "chinese_title": "基于ClickGuard的可信自适应融合框架：一种点击诱饵检测方法",
+      "authors": "Chhavi Dhiman et al.",
+      "url": "https://arxiv.org/abs/2604.07272"
+    },
+    {
+      "id": "2604.07254",
+      "title": "Non-identifiability of Explanations from Model Behavior in Deep Networks of Image Authenticity Judgments",
+      "chinese_title": "深度网络图像真伪判断中解释行为的不可识别性",
+      "authors": "Icaro Re Depaolini et al.",
+      "url": "https://arxiv.org/abs/2604.07254"
+    },
+    {
+      "id": "2604.07239",
+      "title": "Efficient Learned Data Compression via Dual-Stream Feature Decoupling",
+      "chinese_title": "基于双流特征解耦的高效学习数据压缩",
+      "authors": "Huidong Ma et al.",
+      "url": "https://arxiv.org/abs/2604.07239"
+    }
+  ],
+  "generated_at": "2026-04-09T13:26:43.427Z",
+  "org": "AI研究室"
+}
