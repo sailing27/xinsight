@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-11",
+  "title": "多模态智能体评估与推理优化 从音视频生成到脑机接口的技术突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.08540",
+      "title": "AVGen-Bench: A Task-Driven Benchmark for Multi-Granular Evaluation of Text-to-Audio-Video Generation",
+      "chinese_title": "AVGen-Bench：文本到音视频生成的多粒度任务驱动基准评测",
+      "authors": "Ziwei Zhou et al.",
+      "url": "https://arxiv.org/abs/2604.08540"
+    },
+    {
+      "id": "2604.08523",
+      "title": "ClawBench: Can AI Agents Complete Everyday Online Tasks?",
+      "chinese_title": "ClawBench: Can AI Agents Complete Everyday Online Tasks?",
+      "authors": "Yuxuan Zhang et al.",
+      "url": "https://arxiv.org/abs/2604.08523"
+    },
+    {
+      "id": "2604.08541",
+      "title": "Seeing but Not Thinking: Routing Distraction in Multimodal Mixture-of-Experts",
+      "chinese_title": "Seeing but Not Thinking: Routing Distraction in Multimodal Mixture-of-Experts",
+      "authors": "Haolei Xu et al.",
+      "url": "https://arxiv.org/abs/2604.08541"
+    },
+    {
+      "id": "2604.08519",
+      "title": "Cram Less to Fit More: Training Data Pruning Improves Memorization of Facts",
+      "chinese_title": "少记多学：数据剪枝提升事实记忆效率",
+      "authors": "Jiayuan Ye et al.",
+      "url": "https://arxiv.org/abs/2604.08519"
+    },
+    {
+      "id": "2604.08477",
+      "title": "SUPERNOVA: Eliciting General Reasoning in LLMs with Reinforcement Learning on Natural Instructions",
+      "chinese_title": "基于强化学习与自然指令的LLM通用推理能力激发：SUPERNOVA方法",
+      "authors": "Ashima Suvarna et al.",
+      "url": "https://arxiv.org/abs/2604.08477"
+    },
+    {
+      "id": "2604.08527",
+      "title": "Demystifying OPD: Length Inflation and Stabilization Strategies for Large Language Models",
+      "chinese_title": "揭示OPD：大语言模型的长度膨胀与稳定策略",
+      "authors": "Feng Luo et al.",
+      "url": "https://arxiv.org/abs/2604.08527"
+    },
+    {
+      "id": "2604.08537",
+      "title": "Meta-learning In-Context Enables Training-Free Cross Subject Brain Decoding",
+      "chinese_title": "元学习上下文实现无需训练的跨被试脑解码",
+      "authors": "Mu Nan et al.",
+      "url": "https://arxiv.org/abs/2604.08537"
+    }
+  ],
+  "generated_at": "2026-04-11T00:07:16.698Z",
+  "org": "AI研究室"
+}
