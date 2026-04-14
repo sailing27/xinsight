@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-14_2",
+  "title": "大模型创新与应用全景洞察 从医疗影像到多智能体社会模拟的七大",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.11762",
+      "title": "MosaicMRI: A Diverse Dataset and Benchmark for Raw Musculoskeletal MRI",
+      "chinese_title": "MosaicMRI：原始肌肉骨骼MRI的多样化数据集与基准",
+      "authors": "Paula Arguello et al.",
+      "url": "https://arxiv.org/abs/2604.11762"
+    },
+    {
+      "id": "2604.11753",
+      "title": "Agentic Aggregation for Parallel Scaling of Long-Horizon Agentic Tasks",
+      "chinese_title": "面向长程智能体任务的并行化智能体聚合",
+      "authors": "Yoonsang Lee et al.",
+      "url": "https://arxiv.org/abs/2604.11753"
+    },
+    {
+      "id": "2604.11748",
+      "title": "LangFlow: Continuous Diffusion Rivals Discrete in Language Modeling",
+      "chinese_title": "LangFlow：连续扩散模型媲美离散语言建模",
+      "authors": "Yuxin Chen et al.",
+      "url": "https://arxiv.org/abs/2604.11748"
+    },
+    {
+      "id": "2604.11742",
+      "title": "Discourse Diversity in Multi-Turn Empathic Dialogue",
+      "chinese_title": "多轮共情对话中的话语多样性",
+      "authors": "Hongli Zhan et al.",
+      "url": "https://arxiv.org/abs/2604.11742"
+    },
+    {
+      "id": "2604.11721",
+      "title": "Evaluating Cooperation in LLM Social Groups through Elected Leadership",
+      "chinese_title": "大语言模型社会群体中的选举领导与合作评估",
+      "authors": "Ryan Faulkner et al.",
+      "url": "https://arxiv.org/abs/2604.11721"
+    },
+    {
+      "id": "2604.11749",
+      "title": "HistLens: Mapping Idea Change across Concepts and Corpora",
+      "chinese_title": "HistLens：跨概念与语料库的思想演变映射",
+      "authors": "Yi Jing et al.",
+      "url": "https://arxiv.org/abs/2604.11749"
+    },
+    {
+      "id": "2604.11730",
+      "title": "Ambivalence/Hesitancy Recognition in Videos for Personalized Digital Health Interventions",
+      "chinese_title": "视频中矛盾/犹豫情绪的识别用于个性化数字健康干预",
+      "authors": "Manuela González-González et al.",
+      "url": "https://arxiv.org/abs/2604.11730"
+    }
+  ],
+  "generated_at": "2026-04-14T04:21:44.745Z",
+  "org": "AI研究室"
+}
