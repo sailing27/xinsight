@@ -1,0 +1,61 @@
+{
+  "date": "2026-04-14",
+  "title": "大模型事实性、效率与多模态创新的六大前沿突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 6,
+  "papers": [
+    {
+      "id": "2604.10520",
+      "title": "ReFEree: Reference-Free and Fine-Grained Method for Evaluating Factual Consistency in Real-World Code Summarization",
+      "chinese_title": "ReFEree：面向真实代码摘要的事实一致性无参考细粒度评估方法",
+      "authors": "Suyoung Bae et al.",
+      "url": "https://arxiv.org/abs/2604.10520"
+    },
+    {
+      "id": "2604.10452",
+      "title": "NOSE: Neural Olfactory-Semantic Embedding with Tri-Modal Orthogonal Contrastive Learning",
+      "chinese_title": "NOSE：基于三模态正交对比学习的神经嗅觉-语义嵌入",
+      "authors": "Yanyi Su et al.",
+      "url": "https://arxiv.org/abs/2604.10452"
+    },
+    {
+      "id": "2604.10553",
+      "title": "Topology-Aware PAC-Bayesian Generalization Analysis for Graph Neural Networks",
+      "chinese_title": "图神经网络的拓扑感知PAC-Bayesian泛化分析",
+      "authors": "Xinping Yi et al.",
+      "url": "https://arxiv.org/abs/2604.10553"
+    },
+    {
+      "id": "2604.10539",
+      "title": "IceCache: Memory-efficient KV-cache Management for Long-Sequence LLMs",
+      "chinese_title": "IceCache：面向长序列LLM的内存高效KV缓存管理",
+      "authors": "Yuzhen Mao et al.",
+      "url": "https://arxiv.org/abs/2604.10539"
+    },
+    {
+      "id": "2604.10516",
+      "title": "Structure-Grounded Knowledge Retrieval via Code Dependencies for Multi-Step Data Reasoning",
+      "chinese_title": "基于代码依赖的结构化知识检索用于多步数据推理",
+      "authors": "Xinyi Huang et al.",
+      "url": "https://arxiv.org/abs/2604.10516"
+    },
+    {
+      "id": "2604.10556",
+      "title": "Lost in Diffusion: Uncovering Hallucination Patterns and Failure Modes in Diffusion Large Language Models",
+      "chinese_title": "扩散迷途：揭示扩散式大语言模型的幻觉模式与失效机理",
+      "authors": "Zhengnan Guo et al.",
+      "url": "https://arxiv.org/abs/2604.10556"
+    }
+  ],
+  "generated_at": "2026-04-14T02:07:21.249Z",
+  "org": "AI研究室"
+}

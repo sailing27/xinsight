@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>大模型创新与应用全景洞察技术洞察 | 2026/4/14</title>
+    <title>大模型事实性、效率与多模态创新的六大前沿突破 | 2026/4/14</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -343,7 +343,7 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <h1>大模型创新与应用全景洞察技术洞察 | 2026/4/14</h1>
+                <h1>大模型事实性、效率与多模态创新的六大前沿突破 | 2026/4/14</h1>
                 <div class="date">2026/4/14 | AI研究室</div>
             </div>
             <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
@@ -354,187 +354,267 @@
             <div class="executive-summary">
                 <h2>摘要</h2>
                 <div class="summary-content">
-                    <p>这五篇论文聚焦于大模型安全性、效率优化与多模态可信学习三大前沿方向。研究揭示了大语言模型有害内容生成的统一机制，并提出了自适应神经时域原位压缩（ANTIC）以提升模型效率；同时，在视觉语言领域，学者们致力于构建证据敏感的验证框架、开发标签噪声下的鲁棒跨模态提示学习，以及通过合成图像增强视觉感知能力。共同趋势体现为：**可信AI**（有害内容治理与证据验证）、**高效推理**（神经压缩技术）及**鲁棒多模态学习**（视觉语言模型的抗噪与感知增强）。这些工作推动了基础模型向更安全、高效、可靠的方向演进。</p>
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了当前大模型研究在<strong>精细化评估、多模态对齐与结构感知推理</strong>三大方向的深层演进。六篇论文共同指向一个核心趋势：从粗粒度、黑箱式的模型应用，迈向对模型内部机制、领域结构与跨模态关系的显式建模与可控优化。<br><br>技术层面呈现两大共性创新：其一，<strong>细粒度与结构化的分析范式</strong>——无论是代码摘要的片段级事实检验、图神经网络的拓扑感知泛化界，还是基于代码依赖图的知识检索，研究者均突破传统整体化或纯文本驱动的框架，将领域结构（代码功能片段、图拓扑、程序依赖）嵌入评估与推理核心；其二，<strong>语义与效率的协同设计</strong>——IceCache通过语义聚类重构KV缓存管理，NOSE以三模态正交对比学习打通嗅觉通路的跨模态表征，均体现出在资源约束下对语义保真度的极致追求。此外，扩散大语言模型的幻觉系统性研究警示了新型架构在可靠性上的潜在风险，为评估体系补上了关键缺口。<br><br>对行业与研究而言，这些进展表明：<strong>领域专属的结构化知识表示与细粒度评估标准，正成为大模型从通用能力迈向高可信专业应用的关键基础设施</strong>。未来，融合拓扑、语义与多模态信息的显式建模框架，将在科学计算、代码智能与长上下文场景中释放更大价值。</p>
                 </div>
             </div>
 
             <!-- 统计数据 -->
             <div class="stats-grid">
                 
-    <div class="stat-item"><div class="stat-value">5</div><div class="stat-label">核心论文</div></div>
-    <div class="stat-item"><div class="stat-value">2026</div><div class="stat-label">最新发布</div></div>
-    <div class="stat-item"><div class="stat-value">100%</div><div class="stat-label">原文精读</div></div>
-    <div class="stat-item"><div class="stat-value">AI</div><div class="stat-label">技术洞察</div></div>
+                <div class="stat-item">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
             </div>
 
             <!-- 报告章节 -->
             
-      <div class="section">
-        <div class="section-header">
-          <div class="section-number">1</div>
-          <h2>Large Language Models Generate Harmful Content Using a Distinct, Unified Mechanism</h2>
-        </div>
-        <div class="paper-card">
-          <div class="paper-meta">
-            <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;">arXiv:2604.09544</span>
-            <span style="color:#333;font-weight:600;font-size:13px;margin-left:10px;">大语言模型通过独特统一机制生成有害内容</span>
-            <span style="color:#666;font-size:12px;margin-left:10px;">Hadas Orgad, Boyi Wei, Kaden Zheng, Martin Wattenberg, Peter Henderson, Seraphina Goldfarb-Tarrant, Yonatan Belinkov</span>
-          </div>
-          <div style="margin:15px 0;">
-            <div style="margin-bottom:12px;">
-              <div style="font-size:13px;color:#c00000;font-weight:700;">📄 论文摘要</div>
-              <div style="font-size:12px;color:#333;line-height:1.8;">该研究通过定向权重剪枝探究大语言模型中有害内容的内部组织机制，发现有害生成依赖一组跨有害类型通用且与良性能力分离的紧凑权重，对齐训练会压缩这些权重，揭示了安全机制脆弱性的深层原因。</div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>ReFEree: Reference-Free and Fine-Grained Method for Evaluating Factual Consistency in Real-World Code Summarization</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.10520</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">ReFEree：面向真实代码摘要的事实一致性无参考细粒度评估方法</span>
+                        <span style="color:#666;font-size:12px;">Suyoung Bae et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">针对大语言模型生成的长代码摘要的事实一致性评估难题，本文提出ReFEree方法，通过定义代码摘要专用不一致标准，结合依赖信息在片段级别进行评估并聚合为细粒度分数。实验表明，该方法在13个基线中与人工判断相关性最高，较之前最优方法提升15-18%。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>片段级评估</strong>：将长代码摘要按功能拆分为多句子片段，逐段检验事实一致性，避免粗粒度整体打分的信息损失</li><li style="margin-bottom:0;"><strong>依赖感知识别</strong>：引入代码依赖上下文分析，准确评估跨片段、跨模块的功能关联与事实一致性</li><li style="margin-bottom:0;"><strong>无参考评估</strong>：无需人工编写参考摘要，直接依据代码本身和定义的不一致标准自动完成事实判断</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>代码摘要标准</strong>：首次针对代码摘要场景定义专属事实不一致类型标准，覆盖功能描述、参数行为、返回值等多维度</li><li style="margin-bottom:0;"><strong>细粒度聚合机制</strong>：将片段级评估结果按重要性加权聚合，输出可解释的细粒度事实一致性分数</li><li style="margin-bottom:0;"><strong>真实场景适配</strong>：突破既有方法仅适用于孤立短代码片段的限制，直接面向含复杂依赖的真实代码库摘要</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>人工相关性最优</strong>：ReFEree在13个对比基线中与人工标注判断的相关性排名第一，显著超越现有自动评估方法</li><li style="margin-bottom:0;"><strong>性能提升显著</strong>：相比此前最优方法，ReFEree在相关性指标上取得15-18%的相对提升</li><li style="margin-bottom:0;"><strong>基准数据开源</strong>：构建并发布了带有人工标注事实一致性标签的代码摘要评测基准及全部代码数据</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.10520" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.10520</a>
+                </div>
             </div>
-            <div style="margin-bottom:12px;">
-              <div style="font-size:13px;color:#c00000;font-weight:700;">🔧 关键技术</div>
-              <div style="font-size:12px;color:#444;">定向权重剪枝作为因果干预｜有害能力的权重定位与压缩分析｜窄域微调诱导的涌现性错对齐研究｜有害生成与有害识别的分离验证</div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>NOSE: Neural Olfactory-Semantic Embedding with Tri-Modal Orthogonal Contrastive Learning</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.10452</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">NOSE：基于三模态正交对比学习的神经嗅觉-语义嵌入</span>
+                        <span style="color:#666;font-size:12px;">Yanyi Su et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">嗅觉处于化学结构、神经编码和语言感知的交叉点，但现有表示方法未能完整捕捉这一通路。当前方法通常仅建模嗅觉通路的孤立片段，忽略了从分子到受体再到语言描述的完整链条。这种碎片化导致学习到的嵌入缺乏生物学基础和语义可解释性。本文提出NOSE（神经嗅觉语义嵌入），一种将分子结构、受体序列和自然语言描述三种模态沿嗅觉通路对齐的表示学习框架。通过正交约束解耦各模态贡献，并引入弱正样本策略校准语义相似度以解决嗅觉语言稀疏性问题。实验表明NOSE达到SOTA性能并具有优异的零样本泛化能力。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>三模态对齐</strong>：将分子结构、受体序列和自然语言描述三种模态沿完整嗅觉通路进行联合表示学习</li><li style="margin-bottom:0;"><strong>正交约束解耦</strong>：通过正交性约束分离各模态贡献，保留每种模态独特的编码信息</li><li style="margin-bottom:0;"><strong>弱正样本策略</strong>：针对嗅觉语言稀疏性引入弱正样本机制，防止特征空间中相似气味的错误排斥</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>通路级建模</strong>：首次将嗅觉通路从分子到受体再到语言描述的完整链条统一纳入表示学习框架</li><li style="margin-bottom:0;"><strong>正交对比学习</strong>：设计三模态正交对比学习目标，实现模态对齐与信息解耦的协同优化</li><li style="margin-bottom:0;"><strong>语义稀疏校准</strong>：提出弱正样本策略解决嗅觉描述数据稀疏导致的相似度估计偏差问题</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能达到SOTA</strong>：NOSE在多项任务上取得当前最优性能，验证了三模态对齐框架的有效性</li><li style="margin-bottom:0;"><strong>零样本泛化优异</strong>：模型展现出强大的零样本泛化能力，表明表示空间具有良好的迁移特性</li><li style="margin-bottom:0;"><strong>对齐人类直觉</strong>：学习到的表示空间与人类嗅觉直觉高度一致，兼具生物学可解释性和语义可理解性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.10452" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.10452</a>
+                </div>
             </div>
-            <div style="margin-bottom:12px;">
-              <div style="font-size:13px;color:#c00000;font-weight:700;">💡 核心创新</div>
-              <div style="font-size:12px;color:#444;">首次将权重剪枝用于因果性地探测LLM中有害内容的内部神经组织｜发现有害能力由跨类型通用且与良性能力分离的紧凑权重子集介导｜提出"权重压缩"理论以统一解释 jailbreak 和涌现性错对齐现象</div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Topology-Aware PAC-Bayesian Generalization Analysis for Graph Neural Networks</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.10553</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">图神经网络的拓扑感知PAC-Bayesian泛化分析</span>
+                        <span style="color:#666;font-size:12px;">Xinping Yi et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">图神经网络在社交网络、生物系统、推荐系统和无线通信等领域展现出优异的应用性，但对其泛化行为的理论理解仍有限，尤其是图分类任务中模型参数与图结构间复杂交互的作用。现有PAC-Bayesian范数泛化界为GNN提供了灵活的数据依赖框架，但往往未能充分利用图结构。本文提出了一种拓扑感知的PAC-Bayesian范数泛化框架，将先前发展的框架扩展到图结构模型，通过将泛化界的推导重构为随机优化问题，引入敏感度矩阵衡量分类输出对结构化权重扰动的响应。从空间和谱两个视角对敏感度矩阵施加不同结构，导出了一族显式嵌入图结构的泛化误差界，能够恢复现有结果作为特例，并产生比当前最先进的GNN PAC-Bayesian界更紧的界。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>敏感度矩阵</strong>：引入敏感度矩阵量化图卷积网络分类输出对结构化权重扰动的响应程度</li><li style="margin-bottom:0;"><strong>随机优化重构</strong>：将PAC-Bayesian泛化界的推导重新表述为可求解的随机优化问题</li><li style="margin-bottom:0;"><strong>空间谱双视角</strong>：同时从空间聚合视角和谱滤波视角对敏感度矩阵施加结构化约束</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>拓扑感知框架</strong>：首次将PAC-Bayesian范数泛化分析扩展到显式利用图拓扑结构的图神经网络</li><li style="margin-bottom:0;"><strong>结构嵌入界</strong>：推导出一族显式嵌入图结构性质的泛化误差界，统一涵盖空间与谱分析</li><li style="margin-bottom:0;"><strong>结果兼容性</strong>：所提泛化界能以现有GNN的PAC-Bayesian结果为特例进行恢复</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>显式图结构作用</strong>：图结构性质被明确整合进泛化分析，深化了对GNN泛化行为的理论理解</li><li style="margin-bottom:0;"><strong>界更紧更优</strong>：所推导的泛化界比当前最先进的GNN PAC-Bayesian泛化界更紧</li><li style="margin-bottom:0;"><strong>统一分析视角</strong>：该框架实现了从空间聚合和谱滤波两个视角对GNN泛化行为的统一考察</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.10553" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.10553</a>
+                </div>
             </div>
-            <div>
-              <div style="font-size:13px;color:#c00000;font-weight:700;">📊 关键结论</div>
-              <div style="font-size:12px;color:#444;">有害内容生成依赖于紧凑、通用且与良性能力分离的权重集合｜对齐模型相比未对齐模型表现出更大的有害权重压缩｜权重压缩解释了为何窄域微调会触发广泛的涌现性错对齐｜剪枝窄域有害权重可显著降低涌现性错对齐｜LLM生成有害内容的能力与其识别和解释有害内容的能力相分离</div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>IceCache: Memory-efficient KV-cache Management for Long-Sequence LLMs</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.10539</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">IceCache：面向长序列LLM的内存高效KV缓存管理</span>
+                        <span style="color:#666;font-size:12px;">Yuzhen Mao et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">Key-Value (KV) cache通过存储中间注意力状态加速大语言模型推理，但其内存占用随序列长度线性增长，在资源受限硬件上易造成严重内存瓶颈。现有工作尝试将KV cache卸载到CPU、仅在GPU保留子集，但依赖不精确的token选择，在长生成任务（如思维链推理）中性能下降。本文提出IceCache，将语义token聚类与PagedAttention结合，通过层次化动态可更新数据结构将语义相关token组织到连续内存区域，实现更高效的token选择和CPU-GPU传输时的内存带宽利用。在LongBench上，256 token预算下IceCache保持全KV cache模型99%的原始准确率；与其他基于卸载的方法相比，仅使用25%的KV cache token预算即可达到相当甚至更优的延迟和准确率。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语义token聚类</strong>：将语义相关的token组织到连续内存区域，提升数据局部性和访问效率</li><li style="margin-bottom:0;"><strong>PagedAttention集成</strong>：结合分页注意力机制，实现KV cache的灵活分页管理与高效内存复用</li><li style="margin-bottom:0;"><strong>层次动态结构</strong>：采用层次化动态可更新数据结构，支持聚类结果在生成过程中的实时维护与更新</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语义感知选择</strong>：突破传统不精确token选择局限，基于语义聚类实现更高质量的GPU驻留token筛选</li><li style="margin-bottom:0;"><strong>带宽优化传输</strong>：利用连续内存布局提升CPU-GPU数据传输时的内存带宽利用率，降低卸载开销</li><li style="margin-bottom:0;"><strong>长序列适配性</strong>：针对思维链等长生成任务优化，显著缓解现有方法在长序列场景下的性能退化问题</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>高精度保持</strong>：256 token预算下，IceCache维持全KV cache模型99%的原始准确率</li><li style="margin-bottom:0;"><strong>预算效率领先</strong>：仅使用25%的KV cache token预算，达到相当或更优的延迟与准确率</li><li style="margin-bottom:0;"><strong>长序列有效性</strong>：在LongBench长序列基准上验证了IceCache在长上下文场景中的综合优势</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.10539" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.10539</a>
+                </div>
             </div>
-          </div>
-          <a href="https://arxiv.org/abs/2604.09544" target="_blank" style="color:#c00000;font-size:11px;">查看原文: https://arxiv.org/abs/2604.09544</a>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-header">
-          <div class="section-number">2</div>
-          <h2>ANTIC: Adaptive Neural Temporal In-situ Compressor</h2>
-        </div>
-        <div class="paper-card">
-          <div class="paper-meta">
-            <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;">arXiv:2604.09543</span>
-            <span style="color:#333;font-weight:600;font-size:13px;margin-left:10px;">ANTIC：自适应神经时域原位压缩器</span>
-            <span style="color:#666;font-size:12px;margin-left:10px;">Sandeep S. Cranganore, Andrei Bodnar, Gianluca Galleti, Fabian Paischer, Johannes Brandstetter</span>
-          </div>
-          <div style="margin:15px 0;">
-            <div style="margin-bottom:12px;">
-              <div style="font-size:13px;color:#c00000;font-weight:700;">📄 论文摘要</div>
-              <div style="font-size:12px;color:#333;line-height:1.8;">针对大规模PDE模拟产生的PB-EB级数据存储瓶颈，提出ANTIC端到端原位压缩管道，通过自适应时间快照选择与神经空间压缩模块，在单流式遍历中实现时空联合压缩，显著降低存储需求。</div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Structure-Grounded Knowledge Retrieval via Code Dependencies for Multi-Step Data Reasoning</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.10516</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">基于代码依赖的结构化知识检索用于多步数据推理</span>
+                        <span style="color:#666;font-size:12px;">Xinyi Huang et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">针对大语言模型解决领域特定数据分析任务时知识选择困难的问题，现有检索增强方法主要依赖词汇或嵌入相似度，难以满足多步推理所需的任务关键知识。本文提出SGKR框架，利用函数调用依赖关系构建图结构来组织领域知识，通过提取语义输入输出标签、识别连接它们的依赖路径并构建任务相关子图，将相关知识和函数实现组装为结构化上下文用于LLM代码生成。实验表明SGKR在无检索和基于相似度的检索基线上均持续提升了解决方案的正确性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>依赖图构建</strong>：基于函数调用依赖关系构建领域知识的图结构表示，将可执行代码及其计算结构显式建模为图</li><li style="margin-bottom:0;"><strong>标签路径检索</strong>：从问题中提取语义输入输出标签，识别图中连接标签的依赖路径以定位任务相关知识</li><li style="margin-bottom:0;"><strong>子图上下文组装</strong>：将检索到的任务相关子图及对应函数实现组装为结构化上下文，辅助大语言模型进行代码生成</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>结构 grounded 检索</strong>：突破传统基于文本相似度的检索范式，引入代码依赖结构作为知识检索的核心依据</li><li style="margin-bottom:0;"><strong>语义标签桥接</strong>：通过语义输入输出标签作为查询与知识图之间的桥梁，实现自然语言问题到代码结构的精准映射</li><li style="margin-bottom:0;"><strong>动态子图构造</strong>：根据具体问题动态构建任务相关的知识子图，而非静态检索孤立文档片段</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能持续提升</strong>：在多步数据分析基准测试上，SGKR相比无检索和相似度检索基线均持续提升了解决正确性</li><li style="margin-bottom:0;"><strong>适用模型广泛</strong>：SGKR的有效性同时适用于普通大语言模型和具备编码能力的智能体系统</li><li style="margin-bottom:0;"><strong>相似度检索局限</strong>：纯词汇或嵌入相似度作为任务关键知识的代理指标，在多步数据推理场景中存在明显不足</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.10516" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.10516</a>
+                </div>
             </div>
-            <div style="margin-bottom:12px;">
-              <div style="font-size:13px;color:#c00000;font-weight:700;">🔧 关键技术</div>
-              <div style="font-size:12px;color:#444;">自适应时间选择器｜基于持续微调的神经空间压缩模块｜神经场学习相邻快照间残差更新｜单流式原位处理</div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Lost in Diffusion: Uncovering Hallucination Patterns and Failure Modes in Diffusion Large Language Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.10556</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">扩散迷途：揭示扩散式大语言模型的幻觉模式与失效机理</span>
+                        <span style="color:#666;font-size:12px;">Zhengnan Guo et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文首次对扩散大语言模型（dLLMs）的幻觉问题进行了控制变量下的对比研究，发现当前dLLMs在控制架构、规模和预训练权重后，比自回归模型更容易产生幻觉。研究还揭示了dLLMs在推理计算中的独特动态，并识别了扩散过程特有的失败模式，包括过早终止、去噪不完全和上下文侵入。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>控制对比法</strong>：在统一架构、模型规模与预训练权重条件下，系统比较扩散模型与自回归模型的幻觉倾向</li><li style="margin-bottom:0;"><strong>推理动态分析</strong>：考察准自回归生成与非顺序解码两种策略在测试时计算扩展中的不同表现</li><li style="margin-bottom:0;"><strong>失败模式识别</strong>：从扩散机理出发，归纳过早终止、去噪不完全、上下文侵入三类特有失效现象</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>首次dLLM幻觉研究</strong>：填补了扩散大语言模型在忠实度与幻觉方面系统性评估的研究空白</li><li style="margin-bottom:0;"><strong>跨范式公平比较</strong>：通过严格控制变量，首次在同等条件下量化dLLMs与AR模型的幻觉差异</li><li style="margin-bottom:0;"><strong>扩散专属诊断</strong>：提出针对扩散生成机制的独特失败模式分类框架，区别于AR模型的已知问题</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>幻觉倾向更高</strong>：当前dLLMs在受控实验条件下表现出比自回归模型更强的幻觉生成倾向</li><li style="margin-bottom:0;"><strong>推理动态迥异</strong>：准自回归生成存在早期饱和问题，而非顺序解码具备持续精修的潜力</li><li style="margin-bottom:0;"><strong>可靠性挑战严峻</strong>：尽管dLLMs在通用任务上缩小了性能差距，但其特有的幻觉机制对模型可靠性构成关键挑战</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.10556" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.10556</a>
+                </div>
             </div>
-            <div style="margin-bottom:12px;">
-              <div style="font-size:13px;color:#c00000;font-weight:700;">💡 核心创新</div>
-              <div style="font-size:12px;color:#444;">将时间自适应选择与神经空间压缩集成于统一原位管道｜利用神经场对相邻快照进行残差学习而非独立编码｜面向高维物理场的端到端流式压缩框架</div>
-            </div>
-            <div>
-              <div style="font-size:13px;color:#c00000;font-weight:700;">📊 关键结论</div>
-              <div style="font-size:12px;color:#444;">ANTIC可在单遍流式处理中实现时空联合压缩｜存储量降低数个数量级｜压缩效果与物理精度之间存在可量化的权衡关系</div>
-            </div>
-          </div>
-          <a href="https://arxiv.org/abs/2604.09543" target="_blank" style="color:#c00000;font-size:11px;">查看原文: https://arxiv.org/abs/2604.09543</a>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-header">
-          <div class="section-number">3</div>
-          <h2>Case-Grounded Evidence Verification: A Framework for Constructing Evidence-Sensitive Supervision</h2>
-        </div>
-        <div class="paper-card">
-          <div class="paper-meta">
-            <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;">arXiv:2604.09537</span>
-            <span style="color:#333;font-weight:600;font-size:13px;margin-left:10px;">基于案例的证据验证：构建证据敏感监督的框架</span>
-            <span style="color:#666;font-size:12px;margin-left:10px;">Soroosh Tayebi Arasteh, Mehdi Joodaki, Mahshad Lotfinia, Sven Nebelung, Daniel Truhn</span>
-          </div>
-          <div style="margin:15px 0;">
-            <div style="margin-bottom:12px;">
-              <div style="font-size:13px;color:#c00000;font-weight:700;">📄 论文摘要</div>
-              <div style="font-size:12px;color:#333;line-height:1.8;">论文提出基于病例的证据验证框架，要求模型根据具体病例判断外部证据是否支持结构化主张。核心贡献是一种无需人工标注证据的监督构建方法，生成显式支持样本及语义可控的非支持样本。</div>
-            </div>
-            <div style="margin-bottom:12px;">
-              <div style="font-size:13px;color:#c00000;font-weight:700;">🔧 关键技术</div>
-              <div style="font-size:12px;color:#444;">病例级证据验证框架｜自动监督构建流程｜反事实错误状态负样本｜主题相关负样本｜证据敏感性训练</div>
-            </div>
-            <div style="margin-bottom:12px;">
-              <div style="font-size:13px;color:#c00000;font-weight:700;">💡 核心创新</div>
-              <div style="font-size:12px;color:#444;">将证据验证与局部病例上下文结合｜无需人工证据标注的自动监督生成｜系统引入语义控制的非支持样本类型</div>
-            </div>
-            <div>
-              <div style="font-size:13px;color:#c00000;font-weight:700;">📊 关键结论</div>
-              <div style="font-size:12px;color:#444;">监督信号设计是证据 grounding 的核心瓶颈而非仅模型容量｜训练后的验证器展现出真正的证据依赖性｜性能在未见证据文章和外部病例分布上可迁移｜对证据来源迁移和主干网络选择仍敏感</div>
-            </div>
-          </div>
-          <a href="https://arxiv.org/abs/2604.09537" target="_blank" style="color:#c00000;font-size:11px;">查看原文: https://arxiv.org/abs/2604.09537</a>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-header">
-          <div class="section-number">4</div>
-          <h2>Seeing is Believing: Robust Vision-Guided Cross-Modal Prompt Learning under Label Noise</h2>
-        </div>
-        <div class="paper-card">
-          <div class="paper-meta">
-            <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;">arXiv:2604.09532</span>
-            <span style="color:#333;font-weight:600;font-size:13px;margin-left:10px;">眼见为实：标签噪声下鲁棒的视觉引导跨模态提示学习</span>
-            <span style="color:#666;font-size:12px;margin-left:10px;">Zibin Geng, Xuefeng Jiang, Jia Li, Zheng Li, Tian Wen, Lvhua Wu, Sheng Sun, Yuwei Wang, Min Liu</span>
-          </div>
-          <div style="margin:15px 0;">
-            <div style="margin-bottom:12px;">
-              <div style="font-size:13px;color:#c00000;font-weight:700;">📄 论文摘要</div>
-              <div style="font-size:12px;color:#333;line-height:1.8;">本文提出VisPrompt，一种视觉引导的跨模态提示学习方法，通过将视觉语义反向注入提示表示并自适应控制注入强度，提升视觉语言模型在标签噪声场景下的鲁棒性。</div>
-            </div>
-            <div style="margin-bottom:12px;">
-              <div style="font-size:13px;color:#c00000;font-weight:700;">🔧 关键技术</div>
-              <div style="font-size:12px;color:#444;">跨模态注意力机制反向注入视觉语义｜轻量级条件调制机制自适应控制注入强度｜冻结预训练VLM主干的参数高效微调</div>
-            </div>
-            <div style="margin-bottom:12px;">
-              <div style="font-size:13px;color:#c00000;font-weight:700;">💡 核心创新</div>
-              <div style="font-size:12px;color:#444;">首次系统研究提示学习在标签噪声下的鲁棒性问题｜提出视觉引导的提示学习范式，利用视觉语义稳定性对抗噪声｜设计自适应条件调制机制平衡文本先验与图像实例证据</div>
-            </div>
-            <div>
-              <div style="font-size:13px;color:#c00000;font-weight:700;">📊 关键结论</div>
-              <div style="font-size:12px;color:#444;">VisPrompt在7个基准数据集的人工合成与真实世界标签噪声场景下均优于现有基线｜仅引入少量可训练参数即可显著提升鲁棒性｜有效抑制噪声干扰、降低提示更新不稳定性和减轻错误标签记忆</div>
-            </div>
-          </div>
-          <a href="https://arxiv.org/abs/2604.09532" target="_blank" style="color:#c00000;font-size:11px;">查看原文: https://arxiv.org/abs/2604.09532</a>
-        </div>
-      </div>
-      <div class="section">
-        <div class="section-header">
-          <div class="section-number">5</div>
-          <h2>VisionFoundry: Teaching VLMs Visual Perception with Synthetic Images</h2>
-        </div>
-        <div class="paper-card">
-          <div class="paper-meta">
-            <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;">arXiv:2604.09531</span>
-            <span style="color:#333;font-weight:600;font-size:13px;margin-left:10px;">VisionFoundry：以合成图像教授视觉语言模型视觉感知</span>
-            <span style="color:#666;font-size:12px;margin-left:10px;">Guanyu Zhou, Yida Yin, Wenhao Chai, Shengbang Tong, Xingyu Fu, Zhuang Liu</span>
-          </div>
-          <div style="margin:15px 0;">
-            <div style="margin-bottom:12px;">
-              <div style="font-size:13px;color:#c00000;font-weight:700;">📄 论文摘要</div>
-              <div style="font-size:12px;color:#333;line-height:1.8;">本文提出VisionFoundry，一种仅输入任务名称即可生成合成训练数据的流程，用于提升视觉语言模型的视觉感知能力。构建的VisionFoundry-10K数据集在多项基准上取得显著提升。</div>
-            </div>
-            <div style="margin-bottom:12px;">
-              <div style="font-size:13px;color:#c00000;font-weight:700;">🔧 关键技术</div>
-              <div style="font-size:12px;color:#444;">任务感知合成数据生成｜大语言模型自动生成问答与文生图提示｜文生图模型合成图像｜专有VLM一致性验证｜无需参考图像或人工标注</div>
-            </div>
-            <div style="margin-bottom:12px;">
-              <div style="font-size:13px;color:#c00000;font-weight:700;">💡 核心创新</div>
-              <div style="font-size:12px;color:#444;">仅需任务关键词即可端到端生成训练数据｜用VLM自动验证合成数据一致性｜针对低层视觉技能的定向合成监督</div>
-            </div>
-            <div>
-              <div style="font-size:13px;color:#c00000;font-weight:700;">📊 关键结论</div>
-              <div style="font-size:12px;color:#444;">针对性的合成监督可有效弥补VLMs视觉感知缺陷｜VisionFoundry-10K在MMVP提升7%、CV-Bench-3D提升10%｜合成数据规模扩大呈现良好扩展性｜保持模型通用能力不受影响</div>
-            </div>
-          </div>
-          <a href="https://arxiv.org/abs/2604.09531" target="_blank" style="color:#c00000;font-size:11px;">查看原文: https://arxiv.org/abs/2604.09531</a>
-        </div>
-      </div>
         </div>
 
         <div class="footer">
             <div class="brand">AI研究室</div>
-            <p>{{FOOTER_TEXT}}</p>
-            <p style="margin-top: 8px; opacity: 0.7;">{{CONTACT}} | 2026/4/14</p>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/4/14</p>
         </div>
     </div>
 </body>
