@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-15",
+  "title": "大模型推理机制突破与多域智能体应用新范式",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.11791",
+      "title": "A Mechanistic Analysis of Looped Reasoning Language Models",
+      "chinese_title": "循环推理语言模型的机制分析",
+      "authors": "Hugh Blayney et al.",
+      "url": "https://arxiv.org/abs/2604.11791"
+    },
+    {
+      "id": "2604.11666",
+      "title": "Playing Along: Learning a Double-Agent Defender for Belief Steering via Theory of Mind",
+      "chinese_title": "协同博弈：基于心智理论的双重代理防御者与信念引导学习",
+      "authors": "Hanqi Xiao et al.",
+      "url": "https://arxiv.org/abs/2604.11666"
+    },
+    {
+      "id": "2604.11801",
+      "title": "CLSGen: A Dual-Head Fine-Tuning Framework for Joint Probabilistic Classification and Verbalized Explanation",
+      "chinese_title": "CLSGen：面向联合概率分类与言语化解释的双头微调框架",
+      "authors": "WonJin Yoon et al.",
+      "url": "https://arxiv.org/abs/2604.11801"
+    },
+    {
+      "id": "2604.11716",
+      "title": "SWE-AGILE: A Software Agent Framework for Efficiently Managing Dynamic Reasoning Context",
+      "chinese_title": "SWE-AGILE：面向动态推理上下文高效管理的软件智能体框架",
+      "authors": "Shuquan Lian et al.",
+      "url": "https://arxiv.org/abs/2604.11716"
+    },
+    {
+      "id": "2604.11705",
+      "title": "Agentic Driving Coach: Robustness and Determinism of Agentic AI-Powered Human-in-the-Loop Cyber-Physical Systems",
+      "chinese_title": "智能体驾驶教练：人机协同网络物理系统的鲁棒性与确定性",
+      "authors": "Deeksha Prahlad et al.",
+      "url": "https://arxiv.org/abs/2604.11705"
+    },
+    {
+      "id": "2604.11699",
+      "title": "Legal2LogicICL: Improving Generalization in Transforming Legal Cases to Logical Formulas via Diverse Few-Shot Learning",
+      "chinese_title": "Legal2LogicICL：基于多样化少样本学习提升法律案例逻辑形式",
+      "authors": "Jieying Xue et al.",
+      "url": "https://arxiv.org/abs/2604.11699"
+    },
+    {
+      "id": "2604.11661",
+      "title": "Towards Autonomous Mechanistic Reasoning in Virtual Cells",
+      "chinese_title": "迈向虚拟细胞的自主机制推理",
+      "authors": "Yunhui Jang et al.",
+      "url": "https://arxiv.org/abs/2604.11661"
+    }
+  ],
+  "generated_at": "2026-04-14T22:03:05.998Z",
+  "org": "AI研究室"
+}
