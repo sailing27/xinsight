@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-14_1",
+  "title": "大模型跨界突破 从人格神经到物理推理与真实世界评测",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.11802",
+      "title": "Psychological Concept Neurons: Can Neural Control Bias Probing and Shift Generation in LLMs?",
+      "chinese_title": "心理概念神经元：大语言模型中的神经操控能否引发探测偏差与生成偏移？",
+      "authors": "Yuto Harada et al.",
+      "url": "https://arxiv.org/abs/2604.11802"
+    },
+    {
+      "id": "2604.11784",
+      "title": "ClawGUI: A Unified Framework for Training, Evaluating, and Deploying GUI Agents",
+      "chinese_title": "ClawGUI：GUI智能体训练、评估与部署的统一框架",
+      "authors": "Fei Tang et al.",
+      "url": "https://arxiv.org/abs/2604.11784"
+    },
+    {
+      "id": "2604.11778",
+      "title": "General365: Benchmarking General Reasoning in Large Language Models Across Diverse and Challenging Tasks",
+      "chinese_title": "General365：大语言模型通用推理能力跨领域挑战性基准评测",
+      "authors": "Junlin Liu et al.",
+      "url": "https://arxiv.org/abs/2604.11778"
+    },
+    {
+      "id": "2604.11773",
+      "title": "Autonomous Diffractometry Enabled by Visual Reinforcement Learning",
+      "chinese_title": "视觉强化学习赋能的自主衍射测量",
+      "authors": "J. Oppliger et al.",
+      "url": "https://arxiv.org/abs/2604.11773"
+    },
+    {
+      "id": "2604.11805",
+      "title": "Solving Physics Olympiad via Reinforcement Learning on Physics Simulators",
+      "chinese_title": "基于物理模拟器强化学习的物理奥赛求解方法",
+      "authors": "Mihir Prabhudesai et al.",
+      "url": "https://arxiv.org/abs/2604.11805"
+    },
+    {
+      "id": "2604.11803",
+      "title": "Saar-Voice: A Multi-Speaker Saarbrücken Dialect Speech Corpus",
+      "chinese_title": "《萨尔之声：多方言萨尔布吕肯口语语料库》",
+      "authors": "Lena S. Oberkircher et al.",
+      "url": "https://arxiv.org/abs/2604.11803"
+    },
+    {
+      "id": "2604.11796",
+      "title": "C-ReD: A Comprehensive Chinese Benchmark for AI-Generated Text Detection Derived from Real-World Prompts",
+      "chinese_title": "C-ReD：基于真实提示的AI生成中文文本检测综合基准",
+      "authors": "Chenxi Qing et al.",
+      "url": "https://arxiv.org/abs/2604.11796"
+    }
+  ],
+  "generated_at": "2026-04-14T03:58:18.531Z",
+  "org": "AI研究室"
+}
