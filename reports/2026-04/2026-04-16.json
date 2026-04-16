@@ -1,0 +1,26 @@
+{
+  "date": "2026-04-16",
+  "title": "事件张量 动态巨型核编译的统一抽象 breakthrough",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 1,
+  "papers": [
+    {
+      "id": "2604.13327",
+      "title": "Event Tensor: A Unified Abstraction for Compiling Dynamic Megakernel",
+      "chinese_title": "事件张量：编译动态巨型核的统一抽象",
+      "authors": "Hongyi Jin et al.",
+      "url": "https://arxiv.org/abs/2604.13327"
+    }
+  ],
+  "generated_at": "2026-04-16T01:09:55.296Z",
+  "org": "AI研究室"
+}
