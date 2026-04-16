@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-17",
+  "title": "大模型智能体纵深突破 从长程推理到端云协同",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.14140",
+      "title": "LongCoT: Benchmarking Long-Horizon Chain-of-Thought Reasoning",
+      "chinese_title": "LongCoT：长程思维链推理基准评测",
+      "authors": "Sumeet Ramesh Motwani et al.",
+      "url": "https://arxiv.org/abs/2604.14140"
+    },
+    {
+      "id": "2604.13888",
+      "title": "GeoAgentBench: A Dynamic Execution Benchmark for Tool-Augmented Agents in Spatial Analysis",
+      "chinese_title": "GeoAgentBench：空间分析中工具增强智能体的动态执行基准",
+      "authors": "Bo Yu et al.",
+      "url": "https://arxiv.org/abs/2604.13888"
+    },
+    {
+      "id": "2604.13318",
+      "title": "WebXSkill: Skill Learning for Autonomous Web Agents",
+      "chinese_title": "WebXSkill：自主网页智能体的技能学习",
+      "authors": "Zhaoyang Wang et al.",
+      "url": "https://arxiv.org/abs/2604.13318"
+    },
+    {
+      "id": "2604.14013",
+      "title": "Towards Multi-Object-Tracking with Radar on a Fast Moving Vehicle: On the Potential of Processing Radar in the Frequency Domain",
+      "chinese_title": "移动平台雷达多目标跟踪的频率域处理潜力研究",
+      "authors": "Tim Hansen et al.",
+      "url": "https://arxiv.org/abs/2604.14013"
+    },
+    {
+      "id": "2604.13955",
+      "title": "Towards Personalizing Secure Programming Education with LLM-Injected Vulnerabilities",
+      "chinese_title": "面向个性化安全编程教育的大语言模型漏洞注入方法",
+      "authors": "Matthew Frazier et al.",
+      "url": "https://arxiv.org/abs/2604.13955"
+    },
+    {
+      "id": "2604.13488",
+      "title": "Towards Scalable Lightweight GUI Agents via Multi-role Orchestration",
+      "chinese_title": "面向可扩展轻量级GUI智能体的多角色协同机制研究",
+      "authors": "Ziwei Wang et al.",
+      "url": "https://arxiv.org/abs/2604.13488"
+    },
+    {
+      "id": "2604.13757",
+      "title": "Rethinking AI Hardware: A Three-Layer Cognitive Architecture for Autonomous Agents",
+      "chinese_title": "重构AI硬件：自主智能体的三层认知架构",
+      "authors": "Li Chen et al.",
+      "url": "https://arxiv.org/abs/2604.13757"
+    }
+  ],
+  "generated_at": "2026-04-16T22:05:01.727Z",
+  "org": "AI研究室"
+}
