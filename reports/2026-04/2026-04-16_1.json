@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-16_1",
+  "title": "大模型突破七维 从训练范式到推理可信的全景革新",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.14142",
+      "title": "From $P(y|x)$ to $P(y)$: Investigating Reinforcement Learning in Pre-train Space",
+      "chinese_title": "从条件概率到边缘概率：预训练空间中的强化学习探索",
+      "authors": "Yuqiao Tan et al.",
+      "url": "https://arxiv.org/abs/2604.14142"
+    },
+    {
+      "id": "2604.14128",
+      "title": "Rhetorical Questions in LLM Representations: A Linear Probing Study",
+      "chinese_title": "大语言模型表征中的反问句：一项线性探测研究",
+      "authors": "Louie Hong Yao et al.",
+      "url": "https://arxiv.org/abs/2604.14128"
+    },
+    {
+      "id": "2604.14121",
+      "title": "Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis",
+      "chinese_title": "共识推理知识图谱：稳健思维链合成的正确预测与步骤纠偏",
+      "authors": "Zipeng Ling et al.",
+      "url": "https://arxiv.org/abs/2604.14121"
+    },
+    {
+      "id": "2604.14030",
+      "title": "Dual-Enhancement Product Bundling: Bridging Interactive Graph and Large Language Model",
+      "chinese_title": "双增强产品捆绑：融合交互图与大语言模型",
+      "authors": "Zhe Huang et al.",
+      "url": "https://arxiv.org/abs/2604.14030"
+    },
+    {
+      "id": "2604.13991",
+      "title": "Adaptive Conformal Prediction for Improving Factuality of Generations by Large Language Models",
+      "chinese_title": "自适应共形预测提升大语言模型生成事实性",
+      "authors": "Aleksandr Rubashevskii et al.",
+      "url": "https://arxiv.org/abs/2604.13991"
+    },
+    {
+      "id": "2604.14116",
+      "title": "TREX: Automating LLM Fine-tuning via Agent-Driven Tree-based Exploration",
+      "chinese_title": "TREX：基于智能体驱动树状探索的自动化大语言模型微调",
+      "authors": "Zerun Ma et al.",
+      "url": "https://arxiv.org/abs/2604.14116"
+    },
+    {
+      "id": "2604.14053",
+      "title": "From Where Words Come: Efficient Regularization of Code Tokenizers Through Source Attribution",
+      "chinese_title": "词源何处：通过源归因高效正则化代码分词器",
+      "authors": "Pavel Chizhov et al.",
+      "url": "https://arxiv.org/abs/2604.14053"
+    }
+  ],
+  "generated_at": "2026-04-16T15:49:53.773Z",
+  "org": "AI研究室"
+}

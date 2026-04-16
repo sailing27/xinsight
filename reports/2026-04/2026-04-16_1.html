@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型突破七维 从训练范式到推理可信的全景革新 | 2026/4/16</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffeaea 100%);
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #8b0000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffeaea 100%);
+            border: 1px solid #ffc8c8;
+            color: #8b0000;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            border: 1px solid #ffc8c8;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型突破七维 从训练范式到推理可信的全景革新 | 2026/4/16</h1>
+                <div class="date">2026/4/16 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了2024-2025年大模型研究正从"规模驱动"向"结构优化与自动化"深度转型。七篇论文共同指向一个核心趋势：研究者愈发关注模型内部机制的可解释性改造、训练范式的根本性重构，以及跨模态/跨任务系统的精细化整合。<br><br>三个关键方向尤为突出。<strong>其一，分布级与结构化的训练革新</strong>：PreRL从优化条件分布P(y|x)转向边缘分布P(y)，打破基模型输出瓶颈；RKG则通过共识推理图谱替代ground-truth监督，挑战了监督式推理的直觉假设，二者共同推动训练目标从"拟合标签"向"塑造能力"演进。<strong>其二，可解释性与不确定性的系统介入</strong>：线性探测揭示修辞问句的多线性方向编码机制，自适应共形预测则为生成事实性提供输入依赖的统计保证，反映学界对"知道模型知道什么"的迫切需求。<strong>其三，LLM作为组件的深度系统嵌入</strong>：图-文双增强架构将LLM语义理解与图神经网络结合，TREX则以多智能体实现微调全流程自动化，标志着大模型正从独立工具演变为可编排的智能基础设施。<br><br>对行业而言，这些进展意味着：未来大模型的竞争焦点将从参数量扩张转向训练范式的理论突破与工程自动化；同时，将LLM与结构化知识、不确定性量化和自主智能体深度融合，将成为提升可靠性与落地效率的关键路径。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>From $P(y|x)$ to $P(y)$: Investigating Reinforcement Learning in Pre-train Space</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.14142</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">从条件概率到边缘概率：预训练空间中的强化学习探索</span>
+                        <span style="color:#666;font-size:12px;">Yuqiao Tan et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出PreRL，通过在预训练空间直接优化边缘分布P(y)来突破传统RLVR受限于基模型条件分布的瓶颈，并发现负样本强化（NSR）可显著激发模型的反思推理能力，最终提出双空间RL策略DSRL实现更优推理性能。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>PreRL（预训练空间强化学习）</strong>：直接在P(y)上施加可验证奖励进行在线更新，替代传统对P(y|x)的优化</li><li style="margin-bottom:0;"><strong>负样本强化（NSR）</strong>：利用错误样本的奖励信号修剪错误推理空间并诱导内生反思行为</li><li style="margin-bottom:0;"><strong>双空间RL（DSRL）</strong>：策略重生框架，先以NSR-PreRL初始化模型扩展推理边界，再切换至标准RL进行细粒度优化</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分布优化视角转换</strong>：从条件分布P(y|x)转向边缘分布P(y)，理论上打破基模型输出分布的瓶颈约束</li><li style="margin-bottom:0;"><strong>NSR机制发现</strong>：揭示预训练空间中的负样本强化是驱动推理能力（尤其是反思行为）涌现的关键机制</li><li style="margin-bottom:0;"><strong>Policy Reincarnation策略</strong>：提出分阶段的双空间训练范式，融合预训练空间探索与标准RL利用</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">PreRL通过优化P(y)有效扩展了模型的推理探索空间，可作为标准RL的可行替代</li><li style="margin-bottom:0;">NSR-PreRL能急剧增加模型的转换思考与反思思考（分别提升14.89倍与6.54倍），是提升推理能力的高效驱动器</li><li style="margin-bottom:0;">DSRL策略在广泛实验中持续超越强基线，验证了预训练空间修剪能引导策略收敛至更优的正确推理子空间</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.14142" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.14142</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Rhetorical Questions in LLM Representations: A Linear Probing Study</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.14128</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">大语言模型表征中的反问句：一项线性探测研究</span>
+                        <span style="color:#666;font-size:12px;">Louie Hong Yao et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文通过线性探测研究大语言模型内部对修辞问句的表征，发现修辞信号在早期层出现且主要由末层token表征捕获，跨数据集可迁移但不存在统一的共享表示方向。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>线性探测</strong>：在LLM各层隐藏状态上训练线性分类器以解码修辞问句信号</li><li style="margin-bottom:0;"><strong>跨数据集迁移</strong>：评估探针在不同社交媒体数据集间的泛化能力</li><li style="margin-bottom:0;"><strong>表示对齐分析</strong>：通过比较探针对同一语料库实例的排名重叠度，判断是否存在共享表示方向</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多元线性方向假说</strong>：首次系统论证修辞问句在LLM中并非由单一共享方向编码，而是由多个强调不同线索的线性方向共同表征</li><li style="margin-bottom:0;"><strong>迁移性与共享性的解耦</strong>：发现跨数据集AUROC较高（0.7-0.8）但排名重叠极低（<0.2），揭示可迁移性不等于表示统一性</li><li style="margin-bottom:0;"><strong>现象学关联</strong>：将探针差异与修辞问句的子类型（话语级立场vs.句法级反问）建立对应关系</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>修辞信号早期涌现</strong>：修辞问句的判别信号在LLM较低层即已出现</li><li style="margin-bottom:0;"><strong>末层token最稳定</strong>：最后一层token的隐藏状态对修辞问句的线性可分性最强</li><li style="margin-bottom:0;"><strong>跨数据集可检测但非共享</strong>：探针在跨数据集迁移中保持中等性能，但对同一语料的实例排名高度不一致，表明不存在单一的跨领域共享表示方向</li><li style="margin-bottom:0;"><strong>探针分化对应修辞子类型</strong>：不同探针分别捕获话语级论证立场与局部句法驱动的反问行为</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.14128" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.14128</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Correct Prediction, Wrong Steps? Consensus Reasoning Knowledge Graph for Robust Chain-of-Thought Synthesis</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.14121</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">共识推理知识图谱：稳健思维链合成的正确预测与步骤纠偏</span>
+                        <span style="color:#666;font-size:12px;">Zipeng Ling et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">论文发现LLM推理轨迹存在步骤内缺陷和步骤间缺陷，且直接提供ground-truth标签无法改善推理能力。为此提出CRAFT框架，通过构建基于多候选轨迹共识部分的推理知识图谱（RKG），并进行拓扑生成以合成高质量推理链。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>推理知识图谱（RKG）</strong>：从多条候选CoT轨迹中提取共识片段构建结构化图</li><li style="margin-bottom:0;"><strong>拓扑生成</strong>：基于图结构合成连贯的高质量推理链</li><li style="margin-bottom:0;"><strong>共识聚合</strong>：利用多样本间的重叠一致部分过滤错误与冗余</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>反直觉发现</strong>：揭示ground-truth标签引导并不能提升LLM的推理能力，挑战了监督式推理优化的直觉假设</li><li style="margin-bottom:0;"><strong>统一框架</strong>：同时缓解步骤内缺陷（逻辑错误、幻觉）和步骤间缺陷（过度思考、思考不足）</li><li style="margin-bottom:0;"><strong>图谱化CoT</strong>：将离散文本推理链转化为结构化知识图谱，实现可解释的推理合成</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">直接提供ground-truth标签对LLM推理能力无提升作用</li><li style="margin-bottom:0;">CRAFT在标签预测准确率上平均提升超过10%</li><li style="margin-bottom:0;">CRAFT在逻辑推理和数学推理基准上均一致优于所有基线方法</li><li style="margin-bottom:0;">CRAFT在多维度上显著提升了推理轨迹的质量</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.14121" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.14121</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Dual-Enhancement Product Bundling: Bridging Interactive Graph and Large Language Model</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.14030</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">双增强产品捆绑：融合交互图与大语言模型</span>
+                        <span style="color:#666;font-size:12px;">Zhe Huang et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出一种双增强产品捆绑推荐方法，通过图到文本范式将交互图结构转化为自然语言提示，结合图学习与大型语言模型，在三个基准数据集上显著优于现有基线方法。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>交互图学习</strong>：利用图神经网络建模商品间互补关系</li><li style="margin-bottom:0;"><strong>图到文本范式</strong>：将图结构信息转换为LLM可理解的自然语言提示</li><li style="margin-bottom:0;"><strong>动态概念绑定机制（DCBM）</strong>：对齐领域特定实体与LLM分词空间，提升组合约束理解能力</li><li style="margin-bottom:0;"><strong>双增强融合</strong>：联合图信号与语义信号进行产品捆绑决策</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>图-文双增强架构</strong>：首次系统性地将交互图学习与LLM语义理解结合用于产品捆绑任务</li><li style="margin-bottom:0;"><strong>动态概念绑定机制（DCBM）</strong>：创新性地解决图实体与LLM tokenizer之间的语义对齐问题</li><li style="margin-bottom:0;"><strong>自然语言化图结构</strong>：突破LLM无法直接建模交互图的局限</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">在POG、POG_dense、Steam三个数据集上取得6.3%-26.5%的性能提升</li><li style="margin-bottom:0;">验证了图结构与语义信息融合对产品捆绑推荐的有效性</li><li style="margin-bottom:0;">DCBM机制对LLM理解领域特定组合约束具有关键作用</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.14030" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.14030</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Adaptive Conformal Prediction for Improving Factuality of Generations by Large Language Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.13991</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">自适应共形预测提升大语言模型生成事实性</span>
+                        <span style="color:#666;font-size:12px;">Aleksandr Rubashevskii et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">针对大语言模型事实性不足的问题，本文提出自适应共形预测方法，实现对不同提示的依赖型校准，在保持边缘覆盖保证的同时提升条件覆盖，并支持选择性预测以过滤不可靠输出。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>共形预测（Conformal Prediction）</strong>：为LLM输出提供不确定性估计和统计覆盖保证</li><li style="margin-bottom:0;"><strong>自适应共形分数转换（Adaptive Conformal Score Transformation）</strong>：根据输入提示动态调整分数，实现提示依赖的校准</li><li style="margin-bottom:0;"><strong>选择性预测（Selective Prediction）</strong>：基于不确定性阈值过滤不可靠的生成内容或答案选项</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>提示自适应校准</strong>：突破现有非自适应方法的局限，捕捉输入依赖的变异性</li><li style="margin-bottom:0;"><strong>条件覆盖改进</strong>：在保留边缘覆盖保证的前提下，显著提升条件覆盖性能</li><li style="margin-bottom:0;"><strong>跨任务通用性</strong>：同时适用于长文本生成和多项选择题两种不同场景</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">自适应共形预测显著优于现有基线，在条件覆盖方面表现更佳</li><li style="margin-bottom:0;">方法能够在下游应用中有效过滤不可靠声明或答案选项</li><li style="margin-bottom:0;">在多个白盒模型和多样领域上验证了方法的通用性和有效性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.13991" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.13991</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>TREX: Automating LLM Fine-tuning via Agent-Driven Tree-based Exploration</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.14116</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">TREX：基于智能体驱动树状探索的自动化大语言模型微调</span>
+                        <span style="color:#666;font-size:12px;">Zerun Ma et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出TREX，一种基于多智能体协作和树搜索的自动化LLM微调系统，可自主完成需求分析、文献调研、训练策略制定、数据准备及模型训练评估，并在包含10个真实场景任务的FT-Bench基准上验证了有效性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多智能体架构</strong>：Researcher与Executor两个核心模块协同工作</li><li style="margin-bottom:0;"><strong>树式搜索建模</strong>：将多轮实验过程抽象为搜索树，支持路径规划、结果复用与洞察蒸馏</li><li style="margin-bottom:0;"><strong>全生命周期自动化</strong>：覆盖从需求分析到模型训练评估的完整LLM微调流程</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>LLM微调全自动化</strong>：将复杂、真实的LLM训练工作流整合为端到端自主系统</li><li style="margin-bottom:0;"><strong>实验过程树结构化</strong>：以搜索树形式组织迭代实验，实现历史结果复用与高效探索</li><li style="margin-bottom:0;"><strong>面向真实场景的基准构建</strong>：提出FT-Bench，涵盖基础能力与领域特定任务的10个真实微调任务</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">TREX能够自动化完成LLM微调的完整生命周期</li><li style="margin-bottom:0;">在FT-Bench的10个真实场景任务上，TREX持续优化目标任务的模型性能</li><li style="margin-bottom:0;">树搜索结构有效支持多轮实验中的路径规划与知识积累</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.14116" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.14116</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>From Where Words Come: Efficient Regularization of Code Tokenizers Through Source Attribution</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.14053</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">词源何处：通过源归因高效正则化代码分词器</span>
+                        <span style="color:#666;font-size:12px;">Pavel Chizhov et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">论文研究代码分词器的效率问题，发现训练数据中仓库和语言多样性不平衡会导致大量未充分训练的token。为此提出Source-Attributed BPE（SA-BPE），通过修改BPE目标函数和引入merge skipping来正则化训练、减少过拟合，在保持原有推理流程的同时显著降低未充分训练token的数量。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>BPE目标函数修改</strong>：针对代码数据源特性调整合并目标</li><li style="margin-bottom:0;"><strong>Merge skipping</strong>：跳过特定合并操作以防止过拟合</li><li style="margin-bottom:0;"><strong>Source-Attributed BPE（SA-BPE）</strong>：将数据源属性纳入分词训练过程的框架</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>数据源归因视角</strong>：从仓库和语言多样性角度分析代码分词器效率问题</li><li style="margin-bottom:0;"><strong>正则化BPE训练</strong>：通过源特定信息约束token生成，减少冗余和未使用token</li><li style="margin-bottom:0;"><strong>推理兼容性</strong>：改进训练过程但保持标准BPE的推理流程，便于生产部署</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">代码分词器易受训练数据不平衡影响，产生大量未充分训练、源特定的重复token</li><li style="margin-bottom:0;">SA-BPE能有效正则化BPE训练并最小化过拟合</li><li style="margin-bottom:0;">该方法可显著减少未充分训练token数量，同时保持与常规BPE相同的推理过程，具备生产应用价值</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.14053" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.14053</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/4/16</p>
+        </div>
+    </div>
+</body>
+</html>
