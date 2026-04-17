@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-18",
+  "title": "大模型创新与应用全景洞察 从量子学习等价到智能体合作机制与推",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.15269",
+      "title": "Cloning is as Hard as Learning for Stabilizer States",
+      "chinese_title": "稳定器态的克隆与学习同等困难",
+      "authors": "Nikhil Bansal et al.",
+      "url": "https://arxiv.org/abs/2604.15269"
+    },
+    {
+      "id": "2604.15306",
+      "title": "Generalization in LLM Problem Solving: The Case of the Shortest Path",
+      "chinese_title": "大语言模型问题求解中的泛化：以最短路径为例",
+      "authors": "Yao Tong et al.",
+      "url": "https://arxiv.org/abs/2604.15306"
+    },
+    {
+      "id": "2604.15271",
+      "title": "SegWithU: Uncertainty as Perturbation Energy for Single-Forward-Pass Risk-Aware Medical Image Segmentation",
+      "chinese_title": "SegWithU：基于不确定性扰动能量的单前向传播风险感知医学图像分割",
+      "authors": "Tianhao Fu et al.",
+      "url": "https://arxiv.org/abs/2604.15271"
+    },
+    {
+      "id": "2604.15267",
+      "title": "CoopEval: Benchmarking Cooperation-Sustaining Mechanisms and LLM Agents in Social Dilemmas",
+      "chinese_title": "CoopEval：社会困境中合作维持机制与LLM智能体基准评测",
+      "authors": "Emanuel Tewolde et al.",
+      "url": "https://arxiv.org/abs/2604.15267"
+    },
+    {
+      "id": "2604.15238",
+      "title": "A Nonlinear Separation Principle: Applications to Neural Networks, Control and Learning",
+      "chinese_title": "非线性分离原理：在神经网络、控制与学习中的应用",
+      "authors": "Anand Gokhale et al.",
+      "url": "https://arxiv.org/abs/2604.15238"
+    },
+    {
+      "id": "2604.15297",
+      "title": "Benchmarking Optimizers for MLPs in Tabular Deep Learning",
+      "chinese_title": "表格深度学习MLP优化器基准评测",
+      "authors": "Yury Gorishniy et al.",
+      "url": "https://arxiv.org/abs/2604.15297"
+    },
+    {
+      "id": "2604.15244",
+      "title": "From Tokens to Steps: Verification-Aware Speculative Decoding for Efficient Multi-Step Reasoning",
+      "chinese_title": "从Token到步骤：面向验证的投机解码加速多步推理",
+      "authors": "Kiran Purohit et al.",
+      "url": "https://arxiv.org/abs/2604.15244"
+    }
+  ],
+  "generated_at": "2026-04-17T23:42:22.623Z",
+  "org": "AI研究室"
+}
