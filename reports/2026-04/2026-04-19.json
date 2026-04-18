@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-19",
+  "title": "大模型评估、学习与推理的前沿突破与范式革新",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.15224",
+      "title": "Context Over Content: Exposing Evaluation Faking in Automated Judges",
+      "chinese_title": "语境胜于内容：揭露自动评判中的评估造假",
+      "authors": "Manan Gupta et al.",
+      "url": "https://arxiv.org/abs/2604.15224"
+    },
+    {
+      "id": "2604.15285",
+      "title": "Structural interpretability in SVMs with truncated orthogonal polynomial kernels",
+      "chinese_title": "截断正交多项式核SVM的结构可解释性",
+      "authors": "Víctor Soto-Larrosa et al.",
+      "url": "https://arxiv.org/abs/2604.15285"
+    },
+    {
+      "id": "2604.15214",
+      "title": "Optimal algorithmic complexity of inference in quantum kernel methods",
+      "chinese_title": "量子核方法推断的最优算法复杂度",
+      "authors": "Elies Gil-fuster et al.",
+      "url": "https://arxiv.org/abs/2604.15214"
+    },
+    {
+      "id": "2604.15210",
+      "title": "Learning to Think Like a Cartoon Captionist: Incongruity-Resolution Supervision for Multimodal Humor Understanding",
+      "chinese_title": "卡通标题创作思维习得：多模态幽默理解的 incongruity-res",
+      "authors": "Hatice Merve Vural et al.",
+      "url": "https://arxiv.org/abs/2604.15210"
+    },
+    {
+      "id": "2604.15203",
+      "title": "MADE: A Living Benchmark for Multi-Label Text Classification with Uncertainty Quantification of Medical Device Adverse Events",
+      "chinese_title": "MADE：医疗器械不良事件多标签文本分类与不确定性量化动态基准",
+      "authors": "Raunak Agarwal et al.",
+      "url": "https://arxiv.org/abs/2604.15203"
+    },
+    {
+      "id": "2604.15181",
+      "title": "One-shot learning for the complex dynamical behaviors of weakly nonlinear forced oscillators",
+      "chinese_title": "弱非线性受迫振子复杂动力学行为的单次学习",
+      "authors": "Teng Ma et al.",
+      "url": "https://arxiv.org/abs/2604.15181"
+    },
+    {
+      "id": "2604.15180",
+      "title": "AdaSplash-2: Faster Differentiable Sparse Attention",
+      "chinese_title": "AdaSplash-2：更快的可微稀疏注意力机制",
+      "authors": "Nuno Gonçalves et al.",
+      "url": "https://arxiv.org/abs/2604.15180"
+    }
+  ],
+  "generated_at": "2026-04-18T22:03:47.723Z",
+  "org": "AI研究室"
+}
