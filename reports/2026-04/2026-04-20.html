@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型效率革命 从量化压缩到可信评估的七维突破 | 2026/4/20</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffeaea 100%);
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #8b0000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffeaea 100%);
+            border: 1px solid #ffc8c8;
+            color: #8b0000;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            border: 1px solid #ffc8c8;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型效率革命 从量化压缩到可信评估的七维突破 | 2026/4/20</h1>
+                <div class="date">2026/4/20 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了2024年大模型领域"效率-可靠性-专业化"三位一体的演进主线。七篇论文共同指向模型压缩与评估范式的深层变革：在量化层面，研究1颠覆性地发现FP32收敛后INT4鲁棒性反而恶化，论文5则将压缩战场从离散token空间迁移至连续潜在嵌入空间，两者共同推动"后训练优化"进入精细诊断时代；在评估维度，论文4首创共形预测与传递性分析双工具诊断LLM裁判可靠性，论文6构建算法交易策略生成的领域专用benchmark，标志着从大模型"能做什么"到"何时可信"的评估重心转移；在架构创新层面，论文2验证单层Mamba的时序分类潜力，论文3通过深度感知权重手术实现真正的类遗忘而非表面抑制，论文7则阐明扩散模型正则化的非单调成本效益关系，共同体现"结构极简与机制可解释"的设计哲学。这些研究对行业的核心启示在于：大模型优化正从经验驱动转向"反直觉现象驱动"与"第一性原理分析"，未来竞争将聚焦于压缩效率的理论边界、评估工具的方法论创新，以及垂直领域可靠性的系统化保障。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>When Flat Minima Fail: Characterizing INT4 Quantization Collapse After FP32 Convergence</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.15167</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">INT4量化崩溃：FP32收敛后的平坦极小值失效机理</span>
+                        <span style="color:#666;font-size:12px;">Marcus Armstrong et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文发现FP32收敛后的模型并非天然具备INT4量化鲁棒性，通过分析154个Pythia-160m训练检查点，揭示了三阶段发散结构：快速学习期、亚稳态平台期和爆发性发散期，证明发散始于FP32收敛时刻而非学习率衰减起点，并提出Oscillatory Lock-In调度策略缓解该问题。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>校准无关逐组INT4探测</strong>：无需校准数据即可评估量化敏感性</li><li style="margin-bottom:0;"><strong>三阶段发散结构识别</strong>：快速学习期、亚稳态平台期、爆发性发散期的自动划分</li><li style="margin-bottom:0;"><strong>受控分叉实验</strong>：从预发散检查点分岔比较三种学习率调度策略</li><li style="margin-bottom:0;"><strong>峰度直接测量</strong>：排除权重异常值积累机制假说</li><li style="margin-bottom:0;"><strong>振荡锁定调度(OLI)</strong>：通过振幅校准的冷却相位稳定量化鲁棒性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>反直觉现象发现</strong>：FP32收敛后INT4量化鲁棒性反而恶化，挑战PTQ基本假设</li><li style="margin-bottom:0;"><strong>精细化 onset 预测</strong>：FP32收敛时刻优于学习率衰减作为发散预测指标</li><li style="margin-bottom:0;"><strong>机制边界定位</strong>：INT8免疫而INT4敏感，将机制锁定于16级网格粗粒度特性</li><li style="margin-bottom:0;"><strong>调度策略设计</strong>：证明振荡本身不足，振幅校准决定扰动效果</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">FP32收敛后权重更新是INT4量化发散的近因，而非学习率衰减幅度</li><li style="margin-bottom:0;">INT4发散与INT8免疫的对比将机制约束至16级网格粗粒度特性</li><li style="margin-bottom:0;">权重峰度积累非该现象的主导机制</li><li style="margin-bottom:0;">SGDR加速发散而OLI缓解发散，证明调度振幅校准的关键作用</li><li style="margin-bottom:0;">后收敛阶段的优化动态对低比特量化部署具有决定性影响</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.15167" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.15167</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>MambaSL: Exploring Single-Layer Mamba for Time Series Classification</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.15174</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">MambaSL：单层Mamba时序分类方法探索</span>
+                        <span style="color:#666;font-size:12px;">Yoo-Min Jung et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出MambaSL框架，通过最小化改造单层Mamba的选择性状态空间模型和投影层，针对时序分类任务设计。作者重新在全部30个UEA数据集上评估了20个强基线，建立统一可复现的基准，MambaSL取得最优性能并提供公开检查点。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>选择性状态空间模型</strong>：针对时序分类任务优化Mamba的核心SSM机制</li><li style="margin-bottom:0;"><strong>单层架构设计</strong>：极简的浅层网络结构降低复杂度</li><li style="margin-bottom:0;"><strong>投影层改造</strong>：适配时序数据特征的线性变换层</li><li style="margin-bottom:0;"><strong>统一评估协议</strong>：标准化数据预处理、训练配置和评估指标</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>TSC导向的假设驱动设计</strong>：提出四个针对时序分类的具体假设指导模型改造</li><li style="margin-bottom:0;"><strong>单层Mamba的探索</strong>：验证极简架构在时序任务中的有效性</li><li style="margin-bottom:0;"><strong>全面基准重建</strong>：首次在完整UEA数据集上统一评估现有方法</li><li style="margin-bottom:0;"><strong>可复现性保障</strong>：提供所有模型的公开检查点</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">单层Mamba经适度改造即可成为有效的时序分类骨干网络</li><li style="margin-bottom:0;">现有基准测试存在配置受限、数据集覆盖不全、复现困难等问题</li><li style="margin-bottom:0;">MambaSL在30个UEA数据集上取得统计显著的最优平均性能</li><li style="margin-bottom:0;">基于Mamba的架构具备作为TSC通用backbone的潜力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.15174" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.15174</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Class Unlearning via Depth-Aware Removal of Forget-Specific Directions</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.15166</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">深度感知遗忘方向移除的类别遗忘方法</span>
+                        <span style="color:#666;font-size:12px;">Arman Hatami et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">论文指出类遗忘中准确率下降不等于真正遗忘，遗忘信息可能仍编码于深层表征中。提出DAMP方法，通过深度感知的投影权重手术移除遗忘类别特定方向，无需梯度优化，在多个数据集和架构上更接近重训练标准。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>闭式权重手术</strong>：一次性无梯度更新网络权重</li><li style="margin-bottom:0;"><strong>类原型计算</strong>：在下一可学习算子的输入空间计算类别原型</li><li style="margin-bottom:0;"><strong>残差方向提取</strong>：将遗忘方向表示为相对于保留类原型的残差</li><li style="margin-bottom:0;"><strong>投影更新</strong>：基于投影的算子修改以降低对遗忘方向的下游敏感性</li><li style="margin-bottom:0;"><strong>深度感知缩放</strong>：基于探测可分性推导的无参规则，浅层小编辑、深层大编辑</li><li style="margin-bottom:0;"><strong>低秩子空间移除</strong>：多类别遗忘的自然扩展机制</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>问题重新定义</strong>：揭示类遗忘中'伪遗忘'现象，即分类器头抑制与表征移除的本质区别</li><li style="margin-bottom:0;"><strong>表征层面遗忘</strong>：确保遗忘类别结构从深层表示中真正消除，而非仅表面准确率下降</li><li style="margin-bottom:0;"><strong>深度感知机制</strong>：首次将编辑强度与网络深度系统性关联，基于探测可分性理论推导</li><li style="margin-bottom:0;"><strong>计算效率</strong>：完全避免梯度优化，实现真正的一次性闭式解</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">现有类遗忘方法常表现出弱或负选择性，保留深层遗忘类结构，或过度依赖末层偏置偏移</li><li style="margin-bottom:0;">DAMP在多种数据集（MNIST、CIFAR-10/100、Tiny ImageNet）和架构（CNN、Transformer）上均优于现有方法</li><li style="margin-bottom:0;">DAMP更接近重训练金标准，同时更好地保持保留类性能</li><li style="margin-bottom:0;">DAMP有效减少了深层中遗忘类别的残余结构</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.15166" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.15166</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Diagnosing LLM Judge Reliability: Conformal Prediction Sets and Transitivity Violations</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.15302</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">LLM评判可靠性诊断：共形预测集与传递性违背</span>
+                        <span style="color:#666;font-size:12px;">Manan Gupta et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">论文针对LLM-as-judge框架的实例级可靠性问题，提出传递性违规分析与分裂共形预测集的双工具诊断方法，在SummEval数据集上揭示聚合指标掩盖的广泛不一致性，并以预测集宽度作为文档难度指标，发现评价标准比裁判模型对可靠性影响更大。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>传递性分析</strong>：检测成对比较中的有向三元环违规以揭示实例级不一致性</li><li style="margin-bottom:0;"><strong>分裂共形预测</strong>：基于1-5分Likert量表构建具有(1-α)覆盖保证的预测集合</li><li style="margin-bottom:0;"><strong>集合宽度指标</strong>：将预测集大小作为实例级可靠性量化指标</li><li style="margin-bottom:0;"><strong>跨裁判一致性验证</strong>：通过Krippendorff's α评估指标捕获的是文档难度而非模型噪声</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双工具诊断框架</strong>：首次将序数传递性分析与共形预测结合用于LLM裁判可靠性评估</li><li style="margin-bottom:0;"><strong>实例级可靠性指标</strong>：提出预测集宽度作为细粒度、可解释的难度指标，突破传统聚合指标的局限</li><li style="margin-bottom:0;"><strong>标准-裁判效应分离</strong>：系统论证评价准则比裁判模型本身对可靠性影响更显著</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>准则主导效应</strong>：相关性判断最可靠（平均集大小3.0），连贯性中等（3.9），流畅性与一致性不可靠（4.9）</li><li style="margin-bottom:0;"><strong>聚合指标盲区</strong>：低总体违规率（0.8-4.1%）掩盖33-67%文档存在传递性违规</li><li style="margin-bottom:0;"><strong>预测集有效性</strong>：宽度与可靠性显著正相关（r_s=+0.576），且跨裁判一致（α=0.32-0.38）</li><li style="margin-bottom:0;"><strong>实践建议</strong>：优先关注评价准则选择而非裁判模型调优</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.15302" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.15302</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Compressing Sequences in the Latent Embedding Space: $K$-Token Merging for Large Language Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.15153</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">大语言模型潜在嵌入空间的序列压缩：K令牌合并方法</span>
+                        <span style="color:#666;font-size:12px;">Zihao Xu et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出K-Token Merging，一种在潜在嵌入空间进行序列压缩的方法，通过轻量编码器将每K个连续token嵌入合并为单一嵌入，结合LoRA适配实现大语言模型的高效长文本处理。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>潜在空间压缩</strong>：在嵌入空间而非token空间执行压缩操作，避免离散空间的优化困难</li><li style="margin-bottom:0;"><strong>分块合并机制</strong>：将连续K个token嵌入通过轻量编码器融合为单一表示</li><li style="margin-bottom:0;"><strong>LoRA适配策略</strong>：仅对LLM进行低秩适配以适应压缩后的序列表示，保持生成头不变</li><li style="margin-bottom:0;"><strong>解耦设计</strong>：压缩编码器与生成过程分离，保留原始词表输出能力</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>空间转换</strong>：首次系统性地将prompt压缩从token空间拓展至连续潜在嵌入空间</li><li style="margin-bottom:0;"><strong>端到端可微</strong>：避免了离散token选择的不可导问题，支持梯度优化</li><li style="margin-bottom:0;"><strong>固定压缩比</strong>：通过K值直接控制压缩率，简化部署决策</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>效率优势</strong>：实现最高75%的输入长度压缩</li><li style="margin-bottom:0;"><strong>性能权衡</strong>：在压缩率与性能间达到帕累托最优前沿</li><li style="margin-bottom:0;"><strong>任务泛化</strong>：在结构化推理、情感分类、代码编辑三类任务上验证有效性</li><li style="margin-bottom:0;"><strong>生成兼容</strong>：压缩仅作用于输入编码，不改变模型的词表生成空间</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.15153" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.15153</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>QuantCode-Bench: A Benchmark for Evaluating the Ability of Large Language Models to Generate Executable Algorithmic Trading Strategies</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.15151</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">QuantCode-Bench：大语言模型生成可执行量化交易策略的能力</span>
+                        <span style="color:#666;font-size:12px;">Alexey Khoroshilov et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出QuantCode-Bench基准，系统评估大语言模型生成可执行量化交易策略的能力，涵盖400个多源任务，通过多阶段管道评估语法正确性、回测执行、交易产生及语义对齐，发现当前模型的核心瓶颈在于交易逻辑操作化与API正确使用而非语法问题。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多阶段评估管道</strong>：语法检查→回测执行→交易验证→LLM语义评判</li><li style="margin-bottom:0;"><strong>双设置对比</strong>：单轮生成与多轮agentic修复</li><li style="margin-bottom:0;">Backtrader框架专用API适配</li><li style="margin-bottom:0;"><strong>多源数据融合</strong>：Reddit/TradingView/StackExchange/GitHub/合成数据</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>领域专用benchmark首创</strong>：首次针对算法交易策略生成构建系统评估体系</li><li style="margin-bottom:0;"><strong>语义-行为对齐评估</strong>：将自然语言描述与策略在数据上的可观测行为关联验证</li><li style="margin-bottom:0;"><strong>失败模式分层分析</strong>：定位语法/执行/逻辑/语义各阶段瓶颈</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">策略生成是区别于通用代码生成的独立任务类别</li><li style="margin-bottom:0;">当前LLM的主要局限非语法层面，而是交易逻辑正确操作化、专用API使用及任务语义 adherence</li><li style="margin-bottom:0;">多轮agentic设置可部分缓解但无法根本解决领域知识缺陷</li><li style="margin-bottom:0;">成功需要自然语言描述、金融逻辑与数据驱动行为的三重对齐</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.15151" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.15151</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>An Analysis of Regularization and Fokker-Planck Residuals in Diffusion Models for Image Generation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.15171</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">扩散模型图像生成中的正则化与Fokker-Planck残差分析</span>
+                        <span style="color:#666;font-size:12px;">Onno Niemann et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">扩散模型去噪分数匹配训练常违反Fokker-Planck方程，直接惩罚偏差计算代价高且未必提升生成质量。本文研究更简单的惩罚项能否以更低计算成本获得类似收益。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>去噪分数匹配(DSM)</strong>：扩散模型的标准训练目标</li><li style="margin-bottom:0;"><strong>Fokker-Planck方程</strong>：描述数据密度演化的偏微分方程</li><li style="margin-bottom:0;"><strong>FP残差惩罚</strong>：直接约束模型满足FP方程的正则化方法</li><li style="margin-bottom:0;"><strong>轻量级正则化项</strong>：替代FP残差计算的简化惩罚项</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>成本效益分析</strong>：揭示强FP正则化与生成质量间的非单调关系</li><li style="margin-bottom:0;"><strong>正则化简化</strong>：用计算代价更低的惩罚项替代直接FP残差计算</li><li style="margin-bottom:0;"><strong>经验性筛选</strong>：系统比较多种轻量级正则化器的实际效果</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">FP正则化的收益可在大幅降低计算成本下获得</li><li style="margin-bottom:0;">严格遵循FP方程并非生成质量的必要条件</li><li style="margin-bottom:0;">存在更优的正则化强度权衡点</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.15171" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.15171</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/4/20</p>
+        </div>
+    </div>
+</body>
+</html>

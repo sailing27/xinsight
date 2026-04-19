@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-20",
+  "title": "大模型效率革命 从量化压缩到可信评估的七维突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.15167",
+      "title": "When Flat Minima Fail: Characterizing INT4 Quantization Collapse After FP32 Convergence",
+      "chinese_title": "INT4量化崩溃：FP32收敛后的平坦极小值失效机理",
+      "authors": "Marcus Armstrong et al.",
+      "url": "https://arxiv.org/abs/2604.15167"
+    },
+    {
+      "id": "2604.15174",
+      "title": "MambaSL: Exploring Single-Layer Mamba for Time Series Classification",
+      "chinese_title": "MambaSL：单层Mamba时序分类方法探索",
+      "authors": "Yoo-Min Jung et al.",
+      "url": "https://arxiv.org/abs/2604.15174"
+    },
+    {
+      "id": "2604.15166",
+      "title": "Class Unlearning via Depth-Aware Removal of Forget-Specific Directions",
+      "chinese_title": "深度感知遗忘方向移除的类别遗忘方法",
+      "authors": "Arman Hatami et al.",
+      "url": "https://arxiv.org/abs/2604.15166"
+    },
+    {
+      "id": "2604.15302",
+      "title": "Diagnosing LLM Judge Reliability: Conformal Prediction Sets and Transitivity Violations",
+      "chinese_title": "LLM评判可靠性诊断：共形预测集与传递性违背",
+      "authors": "Manan Gupta et al.",
+      "url": "https://arxiv.org/abs/2604.15302"
+    },
+    {
+      "id": "2604.15153",
+      "title": "Compressing Sequences in the Latent Embedding Space: $K$-Token Merging for Large Language Models",
+      "chinese_title": "大语言模型潜在嵌入空间的序列压缩：K令牌合并方法",
+      "authors": "Zihao Xu et al.",
+      "url": "https://arxiv.org/abs/2604.15153"
+    },
+    {
+      "id": "2604.15151",
+      "title": "QuantCode-Bench: A Benchmark for Evaluating the Ability of Large Language Models to Generate Executable Algorithmic Trading Strategies",
+      "chinese_title": "QuantCode-Bench：大语言模型生成可执行量化交易策略的能力",
+      "authors": "Alexey Khoroshilov et al.",
+      "url": "https://arxiv.org/abs/2604.15151"
+    },
+    {
+      "id": "2604.15171",
+      "title": "An Analysis of Regularization and Fokker-Planck Residuals in Diffusion Models for Image Generation",
+      "chinese_title": "扩散模型图像生成中的正则化与Fokker-Planck残差分析",
+      "authors": "Onno Niemann et al.",
+      "url": "https://arxiv.org/abs/2604.15171"
+    }
+  ],
+  "generated_at": "2026-04-19T22:03:32.220Z",
+  "org": "AI研究室"
+}
