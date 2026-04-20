@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-21",
+  "title": "大模型技术突破 从预报校正到自我进化",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.16238",
+      "title": "Enhancing AI and Dynamical Subseasonal Forecasts with Probabilistic Bias Correction",
+      "chinese_title": "概率偏差订正改进AI与动力延伸期预报",
+      "authors": "Hannah Guan et al.",
+      "url": "https://arxiv.org/abs/2604.16238"
+    },
+    {
+      "id": "2604.16279",
+      "title": "Evaluating the Progression of Large Language Model Capabilities for Small-Molecule Drug Design",
+      "chinese_title": "大语言模型小分子药物设计能力进展评估",
+      "authors": "Shriram Chennakesavalu et al.",
+      "url": "https://arxiv.org/abs/2604.16279"
+    },
+    {
+      "id": "2604.16275",
+      "title": "No Universal Courtesy: A Cross-Linguistic, Multi-Model Study of Politeness Effects on LLMs Using the PLUM Corpus",
+      "chinese_title": "跨语言视角下礼貌用语对大型语言模型的差异化影响研究",
+      "authors": "Hitesh Mehta et al.",
+      "url": "https://arxiv.org/abs/2604.16275"
+    },
+    {
+      "id": "2604.16265",
+      "title": "FL-MHSM: Spatially-adaptive Fusion and Ensemble Learning for Flood-Landslide Multi-Hazard Susceptibility Mapping at Regional Scale",
+      "chinese_title": "区域尺度洪涝-滑坡多灾种易发性空间自适应融合制图",
+      "authors": "Aswathi Mundayatt et al.",
+      "url": "https://arxiv.org/abs/2604.16265"
+    },
+    {
+      "id": "2604.16264",
+      "title": "Information Router for Mitigating Modality Dominance in Vision-Language Models",
+      "chinese_title": "视觉-语言模型中缓解模态主导的信息路由器",
+      "authors": "Seulgi Kim et al.",
+      "url": "https://arxiv.org/abs/2604.16264"
+    },
+    {
+      "id": "2604.16242",
+      "title": "Detecting and Suppressing Reward Hacking with Gradient Fingerprints",
+      "chinese_title": "基于梯度指纹检测与抑制奖励篡改",
+      "authors": "Songtao Wang et al.",
+      "url": "https://arxiv.org/abs/2604.16242"
+    },
+    {
+      "id": "2601.21343",
+      "title": "Self-Improving Pretraining: using post-trained models to pretrain better models",
+      "chinese_title": "自提升预训练：用后训练模型优化预训练效果",
+      "authors": "Ellen Xiaoqing Tan et al.",
+      "url": "https://arxiv.org/abs/2601.21343"
+    }
+  ],
+  "generated_at": "2026-04-20T22:02:42.361Z",
+  "org": "AI研究室"
+}
