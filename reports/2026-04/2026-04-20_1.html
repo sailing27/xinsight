@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跨模态对齐与多维评测 AI能力验证的新基准 | 2026/4/20</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffeaea 100%);
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #8b0000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffeaea 100%);
+            border: 1px solid #ffc8c8;
+            color: #8b0000;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            border: 1px solid #ffc8c8;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>跨模态对齐与多维评测 AI能力验证的新基准 | 2026/4/20</h1>
+                <div class="date">2026/4/20 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">当前AI技术验证测试领域正经历从"表层性能评分"向"深层能力解构"的范式转型，核心驱动力源于对模型真实推理机制与多模态对齐质量的质疑。三篇论文共同揭示了一个关键趋势：传统基准测试的指标相关性正被重新校准，行业亟需更精细化的评估方法论以捕捉模型的隐性缺陷与模态依赖偏差。<br><br>技术层面呈现三大共性方向：其一，<strong>解耦式评估框架</strong>成为共识，三研究均突破单一分数评价，分别从指令-质量-排他性、性能-推理双维、模态严格等价三个角度重构评估维度；其二，<strong>人机对齐的深度验证</strong>被置于核心，无论是VEFX-Reward的人类偏好建模、法律文本的细粒度错误归因，还是跨模态信息的人工校验，均强调消除自动化指标的幻觉性；其三，<strong>模态真实贡献的剥离分析</strong>构成前沿焦点，尤其VLM研究揭示的"文本推理主导"现象，对多模态大模型的能力宣称构成根本性挑战。<br><br>对行业而言，这些研究警示：当前LLM/VLM在垂直领域（法律、视频生成）的部署存在显著的可靠性鸿沟，"高性能-高错误"的权衡困境要求评估体系从" benchmarking"转向"reasoning diagnosis"。未来模型开发需将可解释性错误分析嵌入迭代闭环，同时多模态系统必须建立视觉贡献度的量化审计机制，方能支撑高风险场景的实际落地。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>VEFX-Bench: A Holistic Benchmark for Generic Video Editing and Visual Effects</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.16272</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">VEFX-Bench：通用视频编辑与视觉效果的综合基准测试</span>
+                        <span style="color:#666;font-size:12px;">Xiangbo Gao et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">随着AI辅助视频创作日益实用，指令引导的视频编辑成为满足专业需求的关键技术。然而该领域缺乏大规模人工标注的完整编辑示例数据集和标准化评估工具。现有资源规模小、缺少编辑输出或人工质量标签，评估依赖昂贵的人工检查或通用视觉语言模型。本文提出VEFX-Dataset，包含5,049个视频编辑示例，覆盖9大类32子类，沿指令遵循、渲染质量、编辑排他性三个解耦维度标注。基于此构建VEFX-Reward奖励模型，联合处理源视频、编辑指令和编辑后视频，通过序数回归预测各维度质量分数。同时发布VEFX-Bench基准，包含300个精选视频-提示对。实验表明VEFX-Reward与人类判断对齐度优于通用VLM评判器和现有奖励模型，并揭示当前模型在视觉合理性、指令遵循和编辑局部性方面存在持续差距。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>三维标注体系</strong>：构建指令遵循、渲染质量、编辑排他性三个解耦维度的质量评估框架，实现视频编辑质量的精细化度量</li><li style="margin-bottom:0;"><strong>序数回归预测</strong>：采用序数回归方法预测各维度质量分数，更好地建模人类偏好的有序层级关系</li><li style="margin-bottom:0;"><strong>联合多模态处理</strong>：同时编码源视频、文本指令和编辑后视频，建立三者关联的深层语义理解</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>大规模人工数据集</strong>：首次发布5,049例完整视频编辑数据集，填补领域缺乏大规模人工标注资源的空白</li><li style="margin-bottom:0;"><strong>专用奖励模型</strong>：设计面向视频编辑质量评估的专用奖励模型VEFX-Reward，替代通用VLM评判器</li><li style="margin-bottom:0;"><strong>标准化评测基准</strong>：推出300对标准化测试集VEFX-Bench，实现不同编辑系统的公平对比</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>人机对齐优势</strong>：VEFX-Reward在标准IQA/VQA指标和成对偏好评估上，与人类判断的相关性显著优于通用模型</li><li style="margin-bottom:0;"><strong>模型能力差距</strong>：当前商业与开源编辑系统在视觉合理性、指令遵循和编辑局部性三方面存在持续性不足</li><li style="margin-bottom:0;"><strong>评估范式革新</strong>：专用奖励模型可有效替代昂贵人工检查，为视频编辑领域提供可扩展的自动评估方案</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.16272" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.16272</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>From Benchmarking to Reasoning: A Dual-Aspect, Large-Scale Evaluation of LLMs on Vietnamese Legal Text</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.16270</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">越南法律文本大模型评测：从基准测试到推理能力的大规模评估</span>
+                        <span style="color:#666;font-size:12px;">Van-Truong Le et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">越南法律文本的复杂性阻碍了公众获取司法公正。本文提出双维度评估框架：首先对GPT-4o、Claude 3 Opus、Gemini 1.5 Pro和Grok-1四个模型在准确性、可读性和一致性三方面进行基准测试；其次基于60篇复杂越南法律文章构建专家验证的错误分类体系进行大规模错误分析。研究发现Grok-1在可读性和一致性上表现优异但牺牲法律准确性，Claude 3 Opus高准确性掩盖了微妙推理错误，错误示例和误解释是最普遍的失败类型，核心挑战在于受控的准确法律推理而非摘要能力。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双维评估框架</strong>：结合定量基准测试与定性深度错误分析，从性能表现和推理机制两个层面全面评估大语言模型在法律文本简化任务中的真实能力</li><li style="margin-bottom:0;"><strong>三维基准指标</strong>：建立准确性、可读性、一致性三个核心评估维度，对四个最先进大语言模型进行系统性性能对比与量化排名</li><li style="margin-bottom:0;"><strong>专家验证分类法</strong>：构建新颖的错误类型学并经法律专家验证，为大规模错误分析提供标准化、可复用的分类框架与标注依据</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>大规模错误分析</strong>：在60篇精选复杂越南法律文章上开展深入错误分析，超越表层指标揭示模型失败的具体模式与深层原因</li><li style="margin-bottom:0;"><strong>法律文本简化</strong>：聚焦越南法律文本这一高难度领域，探索大语言模型降低公众司法获取门槛的实际应用潜力与局限</li><li style="margin-bottom:0;"><strong>推理能力诊断</strong>：通过错误类型学区分摘要能力与法律推理能力，识别当前大语言模型在受控法律推理方面的核心瓶颈</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能权衡困境</strong>：Grok-1在可读性和一致性上表现卓越但以牺牲细粒度法律准确性为代价，Claude 3 Opus高准确性掩盖大量微妙关键推理错误</li><li style="margin-bottom:0;"><strong>主要失败模式</strong>：错误示例和误解释是最普遍的错误类型，证实当前大语言模型的首要挑战是受控的准确法律推理而非文本摘要能力</li><li style="margin-bottom:0;"><strong>评估范式转型</strong>：整合定量基准与定性深度分析的双维方法，为法律应用领域提供全面、可操作的模型评估新范式与改进路径</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.16270" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.16270</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Do Vision-Language Models Truly Perform Vision Reasoning? A Rigorous Study of the Modality Gap</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.16256</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">视觉-语言模型真能进行视觉推理吗？模态差距的严谨研究</span>
+                        <span style="color:#666;font-size:12px;">Yige Xu et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">视觉语言模型（VLM）中的推理能力近期受到广泛关注，但其优异表现是否源于真正的视觉推理仍不明确。本文提出CrossMath基准，通过构建文本、图像、图文三种等价格式的问题，系统测量模态差异。实验发现VLM主要在文本空间进行推理，视觉输入常降低性能。为此构建CrossMath训练集进行微调，显著提升各模态推理能力及通用视觉推理任务表现。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨模态对齐</strong>：通过人工验证确保三种模态格式包含完全相同的任务相关信息，消除信息不匹配等混淆因素</li><li style="margin-bottom:0;"><strong>控制变量法</strong>：严格隔离模态特异性推理差异，精确测量纯视觉与纯文本推理能力差距</li><li style="margin-bottom:0;"><strong>多模态微调</strong>：构建CrossMath训练集对VLM进行微调，提升单一模态与联合模态的推理性能</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>等价基准构建</strong>：首创保证信息完全一致的文本、图像、图文三种格式问题，实现严格的跨模态对比</li><li style="margin-bottom:0;"><strong>模态差距量化</strong>：系统揭示VLM在文本推理上显著优于视觉推理，且视觉输入常损害文本基线性能</li><li style="margin-bottom:0;"><strong>训练数据策展</strong>：针对性地构建跨模态训练数据，通过微调有效弥合模态间的推理能力鸿沟</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>文本依赖主导</strong>：当前VLM主要在文本空间进行推理，对视觉证据的真实依赖极为有限</li><li style="margin-bottom:0;"><strong>视觉输入干扰</strong>：加入视觉数据（图文）相比纯文本基线频繁导致性能下降，暴露视觉理解缺陷</li><li style="margin-bottom:0;"><strong>微调显著有效</strong>：在CrossMath上微调能全面提升各模态推理表现，并泛化到通用视觉推理任务</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.16256" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.16256</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/4/20</p>
+        </div>
+    </div>
+</body>
+</html>

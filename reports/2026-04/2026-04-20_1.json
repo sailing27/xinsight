@@ -1,0 +1,34 @@
+{
+  "date": "2026-04-20_1",
+  "title": "跨模态对齐与多维评测 AI能力验证的新基准",
+  "topic": "AI技术验证测试",
+  "directions": [
+    "llm"
+  ],
+  "paper_count": 3,
+  "papers": [
+    {
+      "id": "2604.16272",
+      "title": "VEFX-Bench: A Holistic Benchmark for Generic Video Editing and Visual Effects",
+      "chinese_title": "VEFX-Bench：通用视频编辑与视觉效果的综合基准测试",
+      "authors": "Xiangbo Gao et al.",
+      "url": "https://arxiv.org/abs/2604.16272"
+    },
+    {
+      "id": "2604.16270",
+      "title": "From Benchmarking to Reasoning: A Dual-Aspect, Large-Scale Evaluation of LLMs on Vietnamese Legal Text",
+      "chinese_title": "越南法律文本大模型评测：从基准测试到推理能力的大规模评估",
+      "authors": "Van-Truong Le et al.",
+      "url": "https://arxiv.org/abs/2604.16270"
+    },
+    {
+      "id": "2604.16256",
+      "title": "Do Vision-Language Models Truly Perform Vision Reasoning? A Rigorous Study of the Modality Gap",
+      "chinese_title": "视觉-语言模型真能进行视觉推理吗？模态差距的严谨研究",
+      "authors": "Yige Xu et al.",
+      "url": "https://arxiv.org/abs/2604.16256"
+    }
+  ],
+  "generated_at": "2026-04-20T13:45:02.265Z",
+  "org": "AI研究室"
+}
