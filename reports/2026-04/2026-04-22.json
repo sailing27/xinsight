@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-22",
+  "title": "大模型从中心到边缘 推理瓶颈、智能体主权与去中心化新范式",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2602.22750",
+      "title": "The Inference Bottleneck: Antitrust and Neutrality Duties in the Age of Cognitive Infrastructure",
+      "chinese_title": "认知基础设施时代的反垄断与中立义务：推理瓶颈",
+      "authors": "Gaston Besanson et al.",
+      "url": "https://arxiv.org/abs/2602.22750"
+    },
+    {
+      "id": "2601.20115",
+      "title": "How Much Progress Has There Been in NVIDIA Datacenter GPUs?",
+      "chinese_title": "英伟达数据中心GPU进展几何？",
+      "authors": "Emanuele Del Sozzo et al.",
+      "url": "https://arxiv.org/abs/2601.20115"
+    },
+    {
+      "id": "2602.17753",
+      "title": "The 2025 AI Agent Index: Documenting Technical and Safety Features of Deployed Agentic AI Systems",
+      "chinese_title": "2025年AI智能体指数：记录已部署智能体AI系统的技术与安全特性",
+      "authors": "Leon Staufer et al.",
+      "url": "https://arxiv.org/abs/2602.17753"
+    },
+    {
+      "id": "2602.15090",
+      "title": "The Agentic Automation Canvas: a structured framework for agentic AI project design",
+      "chinese_title": "智能体自动化画布：AI智能体项目设计的结构化框架",
+      "authors": "Sebastian Lobentanzer et al.",
+      "url": "https://arxiv.org/abs/2602.15090"
+    },
+    {
+      "id": "2602.03786",
+      "title": "AOrchestra: Automating Sub-Agent Creation for Agentic Orchestration",
+      "chinese_title": "智能体编排自动化：子智能体创建框架",
+      "authors": "Jianhao Ruan et al.",
+      "url": "https://arxiv.org/abs/2602.03786"
+    },
+    {
+      "id": "2602.14951",
+      "title": "Sovereign Agents: Towards Infrastructural Sovereignty and Diffused Accountability in Decentralized AI",
+      "chinese_title": "主权智能体：迈向去中心化AI的基础设施主权与分散问责",
+      "authors": "Botao Amber Hu et al.",
+      "url": "https://arxiv.org/abs/2602.14951"
+    },
+    {
+      "id": "2604.17373",
+      "title": "Active Inference-Based Adaptive Routing for Heterogeneous Edge AI Services",
+      "chinese_title": "基于主动推理的异构边缘AI服务自适应路由",
+      "authors": "Zihang Wang et al.",
+      "url": "https://arxiv.org/abs/2604.17373"
+    }
+  ],
+  "generated_at": "2026-04-21T22:12:30.312Z",
+  "org": "AI研究室"
+}

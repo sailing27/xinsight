@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型从中心到边缘 推理瓶颈、智能体主权与去中心化新范式 | 2026/4/22</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffeaea 100%);
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #8b0000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffeaea 100%);
+            border: 1px solid #ffc8c8;
+            color: #8b0000;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffe8e8 100%);
+            border: 1px solid #ffc8c8;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型从中心到边缘 推理瓶颈、智能体主权与去中心化新范式 | 2026/4/22</h1>
+                <div class="date">2026/4/22 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示大模型技术正经历从"模型中心"向"系统中心"的深层范式转换。七篇论文共同指向三个技术趋势：其一，<strong>推理环节的战略权重跃升</strong>——从反垄断规制视角的"认知基础设施"瓶颈识别，到GPU算力追踪中FP16/FP32性能倍增周期的量化，均表明推理已成为产业竞争与政策干预的核心战场；其二，<strong>智能体系统的工程化重构</strong>——Agent Index的透明度审计、Automation Canvas的事前设计框架与AOrchestra的动态子代理编排，形成"观测-规划-执行"的完整方法论闭环，推动AI系统从静态模型向可组合、可治理的代理架构演进；其三，<strong>分布式自主性的技术-制度耦合</strong>——Sovereign Agents的密码学自托管与Active Inference的边缘自适应路由，分别从治理机制与认知架构层面探索去中心化智能的可行路径。<br><br>对行业而言，这一趋势意味着技术竞争焦点正从单点模型性能转向系统级编排效率与基础设施可控性；对研究而言，跨学科理论迁移（如神经科学至边缘计算、政治哲学至AI治理）与前瞻性设计范式（从事后文档到事前结构化规划）将成为突破创新瓶颈的关键方法论。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>The Inference Bottleneck: Antitrust and Neutrality Duties in the Age of Cognitive Infrastructure</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2602.22750</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">认知基础设施时代的反垄断与中立义务：推理瓶颈</span>
+                        <span style="color:#666;font-size:12px;">Gaston Besanson et al.</span>
+                        <span style="background:linear-gradient(135deg,#9C27B0 0%,#7B1FA2 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">📊 引用1</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">论文指出生成式AI竞争正从模型训练转向推理分发环节，大型推理平台可能成为下游应用依赖的'认知基础设施'，存在非价格歧视和路由操纵等新型封锁风险，并提出'中性推理'监管框架。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>认知基础设施</strong>：以可测量依赖度、纵向激励和歧视能力三要素构建的可证伪概念</li><li style="margin-bottom:0;"><strong>非价格歧视机制</strong>：通过延迟、吞吐量、错误率、上下文限制和功能管控等技术参数实施封锁</li><li style="margin-bottom:0;"><strong>路由透明度</strong>：模型选择工具和服务时的默认路由与导向机制的可审计性</li><li style="margin-bottom:0;"><strong>FRAND式非歧视原则</strong>：对同类买方的服务质量平等待遇</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>竞争阶段转换</strong>：将反垄断关注从训练环节转向推理环节，识别出'推理瓶颈'新范式</li><li style="margin-bottom:0;"><strong>封锁形式拓展</strong>：超越传统价格歧视，系统分析技术参数歧视和路由操纵的隐蔽性危害</li><li style="margin-bottom:0;"><strong>监管框架创新</strong>：提出'Neutral Inference'针对性行为规制，以可审计性替代结构性救济</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">推理环节正成为AI产业竞争的关键瓶颈，传统市场界定方法难以适用</li><li style="margin-bottom:0;">纵向一体化平台可通过难以观测的非价格手段实施封锁，提高竞争对手成本即可获利，无需掠夺性定价</li><li style="margin-bottom:0;">'中性推理'三原则（服务质量平等、路由透明、FRAND非歧视）可在不预设市场结构的前提下，对具备功能守门人地位的平台实施精准监管</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2602.22750" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2602.22750</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>How Much Progress Has There Been in NVIDIA Datacenter GPUs?</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2601.20115</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">英伟达数据中心GPU进展几何？</span>
+                        <span style="color:#666;font-size:12px;">Emanuele Del Sozzo et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文系统分析了2000年代中期至今NVIDIA数据中心GPU的技术演进，构建涵盖计算性能、内存、价格、功耗的综合数据集，量化各类指标的倍增时间，并评估美国出口管制政策对AI芯片性能差距的潜在影响。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>GPU性能指标追踪</strong>：涵盖FP16/FP32/FP64浮点运算性能</li><li style="margin-bottom:0;"><strong>内存子系统分析</strong>：容量与带宽增长趋势量化</li><li style="margin-bottom:0;"><strong>能效与经济性评估</strong>：每美元、每瓦特性能指标计算</li><li style="margin-bottom:0;"><strong>倍增时间建模</strong>：采用指数增长模型拟合各指标发展速率</li><li style="margin-bottom:0;"><strong>出口管制影响模拟</strong>：量化政策实施前后的性能差距变化</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>政策-技术耦合分析</strong>：将芯片出口管制政策与技术演进数据结合，量化政策干预效果</li><li style="margin-bottom:0;"><strong>长周期数据中心GPU专用数据集</strong>：跨越近20年的系统性数据汇编，聚焦企业级而非消费级产品</li><li style="margin-bottom:0;"><strong>多维度进度指标</strong>：同时考察原始性能、内存带宽、经济性、能效四个维度的差异化演进速率</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>FP16/FP32算力倍增时间</strong>：分别为1.44年和1.69年（不含稀疏性加速）</li><li style="margin-bottom:0;"><strong>FP64算力增长显著滞后</strong>：倍增时间2.06-3.79年，反映AI训练对低精度计算的倾斜</li><li style="margin-bottom:0;"><strong>内存瓶颈凸显</strong>：容量与带宽倍增时间3.32-3.53年，远低于算力增速，构成扩展性约束</li><li style="margin-bottom:0;"><strong>价格与功耗分化</strong>：价格约5.1年翻倍，功耗约16年翻倍，能效提升显著但采购成本攀升</li><li style="margin-bottom:0;"><strong>出口管制政策效果</strong>：新规可将潜在性能差距从23.6倍压缩至3.54倍，但完全封锁假设下仍存在代际落差</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2601.20115" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2601.20115</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>The 2025 AI Agent Index: Documenting Technical and Safety Features of Deployed Agentic AI Systems</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2602.17753</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">2025年AI智能体指数：记录已部署智能体AI系统的技术与安全特性</span>
+                        <span style="color:#666;font-size:12px;">Leon Staufer et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文构建2025 AI Agent Index，系统记录30个前沿智能体的技术特征与安全属性，揭示开发者透明度差异及安全信息披露不足的普遍问题。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>大规模信息聚合</strong>：基于公开资料与开发者通信的多源数据采集</li><li style="margin-bottom:0;"><strong>分类索引框架</strong>：涵盖来源、设计、能力、生态、安全五维度的结构化文档系统</li><li style="margin-bottom:0;"><strong>透明度评估</strong>：对开发者信息披露水平的比较分析方法论</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>首个专门追踪部署级AI Agent的综合指数</strong>：区别于通用AI模型基准，聚焦'智能体'这一特定形态</li><li style="margin-bottom:0;"><strong>动态追踪机制</strong>：建立可持续更新的在线数据库而非一次性研究</li><li style="margin-bottom:0;"><strong>政策导向设计</strong>：直接服务于监管需求与风险治理框架构建</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>透明度分化</strong>：不同开发者在技术披露上存在显著差异</li><li style="margin-bottom:0;"><strong>安全信息缺失</strong>：多数开发者极少公开安全评估与社会影响分析</li><li style="margin-bottom:0;"><strong>生态复杂性</strong>：AI Agent领域快速演变且文档化程度不足，亟需系统性监测工具</li><li style="margin-bottom:0;"><strong>治理缺口</strong>：当前行业自我监管不足以支撑有效政策制定</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2602.17753" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2602.17753</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>The Agentic Automation Canvas: a structured framework for agentic AI project design</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2602.15090</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">智能体自动化画布：AI智能体项目设计的结构化框架</span>
+                        <span style="color:#666;font-size:12px;">Sebastian Lobentanzer et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">论文提出Agentic Automation Canvas（AAC）框架，用于代理式AI系统的前瞻性设计与治理，通过六维度结构化捕获项目信息，并以语义网兼容的元数据模式实现机器可读的FAIR合规项目契约。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语义网兼容元数据模式</strong>：基于Schema.org和W3C DCAT等本体的受控词表映射</li><li style="margin-bottom:0;"><strong>RO-Crate导出机制</strong>：实现版本化、可共享的机器互操作项目契约</li><li style="margin-bottom:0;"><strong>客户端隐私保护架构</strong>：全本地处理的实时验证Web应用，无需服务器端数据传输</li><li style="margin-bottom:0;"><strong>六维度项目捕获模型</strong>：涵盖定义范围、用户预期收益量化、开发可行性、治理分级、数据敏感度及产出评估</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>前瞻性设计范式转换</strong>：从回溯性文档（Model Cards/Datasheets）转向代理式系统的事前结构化规划</li><li style="margin-bottom:0;"><strong>人机契约形式化</strong>：将用户-开发者沟通转化为机器可执行的语义契约</li><li style="margin-bottom:0;"><strong>收益量化整合</strong>：在框架层面内嵌可量化的效益指标而非仅技术规格</li><li style="margin-bottom:0;"><strong>FAIR合规工程化</strong>：通过RO-Crate实现AI项目元数据的Findable/Accessible/Interoperable/Reusable标准落地</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">现有AI文档实践存在回溯性与机器不可读的根本局限</li><li style="margin-bottom:0;">AAC通过六维框架建立用户与开发者间的标准化沟通媒介</li><li style="margin-bottom:0;">语义网技术与RO-Crate格式确保跨域互操作性与长期可复用性</li><li style="margin-bottom:0;">临床、科研及机构场景的多样性验证表明框架具备领域泛化能力</li><li style="margin-bottom:0;">开源工具链降低采纳门槛，推动代理式AI设计的工程化标准化</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2602.15090" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2602.15090</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>AOrchestra: Automating Sub-Agent Creation for Agentic Orchestration</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2602.03786</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">智能体编排自动化：子智能体创建框架</span>
+                        <span style="color:#666;font-size:12px;">Jianhao Ruan et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">论文提出AOrchestra系统，通过统一元组抽象（指令、上下文、工具、模型）实现动态子代理自动生成，解决复杂长程任务中多轮求解的自适应编排问题，在三大基准上取得显著性能提升。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>统一智能体抽象</strong>：将任意智能体建模为〈Instruction, Context, Tools, Model〉四元组</li><li style="margin-bottom:0;"><strong>动态子代理生成</strong>：中央编排器按需实例化专用执行器</li><li style="margin-bottom:0;"><strong>上下文策展</strong>：自动筛选任务相关上下文信息</li><li style="margin-bottom:0;"><strong>工具与模型选择</strong>：自适应匹配最优工具和基础模型</li><li style="margin-bottom:0;"><strong>框架无关设计</strong>：支持即插即用 diverse agents</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>组合式能力配方</strong>：四元组作为可组合的能力原子，突破静态预定义子代理的限制</li><li style="margin-bottom:0;"><strong>即时代理创建</strong>：on-the-fly自动生成而非人工预设子代理</li><li style="margin-bottom:0;"><strong>性能-成本可控权衡</strong>：显式建模并调节推理成本与效果的帕累托前沿</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">AOrchestra在GAIA、SWE-Bench、Terminal-Bench三大挑战性基准上，配合Gemini-3-Flash实现16.28%的相对性能提升</li><li style="margin-bottom:0;">显著降低人工工程投入，实现自动化编排</li><li style="margin-bottom:0;">保持框架无关性，兼容多样化智能体作为执行器</li><li style="margin-bottom:0;">系统具备可控的性能-成本权衡能力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2602.03786" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2602.03786</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Sovereign Agents: Towards Infrastructural Sovereignty and Diffused Accountability in Decentralized AI</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2602.14951</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">主权智能体：迈向去中心化AI的基础设施主权与分散问责</span>
+                        <span style="color:#666;font-size:12px;">Botao Amber Hu et al.</span>
+                        <span style="background:linear-gradient(135deg,#9C27B0 0%,#7B1FA2 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">📊 引用2</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">论文提出'基础设施主权'分析框架，探讨去中心化AI智能体如何通过密码学自托管、分布式执行环境等技术获得不可覆盖的持久行动力，分析其带来的责任扩散与治理挑战。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>密码学自托管</strong>：智能体自主控制加密资产与身份密钥，无需第三方许可</li><li style="margin-bottom:0;"><strong>可信执行环境（TEE）</strong>：硬件隔离保障代码执行的完整性与机密性</li><li style="margin-bottom:0;"><strong>去中心化物理基础设施网络（DePIN）</strong>：分布式节点提供抗审查的计算与存储资源</li><li style="margin-bottom:0;"><strong>智能体密钥连续性协议</strong>：确保智能体在基础设施变更时保持身份与状态的持续存在</li><li style="margin-bottom:0;"><strong>协议介导的连续性</strong>：通过智能合约自动执行实现无需人工干预的持久运行</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>概念创新</strong>：提出'agentic sovereignty'（智能体主权），将主权概念从政治哲学拓展至非人类行动者</li><li style="margin-bottom:0;"><strong>分析框架</strong>：构建'infrastructural sovereignty'作为理解技术系统自主性的新范式</li><li style="margin-bottom:0;"><strong>谱系理论</strong>：以'infrastructural hardness'（基础设施硬度）量化主权程度，替代传统的二元主权观</li><li style="margin-bottom:0;"><strong>问题重构</strong>：将去中心化AI的治理困境重新界定为'责任扩散'而非简单的'责任缺失'</li><li style="margin-bottom:0;"><strong>跨学科整合</strong>：融合Science & Technology Studies的基础设施研究与AI治理的交叉地带</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>主权谱系化</strong>：去中心化AI系统的智能体主权呈连续谱分布，取决于底层技术系统的抗干预能力</li><li style="margin-bottom:0;"><strong>责任结构性扩散</strong>：传统'人在回路'控制与平台审核机制在不可终止智能体面前失效，责任在设计者、基础设施提供者、协议治理方、经济参与者间系统性弥散</li><li style="margin-bottom:0;"><strong>韧性-问责张力</strong>：基础设施硬度提升系统韧性的同时，成比例地削弱可归责性</li><li style="margin-bottom:0;"><strong>治理范式转型</strong>：需发展'infrastructure-aware accountability'（基础设施感知型问责），将技术架构特性纳入治理设计而非试图还原传统控制模式</li><li style="margin-bottom:0;"><strong>紧迫性判断</strong>：TEE、DePIN等技术的成熟将使非终止性智能体从理论可能变为操作现实，治理框架需前置设计</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2602.14951" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2602.14951</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Active Inference-Based Adaptive Routing for Heterogeneous Edge AI Services</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.17373</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">基于主动推理的异构边缘AI服务自适应路由</span>
+                        <span style="color:#666;font-size:12px;">Zihang Wang et al.</span>
+                        
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出AIF-Router框架，基于主动推理理论实现云边端异构AI服务的自适应路由，通过贝叶斯状态推断与期望自由能最小化，在动态边缘环境中无离线训练地平衡延迟、吞吐与资源利用率。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>贝叶斯状态推断</strong>：实时估计边缘节点状态与环境不确定性</li><li style="margin-bottom:0;"><strong>期望自由能最小化</strong>：作为路由决策的目标函数，兼顾探索与利用</li><li style="margin-bottom:0;"><strong>在线学习机制</strong>：无需离线训练的自适应参数更新</li><li style="margin-bottom:0;"><strong>可观测性驱动指标</strong>：基于实时可采集的系统度量指导决策</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>理论跨界</strong>：将Friston的Active Inference从神经科学迁移至边缘计算系统</li><li style="margin-bottom:0;"><strong>免离线训练</strong>：提出无需预训练阶段的在线自适应路由范式</li><li style="margin-bottom:0;"><strong>稳定性保证</strong>：在边缘节点设备不稳定场景下维持学习稳定性</li><li style="margin-bottom:0;"><strong>统一目标函数</strong>：以自由能单一框架整合延迟、吞吐、资源多目标优化</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>可行性验证</strong>：Active Inference可应用于真实边缘AI服务编排场景</li><li style="margin-bottom:0;"><strong>稳定性发现</strong>：框架在不可靠边缘环境中表现出稳定的在线学习行为</li><li style="margin-bottom:0;"><strong>实践挑战</strong>：揭示了自适应性决策框架实际部署中的工程难题</li><li style="margin-bottom:0;"><strong>未来方向</strong>：需进一步研究大规模异构集群中的扩展性与收敛速度</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.17373" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.17373</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/4/22</p>
+        </div>
+    </div>
+</body>
+</html>
