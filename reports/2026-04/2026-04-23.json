@@ -1,68 +1,27 @@
 {
   "date": "2026-04-23",
-  "title": "大模型效能突破与产业落地多维探索",
-  "topic": "大模型创新与应用全景洞察",
+  "title": "可解释AI三维分类与深层网络逐层训练理论获突破",
+  "topic": "LLM与Agent最新进展",
   "directions": [
-    "llm",
-    "agentic",
-    "infra",
-    "multimodal",
-    "continual",
-    "posttraining",
-    "rl"
+    "llm"
   ],
-  "paper_count": 7,
+  "paper_count": 2,
   "papers": [
     {
-      "id": "2604.17930",
-      "title": "Heterogeneity in Formal Linguistic Competence of Language Models: Is Data the Real Bottleneck?",
-      "chinese_title": "语言模型形式语言能力异质性：数据是否为真正瓶颈？",
-      "authors": "H S V N S Kowndinya Renduchintala et al.",
-      "url": "https://arxiv.org/abs/2604.17930"
+      "id": "2602.19071",
+      "title": "Defining Explainable AI for Requirements Analysis",
+      "chinese_title": "Defining Explainable AI for Requirements Analysis",
+      "authors": "Raymond Sheh et al.",
+      "url": "https://arxiv.org/abs/2602.19071"
     },
     {
-      "id": "2604.19623",
-      "title": "SAGE: Training-Free Semantic Evidence Composition for Edge-Cloud Inference under Hard Uplink Budgets",
-      "chinese_title": "SAGE：硬上行预算下的边缘-云推理免训练语义证据组合",
-      "authors": "Inhyeok Choi et al.",
-      "url": "https://arxiv.org/abs/2604.19623"
-    },
-    {
-      "id": "2604.19351",
-      "title": "DASH-KV: Accelerating Long-Context LLM Inference via Asymmetric KV Cache Hashing",
-      "chinese_title": "DASH-KV：通过非对称KV缓存哈希加速长上下文LLM推理",
-      "authors": "Jinyu Guo et al.",
-      "url": "https://arxiv.org/abs/2604.19351"
-    },
-    {
-      "id": "2604.19342",
-      "title": "Are Large Language Models Economically Viable for Industry Deployment?",
-      "chinese_title": "大语言模型工业部署的经济可行性研究",
-      "authors": "Abdullah Mohammad et al.",
-      "url": "https://arxiv.org/abs/2604.19342"
-    },
-    {
-      "id": "2604.17698",
-      "title": "The Geometric Canary: Predicting Steerability and Detecting Drift via Representational Stability",
-      "chinese_title": "几何金丝雀：基于表征稳定性预测可控性与检测漂移",
-      "authors": "Prashant C. Raju et al.",
-      "url": "https://arxiv.org/abs/2604.17698"
-    },
-    {
-      "id": "2604.17763",
-      "title": "A Quasi-Experimental Developer Study of Security Training in LLM-Assisted Web Application Development",
-      "chinese_title": "大语言模型辅助Web开发中安全培训的准实验研究",
-      "authors": "Mohammed Kharma et al.",
-      "url": "https://arxiv.org/abs/2604.17763"
-    },
-    {
-      "id": "2604.17976",
-      "title": "ltzGLUE: Luxembourgish General Language Understanding Evaluation",
-      "chinese_title": "卢森堡语通用语言理解评估基准",
-      "authors": "Alistair Plum et al.",
-      "url": "https://arxiv.org/abs/2604.17976"
+      "id": "2601.19756",
+      "title": "Provable Learning of Random Hierarchy Models and Hierarchical Shallow-to-Deep Chaining",
+      "chinese_title": "Provable Learning of Random Hierarchy Models and Hierarchical Shallow-to-Deep Chaining",
+      "authors": "Yunwei Ren et al.",
+      "url": "https://arxiv.org/abs/2601.19756"
     }
   ],
-  "generated_at": "2026-04-22T23:20:04.899Z",
+  "generated_at": "2026-04-23T02:40:54.706Z",
   "org": "AI研究室"
 }
