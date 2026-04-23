@@ -1,0 +1,27 @@
+{
+  "date": "2026-04-23_3",
+  "title": "从可解释需求到层次化学习 AI可信架构的双轨突破",
+  "topic": "LLM与Agent最新进展",
+  "directions": [
+    "llm"
+  ],
+  "paper_count": 2,
+  "papers": [
+    {
+      "id": "2602.19071",
+      "title": "Defining Explainable AI for Requirements Analysis",
+      "chinese_title": "可解释人工智能的需求分析定义",
+      "authors": "Raymond Sheh et al.",
+      "url": "https://arxiv.org/abs/2602.19071"
+    },
+    {
+      "id": "2601.19756",
+      "title": "Provable Learning of Random Hierarchy Models and Hierarchical Shallow-to-Deep Chaining",
+      "chinese_title": "可证明的随机层次模型学习与浅层到深层层次链式结构",
+      "authors": "Yunwei Ren et al.",
+      "url": "https://arxiv.org/abs/2601.19756"
+    }
+  ],
+  "generated_at": "2026-04-23T02:35:16.734Z",
+  "org": "AI研究室"
+}
