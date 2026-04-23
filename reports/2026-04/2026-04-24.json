@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-24",
+  "title": "大模型技术突破 从语言理解到安全评估的七维跃迁",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.20842",
+      "title": "SpeechParaling-Bench: A Comprehensive Benchmark for Paralinguistic-Aware Speech Generation",
+      "chinese_title": "SpeechParaling-Bench：副语言感知语音生成综合基准",
+      "authors": "Ruohan Liu et al.",
+      "url": "https://arxiv.org/abs/2604.20842"
+    },
+    {
+      "id": "2604.20825",
+      "title": "FedSIR: Spectral Client Identification and Relabeling for Federated Learning with Noisy Labels",
+      "chinese_title": "FedSIR：面向噪声标签联邦学习的光谱客户端识别与重标记",
+      "authors": "Sina Gholami et al.",
+      "url": "https://arxiv.org/abs/2604.20825"
+    },
+    {
+      "id": "2604.20835",
+      "title": "Parallel-SFT: Improving Zero-Shot Cross-Programming-Language Transfer for Code RL",
+      "chinese_title": "并行SFT：提升代码强化学习的零样本跨编程语言迁移能力",
+      "authors": "Zhaofeng Wu et al.",
+      "url": "https://arxiv.org/abs/2604.20835"
+    },
+    {
+      "id": "2604.20817",
+      "title": "Convergent Evolution: How Different Language Models Learn Similar Number Representations",
+      "chinese_title": "趋同进化：不同语言模型如何习得相似的数字表征",
+      "authors": "Deqing Fu et al.",
+      "url": "https://arxiv.org/abs/2604.20817"
+    },
+    {
+      "id": "2604.20819",
+      "title": "Stream-CQSA: Avoiding Out-of-Memory in Attention Computation via Flexible Workload Scheduling",
+      "chinese_title": "Stream-CQSA：通过灵活工作负载调度避免注意力计算中的内存溢出",
+      "authors": "Yiming Bian et al.",
+      "url": "https://arxiv.org/abs/2604.20819"
+    },
+    {
+      "id": "2604.20833",
+      "title": "AVISE: Framework for Evaluating the Security of AI Systems",
+      "chinese_title": "AVISE：AI系统安全性评估框架",
+      "authors": "Mikko Lempinen et al.",
+      "url": "https://arxiv.org/abs/2604.20833"
+    },
+    {
+      "id": "2604.20824",
+      "title": "Closing the Domain Gap in Biomedical Imaging by In-Context Control Samples",
+      "chinese_title": "生物医学成像域间隙的上下文控制样本消除法",
+      "authors": "Ana Sanchez-Fernandez et al.",
+      "url": "https://arxiv.org/abs/2604.20824"
+    }
+  ],
+  "generated_at": "2026-04-23T22:20:58.290Z",
+  "org": "AI研究室"
+}
