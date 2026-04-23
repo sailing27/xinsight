@@ -1,27 +1,48 @@
 {
   "date": "2026-04-23",
-  "title": "深度网络层次学习突破与XAI三维需求框架构建",
+  "title": "预训练模型跨域自适应与免训练部署新范式",
   "topic": "LLM与Agent最新进展",
   "directions": [
     "llm"
   ],
-  "paper_count": 2,
+  "paper_count": 5,
   "papers": [
     {
-      "id": "2601.19756",
-      "title": "Provable Learning of Random Hierarchy Models and Hierarchical Shallow-to-Deep Chaining",
-      "chinese_title": "可证明的随机层次模型学习与层次化浅深链式结构",
-      "authors": "Yunwei Ren et al.",
-      "url": "https://arxiv.org/abs/2601.19756"
+      "id": "2604.19394",
+      "title": "Can Continual Pre-training Bridge the Performance Gap between General-purpose and Specialized Language Models in the Medical Domain?",
+      "chinese_title": "持续预训练能否弥合医学领域通用与专用语言模型的性能差距",
+      "authors": "Niclas Doll et al.",
+      "url": "https://arxiv.org/abs/2604.19394"
     },
     {
-      "id": "2602.19071",
-      "title": "Defining Explainable AI for Requirements Analysis",
-      "chinese_title": "可解释人工智能需求分析定义研究",
-      "authors": "Raymond Sheh et al.",
-      "url": "https://arxiv.org/abs/2602.19071"
+      "id": "2604.19165",
+      "title": "Analytical Extraction of Conditional Sobol' Indices via Basis Decomposition of Polynomial Chaos Expansions",
+      "chinese_title": "基于多项式混沌展开的Sobol条件指数解析提取",
+      "authors": "Shijie Zhong et al.",
+      "url": "https://arxiv.org/abs/2604.19165"
+    },
+    {
+      "id": "2604.20122",
+      "title": "Adaptive Conformal Anomaly Detection with Time Series Foundation Models for Signal Monitoring",
+      "chinese_title": "基于时序基础模型的自适应保形异常检测用于信号监测",
+      "authors": "Natalia Martinez Gil et al.",
+      "url": "https://arxiv.org/abs/2604.20122"
+    },
+    {
+      "id": "2604.19028",
+      "title": "Learning Posterior Predictive Distributions for Node Classification from Synthetic Graph Priors",
+      "chinese_title": "基于合成图先验的节点分类后验预测分布学习",
+      "authors": "Jeongwhan Choi et al.",
+      "url": "https://arxiv.org/abs/2604.19028"
+    },
+    {
+      "id": "2604.19921",
+      "title": "Commonsense Knowledge with Negation: A Resource to Enhance Negation Understanding",
+      "chinese_title": "含否定的常识知识库：增强否定理解资源",
+      "authors": "Zijie Wang et al.",
+      "url": "https://arxiv.org/abs/2604.19921"
     }
   ],
-  "generated_at": "2026-04-23T02:46:08.956Z",
+  "generated_at": "2026-04-23T02:54:41.165Z",
   "org": "AI研究室"
 }

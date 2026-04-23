@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>深度网络层次学习突破与XAI三维需求框架构建 | 2026/4/23</title>
+    <title>预训练模型跨域自适应与免训练部署新范式 | 2026/4/23</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
@@ -343,7 +343,7 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <h1>深度网络层次学习突破与XAI三维需求框架构建 | 2026/4/23</h1>
+                <h1>预训练模型跨域自适应与免训练部署新范式 | 2026/4/23</h1>
                 <div class="date">2026/4/23 | AI研究室</div>
             </div>
             <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
@@ -354,7 +354,7 @@
             <div class="executive-summary">
                 <h2>摘要</h2>
                 <div class="summary-content">
-                                        <p style="line-height:1.8;text-align:justify;">当前LLM与AI Agent领域呈现"理论根基深化"与"应用需求精细化"并行的技术趋势。两篇论文分别从可证明的层次化学习机制与可解释性需求分类框架切入，共同指向AI系统"结构化设计"与"场景适配"两大核心命题。<br><br>技术层面呈现三个交汇方向：其一，<strong>分层解耦策略</strong>，论文1的逐层独立训练与论文2的三维正交分类均通过模块化分解降低系统复杂度；其二，<strong>条件化优势证明</strong>，深度网络在温和条件下的可证效率与XAI需求的情境依赖性，共同强调"约束条件下的精准设计"优于通用方案；其三，<strong>表征-解释协同</strong>，层次化特征构建为可解释性提供天然结构基础，而解释需求反推表征学习的透明度要求。<br><br>对行业而言，这一组合启示显著：理论研究正从经验性观察迈向可证明保证，为LLM的规模化训练提供算法层面的可靠性支撑；同时，XAI需求框架的规范化将加速Agent系统在医疗、金融等高风险场景的落地合规。两者协同预示下一代AI系统需在"性能可证"与"解释可控"双维度实现工程化平衡。</p>
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了预训练模型高效适配与知识内嵌化的深层技术趋势。五篇论文共同指向一个核心命题：如何通过精巧的后处理或轻量适配，释放预训练模型的潜在能力，而非依赖昂贵的从头训练。<br><br>三大技术方向尤为突出：<strong>一是"预训练即知识容器"范式</strong>，论文2证明敏感性指标内嵌于PCE基函数结构，论文3实现时间序列基础模型的免微调部署，均表明预训练模型的内部结构已编码可提取的专业知识；<strong>二是"合成-迁移"替代"真实-训练"路径</strong>，论文1以持续预训练实现小模型逆袭大模型，论文4以合成图先验达成零样本图泛化，显示精心设计的中间表示可突破数据与算力瓶颈；<strong>三是"否定与边缘情况"成为能力试金石</strong>，论文5揭示当前LLM在否定常识推理上的系统性薄弱，暗示模型鲁棒性仍是关键短板。<br><br>对行业而言，这些进展意味着：领域专业化不必追逐参数规模，而需深耕适配策略与先验设计；工业部署应优先挖掘预训练模型的"冻结价值"，降低微调成本；同时，否定、因果等基础推理能力的提升，将成为下一代模型区分度的核心战场。</p>
                 </div>
             </div>
 
@@ -362,7 +362,7 @@
             <div class="stats-grid">
                 
                 <div class="stat-item">
-                    <div class="stat-value">2</div>
+                    <div class="stat-value">5</div>
                     <div class="stat-label">核心论文</div>
                 </div>
                 <div class="stat-item">
@@ -384,77 +384,191 @@
             <div class="section">
                 <div class="section-header">
                     <div class="section-number">1</div>
-                    <h2>Provable Learning of Random Hierarchy Models and Hierarchical Shallow-to-Deep Chaining</h2>
+                    <h2>Can Continual Pre-training Bridge the Performance Gap between General-purpose and Specialized Language Models in the Medical Domain?</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2601.19756</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">可证明的随机层次模型学习与层次化浅深链式结构</span>
-                        <span style="color:#666;font-size:12px;">Yunwei Ren et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.19394</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">持续预训练能否弥合医学领域通用与专用语言模型的性能差距</span>
+                        <span style="color:#666;font-size:12px;">Niclas Doll et al.</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 uist</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文通过领域自适应的持续预训练和模型融合，缩小了小型专用模型与大型通用模型之间的性能差距。研究构建了高质量德语医学语料库FineMed-de，对三个知名大语言模型（7B至24B参数）进行持续预训练与融合，创建了DeFineMed模型家族。评估表明，领域 specialization 显著提升7B模型在德语医学基准上的性能，基于Qwen2.5的模型对Mistral-Small-24B-Instruct的胜率提升约3.5倍。但模型融合也带来了语言混合和冗长性等权衡问题。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>持续预训练</strong>：在通用模型基础上使用德语医学语料进行增量预训练以实现领域自适应</li><li style="margin-bottom:0;"><strong>模型融合</strong>：将多个持续预训练后的模型进行合并以恢复指令遵循能力</li><li style="margin-bottom:0;"><strong>语料构建</strong>：从FineWeb2中筛选构建高质量德语医学专用语料库FineMed-de</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨尺度融合</strong>：首次实现7B至24B参数范围的多模型持续预训练与融合</li><li style="margin-bottom:0;"><strong>非英语突破</strong>：针对德语医学数据稀缺问题构建专用语料填补空白</li><li style="margin-bottom:0;"><strong>效率竞争</strong>：证明7B专用模型可挑战24B通用模型的复杂医学指令遵循能力</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>规模逆袭</strong>：领域自适应使7B模型对24B通用模型的胜率提升约3.5倍</li><li style="margin-bottom:0;"><strong>能力恢复</strong>：模型融合成功恢复持续预训练损失的指令遵循能力</li><li style="margin-bottom:0;"><strong>融合代价</strong>：合并引入语言混合和输出冗长等固有权衡问题</li><li style="margin-bottom:0;"><strong>临床落地</strong>：为德语区医疗场景提供合规且资源高效的专业模型解决方案</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.19394" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.19394</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Analytical Extraction of Conditional Sobol' Indices via Basis Decomposition of Polynomial Chaos Expansions</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.19165</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">基于多项式混沌展开的Sobol条件指数解析提取</span>
+                        <span style="color:#666;font-size:12px;">Shijie Zhong et al.</span>
                         
                     </div>
 
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究深度神经网络能否通过梯度方法有效利用数据的层次结构。针对随机层次模型（一种层次化上下文无关文法），证明在温和条件下，深度卷积网络可被高效训练以学习该函数类。核心观察是：若中间层能从标签获得干净信号且相关特征弱可识别，则逐层训练即可实现层次化学习。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">在不确定性量化中，针对参数化响应系统（如空间场或变化工况）评估特定条件下的敏感性度量（即条件Sobol'指标）至关重要。传统方法依赖逐点建模，计算昂贵且参数空间一致性差。本文证明，对于预训练的全局多项式混沌展开（PCE）模型，解析条件Sobol'指标内嵌于其基函数中。利用PCE基的张量积性质，将全局展开重构为依赖于条件变量的解析系数场。基于条件概率测度下正交性的保持，推导条件方差和Sobol'指标的闭式表达式。该框架无需重复建模或额外采样，将条件敏感性分析转化为纯代数后处理步骤。数值基准测试表明，该方法确保物理一致性，相比传统逐点方法具有更优的数值鲁棒性和计算效率。</div>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>逐层训练策略</strong>：通过独立训练每层网络，利用标签信号逐步构建层次化特征表示，避免端到端训练的复杂优化问题</li><li style="margin-bottom:0;"><strong>弱特征识别</strong>：假设目标特征具有弱可识别性，即中间层能够从数据中提取部分相关结构信息，作为后续学习的信号基础</li><li style="margin-bottom:0;"><strong>卷积网络架构</strong>：采用深度卷积网络处理层次化数据，利用局部连接和权重共享捕捉多尺度组合结构</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>基函数内嵌</strong>：证明条件Sobol'指标解析地嵌入预训练PCE模型的基函数结构中，无需重新构建模型</li><li style="margin-bottom:0;"><strong>张量积重构</strong>：利用PCE基的张量积性质将全局展开转化为依赖条件变量的解析系数场集合</li><li style="margin-bottom:0;"><strong>正交性保持</strong>：基于条件概率测度下基函数正交性的保持，建立严格的数学推导基础</li><li style="margin-bottom:0;"><strong>闭式表达式</strong>：推导出条件方差和条件Sobol'指标的显式解析公式，避免数值近似</li></ul>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>层次化学习理论</strong>：首次为真正深度网络（超过两到三层）的层次化学习提供可证明的优化保证，突破现有理论局限</li><li style="margin-bottom:0;"><strong>浅深链式机制</strong>：建立从浅层到深层的特征链式构建机制，每层将前层输出作为基础模块组合成更复杂特征</li><li style="margin-bottom:0;"><strong>上下文无关文法分析</strong>：针对随机层次模型这一具体文法类，给出深度网络可高效学习的严格理论证明</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>代数后处理</strong>：将条件敏感性分析从传统重复建模转化为对预训练PCE系数的纯代数运算步骤</li><li style="margin-bottom:0;"><strong>全局一致性</strong>：通过全局PCE模型一次性捕获参数空间完整信息，消除逐点建模的不一致性</li><li style="margin-bottom:0;"><strong>免采样计算</strong>：完全绕过额外采样需求，直接由PCE系数解析计算条件敏感性指标</li><li style="margin-bottom:0;"><strong>解析系数场</strong>：构建以条件变量为参数的解析系数场，实现敏感性指标随条件变化的连续表征</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>深度网络优势可证</strong>：证明深度卷积网络在温和条件下可高效学习随机层次模型，为深度优于宽度的经验现象提供理论支撑</li><li style="margin-bottom:0;"><strong>标签信号传递</strong>：中间层若能从标签获得干净信号，则无需端到端反向传播即可实现有效层次化特征学习</li><li style="margin-bottom:0;"><strong>弱条件充分性</strong>：弱特征可识别性条件足以保证逐层训练的成功，降低了对数据分布的强假设要求</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>指标内嵌性</strong>：条件Sobol'指标并非需外部计算的量，而是天然存在于PCE基函数展开结构中</li><li style="margin-bottom:0;"><strong>物理一致性</strong>：所提方法确保条件敏感性结果在参数空间内的物理连贯性和光滑过渡</li><li style="margin-bottom:0;"><strong>计算高效性</strong>：相比逐点方法显著降低计算成本，将复杂分析简化为轻量级后处理操作</li><li style="margin-bottom:0;"><strong>数值鲁棒性</strong>：解析闭式表达避免了蒙特卡洛等方法的统计波动，提供更稳定的数值结果</li></ul>
                         </div>
                     </div>
 
-                    <a href="https://arxiv.org/abs/2601.19756" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2601.19756</a>
+                    <a href="https://arxiv.org/abs/2604.19165" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.19165</a>
                 </div>
             </div>
             <div class="section">
                 <div class="section-header">
-                    <div class="section-number">2</div>
-                    <h2>Defining Explainable AI for Requirements Analysis</h2>
+                    <div class="section-number">3</div>
+                    <h2>Adaptive Conformal Anomaly Detection with Time Series Foundation Models for Signal Monitoring</h2>
                 </div>
                 <div class="paper-card">
                     <div class="paper-meta">
-                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2602.19071</span>
-                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">可解释人工智能需求分析定义研究</span>
-                        <span style="color:#666;font-size:12px;">Raymond Sheh et al.</span>
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.20122</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">基于时序基础模型的自适应保形异常检测用于信号监测</span>
+                        <span style="color:#666;font-size:12px;">Natalia Martinez Gil et al.</span>
                         <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ai</span>
                     </div>
 
                     <div class="paper-summary" style="margin:15px 0;">
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
-                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">可解释人工智能（XAI）近年来备受关注，AI尤其是机器学习（ML）领域逐渐认识到，许多应用中AI要获得信任，不仅需表现良好，还需解释决策并证明其决策理由正确。不同应用对解释信息的需求各异，本文提出来源、深度和范围三个维度对应用的解释需求进行分类，重点探讨如何将不同应用的解释需求与底层ML技术的能力相匹配，刻意回避已有文献充分涵盖的解释方面，聚焦讨论ML但原理适用于更广泛的AI领域。</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">提出一种后处理自适应共形异常检测方法，利用预训练基础模型预测结果，无需微调即可监控时间序列。方法生成可直接解释为误报率（p值）的可解释异常分数，采用加权分位数共形预测边界，从历史预测中自适应学习最优权重参数，实现分布偏移下的校准和稳定误报控制，同时保持样本外保证。作为模型无关解决方案，可与基础模型无缝集成，支持资源受限环境中的快速部署。</div>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>需求分类维度</strong>：提出来源、深度和范围三个维度用于系统分类不同应用场景对XAI的解释性需求</li><li style="margin-bottom:0;"><strong>来源维度分析</strong>：界定解释信息的产生源头，区分模型内在可解释性与事后解释方法的不同来源特征</li><li style="margin-bottom:0;"><strong>深度层次划分</strong>：建立解释深度的层级结构，从表面特征归因到深层推理机制的多层次解释能力</li><li style="margin-bottom:0;"><strong>范围边界界定</strong>：明确解释覆盖的决策范围，区分局部个体决策解释与全局模型行为解释的差异</li><li style="margin-bottom:0;"><strong>需求能力匹配</strong>：构建应用解释需求与ML技术供给能力之间的系统性匹配分析框架</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>加权分位数预测</strong>：采用加权分位数共形预测边界构建预测区间，为异常检测提供统计保证</li><li style="margin-bottom:0;"><strong>自适应权重学习</strong>：从历史预测中自适应学习最优权重参数，动态适应数据分布变化</li><li style="margin-bottom:0;"><strong>后处理校准</strong>：作为后处理方法无需模型微调，直接利用预训练基础模型输出进行校准</li></ul>
                         </div>
 
                         <div class="summary-section" style="margin-bottom:12px;">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>三维分类框架</strong>：创新性地提出来源、深度、范围三个正交维度，为XAI需求分析提供结构化分类体系</li><li style="margin-bottom:0;"><strong>应用驱动视角</strong>：从应用需求出发反向推导XAI要求，区别于传统从技术供给出发的研究范式</li><li style="margin-bottom:0;"><strong>需求技术映射</strong>：建立解释需求分类与ML技术能力之间的对应关系，填补需求与能力匹配的空白</li><li style="margin-bottom:0;"><strong>聚焦ML核心</strong>：专门面向ML技术特性展开讨论，避免与已有通用XAI文献重复，突出针对性</li><li style="margin-bottom:0;"><strong>可扩展性设计</strong>：以ML为基点但原理通用于AI领域，确保框架的广泛适用性与未来扩展空间</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>免微调部署</strong>：直接利用预训练时间序列基础模型，无需额外训练即可实现异常检测</li><li style="margin-bottom:0;"><strong>可解释评分</strong>：异常分数直接对应p值与误报率，支持透明化决策与阈值设定</li><li style="margin-bottom:0;"><strong>分布自适应</strong>：通过权重自适应机制应对分布偏移，保持样本外覆盖保证</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>需求因应用而异</strong>：不同应用场景对XAI解释信息的类型、深度和范围存在本质性差异，无法一概而论</li><li style="margin-bottom:0;"><strong>信任需要理由</strong>：AI获得人类信任不仅需要良好性能，更需提供正确决策理由的充分解释说明</li><li style="margin-bottom:0;"><strong>三维框架有效</strong>：来源、深度、范围三个维度能够系统刻画和分类各类应用的解释性需求特征</li><li style="margin-bottom:0;"><strong>匹配至关重要</strong>：成功部署XAI的关键在于将具体应用的解释需求与ML技术能力进行精准匹配</li><li style="margin-bottom:0;"><strong>聚焦供给缺口</strong>：当前研究应重点关注ML技术能力与应用解释需求之间存在的不匹配缺口</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>工业适用性强</strong>：有效解决数据稀缺、训练能力不足和即时推理需求等工业挑战</li><li style="margin-bottom:0;"><strong>性能表现优异</strong>：在合成与真实数据集上均展现出强性能与鲁棒性</li><li style="margin-bottom:0;"><strong>部署效率突出</strong>：模型无关设计支持快速部署，适合资源受限环境应用</li></ul>
                         </div>
                     </div>
 
-                    <a href="https://arxiv.org/abs/2602.19071" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2602.19071</a>
+                    <a href="https://arxiv.org/abs/2604.20122" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.20122</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Learning Posterior Predictive Distributions for Node Classification from Synthetic Graph Priors</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.19028</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">基于合成图先验的节点分类后验预测分布学习</span>
+                        <span style="color:#666;font-size:12px;">Jeongwhan Choi et al.</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ICLR 2026</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">图神经网络（GNN）需要为每个新图单独训练，无法跨多样化图数据集实现通用泛化。本文提出NodePFN，一种通用节点分类方法，仅通过在数千个精心设计的合成图上训练来学习后验预测分布（PPD），无需针对特定图进行训练即可泛化到任意图。该方法采用双分支架构结合上下文查询注意力机制与局部消息传递，在23个基准数据集上取得71.27平均准确率，验证了从合成先验中学习通用图模式的可行性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>合成图生成</strong>：基于可控同配性水平的随机网络与结构因果模型构建复杂特征标签关系</li><li style="margin-bottom:0;"><strong>双分支架构</strong>：融合上下文查询注意力机制与局部消息传递实现图感知上下文学习</li><li style="margin-bottom:0;"><strong>后验预测分布</strong>：通过仅对合成先验训练直接学习节点分类的预测分布</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>无需图特定训练</strong>：突破GNN需逐图训练的限制，实现跨任意图的零样本泛化</li><li style="margin-bottom:0;"><strong>受LLM启发的范式</strong>：借鉴大语言模型上下文学习思想，构建图领域的预训练泛化框架</li><li style="margin-bottom:0;"><strong>因果特征建模</strong>：利用结构因果模型刻画特征与标签间的复杂依赖，增强合成图真实性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>合成先验有效性</strong>：证明通用图学习模式可从精心设计的合成先验中有效习得</li><li style="margin-bottom:0;"><strong>单模型强泛化</strong>：单个预训练模型在23个基准上达71.27平均准确率，验证跨图迁移能力</li><li style="margin-bottom:0;"><strong>新范式确立</strong>：建立基于合成先验预训练的节点分类通用泛化新范式</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.19028" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.19028</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Commonsense Knowledge with Negation: A Resource to Enhance Negation Understanding</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;margin-right:8px;font-size:11px;">arXiv:2604.19921</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;margin-right:10px;">含否定的常识知识库：增强否定理解资源</span>
+                        <span style="color:#666;font-size:12px;">Zijie Wang et al.</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ACL 2026</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">否定是自然语言中常见且重要的语义特征，但大语言模型在涉及否定的自然语言理解任务中表现不佳。常识知识虽是研究成熟的话题，却缺乏涉及否定的研究。本文表明带否定的常识知识对模型理解具有挑战性，提出了一种自动增强现有常识知识语料库的新方法，生成了两个包含超过200万条if-then关系三元组的新语料库，并证明在此语料库上预训练大语言模型有助于提升否定理解能力。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>否定增强方法</strong>：自动将现有常识知识语料库转换为包含否定形式的新语料库的技术流程</li><li style="margin-bottom:0;"><strong>if-then关系构建</strong>：基于条件推理格式构建超过200万条带否定常识三元组的系统化方案</li><li style="margin-bottom:0;"><strong>预训练策略设计</strong>：利用带否定常识语料对大语言模型进行针对性预训练以提升否定理解</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>自动否定转换</strong>：首次实现将现有常识知识资源自动批量转换为否定形式的技术突破</li><li style="margin-bottom:0;"><strong>大规模否定语料</strong>：构建了两个总量超200万条的带否定常识知识三元组语料资源</li><li style="margin-bottom:0;"><strong>常识否定结合</strong>：开创性地将否定语义研究与常识知识研究两个领域进行交叉融合</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>否定理解困难</strong>：带否定的常识知识对当前大语言模型而言具有显著的理解挑战性</li><li style="margin-bottom:0;"><strong>语料增强有效</strong>：自动生成的否定常识语料质量可靠且规模可观，可用于模型训练</li><li style="margin-bottom:0;"><strong>预训练提性能</strong>：在构建的否定常识语料上预训练能够有效提升大语言模型的否定理解能力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2604.19921" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2604.19921</a>
                 </div>
             </div>
         </div>
