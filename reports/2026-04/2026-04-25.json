@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-25",
+  "title": "大模型革新 从训练机制到多模态应用突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.21901",
+      "title": "GiVA: Gradient-Informed Bases for Vector-Based Adaptation",
+      "chinese_title": "GiVA：基于梯度信息的向量自适应基",
+      "authors": "Neeraj Gangwar et al.",
+      "url": "https://arxiv.org/abs/2604.21901"
+    },
+    {
+      "id": "2604.21916",
+      "title": "MathDuels: Evaluating LLMs as Problem Posers and Solvers",
+      "chinese_title": "MathDuels：评估大语言模型的出题与解题能力",
+      "authors": "Zhiqiu Xu et al.",
+      "url": "https://arxiv.org/abs/2604.21916"
+    },
+    {
+      "id": "2604.21930",
+      "title": "Temporal Taskification in Streaming Continual Learning: A Source of Evaluation Instability",
+      "chinese_title": "流式持续学习中的时间任务化：评估不稳定性的来源",
+      "authors": "Nicolae Filat et al.",
+      "url": "https://arxiv.org/abs/2604.21930"
+    },
+    {
+      "id": "2604.21927",
+      "title": "Fine-Tuning Regimes Define Distinct Continual Learning Problems",
+      "chinese_title": "微调机制界定不同持续学习问题",
+      "authors": "Paul-Tiberiu Iordache et al.",
+      "url": "https://arxiv.org/abs/2604.21927"
+    },
+    {
+      "id": "2604.21911",
+      "title": "When Prompts Override Vision: Prompt-Induced Hallucinations in LVLMs",
+      "chinese_title": "提示凌驾视觉：多模态大模型中的提示诱导幻觉",
+      "authors": "Pegah Khayatan et al.",
+      "url": "https://arxiv.org/abs/2604.21911"
+    },
+    {
+      "id": "2604.21903",
+      "title": "A Scale-Adaptive Framework for Joint Spatiotemporal Super-Resolution with Diffusion Models",
+      "chinese_title": "基于扩散模型的尺度自适应时空联合超分辨率框架",
+      "authors": "Max Defez et al.",
+      "url": "https://arxiv.org/abs/2604.21903"
+    },
+    {
+      "id": "2604.21928",
+      "title": "Evaluation of Automatic Speech Recognition Using Generative Large Language Models",
+      "chinese_title": "生成式大语言模型语音识别自动评估研究",
+      "authors": "Thibault Bañeras-Roux et al.",
+      "url": "https://arxiv.org/abs/2604.21928"
+    }
+  ],
+  "generated_at": "2026-04-24T22:03:17.429Z",
+  "org": "AI研究室"
+}
