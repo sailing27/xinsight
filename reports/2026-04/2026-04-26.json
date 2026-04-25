@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-26",
+  "title": "大模型记忆机制与多域应用创新全景报告",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.21882",
+      "title": "Revisiting Non-Verbatim Memorization in Large Language Models: The Role of Entity Surface Forms",
+      "chinese_title": "大语言模型中非逐字记忆再探：实体表面形式的作用",
+      "authors": "Yuto Nishida et al.",
+      "url": "https://arxiv.org/abs/2604.21882"
+    },
+    {
+      "id": "2604.21871",
+      "title": "Machine Behavior in Relational Moral Dilemmas: Moral Rightness, Predicted Human Behavior, and Model Decisions",
+      "chinese_title": "关系型道德困境中的机器行为：道德正当性、人类行为预测与模型决策",
+      "authors": "Jiseon Kim et al.",
+      "url": "https://arxiv.org/abs/2604.21871"
+    },
+    {
+      "id": "2604.21889",
+      "title": "TingIS: Real-time Risk Event Discovery from Noisy Customer Incidents at Enterprise Scale",
+      "chinese_title": "TingIS：企业级噪声客户事件实时风险发现",
+      "authors": "Jun Wang et al.",
+      "url": "https://arxiv.org/abs/2604.21889"
+    },
+    {
+      "id": "2604.21897",
+      "title": "Mapping the Political Discourse in the Brazilian Chamber of Deputies: A Multi-Faceted Computational Approach",
+      "chinese_title": "巴西众议院政治话语的多维计算映射",
+      "authors": "Flávio Soriano et al.",
+      "url": "https://arxiv.org/abs/2604.21897"
+    },
+    {
+      "id": "2604.21893",
+      "title": "Revealing Geography-Driven Signals in Zone-Level Claim Frequency Models: An Empirical Study using Environmental and Visual Predictors",
+      "chinese_title": "地理驱动信号在区域索赔频率模型中的揭示：基于环境与视觉预测因子的实证研",
+      "authors": "Sherly Alfonso-Sánchez et al.",
+      "url": "https://arxiv.org/abs/2604.21893"
+    },
+    {
+      "id": "2604.21870",
+      "title": "Locating acts of mechanistic reasoning in student team conversations with mechanistic machine learning",
+      "chinese_title": "基于机器学习识别学生团队对话中的机械推理行为",
+      "authors": "Kaitlin Gili et al.",
+      "url": "https://arxiv.org/abs/2604.21870"
+    },
+    {
+      "id": "2604.21890",
+      "title": "EVENT5Ws: A Large Dataset for Open-Domain Event Extraction from Documents",
+      "chinese_title": "EVENT5Ws：面向开放域文档事件抽取的大规模数据集",
+      "authors": "Praval Sharma et al.",
+      "url": "https://arxiv.org/abs/2604.21890"
+    }
+  ],
+  "generated_at": "2026-04-25T22:02:36.104Z",
+  "org": "AI研究室"
+}
