@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-27",
+  "title": "大模型推理革新与跨域应用 从隐空间对齐到金融决策智能",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.18567",
+      "title": "Latent Phase-Shift Rollback: Inference-Time Error Correction via Residual Stream Monitoring and KV-Cache Steering",
+      "chinese_title": "潜相移回滚：基于残差流监测与KV缓存引导的推理时纠错",
+      "authors": "Manan Gupta et al.",
+      "url": "https://arxiv.org/abs/2604.18567"
+    },
+    {
+      "id": "2604.21076",
+      "title": "Serialisation Strategy Matters: How FHIR Data Format Affects LLM Medication Reconciliation",
+      "chinese_title": "序列化策略影响显著：FHIR数据格式如何作用于大语言模型用药核对",
+      "authors": "Sanjoy Pator et al.",
+      "url": "https://arxiv.org/abs/2604.21076"
+    },
+    {
+      "id": "2604.21885",
+      "title": "A Multimodal Text- and Graph-Based Approach for Open-Domain Event Extraction from Documents",
+      "chinese_title": "面向开放域文档事件抽取的多模态文本图融合方法",
+      "authors": "Praval Sharma et al.",
+      "url": "https://arxiv.org/abs/2604.21885"
+    },
+    {
+      "id": "2603.17305",
+      "title": "Contrastive Reasoning Alignment: Reinforcement Learning from Hidden Representations",
+      "chinese_title": "对比推理对齐：基于隐表征的强化学习",
+      "authors": "Haozheng Luo et al.",
+      "url": "https://arxiv.org/abs/2603.17305"
+    },
+    {
+      "id": "2601.06108",
+      "title": "From RLHF to Direct Alignment: A Theoretical Unification of Preference Learning for Large Language Models",
+      "chinese_title": "从RLHF到直接对齐：大语言模型偏好学习的理论统一",
+      "authors": "Tarun Raheja et al.",
+      "url": "https://arxiv.org/abs/2601.06108"
+    },
+    {
+      "id": "2601.00810",
+      "title": "Can Large Language Models Improve Venture Capital Exit Timing After IPO?",
+      "chinese_title": "大语言模型能否改善风投IPO退出时机？",
+      "authors": "Mohammadhossien Rashidi et al.",
+      "url": "https://arxiv.org/abs/2601.00810"
+    },
+    {
+      "id": "2604.18566",
+      "title": "Benchmarking System Dynamics AI Assistants: Cloud Versus Local LLMs on CLD Extraction and Discussion",
+      "chinese_title": "系统动力学AI助手基准测试：云端与本地大语言模型在因果回路图提取与讨论",
+      "authors": "Terry Leitch et al.",
+      "url": "https://arxiv.org/abs/2604.18566"
+    }
+  ],
+  "generated_at": "2026-04-26T23:12:31.476Z",
+  "org": "AI研究室"
+}
