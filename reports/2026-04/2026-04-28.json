@@ -1,0 +1,33 @@
+{
+  "date": "2026-04-28",
+  "title": "数据逆向重建与智能体光学控制双突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 2,
+  "papers": [
+    {
+      "id": "2602.08723",
+      "title": "Data Reconstruction: Identifiability and Optimization with Sample Splitting",
+      "chinese_title": "数据重构：可识别性与样本分割优化",
+      "authors": "Yujie Shen et al.",
+      "url": "https://arxiv.org/abs/2602.08723"
+    },
+    {
+      "id": "2602.20144",
+      "title": "Agentic AI for Scalable and Robust Optical Systems Control",
+      "chinese_title": "智能体AI赋能可扩展鲁棒光学系统控制",
+      "authors": "Zehao Wang et al.",
+      "url": "https://arxiv.org/abs/2602.20144"
+    }
+  ],
+  "generated_at": "2026-04-27T22:10:44.209Z",
+  "org": "AI研究室"
+}
