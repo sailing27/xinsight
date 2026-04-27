@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-28_1",
+  "title": "大模型安全攻防与系统优化前沿突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.21152",
+      "title": "Dialect vs Demographics: Quantifying LLM Bias from Implicit Linguistic Signals vs. Explicit User Profiles",
+      "chinese_title": "方言与人口统计：隐性语言信号与显性用户画像的LLM偏见量化",
+      "authors": "Irti Haq et al.",
+      "url": "https://arxiv.org/abs/2604.21152"
+    },
+    {
+      "id": "2604.22134",
+      "title": "SHAPE: Unifying Safety, Helpfulness and Pedagogy for Educational LLMs",
+      "chinese_title": "SHAPE：统一教育大语言模型的安全性、实用性与教学性",
+      "authors": "Sihang et al.",
+      "url": "https://arxiv.org/abs/2604.22134"
+    },
+    {
+      "id": "2604.21159",
+      "title": "Adaptive Instruction Composition for Automated LLM Red-Teaming",
+      "chinese_title": "自适应指令组合用于自动化大语言模型红队测试",
+      "authors": "Jesse Zymet et al.",
+      "url": "https://arxiv.org/abs/2604.21159"
+    },
+    {
+      "id": "2604.22603",
+      "title": "Chamelio: A Fast Shared Cloud Network Stack for Isolated Tenant-Defined Protocols",
+      "chinese_title": "Chamelio：面向隔离租户自定义协议的高速共享云网络协议栈",
+      "authors": "Matheus Stolet et al.",
+      "url": "https://arxiv.org/abs/2604.22603"
+    },
+    {
+      "id": "2604.22312",
+      "title": "Guess-Verify-Refine: Data-Aware Top-K for Sparse-Attention Decoding on Blackwell via Temporal Correlation",
+      "chinese_title": "猜测-验证-优化：基于时间相关性的Blackwell稀疏注意力解码数据",
+      "authors": "Long Cheng et al.",
+      "url": "https://arxiv.org/abs/2604.22312"
+    },
+    {
+      "id": "2604.22228",
+      "title": "Accelerating Intra-Node GPU-to-GPU Communication Through Multi-Path Transfers with CUDA Graphs",
+      "chinese_title": "基于CUDA图的多路径GPU节点内通信加速",
+      "authors": "Amirhossein Sojoodi et al.",
+      "url": "https://arxiv.org/abs/2604.22228"
+    },
+    {
+      "id": "2603.23611",
+      "title": "LLMORPH: Automated Metamorphic Testing of Large Language Models",
+      "chinese_title": "LLMORPH：大语言模型自动化蜕变测试",
+      "authors": "Steven Cho et al.",
+      "url": "https://arxiv.org/abs/2603.23611"
+    }
+  ],
+  "generated_at": "2026-04-27T23:40:17.148Z",
+  "org": "AI研究室"
+}
