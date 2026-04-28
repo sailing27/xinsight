@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-29",
+  "title": "大模型创新与应用全景洞察 从视觉架构革新到分布式训练优化的七",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.24763",
+      "title": "Tuna-2: Pixel Embeddings Beat Vision Encoders for Multimodal Understanding and Generation",
+      "chinese_title": "Tuna-2：像素嵌入超越视觉编码器，赋能多模态理解与生成",
+      "authors": "Zhiheng Liu et al.",
+      "url": "https://arxiv.org/abs/2604.24763"
+    },
+    {
+      "id": "2604.24764",
+      "title": "World-R1: Reinforcing 3D Constraints for Text-to-Video Generation",
+      "chinese_title": "世界R1：强化3D约束的文本到视频生成",
+      "authors": "Weijie Wang et al.",
+      "url": "https://arxiv.org/abs/2604.24764"
+    },
+    {
+      "id": "2604.24762",
+      "title": "OmniShotCut: Holistic Relational Shot Boundary Detection with Shot-Query Transformer",
+      "chinese_title": "OmniShotCut：基于镜头查询Transformer的全局关联镜",
+      "authors": "Boyang Wang et al.",
+      "url": "https://arxiv.org/abs/2604.24762"
+    },
+    {
+      "id": "2604.24013",
+      "title": "FlashOverlap: Minimizing Tail Latency in Communication Overlap for Distributed LLM Training",
+      "chinese_title": "FlashOverlap：分布式大模型训练通信重叠尾延迟优化",
+      "authors": "Rezaul Karim et al.",
+      "url": "https://arxiv.org/abs/2604.24013"
+    },
+    {
+      "id": "2604.23553",
+      "title": "ClusterFusion++: Expanding Cluster-Level Fusion to Full Transformer-Block Decoding",
+      "chinese_title": "ClusterFusion++：将聚类级融合扩展至全Transform",
+      "authors": "ChiHeng Jin et al.",
+      "url": "https://arxiv.org/abs/2604.23553"
+    },
+    {
+      "id": "2604.24729",
+      "title": "SpecRLBench: A Benchmark for Generalization in Specification-Guided Reinforcement Learning",
+      "chinese_title": "SpecRLBench：规范引导强化学习泛化基准",
+      "authors": "Zijian Guo et al.",
+      "url": "https://arxiv.org/abs/2604.24729"
+    },
+    {
+      "id": "2604.24073",
+      "title": "FreeScale: Distributed Training for Sequence Recommendation Models with Minimal Scaling Cost",
+      "chinese_title": "FreeScale：序列推荐模型的低代价分布式训练",
+      "authors": "Chenhao Feng et al.",
+      "url": "https://arxiv.org/abs/2604.24073"
+    }
+  ],
+  "generated_at": "2026-04-28T22:03:47.914Z",
+  "org": "AI研究室"
+}
