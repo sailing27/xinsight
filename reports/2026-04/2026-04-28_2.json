@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-28_2",
+  "title": "大模型创新纵深突破 从对齐安全到算力基建的七维重构",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.17769",
+      "title": "Reverse Constitutional AI: A Framework for Controllable Toxic Data Generation via Probability-Clamped RLAIF",
+      "chinese_title": "逆向宪法AI：基于概率钳制RLAIF的可控毒性数据生成框架",
+      "authors": "Yuan Fang et al.",
+      "url": "https://arxiv.org/abs/2604.17769"
+    },
+    {
+      "id": "2603.21359",
+      "title": "Benchmarking Bengali Dialectal Bias: A Multi-Stage Framework Integrating RAG-Based Translation and Human-Augmented RLAIF",
+      "chinese_title": "孟加拉方言偏见基准测试：融合RAG翻译与人机增强RLAIF的多阶段框架",
+      "authors": "K. M. Jubair Sami et al.",
+      "url": "https://arxiv.org/abs/2603.21359"
+    },
+    {
+      "id": "2604.22126",
+      "title": "GICC: A High-Performance Runtime for GPU-Initiated Communication and Coordination in Modern HPC Systems",
+      "chinese_title": "GICC：现代高性能计算系统中GPU发起通信与协调的高性能运行时",
+      "authors": "Baodi Shan et al.",
+      "url": "https://arxiv.org/abs/2604.22126"
+    },
+    {
+      "id": "2604.22750",
+      "title": "How Do AI Agents Spend Your Money? Analyzing and Predicting Token Consumption in Agentic Coding Tasks",
+      "chinese_title": "AI智能体如何消耗算力：代理式编程任务的Token分析与预测",
+      "authors": "Longju Bai et al.",
+      "url": "https://arxiv.org/abs/2604.22750"
+    },
+    {
+      "id": "2604.13602",
+      "title": "Reward Hacking in the Era of Large Models: Mechanisms, Emergent Misalignment, Challenges",
+      "chinese_title": "大模型时代的奖励篡改：机制、涌现失配与挑战",
+      "authors": "Xiaohua Wang et al.",
+      "url": "https://arxiv.org/abs/2604.13602"
+    },
+    {
+      "id": "2604.22430",
+      "title": "A comprehensive evaluation of spatial co-execution on GPUs using MPS and MIG technologies",
+      "chinese_title": "基于MPS与MIG技术的GPU空间共执行综合评估",
+      "authors": "Jorge Villarrubia et al.",
+      "url": "https://arxiv.org/abs/2604.22430"
+    },
+    {
+      "id": "2604.22146",
+      "title": "$O(K)$-Approximation Coflow Scheduling in $K$-Core Optical Circuit Switching Networks",
+      "chinese_title": "K核光电路交换网络的O(K)近似共流调度",
+      "authors": "Xin Wang et al.",
+      "url": "https://arxiv.org/abs/2604.22146"
+    }
+  ],
+  "generated_at": "2026-04-28T00:27:34.025Z",
+  "org": "AI研究室"
+}
