@@ -1,0 +1,33 @@
+{
+  "date": "2026-04-29_1",
+  "title": "流匹配语音合成与跨域小样本分割 生成式AI的效率革命与自适应",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 2,
+  "papers": [
+    {
+      "id": "2602.05207",
+      "title": "ARCHI-TTS: A flow-matching-based Text-to-Speech Model with Self-supervised Semantic Aligner and Accelerated Inference",
+      "chinese_title": "ARCHI-TTS：基于流匹配的语音合成模型及其自监督语义对齐与加速推",
+      "authors": "Chunyat Wu et al.",
+      "url": "https://arxiv.org/abs/2602.05207"
+    },
+    {
+      "id": "2602.05217",
+      "title": "Cross-Domain Few-Shot Segmentation via Multi-view Progressive Adaptation",
+      "chinese_title": "跨域小样本分割的多视角渐进自适应方法",
+      "authors": "Jiahao Nie et al.",
+      "url": "https://arxiv.org/abs/2602.05217"
+    }
+  ],
+  "generated_at": "2026-04-29T01:24:46.090Z",
+  "org": "AI研究室"
+}
