@@ -54,68 +54,71 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            flex-shrink: 0;
         }
-        .content {
-            padding: 30px;
-        }
-        .latest {
-            background: #fff;
+        .latest-banner {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
             border-left: 4px solid #c00000;
-            padding: 20px;
-            margin-bottom: 30px;
+            padding: 15px 25px;
+            margin: 20px 25px;
+            border-radius: 8px;
         }
-        .latest h2 {
+        .latest-banner a {
             color: #c00000;
-            font-size: 16px;
-            margin-bottom: 12px;
-        }
-        .latest a {
-            color: #333;
             text-decoration: none;
             font-weight: 600;
+            font-size: 15px;
+        }
+        .latest-banner .date {
+            color: #666;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+        .content {
+            padding: 0 30px 30px;
+        }
+        .section-title {
             font-size: 16px;
-        }
-        .latest a:hover {
-            color: #c00000;
-        }
-        .archive h2 {
+            font-weight: 600;
             color: #333;
-            font-size: 18px;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
             border-bottom: 2px solid #c00000;
         }
-        .archive ul {
+        .report-list {
             list-style: none;
         }
-        .archive li {
-            padding: 10px 0;
+        .report-list li {
+            padding: 12px 0;
             border-bottom: 1px solid #eee;
         }
-        .archive li:last-child {
+        .report-list li:last-child {
             border-bottom: none;
         }
-        .archive a {
+        .report-list a {
             color: #333;
             text-decoration: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            font-size: 14px;
+            display: block;
+            transition: color 0.2s;
         }
-        .archive a:hover {
+        .report-list a:hover {
             color: #c00000;
         }
-        .archive .date {
+        .report-list .date {
             color: #999;
             font-size: 12px;
+            margin-top: 2px;
         }
         .footer {
-            background: #8b0000;
-            color: rgba(255,255,255,0.7);
-            padding: 15px;
             text-align: center;
+            padding: 20px;
+            color: #999;
             font-size: 12px;
+            background: #fafafa;
+        }
+        @media (max-width: 600px) {
+            .header h1 { font-size: 18px; }
+            .content { padding: 0 20px 20px; }
         }
     </style>
 </head>
@@ -123,25 +126,24 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <h1>AI技术洞察报告</h1>
-                <div class="subtitle">每日自动生成 | 基于arXiv最新论文</div>
+                <h1>🦞 AI技术洞察报告</h1>
+                <div class="subtitle">每日精选AI前沿论文与技术趋势分析</div>
             </div>
-            <span class="header-icon">🦞</span>
+            <div class="header-icon">🦞</div>
         </div>
 
-        <div class="content">
-            
-            <div class="latest">
-                <h2>📰 最新报告</h2>
-                <a href="reports/2026-04/2026-04-29_1.html">2026-04-29_1 - 智能体画布 AI项目治理的范式重构</a>
-            </div>
-            
+        
+        <div class="latest-banner">
+            <div style="font-size:12px;color:#c00000;font-weight:600;margin-bottom:6px;">📌 最新报告</div>
+            <a href="reports/2026-04/2026-04-29.html">大模型创新与应用全景洞察 从视觉架构革新到分布式训练优化的七</a>
+            <div class="date">2026-04-29</div>
+        </div>
+        
 
-            <div class="archive">
-                <h2>📚 历史报告</h2>
-                <ul>
-                    <li><a href="reports/2026-04/2026-04-29_1.html">2026-04-29_1 - 智能体画布 AI项目治理的范式重构</a></li>
-<li><a href="reports/2026-04/2026-04-29.html">2026-04-29 - 大模型创新与应用全景洞察 从视觉架构革新到分布式训练优化的七</a></li>
+        <div class="content">
+            <div class="section-title">📚 历史报告</div>
+            <ul class="report-list">
+                <li><a href="reports/2026-04/2026-04-29.html">2026-04-29 - 大模型创新与应用全景洞察 从视觉架构革新到分布式训练优化的七</a></li>
 <li><a href="reports/2026-04/2026-04-28_2.html">2026-04-28_2 - 大模型创新纵深突破 从对齐安全到算力基建的七维重构</a></li>
 <li><a href="reports/2026-04/2026-04-28_1.html">2026-04-28_1 - 大模型安全攻防与系统优化前沿突破</a></li>
 <li><a href="reports/2026-04/2026-04-28.html">2026-04-28 - 数据逆向重建与智能体光学控制双突破</a></li>
@@ -170,12 +172,12 @@
 <li><a href="reports/2026-04/2026-04-07.html">2026-04-07 - 大模型技术瓶颈突破与数据驱动创新趋势洞察</a></li>
 <li><a href="reports/2026-04/2026-04-03.html">2026-04-03 - 大模型架构革新与推理效率跃升全景洞察</a></li>
 <li><a href="reports/2026-04/2026-04-02.html">2026-04-02 - 大模型后训练与推理优化开启可监督性与效率新范式</a></li>
-                </ul>
-            </div>
+<li><a href="reports/2026-04/2026-04-01.html">2026-04-01 - 大模型智能体迈向专业化评估与动态技能进化新范式</a></li>
+            </ul>
         </div>
 
         <div class="footer">
-            <p>自动更新于 2026/4/29 09:38:42</p>
+            <p>AI技术洞察报告 | 自动生成于 2026/4/29</p>
         </div>
     </div>
 </body>
