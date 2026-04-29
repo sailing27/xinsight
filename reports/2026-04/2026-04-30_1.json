@@ -1,0 +1,68 @@
+{
+  "date": "2026-04-30_1",
+  "title": "大模型基础设施革新 从智能体原生服务到绿色算力协同",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.25899",
+      "title": "Pythia: Toward Predictability-Driven Agent-Native LLM Serving",
+      "chinese_title": "Pythia：面向可预测性驱动的智能体原生大语言模型服务",
+      "authors": "Shan Yu et al.",
+      "url": "https://arxiv.org/abs/2604.25899"
+    },
+    {
+      "id": "2602.22437",
+      "title": "veScale-FSDP: Flexible and High-Performance FSDP at Scale",
+      "chinese_title": "veScale-FSDP：大规模灵活高性能FSDP方案",
+      "authors": "Zezhou Wang et al.",
+      "url": "https://arxiv.org/abs/2602.22437"
+    },
+    {
+      "id": "2601.19362",
+      "title": "Revisiting Parameter Server in LLM Post-Training",
+      "chinese_title": "LLM后训练中的参数服务器再审视",
+      "authors": "Xinyi Wan et al.",
+      "url": "https://arxiv.org/abs/2601.19362"
+    },
+    {
+      "id": "2601.02311",
+      "title": "Placement Semantics for Distributed Deep Learning: A Systematic Framework for Analyzing Parallelism Strategies",
+      "chinese_title": "分布式深度学习放置语义：并行策略系统分析框架",
+      "authors": "Deep Pankajbhai Mehta et al.",
+      "url": "https://arxiv.org/abs/2601.02311"
+    },
+    {
+      "id": "2604.25819",
+      "title": "Mutual Forcing: Dual-Mode Self-Evolution for Fast Autoregressive Audio-Video Character Generation",
+      "chinese_title": "互驱进化：双模态自演化快速自回归音视频角色生成",
+      "authors": "Yupeng Zhou et al.",
+      "url": "https://arxiv.org/abs/2604.25819"
+    },
+    {
+      "id": "2604.25667",
+      "title": "Two Efficient Message-passing Exclusive Scan Algorithms",
+      "chinese_title": "两种高效的消息传递独占扫描算法",
+      "authors": "Jesper Larsson Träff et al.",
+      "url": "https://arxiv.org/abs/2604.25667"
+    },
+    {
+      "id": "2604.25540",
+      "title": "Economical and ecological impact of sector coupling applied to computing clusters",
+      "chinese_title": "计算集群部门耦合的经济与生态影响研究",
+      "authors": "P. Bechtle et al.",
+      "url": "https://arxiv.org/abs/2604.25540"
+    }
+  ],
+  "generated_at": "2026-04-29T23:41:35.187Z",
+  "org": "AI研究室"
+}
