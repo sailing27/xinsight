@@ -1,0 +1,40 @@
+{
+  "date": "2026-04-29_1",
+  "title": "记忆增强与语义重构 大模型跨模态编辑、长上下文三维重建及AI",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 3,
+  "papers": [
+    {
+      "id": "2601.16296",
+      "title": "Memory-V2V: Memory-Augmented Video-to-Video Diffusion for Consistent Multi-Turn Editing",
+      "chinese_title": "Memory-V2V：记忆增强的视频扩散编辑模型",
+      "authors": "Dohun Lee et al.",
+      "url": "https://arxiv.org/abs/2601.16296"
+    },
+    {
+      "id": "2602.20160",
+      "title": "tttLRM: Test-Time Training for Long Context and Autoregressive 3D Reconstruction",
+      "chinese_title": "tttLRM：面向长上下文与自回归三维重建的测试时训练",
+      "authors": "Chen Wang et al.",
+      "url": "https://arxiv.org/abs/2602.20160"
+    },
+    {
+      "id": "2604.25555",
+      "title": "From CRUD to Autonomous Agents: Formal Validation and Zero-Trust Security for Semantic Gateways in AI-Native Enterprise Systems",
+      "chinese_title": "从CRUD到自主智能体：AI原生企业系统语义网关的形式化验证与零信任安",
+      "authors": "Ignacio Peyrano et al.",
+      "url": "https://arxiv.org/abs/2604.25555"
+    }
+  ],
+  "generated_at": "2026-04-29T08:35:48.289Z",
+  "org": "AI研究室"
+}
