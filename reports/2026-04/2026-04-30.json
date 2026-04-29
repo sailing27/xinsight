@@ -1,0 +1,34 @@
+{
+  "date": "2026-04-30",
+  "title": "Tsallis损失统一训练范式，递归多智能体开启系统级缩放，",
+  "topic": "大模型基础创新",
+  "directions": [
+    "llm"
+  ],
+  "paper_count": 3,
+  "papers": [
+    {
+      "id": "2604.25907",
+      "title": "How Fast Should a Model Commit to Supervision? Training Reasoning Models on the Tsallis Loss Continuum",
+      "chinese_title": "Tsallis损失连续体上训练推理模型的承诺速度优化",
+      "authors": "Chu-Cheng Lin et al.",
+      "url": "https://arxiv.org/abs/2604.25907"
+    },
+    {
+      "id": "2604.25917",
+      "title": "Recursive Multi-Agent Systems",
+      "chinese_title": "递归式多智能体系统",
+      "authors": "Xiyuan Yang et al.",
+      "url": "https://arxiv.org/abs/2604.25917"
+    },
+    {
+      "id": "2604.25914",
+      "title": "DV-World: Benchmarking Data Visualization Agents in Real-World Scenarios",
+      "chinese_title": "DV-World：真实场景数据可视化智能体评测基准",
+      "authors": "Jinxiang Meng et al.",
+      "url": "https://arxiv.org/abs/2604.25914"
+    }
+  ],
+  "generated_at": "2026-04-29T23:40:55.444Z",
+  "org": "AI研究室"
+}
