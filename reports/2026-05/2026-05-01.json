@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-01",
+  "title": "大模型创新与应用全景洞察 从理论根基到智能体实践",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.23681",
+      "title": "Rank, Head-Channel Non-Identifiability, and Symmetry Breaking: A Precise Analysis of Representational Collapse in Transformers",
+      "chinese_title": "秩、头-通道不可辨识性与对称性破缺：Transformer表征坍缩的精",
+      "authors": "Giansalvo Cirrincione et al.",
+      "url": "https://arxiv.org/abs/2604.23681"
+    },
+    {
+      "id": "2604.25067",
+      "title": "Frontier Coding Agents Can Now Implement an AlphaZero Self-Play Machine Learning Pipeline For Connect Four That Performs Comparably to an External Solver",
+      "chinese_title": "前沿编码智能体实现Connect Four自弈机器学习流程，性能匹敌外",
+      "authors": "Joshua Sherwood et al.",
+      "url": "https://arxiv.org/abs/2604.25067"
+    },
+    {
+      "id": "2604.25264",
+      "title": "MARD: A Multi-Agent Framework for Robust Android Malware Detection",
+      "chinese_title": "MARD：面向鲁棒安卓恶意软件检测的多智能体框架",
+      "authors": "Xueying Zeng et al.",
+      "url": "https://arxiv.org/abs/2604.25264"
+    },
+    {
+      "id": "2604.26923",
+      "title": "ClassEval-Pro: A Cross-Domain Benchmark for Class-Level Code Generation",
+      "chinese_title": "ClassEval-Pro：跨领域类级代码生成基准测试",
+      "authors": "Yeheng Chen et al.",
+      "url": "https://arxiv.org/abs/2604.26923"
+    },
+    {
+      "id": "2604.25737",
+      "title": "SAFEdit: Does Multi-Agent Decomposition Resolve the Reliability Challenges of Instructed Code Editing?",
+      "chinese_title": "SAFEdit：多智能体分解能否解决指令代码编辑的可靠性挑战？",
+      "authors": "Noam Tarshish et al.",
+      "url": "https://arxiv.org/abs/2604.25737"
+    },
+    {
+      "id": "2604.24047",
+      "title": "Generalising maximum mean discrepancy: kernelised functional Bregman divergences",
+      "chinese_title": "广义最大均值差异：核化泛函Bregman散度",
+      "authors": "Russell Tsuchida et al.",
+      "url": "https://arxiv.org/abs/2604.24047"
+    },
+    {
+      "id": "2604.26904",
+      "title": "ClawGym: A Scalable Framework for Building Effective Claw Agents",
+      "chinese_title": "ClawGym：构建高效抓取智能体的可扩展框架",
+      "authors": "Fei Bai et al.",
+      "url": "https://arxiv.org/abs/2604.26904"
+    }
+  ],
+  "generated_at": "2026-04-30T22:04:05.382Z",
+  "org": "AI研究室"
+}
