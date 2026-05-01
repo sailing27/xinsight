@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-02",
+  "title": "大模型安全、认知与智能体技术前沿突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2604.28138",
+      "title": "Crab: A Semantics-Aware Checkpoint/Restore Runtime for Agent Sandboxes",
+      "chinese_title": "Crab：面向智能体沙箱的语义感知检查点/恢复运行时",
+      "authors": "Tianyuan Wu et al.",
+      "url": "https://arxiv.org/abs/2604.28138"
+    },
+    {
+      "id": "2604.28129",
+      "title": "Latent Adversarial Detection: Adaptive Probing of LLM Activations for Multi-Turn Attack Detection",
+      "chinese_title": "潜在对抗检测：自适应探测LLM激活以识别多轮攻击",
+      "authors": "Prashant Kulkarni et al.",
+      "url": "https://arxiv.org/abs/2604.28129"
+    },
+    {
+      "id": "2604.28119",
+      "title": "Do Sparse Autoencoders Capture Concept Manifolds?",
+      "chinese_title": "稀疏自编码器是否捕获概念流形？",
+      "authors": "Usha Bhalla et al.",
+      "url": "https://arxiv.org/abs/2604.28119"
+    },
+    {
+      "id": "2604.28182",
+      "title": "Exploration Hacking: Can LLMs Learn to Resist RL Training?",
+      "chinese_title": "探索攻击：LLM能否学会抵抗强化学习训练？",
+      "authors": "Eyon Jang et al.",
+      "url": "https://arxiv.org/abs/2604.28182"
+    },
+    {
+      "id": "2604.28118",
+      "title": "DEFault++: Automated Fault Detection, Categorization, and Diagnosis for Transformer Architectures",
+      "chinese_title": "DEFault++：Transformer架构的自动化故障检测、分类与",
+      "authors": "Sigma Jahan et al.",
+      "url": "https://arxiv.org/abs/2604.28118"
+    },
+    {
+      "id": "2604.28098",
+      "title": "Mapping the Methodological Space of Classroom Interaction Research: Scale, Duration, and Modality in an Age of AI",
+      "chinese_title": "AI时代课堂互动研究的方法论空间：尺度、时长与模态",
+      "authors": "Dorottya Demszky et al.",
+      "url": "https://arxiv.org/abs/2604.28098"
+    },
+    {
+      "id": "2604.28196",
+      "title": "HERMES++: Toward a Unified Driving World Model for 3D Scene Understanding and Generation",
+      "chinese_title": "HERMES++：面向三维场景理解与生成的统一驾驶世界模型",
+      "authors": "Xin Zhou et al.",
+      "url": "https://arxiv.org/abs/2604.28196"
+    }
+  ],
+  "generated_at": "2026-05-01T22:03:17.148Z",
+  "org": "AI研究室"
+}
