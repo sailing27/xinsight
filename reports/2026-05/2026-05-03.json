@@ -1,0 +1,26 @@
+{
+  "date": "2026-05-03",
+  "title": "最大似然强化学习 突破RL低阶近似瓶颈的新范式",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 1,
+  "papers": [
+    {
+      "id": "2602.02710",
+      "title": "Maximum Likelihood Reinforcement Learning",
+      "chinese_title": "最大似然强化学习",
+      "authors": "Fahim Tajwar et al.",
+      "url": "https://arxiv.org/abs/2602.02710"
+    }
+  ],
+  "generated_at": "2026-05-03T00:03:43.243Z",
+  "org": "AI研究室"
+}
