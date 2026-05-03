@@ -1,0 +1,26 @@
+{
+  "date": "2026-05-04",
+  "title": "流匹配视频生成 解耦双目标实现多样与一致兼得",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 1,
+  "papers": [
+    {
+      "id": "2602.15287",
+      "title": "Consistency-Preserving Diverse Video Generation",
+      "chinese_title": "一致性保持的多样化视频生成",
+      "authors": "Xinshuang Liu et al.",
+      "url": "https://arxiv.org/abs/2602.15287"
+    }
+  ],
+  "generated_at": "2026-05-03T22:04:56.486Z",
+  "org": "AI研究室"
+}
