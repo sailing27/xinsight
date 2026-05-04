@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-05",
+  "title": "大模型效能革命 从训练优化到推理可信的全栈突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.00803",
+      "title": "Can Coding Agents Reproduce Findings in Computational Materials Science?",
+      "chinese_title": "计算材料科学中的编码智能体能否复现研究发现",
+      "authors": "Ziyang Huang et al.",
+      "url": "https://arxiv.org/abs/2605.00803"
+    },
+    {
+      "id": "2605.00649",
+      "title": "Budget Constraints as Riemannian Manifolds",
+      "chinese_title": "预算约束的黎曼流形结构",
+      "authors": "Michael Helcig et al.",
+      "url": "https://arxiv.org/abs/2605.00649"
+    },
+    {
+      "id": "2605.00539",
+      "title": "AGoQ: Activation and Gradient Quantization for Memory-Efficient Distributed Training of LLMs",
+      "chinese_title": "AGoQ：面向大语言模型的高效分布式训练激活与梯度量化方法",
+      "authors": "Wenxiang Lin et al.",
+      "url": "https://arxiv.org/abs/2605.00539"
+    },
+    {
+      "id": "2605.00422",
+      "title": "BWLA: Breaking the Barrier of W1AX Post-Training Quantization for LLMs",
+      "chinese_title": "BWLA：突破大语言模型W1AX后训练量化的瓶颈",
+      "authors": "Zhixiong Zhao et al.",
+      "url": "https://arxiv.org/abs/2605.00422"
+    },
+    {
+      "id": "2605.00817",
+      "title": "When LLMs Stop Following Steps: A Diagnostic Study of Procedural Execution in Language Models",
+      "chinese_title": "大语言模型步骤执行失效的诊断研究",
+      "authors": "Sailesh Panda et al.",
+      "url": "https://arxiv.org/abs/2605.00817"
+    },
+    {
+      "id": "2605.00825",
+      "title": "Posterior Augmented Flow Matching",
+      "chinese_title": "后验增强流匹配",
+      "authors": "George Stoica et al.",
+      "url": "https://arxiv.org/abs/2605.00825"
+    },
+    {
+      "id": "2605.00814",
+      "title": "Persistent Visual Memory: Sustaining Perception for Deep Generation in LVLMs",
+      "chinese_title": "持续视觉记忆：支撑大视觉语言模型深度生成的感知维持",
+      "authors": "Siyuan Huang et al.",
+      "url": "https://arxiv.org/abs/2605.00814"
+    }
+  ],
+  "generated_at": "2026-05-04T22:04:55.119Z",
+  "org": "AI研究室"
+}
