@@ -1,0 +1,33 @@
+{
+  "date": "2026-05-06",
+  "title": "大模型高效归因与多模态手语理解新范式",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 2,
+  "papers": [
+    {
+      "id": "2602.06275",
+      "title": "RoPE-LIME: RoPE-Space Locality + Sparse-K Sampling for Efficient LLM Attribution",
+      "chinese_title": "RoPE-LIME：基于RoPE空间局部性与稀疏K采样的高效大语言模型",
+      "authors": "Isaac Picov et al.",
+      "url": "https://arxiv.org/abs/2602.06275"
+    },
+    {
+      "id": "2605.01720",
+      "title": "SignVerse-2M: A Two-Million-Clip Pose-Native Universe of 25+ Sign Languages",
+      "chinese_title": "SignVerse-2M：覆盖25种以上手语的200万片段姿态原生数据",
+      "authors": "Sen Fang et al.",
+      "url": "https://arxiv.org/abs/2605.01720"
+    }
+  ],
+  "generated_at": "2026-05-05T23:16:31.749Z",
+  "org": "AI研究室"
+}
