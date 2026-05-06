@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-07",
+  "title": "大模型全栈革新 从量子认知到E级算力的七维突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.03190",
+      "title": "VDCores: Resource Decoupled Programming and Execution for Asynchronous GPU",
+      "chinese_title": "VDCores：面向异步GPU的资源解耦编程与执行",
+      "authors": "Zijian He et al.",
+      "url": "https://arxiv.org/abs/2605.03190"
+    },
+    {
+      "id": "2605.03561",
+      "title": "Enhancing Performance Insight at Scale: A Heterogeneous Framework for Exascale Diagnostics",
+      "chinese_title": "异构框架赋能百亿亿次级诊断性能洞察",
+      "authors": "Dragana Grbic et al.",
+      "url": "https://arxiv.org/abs/2605.03561"
+    },
+    {
+      "id": "2602.13052",
+      "title": "Quantization-Aware Collaborative Inference for Large Embodied AI Models",
+      "chinese_title": "面向具身大模型的量化感知协同推理",
+      "authors": "Zhonghao Lyu et al.",
+      "url": "https://arxiv.org/abs/2602.13052"
+    },
+    {
+      "id": "2602.17546",
+      "title": "Learning to Stay Safe: Adaptive Regularization Against Safety Degradation during Fine-Tuning",
+      "chinese_title": "自适应正则化防止微调中的安全性退化",
+      "authors": "Jyotin Goel et al.",
+      "url": "https://arxiv.org/abs/2602.17546"
+    },
+    {
+      "id": "2605.02690",
+      "title": "Caliper-in-the-Loop: Black-Box Optimization for Hyperledger Fabric Performance Tuning",
+      "chinese_title": "卡尺闭环：Hyperledger Fabric性能调优的黑盒优化",
+      "authors": "Yash Madhwal et al.",
+      "url": "https://arxiv.org/abs/2605.02690"
+    },
+    {
+      "id": "2601.06104",
+      "title": "Comment on arXiv:2511.21731v1: Identifying Quantum Structure in AI Language: Evidence for Evolutionary Convergence of Human and Artificial Cognition",
+      "chinese_title": "量子结构在AI语言中的显现：人机认知演化趋同的证据",
+      "authors": "Krzysztof Sienicki et al.",
+      "url": "https://arxiv.org/abs/2601.06104"
+    },
+    {
+      "id": "2601.17483",
+      "title": "Automatic Stability and Recovery for Neural Network Training",
+      "chinese_title": "神经网络训练的自动稳定与恢复",
+      "authors": "Barak Or et al.",
+      "url": "https://arxiv.org/abs/2601.17483"
+    }
+  ],
+  "generated_at": "2026-05-06T22:04:59.111Z",
+  "org": "AI研究室"
+}
