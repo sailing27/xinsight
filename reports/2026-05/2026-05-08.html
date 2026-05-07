@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型技术突破七维 从几何感知到智能体进化 | 2026/5/8</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型技术突破七维 从几何感知到智能体进化 | 2026/5/8</h1>
+                <div class="date">2026/5/8 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了大模型技术正从单一性能优化向<strong>几何感知表征、自适应系统设计与物理 grounded 生成</strong>三大范式跃迁。计算病理学突破欧氏空间假设，以双曲-欧几里得混合几何刻画层级结构；存储系统与扩散模型分别引入强化学习实现跨层级自适应控制与持续蒸馏微调；DiT 异常 token 控制与智能体弹性上下文编排则凸显了<strong>动态机制设计</strong>对长程推理可靠性的关键作用。尤为值得注意的是，PhysForge 将功能逻辑前置为生成先验，重构了 3D 资产生成的目标函数，而语义不变性研究则挑战了规模决定论，揭示中小模型通过架构优化亦可实现卓越鲁棒性。这些进展共同指向一个趋势：下一代 AI 系统正从"规模驱动"转向"结构驱动"——通过几何先验、物理约束与动态记忆的深度融合，在效率、可控性与泛化性之间寻求新的帕累托前沿。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Geometry-Aware State Space Model: A New Paradigm for Whole-Slide Image Representation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.05164</span>
+                        <span style="background:linear-gradient(135deg,#FB8C00 0%,#EF6C00 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">Agentic</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">几何感知状态空间模型：全切片图像表示新范式</span>
+                        <span style="color:#666;font-size:12px;">Enhui Chai et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出BatMIL框架，通过双曲-欧几里得混合空间嵌入WSI特征，结合S4状态空间模型与区域化MoE模块，实现高效的全切片图像分类，在七种癌症数据集上取得最优性能。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双曲-欧几里得混合表示</strong>：将WSI特征同时嵌入曲率不同的双曲空间与欧几里得空间，分别捕获层级结构信息与局部形态细节</li><li style="margin-bottom:0;"><strong>S4状态空间骨干</strong>：采用结构化状态空间序列模型处理数千patch的长序列依赖，将计算复杂度从二次降至线性</li><li style="margin-bottom:0;"><strong>区域化混合专家模块</strong>：将patch分组成区域块，通过门控网络动态路由至专业子网络，自适应建模区域异质性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>几何感知表征范式</strong>：突破传统欧氏空间假设，引入非欧几何刻画病理组织的层级嵌套结构</li><li style="margin-bottom:0;"><strong>双空间互补机制</strong>：双曲空间编码层级语义关系，欧氏空间保留局部度量特性，实现多尺度几何信息融合</li><li style="margin-bottom:0;"><strong>计算效率与表达能力的协同优化</strong>：S4的线性复杂度与MoE的条件计算相结合，解决千兆像素WSI的可扩展性瓶颈</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">几何感知表示学习是计算病理学的重要发展方向</li><li style="margin-bottom:0;">BatMIL在六种癌症类型的七种数据集上持续超越现有MIL方法</li><li style="margin-bottom:0;">非欧几何与深度序列模型的融合为全切片分析提供了新范式</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.05164" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.05164</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Machine Learning-Driven Intelligent Memory System Design: From On-Chip Caches to Storage</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2603.14583</span>
+                        <span style="background:linear-gradient(135deg,#FB8C00 0%,#EF6C00 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">Agentic</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">机器学习驱动的智能存储系统设计：从片上缓存到存储</span>
+                        <span style="color:#666;font-size:12px;">Rahul Bera et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出以机器学习替代静态启发式规则设计存储系统，涵盖缓存预取、多级缓存片外预测及混合存储数据放置三个层级，实现自适应、数据驱动的智能存储架构。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>强化学习预取</strong>：基于RL的片上缓存数据预取器Pythia，通过轻量级在线学习预测访问模式</li><li style="margin-bottom:0;"><strong>感知机片外预测</strong>：Hermes利用感知机学习预测多级缓存层次中的片外访问行为</li><li style="margin-bottom:0;"><strong>强化学习数据放置</strong>：Sibyl针对混合存储系统（如SSD+HDD）动态优化数据分布策略</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨层级统一范式</strong>：首次系统论证ML可贯穿存储层次实现自适应控制，打破传统分层孤立设计</li><li style="margin-bottom:0;"><strong>轻量硬件实现</strong>：针对资源受限的存储控制器环境，设计低开销的在线学习算法与特征工程</li><li style="margin-bottom:0;"><strong>人机设计范式转换</strong>：从静态启发式向数据驱动的自优化架构演进，提出可扩展的设计方法论</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能超越传统方法</strong>：三项策略均显著优于最优人工设计策略，验证ML在存储系统的有效性</li><li style="margin-bottom:0;"><strong>硬件开销可控</strong>：证明轻量级ML可在严格资源约束下实现实用化部署</li><li style="margin-bottom:0;"><strong>架构智能化趋势</strong>：自适应学习机制是未来自优化存储系统的核心使能技术</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.14583" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.14583</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Taming Outlier Tokens in Diffusion Transformers</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.05206</span>
+                        <span style="background:linear-gradient(135deg,#8E24AA 0%,#6A1B9A 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">多模态</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">驯服扩散Transformer中的异常token</span>
+                        <span style="color:#666;font-size:12px;">Xiaoyu Wu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究扩散Transformer中的异常token现象，发现RAE-DiT管道的编码器与去噪器均存在高范数异常token，且简单掩蔽无效。提出双阶段寄存器(DSR)干预方法，在ImageNet和文本到图像生成任务中有效减少伪影并提升生成质量。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>异常token检测</strong>：通过范数分析定位编码器与去噪器中的高范数token</li><li style="margin-bottom:0;"><strong>DSR干预策略</strong>：训练阶段寄存器、测试阶段递归寄存器、扩散去噪寄存器的三组件协同设计</li><li style="margin-bottom:0;"><strong>语义修复机制</strong>：针对 corrupted local patch semantics 而非简单数值异常进行局部信息重建</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>现象拓展</strong>：首次将ViT异常token研究系统扩展至生成式DiT框架，揭示中间层内部异常token的形成机制</li><li style="margin-bottom:0;"><strong>问题重定义</strong>：突破'极端数值即问题'的简化认知，提出异常token本质是局部语义损坏的新判断</li><li style="margin-bottom:0;"><strong>阶段自适应</strong>：设计训练/测试双阶段差异化的寄存器策略，解决测试时无训练寄存器的部署难题</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">异常token控制是构建更强DiT的关键要素</li><li style="margin-bottom:0;">简单掩蔽高范数token无法改善性能，需针对语义层修复</li><li style="margin-bottom:0;">DSR在ImageNet与大规模文生图任务中一致降低异常伪影并提升生成质量</li><li style="margin-bottom:0;">编码器与去噪器的双组件干预优于单一组件处理</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.05206" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.05206</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>D-OPSD: On-Policy Self-Distillation for Continuously Tuning Step-Distilled Diffusion Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.05204</span>
+                        <span style="background:linear-gradient(135deg,#8E24AA 0%,#6A1B9A 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">多模态</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">D-OPSD：基于在线自蒸馏的扩散模型步数蒸馏持续调优</span>
+                        <span style="color:#666;font-size:12px;">Dengyang Jiang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">针对少步扩散模型（如Z-Image-Turbo、FLUX.2-klein）直接监督微调会丧失少步推理能力的问题，提出D-OPSD训练范式，通过让模型在不同上下文条件下同时充当教师和学生，实现on-policy自蒸馏，在保持原有少步生成能力的同时学习新概念和风格。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>On-policy自蒸馏</strong>：模型同时作为教师和学生进行训练</li><li style="margin-bottom:0;"><strong>条件差异化</strong>：学生仅基于文本特征，教师基于文本与目标图像的多模态特征</li><li style="margin-bottom:0;"><strong>分布匹配</strong>：最小化学生roll-out上两个预测分布的差异</li><li style="margin-bottom:0;"><strong>上下文能力继承</strong>：利用LLM/VLM编码器的in-context learning能力</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">首次将on-policy强化学习思想引入步数蒸馏扩散模型的持续微调</li><li style="margin-bottom:0;">提出'自教师-自学生'的对偶训练框架，无需额外教师模型</li><li style="margin-bottom:0;">揭示现代扩散模型可继承编码器in-context能力的特性</li><li style="margin-bottom:0;">解决少步模型微调的'步数退化'难题</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">D-OPSD能在不牺牲原有少步推理能力的前提下实现持续学习</li><li style="margin-bottom:0;">模型通过优化自身轨迹和自监督信号实现概念与风格迁移</li><li style="margin-bottom:0;">适用于基于LLM/VLM编码器的高效扩散模型架构</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.05204" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.05204</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>PhysForge: Generating Physics-Grounded 3D Assets for Interactive Virtual World</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.05163</span>
+                        <span style="background:linear-gradient(135deg,#8E24AA 0%,#6A1B9A 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">多模态</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">PhysForge：面向交互式虚拟世界的物理驱动三维资产生成</span>
+                        <span style="color:#666;font-size:12px;">Yunhan Yang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出PhysForge框架，通过解耦的两阶段流程生成物理可交互的3D资产：首先利用VLM规划层级物理蓝图，再通过物理引导扩散模型实现高保真几何与运动学参数合成，并构建15万资产的PhysDB数据集。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>层级物理蓝图</strong>：VLM作为物理架构师，输出定义材料、功能与运动学约束的四层物理标注结构，实现功能逻辑与几何生成的显式解耦</li><li style="margin-bottom:0;"><strong>KineVoxel注入机制</strong>：将运动学参数以体素化形式嵌入扩散模型的去噪过程，实现几何与物理属性的联合生成与精确控制</li><li style="margin-bottom:0;"><strong>PhysDB数据集</strong>：包含15万资产的四层物理标注体系，涵盖材料属性、功能类别、运动学约束及交互语义，支撑物理 grounded 的资产生成训练</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>功能逻辑优先范式</strong>：突破传统静态几何生成局限，将交互功能属性作为生成先验而非后验验证，重构3D资产生成的目标函数</li><li style="margin-bottom:0;"><strong>物理-几何解耦架构</strong>：首创'规划-实现'两阶段分离框架，使高层物理约束可解释、可编辑，降低复合推理的优化难度</li><li style="margin-bottom:0;"><strong>运动学参数显式编码</strong>：KVI机制首次实现连续运动学参数与离散体素空间的端到端可微映射，支持仿真就绪资产的直接输出</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>功能有效性</strong>：PhysForge生成的资产在物理仿真中具备功能合理性，可直接部署于交互式虚拟环境</li><li style="margin-bottom:0;"><strong>数据引擎价值</strong>：PhysDB与生成框架共同为具身智能研究提供大规模、物理一致的3D交互内容来源</li><li style="margin-bottom:0;"><strong>生成质量优势</strong>：相比静态方法，所提框架在保持高保真几何的同时实现了运动学精确性与物理可仿真性的统一</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.05163" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.05163</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>LongSeeker: Elastic Context Orchestration for Long-Horizon Search Agents</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.05191</span>
+                        <span style="background:linear-gradient(135deg,#FB8C00 0%,#EF6C00 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">Agentic</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">LongSeeker：长程搜索智能体的弹性上下文编排</span>
+                        <span style="color:#666;font-size:12px;">Yijun Lu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出Context-ReAct范式，通过五种原子操作实现智能体工作上下文的弹性编排，并基于此构建LongSeeker搜索智能体，在长程搜索任务上显著优于现有方法。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>弹性上下文编排</strong>：通过Skip/Compress/Rollback/Snippet/Delete五种原子操作动态重塑工作上下文，实现细粒度的记忆管理</li><li style="margin-bottom:0;"><strong>Context-ReAct统一循环</strong>：将推理、上下文管理与工具调用整合为协同循环，替代传统ReAct的线性累积模式</li><li style="margin-bottom:0;"><strong>合成轨迹微调</strong>：基于10k合成轨迹对Qwen3-30B-A3B进行领域适配训练，赋予模型上下文操作决策能力</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>主动上下文塑形</strong>：突破传统被动截断或压缩模式，提出依据当前任务相关性动态维护不同粒度轨迹的新范式</li><li style="margin-bottom:0;"><strong>操作完备性理论</strong>：证明Compress算子的表达完备性，为上下文压缩提供形式化基础，其他专用算子兼顾效率与精度</li><li style="margin-bottom:0;"><strong>统一决策架构</strong>：将上下文管理从外部模块提升为智能体内生能力，实现推理与记忆操作的端到端联合优化</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>自适应上下文管理显著提升长程推理可靠性</strong>：LongSeeker在BrowseComp上达61.5%，较Tongyi DeepResearch提升18.3个百分点</li><li style="margin-bottom:0;"><strong>上下文主动塑形优于朴素累积</strong>：通过丢弃无效分支、保留关键证据，有效控制成本并降低幻觉风险</li><li style="margin-bottom:0;"><strong>专用操作效率优势</strong>：Snippet等操作在特定场景下比通用压缩更高效，验证了算子差异化的必要性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.05191" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.05191</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Semantic Invariance in Agentic AI</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2603.13173</span>
+                        <span style="background:linear-gradient(135deg,#FB8C00 0%,#EF6C00 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">Agentic</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">智能体AI中的语义不变性</span>
+                        <span style="color:#666;font-size:12px;">I. de Zarzà et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">论文针对LLM智能体在语义等价输入变化下的推理稳定性问题，提出'语义不变性'概念，构建蜕变测试框架，评估8种语义保持变换下7个模型的鲁棒性，发现模型规模与稳定性无正相关。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>蜕变测试框架</strong>：针对LLM agent设计8种语义保持输入变换</li><li style="margin-bottom:0;"><strong>语义不变性度量</strong>：定义响应稳定性与语义相似性双指标</li><li style="margin-bottom:0;"><strong>多维度扰动策略</strong>：涵盖句式改写、事实重排、领域语境切换等变换类型</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>概念创新</strong>：首次系统提出LLM agent的'语义不变性'属性并形式化定义</li><li style="margin-bottom:0;"><strong>方法迁移</strong>：将软件工程中的蜕变测试适配于多步推理场景</li><li style="margin-bottom:0;"><strong>反规模效应发现</strong>：揭示大模型稳定性悖论，挑战参数规模崇拜</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>规模非决定因素</strong>：Qwen3-30B-A3B以79.6%不变率超越更大模型</li><li style="margin-bottom:0;"><strong>架构差异显著</strong>：MoE与Dense模型对语义扰动敏感性不同</li><li style="margin-bottom:0;"><strong>评测缺口</strong>：标准基准无法反映真实部署可靠性，需纳入语义不变性评估</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.13173" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.13173</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/8</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-08",
+  "title": "大模型技术突破七维 从几何感知到智能体进化",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.05164",
+      "title": "Geometry-Aware State Space Model: A New Paradigm for Whole-Slide Image Representation",
+      "chinese_title": "几何感知状态空间模型：全切片图像表示新范式",
+      "authors": "Enhui Chai et al.",
+      "url": "https://arxiv.org/abs/2605.05164"
+    },
+    {
+      "id": "2603.14583",
+      "title": "Machine Learning-Driven Intelligent Memory System Design: From On-Chip Caches to Storage",
+      "chinese_title": "机器学习驱动的智能存储系统设计：从片上缓存到存储",
+      "authors": "Rahul Bera et al.",
+      "url": "https://arxiv.org/abs/2603.14583"
+    },
+    {
+      "id": "2605.05206",
+      "title": "Taming Outlier Tokens in Diffusion Transformers",
+      "chinese_title": "驯服扩散Transformer中的异常token",
+      "authors": "Xiaoyu Wu et al.",
+      "url": "https://arxiv.org/abs/2605.05206"
+    },
+    {
+      "id": "2605.05204",
+      "title": "D-OPSD: On-Policy Self-Distillation for Continuously Tuning Step-Distilled Diffusion Models",
+      "chinese_title": "D-OPSD：基于在线自蒸馏的扩散模型步数蒸馏持续调优",
+      "authors": "Dengyang Jiang et al.",
+      "url": "https://arxiv.org/abs/2605.05204"
+    },
+    {
+      "id": "2605.05163",
+      "title": "PhysForge: Generating Physics-Grounded 3D Assets for Interactive Virtual World",
+      "chinese_title": "PhysForge：面向交互式虚拟世界的物理驱动三维资产生成",
+      "authors": "Yunhan Yang et al.",
+      "url": "https://arxiv.org/abs/2605.05163"
+    },
+    {
+      "id": "2605.05191",
+      "title": "LongSeeker: Elastic Context Orchestration for Long-Horizon Search Agents",
+      "chinese_title": "LongSeeker：长程搜索智能体的弹性上下文编排",
+      "authors": "Yijun Lu et al.",
+      "url": "https://arxiv.org/abs/2605.05191"
+    },
+    {
+      "id": "2603.13173",
+      "title": "Semantic Invariance in Agentic AI",
+      "chinese_title": "智能体AI中的语义不变性",
+      "authors": "I. de Zarzà et al.",
+      "url": "https://arxiv.org/abs/2603.13173"
+    }
+  ],
+  "generated_at": "2026-05-07T23:30:03.785Z",
+  "org": "AI研究室"
+}
