@@ -1,0 +1,33 @@
+{
+  "date": "2026-05-09",
+  "title": "位置编码革新与压缩模型对齐 大模型效率优化的双重突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 2,
+  "papers": [
+    {
+      "id": "2601.22181",
+      "title": "MrRoPE: Mixed-radix Rotary Position Embedding",
+      "chinese_title": "MrRoPE：混合基数旋转位置编码",
+      "authors": "Qingyuan Tian et al.",
+      "url": "https://arxiv.org/abs/2601.22181"
+    },
+    {
+      "id": "2602.14635",
+      "title": "Alignment Adapter to Improve the Performance of Compressed Deep Learning Models",
+      "chinese_title": "对齐适配器提升压缩深度学习模型性能",
+      "authors": "Rohit Raj Rai et al.",
+      "url": "https://arxiv.org/abs/2602.14635"
+    }
+  ],
+  "generated_at": "2026-05-08T22:06:03.667Z",
+  "org": "AI研究室"
+}
