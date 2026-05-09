@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-09_1",
+  "title": "大模型推理革新 从深度强化学习到多模态泛化的七维突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.06638",
+      "title": "Can RL Teach Long-Horizon Reasoning to LLMs? Expressiveness Is Key",
+      "chinese_title": "强化学习能否教会大语言模型长程推理？表达能力是关键",
+      "authors": "Tianle Wang et al.",
+      "url": "https://arxiv.org/abs/2605.06638"
+    },
+    {
+      "id": "2605.06643",
+      "title": "Are We Making Progress in Multimodal Domain Generalization? A Comprehensive Benchmark Study",
+      "chinese_title": "多模态域泛化进展如何？综合基准研究",
+      "authors": "Hao Dong et al.",
+      "url": "https://arxiv.org/abs/2605.06643"
+    },
+    {
+      "id": "2605.06640",
+      "title": "Concept-Based Abductive and Contrastive Explanations for Behaviors of Vision Models",
+      "chinese_title": "基于概念的反事实与对比解释：视觉模型行为分析",
+      "authors": "Ronaldo Canizales et al.",
+      "url": "https://arxiv.org/abs/2605.06640"
+    },
+    {
+      "id": "2605.05755",
+      "title": "Transformers Provably Implement In-Context Reinforcement Learning with Policy Improvement",
+      "chinese_title": "Transformer可证明实现策略改进的上下文强化学习",
+      "authors": "Haodong Liang et al.",
+      "url": "https://arxiv.org/abs/2605.05755"
+    },
+    {
+      "id": "2605.06658",
+      "title": "Relit-LiVE: Relight Video by Jointly Learning Environment Video",
+      "chinese_title": "Relit-LiVE：联合学习环境视频的重光照视频生成",
+      "authors": "Weiqing Xiao et al.",
+      "url": "https://arxiv.org/abs/2605.06658"
+    },
+    {
+      "id": "2601.19404",
+      "title": "RPO:Reinforcement Fine-Tuning with Partial Reasoning Optimization",
+      "chinese_title": "RPO：基于部分推理优化的强化微调",
+      "authors": "Hongzhu Yi et al.",
+      "url": "https://arxiv.org/abs/2601.19404"
+    },
+    {
+      "id": "2605.06149",
+      "title": "AdaGamma: State-Dependent Discounting for Temporal Adaptation in Reinforcement Learning",
+      "chinese_title": "AdaGamma：强化学习中时序自适应的状态依赖折扣",
+      "authors": "Yaomin Wang et al.",
+      "url": "https://arxiv.org/abs/2605.06149"
+    }
+  ],
+  "generated_at": "2026-05-09T04:17:56.946Z",
+  "org": "AI研究室"
+}
