@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-09_2",
+  "title": "大模型推理优化与可信评估 从智能体协同到统计理论突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.06623",
+      "title": "MASPO: Joint Prompt Optimization for LLM-based Multi-Agent Systems",
+      "chinese_title": "MASPO：基于大语言模型的多智能体系统联合提示优化",
+      "authors": "Zhexuan Wang et al.",
+      "url": "https://arxiv.org/abs/2605.06623"
+    },
+    {
+      "id": "2605.06638",
+      "title": "Can RL Teach Long-Horizon Reasoning to LLMs? Expressiveness Is Key",
+      "chinese_title": "强化学习能否赋予大语言模型长程推理能力？表达能力是关键",
+      "authors": "Tianle Wang et al.",
+      "url": "https://arxiv.org/abs/2605.06638"
+    },
+    {
+      "id": "2604.14895",
+      "title": "Beyond Importance Sampling: Rejection-Gated Policy Optimization",
+      "chinese_title": "超越重要性采样：拒绝门控策略优化",
+      "authors": "Ziwu Sun et al.",
+      "url": "https://arxiv.org/abs/2604.14895"
+    },
+    {
+      "id": "2605.06373",
+      "title": "Beyond the Independence Assumption: Finite-Sample Guarantees for Deep Q-Learning under $τ$-Mixing",
+      "chinese_title": "超越独立性假设：τ-混合下深度Q学习的有限样本保证",
+      "authors": "Leon Halgryn et al.",
+      "url": "https://arxiv.org/abs/2605.06373"
+    },
+    {
+      "id": "2605.06656",
+      "title": "Why Global LLM Leaderboards Are Misleading: Small Portfolios for Heterogeneous Supervised ML",
+      "chinese_title": "全球大模型排行榜为何误导：异构监督机器学习的小组合评估",
+      "authors": "Jai Moondra et al.",
+      "url": "https://arxiv.org/abs/2605.06656"
+    },
+    {
+      "id": "2605.06640",
+      "title": "Concept-Based Abductive and Contrastive Explanations for Behaviors of Vision Models",
+      "chinese_title": "基于概念的视觉模型行为溯因与对比解释",
+      "authors": "Ronaldo Canizales et al.",
+      "url": "https://arxiv.org/abs/2605.06640"
+    },
+    {
+      "id": "2605.06564",
+      "title": "Dynamic Treatment on Networks",
+      "chinese_title": "网络动态干预",
+      "authors": "Bengusu Nar et al.",
+      "url": "https://arxiv.org/abs/2605.06564"
+    }
+  ],
+  "generated_at": "2026-05-09T04:18:33.328Z",
+  "org": "AI研究室"
+}
