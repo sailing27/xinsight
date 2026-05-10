@@ -1,0 +1,40 @@
+{
+  "date": "2026-05-11",
+  "title": "大模型认知重构 从问题前设到注意力重塑的安全进化",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 3,
+  "papers": [
+    {
+      "id": "2605.06345",
+      "title": "More Than Can Be Said: A Benchmark and Framework for Pre-Question Scientific Ideation",
+      "chinese_title": "科学预问构思：基准测试与框架",
+      "authors": "Jie Yu et al.",
+      "url": "https://arxiv.org/abs/2605.06345"
+    },
+    {
+      "id": "2605.06390",
+      "title": "Automated alignment is harder than you think",
+      "chinese_title": "自动对齐比你想象的更难",
+      "authors": "Aleksandr Bowkis et al.",
+      "url": "https://arxiv.org/abs/2605.06390"
+    },
+    {
+      "id": "2602.04884",
+      "title": "Reinforced Attention Learning",
+      "chinese_title": "强化注意力学习",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2602.04884"
+    }
+  ],
+  "generated_at": "2026-05-10T22:09:55.200Z",
+  "org": "AI研究室"
+}

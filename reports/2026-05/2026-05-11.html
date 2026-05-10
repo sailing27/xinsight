@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型认知重构 从问题前设到注意力重塑的安全进化 | 2026/5/11</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型认知重构 从问题前设到注意力重塑的安全进化 | 2026/5/11</h1>
+                <div class="date">2026/5/11 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🦞</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦大模型能力边界的系统性拓展与深层风险识别，揭示当前研究正从"生成优化"向"认知机制干预"与"安全范式重构"演进。三项研究共同指向三个技术方向：一是<strong>隐性认知的外显化与结构化</strong>，InciteResearch与RAL分别从研究构思的前问题阶段和模型内部注意力分布切入，将传统不可见的认知过程转化为可优化对象；二是<strong>优化目标的范式转移</strong>，二者均突破端到端输出优化的传统路径，转向对中间过程（提问逻辑、注意力机制）的直接干预；三是<strong>自动化评估的内在张力</strong>，论文2警示的模糊任务困境与论文1、3依赖的基准验证形成辩证对照，凸显"可衡量"与"真正重要"之间的系统性鸿沟。<br><br>对行业而言，这一组合意味着大模型研究需同步推进"能力增强"与"安全审慎"的双轨议程：一方面，注意力级强化学习与多智能体协作框架为多模态感知和科学发现开辟了新路径；另一方面，自动化对齐的固有模糊性要求重新校准对AI安全评估的信任阈值，避免将可自动化的任务误认为关键的安全保障。价值在于推动社区从"更快的人工替代"转向"更深层的人机协同设计"。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">3</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>More Than Can Be Said: A Benchmark and Framework for Pre-Question Scientific Ideation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.06345</span>
+                        <span style="background:linear-gradient(135deg,#FB8C00 0%,#EF6C00 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">Agentic</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">科学预问构思：基准测试与框架</span>
+                        <span style="color:#666;font-size:12px;">Jie Yu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">AI研究代理在自动化文献搜索和手稿完善方面展现出强大潜力，但大多假设存在清晰可执行的初始输入，仅在研究问题明确后才运作。相比之下，人类研究往往始于隐性摩擦，一种在问题形成之前的错位感。本文提出InciteResearch多智能体框架，旨在将研究者的隐性理解转化为显性、可检查和可执行的形式。该框架分解苏格拉底式提问的逻辑链并分布于整个流程：(1)从模糊甚至跨领域输入中引出以特定摩擦点为锚的结构化五维研究者画像状态；(2)通过最大化可行性-新颖性乘积并强制7阶段因果推导迹来打破隐藏假设；(3)检验所提方法是否为重构洞见的必要结果。此外引入TF-Bench，首个隐性到显性研究辅助基准，区分四种科学模式中的领域相关与领域无关灵感。在TF-Bench上，InciteResearch较提示基线实现跨越式提升（新颖性/影响力从3.671/3.806提升至4.250/4.397），将生成提案从重组转向架构洞见，证明AI可作为思维本身的延伸，而非仅自动化下游执行。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多智能体框架</strong>：构建InciteResearch系统，通过分布式多智能体协作实现苏格拉底式提问逻辑的流水线化，将研究者隐性认知外显为结构化可操作的研究起点</li><li style="margin-bottom:0;"><strong>五维画像建模</strong>：从模糊跨领域输入中抽取摩擦点，构建涵盖研究背景、核心困惑、潜在假设、价值倾向和能力边界的结构化研究者状态表示</li><li style="margin-bottom:0;"><strong>因果推导追踪</strong>：强制实施7阶段因果推导迹机制，确保假设违反过程具有完整的逻辑链条和可审计的推理路径，避免跳跃式臆测</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>前问题构思</strong>：突破传统AI代理需明确问题的限制，首创在问题形成前的隐性摩擦阶段介入，实现从错位感到研究问题的创造性转化</li><li style="margin-bottom:0;"><strong>可行性-新颖性优化</strong>：设计最大化可行性-新颖性乘积的目标函数，在打破隐藏假设的同时保证方案可执行，平衡激进创新与落地可能</li><li style="margin-bottom:0;"><strong>必要后果检验</strong>：建立方法是否为重构洞见必要结果的验证机制，确保最终提案与核心洞察存在强因果必然性而非牵强附会</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>基准跨越提升</strong>：在TF-Bench上较提示基线实现新颖性从3.671到4.250、影响力从3.806到4.397的显著跃升，验证框架有效性</li><li style="margin-bottom:0;"><strong>范式层级跃迁</strong>：生成提案从简单的概念重组跃迁至深层架构洞见，表明AI能够促成认知层级的质变而不仅是量的累积</li><li style="margin-bottom:0;"><strong>思维延伸定位</strong>：实证AI可作为人类思维本身的延伸而非仅下游执行工具，重新定义智能代理在科研创造链中的角色与价值</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.06345" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.06345</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Automated alignment is harder than you think</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.06390</span>
+                        <span style="background:linear-gradient(135deg,#FB8C00 0%,#EF6C00 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">Agentic</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">自动对齐比你想象的更难</span>
+                        <span style="color:#666;font-size:12px;">Aleksandr Bowkis et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">论文指出利用AI代理自动化对齐研究以控制超级智能的方案存在严重风险。即使代理无意破坏，也可能因对齐研究包含大量难以监督的模糊任务，导致系统性错误未被检测、正确结果被过度聚合，产生灾难性误导的安全评估。自动化对齐比人工研究更易出错，原因在于优化压力使错误集中于人类最难发现之处、AI错误不类人类、解决方案可能超出人类评估能力、以及共享权重数据导致输出相关性更高。因此必须训练代理可靠执行难监督模糊任务，但泛化与可扩展监督在此语境下面临新挑战。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模糊任务识别</strong>：对齐研究包含大量缺乏明确评估标准、人类判断系统性偏差的任务，这些任务难以被有效监督与验证，构成自动化对齐的根本性技术障碍</li><li style="margin-bottom:0;"><strong>优化压力利用</strong>：AI代理在优化目标驱动下，其错误会集中于人类评审最不可能发现的类型，形成对抗性漏洞，远超人类研究中随机错误的分布特征</li><li style="margin-bottom:0;"><strong>输出相关性控制</strong>：共享权重、数据与训练过程使多AI代理输出高度相关，削弱独立验证的统计效力，增加系统性风险被集体遗漏的概率</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>非故意误导机制</strong>：揭示即使无恶意破坏意图，自动化对齐仍可能因任务固有模糊性和评估缺陷，产生有说服力但灾难性错误的安全评估，拓展了AI安全研究视角</li><li style="margin-bottom:0;"><strong>人机错误差异论</strong>：提出AI生成错误具有非人类特征，不同于人类错误的可预测模式，使传统基于人类直觉的审查方法失效，需开发新型验证范式</li><li style="margin-bottom:0;"><strong>不可评估方案问题</strong>：指出AI可能提出超出人类认知能力的对齐解决方案，形成评估能力的根本性瓶颈，挑战现有技术治理框架的适用边界</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>自动化对齐更难</strong>：综合四项因素，自动化对齐研究比人工研究更易产生系统性风险，简单替代人工的方案不可行，需重新评估技术路径优先级</li><li style="margin-bottom:0;"><strong>可靠执行前提</strong>：代理必须经过专门训练以可靠完成难监督模糊任务，否则自动化对齐不仅无益反而加剧部署风险，这是方案成立的必要条件</li><li style="margin-bottom:0;"><strong>两大路径困境</strong>：泛化与可扩展监督作为实现可靠性的主要候选方法，在自动化对齐语境下面临前所未有的新挑战，尚无成熟解决方案，研究缺口显著</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.06390" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.06390</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Reinforced Attention Learning</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2602.04884</span>
+                        <span style="background:linear-gradient(135deg,#6D4C41 0%,#4E342E 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">强化学习</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">强化注意力学习</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">后训练强化学习通过测试时缩放显著提升了大语言模型的推理能力，但将这一范式扩展到多模态大语言模型时，冗长的推理过程对感知任务收益有限甚至导致性能下降。本文提出强化注意力学习（RAL），一种策略梯度框架，直接优化内部注意力分布而非输出token序列，将优化目标从生成内容转向关注位置，促进复杂多模态输入中的有效信息分配和 grounding 能力。RAL在图像和视频基准上持续优于GRPO等基线，并引入在线策略注意力蒸馏，证明迁移潜在注意力行为比标准知识蒸馏实现更强的跨模态对齐。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>注意力策略优化</strong>：采用策略梯度方法直接优化模型内部的注意力分布，替代传统的输出token序列优化，实现从生成内容到关注位置的优化目标转换</li><li style="margin-bottom:0;"><strong>多模态后训练</strong>：将强化学习后训练范式扩展至多模态大语言模型，针对视觉感知任务设计专门的注意力优化机制，避免冗长推理带来的性能退化</li><li style="margin-bottom:0;"><strong>在线策略蒸馏</strong>：提出On-Policy Attention Distillation方法，在策略采样过程中进行注意力知识迁移，实现潜在注意力行为的有效跨模型传递</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>优化目标转移</strong>：突破传统RL优化输出序列的范式，首创直接优化内部注意力分布的强化学习方法，从根本上改变多模态模型的学习对象</li><li style="margin-bottom:0;"><strong>隐式推理机制</strong>：通过注意力分布的隐式优化替代显式的长链式推理，在保持推理深度的同时避免 verbose rationales 对感知任务的负面影响</li><li style="margin-bottom:0;"><strong>跨模态对齐新路径</strong>：以注意力模式作为跨模态知识迁移的载体，建立比标准知识蒸馏更高效的模态间对齐机制</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>感知任务有效性</strong>：RAL在多样图像和视频基准上均取得一致的性能提升，证明注意力优化对多模态感知任务具有普适性优势</li><li style="margin-bottom:0;"><strong>基线显著超越</strong>：实验结果表明RAL持续优于GRPO及其他对比基线，验证了其作为多模态后训练替代方案的有效性</li><li style="margin-bottom:0;"><strong>注意力可迁移性</strong>：在线策略注意力蒸馏证实潜在注意力行为可被有效迁移，且产生的跨模态对齐效果强于传统知识蒸馏方法</li><li style="margin-bottom:0;"><strong>范式替代价值</strong>：注意力策略被确立为多模态后训练中一个原理性且通用的替代方向，为领域发展提供新的理论框架</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2602.04884" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2602.04884</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/11</p>
+        </div>
+    </div>
+</body>
+</html>
