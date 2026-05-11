@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-11_1",
+  "title": "大模型安全、效率与智能体能力边界突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.06652",
+      "title": "When No Benchmark Exists: Validating Comparative LLM Safety Scoring Without Ground-Truth Labels",
+      "chinese_title": "无基准时的LLM安全评分验证：无需真值标签的比较方法",
+      "authors": "Sushant Gautam et al.",
+      "url": "https://arxiv.org/abs/2605.06652"
+    },
+    {
+      "id": "2605.06632",
+      "title": "Crafting Reversible SFT Behaviors in Large Language Models",
+      "chinese_title": "大语言模型中可逆SFT行为的构建",
+      "authors": "Yuping Lin et al.",
+      "url": "https://arxiv.org/abs/2605.06632"
+    },
+    {
+      "id": "2605.06445",
+      "title": "Constraint Decay: The Fragility of LLM Agents in Backend Code Generation",
+      "chinese_title": "约束衰减：大语言模型智能体后端代码生成的脆弱性",
+      "authors": "Francesco Dente et al.",
+      "url": "https://arxiv.org/abs/2605.06445"
+    },
+    {
+      "id": "2605.06667",
+      "title": "ActCam: Zero-Shot Joint Camera and 3D Motion Control for Video Generation",
+      "chinese_title": "ActCam：视频生成的零样本联合相机与三维运动控制",
+      "authors": "Omar El Khalifi et al.",
+      "url": "https://arxiv.org/abs/2605.06667"
+    },
+    {
+      "id": "2605.06665",
+      "title": "UniPool: A Globally Shared Expert Pool for Mixture-of-Experts",
+      "chinese_title": "UniPool：面向混合专家模型的全局共享专家池",
+      "authors": "Minbin Huang et al.",
+      "url": "https://arxiv.org/abs/2605.06665"
+    },
+    {
+      "id": "2605.06663",
+      "title": "EMO: Pretraining Mixture of Experts for Emergent Modularity",
+      "chinese_title": "专家混合预训练模型涌现模块化机制",
+      "authors": "Ryan Wang et al.",
+      "url": "https://arxiv.org/abs/2605.06663"
+    },
+    {
+      "id": "2605.06485",
+      "title": "Litespark Inference on Consumer CPUs: Custom SIMD Kernels for Ternary Neural Networks",
+      "chinese_title": "消费级CPU上的Litespark推理：三值神经网络定制SIMD内核",
+      "authors": "Nii Osae Osae Dade et al.",
+      "url": "https://arxiv.org/abs/2605.06485"
+    }
+  ],
+  "generated_at": "2026-05-11T00:44:20.857Z",
+  "org": "AI研究室"
+}
