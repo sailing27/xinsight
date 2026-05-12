@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-12",
+  "title": "大模型创新突破 从反事实推理到自主架构设计与可信评估",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.10855",
+      "title": "Learning More from Less: Exploiting Counterfactuals for Data-Efficient Chart Understanding",
+      "chinese_title": "从少到多：利用反事实推理实现高效图表理解",
+      "authors": "Jianzhu Bao et al.",
+      "url": "https://arxiv.org/abs/2605.10855"
+    },
+    {
+      "id": "2605.10627",
+      "title": "Interpretable Coreference Resolution Evaluation Using Explicit Semantics",
+      "chinese_title": "基于显式语义的指代消解可解释性评估",
+      "authors": "Bruno Gatti et al.",
+      "url": "https://arxiv.org/abs/2605.10627"
+    },
+    {
+      "id": "2605.10659",
+      "title": "When Can Digital Personas Reliably Approximate Human Survey Findings?",
+      "chinese_title": "数字人格何时能可靠近似人类调查结果？",
+      "authors": "Mumin Jia et al.",
+      "url": "https://arxiv.org/abs/2605.10659"
+    },
+    {
+      "id": "2602.22425",
+      "title": "ArchAgent: Agentic AI-driven Computer Architecture Discovery",
+      "chinese_title": "ArchAgent：智能体AI驱动的计算机架构探索",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2602.22425"
+    },
+    {
+      "id": "2605.10912",
+      "title": "WildClawBench: A Benchmark for Real-World, Long-Horizon Agent Evaluation",
+      "chinese_title": "WildClawBench：真实世界长程智能体评估基准",
+      "authors": "Shuangrui Ding et al.",
+      "url": "https://arxiv.org/abs/2605.10912"
+    },
+    {
+      "id": "2605.10893",
+      "title": "Grounded or Guessing? LVLM Confidence Estimation via Blind-Image Contrastive Ranking",
+      "chinese_title": "视觉语言模型置信度估计：盲图对比排序法",
+      "authors": "Reza Khanmohammadi et al.",
+      "url": "https://arxiv.org/abs/2605.10893"
+    },
+    {
+      "id": "2605.10504",
+      "title": "Learning Less Is More: Premature Upper-Layer Attention Specialization Hurts Language Model Pretraining",
+      "chinese_title": "少学多得：上层注意力过早特化损害语言模型预训练",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.10504"
+    }
+  ],
+  "generated_at": "2026-05-12T04:19:59.771Z",
+  "org": "AI研究室"
+}
