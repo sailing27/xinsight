@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-13",
+  "title": "大模型对齐与评估 从文化分歧到多维质量重构",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.10843",
+      "title": "Training-Free Cultural Alignment of Large Language Models via Persona Disagreement",
+      "chinese_title": "无需角色分歧的大语言模型文化对齐",
+      "authors": "Huynh Trung Kiet et al.",
+      "url": "https://arxiv.org/abs/2605.10843"
+    },
+    {
+      "id": "2605.10938",
+      "title": "ELF: Embedded Language Flows",
+      "chinese_title": "嵌入式语言流",
+      "authors": "Keya Hu et al.",
+      "url": "https://arxiv.org/abs/2605.10938"
+    },
+    {
+      "id": "2605.10664",
+      "title": "Prompt-Activation Duality: Improving Activation Steering via Attention-Level Interventions",
+      "chinese_title": "提示-激活对偶性：通过注意力层干预改进激活引导",
+      "authors": "Diancheng Kang et al.",
+      "url": "https://arxiv.org/abs/2605.10664"
+    },
+    {
+      "id": "2605.10295",
+      "title": "DECO-MWE: building a linguistic resource of Korean multiword expressions for feature-based sentiment analysis",
+      "chinese_title": "韩语多词表达语言资源构建及其情感分析特征研究",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.10295"
+    },
+    {
+      "id": "2605.10560",
+      "title": "ICT-NLP at SemEval-2026 Task 3: Less Is More -- Multilingual Encoder with Joint Training and Adaptive Ensemble for Dimensional Aspect Sentiment Regression",
+      "chinese_title": "ICT-NLP在SemEval-2026任务3：少即是多——联合训练自",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.10560"
+    },
+    {
+      "id": "2605.10550",
+      "title": "Multi-domain Multi-modal Document Classification Benchmark with a Multi-level Taxonomy",
+      "chinese_title": "多域多模态文档分类基准：多级层次体系",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.10550"
+    },
+    {
+      "id": "2605.10379",
+      "title": "Not All Proofs Are Equal: Evaluating LLM Proof Quality Beyond Correctness",
+      "chinese_title": "并非所有证明皆等同：超越正确性评估大语言模型证明质量",
+      "authors": "Ivo Petrov et al.",
+      "url": "https://arxiv.org/abs/2605.10379"
+    }
+  ],
+  "generated_at": "2026-05-12T22:29:16.852Z",
+  "org": "AI研究室"
+}

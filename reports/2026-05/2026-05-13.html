@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型对齐与评估 从文化分歧到多维质量重构 | 2026/5/13</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型对齐与评估 从文化分歧到多维质量重构 | 2026/5/13</h1>
+                <div class="date">2026/5/13 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了大模型技术正从"规模驱动"向"效率与精细度并重"的范式转型。核心趋势体现在三个维度：一是<strong>推理时优化成为对齐新范式</strong>，论文1与论文3共同表明，通过分歧信号提取、注意力层干预等无需更新权重的推理时技术，可在文化对齐与长程连贯性上实现媲美甚至超越微调的效果，显著降低部署成本；二是<strong>连续化与轻量化架构创新</strong>，论文2的嵌入空间流匹配与论文5的无LLM编码器方案，分别从生成模型与判别任务角度证明，脱离离散化惯例和重型依赖同样能达到SOTA性能；三是<strong>评估体系从单一指标向多维质量演进</strong>，论文7的多维证明质量框架与论文6的层次分类基准共同呼吁，现有"正确率至上"的评测方式严重遮蔽了真实能力差异，亟需建立更贴近应用场景的复杂评估标准。<br><br>对行业而言，这些研究提示：未来大模型竞争将聚焦于<strong>推理效率、可控性与评估真实性</strong>的三角平衡，而非单纯参数规模扩张。尤其在垂直领域（如情感分析、文档分类），轻量架构与精细化干预技术的结合，有望打破"大模型垄断"的部署瓶颈，推动AI能力向边缘场景渗透。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Training-Free Cultural Alignment of Large Language Models via Persona Disagreement</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.10843</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">无需角色分歧的大语言模型文化对齐</span>
+                        <span style="color:#666;font-size:12px;">Huynh Trung Kiet et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型越来越多地介入依赖道德判断的决策，但越来越多的证据表明其隐含的偏好并非文化中立。现有的文化对齐方法要么需要各国偏好数据和微调预算，要么假设商业API不公开的白盒模型内部访问。本工作聚焦于现实的黑盒、仅公开数据场景，发现国内社会人口统计学分歧而非共识是主要引导信号。我们提出DISCA（分歧知情文化对齐引导），一种推理时方法，将每个国家实例化为基于世界价值观调查的角色智能体小组，并将其分歧转化为有界、损失厌恶的logit修正。在20个国家和7个开源骨干模型（2B-70B）上，DISCA在六个≥3.8B骨干模型上将MultiTP文化错位降低10-24%，在开放式场景上降低2-7%，且无需修改任何权重。结果表明推理时校准是服务全球道德偏好长尾的可扩展微调替代方案。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分歧信号提取</strong>：基于世界价值观调查数据构建各国社会人口统计学角色面板，通过角色间意见分歧而非共识来提取文化对齐的引导信号，避免依赖昂贵的国别偏好标注数据</li><li style="margin-bottom:0;"><strong>损失厌恶修正</strong>：将角色分歧转化为有界、损失厌恶的logit修正项，在推理时直接调整输出概率分布，实现对齐效果而不修改任何模型权重</li><li style="margin-bottom:0;"><strong>黑盒兼容设计</strong>：整个方法仅需模型API级别的输出访问，无需梯度信息或内部参数，适配商业闭源大语言模型的实际部署场景</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分歧驱动对齐</strong>：颠覆传统寻求文化共识的假设，首次系统论证并利用国内社会人口统计学分歧作为文化对齐的核心信号，揭示分歧比共识更具信息量的对齐价值</li><li style="margin-bottom:0;"><strong>无训练推理校准</strong>：开创性地实现无需任何微调或权重更新的文化对齐，仅通过推理时的logit修正完成，大幅降低全球多文化服务的部署成本</li><li style="margin-bottom:0;"><strong>可扩展全球覆盖</strong>：基于公开的世界价值观调查数据，方法可自动扩展至任意国家，无需逐国收集偏好数据，解决文化对齐的长尾覆盖难题</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>推理时充分性</strong>：推理时校准可作为微调的有效替代方案，在6个≥3.8B模型上实现10-24%的文化错位降低，证明不更新权重也能获得显著对齐收益</li><li style="margin-bottom:0;"><strong>规模效应明显</strong>：对齐效果在较大模型（≥3.8B）上更为显著，小型模型（2B）效果有限，提示推理时方法对模型基础能力存在门槛要求</li><li style="margin-bottom:0;"><strong>开放场景挑战</strong>：开放式生成场景的对齐提升（2-7%）低于结构化任务，表明自由文本中的文化偏好建模仍是未充分解决的更难问题</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.10843" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.10843</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>ELF: Embedded Language Flows</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.10938</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">嵌入式语言流</span>
+                        <span style="color:#666;font-size:12px;">Keya Hu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">扩散模型和流模型已成为生成连续数据的主流方法，但在语言建模领域，领先的扩散语言模型主要在离散token上操作。本文提出Embedded Language Flows (ELF)，一种基于连续时间流匹配的连续嵌入空间扩散模型。ELF主要在连续嵌入空间中运行，仅在最终时间步通过共享权重网络映射到离散token，从而便于直接应用图像域扩散模型的成熟技术（如分类器自由引导）。实验表明，ELF在生成质量和采样步数上均显著优于领先的离散和连续扩散语言模型。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>连续流匹配</strong>：基于连续时间Flow Matching框架，在嵌入空间定义概率流ODE，实现可逆确定性采样与灵活步长控制</li><li style="margin-bottom:0;"><strong>共享权重映射</strong>：使用同一网络处理连续嵌入与离散token的转换，避免独立设计离散化模块的架构复杂性</li><li style="margin-bottom:0;"><strong>分类器自由引导</strong>：直接适配图像域CFG技术，通过无条件与条件分数估计的线性组合实现可控生成质量提升</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>全程连续建模</strong>：突破现有DLM离散化惯例，除最终步外完全在嵌入空间操作，保留连续扩散的理论优势与工具链</li><li style="margin-bottom:0;"><strong>最小离散适配</strong>：仅末步映射到token空间，大幅降低连续与离散域混合设计的复杂度，实现即插即用式扩展</li><li style="margin-bottom:0;"><strong>技术迁移畅通</strong>：因主体处于连续域，图像扩散的采样器、引导技术无需重新推导即可直接应用于语言生成</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>质量效率双优</strong>：ELF以更少采样步数达到更优生成质量，同时超越离散与连续DLM的现有最佳水平</li><li style="margin-bottom:0;"><strong>连续路径可行</strong>：证明连续DLM经最小适配即可在语言任务上有效工作，打破离散token主导的固有认知</li><li style="margin-bottom:0;"><strong>应用前景广阔</strong>：为语言模型引入成熟的图像扩散技术生态，开辟高效可控文本生成的新研究方向</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.10938" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.10938</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Prompt-Activation Duality: Improving Activation Steering via Attention-Level Interventions</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.10664</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">提示-激活对偶性：通过注意力层干预改进激活引导</span>
+                        <span style="color:#666;font-size:12px;">Diancheng Kang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">Activation steering通过在推理时向内部表示添加方向来控制语言模型行为，但标准残差流转向在有状态对话中会失效。本文识别出KV缓存污染是关键失效模式：被转向的token状态被存储并反复重用，将局部扰动转化为累积的连贯性退化。为此提出GCAD方法，从系统提示对自注意力的贡献中提取转向信号，并应用token级门控。在角色转向实验中，GCAD在保持特质控制的同时显著改善长程连贯性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>KV缓存污染</strong>：发现标准激活转向的失效根源在于被修改的token状态存入KV缓存后被反复调用，导致局部扰动随对话轮次累积放大，最终引发连贯性崩溃</li><li style="margin-bottom:0;"><strong>门控裁剪注意力</strong>：GCAD从系统提示在自注意力中的贡献提取转向信号，通过裁剪非提示注意力并施加token级门控，实现精准的行为干预而不污染缓存状态</li><li style="margin-bottom:0;"><strong>提示激活对偶</strong>：揭示模型本就通过提示介导的注意力路径进行行为控制，激活转向应遵循这些固有通路而非直接修改残差流，从根本上避免缓存污染问题</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>注意力层干预</strong>：突破传统残差流转向的局限，将干预位置从隐藏状态迁移至注意力计算层面，利用注意力权重天然的位置特异性和可解释性实现更精细的控制</li><li style="margin-bottom:0;"><strong>系统提示解耦</strong>：创新性地将系统提示的注意力贡献与其他token分离，提取其作为纯转向信号，既保留提示的行为引导功能又避免对生成内容产生直接干扰</li><li style="margin-bottom:0;"><strong>动态门控机制</strong>：设计token级别的自适应门控策略，根据当前生成状态动态调节转向强度，在维持目标特质表达与保障文本连贯性之间实现自动权衡</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>长程连贯跃升</strong>：GCAD将多轮对话平均连贯性漂移从-18.6大幅改善至-1.9，证明注意力层干预能有效阻断缓存污染导致的误差累积，解决状态化场景的核心瓶颈</li><li style="margin-bottom:0;"><strong>特质表达增强</strong>：第10轮对话中目标特质表达率从78.0提升至93.1，表明遵循提示介导通路不仅避免副作用，还能强化模型对行为指令的深层遵循能力</li><li style="margin-bottom:0;"><strong>范式转型验证</strong>：实验结果支撑激活转向应从残差流干预转向注意力层干预的范式变革，为构建可靠的状态化语言模型控制方法奠定理论基础与实践路径</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.10664" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.10664</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>DECO-MWE: building a linguistic resource of Korean multiword expressions for feature-based sentiment analysis</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.10295</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">韩语多词表达语言资源构建及其情感分析特征研究</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文构建了一个用于基于特征的情感分析（FBSA）的韩语多词表达语言资源DECO-MWE。利用局部语法图（LGG）方法，将DECO-MWE形式化为有限状态转换器，以表示MWE的词汇-句法限制。基于化妆品评论语料库的实证研究，区分了四种类型的MWE：标准极性MWE、领域依赖极性MWE、复合命名实体MWE和复合特征MWE。该资源在测试语料库中达到0.806的F值。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>局部语法图方法</strong>：采用LGG方法论构建情感MWE语言资源，将DECO-MWE形式化为有限状态转换器，实现对多词表达词汇句法限制的形式化表示与处理</li><li style="margin-bottom:0;"><strong>有限状态转换器</strong>：将DECO-MWE形式化为FST，通过有限状态自动机机制精确描述MWE的词汇-句法约束条件，支持高效的模式匹配与检索</li><li style="margin-bottom:0;"><strong>语料库实证分析</strong>：构建化妆品评论文本语料库，基于该领域MWE高频出现的特点进行实证考察，为四类型MWE分类提供数据支撑</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>四类型MWE分类</strong>：突破传统单一极性词典模式，首创性区分标准极性、领域依赖极性、复合命名实体和复合特征四类MWE，覆盖FBSA核心语言现象</li><li style="margin-bottom:0;"><strong>领域自适应方法论</strong>：提出可处理领域依赖MWE的有限状态方法论，能够灵活应对不同语域中特有的极性表达、命名实体表达和特征表达的词汇特异现象</li><li style="margin-bottom:0;"><strong>通用极性词典构建</strong>：建成大规模通用极性MWE词典资源，突破领域限制，可广泛应用于各类基于特征的情感分析系统与相关自然语言处理任务</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>检索性能优异</strong>：DECO-MWE在测试语料库中达到0.806的F值，验证了有限状态转换器方法在MWE识别与检索方面的有效性和实用性</li><li style="margin-bottom:0;"><strong>双重研究成果</strong>：研究产出兼具应用价值与方法论价值，既提供可直接使用的通用极性MWE词典资源，又提供可复用的有限状态形式化方法论</li><li style="margin-bottom:0;"><strong>方法论可迁移性</strong>：所采用的有限状态方法论具有良好的领域迁移能力，可复用于描述其他语域MWE的语言特性，支持跨领域语言资源构建</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.10295" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.10295</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>ICT-NLP at SemEval-2026 Task 3: Less Is More -- Multilingual Encoder with Joint Training and Adaptive Ensemble for Dimensional Aspect Sentiment Regression</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.10560</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">ICT-NLP在SemEval-2026任务3：少即是多——联合训练自</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文介绍了ICT-NLP团队参加SemEval-2026 Task 3 Track A子任务1维度方面情感回归（DimASR）的系统。该团队提出了一种轻量级、资源高效的系统，完全基于多语言预训练编码器构建，不依赖大语言模型或外部语料库。系统采用联合多语言多领域训练促进跨语言迁移并缓解数据稀疏问题，引入有界回归变换提升训练稳定性并将预测限制在有效范围内，通过子集搜索的自适应集成策略降低预测方差。实验结果表明该系统表现强劲且稳定，在zho-res上排名第1，zho-lap上排名第2，jpn-hot上排名第3，其余所有数据集均位于参赛队伍的前半部分。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>联合多域训练</strong>：将多语言与多领域数据联合训练，促进跨语言知识迁移，有效缓解低资源场景下的数据稀疏问题，提升模型泛化能力</li><li style="margin-bottom:0;"><strong>有界回归变换</strong>：设计边界约束的回归转换机制，确保预测值始终落在有效情感区间内，同时增强训练过程的数值稳定性</li><li style="margin-bottom:0;"><strong>自适应集成搜索</strong>：基于子集搜索策略动态选择最优模型组合，降低单一模型预测方差，提升整体系统的鲁棒性与可靠性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>轻量无LLM架构</strong>：完全摒弃大语言模型与外部语料依赖，仅基于多语言预训练编码器构建系统，实现高效低耗的轻量化解决方案</li><li style="margin-bottom:0;"><strong>多任务协同训练</strong>：创新性地将多语言与多领域训练统一为联合优化框架，实现跨语言跨领域的双向知识增强与互补</li><li style="margin-bottom:0;"><strong>边界稳定机制</strong>：提出兼具范围约束与稳定优化的回归变换方法，从模型输出层面直接控制预测边界，避免异常值产生</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>中文餐厅领先</strong>：系统在zho-res数据集上取得第1名，验证该方法在中文餐饮领域维度情感回归任务上的卓越有效性</li><li style="margin-bottom:0;"><strong>多榜位居前列</strong>：在zho-lap获第2名、jpn-hot获第3名，展现方法跨语言跨领域的强适应性与一致竞争力</li><li style="margin-bottom:0;"><strong>全榜上半稳定</strong>：所有参赛数据集均进入前半排名，证明系统具备良好的泛化能力与可靠的稳定性表现</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.10560" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.10560</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Multi-domain Multi-modal Document Classification Benchmark with a Multi-level Taxonomy</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.10550</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">多域多模态文档分类基准：多级层次体系</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">文档分类是现代企业内容管理的核心，但现有基准测试局限于单域扁平标签结构，无法反映真实商业文档的层次化、多模态和跨域特性。为此，本文构建了首个多层次、多域、多模态文档分类基准MMM-Bench，包含五级深度层次分类体系和来自阿里巴巴12个商业域的5,990份真实多模态文档，由领域专家完整标注层次路径。研究建立了涵盖开源权重模型和API模型的全面基线，通过系统实验识别出四个基本挑战并提出相应见解，同时开源了全部数据和评估工具包。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>层次分类体系</strong>：构建五级深度层次分类法，捕捉商业文档的真实组织逻辑，从粗粒度到细粒度逐层细化文档类别</li><li style="margin-bottom:0;"><strong>多模态融合</strong>：处理包含文本、图像、表格等多种模态的真实商业文档，实现跨模态信息整合与联合表示学习</li><li style="margin-bottom:0;"><strong>跨域基准构建</strong>：从12个不同商业领域精心筛选5,990份文档，确保领域多样性和数据质量的一致性标准</li><li style="margin-bottom:0;"><strong>专家人工标注</strong>：由领域专家为每份文档标注完整层次路径，保证标注准确性和层次结构的专业权威性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>首个三维基准</strong>：首次同时融合多层次、多域、多模态三个维度的文档分类基准，突破现有单域扁平范式局限</li><li style="margin-bottom:0;"><strong>真实业务映射</strong>：分类体系深度契合企业实际文档管理逻辑，五级层次结构反映商业组织的真实语义层级</li><li style="margin-bottom:0;"><strong>工业级数据规模</strong>：基于阿里巴巴真实商业场景构建，涵盖电商、金融、物流等12个核心商业领域</li><li style="margin-bottom:0;"><strong>开源评估框架</strong>：发布完整数据集与标准化评估工具包，为后续多层次多域文档分类研究提供统一评测基础</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>现有模型局限</strong>：当前主流模型在MMM-Bench上表现显著下降，证明单域扁平假设无法应对真实文档分类复杂性</li><li style="margin-bottom:0;"><strong>层次预测困难</strong>：模型在深层细粒度类别上的准确率急剧降低，揭示层次分类中的误差累积与语义混淆问题</li><li style="margin-bottom:0;"><strong>跨域泛化瓶颈</strong>：不同商业域之间的迁移效果有限，表明领域差异性是制约文档智能实用化的核心障碍</li><li style="margin-bottom:0;"><strong>多模态增益不均</strong>：视觉与文本模态的融合策略需因域制宜，简单拼接并非最优，需设计自适应融合机制</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.10550" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.10550</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Not All Proofs Are Equal: Evaluating LLM Proof Quality Beyond Correctness</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.10379</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">并非所有证明皆等同：超越正确性评估大语言模型证明质量</span>
+                        <span style="color:#666;font-size:12px;">Ivo Petrov et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型已成为有能力的数学问题求解器，但正确性本身并不足够：数学证明还应清晰、简洁、有洞察力且可迁移。本研究识别了证明质量的具体组成部分，并引入ProofRank基准，从数学竞赛中精选题目，评估五个可扩展的证明质量代理指标：简洁性、计算简易性、认知简洁性、多样性和适应性。研究发现模型间存在显著的质量差异，且质量指标与正确性之间存在显著权衡，表明未来评估应衡量LLM生成证明的实用性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>质量维度构建</strong>：识别并定义了五个可扩展的证明质量代理指标，包括简洁性、计算简易性、认知简洁性、多样性和适应性，将主观证明质量转化为可量化评估的维度</li><li style="margin-bottom:0;"><strong>竞赛题库筛选</strong>：从具有挑战性的数学竞赛中精心筛选题目构建ProofRank基准，确保评估场景的难度和真实性，避免简单问题无法区分模型质量差异</li><li style="margin-bottom:0;"><strong>多维度评估协议</strong>：设计针对不同质量维度的具体评估方法，如通过步骤冗余度测量简洁性、通过技术可及性测量认知简洁性、通过证明变体测量多样性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>超越正确性评估</strong>：首次系统性地提出数学证明质量的多维评估框架，突破传统仅关注正确率的局限，强调证明的清晰性、洞察力和可迁移性等实用价值</li><li style="margin-bottom:0;"><strong>主观质量客观化</strong>：将依赖读者和上下文的主观证明质量，分解为具体且广泛认可的可测量组件，使抽象概念具备可操作性</li><li style="margin-bottom:0;"><strong>适应性情境测试</strong>：创新性地引入适应性指标，评估模型遵循指定证明技术的能力，检验模型对解题策略的理解与控制而非仅结果生成</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>质量差异显著</strong>：不同模型在证明质量上存在实质性差异，但这些差异完全被仅关注正确性的基准测试所忽略，传统评估方式严重低估模型间差距</li><li style="margin-bottom:0;"><strong>正确质量权衡</strong>：观察到证明质量指标与正确性之间存在显著权衡关系，追求更高质量可能导致正确率下降，反之亦然，单一优化目标不足取</li><li style="margin-bottom:0;"><strong>评估范式转型</strong>：未来数学推理评估应衡量LLM生成证明的实际效用，而非仅判断对错，需建立兼顾正确性与多维质量的新型评估体系</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.10379" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.10379</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/13</p>
+        </div>
+    </div>
+</body>
+</html>
