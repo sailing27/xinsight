@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-14",
+  "title": "大模型溯源、评估与纠偏 七篇前沿论文透视技术突破与治理新范式",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.12382",
+      "title": "Pretraining Exposure Explains Popularity Judgments in Large Language Models",
+      "chinese_title": "预训练暴露解释大语言模型的流行度判断",
+      "authors": "Jamshid Mozafari et al.",
+      "url": "https://arxiv.org/abs/2605.12382"
+    },
+    {
+      "id": "2605.12398",
+      "title": "Question Difficulty Estimation for Large Language Models via Answer Plausibility Scoring",
+      "chinese_title": "基于答案合理性评分的大语言模型题目难度估计",
+      "authors": "Jamshid Mozafari et al.",
+      "url": "https://arxiv.org/abs/2605.12398"
+    },
+    {
+      "id": "2605.12426",
+      "title": "Geometric Factual Recall in Transformers",
+      "chinese_title": "Transformer中的几何事实召回",
+      "authors": "Shauli Ravfogel et al.",
+      "url": "https://arxiv.org/abs/2605.12426"
+    },
+    {
+      "id": "2605.12395",
+      "title": "A Comparative Study of Controlled Text Generation Systems Using Level-Playing-Field Evaluation Principles",
+      "chinese_title": "受控文本生成系统的公平比较研究",
+      "authors": "Michela Lorandi et al.",
+      "url": "https://arxiv.org/abs/2605.12395"
+    },
+    {
+      "id": "2605.12370",
+      "title": "Context Convergence Improves Answering Inferential Questions",
+      "chinese_title": "上下文融合提升推理问题回答能力",
+      "authors": "Jamshid Mozafari et al.",
+      "url": "https://arxiv.org/abs/2605.12370"
+    },
+    {
+      "id": "2605.12299",
+      "title": "GKnow: Measuring the Entanglement of Gender Bias and Factual Gender",
+      "chinese_title": "GKnow：测量性别偏见与事实性别的纠缠程度",
+      "authors": "Leonor Veloso et al.",
+      "url": "https://arxiv.org/abs/2605.12299"
+    },
+    {
+      "id": "2605.10896",
+      "title": "V4FinBench: Benchmarking Tabular Foundation Models, LLMs, and Standard Methods on Corporate Bankruptcy Prediction",
+      "chinese_title": "V4FinBench：企业破产预测的表格基础模型、大语言模型与传统方法",
+      "authors": "Marcin Kostrzewa et al.",
+      "url": "https://arxiv.org/abs/2605.10896"
+    }
+  ],
+  "generated_at": "2026-05-13T22:21:17.242Z",
+  "org": "AI研究室"
+}

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型溯源、评估与纠偏 七篇前沿论文透视技术突破与治理新范式 | 2026/5/14</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型溯源、评估与纠偏 七篇前沿论文透视技术突破与治理新范式 | 2026/5/14</h1>
+                <div class="date">2026/5/14 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察围绕大模型的可解释性、评估方法论与领域应用三大核心主题，揭示了当前AI研究从性能追逐向机制理解与可信评估的深层转向。七篇论文共同呈现出三个关键技术趋势：其一，<strong>暴露溯源与几何机制</strong>成为破解模型行为黑箱的新范式——无论是预训练数据暴露对流行度偏差的因果解释，还是Transformer中几何记忆与对数维度充分性的理论突破，均推动模型认知从现象描述迈向机理揭示；其二，<strong>认知不确定性驱动的评估革新</strong>正重塑难度估计与生成控制的标准——答案合理性熵替代传统可读性指标、收敛性替代相似度检索、公平竞争原则替代各自为政的评估流程，标志着以模型内在认知状态为核心的评价体系崛起；其三，<strong>纠缠性与复杂性</strong>成为偏见治理与领域应用的关键挑战——性别偏见与事实知识在神经回路中的深度纠缠警示简单消融策略的失效，而跨境金融破产预测则凸显表格基础模型在时序延展场景中的独特优势。<br><br>对行业与研究而言，这些发现具有双重启示：技术上需摒弃"性能至上"的单一叙事，转向数据溯源、几何结构与认知不确定性的多维分析框架；应用上则要求建立更严苛的评估标准与更精细的干预策略，尤其在金融风控等高 stakes 领域，需充分考量制度语境与模型机制的交互效应。整体而言，大模型研究正经历从"能用"到"可释"、从"泛化"到"可控"的关键跃迁。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Pretraining Exposure Explains Popularity Judgments in Large Language Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.12382</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 SIGIR 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">预训练暴露解释大语言模型的流行度判断</span>
+                        <span style="color:#666;font-size:12px;">Jamshid Mozafari et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型对知名实体表现出系统性偏好，这种现象通常被归因于流行度偏差。然而，这些偏好究竟反映真实世界流行度还是预训练期间的统计暴露，由于大多数训练语料库不可访问而尚不清楚。本研究利用完全可观测的OLMo模型及其完整预训练语料库Dolma，对7.4万亿token进行了实体级暴露统计的首次直接大规模分析，涵盖2000个跨越五种类型的实体。研究发现预训练暴露与维基百科流行度高度相关，且LLM的流行度判断与暴露的一致性高于与维基百科的一致性，尤其在成对比较中更为明显。该对齐性在更大模型中更强，并在长尾区域持续存在。研究表明LLM中的流行度先验主要由预训练统计而非外部流行度信号塑造。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>全量数据解析</strong>：基于完全开源的OLMo模型及其完整预训练语料库Dolma，实现7.4万亿token级别的精确实体暴露统计计算，突破以往训练数据不可访问的限制</li><li style="margin-bottom:0;"><strong>多维度信号采集</strong>：设计直接标量估计与成对比较两种提示范式，从LLM中系统提取流行度判断信号，覆盖Person、Location、Organization、Art、Product五类实体</li><li style="margin-bottom:0;"><strong>跨源关联分析</strong>：将预训练暴露量与维基百科页面浏览量进行大规模相关性验证，建立暴露作为训练期间真实世界显著性代理指标的有效性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>暴露溯源框架</strong>：首次构建从预训练数据暴露到模型输出的完整因果分析链条，将流行度偏差的归因从黑箱推测转变为可量化的数据驱动证据</li><li style="margin-bottom:0;"><strong>可观测性突破</strong>：利用极少数完全开源的大模型生态，解决LLM研究中训练数据不可见的根本性难题，为偏见分析提供可复现的方法论范式</li><li style="margin-bottom:0;"><strong>长尾效应发现</strong>：揭示在维基百科流行度失效的长尾区域，预训练暴露仍稳定预测模型偏好，说明数据分布特性对模型行为的深层塑造作用</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>暴露主导偏好</strong>：LLM的流行度判断与预训练暴露的对齐程度显著高于与维基百科流行度的对齐，证明数据暴露是驱动流行度偏差的核心机制</li><li style="margin-bottom:0;"><strong>规模强化效应</strong>：模型规模越大，其流行度判断与预训练暴露的 alignment 越强，暗示参数量增长可能放大训练数据的统计特征</li><li style="margin-bottom:0;"><strong>方法敏感性差异</strong>：成对比较范式比直接标量估计更能暴露模型基于预训练统计的偏好结构，提示评估方法选择对偏见检测的关键影响</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.12382" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.12382</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Question Difficulty Estimation for Large Language Models via Answer Plausibility Scoring</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.12398</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ACL 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">基于答案合理性评分的大语言模型题目难度估计</span>
+                        <span style="color:#666;font-size:12px;">Jamshid Mozafari et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">估计问题难度是评估和改进大型语言模型问答能力的关键环节。现有方法依赖可读性公式、检索信号或流行度统计，难以充分捕捉现代LLM面临的推理挑战。本文提出Q-DAPS方法，通过计算候选答案合理性分数的熵来估计问题难度。在TriviaQA、NQ、MuSiQue和QASC四个数据集上的系统评估表明，Q-DAPS始终优于基线方法，且对超参数变化和问题类型具有强鲁棒性。消融实验显示其在不同合理性估计范式、模型规模和真实场景下保持稳健，人工评估进一步验证了其难度估计与人类判断的高度一致性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>熵值计算</strong>：通过计算候选答案合理性分数的概率分布熵值，量化模型对正确答案的不确定性程度，熵越高表明问题难度越大</li><li style="margin-bottom:0;"><strong>合理性评分</strong>：利用大型语言模型为每个候选答案生成似然分数或概率，构建答案候选集上的合理性分布</li><li style="margin-bottom:0;"><strong>跨域验证</strong>：在TriviaQA、NQ、MuSiQue、QASC四个异构数据集上系统验证方法有效性，涵盖单跳与多跳推理场景</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>答案驱动评估</strong>：突破传统基于文本可读性或外部统计指标的思路，直接从LLM答案空间的认知不确定性出发定义难度</li><li style="margin-bottom:0;"><strong>无监督框架</strong>：无需人工标注难度标签或训练专门模型，仅依赖模型自身推理即可实现难度估计，具备高度可扩展性</li><li style="margin-bottom:0;"><strong>偏差抵抗力</strong>：通过熵聚合多个候选答案的信息，降低单一答案偏差或模型偏好对难度估计的干扰，提升估计稳定性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能优越性</strong>：Q-DAPS在四个主流QA数据集上持续超越传统基线方法，证明答案合理性熵是更有效的问题难度指标</li><li style="margin-bottom:0;"><strong>强鲁棒特性</strong>：方法对超参数选择、问题类型变化、合理性估计范式及模型规模变化均表现出显著稳定性</li><li style="margin-bottom:0;"><strong>人机一致性</strong>：人工评估证实Q-DAPS的难度排序与人类对问题难度的直觉判断具有高度相关性，验证其实际应用价值</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.12398" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.12398</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Geometric Factual Recall in Transformers</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.12426</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">Transformer中的几何事实召回</span>
+                        <span style="color:#666;font-size:12px;">Shauli Ravfogel et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究Transformer语言模型如何记忆事实关联。传统观点认为内部权重矩阵是作为嵌入对之间的联想记忆，参数量随事实数量线性增长。作者提出了一种替代的几何记忆形式：学习到的嵌入直接编码关系结构，MLP扮演定性不同的角色。在单层Transformer记忆随机双射的控制设定中，作者证明对数级嵌入维度即可：主体嵌入编码其关联属性向量的线性叠加，小型MLP作为关系条件选择器通过ReLU门控提取相关属性，而非作为联想键值映射。作者将这些结果扩展到多跳设置，提供有/无思维链的构造，展现出可证明的容量-深度权衡，并辅以匹配的信息论下界。实验上，梯度下降发现了具有精确预测结构的解。训练后，当主体嵌入被适当重新初始化时，MLP可零样本迁移到全新双射，揭示它学习的是通用选择机制而非记忆特定事实集。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>几何记忆机制</strong>：提出嵌入直接编码关系结构的几何记忆形式，替代传统权重矩阵作为联想记忆的观点，实现更高效的参数利用</li><li style="margin-bottom:0;"><strong>ReLU门控选择</strong>：证明小型MLP通过ReLU门控充当关系条件选择器，从线性叠加的嵌入中提取目标属性向量</li><li style="margin-bottom:0;"><strong>多跳查询构造</strong>：扩展至链式关系查询场景，设计有/无思维链的构造方案，建立容量与深度间的可证明权衡关系</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>对数维度充分性</strong>：在受控双射记忆任务中严格证明仅需对数级嵌入维度即可实现事实记忆，突破线性参数缩放假设</li><li style="margin-bottom:0;"><strong>信息论下界匹配</strong>：为容量-深度权衡提供匹配的信息论下界，从理论上确立所提构造的最优性</li><li style="margin-bottom:0;"><strong>零样本迁移机制</strong>：揭示MLP学习的是通用选择机制而非特定事实，主体嵌入重新初始化即可实现全新双射的零样本迁移</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>MLP角色转变</strong>：MLP并非执行联想键值映射，而是作为关系条件化的通用选择器，其功能与具体事实集解耦</li><li style="margin-bottom:0;"><strong>梯度下降一致性</strong>：实验验证梯度下降能够自动发现具有理论预测精确结构的解，表明几何记忆是自然涌现的</li><li style="margin-bottom:0;"><strong>深度效率权衡</strong>：多跳推理中存在可证明的容量-深度权衡，思维链机制可有效利用深度换取记忆容量效率</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.12426" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.12426</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>A Comparative Study of Controlled Text Generation Systems Using Level-Playing-Field Evaluation Principles</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.12395</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">受控文本生成系统的公平比较研究</span>
+                        <span style="color:#666;font-size:12px;">Michela Lorandi et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">针对受控文本生成（CTG）领域因数据集和评估方法不一致导致难以公平比较不同系统性能的问题，本文提出了一种公平竞争（LPF）评估方法，通过标准化生成处理流程并统一评估方法与数据集，对当前主流CTG系统进行了重新评估。结果显示，重新评估后的性能与原始报告结果存在显著差异，多数情况下表现更差，凸显了建立标准化、可复现评估实践的紧迫性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>公平评估框架</strong>：构建标准化生成处理流程，确保所有CTG系统在相同条件下输出和评估，消除因数据预处理差异导致的不公平比较</li><li style="margin-bottom:0;"><strong>统一评估体系</strong>：整合当前广泛使用的评估方法与数据集，形成共享评估工具集，使不同系统在同一基准下接受控制精度与文本质量的双重检验</li><li style="margin-bottom:0;"><strong>系统重评估方法</strong>：选取代表性CTG系统，采用LPF原则重新计算其控制准确率、流畅度等核心指标，揭示原始报告与真实性能之间的偏差</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>公平竞争原则</strong>：首次将LPF理念系统引入CTG评估领域，强调评估过程对各类系统的无偏性，打破传统评估中因各自为政而产生的虚假性能优势</li><li style="margin-bottom:0;"><strong>标准化生成流程</strong>：创新性地统一所有系统的输出生成与后处理方式，消除解码参数、提示模板等变量对评估结果的干扰，确保比较基础一致</li><li style="margin-bottom:0;"><strong>评估偏差揭示</strong>：通过实证研究首次量化证明，非标准化评估实践可导致性能结果被系统性高估，为CTG领域的方法论反思提供关键证据</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能显著落差</strong>：LPF重评估下多数CTG系统的实际表现明显低于原始报告，表明现有文献中的性能声明存在严重夸大，真实控制能力被高估</li><li style="margin-bottom:0;"><strong>标准缺失危害</strong>：评估方法不统一导致不同研究结果不可比，形成学术泡沫，阻碍领域对真正有效技术的识别与积累</li><li style="margin-bottom:0;"><strong>规范势在必行</strong>：建立可复现、标准化的CTG评估基准已成为紧迫需求，否则将持续误导研究方向并浪费研发资源，LPF框架为此提供可行路径</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.12395" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.12395</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Context Convergence Improves Answering Inferential Questions</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.12370</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 SIGIR 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">上下文融合提升推理问题回答能力</span>
+                        <span style="color:#666;font-size:12px;">Jamshid Mozafari et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本研究探讨了大型语言模型（LLMs）在开放域问答中处理推理问题的能力，重点关注段落结构和质量对模型性能的影响。研究引入收敛性（convergence）作为构建段落的标准，衡量句子（提示）有效排除错误答案的能力。通过在TriviaHG数据集子集上组合不同收敛水平的句子形成段落，并评估六种不同规模和架构的LLMs，发现高收敛性句子构建的段落显著优于余弦相似度选择的段落，且按收敛性降序排列句子可进一步提升性能，表明LLMs倾向于优先处理早期信息丰富的线索。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>收敛性度量</strong>：定义并量化句子排除错误答案的有效性，作为评估提示信息质量的核心指标，替代传统相似度方法指导段落构建</li><li style="margin-bottom:0;"><strong>段落组合策略</strong>：通过组合不同收敛水平的句子形成实验段落，系统控制变量以隔离收敛性对推理性能的因果影响</li><li style="margin-bottom:0;"><strong>模型对比评估</strong>：测试六种不同规模与架构的LLMs，验证收敛性效果的普适性，排除特定模型偏好的干扰</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>收敛性替代相似度</strong>：突破传统余弦相似度检索范式，提出以排除错误答案能力为核心的收敛性指标，更精准捕捉推理所需的相关性</li><li style="margin-bottom:0;"><strong>推理导向的段落构建</strong>：针对推导型问题设计专门的段落构造方法，区别于直接检索型问答的段落选择策略，填补该领域研究空白</li><li style="margin-bottom:0;"><strong>序列位置效应发现</strong>：揭示LLMs处理推理信息时的位置偏好，即优先利用早期高收敛线索，为段落排序优化提供理论依据</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>高收敛提升准确</strong>：高收敛性句子构建的段落使答案准确率大幅提升，证明收敛性能有效捕捉推理所需的意义相关性，优于传统相似度方法</li><li style="margin-bottom:0;"><strong>降序排列更优</strong>：按收敛性降序排列句子可轻微提升性能，表明LLMs存在早期信息优先处理倾向，信息丰富的开头线索更具影响力</li><li style="margin-bottom:0;"><strong>实用指导价值</strong>：收敛性可作为 passage 构建的实用信号，为分析LLMs推理行为提供可操作工具，推动开放域推理问答系统优化</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.12370" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.12370</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>GKnow: Measuring the Entanglement of Gender Bias and Factual Gender</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.12299</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ACL 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">GKnow：测量性别偏见与事实性别的纠缠程度</span>
+                        <span style="color:#666;font-size:12px;">Leonor Veloso et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">近期研究分析了神经网络各组件对性别化预测的影响，通常聚焦于缓解性别偏见。然而，现有机制性解释往往(i)仅关注特定性别相关任务（如性别代词预测），或(ii)未能区分事实性别输出（基于词语语义属性的正确性别推断）与性别偏见输出（基于刻板印象）。为此，本文构建了GKnow基准测试，用于评估语言模型在不同类型性别相关预测中的性别知识与性别偏见。GKnow能够识别并分析负责性别化预测的回路和单个神经元。研究测试了神经元消融对区分刻板性别与事实性别基准（DiFair和GKnow测试集）以及StereoSet的影响。结果表明，性别偏见与事实性别在回路和神经元层面均严重纠缠，导致消融成为一种不可靠的去偏方法。此外，评估性别偏见的基准可能掩盖神经元消融伴随的事实性别知识下降。GKnow作为对稳健性别偏见基准持续发展的贡献被提出。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>基准测试构建</strong>：创建GKnow基准测试，涵盖多种性别相关预测类型，用于系统评估语言模型的性别知识与性别偏见，实现对回路和神经元级别的精细分析</li><li style="margin-bottom:0;"><strong>神经元消融实验</strong>：通过对特定神经元进行消融操作，测试其在DiFair、GKnow测试集及StereoSet上的影响，量化消融对事实性别与刻板性别预测的不同效应</li><li style="margin-bottom:0;"><strong>回路机制分析</strong>：采用机制可解释性方法识别并分析负责性别化预测的神经回路，揭示性别偏见与事实性别在神经网络内部的表征方式</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>纠缠现象揭示</strong>：首次系统论证性别偏见与事实性别在回路和神经元层面存在严重纠缠，挑战了将二者视为可分离问题的传统假设，为去偏研究提供新视角</li><li style="margin-bottom:0;"><strong>双重评估框架</strong>：提出同时评估性别偏见与事实性别知识的综合框架，避免现有基准仅关注偏见而忽视事实知识损失的局限性，实现更全面的模型评估</li><li style="margin-bottom:0;"><strong>GKnow基准贡献</strong>：构建专门区分刻板性别与事实性别的评测基准，填补现有机制解释研究在任务单一性和概念混淆方面的空白，推动稳健性别偏见基准的发展</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>消融不可靠性</strong>：性别偏见与事实性别在神经网络中的深度纠缠导致神经元消融无法选择性去除偏见而不损害事实性别知识，证明消融作为去偏方法的内在缺陷</li><li style="margin-bottom:0;"><strong>基准评估盲区</strong>：现有性别偏见评估基准存在根本性盲区，可能掩盖消融操作导致的事实性别知识下降，造成去偏效果被高估的误导性结论</li><li style="margin-bottom:0;"><strong>知识偏见权衡</strong>：任何试图通过干预神经元来消除性别偏见的尝试都不可避免地以牺牲模型的事实性别理解能力为代价，揭示了公平性与准确性之间的深层张力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.12299" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.12299</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>V4FinBench: Benchmarking Tabular Foundation Models, LLMs, and Standard Methods on Corporate Bankruptcy Prediction</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.10896</span>
+                        <span style="background:linear-gradient(135deg,#00ACC1 0%,#00838F 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">持续学习</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">V4FinBench：企业破产预测的表格基础模型、大语言模型与传统方法</span>
+                        <span style="color:#666;font-size:12px;">Marcin Kostrzewa et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">企业破产预测是一项高风险的金融任务，具有严重的类别不平衡和多时间跨度预测需求。现有公开数据集稀缺且规模小，为此本文提出V4FinBench基准数据集，包含来自维谢格拉德集团四国经济体的超过100万条公司年度记录（2006-2021年），涵盖131个财务与非财务特征、六个预测时间跨度和综合困境判定标准。该数据集支持在真实类别不平衡条件下（正样本率0.19%-0.36%）评估表格模型与基础模型方法。参考实验表明，经不平衡感知微调的TabPFN在长周期预测上匹配或超越梯度提升模型，而Llama-3-8B在各时间跨度上均落后于梯度提升模型且差距随时间跨度增大而急剧扩大。在美国破产数据集上的外部验证表明，V4FinBench微调的TabPFN具有可迁移的金融困境结构捕获能力。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>大规模金融基准</strong>：构建超百万记录的V4FinBench数据集，覆盖2006-2021年维谢格拉德集团四国企业，包含131维财务与非财务特征及六档预测时间跨度，填补公开大规模破产预测数据空白</li><li style="margin-bottom:0;"><strong>复合困境标准</strong>：设计综合 distress criterion 同时捕捉偿债能力、盈利能力和流动性恶化三个维度，替代传统单一指标，更真实反映企业财务困境的多面性本质</li><li style="margin-bottom:0;"><strong>不平衡感知微调</strong>：针对0.19%-0.36%的极端正样本率，开发适配的TabPFN微调策略与QLoRA微调方案，使模型在高度倾斜分布下仍能有效学习少数类模式</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨境区域覆盖</strong>：首次聚焦维谢格拉德集团（捷克、匈牙利、波兰、斯洛伐克）这一中等收入转型经济体集群，提供区别于美英主导的破产研究地理视角，揭示不同制度环境下的预测规律</li><li style="margin-bottom:0;"><strong>多跨度预测框架</strong>：突破传统单一年度预测局限，建立从即时到远期的六档时间跨度评估体系，系统检验模型在不同时域上的稳定性与衰减特性，契合实际风险管理的前瞻性需求</li><li style="margin-bottom:0;"><strong>跨模型系统对比</strong>：在同质化实验条件下并行评估传统表格基线、表格基础模型TabPFN与大型语言模型Llama-3-8B，为不同范式在金融预测任务中的适用边界提供实证依据</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>TabPFN长周期优势</strong>：经不平衡感知微调后，TabPFN在较长预测时间跨度上的F1分数与ROC-AUC均达到或超越梯度提升模型，展现表格基础模型在时序延展场景下的潜力</li><li style="margin-bottom:0;"><strong>LLM性能局限显著</strong>：Llama-3-8B在所有时间跨度的ROC-AUC上均落后于梯度提升，F1分数表现更弱且随预测跨度增大差距急剧扩大，表明通用大语言模型在金融表格预测中存在结构性不足</li><li style="margin-bottom:0;"><strong>知识迁移可验证</strong>：V4FinBench微调的TabPFN在美国破产数据集上优于原始模型，证明所学表征捕获了可跨市场泛化的金融困境结构，而非仅记忆V4区域特异性模式</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.10896" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.10896</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/14</p>
+        </div>
+    </div>
+</body>
+</html>
