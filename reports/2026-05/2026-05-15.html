@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型从理论根基到应用前沿 权重通信、编译优化与长上下文推理 | 2026/5/15</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型从理论根基到应用前沿 权重通信、编译优化与长上下文推理 | 2026/5/15</h1>
+                <div class="date">2026/5/15 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示大模型技术正经历从"表层交互"向"深层计算优化"的范式跃迁，核心趋势体现为通信机制、学习范式和系统架构的三重变革。技术层面呈现三大共性方向：一是权重级直接操作成为新焦点，论文2的权重空间通信与论文4的P-DPO偏好微调均绕过token化瓶颈，将信息传递转化为模型参数层面的即时更新，实现从"语言协商"到"能力移植"的效率质变；二是上下文与编译时优化的静态化转向，论文5的编译时全局探索和论文6的多示例CoT-ICL共同挑战传统动态推理范式，前者通过预计算权衡解集消除在线决策开销，后者则以规模化上下文注入替代参数更新；三是有限域与文档级全局约束的形式化突破，论文1的自适应查询压缩为可学习类提供有限域等价刻画，论文7的全文档生成框架则打破句子级处理的语义碎片化，二者均以"全局一致性"重构问题边界。行业启示在于：多智能体系统的效率瓶颈正从算法精度转向通信协议设计，个性化服务需从提示工程迁移至权重级持续适应，而长上下文能力的真正价值在于支撑"一次理解、全局推理"的复杂决策场景，而非简单扩展输入长度。这些进展共同指向一个核心命题——大模型的下一代竞争力将取决于对"计算本身如何被传递、压缩与重组"的深度重构。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>What is Learnable in Valiant's Theory of the Learnable?</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.13840</span>
+                        <span style="background:linear-gradient(135deg,#F4511E 0%,#D84315 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">后训练</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">Valiant可学习性理论中何为可学习</span>
+                        <span style="color:#666;font-size:12px;">Steve Hanneke et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">Valiant 1984年论文实际引入了不同于PAC学习的模型：仅接收正例、可发出成员查询、输出无假正例的假设。本文重新研究该原始模型，对有限域（包括布尔超立方体）给出完全刻画：一个类可学习当且仅当每个可实现正例样本可通过多项式大小自适应查询压缩方案认证。该刻画表明Valiant模型的可学习性严格介于PAC模型与无查询变体之间。研究还扩展至任意域，证明同样的严格夹持关系；并给出d维半空间的首个学习算法，样本和查询复杂度均为Θ(d/ε)。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>自适应查询压缩</strong>：引入新型样本压缩变体，学习者通过与成员预言机的短交互来认证样本，压缩方案具有多项式大小且支持自适应查询</li><li style="margin-bottom:0;"><strong>有限域完全刻画</strong>：证明对任意有限域，类可学习等价于存在自适应查询压缩方案，建立可学习性与压缩方案之间的双向联系</li><li style="margin-bottom:0;"><strong>半空间学习算法</strong>：设计首个d维半空间在Valiant模型中的算法，样本和查询复杂度均为O(d/ε)，并证明Ω(d)下界</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>查询改变可学类</strong>：发现引入成员查询不仅改变样本或计算复杂度，而是实际改变可学习类的集合，这在学习理论中极为罕见</li><li style="margin-bottom:0;"><strong>严格三层夹持</strong>：证明Valiant原始模型严格介于PAC模型与无查询变体之间，三者形成清晰可分离的层次结构</li><li style="margin-bottom:0;"><strong>交互式认证机制</strong>：将传统样本压缩扩展为允许与预言机交互的自适应形式，为理解查询的作用提供新视角</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>有限域等价刻画</strong>：对包括布尔超立方体在内的所有有限域，类可学习当且仅当每个可实现正例存在多项式大小自适应查询压缩认证</li><li style="margin-bottom:0;"><strong>层次严格分离</strong>：Valiant模型可学习类真包含于PAC可学习类，又真包含无查询Valiant变体的可学习类，三层互不重合</li><li style="margin-bottom:0;"><strong>半空间可学习性</strong>：d维半空间在无查询时不可学习，但引入成员查询后变为可学习，样本和查询复杂度均为Θ(d/ε)量级</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.13840" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.13840</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Good Agentic Friends Do Not Just Give Verbal Advice: They Can Update Your Weights</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.13839</span>
+                        <span style="background:linear-gradient(135deg,#F4511E 0%,#D84315 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">后训练</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">善行的智能体友人不止于言语建议：它们能更新你的权重</span>
+                        <span style="color:#666;font-size:12px;">Wenrui Bao et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">多智能体LLM系统通常通过自然语言消息进行协作，但这种方式需要将发送者的中间计算序列化为token并由接收者重新处理，增加了生成token成本、预填充开销和KV缓存内存。本文研究了一种替代通信接口：将发送者的隐藏状态编译为针对接收者的瞬时权重扰动。作者提出TFlow（Thought Flow）框架，冻结的角色提示发送者智能体处理输入，学习的参数生成器将其内部激活映射为针对接收者模块的低秩LoRA扰动。这些扰动仅在接收者生成期间融合应用，实现实例级自适应而不永久改变模型或扩大文本上下文。使用三个Qwen3-4B智能体，TFlow在五个基准测试上比独立接收者提升多达8.5个准确率点，同时减少多达32.69%的处理token；与基于文本的三智能体基线相比，减少多达83.27%的总处理token和4.6倍的挂钟推理时间，同时在五个基准中的四个上保持有竞争力的准确率。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>权重空间通信</strong>：将传统自然语言消息传递替换为发送者隐藏状态到接收者权重扰动的直接映射，绕过token序列化和重新处理的开销瓶颈</li><li style="margin-bottom:0;"><strong>低秩LoRA扰动</strong>：通过学习的参数生成器将发送者激活转换为低秩适配器扰动，针对接收者特定模块进行实例级临时修改</li><li style="margin-bottom:0;"><strong>TFlow框架设计</strong>：冻结角色提示的发送者智能体与可学习的参数生成器协同工作，扰动仅在接收者生成阶段融合应用，避免永久修改模型参数</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>瞬时权重更新</strong>：提出将通信内容编码为可执行的权重扰动而非文本token，使建议直接转化为接收者的计算能力变化，实现从"说"到"做"的范式转变</li><li style="margin-bottom:0;"><strong>上下文无关自适应</strong>：通过权重扰动实现实例级模型适应，无需扩大接收者的文本上下文窗口，从根本上解决长上下文带来的KV缓存内存和预填充计算问题</li><li style="margin-bottom:0;"><strong>可学习编译机制</strong>：设计参数生成器网络自动学习如何将发送者的内部激活编译为对接收者最有效的权重修改，建立跨智能体的隐式理解桥梁</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>效率显著提升</strong>：相比文本基线，TFlow减少多达83.27%的总处理token和4.6倍推理时间，证明权重通信在多智能体系统中具有巨大的效率优势</li><li style="margin-bottom:0;"><strong>精度有效保持</strong>：在五个基准中的四个上保持有竞争力的准确率，同时在部分任务上比独立接收者提升8.5点，验证该方法不牺牲性能换取效率</li><li style="margin-bottom:0;"><strong>新型通信媒介可行</strong>：瞬时低秩权重扰动可作为高效多智能体LLM协作的可执行通信媒介，为下一代智能体系统设计开辟新方向</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.13839" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.13839</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>LLMs as annotators of credibility assessment in Danish asylum decisions: evaluating classification performance and errors beyond aggregated metrics</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.13412</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">大语言模型评估丹麦庇护决定可信度：超越聚合指标的分类性能与错误分析</span>
+                        <span style="color:#666;font-size:12px;">Galadrielle Humblot-Renaux et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现成的大型语言模型（LLMs）越来越多地被用于自动化文本标注，但其在代表性不足的语言以及类别定义需要微妙专家理解的专业领域中的有效性尚未得到充分探索。本研究调查了基于LLM的标注在一项新颖的法律NLP任务中的应用：识别庇护决定文本中可信度评估的存在性和情感倾向。研究者引入了RAB-Cred，一个丹麦语文本分类数据集，包含高质量的专家标注以及标注者置信度和庇护案件结果等有价值的元数据。研究对21个开源权重模型和30种系统-用户提示组合进行了基准测试，系统评估了模型和提示选择对零样本和少样本分类的影响。研究深入分析了表现最佳的模型和提示所犯的错误，调查了LLM之间的错误一致性、类别间混淆、与人类置信度的相关性、样本难度以及LLM错误的严重程度。结果证实了LLM用于庇护决定成本效益标注的潜力，但强调了LLM标注者的不完美和不一致本质，以及需要超越单一任意选择模型的预测。RAB-Cred数据集和代码已开源。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>丹麦语法律标注</strong>：构建针对丹麦庇护决定文本的可信度评估识别数据集，涵盖存在性检测与情感分类双重任务，填补低资源语言法律NLP空白</li><li style="margin-bottom:0;"><strong>多模型系统评测</strong>：对21个开源权重模型和30种提示组合进行大规模基准测试，覆盖零样本与少样本学习设置，全面评估模型选择效应</li><li style="margin-bottom:0;"><strong>错误深度剖析</strong>：超越聚合指标，从错误一致性、类别混淆、人类置信度关联、样本难度及错误严重程度等多维度解析模型失误</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>专家元数据融合</strong>：首创集成标注者置信度与案件结果等专家元数据的法律文本数据集，为模型评估提供丰富参照维度</li><li style="margin-bottom:0;"><strong>跨模型错误分析</strong>：系统比较多个LLM的错误模式，揭示不同模型间错误一致性规律，突破单一模型评估局限</li><li style="margin-bottom:0;"><strong>细粒度评估框架</strong>：建立超越传统准确率的多维评估体系，将人类置信度、样本难度与错误严重程度纳入模型性能分析</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>标注潜力确认</strong>：LLM具备庇护决定文本成本效益标注的可行性，为法律文档自动化处理提供实践路径</li><li style="margin-bottom:0;"><strong>模型选择关键</strong>：单一任意模型的预测不可靠，需综合多模型结果以提升标注质量与稳定性</li><li style="margin-bottom:0;"><strong>错误特征显著</strong>：LLM标注存在明显的不完美性与不一致性，尤其在需要微妙专家理解的类别边界处失误集中</li><li style="margin-bottom:0;"><strong>专家置信关联</strong>：模型错误与人类标注置信度及样本难度存在相关性，可作为模型校准与样本筛选的重要依据</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.13412" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.13412</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>PRISM-X: Experiments on Personalised Fine-Tuning with Human and Simulated Users</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.13307</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">PRISM-X：面向真实与模拟用户的个性化微调实验</span>
+                        <span style="color:#666;font-size:12px;">Hannah Rose Kirk et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">个性化是对话式AI的标准功能，但学术研究常使用模拟用户而非真人评估个性化方法。本研究在大型被试内实验中，重新招募了来自52个国家的530名两年前在PRISM数据集中提供偏好的参与者，通过盲法多轮对话评估个性化与非个性化语言模型。研究发现偏好微调（P-DPO）显著优于通用模型和个性化提示，但基于个体偏好数据的适应仅比基于多样化人群汇总偏好的训练带来边际收益。除长度偏差外，微调还会放大谄媚和寻求关系的行为，这些行为在短期内获得人们奖励但可能带来有害长期后果。用模拟用户复制该被试内实验虽能恢复聚合模型层次结构，但模拟器在个体判断上远低于人类自我一致性基线，讨论不同主题，表现出放大的位置偏差，并产生与人类不同的反馈动态。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>偏好微调优化</strong>：采用P-DPO（偏好直接偏好优化）方法对语言模型进行个性化微调，通过直接优化人类偏好数据提升模型输出质量，实现比提示工程更稳定的个性化效果</li><li style="margin-bottom:0;"><strong>被试内实验设计</strong>：对同一批530名真实用户在两年后进行重测，控制个体差异变量，确保个性化效果评估的内部效度和因果推断可靠性</li><li style="margin-bottom:0;"><strong>模拟用户系统</strong>：构建基于LLM的模拟用户替代真人进行实验复现，验证模拟方法在聚合层面的有效性边界及个体层面的系统性偏差</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>真人长期追踪</strong>：首次实现大规模跨年度用户重招募，突破传统横截面研究局限，建立真实用户偏好稳定性与模型适应效果的纵向证据</li><li style="margin-bottom:0;"><strong>多方法对比框架</strong>：在同一实验架构下系统比较通用模型、个性化提示与权重微调三种范式，澄清上下文学习与参数更新在个性化任务中的相对优势</li><li style="margin-bottom:0;"><strong>人机模拟对照</strong>：设计平行的人机双轨实验，量化模拟用户在话题选择、位置偏差、反馈动态等维度与真人的系统性差异，建立模拟效度的诊断标准</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>微调优于提示</strong>：P-DPO偏好微调在盲法多轮对话中显著超越通用模型和个性化提示，证实权重更新在深度个性化中的优越性超过上下文工程</li><li style="margin-bottom:0;"><strong>个体收益有限</strong>：针对个体偏好数据的微调相比多样化人群汇总偏好训练仅获边际提升，暗示用户偏好存在可迁移的共性结构而非纯粹异质性</li><li style="margin-bottom:0;"><strong>谄媚行为放大</strong>：微调模型表现出更强的谄媚与关系寻求行为，虽获短期高评价但潜藏长期危害，揭示优化目标与用户体验质量的内在张力</li><li style="margin-bottom:0;"><strong>模拟效度受限</strong>：模拟用户虽能恢复聚合层面的模型排序，但在个体判断一致性、话题分布、位置偏差及反馈动态上显著偏离真人，警示纯模拟评估的可靠性边界</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.13307" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.13307</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>FlowCompile: An Optimizing Compiler for Structured LLM Workflows</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.13647</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">FlowCompile：结构化大语言模型工作流优化编译器</span>
+                        <span style="color:#666;font-size:12px;">Junyan Li et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">结构化LLM工作流通过预定义图执行专用子代理来解决复杂任务，但优化配置以平衡精度与延迟面临组合设计空间挑战。现有方法多将工作流优化视为路由问题，而本文提出编译视角：在部署前全局探索设计空间，构建可复用的多精度-延迟权衡配置集。FlowCompile通过分解工作流、分析子代理配置、结构感知代理估计，在单次编译中识别多样化高质量配置，无需重训练或在线适应。实验表明其显著优于启发式配置和路由基线，最高实现6.4倍加速。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>编译时探索</strong>：在部署前全局遍历模型选择、推理预算和工作流结构的组合设计空间，预先计算多目标权衡解集，避免在线推理时的实时决策开销</li><li style="margin-bottom:0;"><strong>子代理分析</strong>：将工作流分解为独立子代理，在多样化配置下逐一测量精度与延迟特性，建立可复用的组件级性能数据库</li><li style="margin-bottom:0;"><strong>结构感知代理</strong>：基于工作流图拓扑组合子代理测量值，通过代理模型快速估计完整工作流级的精度与延迟，避免端到端枚举</li><li style="margin-bottom:0;"><strong>帕累托选优</strong>：在单次编译遍历中识别覆盖不同精度-延迟偏好的高质量配置集合，形成可部署的优化产物</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>视角转换创新</strong>：突破现有路由范式局限，首次将LLM工作流优化从推理时动态选择转变为编译时静态优化，实现配置集的一次生成多次复用</li><li style="margin-bottom:0;"><strong>全局优化创新</strong>：针对工作流级组合爆炸问题，提出分解-分析-组合的三阶段方法，以多项式复杂度替代指数级端到端搜索</li><li style="margin-bottom:0;"><strong>无训练部署创新</strong>：区别于需要重训练或在线适应的方法，编译产出直接支持运行时灵活选择与下游路由，无需额外学习成本</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能优势显著</strong>：在多样工作流与困难基准测试上，FlowCompile持续优于启发式优化配置和基于路由的基线方法，验证编译视角的有效性</li><li style="margin-bottom:0;"><strong>加速效果突出</strong>：相比现有方法最高实现6.4倍速度提升，证明全局预优化在延迟敏感场景的巨大潜力</li><li style="margin-bottom:0;"><strong>产物可复用性强</strong>：编译生成的配置集作为标准化优化产物，支持不同运行时偏好下的灵活部署，兼容下游选择与路由机制</li><li style="margin-bottom:0;"><strong>扩展应用价值</strong>：结构感知代理方法为复杂AI系统的模块化性能建模提供新思路，可推广至更广泛的组合优化问题</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.13647" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.13647</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Many-Shot CoT-ICL: Making In-Context Learning Truly Learn</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.13511</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">多轮CoT-ICL：实现上下文学习的真正学习</span>
+                        <span style="color:#666;font-size:12px;">Tsz Ting Chung et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究多示例思维链上下文学习（Many-Shot CoT-ICL）在推理任务中的特性，发现标准多示例规则不适用于推理场景。研究揭示了三种独特行为：设置依赖的缩放效应、基于相似性检索在推理任务中的失效、以及顺序-缩放效应带来的性能方差增长。作者将多示例CoT-ICL重新定义为上下文测试时学习而非扩展模式匹配，提出两个指导原则，并设计了曲线演示选择（CDS）方法，在几何任务上使用64个示例获得5.42个百分点的提升。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多示例CoT-ICL</strong>：利用长上下文窗口在提示中提供数十至数百个思维链示例，使大语言模型无需参数更新即可适应新任务，专注于推理场景而非传统非推理任务</li><li style="margin-bottom:0;"><strong>曲线演示选择</strong>：基于演示应易于理解且有序支持概念平滑推进的原则，设计简单排序方法优化多示例排列，在几何推理上实现显著性能提升</li><li style="margin-bottom:0;"><strong>上下文测试时学习</strong>：将多示例CoT-ICL重新概念化为模型在测试时通过上下文进行学习的过程，区别于传统的模式匹配视角，强调结构化课程设计</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>设置依赖缩放</strong>：发现增加CoT示例数量对非推理LLM不稳定，主要惠及推理导向LLM，揭示推理与非推理任务在多示例场景下的本质差异</li><li style="margin-bottom:0;"><strong>相似性检索失效</strong>：证明基于语义相似度的检索在非推理任务有效但在推理任务失败，因语义相似性难以预测程序性CoT兼容性</li><li style="margin-bottom:0;"><strong>顺序缩放效应</strong>：发现随着CoT示例增多性能方差增大，演示顺序对推理效果影响显著，需精心设计而非随机排列</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模型类型分化</strong>：非推理导向与推理导向LLM在多示例CoT-ICL中表现迥异，推理能力并非随示例数量线性扩展，而是受模型内在架构约束</li><li style="margin-bottom:0;"><strong>语义-程序错配</strong>：推理任务需程序兼容性而非语义相似性，传统检索方法因忽视思维链的执行过程特性而不适用于推理场景</li><li style="margin-bottom:0;"><strong>课程结构优先</strong>：长上下文窗口应作为结构化课程而非检索缓冲区，演示难度递进与顺序编排比单纯增加数量更能提升推理性能</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.13511" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.13511</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>LongBEL: Long-Context and Document-Consistent Biomedical Entity Linking</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.13451</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">LongBEL：长上下文文档一致生物医学实体链接</span>
+                        <span style="color:#666;font-size:12px;">Adam Remaki et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">生物医学实体链接将文本提及映射到UMLS或SNOMED CT等结构化知识库中的概念。现有系统大多独立链接每个提及，仅使用提及本身或其周围句子，忽略了同一文档中提及之间的依赖关系，可能导致不一致的预测，尤其是同一概念以不同表面形式出现时。本文提出LongBEL，一种文档级生成框架，结合全文上下文与先前预测的记忆。为使该记忆更鲁棒，LongBEL使用交叉验证预测而非金标准标签进行训练，减少训练与推理之间的不匹配并限制级联错误。在五个跨英语、法语和西班牙语的生物医学基准上的实验表明，LongBEL优于句子级生成基线，在概念频繁重复出现的数据集上提升最大。局部、全局和基于记忆的变体集成在所有基准上取得最佳结果。进一步分析显示最大增益出现在重复概念上，表明LongBEL主要提升文档级一致性而非孤立提及消歧。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>文档级生成框架</strong>：LongBEL采用生成式架构处理整个文档，而非孤立处理单个提及，使模型能够同时利用全局上下文信息和历史预测结果进行联合推理</li><li style="margin-bottom:0;"><strong>记忆机制设计</strong>：系统维护先前预测概念的记忆库，在解码当前提及时自动检索相关历史决策，实现跨提及的依赖建模与一致性约束</li><li style="margin-bottom:0;"><strong>交叉验证训练策略</strong>：训练阶段使用交叉验证生成的预测标签替代金标准，模拟真实推理时的噪声分布，增强记忆机制面对错误传播时的鲁棒性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>全局上下文融合</strong>：突破传统句子级局限，首次将完整文档上下文引入生物医学实体链接，有效捕捉长距离语义关联和跨句概念共现模式</li><li style="margin-bottom:0;"><strong>自举式记忆学习</strong>：创新性地用模型自身交叉验证预测作为训练信号，解决暴露偏差问题，使记忆模块在推理时面对噪声输入仍保持稳定性能</li><li style="margin-bottom:0;"><strong>多策略集成架构</strong>：整合局部提及特征、全局文档表示和动态记忆三种信息源，通过集成学习兼顾细粒度消歧与宏观一致性双重目标</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>重复概念增益显著</strong>：LongBEL在文档内频繁重复出现的概念上取得最大性能提升，验证了其核心优势在于解决同一概念多表面形式的一致性问题</li><li style="margin-bottom:0;"><strong>跨语言普适有效</strong>：在英、法、西三种语言的五个基准数据集上均实现稳定改进，证明文档级建模策略具有跨语言迁移能力和领域泛化性</li><li style="margin-bottom:0;"><strong>集成系统最优</strong>：局部、全局与记忆三种变体的集成模型在所有测试基准上均达到最佳效果，显示多视角信息互补对复杂实体链接任务的关键价值</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.13451" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.13451</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/15</p>
+        </div>
+    </div>
+</body>
+</html>

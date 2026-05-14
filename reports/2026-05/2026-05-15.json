@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-15",
+  "title": "大模型从理论根基到应用前沿 权重通信、编译优化与长上下文推理",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.13840",
+      "title": "What is Learnable in Valiant's Theory of the Learnable?",
+      "chinese_title": "Valiant可学习性理论中何为可学习",
+      "authors": "Steve Hanneke et al.",
+      "url": "https://arxiv.org/abs/2605.13840"
+    },
+    {
+      "id": "2605.13839",
+      "title": "Good Agentic Friends Do Not Just Give Verbal Advice: They Can Update Your Weights",
+      "chinese_title": "善行的智能体友人不止于言语建议：它们能更新你的权重",
+      "authors": "Wenrui Bao et al.",
+      "url": "https://arxiv.org/abs/2605.13839"
+    },
+    {
+      "id": "2605.13412",
+      "title": "LLMs as annotators of credibility assessment in Danish asylum decisions: evaluating classification performance and errors beyond aggregated metrics",
+      "chinese_title": "大语言模型评估丹麦庇护决定可信度：超越聚合指标的分类性能与错误分析",
+      "authors": "Galadrielle Humblot-Renaux et al.",
+      "url": "https://arxiv.org/abs/2605.13412"
+    },
+    {
+      "id": "2605.13307",
+      "title": "PRISM-X: Experiments on Personalised Fine-Tuning with Human and Simulated Users",
+      "chinese_title": "PRISM-X：面向真实与模拟用户的个性化微调实验",
+      "authors": "Hannah Rose Kirk et al.",
+      "url": "https://arxiv.org/abs/2605.13307"
+    },
+    {
+      "id": "2605.13647",
+      "title": "FlowCompile: An Optimizing Compiler for Structured LLM Workflows",
+      "chinese_title": "FlowCompile：结构化大语言模型工作流优化编译器",
+      "authors": "Junyan Li et al.",
+      "url": "https://arxiv.org/abs/2605.13647"
+    },
+    {
+      "id": "2605.13511",
+      "title": "Many-Shot CoT-ICL: Making In-Context Learning Truly Learn",
+      "chinese_title": "多轮CoT-ICL：实现上下文学习的真正学习",
+      "authors": "Tsz Ting Chung et al.",
+      "url": "https://arxiv.org/abs/2605.13511"
+    },
+    {
+      "id": "2605.13451",
+      "title": "LongBEL: Long-Context and Document-Consistent Biomedical Entity Linking",
+      "chinese_title": "LongBEL：长上下文文档一致生物医学实体链接",
+      "authors": "Adam Remaki et al.",
+      "url": "https://arxiv.org/abs/2605.13451"
+    }
+  ],
+  "generated_at": "2026-05-14T22:22:47.819Z",
+  "org": "AI研究室"
+}
