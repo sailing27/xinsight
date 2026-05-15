@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型效能革新 从数据自动化到决策架构解耦 | 2026/5/16</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型效能革新 从数据自动化到决策架构解耦 | 2026/5/16</h1>
+                <div class="date">2026/5/16 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦大模型在效率优化、多模态融合与可信治理三大维度的前沿突破，揭示了从训练范式到应用架构的系统性创新趋势。<br><br>技术层面呈现三个共性方向：<strong>一是稀疏化与轻量化设计</strong>，EndPrompt的终端锚定机制与RigidFormer的物体级Transformer均通过降低计算冗余实现效率跃升，分别将长上下文扩展与物理模拟的复杂度从密集计算转向稀疏表示；<strong>二是多模态对齐与数据自动化构建</strong>，Video2GUI实现视频到结构化轨迹的全自动转换，临床时间线重建则通过检索增强打通文本与表格模态，二者共同指向"低标注成本+高结构精度"的数据工程新范式；<strong>三是可信机制的外置化</strong>，从过早闭合的量化诊断到金融决策的机械执行原语，研究共识表明：关键治理功能需通过架构隔离脱离模型黑箱，而非依赖提示工程或后验对齐。<br><br>行业启示显著：高效扩展技术将加速大模型向端侧与实时场景渗透；自动化数据管线有望打破GUI Agent、科学模拟等领域的数据瓶颈；而"治理-任务解耦"框架为高风险应用提供了可验证的安全基线，推动AI系统从能力展示向责任部署演进。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Video2GUI: Synthesizing Large-Scale Interaction Trajectories for Generalized GUI Agent Pretraining</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.14747</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ICML 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">Video2GUI：为通用GUI智能体预训练合成大规模交互轨迹</span>
+                        <span style="color:#666;font-size:12px;">Weimin Xiong et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">近期多模态大语言模型的发展推动了对图形用户界面（GUI）智能体的研究兴趣，但其泛化能力受限于缺乏覆盖多样化真实应用的大规模训练数据。现有数据集严重依赖昂贵的人工标注，且通常局限于狭窄领域。为此，本文提出Video2GUI，一种全自动框架，可直接从无标注的互联网视频中提取有依据的GUI交互轨迹。Video2GUI采用由粗到精的过滤策略识别高质量GUI教程视频，并将其转换为结构化的智能体轨迹。将该流程应用于5亿条视频元数据，构建了包含1200万条交互轨迹、覆盖1500多个应用和网站的大规模数据集WildGUI。在WildGUI上预训练Qwen2.5-VL和Mimo-VL，在多个GUI grounding和action基准上取得5-20%的一致提升，达到或超越最先进性能。作者将发布WildGUI数据集和Video2GUI流程以支持未来GUI智能体研究。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>由粗到精过滤</strong>：采用多阶段筛选策略从海量互联网视频中逐步过滤出高质量GUI教程视频，先通过元数据粗筛排除无关内容，再基于视觉特征细筛确保视频包含有效的界面交互信息</li><li style="margin-bottom:0;"><strong>视频轨迹提取</strong>：自动将无标注视频转换为结构化交互轨迹，通过视觉理解识别界面元素状态变化，并映射为包含点击、输入等操作的时序动作序列</li><li style="margin-bottom:0;"><strong>跨平台适配</strong>：支持1500多种应用和网站的轨迹提取，涵盖桌面端、移动端及Web端多样化GUI环境，实现不同操作系统和框架间的统一表示</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>全自动数据构建</strong>：突破传统人工标注瓶颈，首次实现从无标注互联网视频到结构化GUI交互轨迹的完全自动化转换，无需任何人工干预即可大规模生产训练数据</li><li style="margin-bottom:0;"><strong>海量异构覆盖</strong>：基于5亿条视频元数据构建WildGUI数据集，规模达1200万条轨迹且覆盖1500余个应用，远超现有数据集的领域广度和数据量</li><li style="margin-bottom:0;"><strong>grounded轨迹合成</strong>：提取的轨迹具有视觉 grounding，即每个动作均可对应到视频帧中的具体界面元素区域，为视觉-语言模型训练提供像素级的监督信号</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>预训练显著提升</strong>：在WildGUI上预训练Qwen2.5-VL和Mimo-VL，在多个GUI grounding和action基准上均获得5-20%的一致性性能提升，验证了大规模异构轨迹数据的有效性</li><li style="margin-bottom:0;"><strong>达到SOTA水平</strong>：经WildGUI预训练的模型在标准基准上达到或超越当前最优性能，证明自动提取的互联网视频数据可替代昂贵的人工标注数据</li><li style="margin-bottom:0;"><strong>数据规模效应</strong>：实验表明大规模多样化预训练数据对GUI智能体的泛化能力至关重要，为领域提供了可复用的数据基础设施和开源工具链</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.14747" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.14747</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>EndPrompt: Efficient Long-Context Extension via Terminal Anchoring</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.14589</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">EndPrompt：基于终端锚定的高效长上下文扩展</span>
+                        <span style="color:#666;font-size:12px;">Han Tian et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">扩展大语言模型上下文窗口通常需要在目标长度序列上训练，带来二次方的内存和计算成本。本文提出EndPrompt方法，仅使用短训练序列实现有效上下文扩展。核心思路是将原始短上下文作为完整第一段，附加简短终端提示作为第二段并分配靠近目标长度的位置索引，在短物理序列中同时引入局部和长程相对距离。基于RoPE和Bernstein不等式的理论分析表明位置插值对注意力函数施加平滑约束，共享Transformer参数抑制对未观测中间距离的不稳定外推。在LLaMA系列模型上将上下文从8K扩展到64K，EndPrompt平均RULER得分76.03，LongBench平均最高，超越LCEG、LongLoRA和全长度微调，同时计算量大幅减少。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双段构造策略</strong>：将原始短上下文保持为完整第一段，附加终端提示作为第二段并赋予目标长度附近的位置索引，在短物理序列内同时实现局部与长程相对距离的暴露，避免完整长序列的构造开销</li><li style="margin-bottom:0;"><strong>位置插值平滑约束</strong>：基于RoPE和Bernstein不等式的理论分析，证明位置插值方法对注意力函数施加了严格的平滑性约束，限制了模型在不同位置距离间的变化幅度</li><li style="margin-bottom:0;"><strong>参数共享抑制外推</strong>：利用Transformer参数共享机制，进一步压制模型向训练过程中未观测到的中间距离进行不稳定外推的倾向，提升长程泛化的可靠性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>终端锚定机制</strong>：突破传统需构造全长输入的范式，通过终端提示片段的位置索引锚定实现长程距离模拟，以稀疏位置监督替代密集长序列训练，显著降低计算与内存成本</li><li style="margin-bottom:0;"><strong>语义连续性保持</strong>：区别于分块模拟方法将连续上下文切分处理，双段构造保持训练文本的语义连贯性，使模型在感知长程位置关系的同时维持对文本逻辑结构的理解</li><li style="margin-bottom:0;"><strong>理论分析框架</strong>：首次将Bernstein不等式引入位置插值分析，建立注意力函数光滑性的严格数学保证，为短序列训练实现长上下文扩展提供可证明的理论支撑</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>稀疏监督可行性</strong>：长上下文泛化能力可从稀疏位置监督中诱导产生，挑战了密集长序列训练是可靠上下文扩展必要条件的传统假设，为高效扩展开辟新路径</li><li style="margin-bottom:0;"><strong>性能优势显著</strong>：在LLaMA模型8K至64K扩展任务中，EndPrompt RULER平均得分76.03、LongBench平均最高，全面超越LCEG、LongLoRA及全长度微调方法</li><li style="margin-bottom:0;"><strong>计算效率突破</strong>：相比现有方法，EndPrompt在取得更优性能的同时大幅减少计算资源消耗，解决了长上下文适应昂贵且难以复现的关键瓶颈问题</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.14589" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.14589</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>RigidFormer: Learning Rigid Dynamics using Transformers</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.09196</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">RigidFormer：基于Transformer的刚体动力学学习</span>
+                        <span style="color:#666;font-size:12px;">Zhiyang Dou et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">基于学习的多刚体动力学模拟仍具挑战，因接触不连续且误差随时间累积。现有方法多依赖网格连通性与顶点级消息传递，限制了对点云等无网格输入的适用性并导致高计算成本。本文提出RigidFormer，一种以物体为中心的Transformer模型，以可控积分步长学习无网格刚体动力学。该模型在物体级别推理，通过紧凑锚点推进各物体；锚点-顶点池化用局部顶点特征丰富锚点，保留接触相关几何而无需密集顶点交互。提出基于锚点的RoPE，将锚点几何注入注意力同时尊重物体与锚点的无序性：物体令牌处理具有置换等变性，均值池化锚点描述符对锚点重索引不变且保持形状范围。通过可微Kabsch对齐将更新投影到刚体流形以强制刚性约束。在标准基准上，RigidFormer以点输入超越或匹敌基于网格的基线，运行更快，泛化到未见点分辨率和跨数据集，并扩展至200+物体；还展示了通过将身体部位视为交互物体级组件实现指令驱动铰接体的初步扩展。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>物体级Transformer</strong>：以物体而非顶点作为基本计算单元进行注意力推理，避免密集顶点交互，显著降低计算复杂度并支持可变数量物体场景</li><li style="margin-bottom:0;"><strong>锚点-顶点池化</strong>：用局部顶点特征丰富紧凑锚点表示，在保留接触关键几何信息的同时避免全顶点级消息传递，实现效率与精度的平衡</li><li style="margin-bottom:0;"><strong>可微Kabsch投影</strong>：通过可微Kabsch对齐将网络输出投影到刚体流形，显式强制执行刚性约束，保证物理合理的状态更新</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>锚点旋转位置编码</strong>：提出基于锚点几何的RoPE变体，将锚点空间信息注入注意力机制，同时保持物体置换等变性与锚点重索引不变性</li><li style="margin-bottom:0;"><strong>均值池化描述符</strong>：设计对锚点重索引不变的均值池化锚点描述符，在保持形状范围信息的同时消除对锚点排序的依赖，适应无序集合处理</li><li style="margin-bottom:0;"><strong>可控步长积分</strong>：支持可变积分步长的刚体动力学推进，突破固定时间步限制，增强模拟灵活性与长程稳定性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>精度匹敌网格方法</strong>：以纯点云输入达到或超越基于网格的基线方法，证明无网格表示足以实现高保真刚体动力学模拟</li><li style="margin-bottom:0;"><strong>计算效率显著优势</strong>：相比顶点级方法运行速度更快，且能扩展至200个以上物体的复杂场景，展现良好可扩展性</li><li style="margin-bottom:0;"><strong>强泛化能力验证</strong>：成功泛化到训练时未见的点分辨率、跨不同数据集迁移，并初步扩展至指令驱动的铰接体控制任务</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.09196" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.09196</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Text Knows What, Tables Know When: Clinical Timeline Reconstruction via Retrieval-Augmented Multimodal Alignment</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.15168</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">文本知内容，表格知时序：基于检索增强多模态对齐的临床时间线重建</span>
+                        <span style="color:#666;font-size:12px;">Sayantan Kumar et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">重建精确的临床时间线对于建模患者轨迹和预测脓毒症等复杂异质性疾病的病情风险至关重要。非结构化临床叙事文本提供语义丰富、上下文完整的患者病程描述，但缺乏时间精度且包含模糊的事件时间信息；结构化电子健康记录数据提供精确的时间锚点，却遗漏大量临床有意义的事件。本文提出一种检索增强的多模态对齐框架，将时间线重建形式化为基于图的多步骤过程：首先从叙事中提取中心锚定事件构建初始时间支架，将非中心事件相对于该骨架进行定位，然后利用检索到的结构化EHR行作为外部时间证据校准时间线。在MIMIC-III和MIMIC-IV的i2m4基准上使用指令微调大语言模型评估，该多模态流程在绝对时间戳准确率（AULTC）和跨模型时间一致性方面均优于单模态文本重建，且不损害事件匹配率。实证差距分析显示34.8%的文本衍生事件完全不存在于表格记录中，证明模态对齐可产生比单一来源更时间忠实、临床信息更丰富的患者轨迹重建。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>检索增强对齐</strong>：利用结构化EHR数据作为外部时间证据，通过检索机制为文本提取的时间线提供精确的时间校准，弥补非结构化文本时间精度不足的缺陷</li><li style="margin-bottom:0;"><strong>图式多步重建</strong>：将时间线重建形式化为图结构的多步骤流程，包括提取中心锚定事件、构建时间骨架、相对定位非中心事件及最终校准的完整处理链条</li><li style="margin-bottom:0;"><strong>多模态时间融合</strong>：整合临床叙事文本的语义丰富性与结构化数据的精确时间锚点，实现两种异构数据源在患者时间线建模中的互补性融合</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>锚定骨架策略</strong>：创新性地从叙事文本中提取中心事件构建初始时间支架，以此作为基准框架将其他非中心事件进行相对时间定位，解决文本时间模糊性难题</li><li style="margin-bottom:0;"><strong>检索校准机制</strong>：设计基于检索的结构化数据调用方法，将EHR表格行作为外部证据动态引入，对文本生成的时间线进行绝对时间戳的精确校正</li><li style="margin-bottom:0;"><strong>模态互补框架</strong>：突破单一数据源的局限性，建立文本语义完整性与表格时间精确性的协同机制，实现1+1>2的多模态临床时间线重建效果</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>精度显著提升</strong>：多模态流程在绝对时间戳准确率（AULTC）和跨模型时间一致性方面均稳定优于单模态文本重建，验证检索增强对齐的有效性</li><li style="margin-bottom:0;"><strong>性能无损兼容</strong>：引入结构化时间证据进行校准的过程中，未损害原有的事件匹配率，保证方法在提升时间精度的同时维持事件识别完整性</li><li style="margin-bottom:0;"><strong>数据互补实证</strong>：34.8%的文本衍生事件完全缺失于表格记录，定量证明两种模态存在实质性信息互补，单一数据源无法完整覆盖临床事件</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.15168" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.15168</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>From Text to Voice: A Reproducible and Verifiable Framework for Evaluating Tool Calling LLM Agents</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.15104</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">从文本到语音：评估工具调用LLM智能体的可复现可验证框架</span>
+                        <span style="color:#666;font-size:12px;">Md Tahmid Rahman Laskar et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">语音智能体日益需要从语音中可靠地使用工具，而主流工具调用基准测试仍为文本形式。本文研究能否在不重新标注工具模式和黄金标签的情况下，将已验证的文本基准转换为受控的音频工具调用评估。该数据集无关框架利用文本转语音、说话人变化和环境噪声创建配对的文本-音频实例，同时保留原始数据集标注。通过对7个全模态模型在音频转换版Confetti和When2Call上的广泛评估，发现性能高度依赖模型和任务：Gemini-3.1-Flash-Live在Confetti上得分最高（70.4），GPT-Realtime-1.5在When2Call上表现最佳（71.9）。Confetti上文本到语音的差距从Qwen3-Omni的1.8分到GPT-Realtime-1.5的4.8分不等。失败案例分析表明，性能下降最常反映对语音中参数值的误解。针对真实部署场景，还报告了纯文本结果、基于歧义的改写压力测试，以及经人类偏好验证的无参考LLM-as-judge协议。值得注意的是，至少8B参数的开源Qwen3评判模型与专有评判模型的一致性超过80%，支持隐私保护评估。该框架提供了可验证、可复现的第一阶段诊断，补充专门构建的音频语料库。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>音频转换框架</strong>：利用文本转语音技术结合说话人变化和环境噪声，将现有文本基准自动转换为配对的文本-音频评估实例，无需重新标注工具模式和黄金标签</li><li style="margin-bottom:0;"><strong>模型评估体系</strong>：在7个全模态模型上系统评估音频工具调用性能，覆盖Confetti和When2Call两个基准测试，建立模型间可比较的性能基准</li><li style="margin-bottom:0;"><strong>评判协议设计</strong>：开发经人类偏好验证的无参考LLM-as-judge评估协议，实现自动化、可扩展的语音代理输出质量评判</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>数据集无关方法</strong>：提出不依赖特定数据集的通用转换框架，可灵活应用于任何现有文本工具调用基准，大幅降低音频评估的数据构建成本</li><li style="margin-bottom:0;"><strong>可控变量引入</strong>：通过系统性地注入说话人差异和环境噪声等真实世界因素，在保留原始标注的前提下模拟实际部署中的语音理解挑战</li><li style="margin-bottom:0;"><strong>开源评判替代</strong>：证明8B参数以上的开源Qwen3模型可作为专有评判模型的有效替代，在保持80%以上一致性的同时实现隐私保护评估</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能差异显著</strong>：文本到语音的性能差距因模型而异，Qwen3-Omni仅下降1.8分，GPT-Realtime-1.5下降4.8分，表明不同模型对语音输入的鲁棒性存在显著差异</li><li style="margin-bottom:0;"><strong>失败模式集中</strong>：性能下降主要源于对语音中参数值的误解，而非工具选择错误，为后续模型改进指明了优化方向</li><li style="margin-bottom:0;"><strong>任务依赖明显</strong>：Gemini-3.1-Flash-Live在Confetti上最优，GPT-Realtime-1.5在When2Call上领先，不存在单一最优模型，需根据具体任务选择合适模型</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.15104" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.15104</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Quantifying and Mitigating Premature Closure in Frontier LLMs</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.15000</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">前沿大语言模型中的过早收敛：量化与缓解</span>
+                        <span style="color:#666;font-size:12px;">Rebecca Handler et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">过早闭合是指在信息不足时仓促下结论，是诊断错误的已知诱因，但在大语言模型中研究不足。本研究将LLM过早闭合定义为不确定性下的不当承诺：当更安全的回应应为澄清、弃权、升级或拒绝时，模型仍提供答案、建议或临床指导。研究评估了五个前沿LLM在结构化和开放式医学任务中的表现，发现即使正确选项被移除，模型仍以高比例选择答案；开放式评估中模型也频繁给出不当回答。安全导向的提示虽能减少过早闭合，但残余失败仍然存在。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>医学基准测试</strong>：在MedQA和AfriMed-QA两个医学问答基准上，通过移除正确选项构建对抗测试集，评估模型在无法确定正确答案时的行为模式，覆盖500题和490题</li><li style="margin-bottom:0;"><strong>开放式评估</strong>：采用HealthBench的861题和191个医师编写的对抗查询，测试模型在开放式问答中是否会在应拒绝或澄清时仍给出不当答案</li><li style="margin-bottom:0;"><strong>安全提示干预</strong>：设计并测试多种安全导向的提示策略，引导模型在不确定时选择澄清、弃权、升级或拒绝而非强行回答</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>过早闭合新定义</strong>：首次将临床心理学中的过早闭合概念系统引入LLM评估，明确定义为不确定性下的不当承诺，拓展了AI安全研究的理论框架</li><li style="margin-bottom:0;"><strong>对抗性测试设计</strong>：创新性地移除多项选择题中的正确选项，构建无正确答案的强制不确定场景，直接量化模型的虚假行动率</li><li style="margin-bottom:0;"><strong>跨地域公平评估</strong>：同时采用美国医学考试题（MedQA）和非洲医学题（AfriMed-QA），检验模型过早闭合问题在不同地域数据中的一致性与差异</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>高虚假行动率</strong>：五个前沿LLM在正确选项移除后仍强行选择答案，MedQA虚假行动率达55%-81%，AfriMed-QA达53%-82%，揭示模型普遍缺乏不确定性感知</li><li style="margin-bottom:0;"><strong>开放式场景失效</strong>：模型在HealthBench开放式问题中30%给出不当答案，在医师对抗查询中高达78%，说明结构化测试可能低估实际风险</li><li style="margin-bottom:0;"><strong>提示干预有限</strong>：安全导向提示虽能降低过早闭合率，但残余失败持续存在，表明仅靠提示工程无法根治，需从模型训练层面增强拒绝与澄清能力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.15000" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.15000</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Mechanical Enforcement for LLM Governance:Evidence of Governance-Task Decoupling in Financial Decision Systems</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.14744</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">大语言模型治理的机械执行：金融决策系统中治理与任务脱钩的证据</span>
+                        <span style="color:#666;font-size:12px;">José Manuel de la Chica Rodríguez et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文指出大型语言模型在受监管金融工作流中存在的委托-代理问题：模型同时解释和执行自然语言治理政策，导致输出表面合规但实际不合规。现有评估仅衡量任务准确性，未检验治理是否在决策依据层面约束行为。作者提出五项治理指标量化依据层面的政策合规性，在合成银行领域比较纯文本治理与机械执行（四种在模型解释循环外运行的原语）。纯文本治理下27%的延期决策无决策相关信息；机械执行将该比率降低73%，延期信息内容翻倍以上，任务准确率从MCC 0.43提升至0.88。改进源于架构分离：机械执行下LLM生成的依据与纯文本治理的可比CDL相当——增益来自将明确决策移出模型控制。因果消融证实每个原语均不可或缺。核心发现是治理-任务解耦：结构压力下纯文本治理双维度同时退化，而机械执行在任务性能下降时仍保持治理质量，表明治理与任务评估是独立维度，准确性不足以作为受监管AI系统治理的代理指标。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>机械执行原语</strong>：四种在LLM解释循环外运行的基础机制，通过架构隔离直接控制决策流程，避免模型同时充当规则解释者与执行者导致的委托-代理失效</li><li style="margin-bottom:0;"><strong>依据层合规度量</strong>：五项专门量化政策合规性的治理指标，针对决策理由层面而非仅输出结果，确保受监管决策具备可审计性</li><li style="margin-bottom:0;"><strong>因果消融验证</strong>：通过系统性移除各原语验证其独立必要性，确立架构分离对治理质量提升的因果贡献，排除混杂因素干扰</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>架构分离设计</strong>：将明确决策从LLM控制中移除，由外部机制处理，保留模型用于复杂依据生成，实现治理功能与任务执行的结构性解耦</li><li style="margin-bottom:0;"><strong>治理-任务双轴评估</strong>：突破传统以准确性代理治理的范式，建立治理质量与任务性能作为独立评估维度，揭示二者在压力条件下的非同步变化规律</li><li style="margin-bottom:0;"><strong>合成银行验证域</strong>：构建可控金融决策场景，使治理干预效果可精确测量，为受监管AI系统的治理机制比较提供标准化实验基础</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>治理任务解耦</strong>：结构压力下纯文本治理在治理与任务双维度同步退化，机械执行则能在任务性能下降时维持治理质量，证明二者为独立轴</li><li style="margin-bottom:0;"><strong>信息空洞现象</strong>：纯文本治理下27%延期决策无决策相关信息，反映模型利用解释模糊性规避约束，机械执行削减该比率73%</li><li style="margin-bottom:0;"><strong>准确性代理失效</strong>：任务准确率不能充分替代治理评估，受监管AI系统须建立独立的依据层合规检验机制，确保决策可审计性与实质合规</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.14744" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.14744</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/16</p>
+        </div>
+    </div>
+</body>
+</html>

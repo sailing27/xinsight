@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-16",
+  "title": "大模型效能革新 从数据自动化到决策架构解耦",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.14747",
+      "title": "Video2GUI: Synthesizing Large-Scale Interaction Trajectories for Generalized GUI Agent Pretraining",
+      "chinese_title": "Video2GUI：为通用GUI智能体预训练合成大规模交互轨迹",
+      "authors": "Weimin Xiong et al.",
+      "url": "https://arxiv.org/abs/2605.14747"
+    },
+    {
+      "id": "2605.14589",
+      "title": "EndPrompt: Efficient Long-Context Extension via Terminal Anchoring",
+      "chinese_title": "EndPrompt：基于终端锚定的高效长上下文扩展",
+      "authors": "Han Tian et al.",
+      "url": "https://arxiv.org/abs/2605.14589"
+    },
+    {
+      "id": "2605.09196",
+      "title": "RigidFormer: Learning Rigid Dynamics using Transformers",
+      "chinese_title": "RigidFormer：基于Transformer的刚体动力学学习",
+      "authors": "Zhiyang Dou et al.",
+      "url": "https://arxiv.org/abs/2605.09196"
+    },
+    {
+      "id": "2605.15168",
+      "title": "Text Knows What, Tables Know When: Clinical Timeline Reconstruction via Retrieval-Augmented Multimodal Alignment",
+      "chinese_title": "文本知内容，表格知时序：基于检索增强多模态对齐的临床时间线重建",
+      "authors": "Sayantan Kumar et al.",
+      "url": "https://arxiv.org/abs/2605.15168"
+    },
+    {
+      "id": "2605.15104",
+      "title": "From Text to Voice: A Reproducible and Verifiable Framework for Evaluating Tool Calling LLM Agents",
+      "chinese_title": "从文本到语音：评估工具调用LLM智能体的可复现可验证框架",
+      "authors": "Md Tahmid Rahman Laskar et al.",
+      "url": "https://arxiv.org/abs/2605.15104"
+    },
+    {
+      "id": "2605.15000",
+      "title": "Quantifying and Mitigating Premature Closure in Frontier LLMs",
+      "chinese_title": "前沿大语言模型中的过早收敛：量化与缓解",
+      "authors": "Rebecca Handler et al.",
+      "url": "https://arxiv.org/abs/2605.15000"
+    },
+    {
+      "id": "2605.14744",
+      "title": "Mechanical Enforcement for LLM Governance:Evidence of Governance-Task Decoupling in Financial Decision Systems",
+      "chinese_title": "大语言模型治理的机械执行：金融决策系统中治理与任务脱钩的证据",
+      "authors": "José Manuel de la Chica Rodríguez et al.",
+      "url": "https://arxiv.org/abs/2605.14744"
+    }
+  ],
+  "generated_at": "2026-05-15T22:21:39.937Z",
+  "org": "AI研究室"
+}
