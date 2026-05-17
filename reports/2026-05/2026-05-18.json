@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-18",
+  "title": "大模型技术突破 从推理优化到科学发现与安全可控",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.14600",
+      "title": "SciPaths: Forecasting Pathways to Scientific Discovery",
+      "chinese_title": "SciPaths：预测科学发现路径",
+      "authors": "Eric Chamoun et al.",
+      "url": "https://arxiv.org/abs/2605.14600"
+    },
+    {
+      "id": "2605.14152",
+      "title": "ROK-FORTRESS: Measuring the Effect of Geopolitical Transcreation for National Security and Public Safety",
+      "chinese_title": "韩国堡垒：地缘政治转译对国家安全与公共安全的影响测量",
+      "authors": "Michael S. Lee et al.",
+      "url": "https://arxiv.org/abs/2605.14152"
+    },
+    {
+      "id": "2605.14305",
+      "title": "Factorization-Error-Free Discrete Diffusion Language Model via Speculative Decoding",
+      "chinese_title": "无分解误差的离散扩散语言模型：基于投机解码方法",
+      "authors": "Xun Fang et al.",
+      "url": "https://arxiv.org/abs/2605.14305"
+    },
+    {
+      "id": "2605.15081",
+      "title": "ML-Embed: Inclusive and Efficient Embeddings for a Multilingual World",
+      "chinese_title": "ML-Embed：面向多语言世界的包容高效嵌入方法",
+      "authors": "Ziyin Zhang et al.",
+      "url": "https://arxiv.org/abs/2605.15081"
+    },
+    {
+      "id": "2605.14978",
+      "title": "Performance-Driven Policy Optimization for Speculative Decoding with Adaptive Windowing",
+      "chinese_title": "自适应窗口投机解码的性能驱动策略优化",
+      "authors": "Jie Jiang et al.",
+      "url": "https://arxiv.org/abs/2605.14978"
+    },
+    {
+      "id": "2605.14539",
+      "title": "Learning from Failures: Correction-Oriented Policy Optimization with Verifiable Rewards",
+      "chinese_title": "失败驱动修正：可验证奖励的纠偏策略优化",
+      "authors": "Mengjie Ren et al.",
+      "url": "https://arxiv.org/abs/2605.14539"
+    },
+    {
+      "id": "2605.14531",
+      "title": "Language Generation as Optimal Control: Closed-Loop Diffusion in Latent Control Space",
+      "chinese_title": "潜在控制空间的闭环扩散：语言生成的最优控制",
+      "authors": "ZiYi Dong et al.",
+      "url": "https://arxiv.org/abs/2605.14531"
+    }
+  ],
+  "generated_at": "2026-05-17T22:23:23.151Z",
+  "org": "AI研究室"
+}
