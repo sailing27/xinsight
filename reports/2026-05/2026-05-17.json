@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-17",
+  "title": "大模型可信评估与智能体进化 从噪声解耦到群体记忆的技术突围",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2602.17753",
+      "title": "The 2025 AI Agent Index: Documenting Technical and Safety Features of Deployed Agentic AI Systems",
+      "chinese_title": "2025年AI智能体指数：记录已部署智能体AI系统的技术与安全特性",
+      "authors": "Leon Staufer et al.",
+      "url": "https://arxiv.org/abs/2602.17753"
+    },
+    {
+      "id": "2605.14570",
+      "title": "Uncertainty Quantification for Large Language Diffusion Models",
+      "chinese_title": "大语言扩散模型的不确定性量化",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.14570"
+    },
+    {
+      "id": "2605.14893",
+      "title": "Your CLIP has 164 dimensions of noise: Exploring the embeddings covariance eigenspectrum of contrastively pretrained vision-language transformers",
+      "chinese_title": "CLIP嵌入噪声维度探究：对比预训练视觉语言Transformer的协",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.14893"
+    },
+    {
+      "id": "2603.19223",
+      "title": "F2LLM-v2: Inclusive, Performant, and Efficient Embeddings for a Multilingual World",
+      "chinese_title": "F2LLM-v2：面向多语言世界的包容性、高性能与高效嵌入表示",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2603.19223"
+    },
+    {
+      "id": "2605.14517",
+      "title": "Dimension-Level Intent Fidelity Evaluation for Large Language Models: Evidence from Structured Prompt Ablation",
+      "chinese_title": "大语言模型维度级意图忠实度评估：结构化提示消融证据",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.14517"
+    },
+    {
+      "id": "2605.14498",
+      "title": "GroupMemBench: Benchmarking LLM Agent Memory in Multi-Party Conversations",
+      "chinese_title": "GroupMemBench：多方对话中LLM智能体记忆的基准测试",
+      "authors": "Jingbo Yang et al.",
+      "url": "https://arxiv.org/abs/2605.14498"
+    },
+    {
+      "id": "2605.14473",
+      "title": "Does RAG Know When Retrieval Is Wrong? Diagnosing Context Compliance under Knowledge Conflict",
+      "chinese_title": "RAG能否识别检索错误？知识冲突下的上下文合规诊断",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.14473"
+    }
+  ],
+  "generated_at": "2026-05-17T11:21:59.394Z",
+  "org": "AI研究室"
+}

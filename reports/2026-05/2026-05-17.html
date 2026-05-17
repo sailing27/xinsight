@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型可信评估与智能体进化 从噪声解耦到群体记忆的技术突围 | 2026/5/17</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型可信评估与智能体进化 从噪声解耦到群体记忆的技术突围 | 2026/5/17</h1>
+                <div class="date">2026/5/17 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了2025年大模型技术从"规模竞赛"向"精细治理"转型的核心趋势。七篇论文共同指向三个关键技术方向：一是<strong>可解释性与透明度提升</strong>，从AI智能体系统建档、RAG知识冲突诊断到CLIP嵌入空间谱分解，研究者正构建多层级可观测工具以穿透模型黑箱；二是<strong>评估范式的维度化升级</strong>，涵盖LLM意图保真度的细粒度拆解、多方对话群体记忆的三维定义，以及不确定性量化的零样本轻量设计，标志着质量评估从粗粒度整体评分向结构-语义解耦的精准度量演进；三是<strong>多语言与多场景普惠拓展</strong>，F2LLM-v2对200余种语言的覆盖与智能体生态系统的结构化记录，体现技术部署从实验室单一场景向全球化、多主体复杂环境的跨越。<br><br>这些进展对行业具有双重启示：一方面，<strong>"高整体性能≠高可信可靠性"</strong>已成为结构性挑战，传统评分体系的盲区要求企业重建质量基础设施；另一方面，<strong>计算效率与可解释性不再互斥</strong>——轻量级不确定性量化与显式信念分解等技术路径证明，精准治理可与规模化部署并行。未来竞争焦点将从参数规模转向"可控、可测、可信"的系统工程能力。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>The 2025 AI Agent Index: Documenting Technical and Safety Features of Deployed Agentic AI Systems</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2602.17753</span>
+                        <span style="background:linear-gradient(135deg,#FB8C00 0%,#EF6C00 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">Agentic</span>
+                        <span style="background:linear-gradient(135deg,#2196F3 0%,#1976D2 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏛️ CAS</span><span style="background:linear-gradient(135deg,#9C27B0 0%,#7B1FA2 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">📊 引用8</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">2025年AI智能体指数：记录已部署智能体AI系统的技术与安全特性</span>
+                        <span style="color:#666;font-size:12px;">Leon Staufer et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">随着AI智能体系统日益能够自主完成专业和个人任务，但其生态系统复杂、快速演变且文档记录不一致，给研究人员和政策制定者带来挑战。本文提出2025 AI智能体指数，基于公开信息和与开发者的邮件通信，记录了30个最先进AI智能体的来源、设计、能力、生态系统和安全特征，揭示了智能体开发、能力和开发者透明度水平的更广泛趋势。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>系统建档方法</strong>：采用结构化框架记录30个最先进AI智能体的多维度信息，包括起源、设计、能力、生态系统和安全特征，建立可复现的文档化标准</li><li style="margin-bottom:0;"><strong>多渠道信息整合</strong>：结合公开可用信息与开发者邮件通信，通过主动 outreach 补充缺失数据，提高信息完整性和准确性</li><li style="margin-bottom:0;"><strong>在线指数平台</strong>：构建可访问的在线数据库https://aiagentindex.mit.edu，支持动态更新和公众查询，促进研究透明度和政策制定</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>智能体分类框架</strong>：建立涵盖来源背景、技术架构、功能范围、交互生态和安全机制的五维分析框架，系统化解构复杂智能体系统</li><li style="margin-bottom:0;"><strong>透明度评估体系</strong>：开发量化评估开发者信息披露程度的方法论，对比分析不同厂商在安全、评估和社会影响方面的公开程度</li><li style="margin-bottom:0;"><strong>趋势识别方法</strong>：通过横向对比30个智能体的设计选择和能力特征，识别行业发展模式和技术演进方向</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>透明度差异显著</strong>：不同智能体开发者的信息披露水平存在明显分化，部分厂商公开详细技术文档，而多数仅提供有限信息</li><li style="margin-bottom:0;"><strong>安全信息匮乏</strong>：大多数开发者极少分享关于安全机制、风险评估和社会影响的详细信息，形成关键治理盲区</li><li style="margin-bottom:0;"><strong>评估实践不足</strong>：行业整体缺乏系统性的安全评估和第三方验证，智能体部署前的风险管控措施普遍薄弱</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2602.17753" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2602.17753</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Uncertainty Quantification for Large Language Diffusion Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.14570</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">大语言扩散模型的不确定性量化</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言扩散模型（LLDMs）作为自回归模型的替代方案，通过更高并行度实现更快推理，但仍存在幻觉问题，可靠的不确定性量化（UQ）对安全部署至关重要。现有UQ方法与新范式根本错位：它们假设自回归分解或使用昂贵的重复采样，抵消了LLDMs的效率优势。本文首次系统研究LLDMs的UQ，提出基于迭代去噪过程的轻量级零样本不确定性信号，利用中间生成、token重掩码动态和去噪复杂度；并通过结合掩码扩散似然与基于轨迹的语义不相似性，将最先进UQ方法适配到LLDMs。本文证明期望轨迹不相似性下界掩码扩散训练目标，从而激励其作为不确定性分数。跨三项任务、八个数据集和两个模型的综合实验表明，本文方法实现了优异的成本-性能权衡：接近最强基于采样的基线，同时计算开销降低高达100倍。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>中间生成利用</strong>：从迭代去噪过程中提取中间步骤的生成结果作为不确定性信号来源，无需额外采样即可获取丰富的模型内部状态信息</li><li style="margin-bottom:0;"><strong>重掩码动态分析</strong>：追踪扩散过程中token被重复掩码和去掩码的变化模式，将其动态特征转化为可量化的不确定性指标</li><li style="margin-bottom:0;"><strong>去噪复杂度建模</strong>：衡量模型在每个去噪步骤中的处理难度，将高复杂度区域识别为高不确定性输出的指示信号</li><li style="margin-bottom:0;"><strong>轨迹语义度量</strong>：计算去噪轨迹上各中间生成之间的语义不相似程度，构建基于生成一致性的不确定性评估框架</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>零样本UQ设计</strong>：首次提出无需训练或重复采样的轻量级不确定性量化方法，直接利用LLDMs固有去噪过程，保持其并行推理的效率优势</li><li style="margin-bottom:0;"><strong>掩码似然适配</strong>：将自回归模型的先进UQ方法创新性地扩展至掩码扩散框架，通过掩码扩散似然替代传统自回归似然计算</li><li style="margin-bottom:0;"><strong>下界理论证明</strong>：严格证明期望轨迹不相似性构成掩码扩散训练目标的下界，为轨迹不相似性作为有效不确定性分数提供理论依据</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>成本性能兼优</strong>：所提方法在接近最强采样基线性能的同时，计算开销降低达100倍，实现高效与可靠的双重目标</li><li style="margin-bottom:0;"><strong>跨域泛化验证</strong>：在三项任务、八个数据集及两个模型上的全面实验，证实方法的广泛适用性和稳定效果</li><li style="margin-bottom:0;"><strong>范式兼容性</strong>：证明LLDMs能够同时提供快速推理和可靠幻觉检测，解决了效率与安全性之间的固有张力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.14570" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.14570</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Your CLIP has 164 dimensions of noise: Exploring the embeddings covariance eigenspectrum of contrastively pretrained vision-language transformers</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.14893</span>
+                        <span style="background:linear-gradient(135deg,#8E24AA 0%,#6A1B9A 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">多模态</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">CLIP嵌入噪声维度探究：对比预训练视觉语言Transformer的协</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">对比预训练的视觉-语言模型（VLMs）是强大的特征提取器，但其共享潜在空间容易出现结构异常，并充当非语义多模态噪声的存储库。本文采用协方差矩阵的谱分解，将VLM潜在空间分解为多模态语义信号分量和共享噪声子空间。研究发现该噪声几何在不同数据子集上表现出强子群不变性，且剪除这些共享噪声维度基本无害，能保持或积极提升下游任务性能。本工作为现代VLM的表征结构提供了新的机制性见解，表明其潜在几何的相当大部分由架构级共享噪声而非任务相关语义主导。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>谱分解方法</strong>：采用协方差矩阵特征谱分解技术，将视觉-语言模型的共享潜在空间解析为语义信号子空间与噪声子空间两个独立成分</li><li style="margin-bottom:0;"><strong>噪声维度识别</strong>：通过分析嵌入协方差矩阵的特征谱，精确量化并定位164维噪声维度，建立系统性的噪声检测框架</li><li style="margin-bottom:0;"><strong>子群不变性验证</strong>：跨多个不同数据子集验证噪声几何结构的稳定性，证明噪声模式具有显著的子群不变性和跨数据集一致性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>噪声-信号解耦</strong>：首次将对比预训练VLM的潜在空间显式分解为语义信号与共享噪声两个正交子空间，揭示架构级噪声的独立存在形态</li><li style="margin-bottom:0;"><strong>无害剪除策略</strong>：提出并验证剪除共享噪声维度不仅不损害性能，反而能提升下游任务表现，颠覆传统高维表征利用范式</li><li style="margin-bottom:0;"><strong>机制性新见解</strong>：从表征几何角度证明VLM潜在空间大量维度受架构噪声主导，而非任务语义驱动，为模型理解提供全新视角</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>噪声维度占比</strong>：CLIP等VLM的嵌入空间中存在约164维的共享噪声维度，构成潜在空间的重要结构组成部分</li><li style="margin-bottom:0;"><strong>噪声几何不变性</strong>：该噪声子空间在不同数据子集间表现出强子群不变性，说明其源于模型架构而非数据特性</li><li style="margin-bottom:0;"><strong>剪除增益效应</strong>：去除这些共享噪声维度主要无害，且能保持或主动改善下游任务性能，实现去噪与提效的双重目标</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.14893" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.14893</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>F2LLM-v2: Inclusive, Performant, and Efficient Embeddings for a Multilingual World</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2603.19223</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#9C27B0 0%,#7B1FA2 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">📊 引用3</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">F2LLM-v2：面向多语言世界的包容性、高性能与高效嵌入表示</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出F2LLM-v2，一个包含8种尺寸（80M至14B参数）的多语言通用嵌入模型家族。该模型基于6000万高质量公开数据样本训练，支持200多种语言，特别关注中低资源语言。通过整合两阶段LLM嵌入训练流程、套娃学习、模型剪枝和知识蒸馏技术，实现了比先前LLM嵌入模型更高效且保持竞争力的性能。F2LLM-v2-14B在11项MTEB基准测试中排名第一，较小模型也为资源受限应用树立了新标杆。研究团队已开源所有模型、数据、代码和中间检查点。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多尺寸模型家族</strong>：构建覆盖80M到14B参数的8种规格模型，满足不同场景的计算资源需求，实现从边缘设备到高性能服务器的全栈部署能力</li><li style="margin-bottom:0;"><strong>两阶段训练流程</strong>：采用基于大语言模型的嵌入训练流水线，分阶段优化模型能力，提升多语言表示学习的稳定性和最终性能表现</li><li style="margin-bottom:0;"><strong>套娃表示学习</strong>：引入Matryoshka学习机制，使单一模型能够输出不同维度的嵌入向量，在推理时灵活权衡精度与效率</li><li style="margin-bottom:0;"><strong>模型压缩优化</strong>：结合模型剪枝与知识蒸馏技术，显著降低模型参数量和计算开销，同时保持与原始模型相近的嵌入质量</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多语言普惠覆盖</strong>：突破性地支持200余种语言，重点优化中低资源语言的嵌入质量，缓解现有模型对高资源语言的偏置问题</li><li style="margin-bottom:0;"><strong>高效能设计范式</strong>：开创性地将LLM-based嵌入训练与模型压缩技术深度融合，打破大模型高性能必然高消耗的固有认知</li><li style="margin-bottom:0;"><strong>开源全面赋能</strong>：完整开放模型权重、训练数据、实现代码及中间检查点，为学术界和工业界提供可复现、可扩展的研究基础</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>大模型性能领先</strong>：F2LLM-v2-14B在11项MTEB基准测试中位列第一，验证了两阶段训练与套娃学习结合在大规模参数下的优越性</li><li style="margin-bottom:0;"><strong>小模型效率突破</strong>：家族中较小尺寸模型在资源受限场景下达到新的最优水平，证明压缩技术未造成显著性能损失</li><li style="margin-bottom:0;"><strong>多语言均衡提升</strong>：对中低资源语言的特别强调使模型在全球化应用中具备更广泛的适用性和公平性，拓展了嵌入技术的边界</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2603.19223" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2603.19223</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Dimension-Level Intent Fidelity Evaluation for Large Language Models: Evidence from Structured Prompt Ablation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.14517</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">大语言模型维度级意图忠实度评估：结构化提示消融证据</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">整体评估分数虽能捕捉输出质量，但无法区分模型是复现了用户请求的结构形式，还是保留了用户的特定意图。本文提出维度级意图保真度评估框架，通过对2,880条输出进行结构化提示消融研究（涵盖三种语言、三个任务领域和六个大语言模型），分别测量每个语义维度的结构恢复度和意图保真度。该框架揭示了系统性的结构-保真分裂现象：在中文输出中，25.7%获得完美整体对齐分数（GA=5）却存在可测量的维度意图缺陷；英文输出中该比例升至58.6%。人工评估证实这些分裂区输出代表真实的质量缺陷，且维度保真度分数比整体分数更可靠地追踪人类判断。对2,520个消融单元的公私分解刻画了模型何时能成功补偿缺失意图、何时失败，而代理注释区分了先验可推断性与默认可恢复性。权重扰动实验表明，中度错位通常被吸收，而严重维度反转则始终有害。这些发现证明，在评估LLM用户特定任务输出时，维度级意图保真度评估是整体评估的必要补充。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>维度级评估</strong>：提出细粒度评估框架，将输出质量拆解为结构恢复与意图保真两个独立维度，针对每个语义维度分别计分，突破传统整体评分的模糊性</li><li style="margin-bottom:0;"><strong>结构化消融</strong>：设计2,880组结构化提示消融实验，系统控制变量覆盖三语三域六模型，构建可对比的消融单元以隔离意图缺失效应</li><li style="margin-bottom:0;"><strong>公私分解法</strong>：将2,520个消融单元分解为公共-私有信息维度，量化模型对缺失意图的补偿能力，区分先验可推断性与默认可恢复性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>结构保真分裂</strong>：首次揭示系统性结构-保真分裂现象，发现大量高整体分输出存在维度意图缺陷，中文占25.7%英文高达58.6%，暴露整体评分的盲区</li><li style="margin-bottom:0;"><strong>分裂区验证</strong>：通过人工评估证实结构-保真分裂区代表真实质量缺陷，并证明维度保真度分数与人类判断的相关性显著优于整体对齐分数</li><li style="margin-bottom:0;"><strong>代理注释机制</strong>：创新引入代理注释区分两种恢复路径，判断模型输出是基于上下文先验推断还是依赖训练默认知识，深化对补偿机制的理解</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>整体评分盲区</strong>：传统整体对齐评分存在严重盲区，高GA分数不能保障意图保真，维度级评估对识别隐性质量缺陷具有不可替代性</li><li style="margin-bottom:0;"><strong>中度扰动吸收</strong>：权重扰动实验显示中等程度维度错位通常被模型吸收消化，不会显著损害输出质量，系统具备一定容错弹性</li><li style="margin-bottom:0;"><strong>严重反转有害</strong>：维度严重反转始终产生有害后果，与中度错位形成鲜明对比，为提示工程提供明确的风险边界与优化方向</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.14517" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.14517</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>GroupMemBench: Benchmarking LLM Agent Memory in Multi-Party Conversations</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.14498</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">GroupMemBench：多方对话中LLM智能体记忆的基准测试</span>
+                        <span style="color:#666;font-size:12px;">Jingbo Yang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型智能体作为个人助手和工作协作者，其效用依赖于跨长对话提取、检索和应用信息的记忆系统。但现有记忆系统和基准测试均围绕双人单用户场景构建，而实际部署常涉及多用户群组和频道。这种错配导致群体记忆的三个特性未被测量：超越拼接式一对一聊天的群体动态、需要逐用户记忆建模的说话者锚定信念追踪、以及心智理论转换产生角色特定词汇的受众适配语言。本文提出GroupMemBench基准测试，通过图驱动合成管道生成具有可控回复结构的多方对话，并基于对抗性查询管道将每个问题绑定到特定提问者，涵盖六类查询。对领先记忆系统的基准测试显示性能急剧下降：最强系统平均准确率仅46.0%，知识更新仅27.1%，术语歧义仅37.7%，而简单BM25基线即可匹配或超越大多数智能体记忆系统，表明当前记忆摄入抹除了群体记忆依赖的结构和词汇特征。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>图驱动合成</strong>：基于图结构控制多方对话的回复关系，结合每用户人设与目标受众条件生成消息，实现群体动态的可控模拟</li><li style="margin-bottom:0;"><strong>对抗查询生成</strong>：将问题绑定特定提问者，覆盖多跳推理、知识更新等六类任务，迭代搜索高难度真实查询以全面评估记忆能力</li><li style="margin-bottom:0;"><strong>说话者锚定追踪</strong>：建模每个用户的独立信念状态，区分不同说话者对同一信息的知识掌握程度与认知差异</li><li style="margin-bottom:0;"><strong>受众适配检测</strong>：评估智能体能否根据对话对象调整语言风格，运用心智理论生成角色特定的词汇表达</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>三方群体记忆</strong>：首次系统定义并测量群体记忆的三个独有特性——群体动态、说话者锚定信念、受众适配语言，突破双人对话局限</li><li style="margin-bottom:0;"><strong>可控对话合成</strong>：创新性地采用图结构控制多方对话的回复拓扑，支持复杂交互模式而非简单拼接多个一对一聊天</li><li style="margin-bottom:0;"><strong>全面对抗评估</strong>：设计六维查询分类体系与迭代对抗搜索机制，确保查询既反映真实场景难度又覆盖完整记忆能力谱系</li><li style="margin-bottom:0;"><strong>系统性能崩塌</strong>：揭示领先记忆系统在群体场景中的急剧失效，最强系统准确率不足五成，暴露现有技术的根本性缺陷</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>群体记忆盲区</strong>：现有记忆系统与基准测试严重忽视多用户交互场景，导致群体动态、用户级信念、角色语言三大核心能力完全未被测量</li><li style="margin-bottom:0;"><strong>技术性能崩塌</strong>：顶尖记忆系统平均准确率仅46.0%，知识更新任务跌至27.1%，术语歧义处理仅37.7%，群体场景下能力急剧退化</li><li style="margin-bottom:0;"><strong>基线反超预期</strong>：简单BM25基线在多数任务上匹配或超越复杂智能体记忆系统，表明当前方法过度复杂化却丢失关键特征</li><li style="margin-bottom:0;"><strong>结构特征抹除</strong>：现有记忆摄入机制破坏群体记忆依赖的交互结构与词汇特征，多用户记忆问题远未解决需根本性重构</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.14498" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.14498</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Does RAG Know When Retrieval Is Wrong? Diagnosing Context Compliance under Knowledge Conflict</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.14473</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">RAG能否识别检索错误？知识冲突下的上下文合规诊断</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究检索增强生成（RAG）中的上下文合规机制，即检索到的上下文与模型参数知识冲突时，上下文仍主导最终答案的现象。提出上下文驱动分解（CDD）方法，在推理时对信念进行分解并作为受控检索冲突的干预机制。通过Epi-Scale压力测试、TruthfulQA错误概念注入和跨模型重跑，发现三个模式：对抗环境下上下文合规可测量；对抗准确率提升可跨模型族迁移但推理-答案因果耦合不可迁移；显式冲突分解提升时间漂移和噪声干扰下的鲁棒性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>信念分解探测</strong>：CDD在推理时对模型内部信念进行分解，分离参数知识与检索上下文的影响，实现无需训练的可解释干预机制</li><li style="margin-bottom:0;"><strong>对抗压力测试</strong>：构建Epi-Scale基准测试集，系统评估RAG在知识冲突、时间漂移和噪声干扰等极端场景下的表现</li><li style="margin-bottom:0;"><strong>因果敏感性度量</strong>：量化检索上下文对最终答案的因果影响程度，区分真正的冲突解决与表面准确率提升</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>显式冲突干预</strong>：突破传统RAG黑箱优化，CDD直接操作知识冲突的显式分解路径，使模型能识别并处理检索错误</li><li style="margin-bottom:0;"><strong>跨模型诊断框架</strong>：建立可迁移的上下文合规评估体系，揭示不同模型族（Gemini/Claude）采用截然不同的冲突处理机制</li><li style="margin-bottom:0;"><strong>动态鲁棒增强</strong>：通过结构化分解而非单一方法改进，同时提升时间漂移（71.3%）和噪声干扰（69.9%）场景下的稳定性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>合规可测量</strong>：标准RAG在TruthfulQA错误注入对抗测试中准确率仅15.0%，证明上下文合规是真实存在的结构性问题</li><li style="margin-bottom:0;"><strong>迁移不对称</strong>：CDD对Gemini-2.5-Flash达64.1%因果敏感性，而Claude三变体仅[-3%,+7%]，准确率提升源于不同机制</li><li style="margin-bottom:0;"><strong>结构诊断轴</strong>：上下文合规构成独立于检索质量和单方法鲁棒性的新分析维度，需系统研究而非端到端优化</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.14473" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.14473</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/17</p>
+        </div>
+    </div>
+</body>
+</html>
