@@ -1,0 +1,48 @@
+{
+  "date": "2026-05-20",
+  "title": "多维偏好建模与模型蒸馏 大模型轻量化与评估革新之路",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm"
+  ],
+  "paper_count": 5,
+  "papers": [
+    {
+      "id": "2605.18721",
+      "title": "General Preference Reinforcement Learning",
+      "chinese_title": "通用偏好强化学习",
+      "authors": "Muhammad Umer et al.",
+      "url": "https://arxiv.org/abs/2605.18721"
+    },
+    {
+      "id": "2605.18701",
+      "title": "Learning Normal Representations for Blood Biomarkers",
+      "chinese_title": "血液生物标志物正常表征学习",
+      "authors": "Aashna P. Shah et al.",
+      "url": "https://arxiv.org/abs/2605.18701"
+    },
+    {
+      "id": "2605.18702",
+      "title": "Distilling Tabular Foundation Models for Structured Health Data",
+      "chinese_title": "结构化健康数据表格基础模型蒸馏",
+      "authors": "Aditya Tanna et al.",
+      "url": "https://arxiv.org/abs/2605.18702"
+    },
+    {
+      "id": "2605.18663",
+      "title": "GIM: Evaluating models via tasks that integrate multiple cognitive domains",
+      "chinese_title": "GIM：通过整合多认知域任务评估模型",
+      "authors": "Rohit Patel et al.",
+      "url": "https://arxiv.org/abs/2605.18663"
+    },
+    {
+      "id": "2605.18654",
+      "title": "Pocket Foundation Models: Distilling TFMs into CPU-Ready Gradient-Boosted Trees",
+      "chinese_title": "口袋基础模型：将TFM蒸馏为CPU就绪的梯度提升树",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.18654"
+    }
+  ],
+  "generated_at": "2026-05-20T00:29:03.166Z",
+  "org": "AI研究室"
+}

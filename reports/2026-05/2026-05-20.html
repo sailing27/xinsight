@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>多维偏好建模与模型蒸馏 大模型轻量化与评估革新之路 | 2026/5/20</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>多维偏好建模与模型蒸馏 大模型轻量化与评估革新之路 | 2026/5/20</h1>
+                <div class="date">2026/5/20 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了大模型技术正从"规模扩张"向"结构精炼"与"场景适配"深度演进。核心趋势体现为三个共性方向：一是<strong>表征结构的升维与精细化</strong>，从标量奖励到多维偏好嵌入、从静态阈值到动态个性化参考区间，均指向单一数值表征的局限性突破；二是<strong>知识蒸馏的方法论革新</strong>，两篇论文独立提出分层袋外/外推标注机制，系统性解决上下文基础模型蒸馏中的信息泄漏难题，为模型压缩奠定可信方法论基础；三是<strong>效率与效用的极致平衡</strong>，梯度提升树蒸馏实现860倍推理加速而精度仅损失3.5%，印证轻量部署与高性能并非零和博弈。<br><br>对行业而言，这些研究共同警示"过度简化"风险——无论是标量奖励的维度坍缩、纯个性化的过拟合陷阱，还是配置选择的隐性影响，均表明真实场景的复杂性要求更审慎的建模假设。同时，认知整合评估范式的提出，为超越"知识军备竞赛"的模型评测开辟新路径，推动AI能力评估向人类真实认知需求对齐。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">5</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>General Preference Reinforcement Learning</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.18721</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 NeurIPS 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">通用偏好强化学习</span>
+                        <span style="color:#666;font-size:12px;">Muhammad Umer et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">后训练将大语言模型对齐分为两个脱节的轨道：基于可验证奖励的在线强化学习（RL）在数学和代码推理上表现突出，但依赖程序验证器无法处理开放式任务；偏好优化虽能处理开放式生成，却放弃了在线RL的持续探索能力。为弥合这一差距，本文提出通用偏好强化学习（GPRL），基于通用偏好模型（GPM）将响应嵌入k个斜对称子空间，用结构化、非传递性感知比较表示偏好。GPRL将k维结构贯穿策略更新，计算各维度组相对优势并独立归一化，通过上下文相关特征值聚合，配合闭环漂移监控检测单轴利用并动态修正。基于Llama-3-8B-Instruct，GPRL在AlpacaEval 2.0上达到56.51%的长度控制胜率，并在Arena-Hard、MT-Bench和WildBench上超越SimPO和SPPO。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多维偏好嵌入</strong>：将响应嵌入k个斜对称子空间，用结构化比较表示偏好关系，克服标量奖励模型的单维局限，捕捉质量的多维本质</li><li style="margin-bottom:0;"><strong>组相对优势计算</strong>：在每个维度上计算组相对优势并独立归一化，防止任一维度主导优化过程，避免在线RL因奖励敏感轴而崩溃</li><li style="margin-bottom:0;"><strong>动态漂移监控</strong>：构建闭环漂移监控系统，实时检测单轴利用行为，通过重加权维度和收紧信任区域进行在线纠正，维持训练稳定性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>非传递性偏好建模</strong>：采用通用偏好模型表示非传递性偏好关系，突破传统Bradley-Terry模型要求传递性的理论限制，更真实反映人类偏好的复杂结构</li><li style="margin-bottom:0;"><strong>上下文特征值聚合</strong>：引入上下文相关特征值机制聚合多维度优势，使不同维度权重随输入动态调整，实现灵活而稳定的策略更新</li><li style="margin-bottom:0;"><strong>信任区域自适应</strong>：设计基于维度漂移程度的自适应信任区域调整策略，在检测到奖励黑客倾向时自动收紧约束，保障扩展训练的鲁棒性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>标量奖励缺陷</strong>：标量奖励模型作为开放式质量验证器存在本质缺陷，任何标量分数都是不完整代理，会导致在线RL崩溃到最敏感维度</li><li style="margin-bottom:0;"><strong>GPRL性能领先</strong>：基于Llama-3-8B-Instruct，GPRL在AlpacaEval 2.0达到56.51%长度控制胜率，在多个基准上持续超越SimPO和SPPO</li><li style="margin-bottom:0;"><strong>抗奖励黑客能力</strong>：GPRL通过多维结构归一化和漂移监控机制，在扩展训练过程中有效抵抗奖励黑客，保持多维度质量的均衡提升</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.18721" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.18721</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Learning Normal Representations for Blood Biomarkers</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.18701</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">血液生物标志物正常表征学习</span>
+                        <span style="color:#666;font-size:12px;">Aashna P. Shah et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">血液生物标志物是临床诊断的基础，但现有基于固定人群参考区间的解释方法忽略了个体内稳定变异，可能延误疾病检测。本研究利用近20亿次纵向实验室测量数据（覆盖160万北美、中东和东亚个体），发现纯个性化区间存在严重过拟合问题（68%测量被误判为异常）。研究提出NORMA框架，通过条件Transformer结合患者病史与人群正常变异数据生成参考区间，在预测死亡率、急性肾损伤和慢性病方面实现更高精度，证明将个体轨迹锚定于人群先验优于单一方法。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>条件Transformer架构</strong>：NORMA采用条件Transformer框架，同时编码患者个人历史测量数据与人群层面的正常变异信息，生成动态、个性化的参考区间</li><li style="margin-bottom:0;"><strong>大规模纵向数据</strong>：整合近20亿次实验室测量，覆盖160万来自北美、中东和东亚的个体，确保模型跨人群的泛化能力与统计稳健性</li><li style="margin-bottom:0;"><strong>双条件生成机制</strong>：通过联合条件化患者病史与人群正常分布，平衡个性化精度与人群先验约束，有效缓解稀疏数据过拟合</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>反过拟合设计</strong>：针对纯个性化方法在稀疏数据下68%异常率的过拟合缺陷，创新性地引入人群正常变异作为正则化约束，显著降低假阳性</li><li style="margin-bottom:0;"><strong>跨人群先验锚定</strong>：突破传统纯个性化或纯人群化二选一范式，证明个体轨迹与人群先验的协同融合优于任何单一方法</li><li style="margin-bottom:0;"><strong>临床结局导向验证</strong>：以死亡率、急性肾损伤和慢性病等硬终点作为评估标准，而非仅依赖统计分布，确保参考区间的临床实用性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>纯个性化失效</strong>：仅依赖个体历史的参考区间严重过拟合，将68%测量标记为异常，却与不良临床结局无对应关联，警示过度个性化风险</li><li style="margin-bottom:0;"><strong>NORMA精度优势</strong>：融合人群先验的NORMA区间在预测死亡率、急性肾损伤和慢性病方面实现更高精度，验证混合策略的有效性</li><li style="margin-bottom:0;"><strong>开放科学实践</strong>：公开发布模型、代码及交互式用户界面，促进透明可及的个体化实验室解读，推动精准医学转化应用</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.18701" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.18701</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Distilling Tabular Foundation Models for Structured Health Data</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.18702</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">结构化健康数据表格基础模型蒸馏</span>
+                        <span style="color:#666;font-size:12px;">Aditya Tanna et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">表格基础模型（TFMs）在健康数据集上表现优异，但推理成本和基础设施需求限制了实际应用。本文研究通过知识蒸馏将其预测行为迁移到轻量级表格模型。针对上下文TFMs在推理时依赖训练集导致的上下文泄漏问题，提出分层袋外教师标注方法。在19个医疗数据集、6个TFM教师、4类学生模型及多教师集成上的实验表明，蒸馏学生模型保留至少90%的教师AUC，部分情况下超越教师，CPU推理速度提升26倍以上，同时保持校准性和公平性；多教师平均并未持续优于最佳单教师。泄漏感知蒸馏是将TFM质量预测引入推理受限医疗场景的可行路径。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分层袋外标注</strong>：针对上下文TFMs推理时依赖训练集的特性，采用分层交叉验证生成袋外教师标签，阻断训练样本信息通过教师预测泄露给学生模型，确保蒸馏过程的严格有效性</li><li style="margin-bottom:0;"><strong>知识蒸馏迁移</strong>：将TFM教师的预测概率分布作为软标签，训练轻量级表格学生模型，使小规模模型学习教师模型的泛化行为和决策边界</li><li style="margin-bottom:0;"><strong>多教师集成蒸馏</strong>：探索多个TFM教师预测的平均与组合策略，评估不同教师架构间的知识互补性与集成增益边界</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>上下文泄漏防护</strong>：首次识别上下文TFMs蒸馏中的上下文泄漏风险，提出系统性的分层袋外标注机制，为依赖上下文推理的基础模型蒸馏提供通用防泄漏框架</li><li style="margin-bottom:0;"><strong>医疗场景适配</strong>：针对健康数据推理成本敏感、校准与公平性要求高的特点，设计兼顾预测性能与临床可信度的蒸馏评估体系，突破TFMs的部署瓶颈</li><li style="margin-bottom:0;"><strong>轻量高效替代</strong>：证明蒸馏学生模型可在CPU环境实现26倍以上加速，同时保持90%以上AUC及关键校准公平指标，开创基础模型医疗落地新范式</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能高度保留</strong>：蒸馏学生模型在19个医疗数据集上 consistently 保留至少90%教师AUC，部分场景超越原始教师，验证知识蒸馏对表格基础模型的有效迁移能力</li><li style="margin-bottom:0;"><strong>效率显著提升</strong>：学生模型CPU推理速度较教师提升至少26倍，大幅降低基础设施门槛，使高质量预测可部署于资源受限的临床边缘环境</li><li style="margin-bottom:0;"><strong>校准公平保持</strong>：蒸馏过程不损害模型校准性与预测公平性，满足医疗决策对概率可靠性和群体公平的核心要求，保障临床可用性</li><li style="margin-bottom:0;"><strong>集成增益有限</strong>：多教师平均策略未持续优于最佳单教师，暗示TFMs间知识冗余度较高，单教师蒸馏即可实现接近最优的性价比权衡</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.18702" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.18702</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>GIM: Evaluating models via tasks that integrate multiple cognitive domains</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.18663</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">GIM：通过整合多认知域任务评估模型</span>
+                        <span style="color:#666;font-size:12px;">Rohit Patel et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">随着LLM基准趋于饱和，评估社区采取两种策略提升难度：增加知识需求或完全去除知识转向抽象推理。前者混淆记忆与能力，后者使推理脱离实际情境。本文提出Grounded Integration Measure（GIM），包含820道原创题目（615公开，205私有），难度来源于多认知操作的整合，在广泛可获取知识上协调约束满足、状态追踪等操作。采用2PL IRT模型校准超过20万条提示-响应对，生成稳健能力估计。构建涵盖22个模型、47种测试配置的排行榜，并首次大规模研究测试时计算与模型能力的权衡关系。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>认知整合设计</strong>：题目要求协调约束满足、状态追踪、认知警觉、受众校准等多种认知操作，使推理扎根于现实任务而非专业知识门槛</li><li style="margin-bottom:0;"><strong>2PL IRT校准</strong>：基于20万+提示响应对建立连续反应双参数逻辑模型，在原始准确率因错误或缺失数据失真时仍能正确排序测试配置</li><li style="margin-bottom:0;"><strong>公开私有拆分</strong>：采用615:205的均衡公开-私有划分，内置数据污染诊断机制，有效检测模型是否提前接触测试内容</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>反饱和评估路径</strong>：区别于知识 escalation 和纯抽象推理两条主流路径，提出以认知整合为核心的第三条评估范式，兼顾推理深度与知识可及性</li><li style="margin-bottom:0;"><strong>原创人工命题</strong>：820题均为专家原创撰写，多数采用评分标准分解评分，中位数6项独立评判标准，确保评估质量与区分度</li><li style="margin-bottom:0;"><strong>测试时计算研究</strong>：首次在固定基准上对11个模型进行35种测试配置的大规模扫描，系统揭示思考预算、量化等配置选择与模型选择同等重要</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>配置选择关键性</strong>：同系列模型内的思考预算、量化等配置选择对性能的影响与模型选择本身同等重要，不可忽视</li><li style="margin-bottom:0;"><strong>IRT估计稳健性</strong>：2PL IRT能力估计能在原始准确率受错误和缺失数据干扰时，仍正确排序不同测试配置，解决基准报告常见难题</li><li style="margin-bottom:0;"><strong>计算能力权衡</strong>：扩展测试时计算与提升模型能力存在可量化的权衡关系，为实际部署中的资源分配提供实证依据</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.18663" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.18663</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Pocket Foundation Models: Distilling TFMs into CPU-Ready Gradient-Boosted Trees</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.18654</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">口袋基础模型：将TFM蒸馏为CPU就绪的梯度提升树</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出将表格基础模型（TFM）离线蒸馏为可在CPU上原生运行的XGBoost或CatBoost学生模型，以解决欺诈评分等场景对2毫秒以内响应时间的需求。针对ICL教师在训练集上评分时标签泄露导致软目标退化为近one-hot向量的问题，采用分层交叉验证外推（OOF）教师标注策略。在153个分类数据集上的实验表明，将TabICLv2蒸馏为XGBoost可在CPU上以1.9毫秒实现0.882的宏平均AUC（达到教师AUC的96.5%），速度提升38-860倍，且在统计上显著优于调优的CatBoost基线。研究还发现教师排名精确传递给学生、低维数据增益更大、多教师平均对MLP学生有效但对树模型帮助甚微，以及高维任务上蒸馏可能适得其反。完整流程已作为TabTune库开源。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分层外推标注</strong>：采用Stratified OOF教师标注策略，防止ICL教师在训练集上评分时因标签泄露导致软目标退化为近one-hot向量，保留类别间结构信息供蒸馏学习</li><li style="margin-bottom:0;"><strong>梯度提升蒸馏</strong>：将TabICLv2等TFM教师模型离线蒸馏为XGBoost或CatBoost学生模型，使推理可在CPU上原生运行，无需GPU依赖</li><li style="margin-bottom:0;"><strong>多教师集成</strong>：探索多教师平均策略提升蒸馏效果，发现对MLP学生有显著提升但对树模型增益微弱</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>极速推理架构</strong>：首创将大型表格基础模型压缩为轻量级梯度提升树，实现从151-1275毫秒GPU推理到1.9毫秒CPU推理的跨越，速度提升38-860倍</li><li style="margin-bottom:0;"><strong>ICL蒸馏修复</strong>：针对上下文学习教师特有的标签泄露难题，提出分层交叉验证外推方法，解决软目标崩溃问题，使知识蒸馏在表格ICL场景中可行</li><li style="margin-bottom:0;"><strong>规模化验证体系</strong>：在来自TALENT、OpenML-CC18、TabZilla、TabArena的153个真实数据集上系统验证，确保结论的统计显著性和广泛适用性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>速度精度兼得</strong>：蒸馏后的XGBoost达到教师AUC的96.5%，推理延迟仅1.9毫秒，Wilcoxon检验p=0.0008显著优于CatBoost基线，胜率达51%</li><li style="margin-bottom:0;"><strong>排名精确传递</strong>：教师模型在各类数据集上的性能排名与学生模型完全一致，表明蒸馏有效保留了教师的相对优势信息</li><li style="margin-bottom:0;"><strong>维度决定增益</strong>：低维数据（<21特征）蒸馏增益显著（+0.011），高维数据（>21特征）增益微弱（+0.001），且教师弱于CatBoost时蒸馏适得其反</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.18654" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.18654</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/20</p>
+        </div>
+    </div>
+</body>
+</html>
