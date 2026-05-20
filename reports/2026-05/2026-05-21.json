@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-21",
+  "title": "大模型推理革新与垂直场景深度应用新范式",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.19852",
+      "title": "Are Tools Always Beneficial? Learning to Invoke Tools Adaptively for Dual-Mode Multimodal LLM Reasoning",
+      "chinese_title": "自适应工具调用赋能双模态多模态大语言模型推理：工具有益性再审视",
+      "authors": "Qinghe Ma et al.",
+      "url": "https://arxiv.org/abs/2605.19852"
+    },
+    {
+      "id": "2605.20177",
+      "title": "From Seeing to Thinking: Decoupling Perception and Reasoning Improves Post-Training of Vision-Language Models",
+      "chinese_title": "从看到思：解耦感知与推理提升视觉语言模型后训练",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.20177"
+    },
+    {
+      "id": "2605.19718",
+      "title": "CAIT: A Syntactic Parsing Toolkit for Child-Adult InTeractions",
+      "chinese_title": "CAIT：面向亲子互动的句法分析工具包",
+      "authors": "Francesca Padovani et al.",
+      "url": "https://arxiv.org/abs/2605.19718"
+    },
+    {
+      "id": "2605.19597",
+      "title": "LLMEval-Logic: A Solver-Verified Chinese Benchmark for Logical Reasoning of LLMs with Adversarial Hardening",
+      "chinese_title": "LLMEval-Logic：面向大语言模型逻辑推理的对抗强化求解器验证",
+      "authors": "Ming Zhang et al.",
+      "url": "https://arxiv.org/abs/2605.19597"
+    },
+    {
+      "id": "2605.20084",
+      "title": "BalanceRAG: Joint Risk Calibration for Cascaded Retrieval-Augmented Generation",
+      "chinese_title": "BalanceRAG：级联检索增强生成的联合风险校准",
+      "authors": "Zijun Jia et al.",
+      "url": "https://arxiv.org/abs/2605.20084"
+    },
+    {
+      "id": "2605.20050",
+      "title": "Language Mutations Sustain the Persistences of Conspiracy Theories on Social Media",
+      "chinese_title": "语言变异",
+      "authors": "Calvin Yixiang Cheng et al.",
+      "url": "https://arxiv.org/abs/2605.20050"
+    },
+    {
+      "id": "2605.19815",
+      "title": "LP-Eval: Rubric and Dataset for Measuring the Quality of Legal Proposition Generation",
+      "chinese_title": "LP-Eval：法律命题生成质量评估标准与数据集",
+      "authors": "Shanshan Xu et al.",
+      "url": "https://arxiv.org/abs/2605.19815"
+    }
+  ],
+  "generated_at": "2026-05-20T22:25:29.821Z",
+  "org": "AI研究室"
+}
