@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型效率革命 从解码优化到记忆范式的七维突破 | 2026/5/22</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型效率革命 从解码优化到记忆范式的七维突破 | 2026/5/22</h1>
+                <div class="date">2026/5/22 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦大模型在效率优化、能力评估与架构创新三大维度的前沿突破，呈现出从"规模驱动"向"机制驱动"转型的技术趋势。七篇论文共同揭示了三个技术方向：其一，<strong>计算效率的范式重构</strong>——DABS将Transformer深度重新概念化为可查询资源，实现单次编码与选择性读取的解耦；层次化推测解码（Lossless HSD）则突破序列级联合概率的难解性瓶颈，二者分别从编码与解码两端压缩计算冗余。其二，<strong>归因与评估的方法论升级</strong>——CoTrace首创目标演化过程的动态归因框架，LexNeo-Bench构建低资源接触语言的词汇借用基准，共同推动从终态结果评估向过程性、细粒度评估的范式迁移。其三，<strong>记忆与优化的架构创新</strong>——Mem-π以生成式记忆替代检索式记忆，LamPO以成对比较优势替代标量组优势，均体现从"静态聚合"到"动态适配"的设计哲学转变。<br><br>这些研究表明，大模型研究的重心正从单纯扩展模型规模转向对内在机制的精细化操控与可解释性建构。对行业而言，效率优化技术可降低部署成本、拓展边缘场景；评估与归因方法的成熟将加速人机协作的标准化与可信化；而生成式记忆与细粒度优化则为智能体系统与推理能力的跃升提供关键基础设施。整体而言，"机制可解耦、过程可追踪、资源可生成"正成为下一代大模型系统的核心设计原则。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Single-Pass, Depth-Selective Reading for Multi-Aspect Sentiment Analysis</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.20998</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ACL 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">单遍深度选择性阅读的多方面情感分析</span>
+                        <span style="color:#666;font-size:12px;">Yan Xia et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">针对多方面句子中的方面术语情感分析（ATSA）任务，现有模型存在效率与表达能力的权衡问题：要么为每个方面重新编码句子导致计算冗余，要么静态使用深层表示导致适应性受限。本文提出DABS框架，将Transformer深度视为可查询的昂贵资源，通过单次编码构建可复用的深度有序表示基底，使每个方面能选择性读取相关token和抽象层级，无需重新编码。在四个ATSA基准数据集上，DABS在多方面设置（M≥2）下将端到端计算量降低多达60%，同时保持竞争力性能，且自适应深度查询对否定和对比等语言复杂案例最为有益。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>单次编码机制</strong>：将句子仅编码一次构建深度有序的可复用表示基底，避免传统方法为每个方面重复编码句子所带来的计算冗余，实现共享编码与方面条件读取的解耦</li><li style="margin-bottom:0;"><strong>自适应深度查询</strong>：将Transformer各层输出组织为可按需查询的资源，使不同方面根据语义复杂度动态选择适宜的抽象层级，而非固定使用最深层表示</li><li style="margin-bottom:0;"><strong>选择性token读取</strong>：方面查询机制从共享基底中精准定位并提取与当前方面相关的token及其上下文表示，过滤无关信息以提升方面特定预测的准确性</li><li style="margin-bottom:0;"><strong>轻量条件读出</strong>：设计高效的方面条件读出模块，在固定共享编码基础上进行轻量级计算，确保多方面推理时整体计算量显著降低</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>深度资源化视角</strong>：首次将Transformer深度重新概念化为可查询的昂贵资源，突破传统静态使用深层表示的范式，为高效利用预训练模型层次化特征提供新思路</li><li style="margin-bottom:0;"><strong>编码读取解耦架构</strong>：创新性地分离共享句子编码与方面条件读取两个过程，使单次编码即可服务多个方面查询，从根本上解决效率与表达能力的权衡困境</li><li style="margin-bottom:0;"><strong>动态层级选择</strong>：实现基于方面语义需求的自适应层级选择机制，不同方面可依据其语言复杂度自动匹配最佳抽象层级，提升模型对多粒度语义现象的适应能力</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>计算效率大幅提升</strong>：在多方面设置（M≥2）下，DABS实现端到端计算量降低多达60%，验证单次编码结合选择性读取策略在计算优化方面的显著优势</li><li style="margin-bottom:0;"><strong>性能保持竞争力</strong>：在四个ATSA基准数据集上，DABS在大幅降低计算成本的同时维持与现有模型相当的预测精度，证明效率提升未以牺牲任务性能为代价</li><li style="margin-bottom:0;"><strong>复杂语义更受益</strong>：自适应深度查询机制对否定和对比等语言复杂案例的收益最为显著，表明动态层级选择能有效捕捉深层语义推理所需的抽象特征</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.20998" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.20998</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>"I didn't Make the Micro Decisions": Measuring, Inducing, and Exposing Goal-Level AI Contributions in Collaboration</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.21363</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">非我所为"：协作中目标层级AI贡献的测量、诱导与揭示</span>
+                        <span style="color:#666;font-size:12px;">Eunsu Kim et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">随着大语言模型日益影响用户形成、完善和扩展目标的方式，在人机协作中归因贡献变得至关重要——这既帮助用户校准自身依赖度，也帮助评估者评估AI辅助工作。然而现有方法聚焦于最终产物，忽略了目标本身被共同塑造的过程。本文提出目标级归因框架CoTrace，将显式目标分解为可验证需求，并追踪对话轮次中的直接贡献与间接影响。将其应用于638条真实协作日志，发现模型仅占目标塑造贡献的11-26%，但在引入低层级具体需求方面贡献显著更大，且存在多种间接贡献。通过控制模拟实验，证明交互设计选择显著影响模型目标塑造行为。在用户研究中，向参与者展示目标级分析使其感知贡献在5分制上偏移近2分，揭示了用户理解自身AI辅助工作时存在系统性校准偏差。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>目标分解追踪</strong>：将显式目标拆解为可验证的原子化需求单元，建立需求层级结构，实现从模糊意图到可度量贡献的转化，为后续归因分析提供标准化操作对象</li><li style="margin-bottom:0;"><strong>对话轮次映射</strong>：在多轮交互中逐轮标记AI的直接内容贡献与间接影响路径，区分显性建议植入与隐性框架引导两类作用机制</li><li style="margin-bottom:0;"><strong>贡献量化模型</strong>：构建覆盖11-26%基准区间的测量指标体系，综合评估目标塑造、需求引入、方向修正等多维度AI参与程度</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>过程归因框架</strong>：突破传统终态产物评估范式，首创聚焦目标演化过程的动态归因方法CoTrace，填补人机协作中目标形成阶段贡献分配的理论空白</li><li style="margin-bottom:0;"><strong>间接贡献识别</strong>：系统揭示AI通过议程设置、选项框架、隐含假设等非直接方式影响用户目标的机制，拓展归因分析的认知边界</li><li style="margin-bottom:0;"><strong>交互效应揭示</strong>：通过控制模拟证明界面设计选择对AI目标塑造行为具有因果性影响，为责任分配提供设计层面的干预抓手</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>贡献占比有限</strong>：模型在目标塑造中仅占11-26%的直接贡献比例，颠覆用户对AI主导目标设定的潜在认知，确认人类在目标层级仍保持核心主体性</li><li style="margin-bottom:0;"><strong>低层渗透显著</strong>：AI在引入具体、操作性需求方面贡献远超目标层级，呈现自上而下的影响衰减与自下而上的细节填充并存的非对称格局</li><li style="margin-bottom:0;"><strong>认知校准偏差</strong>：暴露目标级分析可使感知贡献偏移近2个量点，证实用户对自身AI辅助工作存在系统性误判，归因透明度具有纠偏价值</li><li style="margin-bottom:0;"><strong>设计塑造行为</strong>：交互设计选择对模型目标导向行为产生显著因果效应，为通过界面机制调控AI参与程度提供实证基础与优化路径</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.21363" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.21363</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Do LLMs Know What Luxembourgish Borrows? Probing Lexical Neology in Low-Resource Multilingual Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.21227</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">大语言模型是否知晓卢森堡语借词？探查低资源多语言模型中的词汇新造现象</span>
+                        <span style="color:#666;font-size:12px;">Nina Hosseini-Kivanani et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型（LLMs）越来越多地用于小型接触语言的书写辅助，但它们是否遵守词汇借用和新造词方面的社区规范尚不清楚。研究者引入LexNeo-Bench基准，包含3,050个实例的卢森堡语新闻语料库，目标词标注为本土词或法语、德语、英语借词。通过34种提示设置探测三种多语言LLM，执行借用类型分类和二进制词汇创新代理任务。无外部语境时模型表现仅略高于随机水平，因此构建编码供体语言、形态模式和词汇类比的语言学知识图谱，将实例特定子图注入提示中。知识图谱提示将借用分类准确率从25-35%提升至71-81%，基本弥合大小模型差距，但新造词检测仍困难且对少样本设计敏感。研究表明词汇感知提示对低资源接触语言的鲁棒借用判断高度有益，词汇资源可作为LLM评估的结构化语境。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>词汇基准构建</strong>：基于LuxBorrow大规模卢森堡语新闻语料库，构建3,050实例的词级别标注基准LexNeo-Bench，区分本土词与法德英三种借词</li><li style="margin-bottom:0;"><strong>知识图谱编码</strong>：构建语言学知识图谱，整合供体语言信息、形态学模式和词汇类比关系，形成结构化语言知识表示</li><li style="margin-bottom:0;"><strong>子图提示注入</strong>：将实例特定的知识子图动态注入提示，为模型提供精准的词汇借用判断依据</li><li style="margin-bottom:0;"><strong>多任务探测</strong>：设计借用类型分类与二进制词汇创新检测两项任务，在34种提示设置下系统评估三种多语言LLM</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>接触语言评估</strong>：首次系统研究LLM对卢森堡语等低资源接触语言中词汇借用规范的遵循程度，填补该领域评估空白</li><li style="margin-bottom:0;"><strong>图谱增强提示</strong>：创新性地将语言学知识图谱作为结构化上下文注入LLM提示，突破传统纯文本提示的局限</li><li style="margin-bottom:0;"><strong>资源驱动方法</strong>：验证词汇资源可作为LLM评估的结构化语境，为低资源语言处理开辟资源增强新范式</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>基线性能低下</strong>：无外部语境时多语言LLM的借用分类准确率仅25-35%，接近随机水平，显示模型内在借用知识匮乏</li><li style="margin-bottom:0;"><strong>图谱显著提升</strong>：知识图谱提示将准确率提升至71-81%，效果接近翻倍，且基本消除大小模型间的性能差距</li><li style="margin-bottom:0;"><strong>创新检测困难</strong>：新造词检测任务对模型仍具挑战性，且性能高度敏感于少样本示例的设计选择</li><li style="margin-bottom:0;"><strong>词汇感知有效</strong>：lexicon-aware prompting对低资源接触语言的鲁棒借用判断具有高度实用价值</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.21227" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.21227</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Manga109-v2026: Revisiting Manga109 Annotations for Modern Manga Understanding</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.21182</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 the Culture x AI Workshop at ICML 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">Manga109-v2026：面向现代漫画理解的标注数据更新</span>
+                        <span style="color:#666;font-size:12px;">Jeonghun Baek et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">Manga109是漫画AI研究的基础数据集，但存在转录错误和粗糙标注等问题，与现代OCR和多模态漫画理解任务不匹配。本研究重新审视Manga109的对话文本标注，识别出五类标注问题，通过OCR检测与人工修订相结合的方式构建Manga109-v2026，修订约29,000处对话标注，使其更好地适配现代OCR和多模态漫画理解系统，同时保留漫画特有的表达结构。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>问题分类体系</strong>：系统识别转录错误、缺失文本区域、对话与拟声词重叠、气球欠分割等五类标注问题，建立结构化的漫画标注质量评估框架</li><li style="margin-bottom:0;"><strong>OCR辅助检测</strong>：利用OCR技术自动识别标注错误位置和类型，结合人工复核实现大规模标注修订，提升检测效率与准确性</li><li style="margin-bottom:0;"><strong>人工精细修订</strong>：对约29,000处对话标注进行逐条核查与修正，确保标注质量满足现代漫画理解任务需求</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>漫画标注规范</strong>：首次系统定义漫画对话标注的五类典型问题，为漫画OCR和多模态理解建立统一的标注质量标准与评估基准</li><li style="margin-bottom:0;"><strong>人机协同修订</strong>：创新性地将OCR自动检测与专家人工修订相结合，实现大规模漫画数据集的高效精准质量提升</li><li style="margin-bottom:0;"><strong>表达结构保留</strong>：在修订过程中注重保护漫画特有的视觉表达结构，平衡标注精度与漫画艺术特性的完整性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>标注质量提升</strong>：Manga109-v2026显著改善原数据集29,000处对话标注的准确性，有效消除转录错误和区域缺失问题</li><li style="margin-bottom:0;"><strong>任务适配增强</strong>：修订后的标注与现代OCR系统和多模态漫画理解模型的需求高度契合，提升下游任务性能</li><li style="margin-bottom:0;"><strong>基准价值延续</strong>：在提升标注质量的同时保持Manga109作为漫画AI研究基准数据集的连续性和可比性，推动领域标准化发展</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.21182" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.21182</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Overcoming Joint Intractability with Lossless Hierarchical Speculative Decoding</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2601.05724</span>
+                        <span style="background:linear-gradient(135deg,#00897B 0%,#00695C 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">AI-Infra</span>
+                        <span style="background:linear-gradient(135deg,#9C27B0 0%,#7B1FA2 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">📊 引用1</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">无损层次投机解码攻克联合难解性</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">验证是推测解码中提升推理速度同时保持分布保真度的关键瓶颈。近期研究表明序列级验证比逐词元验证接受更多词元，但现有方案依赖替代近似或受限于部分信息，难以应对联合难解性。本文提出层次化推测解码（HSD），一种可证明无损的验证方法，通过在可访问分支间平衡过剩与不足概率质量来显著提升期望接受词元数并克服联合难解性。大规模实验表明HSD在多种模型家族和基准上持续提升接受率，其强可解释性和通用性使其易于集成到各类推测解码框架中。将HSD集成到EAGLE-3可获得超12%性能提升，在不损害分布保真度的前提下实现最优解码效率。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>层次化验证</strong>：构建多层级概率分布比较机制，将序列级联合概率分解为层次化条件概率的嵌套结构，使原本计算不可行的联合验证转化为逐层可处理的局部操作</li><li style="margin-bottom:0;"><strong>概率质量平衡</strong>：设计双向迁移策略，将目标分布相对于草稿分布的过剩概率质量重新分配至概率不足的分支路径，确保全局概率守恒与无偏采样</li><li style="margin-bottom:0;"><strong>无损接受准则</strong>：建立严格的数学条件使得接受决策保持目标分布的精确性，避免现有方法中因近似引入的分布偏移或拒绝采样效率损失</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>联合难解性突破</strong>：首次实现序列级验证的精确计算，不依赖均值场近似、独立假设等简化处理，从根本上解决多词元联合概率空间指数级膨胀导致的计算困境</li><li style="margin-bottom:0;"><strong>可解释架构设计</strong>：层次化结构提供清晰的概率流动可视化，每层决策对应明确的语义边界，使验证过程从黑箱转化为可追踪、可调试的白箱机制</li><li style="margin-bottom:0;"><strong>即插即用集成</strong>：验证模块与草稿生成策略解耦，无需修改目标模型或草稿模型的内部结构，支持EAGLE、Medusa、Lookahead等主流推测解码框架的无缝嵌入</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>接受率显著提升</strong>：在多样化模型架构与评测基准上取得一致的接受率改进，证明方法对任务类型和模型规模的鲁棒泛化能力</li><li style="margin-bottom:0;"><strong>EAGLE-3集成突破</strong>：与当前最优的EAGLE-3框架结合后实现超12%端到端加速增益，刷新推测解码效率的SOTA记录且严格保持输出分布等价性</li><li style="margin-bottom:0;"><strong>理论保证完备</strong>：方法具备可证明的无损性，接受词元的期望数量达到理论最优界，为推测解码的验证环节建立了新的性能基准与理论参照系</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2601.05724" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2601.05724</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Mem-$π$: Adaptive Memory through Learning When and What to Generate</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.21463</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">Mem-π：通过决策生成时机与内容实现自适应记忆</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出Mem-π框架，用于大型语言模型智能体的自适应记忆。与从外部记忆库检索静态条目的传统方法不同，Mem-π使用独立的语言或视觉语言模型，根据当前智能体上下文动态决定何时生成指导以及生成何种指导，通过决策-内容解耦的强化学习目标进行训练，在网页导航、终端工具使用和文本化具身交互等多样化智能体基准测试中表现优异，网页导航任务相对提升超过30%。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>按需生成记忆</strong>：不依赖相似性检索外部记忆库，而是由独立参数化的模型根据当前上下文实时生成针对性指导，避免静态条目与当前情境错配的问题</li><li style="margin-bottom:0;"><strong>联合决策机制</strong>：单一模型同时学习两个核心决策——何时生成指导（判断当前情境是否需要干预）以及生成什么指导（确定具体内容），实现条件化的自适应输出</li><li style="margin-bottom:0;"><strong>解耦强化学习</strong>：采用决策与内容解耦的RL目标函数训练模型，使其学会在生成无益时主动弃权（abstain），否则产出简洁有效的指导，优化长期任务回报</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>生成式记忆范式</strong>：颠覆检索式记忆的传统架构，将记忆功能从存储-检索转变为生成-创造，使指导信息能够灵活适配动态变化的复杂任务情境</li><li style="margin-bottom:0;"><strong>参数隔离设计</strong>：记忆生成模型与下游智能体参数分离，避免记忆学习干扰主任务模型，同时支持语言模型和视觉语言模型作为独立的记忆生成器</li><li style="margin-bottom:0;"><strong>弃权能力培养</strong>：通过强化学习显式训练模型的元认知能力，使其具备自我评估机制，仅在预期有益时输出指导，减少噪声和无效干预</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>全面性能领先</strong>：在网页导航、终端工具使用、文本化具身交互三类智能体基准测试中，Mem-π一致优于检索式记忆基线和先前RL优化记忆方法</li><li style="margin-bottom:0;"><strong>网页导航突破</strong>：在网页导航任务上取得超过30%的相对性能提升，验证生成式自适应记忆在复杂序列决策场景中的显著优势</li><li style="margin-bottom:0;"><strong>跨模态可扩展</strong>：框架兼容纯语言模型和视觉语言模型作为记忆生成器，证明该方法在不同感知模态的智能体系统中均具有通用适用性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.21463" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.21463</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>LamPO: A Lambda Style Policy Optimization for Reasoning Language Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.21235</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">LamPO：面向推理语言模型的Lambda风格策略优化</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">强化学习与可验证奖励（RLVR）已成为提升推理语言模型在数学、编程和科学问答等任务上能力的有效范式。然而，广泛使用的组相对目标（如GRPO）用标量统计量概括每个采样组，丢弃了候选响应间的细粒度关系信息，这在稀疏结果奖励下削弱了信用分配，尤其是当多个生成解在推理质量上仅有细微差异时。本文提出LamPO，一种Lambda风格策略优化方法，用成对分解优势替代标量组优势，聚合每组内的成对奖励差距，并通过序列对数概率差异计算的置信感知权重调制每次比较，同时保留PPO风格优化的无评论器和裁剪更新结构。当参考解可用时，进一步添加轻量级基于ROUGE-L的密集辅助奖励以减少奖励稀疏性。在AIME24、AIME25、MATH-500和GPQA-Diamond上使用Qwen3-1.7B、Qwen3-4B和Phi-4-mini的实验表明，LamPO一致优于GRPO及近期RLVR变体，具有更稳定的训练动态和更好的样本效率。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>成对分解优势</strong>：将传统标量组优势替换为响应组内所有成对比较的优势分解形式，通过聚合每对响应间的奖励差距实现细粒度信用分配，解决GRPO在相似质量解之间区分能力不足的问题</li><li style="margin-bottom:0;"><strong>置信感知加权</strong>：利用序列对数概率差异计算每对比较的置信权重，高置信度比较获得更大影响，低置信度比较被抑制，增强优势估计的可靠性和鲁棒性</li><li style="margin-bottom:0;"><strong>无评论器架构</strong>：保留PPO风格的裁剪更新机制但完全去除价值网络，降低内存开销和训练复杂度，同时通过组内采样和相对优势估计实现稳定策略优化</li><li style="margin-bottom:0;"><strong>ROUGE-L辅助奖励</strong>：在参考解可用时引入基于最长公共子序列的轻量级密集奖励，为中间推理步骤提供额外反馈信号，有效缓解终端验证奖励的稀疏性问题</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>Lambda风格优化</strong>：借鉴排序学习中的Lambda思想，将组内响应的相对质量关系建模为成对比较网络，突破GRPO标量统计的信息瓶颈，实现从粗粒度平均到细粒度配对的范式转换</li><li style="margin-bottom:0;"><strong>对数概率置信度</strong>：创新性地将策略模型自身的序列对数概率差异转化为比较置信度指标，无需额外模型即可量化每对响应比较的可靠程度，实现自适应的优势加权机制</li><li style="margin-bottom:0;"><strong>稀疏奖励增强</strong>：设计参考解依赖的ROUGE-L密集奖励作为辅助信号，在不增加验证开销的前提下为推理链中间状态提供密集反馈，改善长程推理中的信用分配效率</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能一致领先</strong>：在AIME24、AIME25、MATH-500和GPQA-Diamond四个推理基准上，LamPO相对于GRPO及近期RLVR变体均取得一致的性能提升，验证方法的普适性和有效性</li><li style="margin-bottom:0;"><strong>训练更加稳定</strong>：相比现有方法，LamPO展现出更稳定的训练动态，减少策略崩溃和奖励尖峰等训练不稳定现象，降低超参数敏感性和调参成本</li><li style="margin-bottom:0;"><strong>样本效率提升</strong>：在Qwen3-1.7B、Qwen3-4B和Phi-4-mini三种不同规模模型上均实现更好的样本效率，以更少的环境交互达到更高性能，降低大规模推理模型训练的计算开销</li><li style="margin-bottom:0;"><strong>规模无关有效</strong>：方法在1.7B到4B参数规模的模型上均保持优势，表明成对分解优势机制具有良好的规模扩展性，适用于资源受限场景下的推理能力增强</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.21235" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.21235</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/22</p>
+        </div>
+    </div>
+</body>
+</html>

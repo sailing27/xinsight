@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-22",
+  "title": "大模型效率革命 从解码优化到记忆范式的七维突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.20998",
+      "title": "Single-Pass, Depth-Selective Reading for Multi-Aspect Sentiment Analysis",
+      "chinese_title": "单遍深度选择性阅读的多方面情感分析",
+      "authors": "Yan Xia et al.",
+      "url": "https://arxiv.org/abs/2605.20998"
+    },
+    {
+      "id": "2605.21363",
+      "title": "\"I didn't Make the Micro Decisions\": Measuring, Inducing, and Exposing Goal-Level AI Contributions in Collaboration",
+      "chinese_title": "非我所为\"：协作中目标层级AI贡献的测量、诱导与揭示",
+      "authors": "Eunsu Kim et al.",
+      "url": "https://arxiv.org/abs/2605.21363"
+    },
+    {
+      "id": "2605.21227",
+      "title": "Do LLMs Know What Luxembourgish Borrows? Probing Lexical Neology in Low-Resource Multilingual Models",
+      "chinese_title": "大语言模型是否知晓卢森堡语借词？探查低资源多语言模型中的词汇新造现象",
+      "authors": "Nina Hosseini-Kivanani et al.",
+      "url": "https://arxiv.org/abs/2605.21227"
+    },
+    {
+      "id": "2605.21182",
+      "title": "Manga109-v2026: Revisiting Manga109 Annotations for Modern Manga Understanding",
+      "chinese_title": "Manga109-v2026：面向现代漫画理解的标注数据更新",
+      "authors": "Jeonghun Baek et al.",
+      "url": "https://arxiv.org/abs/2605.21182"
+    },
+    {
+      "id": "2601.05724",
+      "title": "Overcoming Joint Intractability with Lossless Hierarchical Speculative Decoding",
+      "chinese_title": "无损层次投机解码攻克联合难解性",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2601.05724"
+    },
+    {
+      "id": "2605.21463",
+      "title": "Mem-$π$: Adaptive Memory through Learning When and What to Generate",
+      "chinese_title": "Mem-π：通过决策生成时机与内容实现自适应记忆",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.21463"
+    },
+    {
+      "id": "2605.21235",
+      "title": "LamPO: A Lambda Style Policy Optimization for Reasoning Language Models",
+      "chinese_title": "LamPO：面向推理语言模型的Lambda风格策略优化",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.21235"
+    }
+  ],
+  "generated_at": "2026-05-21T22:34:33.894Z",
+  "org": "AI研究室"
+}
