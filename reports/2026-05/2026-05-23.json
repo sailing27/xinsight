@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-23",
+  "title": "大模型效率革命 从增量智能体到物理先验融合",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.22781",
+      "title": "DeltaBox: Scaling Stateful AI Agents with Millisecond-Level Sandbox Checkpoint/Rollback",
+      "chinese_title": "DeltaBox：毫秒级沙箱检查点/回滚扩展有状态AI智能体",
+      "authors": "Yunpeng Dong et al.",
+      "url": "https://arxiv.org/abs/2605.22781"
+    },
+    {
+      "id": "2605.22817",
+      "title": "Vector Policy Optimization: Training for Diversity Improves Test-Time Search",
+      "chinese_title": "向量策略优化：多样性训练增强测试时搜索",
+      "authors": "Ryan Bahlous-Boldi et al.",
+      "url": "https://arxiv.org/abs/2605.22817"
+    },
+    {
+      "id": "2605.20134",
+      "title": "TrajTok: Adaptive Spatial Tokenization for Trajectory Representation Learning",
+      "chinese_title": "TrajTok：面向轨迹表示学习的自适应空间分词方法",
+      "authors": "Zhen Xiong et al.",
+      "url": "https://arxiv.org/abs/2605.20134"
+    },
+    {
+      "id": "2605.20659",
+      "title": "RoPeSLR: 3D RoPE-driven Sparse-LowRank Attention for Efficient Diffusion Transformers",
+      "chinese_title": "RoPeSLR：基于3D旋转位置编码的稀疏低秩注意力机制用于高效扩散T",
+      "authors": "Yuxi Liu et al.",
+      "url": "https://arxiv.org/abs/2605.20659"
+    },
+    {
+      "id": "2605.19092",
+      "title": "Counterfactual Likelihood Tests for Indirect Influence in Private Reasoning Channels",
+      "chinese_title": "反事实似然检验：隐私推理通道中的间接影响检测",
+      "authors": "Alexander Boesgaard Lorup et al.",
+      "url": "https://arxiv.org/abs/2605.19092"
+    },
+    {
+      "id": "2605.22786",
+      "title": "LCGuard: Latent Communication Guard for Safe KV Sharing in Multi-Agent Systems",
+      "chinese_title": "LCGuard：多智能体系统安全KV共享的潜在通信防护机制",
+      "authors": "Sadia Asif et al.",
+      "url": "https://arxiv.org/abs/2605.22786"
+    },
+    {
+      "id": "2605.22597",
+      "title": "MoSA: Motion-constrained Stress Adaptation for Mitigating Real-to-Sim Gap in Continuum Dynamics via Learning Residual Anisotropy",
+      "chinese_title": "MoSA：基于残余各向异性学习的连续体动力学真实到仿真差距缓解运动约束",
+      "authors": "Jiaxu Wang et al.",
+      "url": "https://arxiv.org/abs/2605.22597"
+    }
+  ],
+  "generated_at": "2026-05-22T22:15:08.063Z",
+  "org": "AI研究室"
+}

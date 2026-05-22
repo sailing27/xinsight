@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型效率革命 从增量智能体到物理先验融合 | 2026/5/23</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型效率革命 从增量智能体到物理先验融合 | 2026/5/23</h1>
+                <div class="date">2026/5/23 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示大模型技术正从单一性能优化迈向<strong>效率、安全与物理可信性</strong>的多维协同演进。七篇论文共同指向三个核心技术趋势：一是<strong>状态与表征的精细化管控</strong>，DeltaBox的毫秒级增量检查点、TrajTok的自适应空间标记化及LCGuard的潜在通信防护，均通过结构化的状态抽象与分层操作实现数量级效率提升或安全增强；二是<strong>多目标与结构先验的显式嵌入</strong>，VPO的向量奖励多样性优化、RoPeSLR的3D RoPE稀疏-低秩解耦及MoSA的残余应力物理先验融合，突破黑箱端到端范式，将问题内在结构或任务多样性作为算法设计的原生驱动力；三是<strong>因果与影响的精确归因</strong>，反事实似然检验首次实现私有推理中间接影响的量化分离，为可解释性与安全评估建立新基准。这些进展表明，下一代大模型系统需在<strong>计算效率、机制可解释性与领域物理一致性</strong>之间寻求平衡，"结构感知+增量操作+因果明晰"正成为跨越Agent基础设施、后训练优化、科学仿真及安全治理的通用方法论，推动AI从规模扩展走向<strong>精致化、可信化与领域专业化</strong>的深度部署。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>DeltaBox: Scaling Stateful AI Agents with Millisecond-Level Sandbox Checkpoint/Rollback</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22781</span>
+                        <span style="background:linear-gradient(135deg,#FB8C00 0%,#EF6C00 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">Agentic</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">DeltaBox：毫秒级沙箱检查点/回滚扩展有状态AI智能体</span>
+                        <span style="color:#666;font-size:12px;">Yunpeng Dong et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">LLM驱动的AI Agent需要高频状态探索（如测试时树搜索和强化学习），依赖沙箱完整状态的快速检查点与回滚（C/R）。现有机制全量复制状态，导致每次C/R耗时数百毫秒至数秒，严重制约深度搜索和大规模分支。本文发现AI Agent的连续检查点高度相似，提出基于变更的增量C/R方法。为此设计新OS抽象DeltaState，包含DeltaFS（分层文件系统C/R）和DeltaCR（增量进程状态C/R）两种机制，实现DeltaBox沙箱，达到毫秒级C/R延迟。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分层文件冻结</strong>：DeltaFS将文件状态组织为层级结构，检查点时动态冻结可写层并插入新层，文件更新转为写时复制，回滚简化为层切换操作</li><li style="margin-bottom:0;"><strong>增量进程转储</strong>：DeltaCR采用增量方式捕获进程状态变更，避免全量内存复制，显著降低检查点时的数据拷贝开销</li><li style="margin-bottom:0;"><strong>模板进程直派</strong>：DeltaCR绕过传统恢复管线，直接从冻结的模板进程fork()创建新实例，将回滚延迟压缩至毫秒级</li><li style="margin-bottom:0;"><strong>变更事务抽象</strong>：DeltaState作为OS级新抽象，为AI Agent提供基于变更的事务性C/R语义，支撑高频状态探索需求</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>相似性利用原理</strong>：首次系统揭示AI Agent连续检查点的高度相似性特征，将全量复制范式转变为增量变更捕获，从根本上降低C/R开销</li><li style="margin-bottom:0;"><strong>OS层协同设计</strong>：DeltaFS与DeltaCR从文件系统和进程管理两个维度协同重构C/R机制，突破传统沙箱依赖用户态全量序列化的瓶颈</li><li style="margin-bottom:0;"><strong>毫秒级延迟突破</strong>：通过写时复制分层与fork直派技术组合，将检查点降至14ms、回滚降至5ms，较现有机制实现两个数量级性能飞跃</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能数量级提升</strong>：DeltaBox实现14ms检查点和5ms回滚，相比传统全量复制机制的数百毫秒至秒级延迟，性能提升达10-100倍</li><li style="margin-bottom:0;"><strong>搜索规模扩展</strong>：毫秒级C/R使固定时间预算内Agent可探索的节点数量大幅增加，直接赋能深度树搜索和大规模并行分支评估</li><li style="margin-bottom:0;"><strong>基准验证充分</strong>：在SWE-bench软件工程基准和RL微基准上的评估验证了DeltaBox在实际Agent工作负载中的有效性和通用性</li><li style="margin-bottom:0;"><strong>OS支持必要性</strong>：论证了高效增量C/R必须依赖OS层机制创新，单纯用户态优化无法克服内核态状态捕获的根本瓶颈</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22781" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22781</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Vector Policy Optimization: Training for Diversity Improves Test-Time Search</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22817</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">向量策略优化：多样性训练增强测试时搜索</span>
+                        <span style="color:#666;font-size:12px;">Ryan Bahlous-Boldi et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">语言模型需要泛化到新环境并在推理时搜索过程中工作，但标准后训练范式优化预指定的标量奖励，导致模型产生低熵响应分布，难以满足推理时搜索所需的多样性。本文提出向量策略优化（VPO），一种强化学习算法，通过训练策略预期多样化的下游奖励函数并产生多样化解决方案。VPO利用实践中常见的向量值奖励（如代码生成的逐测试用例正确性、多种用户画像或奖励模型），作为GRPO优势估计器的直接替代方案，训练语言模型输出针对不同向量奖励空间权衡的解决方案集合。在四项任务中，VPO在测试时搜索（如pass@k和best@k）上匹配或超越最强标量RL基线，且搜索预算越大差距越宽。对于进化搜索，VPO模型能够解决GRPO模型完全无法解决的问题。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>向量奖励建模</strong>：利用实践中常见的向量值奖励结构，如代码生成的逐测试用例正确性、多用户画像或多奖励模型，将奖励从标量扩展为向量形式</li><li style="margin-bottom:0;"><strong>集合输出训练</strong>：训练语言模型输出解决方案集合而非单一输出，使每个解专门针对不同向量奖励空间的权衡组合</li><li style="margin-bottom:0;"><strong>GRPO替代方案</strong>：作为GRPO优势估计器的直接替代，修改优势计算方式以适应向量奖励的多样化优化目标</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多样性显式优化</strong>：突破标准后训练优化预指定标量奖励的范式，显式训练策略预期多样化下游奖励函数并产生多样化解决方案</li><li style="margin-bottom:0;"><strong>多目标专业化</strong>：使集合中单个解自动专业化到向量奖励空间的不同权衡点，无需人工指定各维度的权重组合</li><li style="margin-bottom:0;"><strong>搜索预算扩展性</strong>：随着测试时搜索预算增加，VPO相对于标量RL基线的性能优势持续扩大，而非饱和或下降</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>搜索性能优势</strong>：在四项任务上VPO匹配或超越最强标量RL基线，在pass@k和best@k等指标上表现更优，且搜索预算越大优势越显著</li><li style="margin-bottom:0;"><strong>进化搜索解锁</strong>：VPO模型能够解决GRPO模型完全无法解决的进化搜索问题，证明多样性训练对复杂搜索策略的关键作用</li><li style="margin-bottom:0;"><strong>默认目标转变</strong>：随着测试时搜索日趋标准化，优化多样性可能需要成为后训练的默认目标，而非传统的单点优化范式</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22817" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22817</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>TrajTok: Adaptive Spatial Tokenization for Trajectory Representation Learning</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.20134</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">TrajTok：面向轨迹表示学习的自适应空间分词方法</span>
+                        <span style="color:#666;font-size:12px;">Zhen Xiong et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">从原始GPS轨迹学习通用轨迹表示面临数据连续、噪声大、采样不规则等挑战，空间标记化也存在细粒度网格稀疏与粗粒度网格混淆异质模式的矛盾。本文提出TrajTok轨迹编码器，通过多分辨率六边形空间划分将GPS点转化为离散单元标记，采用因子化Transformer编码器融合几何与运动学信息，并引入时空旋转位置编码ST-RoPE，以掩码标记建模进行预训练。在Porto数据集上，冻结的TrajTok配合轻量适配器在轨迹相似性搜索、分类、到达时间估计和全程时间回归等任务上均取得优异性能，展现出强大的迁移能力。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多分辨率六边形划分</strong>：基于GPS点空间分布自适应学习多分辨率六边形单元划分，将连续噪声GPS序列离散化为单元标记，平衡空间粒度与语义区分度</li><li style="margin-bottom:0;"><strong>因子化Transformer编码</strong>：采用早期单模态自注意力块分别处理几何与运动学特征，再通过交叉注意力层进行模态融合，有效捕获双模态信息</li><li style="margin-bottom:0;"><strong>时空旋转位置编码</strong>：设计ST-RoPE编码机制，同时为标记注入精确的空间位置与时间发生信息，增强模型对时空上下文的感知能力</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>自适应空间标记化</strong>：突破固定网格局限，从数据驱动学习多分辨率六边形划分，解决细网格稀疏嵌入弱与粗网格模式混淆的核心矛盾</li><li style="margin-bottom:0;"><strong>掩码双重建预训练</strong>：提出同时恢复几何结构与运动学模式的掩码标记建模目标，迫使模型学习完整轨迹表征而非任务捷径</li><li style="margin-bottom:0;"><strong>通用轨迹编码架构</strong>：构建统一编码器支持冻结迁移，通过轻量适配器适配多样下游任务，验证轨迹基础模型的可行性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨任务强迁移性</strong>：冻结TrajTok在相似性搜索、分类、ETA、时间回归等四类任务上均超越专用方法，证明学习表征的通用性</li><li style="margin-bottom:0;"><strong>双模态统一支持</strong>：同一冻结编码器可同时支撑几何主导与运动学主导任务，表明捕获的是可迁移轨迹结构而非任务特定偏差</li><li style="margin-bottom:0;"><strong>基础模型新方向</strong>：多分辨率空间标记化结合掩码预训练是构建通用轨迹基础模型的有前景路径，为领域预训练范式提供实证支撑</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.20134" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.20134</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>RoPeSLR: 3D RoPE-driven Sparse-LowRank Attention for Efficient Diffusion Transformers</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.20659</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">RoPeSLR：基于3D旋转位置编码的稀疏低秩注意力机制用于高效扩散T</span>
+                        <span style="color:#666;font-size:12px;">Yuxi Liu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">Diffusion Transformers (DiTs)在高保真视频生成中取得突破，但其L²注意力复杂度对长序列合成构成严重瓶颈。现有稀疏-线性注意力混合方法在极端稀疏下性能急剧下降，原因在于标准线性注意力无法保持3D旋转位置编码(RoPE)的正交相对位置结构，导致关键的距离感知能力丧失。为此，本文提出RoPeSLR框架，基于经验验证的假设将DiT注意力流形解耦为高频语义尖峰集（L^{3/2}稀疏度约束）和极端低秩(d_h L)背景连续体，采用头级低秩参数化配合可学习3D绝对位置嵌入注入，实现长程相对距离衰减的无缝合成。该框架保证次二次稀疏度和次线性秩增长，在90%稀疏度下于Wan2.1-1.3B实现10倍FLOPs减少，在HunyuanVideo-13B的100K+ token超长子序列上取得2.26倍端到端推理加速，同时保持近无损生成保真度（平均VBench退化小于1.3%）。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>3D RoPE dilemma</strong>：揭示标准线性注意力破坏三维旋转位置编码正交相对位置结构的本质缺陷，导致距离感知能力中性化，这是极端稀疏下性能崩溃的根本原因</li><li style="margin-bottom:0;"><strong>流形解耦定理</strong>：证明DiT注意力流形可分解为高频语义尖峰集与极端低秩背景连续体，前者以L^{3/2}稀疏度有界，后者秩为d_h L量级</li><li style="margin-bottom:0;"><strong>低秩参数化头</strong>：摒弃标准线性注意力，采用逐头低秩参数化方案，配备可学习三维绝对位置嵌入注入机制，合成长程相对距离衰减</li><li style="margin-bottom:0;"><strong>复杂度双约束</strong>：严格保证子二次稀疏复杂度与子线性秩增长复杂度，使框架具备超长子序列视频推理的规模化能力</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>结构先验驱动</strong>：首次将注意力流形的数学结构先验（稀疏-低秩解耦）作为算法设计的根本指导，而非事后逼近标准注意力</li><li style="margin-bottom:0;"><strong>位置编码重构</strong>：创新性地以可学习三维绝对位置嵌入替代RoPE的显式相对位置编码，在低秩框架内隐式恢复距离衰减特性</li><li style="margin-bottom:0;"><strong>头级异构设计</strong>：突破全局统一注意力模式的局限，实现逐头自适应的低秩维度分配，匹配不同注意力头的语义聚焦特性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>计算效率飞跃</strong>：在90%极端稀疏条件下，Wan2.1-1.3B模型FLOPs降低达10倍，验证稀疏-低秩联合设计的计算压缩极限</li><li style="margin-bottom:0;"><strong>超长序列加速</strong>：HunyuanVideo-13B百亿参数模型在100K+ token序列上实现2.26倍端到端推理加速，突破长视频实时生成壁垒</li><li style="margin-bottom:0;"><strong>保真度近乎无损</strong>：平均VBench指标退化控制在1.3%以内，证明效率提升不以牺牲生成质量为代价，实现效率-质量帕累托最优</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.20659" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.20659</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Counterfactual Likelihood Tests for Indirect Influence in Private Reasoning Channels</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.19092</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">反事实似然检验：隐私推理通道中的间接影响检测</span>
+                        <span style="color:#666;font-size:12px;">Alexander Boesgaard Lorup et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出一种反事实似然检验方法，用于测量私有推理通道间的间接影响。该方法将上游私有块替换为长度匹配的捐赠块，固定公共token序列和下游目标，测量下游目标的负对数似然偏移。在7B角色通道推理模型验证中，文本探针不可靠，而反事实似然能有效分离掩码与非掩码条件，长度匹配控制RoPE位置混淆。硬化掩码验证显示B到A的反向影响接近零，A到B的影响通过公共语音隐藏状态持续存在。多检查点验证复现了该不对称性。图分离控制阻断私有到公共载体边，在所有13,734次控制评估中产生逐位相同的自然与反事实分数，识别出被测公共通道路径为所测反事实信号的完整载体。结果表明私有通道评估应分别报告直接影响和间接影响，反事实似然探针可作为测量这些边界的实用默认方法。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>反事实替换</strong>：将上游私有推理块替换为长度匹配的捐赠块，保持公共序列和下游目标固定，通过负对数似然偏移量化跨通道影响强度</li><li style="margin-bottom:0;"><strong>长度匹配控制</strong>：精确匹配替换块与原始块的长度，消除RoPE位置编码带来的位置混淆，确保似然变化仅反映信息内容差异</li><li style="margin-bottom:0;"><strong>图分离控制</strong>：阻断私有到公共的载体边进行对照实验，验证公共通道路径是否为反事实信号的完整载体，排除其他泄漏路径</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>间接影响测量</strong>：首次系统区分独立共推导、直接私有访问和公共通信间接影响三种相似场景，提供可量化的间接影响检验方法</li><li style="margin-bottom:0;"><strong>似然探针设计</strong>：以概率似然替代传统文本探针，克服n-gram重叠高估泄漏、校正重叠噪声大、金丝雀复现无区分等文本方法的可靠性缺陷</li><li style="margin-bottom:0;"><strong>角色可见掩码</strong>：构建硬化掩码验证框架，实现反向影响近零的基线控制，正向影响通过公共隐藏状态持续的不对称效应可稳定复现</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分别报告影响</strong>：私有通道评估必须将直接影响与间接影响分开报告，二者机制不同且需独立测量以避免混淆评估结果</li><li style="margin-bottom:0;"><strong>似然探针实用</strong>：反事实似然探针在13,734次有效方向对比的多检查点、多种子验证中表现稳定，可作为测量影响边界的实用默认工具</li><li style="margin-bottom:0;"><strong>公共通道载体</strong>：在实现的角色可见掩码下，公共通道路径是被测反事实信号的完整载体，私有到公共的边阻断后信号完全消失</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.19092" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.19092</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>LCGuard: Latent Communication Guard for Safe KV Sharing in Multi-Agent Systems</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22786</span>
+                        <span style="background:linear-gradient(135deg,#FB8C00 0%,#EF6C00 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">Agentic</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">LCGuard：多智能体系统安全KV共享的潜在通信防护机制</span>
+                        <span style="color:#666;font-size:12px;">Sadia Asif et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型多智能体系统日益依赖中间通信来协调复杂任务。近期研究表明，通过transformer键值（KV）缓存的潜在通信可提高效率并保留更丰富的任务相关信息。然而，KV缓存也会编码上下文输入、中间推理状态和智能体特定信息，形成敏感内容可能在智能体间传播的隐蔽通道。为此，本文提出LCGuard（潜在通信防护）框架，将共享KV缓存视为潜在工作记忆，在缓存工件跨智能体传输前学习表示级变换。通过对抗性重建形式化表示级敏感信息泄露，并采用对抗训练使LCGuard学习既保留任务相关语义又减少可重建信息的变换。多模型家族和多智能体基准的实证评估表明，LCGuard在保持竞争性能的同时有效降低重建泄露和攻击成功率。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>KV缓存共享</strong>：利用transformer的键值缓存作为智能体间潜在通信媒介，替代自然语言通信以提高效率并保留更丰富的任务相关信息</li><li style="margin-bottom:0;"><strong>对抗重建训练</strong>：构建对抗训练框架，使攻击者学习重建敏感输入，同时LCGuard学习防御性表示变换以最小化信息泄露</li><li style="margin-bottom:0;"><strong>表示级变换</strong>：在缓存工件传输前施加可学习的表示变换，将原始KV缓存转换为安全的潜在工作记忆表示</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>操作化泄露定义</strong>：将表示级敏感信息泄露形式化为重建问题，即若对抗解码器能从共享缓存恢复智能体特定敏感输入，则该缓存工件为不安全</li><li style="margin-bottom:0;"><strong>双层优化框架</strong>：设计攻击者与防御者的极小极大博弈，攻击者最大化敏感输入重建成功率，LCGuard最小化泄露同时保持任务语义</li><li style="margin-bottom:0;"><strong>潜在工作记忆视角</strong>：首次将KV缓存重新概念化为多智能体系统的潜在工作记忆，而非单纯的推理加速副产品</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>泄露防护有效</strong>：LCGuard在多模型家族和基准上持续降低基于重建的信息泄露程度和攻击成功率，验证对抗训练的有效性</li><li style="margin-bottom:0;"><strong>任务性能保持</strong>：与标准KV共享基线相比，LCGuard在实现安全防护的同时维持具有竞争力的任务完成性能</li><li style="margin-bottom:0;"><strong>隐蔽通道风险</strong>：证实KV缓存作为通信渠道存在显著安全隐患，原始缓存可直接泄露智能体特定敏感信息而不经文本显式披露</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22786" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22786</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>MoSA: Motion-constrained Stress Adaptation for Mitigating Real-to-Sim Gap in Continuum Dynamics via Learning Residual Anisotropy</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22597</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">MoSA：基于残余各向异性学习的连续体动力学真实到仿真差距缓解运动约束</span>
+                        <span style="color:#666;font-size:12px;">Jiaxu Wang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出MoSA，一种运动约束应力自适应框架，用于解决连续体动力学中真实到仿真差距问题。该方法以各向同性模型为物理先验，学习残余应力算子来捕捉轻度各向异性和非均匀性，通过微平面约束的应力重分布和变形场的时空导数监督，实现更准确、泛化性更强且物理意义明确的动力学建模，并在机器人操作任务中验证了更好的仿真到真实迁移性能。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>残余应力算子</strong>：以各向同性模型为物理先验，设计可学习的残余应力算子，专门捕捉真实材料中轻度各向异性和非均匀性导致的动力学偏差，避免完全黑箱建模</li><li style="margin-bottom:0;"><strong>微平面约束重分布</strong>：在物理信息级联网络中逐步自适应调整应力，通过微平面理论约束应力的重分布过程，确保学习到的残余效应符合连续介质力学基本原理</li><li style="margin-bottom:0;"><strong>运动约束监督</strong>：对变形场的时域导数（速度）和空间导数（应变梯度）施加监督约束，增强模型对动态变形过程的物理一致性和时序稳定性</li><li style="margin-bottom:0;"><strong>级联网络架构</strong>：构建物理信息驱动的级联神经网络结构，将传统仿真器与深度学习模块有机结合，实现物理先验与数据驱动能力的分层融合</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>先验融合策略</strong>：突破端到端黑箱建模范式，创新性地将经典各向同性物理模型作为显式先验嵌入学习框架，仅学习残余偏差部分，显著提升数据效率并抑制过拟合</li><li style="margin-bottom:0;"><strong>各向异性建模</strong>：首次针对轻度各向异性和非均匀性这一真实到仿真差距的关键瓶颈，提出系统化的残余效应学习方法，填补了近各向同性校准后的精度提升空白</li><li style="margin-bottom:0;"><strong>物理约束学习</strong>：将微平面理论与运动学约束同时嵌入神经网络训练，实现数据驱动与物理定律的深度耦合，保证学习结果具有可解释的物理意义</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>精度优势显著</strong>：相比传统参数校准和端到端黑箱方法，MoSA学习的动力学在多个基准测试上达到更优的预测精度，有效缩小真实到仿真差距</li><li style="margin-bottom:0;"><strong>泛化鲁棒性强</strong>：模型展现出卓越的跨场景泛化能力和抗干扰鲁棒性，在分布外测试条件下仍保持稳定的动力学预测性能</li><li style="margin-bottom:0;"><strong>物理意义明确</strong>：学习到的残余应力算子能够捕捉具有物理可解释性的各向异性模式，而非不可解释的黑箱映射关系</li><li style="margin-bottom:0;"><strong>操作任务验证</strong>：在真实机器人操作实验中，MoSA优化的仿真器实现更可靠的仿真到真实迁移，证明精确动力学建模对机器人学习的重要价值</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22597" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22597</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/23</p>
+        </div>
+    </div>
+</body>
+</html>
