@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型效率革命与认知边界突破 从提示优化到超拟合新范式 | 2026/5/24</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型效率革命与认知边界突破 从提示优化到超拟合新范式 | 2026/5/24</h1>
+                <div class="date">2026/5/24 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了大模型技术正从单一性能优化迈向效率、可靠性与领域适配并重的系统化创新阶段。七项研究共同指向三个核心技术趋势：其一，<strong>提示工程与参数高效微调</strong>持续深化，从视觉语言模型的几何保持校准到多语言推理的条件化提示，表明精细化提示设计已成为释放模型潜能的关键杠杆；其二，<strong>生成式重排序与结构化知识整合</strong>重塑专业领域应用，生物医学实体链接的集合式微调和时序知识图谱构建，凸显LLM在垂直场景中需兼顾推理效率与动态知识建模；其三，<strong>训练动态与表示几何的基础认知更新</strong>，超拟合现象的重新界定及分词优化的凸松弛求解，挑战了传统机器学习中的既有假设，推动从局部启发式向全局最优范式的转变。<br><br>对行业与研究而言，这些进展意味着：大模型部署需超越"规模即性能"的简单逻辑，转向上下文策略、校准机制与领域知识的协同设计；同时，时序推理等能力短板与超拟合等反直觉现象的发现，为下一代模型架构与训练范式提供了明确的研究锚点，尤其在医疗、政治文本分析等高 stakes 领域，可靠性优先于纯性能提升已成为不可逆的技术伦理要求。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Towards Calibrating Prompt Tuning of Vision-Language Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2602.19024</span>
+                        <span style="background:linear-gradient(135deg,#00ACC1 0%,#00838F 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">持续学习</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 CVPR 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">面向视觉-语言模型提示调优的校准研究</span>
+                        <span style="color:#666;font-size:12px;">Ashshak Sharifdeen et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对大规模视觉语言模型（如CLIP）的提示调优中存在置信度校准差和预测不确定性不可靠的问题，提出了一种校准框架。该框架通过均值-方差边界惩罚和文本矩匹配损失两个互补正则化项扩展标准交叉熵损失，在保持预训练CLIP嵌入空间几何结构的同时增强预测可靠性，并在7种提示调优方法和11个数据集上验证了显著降低期望校准误差的效果。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>提示调优技术</strong>：通过优化可学习的提示向量而非更新模型权重，实现大规模视觉语言模型的高效任务适配，显著降低计算开销和存储需求</li><li style="margin-bottom:0;"><strong>均值方差惩罚</strong>：设计边界正则化项最大化类间对数边界的平均值同时最小化其离散程度，平滑置信度分布以缓解欠自信与过自信峰值问题</li><li style="margin-bottom:0;"><strong>矩匹配约束</strong>：强制调优后的文本嵌入在均值和协方差层面与冻结CLIP原型对齐，保持原始语义分散结构以确保模型泛化能力</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>几何保持校准</strong>：突破传统校准方法牺牲嵌入空间结构的局限，首次实现预测可靠性与预训练表示几何的双重保持，避免校准损害泛化性能</li><li style="margin-bottom:0;"><strong>双正则协同设计</strong>：将边界稳定性约束与分布矩对齐有机结合，两类正则化项互补作用分别处理置信度分布形态和语义空间结构两个维度</li><li style="margin-bottom:0;"><strong>零权重更新框架</strong>：在不修改任何预训练参数的前提下完成校准，兼容多种提示调优范式并维持其参数高效性的核心优势</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>校准性能领先</strong>：在11个多样化数据集上相比现有校准技术显著降低期望校准误差，在基础类和新类上均取得一致的校准改进效果</li><li style="margin-bottom:0;"><strong>方法泛化性强</strong>：框架适用于7种不同的提示调优方法，验证了其作为通用校准插件的广泛适用性和即插即用的实用价值</li><li style="margin-bottom:0;"><strong>结构保持有效</strong>：文本矩匹配损失成功维持了语义分散的关键特性，证明嵌入空间几何保护是同时实现可靠校准与稳健泛化的核心机制</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2602.19024" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2602.19024</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>LANG: Reinforcement Learning for Multilingual Reasoning with Language-Adaptive Hint Guidance</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22567</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ACL 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">LANG：基于语言自适应提示引导的多语言推理强化学习</span>
+                        <span style="color:#666;font-size:12px;">Yuchun Fan et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">强化学习在提升大语言模型多步推理能力方面已证明有效，但其优势尚未充分转化为多语言场景。现有方法面临根本权衡：优先保证输入语言一致性会严重损害推理质量，而优先保证推理质量又常导致非预期地偏向英语。本文提出LANG框架，利用语言条件提示引导非英语推理任务的探索，并通过渐进式衰减机制逐步撤除支架，以及语言自适应开关根据特定语言难度定制学习范围，在挑战性多语言数学基准上实现了推理性能与语言一致性的双重提升，且能推广至数学之外的任务。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语言条件提示</strong>：利用针对特定语言的条件化提示信号，引导模型在非英语推理任务中进行有效探索，为多语言推理提供定向支架支持</li><li style="margin-bottom:0;"><strong>渐进式衰减机制</strong>：设计提示依赖度的渐进式衰减计划，逐步降低模型对辅助提示的依赖程度，最终实现无提示的独立推理能力</li><li style="margin-bottom:0;"><strong>语言自适应开关</strong>：构建根据特定语言难度动态调整学习范围的自适应机制，针对不同语言的复杂程度定制差异化的训练策略</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双语能力平衡</strong>：突破输入语言一致性与推理质量之间的传统权衡困境，实现非英语推理性能与语言保持的双目标协同优化</li><li style="margin-bottom:0;"><strong>动态支架撤离</strong>：创新性地将渐进式衰减与自适应学习相结合，在提供必要支持的同时确保模型最终获得不依赖提示的自主推理能力</li><li style="margin-bottom:0;"><strong>跨任务泛化架构</strong>：设计可超越数学领域限制的通用框架，促进模型各层面对多语言对齐的一致性，展现广泛的任务适应性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>数学推理提升</strong>：在挑战性多语言数学基准测试上，LANG显著增强了非英语场景的推理性能，同时有效维持了输出语言与输入语言的一致性</li><li style="margin-bottom:0;"><strong>语言漂移消除</strong>：成功解决了推理优化过程中常见的非预期英语偏向问题，确保多语言环境下的语言使用忠实度</li><li style="margin-bottom:0;"><strong>层级对齐改善</strong>：框架泛化至数学之外的任务，促进了模型不同层级间语言对齐一致性的整体提升，展现出深层表征优化效果</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22567" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22567</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>BeLink: Biomedical Entity Linking Meets Generative Re-Ranking</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22501</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ACM SIGIR 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">BeLink：生物医学实体链接的生成式重排序方法</span>
+                        <span style="color:#666;font-size:12px;">Darya Shlyk et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">尽管近期有所进展，基于大型语言模型的生物医学实体链接（BEL）仍存在计算效率低下、难以在实际场景中部署的问题。本研究表明，对开源生成模型进行指令微调可有效应用于BEL流水线的重排序阶段。我们提出了一种集合式指令微调方法，实现快速准确的候选选择。该方法在多个BEL基准测试中表现优异，链接准确率提升3%-24%，同时推理时间较最先进方法有所减少。我们将生成式重排序器集成至BeLink——一个模块化的端到端系统，专为实际BEL应用而设计。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>集合式微调</strong>：提出集合级指令微调范式，将候选实体集作为整体输入生成模型，通过单次推理完成多候选比较与排序，突破传统逐对或逐点重排序的效率瓶颈</li><li style="margin-bottom:0;"><strong>生成式重排</strong>：利用指令微调的开源生成模型替代传统判别模型，在重排序阶段直接生成最优实体标识符，实现自然语言理解与实体链接任务的统一建模</li><li style="margin-bottom:0;"><strong>模块化系统</strong>：构建BeLink端到端系统，将候选检索与生成重排解耦为独立模块，支持灵活替换各组件，适配不同医疗场景的实际部署需求</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>效率精度兼顾</strong>：首次验证开源生成模型经指令微调后可在重排序阶段同时实现准确率大幅提升与推理时间降低，打破LLM应用高成本高延迟的固有认知</li><li style="margin-bottom:0;"><strong>集合输入策略</strong>：创新性地将实体链接重排序重构为集合选择任务，避免传统方法对候选逐一评分的高开销，通过上下文学习实现候选间关联信息的有效利用</li><li style="margin-bottom:0;"><strong>实用化设计</strong>：针对生物医学领域实际应用痛点，系统优化模型规模与推理流程的平衡，使先进BEL技术从实验室走向临床等真实场景成为可能</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能显著提升</strong>：在多个BEL基准测试中，链接准确率较现有最优方法提升3%至24%，验证生成式重排序在生物医学实体消歧中的有效性</li><li style="margin-bottom:0;"><strong>推理效率优化</strong>：相比当前最先进方法，实际推理时间实现有效缩减，证明精心设计的生成模型可在精度与速度间取得优于大型专有模型的平衡</li><li style="margin-bottom:0;"><strong>应用前景明确</strong>：BeLink系统的模块化架构与端到端集成方案，为生物医学实体链接在电子病历分析、文献挖掘等实际场景的大规模部署提供可行路径</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22501" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22501</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>ChronoMedKG: A Temporally-Grounded Biomedical Knowledge Graph and Benchmark for Clinical Reasoning</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22734</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">ChronoMedKG：面向临床推理的时间感知生物医学知识图谱与基准</span>
+                        <span style="color:#666;font-size:12px;">Md Shamim Ahmed et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现有生物医学知识图谱将疾病关联视为静态事实，但时间信息对临床推理至关重要。本文提出ChronoMedKG，一个时序生物医学知识图谱，包含460,497条有证据支持的三元组（从1300万原始抽取中筛选），覆盖13,431种疾病。每条关联均绑定发病窗口或进展阶段等时间成分，并由PMID可追溯证据和多信号可信度评分支持。该图通过疾病自主多智能体流水线构建，多个前沿LLM独立从PubMed和PMC文献中提取知识，仅保留多模型共识支持、通过可信度过滤及本体对齐的关系。ChronoMedKG与Orphadata一致性达92.7%，为6,250种HPOA、Orphadata和Phenopackets中缺失的疾病添加时间基础。同时推出ChronoTQA基准，包含3,341道跨八类任务的问题。前沿LLM从静态到时间性问题下降约30分；ChronoMedKG检索挽救47-65%的长尾失败，而HPOA-RAG仅17-29%。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多智能体抽取</strong>：多个前沿LLM独立从PubMed和PMC文献中提取生物医学知识，通过疾病自主的多智能体流水线实现规模化知识获取，确保抽取过程的独立性和覆盖度</li><li style="margin-bottom:0;"><strong>多信号可信度</strong>：对抽取关系进行PMID可追溯的证据支持和多信号可信度评分，仅保留多模型共识支持且通过过滤的关系，保证知识的高质量与可靠性</li><li style="margin-bottom:0;"><strong>时序本体对齐</strong>：将抽取的时间成分与现有医学本体进行对齐整合，使时序信息标准化并兼容现有知识体系，实现与Orphadata等数据库的对比验证</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>时序知识建模</strong>：突破传统KG将疾病关联视为静态事实的局限，为每条关联绑定发病窗口或进展阶段等时间成分，使临床推理能考虑症状随时间变化的动态诊断意义</li><li style="margin-bottom:0;"><strong>疾病自主流水线</strong>：设计以疾病为中心的多智能体协作架构，各LLM独立处理特定疾病文献并交叉验证，避免单一模型偏差，提升知识抽取的准确性和召回率</li><li style="margin-bottom:0;"><strong>长时序覆盖填补</strong>：为6,250种现有数据库缺失的疾病添加时序基础，包括1,657种Orphanet编码的罕见病，显著扩展时序临床知识的覆盖范围</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>时序推理显著更难</strong>：前沿LLM从静态问题转向时间性问题时性能下降约30个百分点，揭示当前大模型在纵向临床推理方面存在严重能力短板</li><li style="margin-bottom:0;"><strong>检索增强效果突出</strong>：基于ChronoMedKG的检索增强能挽救47-65%的LLM长尾失败案例，远超HPOA-RAG的17-29%，证明时序知识库对临床RAG系统的关键价值</li><li style="margin-bottom:0;"><strong>数据质量获验证</strong>：ChronoMedKG与Orphadata专家标注数据达92.7%一致性，同时大幅扩展时序覆盖，兼顾准确性与完备性，为临床时序推理提供可靠基础设施</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22734" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22734</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Tokenisation via Convex Relaxations</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22821</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">基于凸松弛的分词方法</span>
+                        <span style="color:#666;font-size:12px;">Jan Tempus et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">Tokenisation是当前NLP流程中不可或缺的一部分。现有的分词算法如BPE和Unigram均为贪心算法——它们只做出局部最优决策，而不考虑整体词汇表。本文将分词器构建重新表述为线性规划问题，并使用凸优化工具求解，提出了一种名为ConvexTok的新算法。研究发现ConvexTok在内在分词指标和语言模型的bits-per-byte（BpB）方面均有持续提升；在下游任务性能上也有所改善，但一致性较低。此外，ConvexTok允许用户通过下界来认证其分词器相对于特定目标的最优性差距，经验表明在常见词汇量下其距离最优解在1%以内。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>凸优化求解</strong>：将分词器构建问题重新表述为线性规划形式，利用凸优化工具进行全局求解，突破传统贪心算法的局部最优局限</li><li style="margin-bottom:0;"><strong>最优性认证</strong>：通过计算下界来量化分词器与最优解的距离，为用户提供可证明的最优性保证，增强算法的可解释性</li><li style="margin-bottom:0;"><strong>BPE与Unigram对比</strong>：系统比较ConvexTok与主流贪心分词算法在多项指标上的性能差异，验证凸松弛方法的有效性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>线性规划建模</strong>：首次将分词问题形式化为线性规划框架，从全局视角优化词汇表构建，而非依赖局部最优的贪心决策</li><li style="margin-bottom:0;"><strong>ConvexTok算法</strong>：基于凸松弛原理设计全新分词算法，在保持计算可行性的同时获得接近全局最优的解</li><li style="margin-bottom:0;"><strong>可证明边界特性</strong>：引入理论下界机制，使分词器质量可被量化认证，这是现有贪心算法所不具备的独特优势</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>BpB指标提升</strong>：ConvexTok在语言模型的bits-per-byte指标上表现一致且显著优于传统方法，表明更好的压缩效率</li><li style="margin-bottom:0;"><strong>内在指标优化</strong>：在各项内在分词评估指标上，ConvexTok均展现出稳定且持续的性能改进效果</li><li style="margin-bottom:0;"><strong>最优性逼近验证</strong>：经验结果表明在常见词汇规模下，ConvexTok的解距离理论最优值不超过1%，验证了方法的高度有效性</li><li style="margin-bottom:0;"><strong>下游任务波动</strong>：虽然下游任务性能有所提升，但改善程度不如内在指标稳定，提示分词优化与下游性能之间存在复杂关联</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22821" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22821</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>More Context, Larger Models, or Moral Knowledge? A Systematic Study of Schwartz Value Detection in Political Texts</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22641</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">政治文本中施瓦茨价值观检测：语境、模型与道德知识的系统研究</span>
+                        <span style="color:#666;font-size:12px;">Víctor Yeste et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">检测政治文本中的Schwartz价值观具有挑战性，因为隐含线索常依赖周围论证及相邻价值观的细微区分。本研究系统比较了句子级、窗口级和全文档输入，无RAG与基于精选道德知识库的检索增强设置，监督式DeBERTa-v3-base/large编码器，以及120亿至1230亿参数的零样本大语言模型。研究发现更多上下文并非总是更好：全文档上下文对监督编码器提升3.8-4.8个macro-F1点，但对零样本LLM效果不一致；检索到的道德知识在各模型家族和上下文条件下均更稳定有效；模型规模扩大不保证性能提升；早期融合优于晚期融合和交叉注意力RAG变体。价值观层面分析表明，上下文和检索对情境性强或概念易混淆的价值观帮助最大。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多层级上下文</strong>：对比句子、窗口、全文档三种输入粒度，发现全文档对监督编码器有效但零样本LLM受益不一致，揭示上下文长度与模型家族的复杂交互关系</li><li style="margin-bottom:0;"><strong>检索增强融合</strong>：构建精选道德知识库，测试早期融合、晚期融合及交叉注意力RAG变体，证明早期融合在各条件下均稳定提升性能</li><li style="margin-bottom:0;"><strong>多规模模型评测</strong>：涵盖DeBERTa-v3-base/large及120亿至1230亿参数LLM，系统检验模型规模与价值观检测性能的非线性关系</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>上下文知识联合评估</strong>：首次在同一框架下系统比较上下文扩展与显式道德知识注入的相对贡献，突破以往孤立优化单一因素的局限</li><li style="margin-bottom:0;"><strong>价值观定向检索</strong>：针对Schwartz价值观特性构建专门道德知识库，实现细粒度价值区分所需的领域知识精准增强</li><li style="margin-bottom:0;"><strong>融合策略对比分析</strong>：全面评测早期融合、晚期融合及交叉注意力机制，为价值观检测任务提供RAG架构选择的实证依据</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>上下文效果分异</strong>：全文档上下文显著提升监督编码器性能3.8-4.8 macro-F1点，但对零样本LLM无一致增益，否定更长输入即更优的默认假设</li><li style="margin-bottom:0;"><strong>知识检索普适</strong>：道德知识检索在各模型家族和上下文条件下均有效，早期融合为最优RAG范式，验证显式知识注入的稳健价值</li><li style="margin-bottom:0;"><strong>规模扩展非单调</strong>：从DeBERTa-base到large、120亿到更大LLM的扩容不保证提升，模型选择应结合价值观类型与任务特性综合考量</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22641" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22641</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Beyond Temperature: Hyperfitting as a Late-Stage Geometric Expansion</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22579</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ICML 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">超拟合：超越温度的晚期几何膨胀</span>
+                        <span style="color:#666;font-size:12px;">Meimingwei Li et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究了大型语言模型微调中的"超拟合"现象，即在小型数据集上微调至接近零训练损失反而能提升开放式生成质量并减少贪心解码中的重复。研究发现该现象本质上不同于分布锐化（温度缩放无法实现同等效果），也否定了静态词汇重加权的假设，揭示其依赖动态、上下文相关的排序重排机制。层-wise分析将该效应定位到最终Transformer块的"终端扩展"，其特征空间的几何扩展（ΔDim约+80.8）促进了深层尾部token的提升。此外，作者提出Late-Stage LoRA策略，仅更新最后5层即可实现稳健生成。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>超拟合现象</strong>：在小型数据集上将大语言模型微调至近零训练损失，意外提升开放式生成质量并缓解贪心解码中的重复问题，与传统过拟合认知相反</li><li style="margin-bottom:0;"><strong>熵匹配控制</strong>：设计熵匹配的对照实验，证明温度缩放无法复现超拟合的多样性增益，从机制上区分超拟合与简单的分布锐化操作</li><li style="margin-bottom:0;"><strong>终端扩展分析</strong>：通过逐层分析定位效应至最终Transformer块，发现特征空间发生显著几何扩展（ΔDim约+80.8），促进深层尾部token的晋升</li><li style="margin-bottom:0;"><strong>Late-Stage LoRA</strong>：提出仅更新最后5层的靶向微调策略，以最小参数更新实现稳健生成，为高效部署超拟合效应提供实用方案</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>动态排序机制</strong>：否定静态词汇重加权的假设，通过消融实验证明超拟合依赖上下文相关的动态排序重排机制，而非固定的词汇概率调整</li><li style="margin-bottom:0;"><strong>几何扩展解释</strong>：揭示超拟合的本质是特征空间的几何扩展而非熵减，为理解低熵分布下的生成多样性提供全新几何视角</li><li style="margin-bottom:0;"><strong>终端层定位</strong>：首次将超拟合效应精确局部化至最终Transformer块，突破以往对模型整体行为的模糊描述，实现机制层面的精准定位</li><li style="margin-bottom:0;"><strong>高效微调策略</strong>：创新性地提出仅微调末层即可诱导超拟合效应，大幅降低计算成本，使该现象从学术发现走向实际应用</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>异于温度缩放</strong>：超拟合现象在机制上 fundamentally distinct from 分布锐化，熵匹配的实验证据彻底否定二者等价的猜想，确立其独立研究价值</li><li style="margin-bottom:0;"><strong>动态非静态</strong>：静态词汇重加权假设被证伪，超拟合的核心在于动态、上下文依赖的排序重排，揭示其复杂的语境适应性本质</li><li style="margin-bottom:0;"><strong>终端块关键</strong>：最终Transformer块是超拟合效应的关键载体，其特征空间几何扩展（ΔDim≈+80.8）是促进深层token晋升的直接驱动力</li><li style="margin-bottom:0;"><strong>末层微调可行</strong>：Late-Stage LoRA仅更新最后5层即可实现稳健生成，证明超拟合效应可通过高度参数高效的策略诱导，具备实际部署潜力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22579" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22579</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/24</p>
+        </div>
+    </div>
+</body>
+</html>

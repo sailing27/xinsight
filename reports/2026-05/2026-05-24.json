@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-24",
+  "title": "大模型效率革命与认知边界突破 从提示优化到超拟合新范式",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2602.19024",
+      "title": "Towards Calibrating Prompt Tuning of Vision-Language Models",
+      "chinese_title": "面向视觉-语言模型提示调优的校准研究",
+      "authors": "Ashshak Sharifdeen et al.",
+      "url": "https://arxiv.org/abs/2602.19024"
+    },
+    {
+      "id": "2605.22567",
+      "title": "LANG: Reinforcement Learning for Multilingual Reasoning with Language-Adaptive Hint Guidance",
+      "chinese_title": "LANG：基于语言自适应提示引导的多语言推理强化学习",
+      "authors": "Yuchun Fan et al.",
+      "url": "https://arxiv.org/abs/2605.22567"
+    },
+    {
+      "id": "2605.22501",
+      "title": "BeLink: Biomedical Entity Linking Meets Generative Re-Ranking",
+      "chinese_title": "BeLink：生物医学实体链接的生成式重排序方法",
+      "authors": "Darya Shlyk et al.",
+      "url": "https://arxiv.org/abs/2605.22501"
+    },
+    {
+      "id": "2605.22734",
+      "title": "ChronoMedKG: A Temporally-Grounded Biomedical Knowledge Graph and Benchmark for Clinical Reasoning",
+      "chinese_title": "ChronoMedKG：面向临床推理的时间感知生物医学知识图谱与基准",
+      "authors": "Md Shamim Ahmed et al.",
+      "url": "https://arxiv.org/abs/2605.22734"
+    },
+    {
+      "id": "2605.22821",
+      "title": "Tokenisation via Convex Relaxations",
+      "chinese_title": "基于凸松弛的分词方法",
+      "authors": "Jan Tempus et al.",
+      "url": "https://arxiv.org/abs/2605.22821"
+    },
+    {
+      "id": "2605.22641",
+      "title": "More Context, Larger Models, or Moral Knowledge? A Systematic Study of Schwartz Value Detection in Political Texts",
+      "chinese_title": "政治文本中施瓦茨价值观检测：语境、模型与道德知识的系统研究",
+      "authors": "Víctor Yeste et al.",
+      "url": "https://arxiv.org/abs/2605.22641"
+    },
+    {
+      "id": "2605.22579",
+      "title": "Beyond Temperature: Hyperfitting as a Late-Stage Geometric Expansion",
+      "chinese_title": "超拟合：超越温度的晚期几何膨胀",
+      "authors": "Meimingwei Li et al.",
+      "url": "https://arxiv.org/abs/2605.22579"
+    }
+  ],
+  "generated_at": "2026-05-23T22:19:53.512Z",
+  "org": "AI研究室"
+}
