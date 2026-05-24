@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-25",
+  "title": "大模型创新突破 分词架构、具身语义与智能体安全新范式",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.22705",
+      "title": "Tokenization with Split Trees",
+      "chinese_title": "基于分裂树的文本分词方法",
+      "authors": "Craig W. Schmidt et al.",
+      "url": "https://arxiv.org/abs/2605.22705"
+    },
+    {
+      "id": "2605.22616",
+      "title": "Chinese sensorimotor and embodiment norms for 3,000 lexicalized concepts",
+      "chinese_title": "3000个词汇概念的中文感知运动与具身规范数据库",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.22616"
+    },
+    {
+      "id": "2605.22643",
+      "title": "Boiling the Frog: A Multi-Turn Benchmark for Agentic Safety",
+      "chinese_title": "温水煮蛙：智能体安全多轮测试基准",
+      "authors": "Piercosma Bisconti et al.",
+      "url": "https://arxiv.org/abs/2605.22643"
+    },
+    {
+      "id": "2605.22447",
+      "title": "Cohesion-6K: An Arabic Dataset for Analyzing Social Cohesion and Conflict in Online Discourse",
+      "chinese_title": "Cohesion-6K：阿拉伯语在线话语社会凝聚力与冲突分析数据集",
+      "authors": "Aisha Ali Al-Athba et al.",
+      "url": "https://arxiv.org/abs/2605.22447"
+    },
+    {
+      "id": "2605.22435",
+      "title": "Assisted Counterspeech Writing at the Crossroads of Hate Speech and Misinformation",
+      "chinese_title": "辅助反言论撰写：仇恨言论与错误信息的交汇点",
+      "authors": "Genoveffa Martone et al.",
+      "url": "https://arxiv.org/abs/2605.22435"
+    },
+    {
+      "id": "2605.22411",
+      "title": "DeferMem: Query-Time Evidence Distillation via Reinforcement Learning for Long-Term Memory QA",
+      "chinese_title": "DeferMem：基于强化学习的查询时证据蒸馏长期记忆问答",
+      "authors": "Jianing Yin et al.",
+      "url": "https://arxiv.org/abs/2605.22411"
+    },
+    {
+      "id": "2605.22310",
+      "title": "Pattern-and-root inflectional morphology: the Arabic broken plural",
+      "chinese_title": "阿拉伯语破碎复数：模式-词根屈折形态学",
+      "authors": "Alexis Amid Neme et al.",
+      "url": "https://arxiv.org/abs/2605.22310"
+    }
+  ],
+  "generated_at": "2026-05-24T22:16:27.166Z",
+  "org": "AI研究室"
+}

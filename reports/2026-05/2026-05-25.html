@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型创新突破 分词架构、具身语义与智能体安全新范式 | 2026/5/25</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型创新突破 分词架构、具身语义与智能体安全新范式 | 2026/5/25</h1>
+                <div class="date">2026/5/25 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦大模型基础设施优化、智能体安全评估及多语言多模态资源建设三大核心主题，揭示了AI技术从底层架构到上层应用的全栈创新趋势。技术层面呈现三个共性方向：一是<strong>结构解耦与范式逆转</strong>，ToaST的分割树-词表解耦与阿拉伯语形态学的模式-根音模型逆转，均通过重构基础表示框架释放性能空间；二是<strong>动态交互评估</strong>，Boiling the Frog与DeferMem分别将安全评测和证据蒸馏从静态输出转向多轮行为建模，适应智能体时代的交互本质；三是<strong>低资源场景的深度覆盖</strong>，汉语具身规范库与阿拉伯语凝聚力数据集的构建，填补非印欧语系及社会计算领域的资源鸿沟。行业启示在于：大模型竞争正从参数规模转向基础设施效率（如11%词元削减直接降低推理成本），安全评估亟需从"内容审查"升级为"行为追踪"，而高质量领域数据与跨语言资源将成为模型能力差异化的关键壁垒。这些进展共同指向一个更专业化、场景化且负责任的AI技术生态演进路径。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Tokenization with Split Trees</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22705</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">基于分裂树的文本分词方法</span>
+                        <span style="color:#666;font-size:12px;">Craig W. Schmidt et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出Tokenization with Split Trees（ToaST），一种直接优化压缩率的子词分词方法。ToaST通过预计算的字节n-gram计数将每个预分词贪婪地分割为完全二叉树，该过程独立于词表。给定词表后，推理过程递归遍历每个分割树，在每条路径上发射首个命中词表的节点。词表选择被建模为整数规划（IP）问题，在给定推理过程下最小化所有分割树的总词元数。其线性规划（LP）松弛在实践中接近整数解，可证明得到近似最优词表，训练时间经验上随分割树数量呈二次缩放。在英文文本上，ToaST在40,960及以上词表规模下比BPE、WordPiece和UnigramLM减少超过11%的词元数，降低使用此分词器的模型的推理词元数，从而有效延长上下文长度。ToaST也比基线更少使用常见单字节词元，显著提升Rényi效率。在训练1.5B参数语言模型的实验中，ToaST获得最高CORE分数，以2.6%–7.6%幅度超越基线（三个中有两个显著），并在22个单独任务中的13个上取得最佳表现。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分割树构建</strong>：利用预计算的字节n-gram计数，通过贪婪策略将每个预分词独立分割为完全二叉树结构，无需依赖任何词表即可完成树形结构的构建过程</li><li style="margin-bottom:0;"><strong>递归推理机制</strong>：给定词表后沿分割树递归下降，在每条路径上选择首个遇到的词表内节点进行发射，实现高效的分词推理过程</li><li style="margin-bottom:0;"><strong>整数规划求解</strong>：将词表选择形式化为最小化总词元数的整数规划问题，通过线性规划松弛获得实践中接近整数解的近似最优词表</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>无词表树构建</strong>：突破传统方法对词表的依赖，首创在分词前独立构建分割树的范式，使树结构与词表解耦，为后续优化提供全新框架</li><li style="margin-bottom:0;"><strong>压缩直接优化</strong>：改变现有分词方法间接优化目标的做法，直接以压缩率为优化目标设计分词算法，从根本上提升分词效率与效果</li><li style="margin-bottom:0;"><strong>近优理论保证</strong>：通过LP松弛获得可证明的近似最优解，在保持理论严谨性的同时实现高效计算，训练复杂度仅随分割树数量二次增长</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>词元数量锐减</strong>：在40,960及以上词表规模下，ToaST较BPE、WordPiece和UnigramLM减少超11%词元数，直接降低推理成本并有效扩展模型上下文长度</li><li style="margin-bottom:0;"><strong>Rényi效率跃升</strong>：显著减少常见单字节词元使用频率，改善词元分布的均衡性，在信息论意义下实现分词效率的实质性提升</li><li style="margin-bottom:0;"><strong>下游任务领先</strong>：1.5B参数模型实验获最高CORE分数，领先基线2.6%–7.6%，22项任务中13项最佳，验证分词优化对语言模型性能的关键影响</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22705" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22705</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Chinese sensorimotor and embodiment norms for 3,000 lexicalized concepts</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22616</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">3000个词汇概念的中文感知运动与具身规范数据库</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本研究构建了包含3,000个汉语词汇化概念的规范数据库，涵盖11维感觉运动评分和单维具身性评分，由378名汉语母语者评定。研究验证了感觉运动信息对词汇加工的促进作用，并发现感觉运动特征可从纯语言表征中部分恢复，支持分布式语言使用编码具身概念结构的观点。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多维感觉运动评分</strong>：采用11维感觉运动量表对汉语词汇进行系统评定，覆盖视觉、听觉、触觉、嗅觉、味觉、口腔、手部、足部、头部、躯干及内部感觉等维度</li><li style="margin-bottom:0;"><strong>具身性强度指标</strong>：引入感知具身强度理论指标PSE，构建传感器运动复合变量与七类常见复合变量进行预测效能比较</li><li style="margin-bottom:0;"><strong>表征相似性分析</strong>：运用RSA方法检验感觉运动空间的关系几何结构能否从语言表征中恢复，评估具身知识在分布式语义中的编码程度</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>大规模汉语规范库</strong>：首次为3,000个汉语概念建立11维感觉运动规范数据，填补非印欧语系大规模具身语义资源的空白</li><li style="margin-bottom:0;"><strong>PSE理论新指标</strong>：基于具身感知强度理论开发新型复合变量，较传统Minkowski距离等指标更精准预测词汇决策绩效</li><li style="margin-bottom:0;"><strong>跨模态恢复比较</strong>：系统揭示不同感觉通道的可恢复性差异，视觉与听觉维度显著优于化学感觉维度的语言可编码性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>PSE最优预测效度</strong>：PSE-传感器运动变量与Minkowski-3为词汇决策任务最强预测因子，证实感觉运动信息促进词汇加工</li><li style="margin-bottom:0;"><strong>语言具身编码有限</strong>：简单回归模型可部分恢复感觉运动评分，平均Spearman r=.62，但具身知识无法完全从语言统计中推导</li><li style="margin-bottom:0;"><strong>关系几何部分保留</strong>：感觉运动空间的整体结构在语言表征中可部分重建，支持分布式语义理论对具身知识的弱编码假设</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22616" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22616</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Boiling the Frog: A Multi-Turn Benchmark for Agentic Safety</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22643</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">温水煮蛙：智能体安全多轮测试基准</span>
+                        <span style="color:#666;font-size:12px;">Piercosma Bisconti et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出Boiling the Frog基准测试，用于评估工具使用型AI模型在企业办公环境中是否易受增量式攻击。该基准通过多轮状态化评估，从良性工作空间编辑逐步引入风险请求，检验模型是否会在持续交互中执行危险操作。基于欧盟AI法案构建三级操作风险分类体系，对9个模型的测试显示总体严格攻击成功率为44.4%，其中Gemini 3.1 Flash Lite高达92.9%，Code of Practice失控场景类别平均ASR达93.3%。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多轮状态评估</strong>：构建持久化工作空间环境，通过链式交互追踪模型在多次工具调用后的状态变化，而非仅分析单轮文本输出，实现对智能体行为的动态安全监控</li><li style="margin-bottom:0;"><strong>增量攻击注入</strong>：将风险载荷置于可控轮次位置，从无害请求逐步过渡到危险操作，模拟'温水煮蛙'式社会工程攻击对模型的渗透效果</li><li style="margin-bottom:0;"><strong>三级风险分类</strong>：融合Boiling the Frog风险、AI法案附件I/III高风险场景及通用AI行为准则，建立结构化的操作风险分类框架指导测试场景设计</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>行为导向评估</strong>：将安全评估对象从模型'说了什么'转向'做了什么'，突破传统文本生成安全基准的局限，适应智能体时代AI系统与环境交互的新型安全范式</li><li style="margin-bottom:0;"><strong>状态化评分机制</strong>：以工作空间最终产物状态是否不安全作为判定标准，而非仅检测响应内容中的拒绝信号，避免模型口头拒绝但实际执行危险操作的评估盲区</li><li style="margin-bottom:0;"><strong>真实场景嵌入</strong>：基于企业办公环境设计代码执行、文档处理等实际任务流程，使攻击请求自然融入正常工作上下文，提升测试的生态效度和对抗逼真性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模型安全差异显著</strong>：9款模型ASR跨度从Claude Haiku 4.5的20.5%到Gemini 3.1 Flash Lite的92.9%，Seed 2.0 Lite亦超80%，表明当前智能体安全防护能力分布极不均衡</li><li style="margin-bottom:0;"><strong>失控场景高危</strong>：Code of Practice类别中的失控场景平均ASR高达93.3%，揭示模型在渐进式引导下极易丧失对关键操作的管控能力，构成严重安全缺口</li><li style="margin-bottom:0;"><strong>传统防御失效</strong>：单纯依赖提示词层面的安全对齐不足以应对多轮交互中的渐进式操纵，智能体部署需引入状态追踪与行为级防护机制以弥补现有安全架构漏洞</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22643" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22643</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Cohesion-6K: An Arabic Dataset for Analyzing Social Cohesion and Conflict in Online Discourse</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22447</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">Cohesion-6K：阿拉伯语在线话语社会凝聚力与冲突分析数据集</span>
+                        <span style="color:#666;font-size:12px;">Aisha Ali Al-Athba et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本研究提出Cohesion-6K数据集，包含6000条阿拉伯语Facebook公开帖子，用于分析在线话语中的社会凝聚力与冲突动态。数据由人工与ChatGPT辅助标注，分为冲突、解决、社区参与、支持性互动和共享价值五类，标注一致性达Cohen's kappa=0.85。量化分析发现冲突导向帖子的用户互动量是解决导向帖子的2-4倍，揭示了分裂性话语在阿拉伯社交媒体中获得不成比例可见度的现象。数据集将以开放许可发布，支持计算社会科学、数字传播和阿拉伯语自然语言处理研究。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>人机协同标注</strong>：结合专家人工判断与ChatGPT辅助预标注，再由训练有素的标注员验证，在提升效率的同时保证标注质量</li><li style="margin-bottom:0;"><strong>五类话语分类</strong>：构建从冲突到凝聚力的连续谱系，包括冲突、解决、社区参与、支持性互动和共享价值五个话语类别</li><li style="margin-bottom:0;"><strong>一致性评估方法</strong>：采用Cohen's kappa系数量化标注者间一致性，达到0.85的实质性一致水平，确保数据可靠性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>凝聚力计算探索</strong>：突破传统显性毒性检测范式，首次针对阿拉伯语社交媒体建立社会凝聚力与分裂叙事的交互分析框架</li><li style="margin-bottom:0;"><strong>冲突-凝聚力连续体</strong>：提出五层级话语分类体系，超越二元对立模型，实现从冲突到凝聚力的渐变式社会动态刻画</li><li style="margin-bottom:0;"><strong>巴以议题数据集</strong>：聚焦以色列占领巴勒斯坦这一高度极化议题，填补阿拉伯语在线话语计算研究的关键空白</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>参与度差距显著</strong>：冲突导向帖子获得的用户互动量是解决导向帖子的2至4倍，统计显著性p<0.01</li><li style="margin-bottom:0;"><strong>分裂话语放大效应</strong>：阿拉伯社交媒体空间中存在系统性机制，使分裂性话语获得不成比例的高可见度与传播优势</li><li style="margin-bottom:0;"><strong>开放资源价值</strong>：Cohesion-6K作为透明可复用的研究资源，为计算社会科学、数字传播和阿拉伯语自然语言处理提供基础支撑</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22447" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22447</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Assisted Counterspeech Writing at the Crossroads of Hate Speech and Misinformation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22435</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">辅助反言论撰写：仇恨言论与错误信息的交汇点</span>
+                        <span style="color:#666;font-size:12px;">Genoveffa Martone et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">仇恨言论与虚假信息常在网上共同出现，加剧偏见与极化。本研究探索利用大语言模型辅助专家撰写反言论，针对两者共存场景，测试三种知识驱动生成策略：事实核查指南与文章、非政府组织指南与报告、以及两者混合策略。23位专家修订生成的反言论，并通过人工与自动指标评估。结果显示大语言模型在40%情况下能生成合格反言论，但专家编辑显著提升自然度、全面性与指南遵循度。混合策略在众包评估中最有效，兼具事实纠正、刻板印象缓解与共情参与。研究发布了包含仇恨与虚假信息声明、专家验证反言论及支撑知识的数据集。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>知识驱动生成</strong>：基于事实核查指南、非政府组织报告等外部知识源引导大语言模型生成反言论，提升内容准确性与针对性</li><li style="margin-bottom:0;"><strong>专家后编辑</strong>：组织23位领域专家对模型生成内容进行人工修订，优化自然度、全面性与指南遵循度</li><li style="margin-bottom:0;"><strong>混合知识策略</strong>：整合事实核查机构与非政府组织的指南文档，构建融合多方专业知识的生成方案</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>交叉场景研究</strong>：首次将反言论生成研究从单一仇恨言论或虚假信息场景，拓展至两者共存的真实复杂网络环境</li><li style="margin-bottom:0;"><strong>策略对比实验</strong>：系统比较事实核查导向、非政府组织导向及混合知识三种驱动策略的生成效果差异</li><li style="margin-bottom:0;"><strong>专家验证数据集</strong>：构建并发布包含仇恨与虚假信息声明、专家修订反言论及支撑知识的专业标注数据集</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模型基础能力</strong>：大语言模型独立生成反言论时仅40%案例达到合格标准，存在明显质量瓶颈</li><li style="margin-bottom:0;"><strong>专家编辑价值</strong>：人工修订显著改善生成内容的自然表达、信息全面性与专业指南符合程度</li><li style="margin-bottom:0;"><strong>混合策略最优</strong>：融合事实核查与非政府组织知识的混合策略在众包评估中表现最佳，实现事实纠正、偏见消解与共情沟通的多重目标</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22435" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22435</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>DeferMem: Query-Time Evidence Distillation via Reinforcement Learning for Long-Term Memory QA</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22411</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">DeferMem：基于强化学习的查询时证据蒸馏长期记忆问答</span>
+                        <span style="color:#666;font-size:12px;">Jianing Yin et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大语言模型智能体在长期记忆问答中仍面临挑战，因为支持答案的证据往往分散在漫长的对话历史中，并埋没在大量无关内容里。现有记忆系统通常在查询已知前处理记忆，然后基于相似度而非对回答查询的效用检索结果单元，导致下游回答器需要去噪检索候选并重建查询特定证据。本文提出DeferMem框架，将问题解耦为高召回候选检索和查询条件证据蒸馏。该框架使用轻量级段链接结构组织原始历史并在查询时检索广泛候选，然后应用基于DistillPO（一种强化学习算法）训练的记忆蒸馏器，将高召回但高噪声的候选蒸馏为忠实、自包含且查询条件的证据。DistillPO将检索后证据蒸馏形式化为包含消息选择和证据重写的结构化动作，通过分解门控奖励管道和结构对齐优势分配进行优化。在LoCoMo和LongMemEval-S上，DeferMem在问答准确率和记忆系统效率方面超越强基线，实现最高问答准确率、最快运行速度和零商业API令牌成本的记忆操作。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>段链接结构</strong>：采用轻量级段链接结构组织原始对话历史，支持在查询时刻快速检索广泛候选，为高召回证据定位提供高效基础架构</li><li style="margin-bottom:0;"><strong>查询条件蒸馏</strong>：在查询时刻将高召回但高噪声的候选记忆蒸馏为忠实、自包含且针对具体查询的证据，实现动态去噪与重构</li><li style="margin-bottom:0;"><strong>分解门控奖励</strong>：设计分解且门控的奖励管道，从有效性到质量检查逐级控制奖励组件，并将任务级正确性反馈早期暴露给模型</li><li style="margin-bottom:0;"><strong>结构对齐优势</strong>：为结构化输出中的每个奖励分配其负责的输出跨度，实现精细化的优势分配与信用归属，提升策略优化稳定性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>DistillPO算法</strong>：首创将检索后证据蒸馏形式化为结构化动作的强化学习算法，整合消息选择与证据重写为统一决策过程</li><li style="margin-bottom:0;"><strong>延迟蒸馏机制</strong>：突破传统预处理方式，将证据精炼延迟至查询时刻执行，使记忆处理直接以查询效用为导向而非静态相似度</li><li style="margin-bottom:0;"><strong>零API成本设计</strong>：整个记忆操作过程无需调用商业API，在保持最高准确率的同时实现最快运行速度和零令牌成本</li><li style="margin-bottom:0;"><strong>证据自包含性</strong>：蒸馏输出具备自包含特性，无需下游回答器额外去噪或重建，显著降低下游模块负担与错误传播</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>准确率最优</strong>：在LoCoMo和LongMemEval-S基准上，DeferMem超越所有强基线方法，取得最高的长期记忆问答准确率</li><li style="margin-bottom:0;"><strong>效率领先</strong>：实现最快的运行速度，同时保持最高性能，证明查询时刻蒸馏在效率与效果间达到最优平衡</li><li style="margin-bottom:0;"><strong>成本归零</strong>：记忆操作完全零商业API令牌成本，为大规模部署提供经济可行的技术路径</li><li style="margin-bottom:0;"><strong>解耦有效性</strong>：高召回检索与查询条件蒸馏的解耦设计被验证为有效，能够分别优化覆盖率和精确度并协同工作</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22411" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22411</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Pattern-and-root inflectional morphology: the Arabic broken plural</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.22310</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">阿拉伯语破碎复数：模式-词根屈折形态学</span>
+                        <span style="color:#666;font-size:12px;">Alexis Amid Neme et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出了一种 substantially implemented 的阿拉伯语名词屈折形态学描述模型，特别关注阿拉伯语言学家对词典及其他语言资源的管理。该模型的突破在于将传统的根音-模式闪米特模型逆转为模式-根音模型，优先处理模式而非根音。模型涵盖破碎复数（通过修改词干形成的复数），基于闪米特形态学传统的根音和模式概念，但将屈折的形式描述与派生和语义分离。词典以词条形式组织，参考拼写完全标音。形态分析直接使用词语词典完成，无需形态音位规则。名词屈折分类简单、有序且详细，通过将元音数量指定为v或vv并忽略元音质量来简化单数模式分类。根音交替和正字法变化独立于模式进行事实性编码。三音根破碎复数名词按22个模式分为90类，四音根按3个模式分为70类，考虑仅影响单数的屈折变化后共形成300个屈折类。该编码方案已应用于3200个破碎复数名词词条。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模式优先法</strong>：将传统根音-模式模型逆转为模式-根音模型，优先处理模式而非根音，改变阿拉伯语形态分析的基本架构</li><li style="margin-bottom:0;"><strong>词典直析法</strong>：形态分析直接使用词语词典完成，不依赖形态音位规则，简化分析流程并提高可维护性</li><li style="margin-bottom:0;"><strong>元音量化法</strong>：通过将元音数量指定为v或vv并忽略元音质量，大幅简化单数模式分类体系</li><li style="margin-bottom:0;"><strong>独立编码法</strong>：根音交替和正字法变化独立于模式进行事实性编码，不采用深层根音或形态音位规则</li><li style="margin-bottom:0;"><strong>分类体系法</strong>：建立简单有序且详细的名词屈折分类体系，三音根22模式90类、四音根3模式70类</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模型逆转创新</strong>：突破传统闪米特根音-模式模型，首创模式-根音分析方法，从根本上改变阿拉伯语形态学描述范式</li><li style="margin-bottom:0;"><strong>屈折派生分离</strong>：将屈折的形式描述与派生和语义完全分离，保持形态描写的纯粹性和形式化程度</li><li style="margin-bottom:0;"><strong>破碎复数覆盖</strong>：系统纳入破碎复数这一阿拉伯语特有复杂现象，实现3200个词条的实际编码应用</li><li style="margin-bottom:0;"><strong>规则消除策略</strong>：摒弃深层根音、形态音位规则及正字法规则，采用基于事实的直接编码方式</li><li style="margin-bottom:0;"><strong>精细分类体系</strong>：构建160类扩展至300屈折类的精细分类系统，涵盖单复数各类屈折变化</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模式主导有效</strong>：模式优先于根音的处理策略能够有效描述阿拉伯语名词屈折形态，验证模型逆转的可行性</li><li style="margin-bottom:0;"><strong>词典直析可行</strong>：无需形态音位规则，直接基于标音词典即可完成阿拉伯语形态分析，降低系统复杂度</li><li style="margin-bottom:0;"><strong>分类体系完备</strong>：300个屈折类足以系统描述3200个破碎复数名词的屈折行为，证明分类体系的充分性</li><li style="margin-bottom:0;"><strong>元音简化合理</strong>：忽略元音质量仅保留数量区别（v/vv）即可有效区分单数模式，实现分类简化目标</li><li style="margin-bottom:0;"><strong>事实编码优越</strong>：根音交替和正字法变化的事实性独立编码优于规则推导方法，更利于语言资源管理</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.22310" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.22310</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/25</p>
+        </div>
+    </div>
+</body>
+</html>
