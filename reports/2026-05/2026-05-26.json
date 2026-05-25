@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-26",
+  "title": "大模型评测革新与智能进化 从基准诊断到自主提升的技术跃迁",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.23701",
+      "title": "Metadata Predictability Is Not Evidence Dependence: An Intervention-Based Audit for Weak-Label Benchmarks",
+      "chinese_title": "元数据可预测性非证据依赖性：弱标签基准的干预审计",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.23701"
+    },
+    {
+      "id": "2605.23170",
+      "title": "Positional Failures in Long-Context LLMs: A Blind Spot in Reasoning Benchmarks",
+      "chinese_title": "长上下文大模型的位置失效：推理基准测试的盲区",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.23170"
+    },
+    {
+      "id": "2605.23668",
+      "title": "OnePred: Next-Query Prediction via Recursive Intent Memory in Multi-Turn Conversations",
+      "chinese_title": "OnePred：基于递归意图记忆的多轮对话下一查询预测",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.23668"
+    },
+    {
+      "id": "2605.23454",
+      "title": "ARES: Automated Rubric Synthesis for Scalable LLM Reinforcement Learning",
+      "chinese_title": "ARES：面向可扩展大语言模型强化学习的自动化评分标准合成",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.23454"
+    },
+    {
+      "id": "2605.23180",
+      "title": "Self-Improving In-Context Learning",
+      "chinese_title": "自提升上下文学习",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.23180"
+    },
+    {
+      "id": "2605.23821",
+      "title": "Hierarchical Concept Geometry in Language Models Emerges from Word Co-occurrence",
+      "chinese_title": "语言模型层级概念几何源于词共现规律",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.23821"
+    },
+    {
+      "id": "2605.23721",
+      "title": "Is a Document Educational or Just Wikipedia-Style? -- Pitfalls of Classifier-Based Quality Filtering",
+      "chinese_title": "文档是否具教育价值还是仅维基风格？——基于分类器的质量过滤陷阱",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.23721"
+    }
+  ],
+  "generated_at": "2026-05-25T22:18:05.678Z",
+  "org": "AI研究室"
+}
