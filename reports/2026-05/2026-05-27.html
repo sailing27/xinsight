@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型评测革新与低资源应用突破 从梯度冲突到流式画像的全景演 | 2026/5/27</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型评测革新与低资源应用突破 从梯度冲突到流式画像的全景演 | 2026/5/27</h1>
+                <div class="date">2026/5/27 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示大模型技术正经历从"静态优化"向"动态协同"、从"单一任务"向"多目标统一"的范式转型，但核心瓶颈在于梯度冲突、跨域迁移失效与动态适应不足。<br><br>三大技术趋势凸显：其一，<strong>迭代式人机协同优化</strong>成为精度突破的关键路径——从Double Triangle的嵌套共识结构到WhoSaidIt的跨语言协作标注，再到文本梯度优化的反馈驱动机制，均指向"人类专家+多模型+动态校验"的混合智能架构；其二，<strong>图结构与标签传播的动态统一</strong>重塑实体解析范式，Alper框架通过自适应图精炼打破传统级联流水线的错误累积，为知识融合提供新思路；其三，<strong>流式与低资源场景的形式化定义</strong>暴露现有模型的结构性缺陷，无论是流式画像的连续状态维护还是菲律宾语临床NLP的跨语言迁移失效，均表明静态评估范式与真实动态系统之间存在根本性鸿沟。<br><br>对行业而言，研究启示在于：多目标优化需警惕梯度特异性稀释引发的"优化失效陷阱"；金融NLP等高风险领域应优先采用市场承诺等可验证信号替代主观情感标注；低资源语言医疗AI必须构建域内训练能力而非依赖迁移假设。价值层面，人机协同框架为历史文档数字化与多语言内容治理提供了可扩展的工程路径，而流式评测范式的建立将加速推荐系统与实时决策模型的产业落地。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>When Gradients Collide: Failure Modes of Multi-Objective Prompt Optimization for LLM Judges</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.26046</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ACL 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">梯度冲突：多目标提示优化在LLM评判器中的失效模式</span>
+                        <span style="color:#666;font-size:12px;">Parth Darshan et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">定制LLM评判器以适应特定任务或领域通常需要同时优化多个评估标准的提示。文本梯度方法可自动化单一评判标准的优化，但其生成的是自然语言批评而非数值向量，因此多任务学习的冲突解决工具（PCGrad、MGDA）无法应用于多目标文本梯度设置。本文通过改变损失、梯度和优化器LLM共享跨任务信息的程度，测试了五种文本梯度优化器的分解模式。在10种配置中的6种里，优化从未优于初始提示。当梯度LLM联合处理多个标准时，梯度特异性下降59%（从9.0降至3.7）。此外，将每任务指令简单组合为单一提示会使Spearman's rho降低-5.3%。这些结果识别出两种可分离的失效模式：优化时的梯度稀释和推理时的指令干扰，共同约束了使用文本反馈进行多目标评判器定制的设计空间。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>文本梯度优化</strong>：利用自然语言批评而非数值梯度来迭代优化LLM提示的自动化方法，通过LLM生成反馈指导提示改进</li><li style="margin-bottom:0;"><strong>多任务冲突消解</strong>：PCGrad和MGDA等传统多目标学习方法，依赖数值向量梯度投影或帕累托最优求解，无法直接处理文本梯度</li><li style="margin-bottom:0;"><strong>分解模式设计</strong>：通过控制损失LLM、梯度LLM和优化器LLM之间的跨任务信息共享程度，构建五种不同的优化器架构变体</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>梯度特异性度量</strong>：提出量化指标衡量文本梯度对特定任务的针对性，发现联合处理多标准时特异性从9.0骤降至3.7</li><li style="margin-bottom:0;"><strong>失效模式分离</strong>：首次将多目标提示优化的失败分解为两个独立机制——优化阶段的梯度稀释与推理阶段的指令干扰</li><li style="margin-bottom:0;"><strong>跨层次信息共享</strong>：系统性地在损失计算、梯度生成、提示优化三个层次上控制信息隔离，揭示不同层级共享对优化效果的影响</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>优化普遍失效</strong>：在10种配置中的6种里，多目标文本梯度优化始终无法超越初始提示，表明该设置存在根本性困难</li><li style="margin-bottom:0;"><strong>梯度稀释严重</strong>：当梯度LLM联合处理多个标准时，梯度特异性下降59%，导致优化信号模糊化、任务针对性丧失</li><li style="margin-bottom:0;"><strong>指令干扰显著</strong>：简单拼接多任务指令至单一提示导致Spearman's rho下降5.3%，揭示推理时任务间负面交互</li><li style="margin-bottom:0;"><strong>设计空间受限</strong>：梯度稀释与指令干扰两种失效模式共同约束了多目标评判器定制的可行架构，需针对性隔离机制</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.26046" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.26046</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>StakeBench: Evaluating Language Understanding Grounded in Market Commitment</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.26074</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">StakeBench：基于市场承诺的语言理解评估</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现有金融NLP基准依赖外部观察者标注，衡量语言被感知的方式而非说话者在市场中的实际承诺。本文提出StakeBench，一个基于市场承诺的语言理解评估框架，将560,876条评论与2,261个已解决市场的验证持仓、行动和市场赔率记录关联，涵盖Polymarket和Manifold平台。监督信号来自可观察的市场行为，包括持仓方向、评论后交易行为和市场赔率轨迹，替代人工标注。四个诊断任务检测模型是否能识别市场承诺、判断 revealed side、预测未来行动和进行集体赔率预测。15个LLM在18个主题和平台设置上的测试表明，模型仅能部分恢复持仓方向信号，但在后续任务中出现结构性失败，模型规模与性能无关，金融领域调优未提升revealed-side识别，平台激励强烈影响高阶结果。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>市场承诺关联</strong>：将用户评论与链上可验证的持仓记录、交易行动及市场赔率轨迹进行精确链接，构建从语言到市场行为的直接映射关系，替代传统人工情感标注</li><li style="margin-bottom:0;"><strong>行为监督信号</strong>：利用持仓方向、评论后交易行为和市场赔率变化作为自监督信号，使模型学习基于实际市场承诺而非外部感知偏好的语言理解</li><li style="margin-bottom:0;"><strong>承诺感知指标</strong>：设计Directed Accuracy等三个对齐revealed preferences的评估指标，衡量模型与可观察承诺信号的一致性而非传统情感分类准确率</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>承诺驱动评估</strong>：首创以市场承诺而非感知情感为核心的金融NLP评估范式，区分说话者实际下注行为与旁观者对语言的主观解读，重新定义语言理解的监督来源</li><li style="margin-bottom:0;"><strong>平台行为融合</strong>：整合Polymarket和Manifold两大预测市场平台的异构数据，利用其公开透明的链上记录构建大规模、可验证、跨平台的语言-行为对齐数据集</li><li style="margin-bottom:0;"><strong>因果边界界定</strong>：通过有效性审计和显式解释边界，严格区分可观察的承诺信号与潜在信念及因果市场影响，避免过度推断语言对市场结果的直接因果效应</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>方向识别有限</strong>：15个LLM在持仓方向检测上仅取得0.506至0.599的Directed Accuracy，略高于随机水平，显示模型难以从文本中准确推断市场参与者的实际下注立场</li><li style="margin-bottom:0;"><strong>行动预测崩溃</strong>：十个模型在未来行动预测任务中坍缩至仅输出一两个行动标签，暴露模型在理解评论后交易行为动态方面的结构性能力缺陷</li><li style="margin-bottom:0;"><strong>赔率预测失效</strong>：无模型能在集体赔率预测任务上稳定超越朴素赔率方向基线，表明当前LLM缺乏整合个体承诺信号进行群体层面市场趋势推断的能力</li><li style="margin-bottom:0;"><strong>规模效应缺失</strong>：模型参数量扩大与性能提升无显著相关性，且针对金融领域的专门调优未能改善revealed-side识别效果，挑战规模即性能的传统假设</li><li style="margin-bottom:0;"><strong>激励塑造行为</strong>：平台激励机制对高阶任务结果产生强烈影响，揭示预测市场设计如何系统性改变用户表达与行动模式，为跨平台模型评估引入关键变量</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.26074" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.26074</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Forgotten Words: Benchmarking NeoBERT for Dementia Detection in Low-Resource Conversational Filipino and English Speech</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.26007</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">遗忘之词：NeoBERT低资源菲律宾语与英语对话式痴呆检测基准研究</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文首次系统评估了基于Transformer的菲律宾语痴呆症检测，并首次在临床NLP场景中评估NeoBERT模型。研究构建了4,000条DementiaBank平行双语转录数据集，通过手动翻译保留认知衰退的话语级标记。实验涵盖五种模型家族，在单语、零样本跨语言和双语微调设置下进行评估，发现双语微调可消除跨语言性能退化，多语言临床NLP性能主要由训练时的语言覆盖驱动，而非模型规模或架构。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双语数据集构建</strong>：基于DementiaBank构建4,000条平行双语转录文本，通过人工翻译将英语转换为菲律宾语，保留话语层面的认知衰退标记如停顿、重复和语义空洞等关键临床特征</li><li style="margin-bottom:0;"><strong>多模型对比评估</strong>：系统比较TF-IDF+LogReg、BERT、NeoBERT、XLM-R和RoBERTa-Tagalog五类模型，覆盖传统机器学习、单语预训练、多语言预训练及领域专用模型多种技术路线</li><li style="margin-bottom:0;"><strong>三场景实验设计</strong>：设置单语微调、零样本跨语言迁移和双语联合微调三种训练范式，分离语言因素与领域因素对模型性能的影响，揭示跨语言迁移的内在机制</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>菲律宾语临床NLP首创</strong>：首次将NLP技术应用于菲律宾语痴呆症检测，填补该国英语-他加禄语码切换环境下临床语音分析的研究空白，为低资源语言医疗AI提供方法论参考</li><li style="margin-bottom:0;"><strong>NeoBERT临床首评</strong>：首次在临床NLP场景中评估NeoBERT架构，验证其现代架构设计在医疗文本理解中的实际效用，扩展该模型的应用边界至认知健康领域</li><li style="margin-bottom:0;"><strong>平行双语控制变量</strong>：通过人工翻译构建严格平行的双语数据集，控制内容一致性以隔离语言变量，确保跨语言性能差异源于语言特性而非数据分布偏差</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨语言迁移失效</strong>：英语训练模型在菲律宾语上性能骤降，BERT的Macro-F1从英语域内降至0.455，表明临床NLP的域内性能无法自动迁移至低资源语言，语言鸿沟显著存在</li><li style="margin-bottom:0;"><strong>架构现代化局限</strong>：NeoBERT等现代架构单独优化未能提升跨语言鲁棒性，证明模型结构改进不足以克服低资源临床场景的挑战，规模与架构非决定性因素</li><li style="margin-bottom:0;"><strong>双语微调破局</strong>：双语联合微调使所有Transformer模型的Macro-F1收敛至0.969-0.973，完全消除跨语言退化，揭示训练阶段语言覆盖度是多语言临床NLP性能的核心驱动力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.26007" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.26007</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Adaptive Graph Refinement and Label Propagation with LLMs for Cost-Effective Entity Resolution</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.25814</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">基于大语言模型的自适应图优化与标签传播实体解析</span>
+                        <span style="color:#666;font-size:12px;">Hongtao Wang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对脏实体解析（Dirty ER）问题，提出Alper统一框架。传统阻塞-匹配-聚级联流程存在静态稀疏图、缺失边和噪声链接等缺陷，导致错误传播和次优聚类。Alper将匹配与聚类整合为全局演化图上的迭代概率标签传播过程，通过自适应融合图传播的弱信号与LLM查询的强信号，并基于贪心算法在预算约束下最大化累积边际增益，实现成本效益优化。在八个基准数据集上的实验表明，Alper持续优于最先进的级联流水线。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>统一迭代框架</strong>：将阻塞、匹配、聚类三个解耦步骤整合为全局演化图上的迭代概率标签传播过程，实现匹配与聚类的协同优化，避免传统级联结构的错误累积问题</li><li style="margin-bottom:0;"><strong>自适应信号融合</strong>：动态结合图传播产生的弱但廉价信号与LLM pairwise查询的强但昂贵信号，在信息质量与查询成本之间取得平衡</li><li style="margin-bottom:0;"><strong>预算约束优化</strong>：将信号选择形式化为在查询预算约束下最大化累积边际增益的优化问题，设计具有理论保证的贪心算法求解</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>图结构动态精炼</strong>：突破传统静态稀疏图限制，在迭代过程中自适应地精炼图结构和标签，逐步修复缺失边并抑制噪声链接，构建更理想的实体图</li><li style="margin-bottom:0;"><strong>协同优化视角</strong>：提出匹配与聚类本质协同的核心洞见，二者共同服务于理想实体图的构建，颠覆传统先匹配后聚级的串行范式</li><li style="margin-bottom:0;"><strong>成本效益权衡机制</strong>：通过约束优化与贪心策略，系统化地管理LLM查询预算，确保每次查询带来最大边际收益，实现高性价比的实体解析</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>框架优越性</strong>：Alper在八个基准数据集上持续优于最先进的级联流水线，验证统一迭代框架相比传统解耦范式的显著优势</li><li style="margin-bottom:0;"><strong>成本效益显著</strong>：自适应信号选择策略在有限预算下有效平衡精度与成本，证明弱信号与强信号的动态融合具有实际应用价值</li><li style="margin-bottom:0;"><strong>理论保证可靠</strong>：所提贪心算法具有可证明的理论保证，为预算约束下的信号选择提供了坚实的算法基础</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.25814" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.25814</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>WhoSaidIt: Human-LLM Collaborative Annotation for Text-Based Multilingual Speaker-Attribute Classification</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.26070</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">WhoSaidIt：人机协作的多语言说话人属性文本分类标注研究</span>
+                        <span style="color:#666;font-size:12px;">Lingyu Gao et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出了一种人机协作的多语言说话人属性重标注框架，用于在资源受限条件下稳定多语言说话人属性标签。研究从噪声语料库出发，利用大语言模型通过与专家迭代交互来呈现重复出现的标注理由，并应用基于分歧的采样进行有针对性的重标注。基于该框架构建了涵盖九种说话人属性标签的多语言数据集WhoSaidIt，量化了原始标注与修订标注之间的差异，对近期大语言模型进行了基准测试，并分析了显式理由对模型行为的影响。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>人机协作框架</strong>：结合人类专家与大语言模型进行迭代交互，通过专家反馈引导模型生成和提炼标注理由，形成可复用的协作标注流程</li><li style="margin-bottom:0;"><strong>分歧驱动采样</strong>：针对标注分歧集中的样本进行定向重标注，以最小化标注成本最大化标签质量提升，优化资源受限场景下的标注效率</li><li style="margin-bottom:0;"><strong>理由显式生成</strong>：利用大语言模型自动提取并呈现标注决策背后的重复性理由，使隐含的文化和人口统计线索变得可解释和可验证</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多语言标注稳定化</strong>：首次系统解决多语言设置中说话人属性标注的固有歧义性，通过协作框架减少因文化差异导致的标注不一致问题</li><li style="margin-bottom:0;"><strong>噪声语料修复</strong>：创新性地从现有噪声语料出发进行标签优化，而非从头构建新数据集，显著降低多语言标注的资源门槛</li><li style="margin-bottom:0;"><strong>理由影响量化</strong>：开创性地分析显式理由对模型行为的作用机制，揭示推理过程如何影响说话人属性分类任务的模型表现</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨语言差异显著</strong>：实验结果显示不同语言间的标注决策存在实质性差异，表明文化变量对说话人属性推断具有深刻影响</li><li style="margin-bottom:0;"><strong>模型能力边界</strong>：基准测试揭示了大语言模型在说话人属性分类任务中的优势与局限，其在某些属性上表现优异但存在系统性偏差</li><li style="margin-bottom:0;"><strong>理由提升效果</strong>：显式理由的引入能够改善模型行为，但效果因语言和属性类别而异，需针对性设计理由生成策略</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.26070" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.26070</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Double Triangle Annotation: A Scalable Human-in-the-Loop Framework for High-Precision Historical Document Annotation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.25781</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">双三角标注：可扩展的人机协同高精度历史文献标注框架</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">评估大规模历史文档结构化信息提取需要高精度真值标注，但传统人工标注成本高昂，而基于大语言模型的全自动流程容易产生幻觉。本文提出Double Triangle Annotation，一种两层人在回路框架，利用跨模型共识自动化大部分标注工作并确保高精度输出。第一层中，两个架构独立的多模态大语言模型并行标注每份文档；一致时自动接受标签，不一致时提交人工评审。第二层交叉检查两个此类系统，将残余冲突升级给领域专家。该框架仅依赖模型间错误独立这一假设，无需分布先验或任务特定校准，且随模型能力提升更加自主。在1887-1906年法国医学目录Guides Rosenwald语料库上，框架最终词错误率达0.003。大规模应用时，模型共识自动接受了13,595个字段中的85%以上。作者发布了首个Rosenwald Guides结构化提取真值基准以支持未来历史文档处理研究。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双层人在回路</strong>：第一层由两个独立多模态大语言模型并行标注，一致则自动接受，分歧提交人工评审；第二层交叉验证两套系统，残余冲突由领域专家裁决，实现自动化与精度的平衡</li><li style="margin-bottom:0;"><strong>错误独立假设</strong>：框架仅依赖模型间错误独立性这一单一假设，无需分布先验或任务特定校准，降低部署门槛并增强跨领域可迁移性</li><li style="margin-bottom:0;"><strong>自动接受机制</strong>：当两个独立模型达成共识时标签自动通过，无需人工介入，随着模型能力提升自动接受率增长，框架自主性随之增强</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>三角形共识结构</strong>：创新性地将两个独立模型与一个人工评审组成第一层三角形，再将两个此类系统与领域专家组成第二层三角形，形成嵌套式双重校验架构</li><li style="margin-bottom:0;"><strong>跨模型错误过滤</strong>：利用架构独立模型的错误独立性，通过共识机制自动过滤各自错误，将人工精力集中于真正的疑难边界案例而非全部样本</li><li style="margin-bottom:0;"><strong>无校准自适应</strong>：不依赖任务特定的阈值调优或模型置信度校准，仅通过硬共识判断即可运作，使框架随基础模型进步而自然进化</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>极高精度达成</strong>：在Guides Rosenwald历史文档语料库上实现最终词错误率0.003，证明框架在挑战性历史文档场景下可达到近乎完美的提取精度</li><li style="margin-bottom:0;"><strong>大规模自动适用</strong>：应用于13,595个字段时模型共识自动接受超过85%，显著降低人工标注成本，验证框架的实际可扩展性与经济可行性</li><li style="margin-bottom:0;"><strong>基准数据发布</strong>：发布首个Rosenwald Guides结构化提取真值基准，填补该重要历史医学文献资源的研究空白，为后续历史文档处理研究提供基础设施</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.25781" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.25781</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>StreamProfileBench: A Benchmark for Fine-Grained User Profile Inference in Real-World Streaming Scenarios</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.25758</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">StreamProfileBench：真实流媒体场景下的细粒度用户画像</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大语言模型已重塑用户画像领域，但现有评估主要聚焦于静态数据快照，忽视了个性化系统中用户生成内容持续到达、细粒度画像快速演变的现实。为此，本文提出StreamProfileBench，一个面向细粒度流式用户画像的大规模基准。该工作将流式用户画像形式化为连续状态维护任务，构建了一个包含五个多元平台7000余名真实用户超过12万条UGC帖子的高度真实数据集。利用用户兴趣的时间关联性，提出了一种无需标注的新型评估框架。对14个领先LLM的广泛实验表明，连续画像更新仍是开放挑战，模型存在系统性保守偏差，过度保留过去兴趣而无法识别兴趣衰减，消融实验进一步验证了流式范式的实用价值与必要性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>流式画像形式化</strong>：将流式用户画像定义为连续状态维护任务，突破传统静态评估范式，建立动态更新机制的形式化框架，为模型在持续数据流中实时维护用户画像提供理论基础</li><li style="margin-bottom:0;"><strong>大规模真实数据集</strong>：构建覆盖五个多元平台的真实数据集，包含7000余名用户超12万条UGC帖子，确保数据高度真实性与平台多样性，支撑流式场景下的可靠评估</li><li style="margin-bottom:0;"><strong>时序关联评估法</strong>：利用用户兴趣的时间相关性设计无需人工标注的评估框架，自动衡量画像更新质量，降低评估成本同时保证评估的客观性与可扩展性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>流式评测范式</strong>：首创面向流式场景的细粒度用户画像基准测试，填补静态评估与真实动态系统之间的鸿沟，推动用户画像研究从快照式向连续式演进</li><li style="margin-bottom:0;"><strong>免标注评估框架</strong>：基于兴趣时序关联性构建自动化评估机制，摆脱对昂贵人工标注的依赖，实现大规模、高效率的流式画像质量评测</li><li style="margin-bottom:0;"><strong>真实多平台数据</strong>：整合跨平台真实用户行为数据，捕捉兴趣演变的自然模式，为流式用户画像研究提供前所未有的高质量数据基础设施</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>更新挑战显著</strong>：14个领先LLM的实验表明连续画像更新仍是未解决的开放问题，现有模型难以有效应对流式场景下的动态兴趣演变</li><li style="margin-bottom:0;"><strong>保守偏差严重</strong>：模型普遍存在系统性保守倾向，过度保留历史兴趣信息，同时对兴趣衰减现象缺乏识别能力，导致画像更新滞后于真实变化</li><li style="margin-bottom:0;"><strong>流式范式必要</strong>：消融实验充分验证了流式评估范式的实用价值与不可替代性，证实静态评估无法反映真实个性化系统的核心挑战与需求</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.25758" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.25758</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/27</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-27",
+  "title": "大模型评测革新与低资源应用突破 从梯度冲突到流式画像的全景演",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.26046",
+      "title": "When Gradients Collide: Failure Modes of Multi-Objective Prompt Optimization for LLM Judges",
+      "chinese_title": "梯度冲突：多目标提示优化在LLM评判器中的失效模式",
+      "authors": "Parth Darshan et al.",
+      "url": "https://arxiv.org/abs/2605.26046"
+    },
+    {
+      "id": "2605.26074",
+      "title": "StakeBench: Evaluating Language Understanding Grounded in Market Commitment",
+      "chinese_title": "StakeBench：基于市场承诺的语言理解评估",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.26074"
+    },
+    {
+      "id": "2605.26007",
+      "title": "Forgotten Words: Benchmarking NeoBERT for Dementia Detection in Low-Resource Conversational Filipino and English Speech",
+      "chinese_title": "遗忘之词：NeoBERT低资源菲律宾语与英语对话式痴呆检测基准研究",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.26007"
+    },
+    {
+      "id": "2605.25814",
+      "title": "Adaptive Graph Refinement and Label Propagation with LLMs for Cost-Effective Entity Resolution",
+      "chinese_title": "基于大语言模型的自适应图优化与标签传播实体解析",
+      "authors": "Hongtao Wang et al.",
+      "url": "https://arxiv.org/abs/2605.25814"
+    },
+    {
+      "id": "2605.26070",
+      "title": "WhoSaidIt: Human-LLM Collaborative Annotation for Text-Based Multilingual Speaker-Attribute Classification",
+      "chinese_title": "WhoSaidIt：人机协作的多语言说话人属性文本分类标注研究",
+      "authors": "Lingyu Gao et al.",
+      "url": "https://arxiv.org/abs/2605.26070"
+    },
+    {
+      "id": "2605.25781",
+      "title": "Double Triangle Annotation: A Scalable Human-in-the-Loop Framework for High-Precision Historical Document Annotation",
+      "chinese_title": "双三角标注：可扩展的人机协同高精度历史文献标注框架",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.25781"
+    },
+    {
+      "id": "2605.25758",
+      "title": "StreamProfileBench: A Benchmark for Fine-Grained User Profile Inference in Real-World Streaming Scenarios",
+      "chinese_title": "StreamProfileBench：真实流媒体场景下的细粒度用户画像",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.25758"
+    }
+  ],
+  "generated_at": "2026-05-26T22:18:12.949Z",
+  "org": "AI研究室"
+}
