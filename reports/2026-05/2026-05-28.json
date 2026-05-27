@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-28",
+  "title": "大模型可信评估与知识治理 从反事实推理到动态监督的范式革新",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.27313",
+      "title": "When Does Demographic Information Help? Data and Modeling Regimes for Perspective-Aware Hate Speech Detection",
+      "chinese_title": "人口统计信息何时有用：视角感知仇恨言论检测的数据与建模机制",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.27313"
+    },
+    {
+      "id": "2605.27311",
+      "title": "Chartographer: Counterfactual Chart Generation for Evaluating Vision-Language Models",
+      "chinese_title": "Chartographer：面向视觉语言模型评估的反事实图表生成",
+      "authors": "Yifan Jiang et al.",
+      "url": "https://arxiv.org/abs/2605.27311"
+    },
+    {
+      "id": "2605.27239",
+      "title": "Temporal Simultaneity Predicts Annotation Quality in Sentiment Corpora",
+      "chinese_title": "时间共现性预测情感语料库的标注质量",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.27239"
+    },
+    {
+      "id": "2605.27091",
+      "title": "MiRD: Reliable Set-Valued Prediction for Open-Ended Question Answering via Miscoverage Risk Decomposition",
+      "chinese_title": "MiRD：通过误覆盖风险分解实现开放式问答的可靠集合预测",
+      "authors": "Anqi Hu et al.",
+      "url": "https://arxiv.org/abs/2605.27091"
+    },
+    {
+      "id": "2605.27083",
+      "title": "On the Hidden Costs of Counterfactual Knowledge Training in LLM Unlearning",
+      "chinese_title": "大模型反事实知识遗忘中的隐性代价研究",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.27083"
+    },
+    {
+      "id": "2605.27345",
+      "title": "MATCHA: Matching Text via Contrastive Semantic Alignment",
+      "chinese_title": "MATCHA：基于对比语义对齐的文本匹配",
+      "authors": "Siran Li et al.",
+      "url": "https://arxiv.org/abs/2605.27345"
+    },
+    {
+      "id": "2605.27194",
+      "title": "Not All Tokens Matter Equally: Dynamic In-context Vector Distillation with Decisive-Token Supervision for Long-form Medical Report Generation",
+      "chinese_title": "动态上下文向量蒸馏：关键Token监督的长文本医学报告生成",
+      "authors": "Ning Wu et al.",
+      "url": "https://arxiv.org/abs/2605.27194"
+    }
+  ],
+  "generated_at": "2026-05-27T22:19:37.024Z",
+  "org": "AI研究室"
+}
