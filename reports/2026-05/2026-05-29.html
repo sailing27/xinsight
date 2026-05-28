@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型推理进化与多模态应用突破 从结构化解析到自主智能体 | 2026/5/29</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型推理进化与多模态应用突破 从结构化解析到自主智能体 | 2026/5/29</h1>
+                <div class="date">2026/5/29 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">当前大模型研究正经历从"规模驱动"向"结构驱动"的范式转换，核心聚焦于推理真实性、训练效率与任务可扩展性的三重突破。七篇论文共同揭示：现有模型在语言流畅性伪装、专业领域对齐及稀疏奖励学习方面存在系统性缺陷，亟需通过机制创新与评估重构实现能力跃迁。<br><br>技术层面呈现三大收敛方向：<strong>其一，推理忠实性解耦与验证</strong>，从因果推理的"语言-机制"分离评估到临床文本的token级不确定性量化，研究正建立超越表面合理性的真实能力测量体系；<strong>其二，非对称行为空间的策略优化</strong>，AXPO针对智能体"思考-行动"结构鸿沟、Soft-SVeRL通过清单分解实现部分可验证学习，共同推动RL向复杂现实场景的扩展；<strong>其三，进化与搜索的机制融合</strong>，双向进化搜索突破自回归采样的概率质量限制，反向探测则以单轮前向传播替代采样依赖，共同指向样本效率的指数级提升。<br><br>对行业而言，这些进展标志着大模型评估正从"性能竞赛"转向"机制诊断"，训练方法从"端到端黑箱"走向"结构化可解释"。尤其在金融、医疗、移动交互等高 stakes 领域，结合置信度校准与细粒度验证的混合人机架构，将成为可靠性部署的关键范式。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>IPO-Mine: A Toolkit and Dataset for Section-Structured Analysis of Long, Multimodal IPO Documents</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.28714</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">IPO-Mine：长文本多模态IPO文档章节结构化分析工具集与数据集</span>
+                        <span style="color:#666;font-size:12px;">Michael Galarnyk et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">首次公开募股（IPO）招股书是私营企业上市时发布的重要文件，包含业务、财务和风险等信息，是具有叙事文本和图像的长篇幅多模态文档。尽管其对金融市场至关重要，但缺乏大规模标准化数据集供现代语言和多模态模型研究。这些文档常超过50万token且结构不一致。本文提出IPO-Toolkit开源框架，用于下载和解析招股书为标准化的章节结构化文本和提取图像；构建IPO-Dataset，涵盖1994至2026年超过109,000份IPO文件及修正案，包含超过76,000张图像；建立针对提取财务图表的结构化评估任务，发现最先进的多模态模型与专家判断存在偏差，揭示了长篇幅真实世界监管文档多模态推理中的对齐挑战。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>开源解析框架</strong>：开发IPO-Toolkit工具包，实现IPO文件的自动下载、章节分割、嵌入式图像提取，输出标准化结构化数据，支持长文档多模态分析的可复现工作流</li><li style="margin-bottom:0;"><strong>大规模数据构建</strong>：利用该基础设施构建IPO-Dataset，覆盖109,000余份IPO文件及修正案，时间跨度1994至2026年，包含76,000余张嵌入式图像，形成章节结构化的多模态数据集</li><li style="margin-bottom:0;"><strong>图表评估任务</strong>：建立针对提取财务图表的结构化评测任务，包括图表质量评估与误导性判断，为长文档多模态理解提供标准化基准</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>章节结构化解析</strong>：针对超50万token的长文档，突破缺乏一致结构的难题，实现非结构化招股书向标准化章节结构的自动转换，保留文本与图像的对应关系</li><li style="margin-bottom:0;"><strong>跨模态数据对齐</strong>：构建文本与视觉信息联合表示的大规模数据集，支持章节级文本变异分析和跨行业视觉披露实践差异研究，填补金融领域多模态研究空白</li><li style="margin-bottom:0;"><strong>真实场景基准测试</strong>：首次在真实监管文档上建立多模态推理评估体系，聚焦财务图表的专业判断任务，超越传统基准的合成场景局限</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模型专家偏差</strong>：当前最先进的多模态模型在图表质量与误导性评估任务上常与专家人类判断产生分歧，暴露出现有模型在专业领域多模态推理中的对齐缺陷</li><li style="margin-bottom:0;"><strong>长文档处理挑战</strong>：超50万token的IPO文件及其不一致结构对现有语言模型构成显著挑战，亟需专门针对长篇幅真实文档的解析与理解方法</li><li style="margin-bottom:0;"><strong>跨行业披露差异</strong>：IPO-Dataset支持大规模分析，揭示不同行业在视觉和文本披露实践上存在系统性差异，为监管合规与市场透明度研究提供新视角</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.28714" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.28714</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>The Abstraction Gap in Vision-Language Causal Reasoning</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.28779</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">视觉-语言因果推理中的抽象鸿沟</span>
+                        <span style="color:#666;font-size:12px;">Chinh Hoang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">视觉语言模型（VLMs）能生成流畅的因果解释，但现有评估无法区分语言合理性与忠实因果推理。本文提出双探针方法分离这两种特性：纯文本探针测量语言质量，链式文本探针要求模型生成显式因果链。抽象差距（AG）指标量化归一化性能差异。在CAGE基准上评估8个VLM，发现7个模型AG超过0.50，链式得分低于2.5。4.5万条链式标注微调无法弥合差距，但某一模型实现近零AG，表明当前架构具备该能力，取决于预训练和架构选择。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双探针方法</strong>：设计纯文本探针与链式文本探针两种评估手段，分别测量VLMs的语言生成质量与显式因果推理能力，实现语言合理性与忠实因果推理的解耦评估</li><li style="margin-bottom:0;"><strong>抽象差距指标</strong>：提出AG归一化度量，量化模型在纯文本任务与链式因果任务上的性能差异，数值越高表明模型越依赖语言表面模式而非真正因果理解</li><li style="margin-bottom:0;"><strong>CAGE评估基准</strong>：构建包含49500个问题、5500张图像的大规模评测集，覆盖Pearl因果层次理论，为视觉语言因果推理提供标准化诊断工具</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>因果能力解耦</strong>：首次系统区分VLMs因果解释中的语言流畅性与推理忠实性，揭示现有评估因混淆二者而高估模型真实因果理解水平的根本缺陷</li><li style="margin-bottom:0;"><strong>显式链式约束</strong>：通过强制模型生成中间因果链而非直接输出结论，暴露其是否具备结构化因果知识表示，有效识别表面关联学习与深层因果推理</li><li style="margin-bottom:0;"><strong>架构能力发现</strong>：证明近零抽象差距在当前VLM架构中可实现，打破必须通过规模扩展或全新架构才能获得忠实因果推理能力的固有认知</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>普遍差距存在</strong>：八款模型中七款AG超0.50，文本得分6至8分而链式得分低于2.5，揭示行业普遍存在的语言伪装因果推理现象，模型擅长生成合理表述但缺乏真实因果机制</li><li style="margin-bottom:0;"><strong>数据驱动失效</strong>：四万五千条链式标注微调未能缩小抽象差距，表明单纯增加监督数据难以改变模型推理模式，问题根源在于学习机制而非数据不足</li><li style="margin-bottom:0;"><strong>预训练定成败</strong>：唯一近零AG模型的成功归因于预训练策略与架构设计的特定组合，证实忠实因果推理能力内嵌于现有技术框架，关键在于训练目标与模型结构的协同优化</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.28779" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.28779</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Agent Explorative Policy Optimization for Multimodal Agentic Reasoning</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.28774</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">多模态智能体推理的探索性策略优化</span>
+                        <span style="color:#666;font-size:12px;">Minki Kang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">视觉语言模型通过扩展推理在复杂问题上取得成功，但许多现实世界问题需要外部工具，仅靠内部推理往往无法解决。智能体推理因此交织两种具有结构不对称性的行为：思考（自包含的默认行为）和工具使用（高方差的辅助行为）。本文将这种不对称性称为"思考-行动鸿沟"，并提出AXPO方法，通过固定思考前缀并重采样工具调用，结合基于不确定性的前缀选择，在九个多模态基准上显著提升性能。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>思考行动鸿沟</strong>：揭示智能体推理中思考与工具使用的结构不对称性，表现为训练时工具调用率低且错误集中，导致学习信号被抑制</li><li style="margin-bottom:0;"><strong>群体重采样策略</strong>：对全错工具使用子组固定思考前缀，重采样工具调用及其后续内容，增强工具探索效率</li><li style="margin-bottom:0;"><strong>不确定性前缀选择</strong>：基于不确定性指标智能选择需要固定的思考前缀，优化重采样资源分配</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>AXPO优化框架</strong>：针对智能体推理的特殊结构设计的策略优化方法，突破标准RL在不对称行为空间的局限</li><li style="margin-bottom:0;"><strong>前缀固定机制</strong>：创新性地将思考与工具调用解耦，固定高方差环节中的稳定部分，降低探索成本</li><li style="margin-bottom:0;"><strong>诊断症状分析</strong>：系统识别GRPO在工具使用上的两大训练症状，为算法改进提供明确靶点</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能显著提升</strong>：SFT+AXPO相比SFT+GRPO在8B模型上平均Pass@1提升1.8个百分点，Pass@4提升1.8个百分点</li><li style="margin-bottom:0;"><strong>参数效率突破</strong>：8B参数SFT+AXPO模型在Pass@4上超越32B基础模型，参数量减少至四分之一</li><li style="margin-bottom:0;"><strong>广泛基准验证</strong>：方法在九个多模态基准和三个规模的Qwen3-VL-Thinking模型上均展现一致优势</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.28774" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.28774</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Self-Improving Language Models with Bidirectional Evolutionary Search</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.28814</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">双向进化搜索驱动的语言模型自我改进</span>
+                        <span style="color:#666;font-size:12px;">Guowei Xu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出双向进化搜索（BES）框架，通过前向候选进化与后向目标分解相结合，解决现有搜索方法依赖稀疏验证信号和自回归扩展限制探索的问题。前向搜索利用进化算子重组部分轨迹生成候选，后向搜索递归分解任务为可检查子目标提供密集中间反馈。理论分析表明进化算子可逃离窄熵壳，后向搜索可指数级减少所需样本。实验显示BES在训练后任务和推理时开放问题求解基准上均取得一致提升。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>前向进化搜索</strong>：通过进化算子重组部分轨迹，突破单一模型自回归采样的概率质量限制，生成难以通过单次模型 rollout 获得的高质量候选解</li><li style="margin-bottom:0;"><strong>后向目标分解</strong>：递归将原始任务分解为可验证的子目标，为前向搜索提供密集的中间反馈信号，缓解稀疏奖励导致的搜索效率低下问题</li><li style="margin-bottom:0;"><strong>双向耦合机制</strong>：将前向候选进化与后向目标分解紧密结合，形成闭环搜索系统，使分解产生的子目标直接指导候选生成与评估过程</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>进化算子扩展</strong>：在标准树搜索扩展基础上引入重组、变异等进化操作，使候选生成不再受限于模型条件概率分布的高概率区域，显著扩展搜索空间</li><li style="margin-bottom:0;"><strong>密集反馈生成</strong>：通过后向递归分解将稀疏的终局验证信号转化为密集的中间子目标反馈，解决传统 best-of-N 和树搜索依赖单一最终评估的根本局限</li><li style="margin-bottom:0;"><strong>熵壳逃逸理论</strong>：从信息论角度证明纯扩展搜索被限制在窄熵壳内，而进化重组算子可帮助候选分布逃离该区域，为方法有效性提供理论支撑</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>样本复杂度降低</strong>：理论证明后向搜索能够将找到正确答案所需的样本数量指数级减少，显著提升搜索效率与可扩展性</li><li style="margin-bottom:0;"><strong>训练后任务增益</strong>：在主流后训练算法均无法提升的挑战性任务上，BES 实现了一致且显著的性能改进，验证了其在模型自我改进中的有效性</li><li style="margin-bottom:0;"><strong>推理性能领先</strong>：在三个开放问题求解基准的推理阶段，BES 在平均性能和最佳性能两个维度均超越现有开源框架，达到领先水平</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.28814" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.28814</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Reverse Probing: Supervised Token-level Uncertainty Quantification for Large Language Models in Clinical Text</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.28740</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">临床文本大语言模型的逆向探测监督式词级不确定性量化</span>
+                        <span style="color:#666;font-size:12px;">Bushi Xiao et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">随着大型语言模型在临床文本中的广泛应用，确保其能够可靠地表达自身不确定性变得至关重要。现有不确定性量化方法多针对开放域生成设计，无法在长临床文本中实现token或片段级别的不确定性定位。本文提出Reverse Probing，首个专门针对临床摘要的不确定性量化框架，直接从现有标注摘要中估计token级不确定性。该框架将文本视为探针深入模型内部状态，从四类内部激活中提取不确定性信号，无需采样新输出。在两个专家标注的临床数据集上评估，该方法在所有指标上超越八种改进基线，AUPRC提升最高达4倍，同时降低推理时间和计算成本。特征分析表明，delta能量和邻域上下文是所有模型中最一致的预测因子。本研究为模型如何内部响应不支持的临床内容提供了可解释性见解。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>反向探测框架</strong>：将现有标注摘要文本作为探针输入模型，通过前向传播直接提取内部激活特征，避免传统多次采样带来的高昂推理成本</li><li style="margin-bottom:0;"><strong>四类激活信号</strong>：从隐藏状态、注意力分布、logit分布及层间变化四个维度捕获模型内部状态，构建全面的不确定性表征体系</li><li style="margin-bottom:0;"><strong>Token级定位</strong>：针对临床长文本特点，实现细粒度的token级别不确定性估计，精准识别摘要中具体片段的可靠性问题</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>免采样设计</strong>：突破传统基于多次采样的不确定性量化范式，直接利用单轮前向传播的内部激活，显著降低计算开销与推理延迟</li><li style="margin-bottom:0;"><strong>临床场景专化</strong>：首个面向临床摘要任务定制的UQ框架，解决开放域方法无法处理长文本、无法定位不确定片段的痛点</li><li style="margin-bottom:0;"><strong>标注数据驱动</strong>：创新性地将预存的人工标注摘要转化为不确定性监督信号，实现无需额外标注的token级不确定性学习</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能显著领先</strong>：在两个专家标注数据集上全面超越八种基线方法，AUPRC指标最高提升4倍，验证反向探测的有效性</li><li style="margin-bottom:0;"><strong>效率优势突出</strong>：相比采样类方法大幅减少推理时间和计算成本，兼顾高精度与实用性，更适配临床部署场景</li><li style="margin-bottom:0;"><strong>关键特征稳定</strong>：Delta能量与邻域上下文跨模型呈现最一致预测能力，为不确定性机制解释提供稳定锚点</li><li style="margin-bottom:0;"><strong>内部响应可释</strong>：揭示模型面对不支持的临床内容时的内部激活模式，架起黑箱模型与临床可解释性之间的桥梁</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.28740" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.28740</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Mobile-Aptus: Confidence-Driven Proactive and Robust Interaction in MLLM-based Mobile-Using Agents</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.28629</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">Mobile-Aptus：基于MLLM的手机智能体置信度驱动的主动鲁棒</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">基于多模态大语言模型（MLLMs）的移动智能体在自主执行人类指令方面展现出巨大潜力，但现有全自动智能体存在过度执行问题，而交互式智能体则存在过度求助问题。为此，本文提出Mobile-Aptus，一种通用的置信度集成框架，通过交互能力赋能和置信度偏差校正两个阶段，实现置信度驱动的主动且稳健的交互。实验表明，该方法在OS-Kairos、AITZ、Meta-GUI和AndroidControl四个基准测试上达到最优性能。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>置信度集成框架</strong>：构建两阶段通用框架，使移动智能体能够输出动作和置信度分数，并基于置信度自主决定何时执行动作、何时向人类求助，从根本上解决过度执行与过度求助的双重困境</li><li style="margin-bottom:0;"><strong>交互能力赋能</strong>：通过监督微调训练智能体同时输出操作动作与置信度评分，赋予智能体基础的自我评估能力，使其具备初步的交互决策本领</li><li style="margin-bottom:0;"><strong>语义相似检索</strong>：结合语义相似性检索技术辅助置信度校准，利用历史经验或参考案例的语义关联性，提升智能体对当前任务难度的判断准确性</li><li style="margin-bottom:0;"><strong>直接偏好优化</strong>：采用直接偏好优化方法对置信度输出进行偏差校正，使智能体学习输出更准确的置信度分数，减少过高或过低的自信偏差</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双重问题识别</strong>：首次系统揭示移动智能体领域并存的过度执行与过度求助两大问题，指出先前研究仅解决其一而加剧另一问题的局限性，为后续研究提供新的问题视角</li><li style="margin-bottom:0;"><strong>置信度驱动交互</strong>：创新性地将置信度机制引入人机交互决策，以置信度分数作为智能体主动求助的量化依据，实现求助时机的精准把控而非依赖固定规则</li><li style="margin-bottom:0;"><strong>两阶段渐进训练</strong>：设计交互能力赋能与置信度偏差校正的两阶段训练范式，先建立基础能力再优化校准精度，避免端到端训练中的优化冲突与不稳定问题</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>离线基准最优</strong>：在OS-Kairos、AITZ、Meta-GUI、AndroidControl四个主流移动智能体基准测试中均达到最优性能，相比所有基线方法平均任务成功率提升超过17%</li><li style="margin-bottom:0;"><strong>真实场景验证</strong>：在真实世界动态实验中，任务成功率超越基线26%，同时每条指令仅需0.64次人工干预，验证了方法在实际应用中的高效性与实用性</li><li style="margin-bottom:0;"><strong>干预效率显著</strong>：以极低的人工干预成本实现大幅性能提升，证明置信度驱动的主动交互策略在减少人力负担与保障任务完成之间取得了优异平衡</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.28629" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.28629</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Soft-SVeRL: Self-Verified Reinforcement Learning with Soft Rewards</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.28561</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">软奖励自验证强化学习 Soft-SVeRL</span>
+                        <span style="color:#666;font-size:12px;">Saurabh Dash et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出Soft-RLVR框架，通过将提示分解为原子需求清单，利用LLM验证器逐项评分生成软奖励信号，将稀疏的通过/失败监督转化为更密集的部分信用信号。进一步提出自验证变体Soft-SVeRL，使策略模型同时充当验证器，并引入显式稳定机制防止奖励膨胀崩溃。在IFEval基准上，基于清单的Soft-RLVR仅使用学习验证器奖励即可提升11.1分，实验证明验证器质量、清单质量和显式稳定机制均对强化学习效果至关重要。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>清单分解技术</strong>：将每个提示转换为原子需求清单，将复杂任务拆解为可独立验证的细粒度项目，实现从稀疏反馈到密集部分信用信号的转换</li><li style="margin-bottom:0;"><strong>软奖励计算</strong>：使用LLM验证器对候选响应逐项评分，通过聚合项目级判断生成软奖励，在降低验证器噪声与避免奖励不完整响应之间取得平衡</li><li style="margin-bottom:0;"><strong>自验证机制</strong>：在Soft-SVeRL中让策略模型兼任验证器角色，实现无需外部验证器的自我强化学习，降低对外部监督的依赖</li><li style="margin-bottom:0;"><strong>稳定化方法</strong>：引入显式稳定机制防止自验证中的奖励膨胀问题，避免策略模型因过度宽松的自我判断而导致训练崩溃</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>部分可验证学习</strong>：突破RLVR仅适用于完全可验证任务的局限，开创性地将强化学习扩展到部分可验证领域，涵盖多需求满足、无标准答案等现实场景</li><li style="margin-bottom:0;"><strong>噪声权衡理论</strong>：形式化清单验证的核心权衡——平均项目级判断可降低验证器噪声，但部分信用可能奖励不完整响应，并识别清单优于整体验证的条件</li><li style="margin-bottom:0;"><strong>自验证稳定化</strong>：首次系统揭示自验证中的奖励膨胀风险，提出并验证显式稳定化的必要性，为自监督强化学习提供防崩溃机制设计</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>清单奖励优势</strong>：基于清单的Soft-RLVR在IFEval上提升达11.1点，证明分解式软奖励显著优于传统稀疏奖励，仅依赖学习验证器即可实现大幅性能增益</li><li style="margin-bottom:0;"><strong>质量双重影响</strong>：验证器质量和清单质量共同决定下游RL效果，两者任一不足都会制约最终性能，为实际系统构建提供明确优化方向</li><li style="margin-bottom:0;"><strong>稳定机制必需</strong>：自验证必须配备显式稳定机制，否则必然发生奖励膨胀崩溃，该发现对自监督学习范式设计具有重要警示意义</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.28561" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.28561</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/29</p>
+        </div>
+    </div>
+</body>
+</html>

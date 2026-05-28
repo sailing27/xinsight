@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-29",
+  "title": "大模型推理进化与多模态应用突破 从结构化解析到自主智能体",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.28714",
+      "title": "IPO-Mine: A Toolkit and Dataset for Section-Structured Analysis of Long, Multimodal IPO Documents",
+      "chinese_title": "IPO-Mine：长文本多模态IPO文档章节结构化分析工具集与数据集",
+      "authors": "Michael Galarnyk et al.",
+      "url": "https://arxiv.org/abs/2605.28714"
+    },
+    {
+      "id": "2605.28779",
+      "title": "The Abstraction Gap in Vision-Language Causal Reasoning",
+      "chinese_title": "视觉-语言因果推理中的抽象鸿沟",
+      "authors": "Chinh Hoang et al.",
+      "url": "https://arxiv.org/abs/2605.28779"
+    },
+    {
+      "id": "2605.28774",
+      "title": "Agent Explorative Policy Optimization for Multimodal Agentic Reasoning",
+      "chinese_title": "多模态智能体推理的探索性策略优化",
+      "authors": "Minki Kang et al.",
+      "url": "https://arxiv.org/abs/2605.28774"
+    },
+    {
+      "id": "2605.28814",
+      "title": "Self-Improving Language Models with Bidirectional Evolutionary Search",
+      "chinese_title": "双向进化搜索驱动的语言模型自我改进",
+      "authors": "Guowei Xu et al.",
+      "url": "https://arxiv.org/abs/2605.28814"
+    },
+    {
+      "id": "2605.28740",
+      "title": "Reverse Probing: Supervised Token-level Uncertainty Quantification for Large Language Models in Clinical Text",
+      "chinese_title": "临床文本大语言模型的逆向探测监督式词级不确定性量化",
+      "authors": "Bushi Xiao et al.",
+      "url": "https://arxiv.org/abs/2605.28740"
+    },
+    {
+      "id": "2605.28629",
+      "title": "Mobile-Aptus: Confidence-Driven Proactive and Robust Interaction in MLLM-based Mobile-Using Agents",
+      "chinese_title": "Mobile-Aptus：基于MLLM的手机智能体置信度驱动的主动鲁棒",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.28629"
+    },
+    {
+      "id": "2605.28561",
+      "title": "Soft-SVeRL: Self-Verified Reinforcement Learning with Soft Rewards",
+      "chinese_title": "软奖励自验证强化学习 Soft-SVeRL",
+      "authors": "Saurabh Dash et al.",
+      "url": "https://arxiv.org/abs/2605.28561"
+    }
+  ],
+  "generated_at": "2026-05-28T22:19:46.475Z",
+  "org": "AI研究室"
+}
