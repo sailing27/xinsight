@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-30",
+  "title": "大模型智能体认知跃迁 从多语言感知到类人心理的全景突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.30107",
+      "title": "Dial HEALTHDIAL for Advice: A Multilingual and Multi-Parallel Spoken Dialogue Dataset for Knowledge-Grounded Information Seeking",
+      "chinese_title": "HEALTHDIAL热线咨询：多语言多平行知识型口语对话数据集",
+      "authors": "Songbo Hu et al.",
+      "url": "https://arxiv.org/abs/2605.30107"
+    },
+    {
+      "id": "2605.29927",
+      "title": "Does The Way You Plan Matter? An Empirical Study of Planning Representations for LLM Web Agents",
+      "chinese_title": "规划方式是否重要？LLM网页智能体规划表示的实证研究",
+      "authors": "Alejandra Zambrano et al.",
+      "url": "https://arxiv.org/abs/2605.29927"
+    },
+    {
+      "id": "2605.30233",
+      "title": "Do Language Models Track Entities Across State Changes?",
+      "chinese_title": "语言模型能否追踪实体状态变化？",
+      "authors": "Zilu Tang et al.",
+      "url": "https://arxiv.org/abs/2605.30233"
+    },
+    {
+      "id": "2605.30152",
+      "title": "Do Proactive Agents Really Need an LLM to Decide When to Wake and What to Anchor?",
+      "chinese_title": "主动型智能体何时唤醒与锚定真需大语言模型决策吗",
+      "authors": "Xiaoze Liu et al.",
+      "url": "https://arxiv.org/abs/2605.30152"
+    },
+    {
+      "id": "2605.30058",
+      "title": "HEART-Bench: Do LLM Agents Exhibit Human-like Psychology?",
+      "chinese_title": "HEART-Bench：大语言模型智能体是否具备类人心理？",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2605.30058"
+    },
+    {
+      "id": "2605.30241",
+      "title": "CommunityFact: A Dynamic, Multilingual, Multi-domain Benchmark for Misinformation Detection in the Wild",
+      "chinese_title": "社区事实：面向真实场景的多语言多领域动态虚假信息检测基准",
+      "authors": "Sahajpreet Singh et al.",
+      "url": "https://arxiv.org/abs/2605.30241"
+    },
+    {
+      "id": "2605.30051",
+      "title": "Who Am I? History-Aware Profiles for Student Simulation in Tutoring Dialogues",
+      "chinese_title": "历史感知型学生画像：辅导对话中的学习者模拟",
+      "authors": "Zhangqi Duan et al.",
+      "url": "https://arxiv.org/abs/2605.30051"
+    }
+  ],
+  "generated_at": "2026-05-29T22:18:18.921Z",
+  "org": "AI研究室"
+}

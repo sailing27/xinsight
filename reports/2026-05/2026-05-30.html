@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型智能体认知跃迁 从多语言感知到类人心理的全景突破 | 2026/5/30</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型智能体认知跃迁 从多语言感知到类人心理的全景突破 | 2026/5/30</h1>
+                <div class="date">2026/5/30 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了大模型研究正从单一能力优化转向<strong>系统架构设计与认知机制深度理解</strong>的新阶段。七项研究共同指向三个核心技术趋势：其一，<strong>结构化表示优于文本化渲染</strong>——无论是多平行语料、时序图编码还是历史感知档案，均证明保留数据原生结构能显著消除信息损耗；其二，<strong>规划与执行的解耦重构</strong>——静态规划框架与并行聚合机制挑战了传统的序列处理范式，强调关键决策节点的集中计算而非增量追踪；其三，<strong>动态持续学习取代静态评估</strong>——动态基准与跨对话上下文建模突破了"一次性评测"局限，呼应真实场景的时变特性。<br><br>这些发现对行业具有双重启示：技术层面，<strong>架构设计选择（数据表示、规划策略、记忆机制）与底层模型规模同等重要</strong>，为资源受限场景提供优化杠杆；应用层面，教育模拟、健康咨询、信息治理等垂直领域需采纳<strong>人格完整性视角与跨语言公平性框架</strong>，避免将LLM简化为任务工具而忽视其社会嵌入性。整体而言，该领域正经历从"模型中心"向"系统中心"的范式迁移。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Dial HEALTHDIAL for Advice: A Multilingual and Multi-Parallel Spoken Dialogue Dataset for Knowledge-Grounded Information Seeking</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.30107</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 Findings of ACL 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">HEALTHDIAL热线咨询：多语言多平行知识型口语对话数据集</span>
+                        <span style="color:#666;font-size:12px;">Songbo Hu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文介绍了HEALTHDIAL，一个大规模多语言、多平行语料的口语对话数据集，用于开发和评估基于检索增强生成（RAG）的口语对话系统。数据集包含6,000段信息寻求对话（每种语言1,500段），基于世界卫生组织（WHO）的权威内容，涵盖阿拉伯语、汉语、英语和西班牙语四种WHO官方语言，共163小时母语者录音。每位说话者标注了人口统计和社会语言学变量。论文报告了关键对话任务的基准结果，发现即使在高资源语言之间也存在一致的性能差异，并发布了数据集、原型系统及数据收集与评估工具包。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多平行语料构建</strong>：采用结构化方法创建四种语言严格对齐的多平行口语对话数据，确保跨语言可比性，支持多语言RAG系统的公平评估与开发</li><li style="margin-bottom:0;"><strong>检索增强生成</strong>：将WHO权威健康文档作为外部知识库，通过检索相关段落并生成回答，实现知识驱动的信息寻求对话，保证回答的事实准确性</li><li style="margin-bottom:0;"><strong>母语语音采集</strong>：招募来自不同方言区的母语者录制163小时自然口语，覆盖阿拉伯语、汉语、英语和西班牙语，保留真实语音特征与方言多样性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>大规模多平行设计</strong>：首创四种WHO官方语言严格平行的大规模口语对话数据集，每种语言1,500段对话，突破单语或伪多语料局限，实现真正的跨语言系统研究</li><li style="margin-bottom:0;"><strong>社会语言学标注</strong>：创新性地为每位说话者标注性别、年龄、主要语言、来源地区等社会语言学变量，支持分析方言、人口因素对口语理解性能的影响</li><li style="margin-bottom:0;"><strong>RAG口语系统基准</strong>：首次针对多语言RAG口语对话系统建立全面基准测试，揭示高资源语言间仍存在显著性能差距，为后续研究提供重要参考标准</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语言性能差异显著</strong>：基准测试显示即使在高资源语言之间，RAG口语对话系统也存在一致且明显的性能差距，挑战了高资源语言性能趋同的假设</li><li style="margin-bottom:0;"><strong>方言多样性影响大</strong>：来自不同地区的母语者方言变异对口语理解构成实质性挑战，社会语言学因素需纳入多语言系统设计与评估</li><li style="margin-bottom:0;"><strong>数据工具促进研究</strong>：发布的数据集、原型系统和采集评估工具包可有效降低该领域研究门槛，推动多语言口语对话技术的公平发展与广泛应用</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.30107" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.30107</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Does The Way You Plan Matter? An Empirical Study of Planning Representations for LLM Web Agents</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.29927</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 EMNLP</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">规划方式是否重要？LLM网页智能体规划表示的实证研究</span>
+                        <span style="color:#666;font-size:12px;">Alejandra Zambrano et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">尽管近期有所进展，基于LLM的网页智能体仍面临探索受限、关键步骤遗漏和任务约束敏感等问题。先前研究表明这些失败多源于规划弱点，但替代性自然语言规划表示的影响尚未被探索。为此，本文提出PlanAhead静态规划-执行框架，评估规划表示对智能体性能的影响。研究首先将WebArena任务自动分为3个难度等级，无需人工标注实现一致分级；然后系统评估4种规划表示（顺序子目标、叙述、伪代码、清单）在多模态LLM智能体（OpenAI、阿里巴巴、Google）上的效果；并引入两项新指标Achievement Rate和Solved-Task Consistency以应对随机变异性。结果表明，规划形式和生成规划的底层LLM均显著影响网页智能体的鲁棒性和任务成功率。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>静态规划框架</strong>：提出PlanAhead规划-执行分离架构，由静态规划器生成任务计划后交由执行器完成，避免动态规划中误差累积导致的执行偏差问题</li><li style="margin-bottom:0;"><strong>任务自动分级</strong>：基于任务特征自动将WebArena任务划分为易、中、难3个等级，消除人工标注主观性，确保实验难度评估的一致性与可重复性</li><li style="margin-bottom:0;"><strong>多元规划表示</strong>：系统对比顺序子目标、叙述文本、伪代码、清单4种自然语言规划表示形式，覆盖结构化到半结构化的表达谱系</li><li style="margin-bottom:0;"><strong>随机稳定指标</strong>：设计Achievement Rate和Solved-Task Consistency两项指标，量化多次运行下的任务完成率与结果一致性，克服LLM输出随机性干扰</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>规划表示实验</strong>：首次在大规模网页智能体任务上，控制变量地验证不同自然语言规划表示对执行效果的因果影响，填补该方向实证空白</li><li style="margin-bottom:0;"><strong>跨模型族验证</strong>：同时在OpenAI、阿里巴巴、Google三大主流多模态LLM家族上开展对比实验，确保发现具有跨平台泛化性而非特定模型偶然</li><li style="margin-bottom:0;"><strong>难度感知评估</strong>：建立无需人工的三级自动难度分类体系，使不同规划表示的优劣比较能在同难度基准公平进行，提升结论可信度</li><li style="margin-bottom:0;"><strong>分离式架构</strong>：采用规划与执行解耦的静态设计，精准隔离规划表示本身的效应，排除动态交互中其他因素对实验效度的混淆</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>表示显著影响</strong>：规划表示形式对网页智能体鲁棒性和任务成功率具有显著影响，证明规划阶段的设计选择与底层模型同等重要</li><li style="margin-bottom:0;"><strong>模型族差异大</strong>：不同LLM家族对同一规划表示的响应存在明显差异，不存在 universally optimal 的表示，需针对模型特性适配</li><li style="margin-bottom:0;"><strong>伪代码表现优</strong>：在hard任务上，伪代码和清单类结构化表示总体优于叙述型自由文本，因其降低了解析歧义与步骤遗漏风险</li><li style="margin-bottom:0;"><strong>一致性待提升</strong>：现有智能体在相同任务多次运行中结果波动较大，STC指标揭示稳定性是制约实用化的关键瓶颈，需联合优化规划与随机性控制</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.29927" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.29927</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Do Language Models Track Entities Across State Changes?</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.30233</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">语言模型能否追踪实体状态变化？</span>
+                        <span style="color:#666;font-size:12px;">Zilu Tang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">实体追踪（ET）是支撑复杂推理的基础能力。本文研究Transformer语言模型在包含多个状态变化操作的复杂场景中如何进行实体追踪。研究发现，语言模型并非逐token增量追踪世界状态，而是在查询出现时于最后一个token处并行聚合相关信息。研究进一步发现模型通过脆弱的全局抑制标签实现REMOVE操作，该机制预测了多种失败模式并得到行为验证。研究提出了抵消该标签的机械性解决方案。总体而言，语言模型使用非序列策略解决本质上序列化的任务，展示了行为分析与机械分析如何有效交互。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>并行聚合机制</strong>：语言模型不在各层或各token间增量追踪相关状态，而是在查询明确化的最终token位置，并行地聚合所有相关信息以完成实体追踪</li><li style="margin-bottom:0;"><strong>全局抑制标签</strong>：REMOVE操作通过一种脆弱的全局抑制机制实现，该标签在模型内部传播以标记需移除实体，但易因干扰而失效</li><li style="margin-bottom:0;"><strong>机械性修复方案</strong>：通过识别并抵消全局抑制标签的表示，提出针对性的干预方法，部分修复REMOVE操作的失败模式，提升模型可靠性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>复杂场景ET研究</strong>：突破以往仅研究无状态变化或玩具级问题的局限，首次系统考察多操作、自然语言表达的实体追踪问题，填补现实难度下的机制理解空白</li><li style="margin-bottom:0;"><strong>非增量追踪发现</strong>：揭示语言模型反直觉地采用非序列策略处理序列任务，颠覆传统假设中模型逐步更新世界状态的认知，重新定义ET的底层实现方式</li><li style="margin-bottom:0;"><strong>双向分析框架</strong>：建立行为实验与机械分析的双向互动范式，行为结果驱动机制假设，机制洞察又预测并验证新的行为失败模式，形成闭环研究方法论</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>非序列解决策略</strong>：语言模型本质上以并行聚合而非增量追踪方式处理实体状态变化，在最终查询点统一整合信息，而非逐层或逐token维护动态世界状态</li><li style="margin-bottom:0;"><strong>REMOVE机制脆弱性</strong>：REMOVE操作依赖的全局抑制标签极易受上下文干扰，该结构性缺陷系统性地预测了模型在特定干扰条件下的行为失败模式</li><li style="margin-bottom:0;"><strong>干预有效性验证</strong>：通过机械性抵消抑制标签可部分恢复REMOVE操作正确性，证明机制理解的实践价值，为提升语言模型可靠性提供可操作的修复路径</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.30233" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.30233</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Do Proactive Agents Really Need an LLM to Decide When to Wake and What to Anchor?</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.30152</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">主动型智能体何时唤醒与锚定真需大语言模型决策吗</span>
+                        <span style="color:#666;font-size:12px;">Xiaoze Liu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">主动式智能体将用户活动渲染为文本，并对每个事件调用大语言模型（LLM）来决定是否行动。本文提出将用户活动视为图更新而非文本，使用小型时序图学习（TGL）模型作为编码器：单次前向传播即可输出每个事件的触发概率和每个实体的路由分数，仅当下游智能体需要生成面向用户的流畅句子时才调用LLM。TGL在14种骨干网络上均提升F1分数（平均+16.7，最高+46.0），在触发架构比较中给出最强AUC和最稳定的部署阈值，在GPU服务器上每事件11.13ms、消费级笔记本13.99ms，比所有LLM-as-trigger配置快4-83倍，BF16驻留内存约220MiB可部署于设备端。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>时序图编码</strong>：将用户活动流建模为（参与者，动词，对象，时间戳）的图结构更新，避免将结构化数据渲染为文本再让LLM恢复的冗余往返</li><li style="margin-bottom:0;"><strong>双输出预测</strong>：单次TGL前向传播同时输出每事件触发概率和每实体路由分数，实现触发决策与任务路由的联合推断</li><li style="margin-bottom:0;"><strong>条件LLM调用</strong>：仅当触发器激活时才调用LLM，将其角色限制为小型结构化交接转流畅用户语句的下游生成器</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>图原生感知</strong>：突破将操作系统已维护的图形式事件流强制文本化的范式，直接以图更新形式处理持续信号，消除信息形态错配</li><li style="margin-bottom:0;"><strong>轻量触发替代</strong>：用小型TGL模型替代LLM作为触发决策器，从根本上改变主动智能体每事件必调LLM的架构假设</li><li style="margin-bottom:0;"><strong>端侧隐私部署</strong>：220MiB BF16 footprint可与敏感活动流共存于设备端，避免将原始用户活动上传云端进行LLM推理</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能显著提升</strong>：TGL在14种骨干网络上均优于基线，F1平均提升16.7个百分点，最高提升达46.0个百分点</li><li style="margin-bottom:0;"><strong>触发质量最优</strong>：单一TGL检查点在触发架构比较中同时获得最强AUC指标和最稳定的部署阈值，兼顾准确性与可操作性</li><li style="margin-bottom:0;"><strong>推理效率飞跃</strong>：GPU服务器11.13ms、笔记本13.99ms每事件，较所有测试的LLM-as-trigger配置分别快约4-7倍和12-83倍</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.30152" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.30152</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>HEART-Bench: Do LLM Agents Exhibit Human-like Psychology?</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.30058</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">HEART-Bench：大语言模型智能体是否具备类人心理？</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出HEART-Bench基准测试，系统评估LLM智能体能否模拟连贯的人类心理。该基准构建11个基于大五人格特质的多样化人类角色，每个角色整合1000条结构化自传体情景记忆，并设计64个基于DIAMONDS分类法的决策场景，最终形成673道经人工验证的多选题，用于研究LLM的情感、人格一致性和价值一致性行为决策。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>人格角色建模</strong>：基于正交大五人格维度构建11个差异化虚拟人物，确保人格特质间的独立性与全覆盖性</li><li style="margin-bottom:0;"><strong>自传记忆编码</strong>：为每个角色生成1000条结构化情景记忆，按理论驱动的生命发展阶段分布，形成连贯个人叙事</li><li style="margin-bottom:0;"><strong>场景分类体系</strong>：采用DIAMONDS心理学框架设计决策场景，涵盖责任、智力、逆境等八个情境维度</li><li style="margin-bottom:0;"><strong>行为一致性评估</strong>：通过多选题形式检验智能体能否整合人格特质与自传记忆，做出符合心理档案的行为决策</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>心理完整性视角</strong>：突破传统任务导向评估范式，将LLM智能体视为完整人格而非工具，强调情感维度的同等重要性</li><li style="margin-bottom:0;"><strong>记忆人格融合</strong>：首创将大五人格特质与千条自传体记忆深度整合，构建具有发展连贯性的心理档案</li><li style="margin-bottom:0;"><strong>情境维度系统</strong>：引入DIAMONDS分类法指导场景设计，实现心理学理论框架与计算评估的有机结合</li><li style="margin-bottom:0;"><strong>可扩展测试平台</strong>：建立经人工验证的673题标准化基准，为LLM类人心理学研究提供原则性评估工具</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>基准构建完成</strong>：经系统人工验证与筛选，最终形成673道高质量多选题的完整评估体系</li><li style="margin-bottom:0;"><strong>评估维度多元</strong>：覆盖情感模拟、人格一致性、价值一致性行为决策三个核心心理学维度</li><li style="margin-bottom:0;"><strong>理论框架扎实</strong>：以大五人格和DIAMONDS为理论基础，确保评估的科学性与心理学效度</li><li style="margin-bottom:0;"><strong>应用前景明确</strong>：为LLM智能体的类人心理研究提供可扩展、可复现的标准化测试环境</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.30058" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.30058</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>CommunityFact: A Dynamic, Multilingual, Multi-domain Benchmark for Misinformation Detection in the Wild</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.30241</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">社区事实：面向真实场景的多语言多领域动态虚假信息检测基准</span>
+                        <span style="color:#666;font-size:12px;">Sahajpreet Singh et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出CommunityFact，一个可动态更新的多语言、多领域野外错误信息检测基准，包含15,992条独立声明，涵盖五种语言和两个领域。研究评估了十种大语言模型在不同推理能力（包括思考模式和网络搜索）下的表现，发现封闭输入验证仍具挑战性，网络访问带来最大提升，但网络增强型LLM的信源选择策略与人类社区笔记评分者存在系统性错位。该基准还将社区笔记定位为面向声明的条件化信源推荐器的训练信号，以改善新声明的事实核查能力。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>动态基准构建</strong>：设计可刷新更新的基准框架，突破静态评测局限，适应快速变化的在线公共多语言环境，支持持续扩展新声明与多语言多领域覆盖</li><li style="margin-bottom:0;"><strong>多模推理评估</strong>：系统对比十种LLM在纯文本、思考模式、网络搜索三种推理能力配置下的错误信息检测表现，量化不同能力组件的贡献差异</li><li style="margin-bottom:0;"><strong>信源对齐分析</strong>：建立LLM与人类评分者的信源选择对比机制，揭示网络增强模型在检索扩展或剪枝过程中的模型特异性对齐差距</li><li style="margin-bottom:0;"><strong>证据生态刻画</strong>：构建跨语言-领域切片的证据生态系统图谱，分析网络启用系统所依赖的证据来源结构与分布变异</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>可再分发设计</strong>：突破传统基准的静态授权限制，实现声明级数据的灵活再分发，支持研究社区持续迭代与跨平台迁移应用</li><li style="margin-bottom:0;"><strong>社区笔记转化</strong>：首创将Twitter/X社区笔记的人类协作评分信号转化为结构化训练数据，用于构建面向新声明的条件化信源推荐模型</li><li style="margin-bottom:0;"><strong>野外真实模拟</strong>：直接采集公共在线环境中的实时争议性声明，替代实验室构造场景，提升评测生态效度与现实预测力</li><li style="margin-bottom:0;"><strong>多维度细粒度</strong>：在语言-领域双维度上实现精细切片分析，暴露模型性能的不均衡分布，指导针对性能力补强</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>网络增益主导</strong>：网络搜索能力为错误信息检测带来最大性能提升，远超思考模式等纯内部推理增强，外部证据获取是关键瓶颈</li><li style="margin-bottom:0;"><strong>信源选择错位</strong>：网络增强LLM的信源选择策略与人类社区笔记评分者达成共识的信源存在系统性偏差，需通过检索扩展或剪枝机制修正</li><li style="margin-bottom:0;"><strong>封闭输入困境</strong>：仅依赖模型内部知识的封闭输入验证仍具显著挑战，说明参数化知识难以覆盖快速演化的野外信息环境</li><li style="margin-bottom:0;"><strong>跨域变异显著</strong>：不同语言-领域组合上的模型表现与证据生态系统存在 substantial variation，揭示全球南方语言与特定领域的事实核查鸿沟</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.30241" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.30241</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Who Am I? History-Aware Profiles for Student Simulation in Tutoring Dialogues</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.30051</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">历史感知型学生画像：辅导对话中的学习者模拟</span>
+                        <span style="color:#666;font-size:12px;">Zhangqi Duan et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出历史条件化学生模拟任务，通过构建双组件框架（档案生成器+模拟器），利用强化学习训练生成优化学生历史档案，以准确预测学生对话轮次。研究基于首个真实数学学习平台数据集进行实验，证明方法显著优于基线，验证了历史信息、学生档案和强化学习训练的重要性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>历史条件模拟</strong>：利用学生过往问答和对话交互等学习历史信息，预测其在辅导对话中的未来行为，解决现有方法缺乏学生知识与行为上下文的问题</li><li style="margin-bottom:0;"><strong>双组件框架</strong>：包含档案生成器（总结学生历史）和模拟器（基于档案预测对话轮次），两组件协同实现条件化学生模拟</li><li style="margin-bottom:0;"><strong>强化学习训练</strong>：对档案生成器和模拟器进行联合强化学习训练，优化档案表示以提升模拟忠实度，而非仅依赖监督学习</li><li style="margin-bottom:0;"><strong>真实世界数据集</strong>：从数学学习平台收集首个真实学生对话与问答响应数据集，为历史条件化模拟研究提供评估基准</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>历史感知档案</strong>：创新性地将学生学习历史编码为结构化档案，使模拟具备跨对话的上下文连续性，突破现有仅关注单轮对话内模拟的局限</li><li style="margin-bottom:0;"><strong>端到端优化</strong>：通过强化学习实现档案生成与模拟预测的端到端联合优化，使档案自动生成并适配模拟目标，避免人工设计特征</li><li style="margin-bottom:0;"><strong>任务形式化定义</strong>：首次明确提出历史条件化学生模拟任务，建立利用学习历史预测对话行为的规范研究框架</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>历史信息关键</strong>：实验证实利用学生学习历史能显著提升模拟准确性，缺乏历史上下文的基线方法性能明显不足</li><li style="margin-bottom:0;"><strong>档案质量重要</strong>：生成式学生档案有效编码历史信息，其质量直接影响模拟器预测学生对话轮次的忠实度</li><li style="margin-bottom:0;"><strong>强化学习有效</strong>：相比监督学习，强化学习训练使档案生成器和模拟器协同优化，带来显著性能提升</li><li style="margin-bottom:0;"><strong>方法显著领先</strong>：所提方法在真实数据集上大幅超越各类基线，验证整体框架的有效性和实用价值</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.30051" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.30051</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/30</p>
+        </div>
+    </div>
+</body>
+</html>
