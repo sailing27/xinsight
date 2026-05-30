@@ -1,0 +1,68 @@
+{
+  "date": "2026-05-31",
+  "title": "大模型评估革新与跨域应用突破 从统计诊断到临床推理与数学生成",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.30315",
+      "title": "Resolution Diagnostics for Paired LLM Evaluation",
+      "chinese_title": "配对大语言模型评估的分辨力诊断",
+      "authors": "Anany Kotawala et al.",
+      "url": "https://arxiv.org/abs/2605.30315"
+    },
+    {
+      "id": "2605.30295",
+      "title": "MedCase-Structured: A Text-to-FHIR Dataset for Benchmarking Diagnostic Reasoning in Clinically Realistic EHR Settings",
+      "chinese_title": "MedCase-Structured：面向临床真实电子病历环境的诊断推",
+      "authors": "Valentina Bui Muti et al.",
+      "url": "https://arxiv.org/abs/2605.30295"
+    },
+    {
+      "id": "2605.29800",
+      "title": "Nine Judges, Two Effective Votes: Correlated Errors Undermine LLM Evaluation Panels",
+      "chinese_title": "九位评审，两票有效：LLM评估小组的相关性错误",
+      "authors": "Guneet Kohli et al.",
+      "url": "https://arxiv.org/abs/2605.29800"
+    },
+    {
+      "id": "2605.30333",
+      "title": "COMPOSE: Composing Future Theorems from Citations and Formal Structure",
+      "chinese_title": "COMPOSE：基于引用与形式结构合成未来定理",
+      "authors": "David Busbib et al.",
+      "url": "https://arxiv.org/abs/2605.30333"
+    },
+    {
+      "id": "2605.30260",
+      "title": "How LoRA Remembers? A Parametric Memory Law for LLM Finetuning",
+      "chinese_title": "LoRA如何记忆？大模型微调参数记忆定律",
+      "authors": "Ziwen Xu et al.",
+      "url": "https://arxiv.org/abs/2605.30260"
+    },
+    {
+      "id": "2605.30022",
+      "title": "Give it Space! Explicit Disentangling of Positional and Semantic Representations in Encoders",
+      "chinese_title": "赋予空间！显式解耦编码器中的位置与语义表征",
+      "authors": "Pierre-Antoine Lequeu et al.",
+      "url": "https://arxiv.org/abs/2605.30022"
+    },
+    {
+      "id": "2605.29992",
+      "title": "Adapting Multilingual Embedding Models to Turkish via Cross-Lingual Tokenizer Surgery and Offline Distillation",
+      "chinese_title": "跨语言分词器手术与离线蒸馏适配土耳其语多语言嵌入模型",
+      "authors": "M. Ali Bayram et al.",
+      "url": "https://arxiv.org/abs/2605.29992"
+    }
+  ],
+  "generated_at": "2026-05-30T22:11:37.141Z",
+  "org": "AI研究室"
+}

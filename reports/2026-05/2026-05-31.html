@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型评估革新与跨域应用突破 从统计诊断到临床推理与数学生成 | 2026/5/31</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型评估革新与跨域应用突破 从统计诊断到临床推理与数学生成 | 2026/5/31</h1>
+                <div class="date">2026/5/31 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了2024-2025年大模型领域从"规模驱动"向"效率与可信度驱动"的深层范式转型。七篇论文共同指向三个核心技术方向：一是<strong>评估体系的方法论重构</strong>，从分辨率诊断到有效样本度量，系统暴露现有评测体系的统计脆弱性与独立性幻觉；二是<strong>表征结构的显式解耦与优化</strong>，涵盖位置-语义分离、临床文本结构化转换及多语言分词器手术，强调通过架构创新释放模型固有潜力；三是<strong>生成任务的约束融合与理论化</strong>，COMPOSE的双图条件生成与LoRA参数化记忆定律分别代表了"知识驱动生成"与"可预测微调"的方法论突破。<br><br>对行业而言，这些研究共同警示：排行榜竞争需回归统计严谨性，模型部署需正视结构化输入的性能陷阱与评审团设计的相关性风险；同时，显式解耦、跨语言词表手术与参数化定律等创新，为资源受限场景下的高效适配提供了可复用的工程范式。研究层面，数学定理生成等任务的形式化定义，以及记忆机制的幂律建模，标志着LLM研究正从经验优化迈向理论可解释的新阶段。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Resolution Diagnostics for Paired LLM Evaluation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.30315</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 the ICML 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">配对大语言模型评估的分辨力诊断</span>
+                        <span style="color:#666;font-size:12px;">Anany Kotawala et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本研究分析了公开LLM排行榜中的成对评估问题，发现许多显示的成对排名未达到传统配对检验的分辨率目标。研究将成对LLM评估框架为假设检验问题，提出分辨率比率q=N/N*作为主要诊断指标，并证明广泛使用的非配对Cohen-h-plus-(1-rho)捷径在接近比较区域与正确N*偏离约两倍。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分辨率诊断</strong>：提出成对分辨率比率q=N/N*作为主要诊断指标，通过反转水平α、功效(1-β)检验来量化每对比较的统计分辨率</li><li style="margin-bottom:0;"><strong>小效应展开</strong>：推导具有显式二阶常数的尖锐小效应展开式，精确刻画样本量需求在接近比较区域的渐近行为</li><li style="margin-bottom:0;"><strong>聚类自助法</strong>：采用真实学科层面聚类和分类自助重采样，验证MMLU-Pro排行榜中未解决配对模式的稳健性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>成对检验框架</strong>：首次将LLM成对评估形式化为假设检验问题，系统揭示现有排行榜中大量排名比较统计上不显著的问题</li><li style="margin-bottom:0;"><strong>捷径偏差量化</strong>：证明Cohen-h+(1-ρ)捷径与正确N*在接近比较区域偏离约两倍，且三款主流工具静默继承此缺陷</li><li style="margin-bottom:0;"><strong>序列检验扩展</strong>：将未解决配对模式拓展至多重复校正和任意时刻有效序列检验场景，增强方法的普适性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>排行榜分辨率不足</strong>：Open LLM Leaderboard v1中11/40成对比较、MMLU-Pro前10相邻排名对中4/9未在(0.05,0.8)标准下解决</li><li style="margin-bottom:0;"><strong>聚类效应显著</strong>：MMLU-Pro未解决计数在真实学科聚类下升至6/9，且在99.9%分类自助样本中维持5-6/9的高比例</li><li style="margin-bottom:0;"><strong>工具缺陷普遍</strong>：五款现成计算器中有三款在用户后乘(1-ρ)时静默继承约两倍的样本量低估偏差</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.30315" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.30315</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>MedCase-Structured: A Text-to-FHIR Dataset for Benchmarking Diagnostic Reasoning in Clinically Realistic EHR Settings</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.30295</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ICML 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">MedCase-Structured：面向临床真实电子病历环境的诊断推</span>
+                        <span style="color:#666;font-size:12px;">Valentina Bui Muti et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型在临床推理和决策支持方面展现出潜力，但在真实的电子健康记录环境中进行评估仍然有限。现有基准测试通常依赖静态数据集或非结构化输入，无法反映临床系统中使用的结构化、可互操作的数据格式。本文介绍了一种从非结构化文本生成临床真实HL7 FHIR R4资源包的流程，实现对临床决策支持系统的可控评估。该流程结合分阶段LLM生成、术语 grounded 验证与修复，以减少幻觉代码并强制结构和语义一致性。将该方法应用于MedCaseReasoning，构建了MedCase-Structured数据集，82.5%的病例生成有效FHIR。评估显示，LLM在结构化FHIR输入上的诊断准确率持续低于纯文本输入，凸显了部署对齐基准测试的重要性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分阶段LLM生成</strong>：采用多阶段生成策略，将非结构化临床文本逐步转换为结构化FHIR资源，通过模块化设计控制生成过程的复杂度和质量</li><li style="margin-bottom:0;"><strong>术语验证修复</strong>：基于标准医学术语库进行代码验证与自动修复，有效识别并纠正LLM生成的幻觉编码，确保临床概念的准确性</li><li style="margin-bottom:0;"><strong>结构语义一致性</strong>：强制执行FHIR R4规范的结构约束和语义规则，保证生成的资源包在临床系统间的互操作性和数据完整性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>文本转FHIR流程</strong>：首创系统性将非结构化临床文本转换为标准HL7 FHIR R4资源包的完整流水线，填补非结构化到结构化临床数据转换的方法空白</li><li style="margin-bottom:0;"><strong>临床真实数据集</strong>：构建MedCase-Structured合成数据集，基于临床医师编写的真实诊断病例，保持医学专业性和临床场景的真实性</li><li style="margin-bottom:0;"><strong>可控评估框架</strong>：建立面向临床决策支持系统的可控评估环境，支持在标准化、可重复的条件下测试和比较不同系统的性能表现</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>结构输入降性能</strong>：LLM在结构化FHIR格式输入下的诊断准确率显著低于纯文本输入，表明现有模型对标准临床数据格式的处理能力存在明显不足</li><li style="margin-bottom:0;"><strong>部署对齐必要性</strong>：研究揭示当前基准测试与真实临床部署环境之间存在显著差距，强调构建与临床系统实际使用场景对齐的评估体系至关重要</li><li style="margin-bottom:0;"><strong>高有效生成率</strong>：通过验证修复机制，实现82.5%病例的有效FHIR生成，证明该流程在保持数据质量的同时具备较高的实用可行性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.30295" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.30295</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Nine Judges, Two Effective Votes: Correlated Errors Undermine LLM Evaluation Panels</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.29800</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">九位评审，两票有效：LLM评估小组的相关性错误</span>
+                        <span style="color:#666;font-size:12px;">Guneet Kohli et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究了LLM-as-judge评估面板的有效性问题。作者构建了一个框架来衡量多模型评审团的真实信息价值，发现由9个前沿LLM（来自7个模型家族）组成的面板实际上仅提供约2个独立投票的信息量。由于模型在相同项目上犯相同错误，约四分之三的名义独立性丧失。实际准确率比独立投票低8-22个百分点，最佳单一模型在所有条件下均匹配或超越全面板。增加评审员数量或使用更智能的聚合算法均无济于事，瓶颈在于评审员之间的相关性而非聚合算法。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>有效样本度量</strong>：采用Kish有效样本量(n_eff)量化评审团实际信息含量，将9个LLM的投票压缩为等效独立投票数，揭示名义规模与实际效能之间的巨大差距</li><li style="margin-bottom:0;"><strong>Condorcet零模型</strong>：构建基于独立投票假设的基准模型，计算理论最优准确率，为评估面板实际表现提供对照标准，量化相关性导致的效能损失</li><li style="margin-bottom:0;"><strong>多维度验证</strong>：在三个自然语言推理数据集、不同提示变体、温度参数、思维链推理及成对偏好任务(RewardBench)上测试，确保结论的稳健性与泛化性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>信息价值框架</strong>：首次系统构建测量LLM评审团真实信息价值的理论框架，超越简单多数投票的准确性分析，深入揭示相关性对集体决策的根本性破坏</li><li style="margin-bottom:0;"><strong>相关性量化方法</strong>：开发将投票相关性转化为有效独立投票数的量化工具，使'9个模型仅等效2个独立投票'这一反直觉发现可被精确测量与验证</li><li style="margin-bottom:0;"><strong>聚合算法边界分析</strong>：证明即使使用最优聚合策略并赋予正确答案访问权限，最多仅能弥补11%的效能差距，从根本上否定算法优化路径的可行性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>独立性严重虚高</strong>：9个前沿LLM评审团的有效独立投票数仅约2个，约75%的名义独立性因模型间错误相关性而丧失，多样性假设基本不成立</li><li style="margin-bottom:0;"><strong>准确率显著赤字</strong>：面板实际准确率较独立投票理想情况低8-22个百分点，最佳单一模型在所有测试条件下均匹配或超越全面板，规模扩张无效益</li><li style="margin-bottom:0;"><strong>规模扩张失效</strong>：增加评审员数量或采用更智能聚合算法均无法解决根本问题，瓶颈在于评审员相关性而非聚合策略，LLM评审团无法替代真正独立的评估机制</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.29800" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.29800</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>COMPOSE: Composing Future Theorems from Citations and Formal Structure</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.30333</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">COMPOSE：基于引用与形式结构合成未来定理</span>
+                        <span style="color:#666;font-size:12px;">David Busbib et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出 grounded future mathematical generation 任务，旨在利用科学引用图和形式化定理依赖图两种互补上下文，为锚定论文生成合理的未来定理类声明。为此提出 COMPOSE 双图框架，构建包含 108K 配对科学-形式图的数据集和 47K 篇 2024-2025 年未来论文的基准。实验表明 COMPOSE 在检索真实未来论文和 LLM 评判方面均优于强基线，证明结合科学上下文与形式结构对未来数学生成有益。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双图条件生成</strong>：通过同时编码科学引用图和形式定理依赖图，使语言模型在生成未来定理时兼顾研究动机与逻辑合法性，解决单一来源建模的局限性</li><li style="margin-bottom:0;"><strong>图对齐表示学习</strong>：将非结构化的科学论文引用网络与结构化的形式证明依赖网络进行语义对齐，构建统一的条件表示空间供生成模型使用</li><li style="margin-bottom:0;"><strong>未来论文检索验证</strong>：设计基于真实未来论文的检索评估协议，通过对比生成声明与2024-2025年实际发表论文的相关性来量化预测准确性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>任务范式创新</strong>：首次定义并形式化 grounded future mathematical generation 任务，明确将科学演进方向与形式逻辑约束作为未来定理生成的双重必要条件</li><li style="margin-bottom:0;"><strong>跨模态图融合</strong>：开创性地将科学引用图（知识驱动、动机导向）与形式依赖图（逻辑驱动、结构约束）结合，实现直觉启发与严格证明的统一建模</li><li style="margin-bottom:0;"><strong>大规模配对数据集</strong>：构建首个 108K 科学-形式图配对数据集及 47K 未来论文基准，为数学发现预测提供可量化评估的研究基础设施</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双源优于单源</strong>：实验明确证明同时利用科学上下文和形式结构的 COMPOSE 框架，在各项评估指标上均显著优于仅依赖单一信息源的强基线方法</li><li style="margin-bottom:0;"><strong>检索真实性验证</strong>：COMPOSE 生成内容在检索真实未来论文任务中表现最优，表明模型成功捕捉到数学研究的实际演进方向而非产生幻觉式猜测</li><li style="margin-bottom:0;"><strong>LLM评判优势</strong>：在综合性的 LLM-judge 评估下取得最佳整体性能，输出结果兼具更强的领域扎根性与更丰富的数学内涵，验证了人机协同评估的有效性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.30333" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.30333</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>How LoRA Remembers? A Parametric Memory Law for LLM Finetuning</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.30260</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">LoRA如何记忆？大模型微调参数记忆定律</span>
+                        <span style="color:#666;font-size:12px;">Ziwen Xu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型需要持续学习更新知识以适应动态环境。虽然LoRA广泛用于此类记忆更新，但现有研究主要依赖定性下游评估，对精确参数化记忆的定量容量限制和内在动态机制探索不足。本文将LoRA作为受控记忆容量探针，系统量化精确参数化记忆，提出参数化记忆定律，揭示损失降低与有效参数及序列长度的幂律关系；在token层面发现确定性相变，证明预测概率p>0.5是贪婪解码下逐字回忆的充分条件；并基于此提出MemFT阈值引导优化策略，动态重分配训练预算至亚阈值token，提升记忆保真度与效率。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>LoRA探针技术</strong>：将LoRA作为受控记忆容量探针嵌入潜在空间，通过调节低秩维度控制系统记忆容量，实现对精确参数化记忆的定量测量与可控实验</li><li style="margin-bottom:0;"><strong>幂律建模技术</strong>：建立参数化记忆定律，定量刻画损失降低ΔL与有效参数数量、序列长度之间的稳健幂律关系，为记忆容量预测提供理论框架</li><li style="margin-bottom:0;"><strong>阈值优化技术</strong>：提出MemFT阈值引导优化策略，基于p>0.5的相变阈值动态识别亚阈值token，自适应重分配训练预算以提升记忆效率</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>参数化记忆定律</strong>：首次建立连接损失降低、有效参数与序列长度的幂律方程，突破现有定性评估局限，为LLM微调中的记忆机制提供可量化的理论定律</li><li style="margin-bottom:0;"><strong>确定性相变发现</strong>：揭示token层面的确定性相变现象，严格证明预测概率p>0.5构成贪婪解码下逐字回忆的充分条件，建立记忆形成的精确判定标准</li><li style="margin-bottom:0;"><strong>动态预算重分配</strong>：创新性地将相变阈值转化为训练优化信号，设计面向亚阈值token的自适应预算重分配机制，实现记忆保真度与训练效率的协同优化</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>幂律普适成立</strong>：参数化记忆定律在多种设定下表现稳健，损失降低遵循有效参数与序列长度的幂律关系，为记忆容量规划提供可靠预测工具</li><li style="margin-bottom:0;"><strong>相变条件明确</strong>：token级分析证实p>0.5是逐字回忆的充分条件，记忆形成存在确定性阈值而非渐进过程，澄清了参数化记忆的本质特征</li><li style="margin-bottom:0;"><strong>MemFT效果显著</strong>：阈值引导的预算重分配策略有效提升记忆保真度与训练效率，验证理论洞察向实际算法转化的有效性，为高效知识更新提供新范式</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.30260" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.30260</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Give it Space! Explicit Disentangling of Positional and Semantic Representations in Encoders</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.30022</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">赋予空间！显式解耦编码器中的位置与语义表征</span>
+                        <span style="color:#666;font-size:12px;">Pierre-Antoine Lequeu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">位置编码（PE）是Transformer表示序列顺序的基础，但位置信息的处理和存储机制仍不清楚。现代PE方法如RoPE在长上下文理解或检索等任务上仍存在困难。基于位置信号和语义信号在训练好的Transformer中占据近乎正交子空间的证据，本文修改编码器Transformer以处理三个显式解耦的流：语义流、绝对位置（AP）和相对位置（RP），并将掩码语言建模（MLM）目标限制在语义流中。这种解耦实现了清晰的机制研究，得出三个发现：（1）隔离的AP子空间自发坍缩为捕获文档结构的低频二维流形；（2）注意力头分化为结构和语义导向的组，RP专门支持后者；（3）标准位置编码不能稳健保留宏观结构：RoPE和RP仅弱编码它，纠缠的AP在MLM压力下在最终层丢失它。解耦方法保留位置编码，在Flash-Holmes探测基准的65个语言现象中的49个上改进了语言表示。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>三流解耦架构</strong>：将Transformer编码器修改为显式处理语义、绝对位置和相对位置三个独立流，实现位置信息与语义信息的彻底分离，为机制研究提供清晰实验框架</li><li style="margin-bottom:0;"><strong>MLM语义约束</strong>：将掩码语言建模目标仅限制在语义流上，避免位置信息在训练过程中被语义目标干扰或覆盖，确保位置子空间的纯净性</li><li style="margin-bottom:0;"><strong>正交子空间利用</strong>：基于已有证据设计实验，利用位置与语义信号在训练后近乎正交的特性，通过显式设计验证并强化这一结构特性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>显式解耦设计</strong>：突破传统纠缠式位置编码范式，首创将AP和RP与语义流完全分离的架构，使位置信息的内部处理机制首次可被独立观察和精确操控</li><li style="margin-bottom:0;"><strong>结构语义头分化</strong>：发现注意力头自发形成结构和语义两个功能群组，揭示RP专门支持语义导向头的新分工模式，深化对多头注意力机制的理解</li><li style="margin-bottom:0;"><strong>二维流形发现</strong>：首次观察到隔离AP子空间自发坍缩为低频二维流形，该流形能捕获文档整体结构，为位置信息的几何表示提供全新视角</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>AP流形坍缩</strong>：隔离的绝对位置子空间自发形成低频二维流形，该结构能捕获文档宏观布局，表明位置信息具有内在的低维组织倾向</li><li style="margin-bottom:0;"><strong>RP语义专精</strong>：相对位置编码专门支持语义导向的注意力头，而绝对位置支持结构导向头，两种位置编码存在功能分化而非简单冗余</li><li style="margin-bottom:0;"><strong>标准编码缺陷</strong>：RoPE和相对位置仅弱编码宏观结构，纠缠的绝对位置在MLM压力下于深层丢失结构信息，证明传统方法的结构性表示不稳健</li><li style="margin-bottom:0;"><strong>解耦性能提升</strong>：显式解耦方法在65个语言现象中的49个上改进语言表示，验证保留位置信息完整性对语义理解具有实质性促进作用</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.30022" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.30022</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Adapting Multilingual Embedding Models to Turkish via Cross-Lingual Tokenizer Surgery and Offline Distillation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.29992</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">跨语言分词器手术与离线蒸馏适配土耳其语多语言嵌入模型</span>
+                        <span style="color:#666;font-size:12px;">M. Ali Bayram et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出面向土耳其语的句子嵌入模型embeddingmagibu-200m，通过跨语言分词器手术与离线蒸馏的三阶段适配流程，在单GPU约四小时内以5-20美元成本完成训练。该模型支持8192词元上下文窗口，输出768维L2归一化向量，在STSbTR上超越3亿参数教师模型，在TR-MTEB 26项任务中排名第7，以33%更少参数实现有竞争力的成本质量权衡。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分词器重构</strong>：基于40种语言语料库的频率分析，从教师词表中剪除冗余词元并引入多语言词元，构建131072词元的土耳其语优化多语言分词器，解决原分词器对土耳其语子词切分效率低下的问题</li><li style="margin-bottom:0;"><strong>嵌入表初始化</strong>：通过均值组合词元映射方法，为新生成的词表初始化兼容的嵌入表，在保持Transformer主干权重不变的前提下实现新词表与预训练模型的无缝衔接</li><li style="margin-bottom:0;"><strong>离线蒸馏优化</strong>：采用余弦相似度目标函数，在平衡的40语言Wikipedia语料上从预计算的教师向量进行离线蒸馏，避免训练时的在线教师推理，将训练时间压缩至约四小时</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨语言分词器手术</strong>：创新性地提出不重新预训练而直接改造多语言分词器的方法，通过频率驱动的词元剪枝与扩充策略，在保留多语言迁移能力的同时显著提升土耳其语表征效率</li><li style="margin-bottom:0;"><strong>参数高效克隆</strong>：设计保持Transformer主干冻结、仅重构嵌入层的模型克隆机制，以200M参数继承更大教师模型的语义知识，实现计算资源受限场景下的模型轻量化部署</li><li style="margin-bottom:0;"><strong>多语言平衡蒸馏</strong>：构建覆盖40种语言的均衡蒸馏语料，确保学生模型在强化土耳其语能力的同时维持多语言通用性，避免单一语言微调导致的跨语言性能退化</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能超越教师</strong>：在土耳其语语义文本相似性基准STSbTR上，学生模型以77.55%/77.45%的Pearson/Spearman相关系数超越300M参数教师模型的73.84%/72.92%，证明蒸馏策略的有效性</li><li style="margin-bottom:0;"><strong>成本效益显著</strong>：单GPU四小时训练、5-20美元总成本实现模型适配，相比完整预训练方案降低数个数量级的计算开销，为资源受限语言提供可嵌入的模型开发范式</li><li style="margin-bottom:0;"><strong>竞争力排名靠前</strong>：在TR-MTEB涵盖26项任务的评估中取得63.9%均分，位列26个模型第7名，以少33%参数达到与更大模型相近的下游任务表现，验证成本质量权衡优势</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.29992" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.29992</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/5/31</p>
+        </div>
+    </div>
+</body>
+</html>
