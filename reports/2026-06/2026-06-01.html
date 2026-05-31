@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型"黑箱"诊断革命 从神经表征到数据血缘的全栈穿透 | 2026/6/1</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型"黑箱"诊断革命 从神经表征到数据血缘的全栈穿透 | 2026/6/1</h1>
+                <div class="date">2026/6/1 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示大模型评估与诊断正经历从"黑箱评分"向"机制解构"的范式跃迁。七项研究共同指向一个核心命题：模型表面行为的失效或成功，往往与内部表征机制存在复杂错位，亟需穿透输出层进行深度诊断。<br><br>三项关键技术趋势凸显：其一，<strong>内部表征解析成为评估新基线</strong>，从稀疏自编码器提取临床特征（论文1）到因果干预连续变量（论文4），研究者正通过神经活动层面的细粒度操控，区分"知识拥有"与"知识表达"的本质差异；其二，<strong>多智能体与检查点级诊断重构评估粒度</strong>，无论是长视频生成的40项瓶颈定位（论文3）还是法律推理的跨国同构比较（论文2），均突破单一分数聚合，转向过程性、多维度的失败溯源；其三，<strong>人类实证 grounding 提升构念效度</strong>，从人格行为映射（论文6）到指标依赖的标注饱和规律（论文5），研究范式从模型自评转向人类行为基准校准。<br><br>对行业而言，这些工作共同警示：当前LLM应用中的"能力幻觉"可能源于评估方法论缺陷——更大模型未必行为更对齐（论文6），格式切换即可暴露表征-映射分离（论文1），而LLMSurgeon（论文7）更证明闭源模型的数据血缘可追溯。未来模型部署需嵌入机制级诊断层，将"可解释性"从研究选项升级为工程刚需。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Internal Representation, Not Clinical Knowledge: Where Apparent LLM Triage Failures Originate</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.29889</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">内部表征而非临床知识：大语言模型分诊失误的真正根源</span>
+                        <span style="color:#666;font-size:12px;">David Fraile Navarro et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">患者表达的临床分诊基准报告显示，消费级LLM在受限多选输出格式下存在高漏诊率，但相同病例在自由文本格式下得分不同。研究利用稀疏自编码器特征分析Gemma 3 4B/12B IT和Qwen3-8B模型，发现两种格式下共享临床叙事激活相同医学特征，但在多选决策token处医学特征沉默，而脚手架和格式特征驱动决策逻辑。行为实验表明多选惩罚在结构化和自然语言输入下均可反转，选项顺序打乱排除位置偏差，差距主要源于相邻急迫性字母的偏离选择而非知识缺失，证明失败源于输出格式而非临床表征。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>稀疏自编码器解析</strong>：利用SAE提取Gemma 3 4B/12B IT和Qwen3-8B的内部可解释特征，定位模型在不同输出格式下的激活模式差异，实现神经活动层面的细粒度诊断</li><li style="margin-bottom:0;"><strong>特征激活追踪</strong>：对比共享临床叙事在自由文本与多选格式下的特征响应，发现医学特征在多选决策token处系统性沉默，揭示格式对信息传递的阻断机制</li><li style="margin-bottom:0;"><strong>三重验证方法</strong>：结合自然语言自编码器 verbalization、决策token logit归因与顶层特征表征三种独立方法交叉验证，确保结论的稳健性与可信度</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>表征-映射分离框架</strong>：首次系统区分模型内部临床表征与输出映射函数，证明多选格式失败源于答案生成机制而非医学知识缺失，重构LLM临床评估的理论基础</li><li style="margin-bottom:0;"><strong>格式效应因果识别</strong>：通过结构化/自然语言输入反转、选项顺序打乱等控制实验，排除位置偏见与输入偏差，确立输出格式作为独立因果变量的作用机制</li><li style="margin-bottom:0;"><strong>相邻偏差发现</strong>：揭示'偏离一位'决策模式是性能差距主因，即模型倾向选择相邻急迫性字母，为临床分诊系统的错误模式提供全新解释维度</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>临床表征守恒</strong>：相同医学特征在两种输出格式下对共享临床叙事等距激活，证明模型内部临床知识表征完整保留，多选失败非源于知识缺陷</li><li style="margin-bottom:0;"><strong>格式特征主导决策</strong>：脚手架与格式特征而非医学特征驱动多选决策logits，揭示答案映射机制被非临床信息劫持的系统性偏差</li><li style="margin-bottom:0;"><strong>输出格式为根因</strong>：多选惩罚在多种输入条件下可反转，且错误以相邻急迫性选择为主，证实失败根植于输出格式约束而非模型能力边界</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.29889" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.29889</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Multi-Legal-Bench: Evaluating LLMs on Legal Reasoning Across Jurisdictions, Languages, and Legal Traditions</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.29738</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">跨法域·跨语言·跨传统：法律推理评测基准</span>
+                        <span style="color:#666;font-size:12px;">Volodymyr Ovcharov et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出Multi-Legal-Bench，首个跨国法律基准测试，覆盖6个国家、4个语系和1.34亿份法院判决，定义5项法律任务形成5×6任务-司法管辖区矩阵，评估7个前沿大语言模型在零样本和少样本设置下的表现，揭示任务相关的少样本效应、模型排名随任务和司法管辖区变化、跨语言迁移与标签集对齐更相关而非语言亲缘关系、以及分词器效率不显著预测跨语言准确率等发现。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨国基准构建</strong>：覆盖乌克兰、法国、荷兰、波兰、捷克、立陶宛六国法院数据，基于1.34亿份判决构建首个可跨司法管辖区比较的法律NLP基准</li><li style="margin-bottom:0;"><strong>稀疏矩阵设计</strong>：构建5×6任务-司法管辖区矩阵，30个单元中填充20个，确保任务定义一致且反映各国法律系统实际差异</li><li style="margin-bottom:0;"><strong>元数据对齐映射</strong>：将五项任务（法院类型分类、判决形式分类、案件结果预测、法律规范提取、案由类别预测）映射至各国法院登记处的结构化元数据</li><li style="margin-bottom:0;"><strong>跨语言迁移评估</strong>：系统测试乌克兰语到法语、波兰语等跨语言少样本迁移效果，量化语言亲缘关系与标签集对齐对迁移质量的影响</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>同构任务定义</strong>：突破现有法律NLP基准单语言或异构任务聚合局限，首次在多国间定义完全相同的五项法律推理任务，实现真正的跨司法管辖区比较</li><li style="margin-bottom:0;"><strong>标签集对齐机制</strong>：发现跨语言迁移质量与标签集对齐程度高度相关，推翻语言亲缘决定迁移效果的直觉假设，如乌克兰语到法语迁移优于乌克兰语到波兰语</li><li style="margin-bottom:0;"><strong>分词器效率解构</strong>：在2.3倍分词器 fertility 差异范围内，证明分词器效率对跨语言准确率无显著预测力，将性能差异归因于模型架构与预训练数据</li><li style="margin-bottom:0;"><strong>规模化分析框架</strong>：除7个前沿大模型外，纳入3-12B参数的4个中小模型进行扩展分析，揭示模型规模与法律推理能力的非线性关系</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>任务效应普适性</strong>：在乌克兰语中发现的任务依赖性少样本效应在所有司法管辖区中复现，表明法律任务的内在认知结构具有跨语言稳定性</li><li style="margin-bottom:0;"><strong>模型排名动态性</strong>：无任何单一模型在所有语言排名中持续领先，模型性能排序随任务类型和司法管辖区双重变化，否定通用法律AI的可能性</li><li style="margin-bottom:0;"><strong>迁移非语言性</strong>：跨语言少样本迁移不遵循语言亲缘关系，乌克兰语到法语（罗曼语族，-2.1百分点）优于乌克兰语到波兰语（斯拉夫语族，-13.7百分点），标签集对齐度比语系更能预测迁移质量</li><li style="margin-bottom:0;"><strong>架构主导效率</strong>：分词器fertility虽有2.3倍差异，但与跨语言准确率无显著相关（r=-0.27，p=0.14），模型架构和预训练数据质量超越分词效率成为性能决定因素</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.29738" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.29738</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>DirectorBench: Diagnosing Long-Form Video Generation with Personalized Multi-Agent Evaluation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.30090</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">DirectorBench：基于个性化多智能体的长视频生成诊断评测</span>
+                        <span style="color:#666;font-size:12px;">Jiamin Chen et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">长视频生成正从短片段合成向分钟级多镜头叙事创作发展，但现有评估基准多关注局部视觉质量、短时序一致性或通用提示对齐，缺乏对工作流故障和用户偏好的诊断能力。本文提出DirectorBench，一种个性化多智能体诊断基准，通过80项结构化元数据、7种用户画像和40项检查点标准，从剧本、视觉、音频、跨模态和稳定性五个维度评估生成视频。该基准定位检查点级瓶颈并支持画像感知评估，对4种工作流、6种基础LLM和7种用户画像进行评估，发现转场质量平均仅0.256、最佳工作流达0.356，提示级用户需求满足度平均0.71。14名标注者的人工评估验证了DirectorBench与人类判断的一致性，揭示了聚合评分隐藏的工作流和画像相关故障模式。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多智能体评估</strong>：采用多个专业智能体协同评估长视频，各智能体负责不同维度分析，实现全面诊断而非单一评分</li><li style="margin-bottom:0;"><strong>结构化元数据</strong>：构建80项元数据条目规范视频描述，支持细粒度检查点评估和跨工作流对比分析</li><li style="margin-bottom:0;"><strong>画像感知机制</strong>：设计7种用户画像驱动个性化评估，使评估结果贴合不同用户的实际偏好和需求</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>检查点级诊断</strong>：突破传统聚合评分模式，定位40项具体检查点的瓶颈，精准识别工作流失败环节</li><li style="margin-bottom:0;"><strong>跨维度评估</strong>：首创覆盖剧本、视觉、音频、跨模态和稳定性的五维评估框架，适应长视频多模态特性</li><li style="margin-bottom:0;"><strong>人机对齐验证</strong>：通过14人人工评估证明系统能捕捉人类可感知的质量差异，确保评估结果可信可用</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>转场质量瓶颈</strong>：各工作流单元间转场质量平均仅0.256，最佳工作流也仅达0.356，暴露长视频生成核心短板</li><li style="margin-bottom:0;"><strong>需求满足不足</strong>：提示级用户需求满足度平均0.71，显示现有工作流在理解用户意图方面仍有提升空间</li><li style="margin-bottom:0;"><strong>诊断价值显著</strong>：聚合评分隐藏的工作流和画像相关故障模式，通过DirectorBench得以揭示，证明诊断式评估的必要性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.30090" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.30090</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Causal Interventions on Continuous Variables: A Case Study on Verb Bias in Steering Vectors for In-Context Learning</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.29971</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">连续变量因果干预：语境学习中动词偏置的引导向量研究</span>
+                        <span style="color:#666;font-size:12px;">Zhenghao Herbert Zhou et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出了一种对连续变量进行因果干预的新方法，并将其应用于心理语言学中的动词偏好特征。研究发现动词偏好在大语言模型的引导向量中具有因果表征，且引导向量编码了可能驱动上下文学习的误差信号，但这些信号并未在下游生成中被因果使用。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>连续变量干预</strong>：给定激活向量与分级目标变量，定位低维方向并沿该方向编辑向量至反事实目标值，实现对连续特征的精准操控</li><li style="margin-bottom:0;"><strong>动词偏好定位</strong>：针对心理语言学中的动词偏好特征，提取其在语言模型表示空间中的低维方向，建立连续变量与神经激活的映射关系</li><li style="margin-bottom:0;"><strong>引导向量编辑</strong>：利用提取的方向向量对模型表示进行反事实编辑，系统性地改变下游句法结构偏好，验证因果效应</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>连续因果干预</strong>：突破现有研究仅针对离散特征的局限，首次将因果干预方法扩展至连续变量领域，拓展了表示工程的应用范围</li><li style="margin-bottom:0;"><strong>心理语言学融合</strong>：将心理语言学中经典的动词偏好理论引入神经网络分析，为理解语言模型的句法处理机制提供新视角</li><li style="margin-bottom:0;"><strong>误差信号分离</strong>：区分引导向量中编码的误差信号与其因果使用成分，揭示表示中信息编码与实际功能使用的分离现象</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>动词偏好因果性</strong>：动词偏好在引导向量中具有因果表征，反事实编辑能系统性改变下游结构偏好，证明连续变量可被因果操控</li><li style="margin-bottom:0;"><strong>误差信号编码</strong>：引导向量确实编码了可能驱动上下文学习的误差信号，为误差驱动更新机制提供神经层面的证据</li><li style="margin-bottom:0;"><strong>功能使用分离</strong>：误差信号虽被编码但未被下游生成因果使用，表明表示中存在编码与功能实现的分离，连接连续变量与上下文学习仍具挑战</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.29971" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.29971</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Metric-Dependent Annotation Saturation for Learning from Label Distributions</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.29797</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">基于度量依赖的标注饱和学习标签分布</span>
+                        <span style="color:#666;font-size:12px;">Guneet Kohli et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">当标注者对标签存在分歧时，分歧本身携带信息信号，而捕获该信号所需的标注者数量取决于评估指标。研究者在ChaosNLI数据集（每项100个独立标注者判断）上通过子采样标签分布微调NLI模型，发现指标依赖的饱和现象：在三分类NLI设置中，熵相关性（模型识别哪些项目引发分歧）需要约20-50个标注者收敛，而分布匹配（KL散度）在约10个标注者时即饱和（五个模型种子中87-95%的改进）。研究还发现软标签携带项目特定信号，这是标签平滑无法复制的：五种平滑强度下熵相关性聚类在r~0.45-0.49，而软标签达r=0.643（p<0.001）；逐项分析表明平滑无法区分模糊项目与清晰项目。该优势在两种架构（DeBERTa、RoBERTa）、非NLI预训练基线及内容安全跨领域评估中均得到复现。结果表明标注预算应依据目标评估指标而非统一设定。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>子采样分布微调</strong>：从ChaosNLI的100个标注者中子采样不同数量构建标签分布，用于微调NLI模型以模拟不同标注预算场景</li><li style="margin-bottom:0;"><strong>指标饱和检测</strong>：通过逐步增加标注者数量，追踪熵相关性和KL散度两项指标的变化曲线以确定收敛点</li><li style="margin-bottom:0;"><strong>平滑对比分析</strong>：设置五种标签平滑强度与软标签进行对照实验，逐项比较二者区分模糊与清晰项目的能力</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>指标依赖饱和</strong>：首次发现不同评估指标对标注者数量的需求存在显著差异，打破统一标注预算的传统假设</li><li style="margin-bottom:0;"><strong>软标签优势源</strong>：揭示软标签的项目特定信号本质，证明标签平滑因均匀分配概率而无法复制这种项目级区分能力</li><li style="margin-bottom:0;"><strong>跨域泛化验证</strong>：将软标签优势从NLI任务扩展到内容安全领域，表明该发现具有跨任务适用性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>熵相关饱和</strong>：识别项目分歧模式需要较多标注者，约20-50人才能收敛，反映捕捉分歧信号的高成本特性</li><li style="margin-bottom:0;"><strong>分布匹配易饱和</strong>：KL散度衡量分布相似度时约10个标注者即达87-95%改进，说明分布形状估计相对容易</li><li style="margin-bottom:0;"><strong>预算应按指标定</strong>：标注资源分配必须依据最终评估指标而非固定标准，熵相关任务需更大标注投入</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.29797" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.29797</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>ActTraitBench: Quantifying the Knowledge-Decision Gap in Large Language Models via Human-Grounded Behavioral Validation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.29791</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">ActTraitBench：基于人类行为验证量化大语言模型的知识-决策</span>
+                        <span style="color:#666;font-size:12px;">Yutong Yang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">虽然大语言模型（LLMs）能在显性自我报告中令人信服地模拟人格，但它们在隐性行为决策中经常出现偏差，暴露出显著的知识-决策鸿沟（G_KD）。现有基准测试因构念效度有限、多维度纠缠以及基于LLM评估中的分布偏误而难以衡量这种不对称性。为此，本文提出ActTraitBench，一种基于人类数据的LLM人格一致性评估框架。该框架基于实证人类数据，在心理测量维度与行为范式之间建立一对一映射，并应用分位数映射分布校准方法将LLM评判分数分布与人类规范对齐。对14种主流LLM的实验揭示了普遍存在的知识-决策不对称性：规模更大、能力更强的模型尽管自我报告高度一致，却往往表现出更强的行为偏差。为缓解这一鸿沟，本文进一步提出认知对齐链（CoCA），一种即插即用的推理时干预方法，可提升具备推理能力的前沿模型的对齐度，同时暴露较小架构的明显能力局限。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>人格行为映射</strong>：在心理测量维度与行为范式之间建立一对一映射关系，确保每个心理特质都有对应的行为测试任务，避免多维度纠缠问题</li><li style="margin-bottom:0;"><strong>分位数映射校准</strong>：通过Distributional Calibration via Quantile Mapping方法将LLM评判分数分布与人类规范数据对齐，消除分布偏误</li><li style="margin-bottom:0;"><strong>认知对齐链</strong>：提出Chain of Cognitive Alignment即插即用推理时干预技术，引导模型在推理过程中实现认知与行为的对齐</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>人类 grounded 评估</strong>：首次构建基于实证人类数据的LLM人格评估框架，以人类行为为基准而非依赖LLM自我评判，提升构念效度</li><li style="margin-bottom:0;"><strong>知识决策鸿沟量化</strong>：提出G_KD指标系统量化LLM在显性知识表达与隐性行为决策之间的系统性偏差，揭示传统评估盲区</li><li style="margin-bottom:0;"><strong>行为范式解耦</strong>：设计一对一的心理测量-行为范式映射架构，将复杂人格特质分解为独立可测的行为维度，解决多维度纠缠难题</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>能力悖论现象</strong>：更大更强的模型在自我报告上高度一致，但行为偏差反而更严重，呈现能力与对齐度的反向关系</li><li style="margin-bottom:0;"><strong>鸿沟普遍存在</strong>：14种主流LLM均存在显著的知识-决策不对称性，表明该问题是LLM架构的系统性特征而非个案</li><li style="margin-bottom:0;"><strong>干预效果分化</strong>：CoCA方法对推理能力强的前沿模型有效提升对齐度，但对小模型暴露其根本能力瓶颈，无法通过简单干预弥补</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.29791" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.29791</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>LLMSurgeon: Diagnosing Data Mixture of Large Language Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.30348</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">LLMSurgeon：诊断大语言模型的数据混合成分</span>
+                        <span style="color:#666;font-size:12px;">Yaxin Luo et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大语言模型的预训练数据混合构成其'数字DNA'，塑造模型行为、能力和失效模式，但这一组成很少被公开，使得事后审计数据组合或来源变得困难。本文形式化定义了数据混合手术（DMS）：仅给定目标LLM生成的文本，在预定义分类法下估计其预训练语料库的域级分布。提出LLMSurgeon框架，将DMS建模为标签偏移假设下的逆问题，通过估计校准的软混淆矩阵并求解约束逆问题来纠正系统性域混淆、恢复潜在混合先验。为评估引入LLMScan套件，实验表明LLMSurgeon能以高保真度恢复域混合比例。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>逆问题建模</strong>：将数据混合手术形式化为标签偏移假设下的逆问题，从模型输出反推预训练数据分布，建立严格的数学框架而非启发式聚合</li><li style="margin-bottom:0;"><strong>软混淆矩阵</strong>：估计经过校准的软混淆矩阵来刻画域间系统性混淆模式，捕捉分类器在相邻领域上的错误关联结构</li><li style="margin-bottom:0;"><strong>约束优化求解</strong>：通过带约束的逆问题求解纠正域混淆偏差，利用非负性和归一化约束确保恢复的先验分布具有概率意义</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>无需训练数据</strong>：仅需目标LLM生成的文本即可审计其预训练数据混合，实现对闭源模型的完全黑盒化数字DNA诊断</li><li style="margin-bottom:0;"><strong>纠正系统偏差</strong>：突破直接聚合分类器输出的传统方法，通过逆问题显式建模并消除分类器本身的域混淆偏差</li><li style="margin-bottom:0;"><strong>可验证评估套件</strong>：构建LLMScan评估基准，利用开源LLM的透明预训练配方建立ground truth，解决该领域缺乏标准验证的难题</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>高保真恢复</strong>：在LLMScan固定协议下，LLMSurgeon能够以高精度恢复预训练数据的域级混合比例，验证方法有效性</li><li style="margin-bottom:0;"><strong>标签偏移假设</strong>：在标签偏移假设成立时，逆问题框架能准确解耦分类器偏差与真实数据先验，实现可识别的混合估计</li><li style="margin-bottom:0;"><strong>实用审计价值</strong>：为基金会模型提供实用的事后审计途径，无需访问训练数据即可诊断模型行为背后的数据构成根源</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.30348" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.30348</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/1</p>
+        </div>
+    </div>
+</body>
+</html>

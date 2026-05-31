@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-01",
+  "title": "大模型\"黑箱\"诊断革命 从神经表征到数据血缘的全栈穿透",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.29889",
+      "title": "Internal Representation, Not Clinical Knowledge: Where Apparent LLM Triage Failures Originate",
+      "chinese_title": "内部表征而非临床知识：大语言模型分诊失误的真正根源",
+      "authors": "David Fraile Navarro et al.",
+      "url": "https://arxiv.org/abs/2605.29889"
+    },
+    {
+      "id": "2605.29738",
+      "title": "Multi-Legal-Bench: Evaluating LLMs on Legal Reasoning Across Jurisdictions, Languages, and Legal Traditions",
+      "chinese_title": "跨法域·跨语言·跨传统：法律推理评测基准",
+      "authors": "Volodymyr Ovcharov et al.",
+      "url": "https://arxiv.org/abs/2605.29738"
+    },
+    {
+      "id": "2605.30090",
+      "title": "DirectorBench: Diagnosing Long-Form Video Generation with Personalized Multi-Agent Evaluation",
+      "chinese_title": "DirectorBench：基于个性化多智能体的长视频生成诊断评测",
+      "authors": "Jiamin Chen et al.",
+      "url": "https://arxiv.org/abs/2605.30090"
+    },
+    {
+      "id": "2605.29971",
+      "title": "Causal Interventions on Continuous Variables: A Case Study on Verb Bias in Steering Vectors for In-Context Learning",
+      "chinese_title": "连续变量因果干预：语境学习中动词偏置的引导向量研究",
+      "authors": "Zhenghao Herbert Zhou et al.",
+      "url": "https://arxiv.org/abs/2605.29971"
+    },
+    {
+      "id": "2605.29797",
+      "title": "Metric-Dependent Annotation Saturation for Learning from Label Distributions",
+      "chinese_title": "基于度量依赖的标注饱和学习标签分布",
+      "authors": "Guneet Kohli et al.",
+      "url": "https://arxiv.org/abs/2605.29797"
+    },
+    {
+      "id": "2605.29791",
+      "title": "ActTraitBench: Quantifying the Knowledge-Decision Gap in Large Language Models via Human-Grounded Behavioral Validation",
+      "chinese_title": "ActTraitBench：基于人类行为验证量化大语言模型的知识-决策",
+      "authors": "Yutong Yang et al.",
+      "url": "https://arxiv.org/abs/2605.29791"
+    },
+    {
+      "id": "2605.30348",
+      "title": "LLMSurgeon: Diagnosing Data Mixture of Large Language Models",
+      "chinese_title": "LLMSurgeon：诊断大语言模型的数据混合成分",
+      "authors": "Yaxin Luo et al.",
+      "url": "https://arxiv.org/abs/2605.30348"
+    }
+  ],
+  "generated_at": "2026-05-31T22:32:09.176Z",
+  "org": "AI研究室"
+}
