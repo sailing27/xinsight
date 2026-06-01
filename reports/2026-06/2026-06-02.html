@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型能力边界突破与可信评估新范式 | 2026/6/2</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型能力边界突破与可信评估新范式 | 2026/6/2</h1>
+                <div class="date">2026/6/2 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦大模型能力评估、训练范式革新与多模态可靠性三大核心主题，揭示当前技术前沿正从"规模驱动"向"机制理解"与"精细可控"深度转型。七篇论文共同呈现两大技术趋势：其一，<strong>评估方法论的根本性升级</strong>——从单一任务性能指标转向多维解构框架，无论是语言模型的外延/内涵双维度、仇恨表情包的功能-目标正交轴，还是VLM裁判的三轴可靠性评测，均体现对模型能力"黑箱"的精细化拆解需求；其二，<strong>训练范式的去梯度化与自演化探索</strong>——权重空间扰动合并彻底摆脱反向传播依赖，双策略协同演化实现无外部监督的开放式任务自举，标志着后训练与强化学习正突破传统优化框架的算力瓶颈。第三，<strong>语言归纳偏置的结构化认知</strong>成为跨领域共识，拓扑信息的稳健性、组合能力的非原生性等发现，倒逼研究者重新审视文本表征的设计哲学。对行业而言，这些工作共同警示：当前SOTA模型的"能力表象"与"机制实质"存在显著落差，虚假相关性依赖、裁判不可靠性等问题凸显，未来竞争焦点将从"性能登顶"转向"因果可解释"与"动态自适应"的系统工程能力，为高风险应用场景的落地提供必要的方法论基础设施。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Language Models Can Resolve Reference Compositionally, But It's Not Their Native Strength: The Case of the Personal Relation Task</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.31480</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 Transactions of the Association for Computational Linguistics</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">语言模型能组合解析指代，但非其本能优势：以人际关系任务为例</span>
+                        <span style="color:#666;font-size:12px;">Bart Evelo et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究大型语言模型是否真正获得自然语言理解的组合能力，通过个人关系任务区分外延任务（确定表达式指称对象）与内涵任务（以结构化方式表示意义），发现人类与LLM呈现相反优势：人类更擅长外延任务，LLM更擅长内涵任务，表明LLM训练中缺乏指称 grounding 是模拟人类语言理解的关键缺失环节。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>外延内涵区分</strong>：将语义解释分为外延任务（确定世界中的指称）与内涵任务（结构化表示意义），为评估组合能力提供双重维度</li><li style="margin-bottom:0;"><strong>个人关系任务</strong>：采用Paperno(2022)任务范式，以嵌套关系名词短语如'Amber's parent's friend'测试模型组合推理能力</li><li style="margin-bottom:0;"><strong>人机对比实验</strong>：系统比较人类与LLM在相同任务上的表现模式，揭示两者认知机制的本质差异</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双任务评估框架</strong>：突破单一任务评估局限，同时考察指称解析与公式生成，更精细刻画模型组合能力</li><li style="margin-bottom:0;"><strong>反向优势发现</strong>：首次揭示人类与LLM在组合任务上呈镜像能力分布，人类强于外延、LLM强于内涵</li><li style="margin-bottom:0;"><strong>grounding 缺失论证</strong>：从实验结果反推训练机制缺陷，为改进LLM训练范式提供理论依据</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>人类外延优势</strong>：人类在指称确定任务上表现更优，体现其具备基于世界知识的稳健 grounding 能力</li><li style="margin-bottom:0;"><strong>LLM内涵优势</strong>：语言模型更擅长生成结构化语义表示，反映其从文本统计中习得的形式模式</li><li style="margin-bottom:0;"><strong>grounding 关键缺失</strong>：LLM缺乏指称 grounding 是其模拟人类语言理解的核心瓶颈，需引入世界交互机制</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.31480" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.31480</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>SCOPE: Self-Play via Co-Evolving Policies for Open-Ended Tasks</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.31433</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">SCOPE：面向开放式任务的协同进化策略自博弈</span>
+                        <span style="color:#666;font-size:12px;">Wai-Chung Kwan et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">自博弈可在无外部监督下训练语言模型，但现有方法依赖可规则验证的答案，使开放式任务仍需人工策划提示或前沿模型评判。本文提出SCOPE，一种面向开放式任务的无数据自博弈框架，通过协同演化两个策略实现：Challenger基于文档生成任务，Solver通过多轮检索作答。初始模型的冻结副本作为自评判器，从源文档编写任务专属评分标准并评判Solver回答。在三个7-8B指令微调模型上，SCOPE在八项基准的开放式任务中提升高达+10.4分，媲美或超越基于约9K策划提示训练的GRPO_data。尽管仅训练开放式任务，SCOPE在七项held-out短问答基准上提升高达+13.8分，全面超越GRPO_data。消融实验表明：协同演化Challenger对维持任务难度至关重要，检索与综合能力共同贡献提升且因任务而异，评分标准生成质量是自评判的瓶颈。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双策略协同演化</strong>：Challenger与Solver两个策略模型相互对抗、共同进化，Challenger负责生成基于文档的开放式任务，Solver负责通过多轮检索完成作答，形成动态难度自适应的训练闭环</li><li style="margin-bottom:0;"><strong>冻结自评判机制</strong>：利用初始模型的冻结副本作为评判器，从源文档自动生成任务专属的细粒度评分标准，无需外部监督或前沿模型即可实现对开放式回答的可靠评估</li><li style="margin-bottom:0;"><strong>多轮检索作答</strong>：Solver采用多轮检索策略回答Challenger生成的复杂任务，能够整合分散信息并进行深度综合，提升长文本理解与知识整合能力</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>无数据自博弈框架</strong>：突破现有自博弈方法依赖规则验证答案的局限，首次实现完全无需人工策划数据、无需外部评判器的开放式任务自博弈训练范式</li><li style="margin-bottom:0;"><strong>动态难度自适应</strong>：通过Challenger与Solver的协同演化，使生成任务难度始终贴近Solver的能力边界，避免静态数据集导致的训练效率低下或过拟合问题</li><li style="margin-bottom:0;"><strong>自生成评分标准</strong>：创新性地让冻结模型从源文档提取信息并编写任务专属评分标准，解决开放式任务缺乏客观评判标准的根本性难题</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>Challenger演化必要性</strong>：消融实验证实必须协同演化Challenger才能维持任务难度在Solver能力前沿附近，固定Challenger会导致任务过易、训练收益急剧下降</li><li style="margin-bottom:0;"><strong>能力双维提升</strong>：SCOPE带来的性能增益同时来源于检索能力与综合能力的改进，但两者相对贡献因具体任务类型不同而存在显著差异</li><li style="margin-bottom:0;"><strong>评分标准成瓶颈</strong>：自评判环节中最关键的限制因素在于评分标准生成质量，而非最终打分环节，提升评分标准的准确性是改进系统性能的核心突破口</li><li style="margin-bottom:0;"><strong>强泛化迁移效应</strong>：仅训练开放式任务即可在held-out短问答任务上取得大幅提升，表明SCOPE训练增强了模型的通用推理与知识运用能力而非特定任务过拟合</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.31433" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.31433</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>The Sword, Shield, and Achilles' Heel: Characterizing the Linguistic Inductive Bias of Large Language Models for Spatial Reasoning in Navigation Planning</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.31404</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">剑盾与阿喀琉斯之踵：大语言模型导航空间推理的语言归纳偏置刻画</span>
+                        <span style="color:#666;font-size:12px;">Xudong Zhang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究大型语言模型（LLM）在导航规划中的语言归纳偏置。现有系统常将显式空间表示（拓扑图、语义栅格地图）转化为文本输入，但其语言结构和上下文特征选择往往被视为中性工程决策。为此，作者提出双重干预框架，分离语言结构与上下文线索，评估LLM在导航规划中的语言归纳偏置。实验表明：拓扑信息是稳健规划的坚固盾牌；语言格式是双刃剑，效果取决于模型规模、任务需求和压缩程度；语义信息是致命阿喀琉斯之踵，错误语义线索会系统性破坏规划过程。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双重干预框架</strong>：提出表示干预与上下文干预相结合的方法，通过分离语言结构与上下文线索来系统评估LLM的语言归纳偏置，实现对空间推理能力的精细化分析</li><li style="margin-bottom:0;"><strong>表示干预技术</strong>：通过改变语言格式和语言压缩程度，明确语言表示何时支持或抑制导航规划，揭示不同表征形式对模型性能的影响机制</li><li style="margin-bottom:0;"><strong>上下文干预技术</strong>：结合上下文特征组合与冲突探测，显式澄清LLM在处理不同上下文线索时的偏好与弱点，识别模型的敏感因素</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>结构线索解耦</strong>：首次将语言结构与上下文线索进行系统性分离，突破以往将文本空间表示视为中性工程决策的局限，建立评估语言归纳偏置的新范式</li><li style="margin-bottom:0;"><strong>拓扑语义对比</strong>：创新性地将拓扑信息定位为'盾牌'、语义信息定位为'阿喀琉斯之踵'，揭示不同信息类型对LLM空间推理的不对称影响机制</li><li style="margin-bottom:0;"><strong>压缩校准策略</strong>：提出根据模型容量校准表征压缩程度的动态方法，突破单一表示范式的局限，为不同规模模型适配最优语言表示提供理论依据</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>拓扑稳健性</strong>：拓扑信息是坚固盾牌和稳健规划的骨干，在多样空间推理任务和多个模型规模上表现出一致的模式，是文本空间表示中应优先保留的核心要素</li><li style="margin-bottom:0;"><strong>格式双刃剑</strong>：语言格式是双刃剑，其效果取决于模型规模、任务需求和压缩程度，需根据具体场景动态选择而非采用固定表示范式</li><li style="margin-bottom:0;"><strong>语义脆弱性</strong>：语义信息是致命阿喀琉斯之踵，错误的语义线索能够系统性破坏规划过程，确保语义正确性对有效导航至关重要</li><li style="margin-bottom:0;"><strong>综合设计原则</strong>：有效的文本空间表示应保留拓扑完整性、根据模型容量校准压缩程度、确保语义正确性，而非简单采用单一表示方式</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.31404" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.31404</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>FBHM: Functional Benchmarking and Steering of VLMs for Hateful Meme Detection</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.31349</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">FBHM：视觉语言模型仇恨表情包检测的功能基准测试与引导优化</span>
+                        <span style="color:#666;font-size:12px;">Paramananda Bhaskar et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">仇恨表情包检测对视觉语言模型仍是重大挑战，现有基准在结构上属于观察性研究，将修辞仇恨机制与目标群体特征混为一谈，阻碍了对模型漏洞的因果评估。为此，本文提出FBHM基准，沿25种修辞功能和10个目标群体两个正交维度系统构建（共5,000个表情包）。对最先进VLMs的基准测试揭示了严重的泛化差距：在标准数据集上高度准确的模型在FBHM上骤降至接近随机表现，证明其依赖数据集特定启发式而非稳健的多模态推理。为高效弥合这一差距，本文提出LSV（可学习转向向量），一种超少数据策略，仅使用500个转向样本（50个独特基础表情包）施加因果干预目标，即可将FBHM性能提升约30个Macro-F1点，同时优于上下文学习和PEFT方法且不降低源域性能。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>功能维度解构</strong>：将仇恨表情包拆解为25种修辞功能与10个目标群体两个正交维度，实现机制与对象的独立操控，支持因果性而非观察性的模型评估</li><li style="margin-bottom:0;"><strong>因果干预设计</strong>：通过正交控制变量消除功能与群体的混淆，使模型漏洞分析从相关性推断升级为因果推断，精准定位多模态推理失败节点</li><li style="margin-bottom:0;"><strong>超低数据适配</strong>：LSV仅需500个转向样本（50个基础表情包变体）即可实现有效干预，将数据需求压缩至传统微调方法的十分之一以下</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>正交基准架构</strong>：首创功能与目标双轴正交的基准构建范式，突破现有数据集结构性混杂的局限，为仇恨内容理解研究提供可分离变量的实验平台</li><li style="margin-bottom:0;"><strong>可学习转向向量</strong>：提出LSV参数高效干预机制，通过显式因果目标优化低秩方向向量，实现模型行为的精准引导而非全参数微调</li><li style="margin-bottom:0;"><strong>零损域迁移</strong>：在大幅提升目标域性能的同时保持源域表现不下降，解决了模型编辑中常见的知识遗忘与性能权衡难题</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>启发式依赖暴露</strong>：SOTA模型在标准集与FBHM间呈现灾难性性能落差，证实当前VLMs主要依赖数据集虚假相关性而非真正的多模态语义理解</li><li style="margin-bottom:0;"><strong>因果干预有效</strong>：LSV以极少样本实现约30 Macro-F1点的显著提升，验证针对修辞功能进行显式因果操控是突破泛化瓶颈的有效路径</li><li style="margin-bottom:0;"><strong>方法优势确立</strong>：LSV同时超越上下文学习与PEFT方法，证明低秩转向向量在数据效率、干预精度及域保持性上的综合优越性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.31349" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.31349</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Consolidating Rewarded Perturbations for LLM Post-Training</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.31494</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">奖励扰动聚合的大语言模型后训练方法</span>
+                        <span style="color:#666;font-size:12px;">Zheyu Zhang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">后训练通常被构建为基于梯度下降的样本-评分-更新循环。近期工作如RandOpt将此循环迁移至权重空间，通过对预训练模型采样高斯扰动并在推理时集成前K个高奖励专家。虽然在与PPO和GRPO匹配训练计算量时具有竞争力，但这种预测级集成需要每个测试样本进行K次前向传播，且难以扩展到自由形式生成。本文探索能否将奖励群体折叠为单一可部署模型，用一次 consolidated 更新替代推理时集成。对25个模型-任务对的分半分析揭示了每种情况下可复现的低秩结构。基于此几何特性，作者提出CoRP（Consolidating Rewarded Perturbations），一种无梯度算子，结合奖励加权聚合、兼容性感知重加权和留出验证门控，语言模型中无梯度流动。在从0.5B到8B的五个语言模型和涵盖数学、代码与创意写作的五个任务上，CoRP平均提升基础模型8.1分。使用RandOpt十分之一的扰动预算，CoRP超越单次推理RandOpt 6.5分，并恢复50次多数投票集成增益的一半以上，且每个测试样本仅需一次前向传播。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>权重空间扰动采样</strong>：在预训练模型参数空间采样高斯扰动生成专家模型群体，替代传统数据空间的样本-评分-更新循环，实现无需反向传播的后训练范式</li><li style="margin-bottom:0;"><strong>低秩结构分析</strong>：对25个模型-任务对进行分半分析，发现奖励扰动在所有情况下均呈现可复现的低秩几何结构，为模型合并提供理论依据</li><li style="margin-bottom:0;"><strong>奖励加权聚合</strong>：根据各扰动模型的奖励分数进行加权平均，将高奖励专家群体的知识压缩到单一模型参数中</li><li style="margin-bottom:0;"><strong>兼容性感知重加权</strong>：引入扰动模型间兼容性度量，在聚合过程中对相互兼容的专家赋予更高权重，提升合并后模型性能</li><li style="margin-bottom:0;"><strong>留出验证门控</strong>：使用留出验证集评估合并效果，作为是否接受此次聚合操作的决策机制，防止性能退化</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>无梯度合并算子</strong>：设计完全不依赖梯度计算的后训练方法，语言模型中无任何梯度流动，彻底摆脱反向传播的计算开销与内存需求</li><li style="margin-bottom:0;"><strong>推理成本归一化</strong>：将RandOpt需要K次前向传播的预测级集成压缩为单次前向传播，解决多 pass 推理的部署瓶颈</li><li style="margin-bottom:0;"><strong>自由生成扩展性</strong>：突破RandOpt仅适用于判别式任务的局限，使基于扰动采样的后训练方法首次能干净地扩展到自由形式生成任务</li><li style="margin-bottom:0;"><strong>低秩结构利用</strong>：首次系统揭示并利用奖励扰动参数空间中的低秩结构，将几何先验转化为可操作的模型合并算法</li><li style="margin-bottom:0;"><strong>预算效率跃升</strong>：以十分之一的扰动预算超越基线方法，实现计算效率与模型性能的双重优化</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>结构普适存在</strong>：分半分析证实低秩结构在全部25个模型-任务对中稳定存在，表明该几何特性是奖励扰动的内在属性而非偶然现象</li><li style="margin-bottom:0;"><strong>平均性能提升</strong>：CoRP在五个模型和五个任务上平均提升基础模型8.1分，验证无梯度后训练的有效性与广泛适用性</li><li style="margin-bottom:0;"><strong>效率优势显著</strong>：以1/10扰动预算超越单次推理RandOpt 6.5分，证明合并策略远优于简单采样更多扰动</li><li style="margin-bottom:0;"><strong>集成增益恢复</strong>：单模型推理即可恢复50-pass多数投票集成过半增益，打破性能与推理成本的传统权衡</li><li style="margin-bottom:0;"><strong>规模任务泛化</strong>：从0.5B到8B参数、从数学推理到创意写作的跨规模跨任务一致提升，展示方法的强泛化能力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.31494" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.31494</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Fine-grained Verification via Diagnostic Reasoning Supervision for Aspect Sentiment Triplet Extraction</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.31446</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">基于诊断推理监督的细粒度方面情感三元组抽取验证</span>
+                        <span style="color:#666;font-size:12px;">Wenna Lai et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">方面情感三元组抽取（ASTE）旨在识别方面词、观点词和情感极性作为结构化三元组，为意见挖掘、可解释推荐和评论摘要等下游信息系统应用提供关键输入。现有工作主要关注端到端抽取，而对抽取三元组的事后验证探索相对不足。这一空白限制了ASTE系统的可靠性，因为预测的三元组可能在局部合理但在全局上无效。此外，候选无效性是多方面的，候选可用性本质上是分级的，这需要一个细粒度验证机制来过滤或重新排序来自不同抽取器的输出。本文提出FiVeD框架，通过诊断推理监督实现细粒度验证。具体而言，验证器通过多个互补目标进行训练，包括有效性分类和质量分数估计作为主要任务，错误类型分类和理由生成作为辅助任务。我们定义了层次化错误类别，在语义和句法约束下构建合理的错误三元组，并利用现成的LLM结合任务特定评分标准生成质量分数和诊断理由。推理时，所得质量分数用于过滤候选输出，支持可调节的精确率-召回率权衡。跨多个ASTE基线的实验表明，FiVeD作为即插即用验证模块，持续提升抽取性能最高达3.53个F1点。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多任务验证训练</strong>：验证器联合训练有效性分类、质量分数估计、错误类型分类和理由生成四个互补目标，实现全面的三元组质量评估能力</li><li style="margin-bottom:0;"><strong>层次错误构建</strong>：定义层次化错误类别并在语义句法约束下构造合理错误三元组，为验证器提供高质量的训练负样本</li><li style="margin-bottom:0;"><strong>LLM辅助标注</strong>：利用现成大语言模型结合任务特定评分标准自动生成质量分数和诊断理由，降低人工标注成本</li><li style="margin-bottom:0;"><strong>动态过滤推理</strong>：推理阶段使用质量分数过滤候选输出，支持根据应用场景灵活调节精确率与召回率的权衡策略</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>诊断推理监督</strong>：首次将诊断推理引入ASTE验证，通过生成错误诊断理由实现可解释的细粒度质量评估，超越传统二分类验证范式</li><li style="margin-bottom:0;"><strong>分级验证机制</strong>：针对候选可用性的固有分级特性，设计质量分数估计任务替代简单二元判断，实现更 nuanced 的候选排序与筛选</li><li style="margin-bottom:0;"><strong>即插即用框架</strong>：FiVeD作为独立验证模块可适配多种ASTE抽取器，无需修改原有抽取架构，具有广泛的适用性和实用价值</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能显著提升</strong>：FiVeD作为验证模块在多个ASTE基线上一致提升抽取性能，最高可达3.53个F1点，验证细粒度验证的有效性</li><li style="margin-bottom:0;"><strong>过滤策略有效</strong>：基于质量分数的候选过滤机制能够有效剔除全局无效三元组，解决局部合理但全局冲突的抽取错误问题</li><li style="margin-bottom:0;"><strong>多任务协同增益</strong>：主任务与辅助任务的联合训练相互促进，错误类型分类和理由生成辅助任务提升了验证器的泛化能力和可解释性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.31446" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.31446</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>A Visually Impaired Assistance Benchmark for VLM-as-a-Judge Evaluation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2605.31351</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">面向视觉大模型评判评估的视障辅助基准</span>
+                        <span style="color:#666;font-size:12px;">Yi Zhao et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">AI视觉障碍辅助(VIA)领域因人工评估成本高昂而发展受限，VLM-as-a-Judge范式虽在通用领域有所研究，但其在VIA任务中的可靠性尚不明确。为此，本文提出VIABLE基准，包含30余万条判断样本覆盖三大场景，并建立有效性-公正性-稳定性评估框架及12类失效分类体系。研究发现现有模型在各评估维度上均不可靠，最强模型GPT-5.4的单失效诊断准确率仅52.6%却具有94.2%的自偏好率。为此提出VIA-Judge-Agent推理时增强框架，通过视觉证据提取与分类学引导工作流提升诊断准确性与视障用户偏好度。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>失效分类体系</strong>：构建12种模式的失效分类法，系统刻画VLM裁判在视觉障碍辅助任务中的各类失败模式，为诊断分析提供结构化框架</li><li style="margin-bottom:0;"><strong>三轴评估框架</strong>：提出有效性-公正性-稳定性三维评估体系，全面衡量VLM裁判在VIA场景中的综合表现与薄弱环节</li><li style="margin-bottom:0;"><strong>视觉证据提取</strong>：在推理阶段增强裁判模型的视觉证据定位能力，使其能够基于具体图像区域进行判断而非依赖模糊推理</li><li style="margin-bottom:0;"><strong>分类学引导工作流</strong>：将12类失效分类知识嵌入裁判流程，引导模型按结构化步骤进行系统性分析与诊断</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>VIABLE基准构建</strong>：首创面向视觉障碍辅助的VLM裁判评估基准，包含30万+判断样本覆盖三大真实应用场景，填补该交叉领域空白</li><li style="margin-bottom:0;"><strong>裁判可靠性诊断</strong>：首次系统揭示现有VLM裁判在VIA领域的深层缺陷，发现准确率与自偏好率的严重背离现象及开源模型的偏见脆弱性</li><li style="margin-bottom:0;"><strong>模型无关增强框架</strong>：设计VIA-Judge-Agent推理时 harness，无需训练即可适配不同裁判模型，通过视觉-语言协同机制提升评估质量</li><li style="margin-bottom:0;"><strong>用户偏好对齐</strong>：验证增强后的裁判输出更符合视障用户(BLV)的实际偏好，建立从技术改进到用户价值的有效传导</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>现有裁判不可靠</strong>：七个不同规模裁判模型在有效性、公正性、稳定性三轴上均表现不佳，VLM-as-a-Judge范式在VIA领域尚未成熟</li><li style="margin-bottom:0;"><strong>最强模型悖论</strong>：GPT-5.4虽为最强裁判但单失效诊断准确率仅52.6%，同时自偏好率高达94.2%，揭示能力评估与自我认知的严重割裂</li><li style="margin-bottom:0;"><strong>开源模型脆弱</strong>：开源裁判模型存在强烈偏见且对抗性脆弱，在实际部署中面临被操纵风险，制约其替代人工评估的可行性</li><li style="margin-bottom:0;"><strong>推理增强有效</strong>：VIA-Judge-Agent显著提升诊断准确率与下游VIA响应质量，证明无需训练仅通过推理时干预即可改善裁判可靠性</li><li style="margin-bottom:0;"><strong>用户价值验证</strong>：增强后的系统输出更受BLV用户青睐，确认技术改进能够转化为真实的视障辅助体验提升</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2605.31351" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2605.31351</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/2</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-02",
+  "title": "大模型能力边界突破与可信评估新范式",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2605.31480",
+      "title": "Language Models Can Resolve Reference Compositionally, But It's Not Their Native Strength: The Case of the Personal Relation Task",
+      "chinese_title": "语言模型能组合解析指代，但非其本能优势：以人际关系任务为例",
+      "authors": "Bart Evelo et al.",
+      "url": "https://arxiv.org/abs/2605.31480"
+    },
+    {
+      "id": "2605.31433",
+      "title": "SCOPE: Self-Play via Co-Evolving Policies for Open-Ended Tasks",
+      "chinese_title": "SCOPE：面向开放式任务的协同进化策略自博弈",
+      "authors": "Wai-Chung Kwan et al.",
+      "url": "https://arxiv.org/abs/2605.31433"
+    },
+    {
+      "id": "2605.31404",
+      "title": "The Sword, Shield, and Achilles' Heel: Characterizing the Linguistic Inductive Bias of Large Language Models for Spatial Reasoning in Navigation Planning",
+      "chinese_title": "剑盾与阿喀琉斯之踵：大语言模型导航空间推理的语言归纳偏置刻画",
+      "authors": "Xudong Zhang et al.",
+      "url": "https://arxiv.org/abs/2605.31404"
+    },
+    {
+      "id": "2605.31349",
+      "title": "FBHM: Functional Benchmarking and Steering of VLMs for Hateful Meme Detection",
+      "chinese_title": "FBHM：视觉语言模型仇恨表情包检测的功能基准测试与引导优化",
+      "authors": "Paramananda Bhaskar et al.",
+      "url": "https://arxiv.org/abs/2605.31349"
+    },
+    {
+      "id": "2605.31494",
+      "title": "Consolidating Rewarded Perturbations for LLM Post-Training",
+      "chinese_title": "奖励扰动聚合的大语言模型后训练方法",
+      "authors": "Zheyu Zhang et al.",
+      "url": "https://arxiv.org/abs/2605.31494"
+    },
+    {
+      "id": "2605.31446",
+      "title": "Fine-grained Verification via Diagnostic Reasoning Supervision for Aspect Sentiment Triplet Extraction",
+      "chinese_title": "基于诊断推理监督的细粒度方面情感三元组抽取验证",
+      "authors": "Wenna Lai et al.",
+      "url": "https://arxiv.org/abs/2605.31446"
+    },
+    {
+      "id": "2605.31351",
+      "title": "A Visually Impaired Assistance Benchmark for VLM-as-a-Judge Evaluation",
+      "chinese_title": "面向视觉大模型评判评估的视障辅助基准",
+      "authors": "Yi Zhao et al.",
+      "url": "https://arxiv.org/abs/2605.31351"
+    }
+  ],
+  "generated_at": "2026-06-01T22:13:25.789Z",
+  "org": "AI研究室"
+}
