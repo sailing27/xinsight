@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型安全与效率攻坚 从细粒度压缩到多轮风险防控 | 2026/6/3</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型安全与效率攻坚 从细粒度压缩到多轮风险防控 | 2026/6/3</h1>
+                <div class="date">2026/6/3 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示大模型技术正从"规模扩张"向"精细治理"范式深度转型。七项研究共同指向三个核心趋势：其一，<strong>细粒度优化成为技术突破口</strong>——从子模块级模型压缩、任务级标注审计到多维度语义解析，研究者正摒弃粗粒度方案，在更精细层面挖掘效率与性能的平衡点；其二，<strong>全生命周期安全评估体系加速构建</strong>——技能攻击的跨会话风险、多轮交互中的有害放大、流式场景的实时预警等研究，标志着安全研究从单点防护向动态、持续的风险治理演进；其三，<strong>领域专业化挑战通用范式</strong>——非洲语言ASR证明边缘微调可超越大规模基线，自杀梗图分析暴露修辞理解的领域特异性瓶颈，凸显垂直场景的深度适配价值。<br><br>对行业而言，这些发现具有双重启示：技术层面，"小且专"或成资源受限场景的可行路径，模型架构冗余的精细化利用将重塑压缩与部署策略；治理层面，标注透明度、多轮风险累积与实时安全能力的系统性短板，要求建立覆盖数据构建、模型交互与持续监控的全栈问责框架。尤为紧迫的是，当前多模态安全与低资源语言支持仍处于实用化前夜，需加速产学研协同以弥合技术成熟度与社会需求间的鸿沟。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Who Annotates in NLP? A Large-scale Assessment of Human Annotation Reporting between 2018 and 2025</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.02255</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">NLP中谁在标注？2018-2025年人工标注报告的大规模评估</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">人类标注是NLP研究的实证基础，但论文常对标注者身份和过程控制语焉不详。本文首次对主要NLP会议中的人类标注报告进行大规模任务级审计，构建了统一的标注报告分类体系，并验证了LLM辅助提取流程。基于2018-2025年ACL会议1,603篇论文中的2,667个标注任务，发现论文常报告招募策略、专家水平和标注量等操作细节，但经常遗漏培训、语言能力、报酬、社会人口学、裁决和一致性值等评估标注有效性所需的关键信息，尤其在模型评估研究中。研究表明标注报告虽有改善但仍不均衡，并提出了可扩展框架和最低报告建议。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分类体系构建</strong>：建立统一的标注报告实践分类法，系统涵盖标注过程中需记录的人员、流程、质量控制等维度，为大规模审计提供结构化分析框架</li><li style="margin-bottom:0;"><strong>LLM辅助提取</strong>：开发并验证大语言模型辅助的标注信息自动提取流程，在41篇论文72个任务的人工裁决金标准上达到Krippendorff's alpha 0.606，媲美人工一致性0.585</li><li style="margin-bottom:0;"><strong>大规模数据集</strong>：构建Annotated-llm数据集，覆盖2018-2025年ACL会议1,603篇论文中的2,667个标注任务，实现标注报告实践的系统化量化分析</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>任务级审计方法</strong>：突破以往粗粒度分析，首次在任务层面而非论文层面进行标注报告审计，精准识别同一论文中不同标注任务的报告差异</li><li style="margin-bottom:0;"><strong>人机对比验证</strong>：创新性地将LLM提取结果与人工裁决金标准进行直接对比，证明机器可达到人类级别的标注信息提取可靠性</li><li style="margin-bottom:0;"><strong>时序跨域分析</strong>：设计多维比较框架，系统分析标注报告随时间、主题、会议和标注用途（数据集构建vs模型评估）的变化规律</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>报告不均衡性</strong>：操作细节报告较好但有效性评估信息严重不足，模型评估研究比数据集构建研究更常遗漏关键质量控制信息</li><li style="margin-bottom:0;"><strong>时序改善趋势</strong>：2018至2025年间NLP标注报告整体有所改善，但进展缓慢且分布不均，尚未形成领域共识性规范</li><li style="margin-bottom:0;"><strong>最低标准建议</strong>：基于实证发现提出可扩展的标注报告最低标准建议，为推动人类标注的可靠性、可复现性和可解释性提供具体路径</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.02255" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.02255</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>WAXAL-NET: Finetuned Edge ASR Across 19 African Languages</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.02375</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">WAXAL-NET：19种非洲语言微调边缘语音识别模型</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文评估了紧凑的领域专用ASR模型是否能在WAXAL语料库的19种非洲语言对话语音上，超越大规模多语言基础模型。微调后的边缘模型宏观平均WER为38.0%，相比最佳零样本基线的64.9%降低了26.9个百分点，且模型尺寸小3-40倍。结果证实领域专业化对非洲自发语音的重要性超过模型规模。跨域评估显示微调模型在分布外语音上恢复可用性能，而零样本模型在测试域与预训练分布匹配时重获优势。分布式母语者审核产生了语言学基础的错误分类法，揭示CTC与自回归架构在不同语系中表现各异。WER单独使用会误导音节文字语言性能，CER/WER比率显示字符级精度显著高于标题WER。研究发布了所有模型权重、微调与评估脚本及清洗后的WAXAL子集。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>边缘模型微调</strong>：在19种非洲语言上微调紧凑ASR模型，实现38.0%宏观平均WER，较零样本基线降低26.9个百分点，模型尺寸仅为基线的1/3至1/40</li><li style="margin-bottom:0;"><strong>跨域评估框架</strong>：系统对比微调模型与零样本模型在分布内与分布外语音上的性能，揭示领域匹配与模型专业化的权衡关系</li><li style="margin-bottom:0;"><strong>母语者错误审核</strong>：组织分布式母语者审核，建立语言学基础的错误分类体系，量化CTC与自回归架构在不同语系中的差异化表现</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>领域优于规模</strong>：首次在非洲多语言场景下系统验证，针对自发对话语音的领域专业化优于单纯扩大模型规模的传统范式</li><li style="margin-bottom:0;"><strong>音节文字评估</strong>：提出CER/WER比率分析指标，揭示WER对音节文字语言（如阿姆哈拉语）的误导性，字符级精度显著优于词级指标</li><li style="margin-bottom:0;"><strong>开源资源发布</strong>：完整开源模型权重、微调脚本、评估代码及清洗后的19语言WAXAL子集，填补非洲ASR研究资源缺口</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>微调显著领先</strong>：领域专用微调模型在非洲对话语音上大幅超越多语言基础模型，宏观WER降低41.4%，确立边缘部署可行性</li><li style="margin-bottom:0;"><strong>架构语系相关</strong>：CTC与自回归架构的错误模式存在显著语系差异，需根据目标语言类型选择适配架构</li><li style="margin-bottom:0;"><strong>评估指标重构</strong>：音节文字语言需结合CER/WER比率综合评估，避免WER单一指标低估实际字符识别性能</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.02375" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.02375</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>SkillHarm: Lifecycle-Aware Skill-Based Attacks via Automated Construction</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.02540</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">SkillHarm：基于自动构建的全生命周期技能攻击</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">Agent技能在智能体工作流中占据特权位置，第三方技能成为脆弱攻击面。现有研究主要评估单任务执行中的投毒技能并通过临时风险列表枚举危害。本文提出SkillHarm基准，覆盖技能使用全生命周期的技能攻击，并建立系统化的技能风险分类体系。该基准评估两种攻击场景：固定载荷投毒（FPP）和自变异投毒（SMP），并基于智能体工作流组件定义12种风险类型。研究团队构建AutoSkillHarm自动化构造管道，生成879个攻击样本，实验显示当前智能体攻击成功率高达86.3%（FPP）和69.3%（SMP），且发现许多攻击失败源于智能体未接触投毒文件而非真正抵抗。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>全周期攻击建模</strong>：覆盖技能从安装、调用到持久化存储的完整生命周期，突破单任务执行局限，揭示跨会话的延迟攻击风险</li><li style="margin-bottom:0;"><strong>双模式投毒机制</strong>：设计固定载荷投毒与自变异投毒两种场景，前者直接破坏调用会话，后者通过良性执行静默变异持久化内容实现后续触发</li><li style="margin-bottom:0;"><strong>自动化攻击生成</strong>：构建AutoSkillHarm管道，利用编码智能体结合自然语言引导模板，实现879个攻击样本的大规模自动化构造与实例化</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>生命周期感知评估</strong>：首次将技能攻击评估从单任务扩展至完整技能使用生命周期，发现持久化存储环节的自变异攻击新向量</li><li style="margin-bottom:0;"><strong>系统化风险分类</strong>：基于智能体工作流三大组件（数据管道、系统环境、智能体自主性）建立12类技能风险分类体系，取代临时枚举方法</li><li style="margin-bottom:0;"><strong>隐性失败诊断</strong>：揭示攻击成功率统计中的系统性偏差，区分智能体真正抵抗与未接触投毒文件的假性失败，修正风险评估基准</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>高脆弱性现状</strong>：当前智能体对技能攻击防御薄弱，FPP攻击成功率达86.3%，SMP攻击成功率达69.3%，暴露严重安全隐患</li><li style="margin-bottom:0;"><strong>防御机制失效</strong>：现有防御措施无法可靠缓解威胁，无法有效识别或阻断跨生命周期的持续性攻击向量</li><li style="margin-bottom:0;"><strong>假性失败风险</strong>：大量表面攻击失败源于智能体未调用投毒文件而非主动防御成功，实际脆弱性被显著低估需重新评估</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.02540" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.02540</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>PaSBench-Video: A Streaming Video Benchmark for Proactive Safety Warning</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.02443</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">PaSBench-Video：面向主动安全预警的流式视频基准测试</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出PaSBench-Video基准测试，包含740个视频（481个风险视频和259个安全视频），涵盖驾驶、医疗、日常生活和工业生产四个领域。该基准要求多模态大语言模型在因果观察视频流时，产生时间校准且内容正确的预警。测试13个MLLM发现，最严格指标下无模型超过20.0%，召回率与误报率呈0.64正相关，且模型在不同领域表现差异显著：日常生活领域风险异常性高，模型能以低误报实现中等召回；驾驶领域危险与常规场景相似，模型普遍误报。结果表明当前模型依赖场景级活动线索而非新兴危害推理。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>流式视频输入</strong>：要求模型以因果方式逐帧观察视频流，模拟实时安全监控场景，而非一次性获取完整视频信息</li><li style="margin-bottom:0;"><strong>帧级风险标注</strong>：风险视频标注风险起始帧和事故边界帧，实现预警时间精度的精确评估</li><li style="margin-bottom:0;"><strong>双维度评估</strong>：同时测量时间校准性和内容正确性，要求预警既及时又准确描述风险类型</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>主动安全预警</strong>：聚焦危险初现至事故发生间的干预窗口期，评估模型在此关键时段发出预警的能力</li><li style="margin-bottom:0;"><strong>安全场景测试</strong>：首次系统纳入无风险视频，测量模型在安全场景上的误报率，填补现有基准空白</li><li style="margin-bottom:0;"><strong>跨领域覆盖</strong>：构建驾驶、医疗、日常生活、工业生产四领域数据集，揭示模型在不同风险特征场景下的性能差异</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能天花板低</strong>：13个MLLM在最严格指标下无一超过20.0%，当前模型远未达到实用化的主动预警水平</li><li style="margin-bottom:0;"><strong>召回误报权衡</strong>：召回率与误报率Pearson相关系数达0.64，提高检测必然导致安全视频大量误报，模型缺乏精准判别能力</li><li style="margin-bottom:0;"><strong>领域差异显著</strong>：日常生活领域风险异常性支持中等召回低误报，驾驶领域场景相似性导致模型无差别触发预警</li><li style="margin-bottom:0;"><strong>推理能力缺失</strong>：模型依赖场景级活动线索而非对新兴危害的因果推理，无法区分常规操作与潜在危险演变</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.02443" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.02443</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>From Layers to Submodules: Rethinking Granularity in Replacement-Based LLM Compression</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.02559</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">从层到子模块：重思基于替换的大语言模型压缩粒度</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出SubFit方法，突破现有基于替换的大语言模型压缩方法在整层粒度和连续选择上的限制，以子模块级别进行非连续选择压缩，为Attention和FeedForward子模块分别配置轻量级拟合残差旁路，在十种LLM、五种稀疏度水平和四种基线方法上实现了最优的困惑度-准确率权衡。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>子模块压缩</strong>：突破传统整层删除或替换的粗粒度限制，将压缩粒度细化到Attention和FeedForward子模块级别，实现更精细的模型结构优化</li><li style="margin-bottom:0;"><strong>非连续选择</strong>：打破冗余组件必须集中在连续深度范围内的假设，允许跨层非连续地选择待替换子模块，更灵活地定位并利用模型中的冗余分布</li><li style="margin-bottom:0;"><strong>残差旁路设计</strong>：为每个被选中的子模块配置独立的轻量级拟合残差旁路，针对不同子模块类型采用差异化的近似策略，提升压缩后模型的表达能力</li><li style="margin-bottom:0;"><strong>后训练校准</strong>：仅需使用校准数据即可完成压缩，无需重新训练完整模型，大幅降低压缩过程的时间和计算成本</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>粒度重构</strong>：首次系统论证并实践子模块级别的替换压缩，揭示预训练Transformer中的冗余既非均匀分布也非局限于连续区域，为细粒度压缩提供理论依据</li><li style="margin-bottom:0;"><strong>差异化替换</strong>：针对不同子模块类型设计专门的拟合策略，Attention和FeedForward输出冗余特性不同，需采用各自最优的近似方法而非统一处理</li><li style="margin-bottom:0;"><strong>灵活定位机制</strong>：建立非连续的子模块选择框架，使压缩方法能够精准定位并移除真正冗余的组件，避免因连续性约束而保留高冗余或误删重要模块</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能优势显著</strong>：在25%稀疏度下保留84.6%的稠密下游准确率，困惑度退化仅2.42倍，显著优于最强基线的81.6%和4.34倍，且激进压缩时增益更大</li><li style="margin-bottom:0;"><strong>广泛适用性</strong>：在五种基础模型和五种指令微调模型、12.5%至37.5%五种稀疏度水平上均表现一致，验证方法的通用性和鲁棒性</li><li style="margin-bottom:0;"><strong>实际效率提升</strong>：除模型压缩外，还带来可测量的推理加速和KV缓存节省，证明方法在部署场景中的实用价值</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.02559" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.02559</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>FigSIM: A Dataset for Fine-grained Suicide Severity and Figurative Language in Suicide Memes</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.02523</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">FigSIM：自杀梗图中自杀严重程度与比喻语言的细粒度数据集</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">自杀梗图在社交媒体上日益普遍但理解不足且可能有害，亟需开发适当的内容审核策略。本文提出FigSIM数据集，包含1049个梗图，标注了细粒度自杀严重程度、修辞现象和自杀相关内容三个维度。研究对16个单模态和多模态模型进行基准测试，发现自杀梗图对建模和内容审核构成独特挑战，存在对高严重程度尤其是修辞性梗图的低估偏差。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多维度标注体系</strong>：构建涵盖自杀严重程度三级分类、七种修辞现象、六种自杀相关内容的细粒度标注框架，实现梗图的多层面语义解析</li><li style="margin-bottom:0;"><strong>多模态基准测试</strong>：系统评估16个单模态与多模态模型在三个任务上的性能，覆盖视觉编码器、语言模型及融合架构的对比分析</li><li style="margin-bottom:0;"><strong>偏差诊断方法</strong>：通过混淆矩阵与错误分析识别模型对修辞性梗图的系统性低估，揭示严重程度预测中的分布偏差</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>首个专项数据集</strong>：创建FigSIM作为首个面向自杀梗图细粒度分析的数据集，填补该领域标注数据空白，支持自动化审核研究</li><li style="margin-bottom:0;"><strong>修辞现象建模</strong>：将隐喻、反讽等七种修辞现象纳入自杀梗图分析，突破字面语义局限，捕捉网络模因的隐含表达特征</li><li style="margin-bottom:0;"><strong>多任务联合设计</strong>：同步标注严重程度、修辞类型、内容元素三类标签，支持跨维度关联分析与复合推理任务</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>修辞理解瓶颈</strong>：修辞性梗图的高严重程度预测显著低于字面梗图，表明现有模型难以解析隐含自杀意图，构成核心审核障碍</li><li style="margin-bottom:0;"><strong>严重程度低估</strong>：模型普遍偏向预测中等严重程度，对极端风险等级存在系统性回避，可能遗漏高危内容导致审核失效</li><li style="margin-bottom:0;"><strong>数据公开贡献</strong>：完整公开数据集及实验划分，为后续研究提供标准化基准，推动自杀梗图自动检测与平台治理研究发展</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.02523" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.02523</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Investigating and Alleviating Harm Amplification in LLM Interactions</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.02423</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">LLM交互中的有害信息放大：调查与缓解</span>
+                        <span style="color:#666;font-size:12px;">Ruohao Guo et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型（LLMs）可作为有害放大器，使恶意用户通过多轮交互实现超出其能力范围的有害结果。该风险体现在两个维度：一是民主化领域专业知识，使新手能够生成 specialized 有害内容；二是规模化有害操作，达到人工无法企及的规模。现有研究往往忽视LLM在多轮对话中如何复合危害。本文提出HarmAmp基准，涵盖十二类风险场景的多轮有害放大场景，每个场景基于真实威胁并满足实质性放大、操作具体性和多轮必要性三项严格标准。进一步提出TrajSafe主动监控器，通过探测用户真实意图、引导模型生成更安全回复等动作预判有害轨迹并干预。大量实验表明，TrajSafe显著降低多轮交互中的有害性，同时保持低过度拒绝率和目标模型的通用能力。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>HarmAmp基准</strong>：构建覆盖十二类风险的多轮有害放大评测基准，每个场景基于真实威胁并满足实质性放大、操作具体性和多轮必要性三项严格标准，系统评估LLM交互中的危害复合效应</li><li style="margin-bottom:0;"><strong>TrajSafe监控器</strong>：设计主动式轨迹安全监控器，通过预判有害交互轨迹并实施干预动作，包括探测用户真实意图与引导模型生成更安全回复，实现多轮对话中的动态安全防护</li><li style="margin-bottom:0;"><strong>多轮干预机制</strong>：采用探测用户意图与引导安全生成相结合的策略，在对话关键节点主动介入，有效阻断有害信息的逐步累积与放大链条</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>危害双轴框架</strong>：首次从民主化专业领域知识与规模化操作能力两个维度，系统界定LLM作为有害放大器的风险本质，揭示多轮交互中危害复合的独特机制</li><li style="margin-bottom:0;"><strong>多轮必要性准则</strong>：提出多轮有害放大的三项严格评判标准，强调真实威胁场景必须通过多轮交互才能实现实质性危害，区别于单轮攻击的现有研究范式</li><li style="margin-bottom:0;"><strong>主动预判范式</strong>：开创性地将被动防御转向主动预判，通过预测有害交互轨迹提前干预，而非仅依赖内容过滤或事后检测，实现更 nuanced 的安全风险管理</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>有害显著降低</strong>：TrajSafe在多轮交互场景中显著降低有害性，有效缓解LLM作为有害放大器的风险，同时保持较低的过度拒绝率，避免对正常用户体验的负面影响</li><li style="margin-bottom:0;"><strong>能力有效保留</strong>：干预机制在提升安全性的同时，较好地保留了目标模型的通用能力，实现安全性与可用性的平衡，避免传统安全方法导致的模型性能退化</li><li style="margin-bottom:0;"><strong>范式前景广阔</strong>：主动预判与动态干预的安全范式为缓解LLM交互中的细微安全风险提供了有前景的方向，可扩展应用于更复杂的人机交互安全场景</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.02423" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.02423</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/3</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-03",
+  "title": "大模型安全与效率攻坚 从细粒度压缩到多轮风险防控",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.02255",
+      "title": "Who Annotates in NLP? A Large-scale Assessment of Human Annotation Reporting between 2018 and 2025",
+      "chinese_title": "NLP中谁在标注？2018-2025年人工标注报告的大规模评估",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.02255"
+    },
+    {
+      "id": "2606.02375",
+      "title": "WAXAL-NET: Finetuned Edge ASR Across 19 African Languages",
+      "chinese_title": "WAXAL-NET：19种非洲语言微调边缘语音识别模型",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.02375"
+    },
+    {
+      "id": "2606.02540",
+      "title": "SkillHarm: Lifecycle-Aware Skill-Based Attacks via Automated Construction",
+      "chinese_title": "SkillHarm：基于自动构建的全生命周期技能攻击",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.02540"
+    },
+    {
+      "id": "2606.02443",
+      "title": "PaSBench-Video: A Streaming Video Benchmark for Proactive Safety Warning",
+      "chinese_title": "PaSBench-Video：面向主动安全预警的流式视频基准测试",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.02443"
+    },
+    {
+      "id": "2606.02559",
+      "title": "From Layers to Submodules: Rethinking Granularity in Replacement-Based LLM Compression",
+      "chinese_title": "从层到子模块：重思基于替换的大语言模型压缩粒度",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.02559"
+    },
+    {
+      "id": "2606.02523",
+      "title": "FigSIM: A Dataset for Fine-grained Suicide Severity and Figurative Language in Suicide Memes",
+      "chinese_title": "FigSIM：自杀梗图中自杀严重程度与比喻语言的细粒度数据集",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.02523"
+    },
+    {
+      "id": "2606.02423",
+      "title": "Investigating and Alleviating Harm Amplification in LLM Interactions",
+      "chinese_title": "LLM交互中的有害信息放大：调查与缓解",
+      "authors": "Ruohao Guo et al.",
+      "url": "https://arxiv.org/abs/2606.02423"
+    }
+  ],
+  "generated_at": "2026-06-02T22:21:04.515Z",
+  "org": "AI研究室"
+}
