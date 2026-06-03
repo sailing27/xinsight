@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-04",
+  "title": "大模型推理革新与安全防御 从可控思维到跨语言漏洞与后门泛化消",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.03969",
+      "title": "Quantifying Faithful Confidence Expression in Large Reasoning Models",
+      "chinese_title": "大推理模型中忠实置信度表达的量化研究",
+      "authors": "Areeb Gani et al.",
+      "url": "https://arxiv.org/abs/2606.03969"
+    },
+    {
+      "id": "2606.03793",
+      "title": "Exploring Adversarial Robustness and Safety Alignment in Multilingual Multi-Modal Large Language Models",
+      "chinese_title": "多语言多模态大语言模型的对抗鲁棒性与安全对齐研究",
+      "authors": "Hashmat Shadab Malik et al.",
+      "url": "https://arxiv.org/abs/2606.03793"
+    },
+    {
+      "id": "2606.03965",
+      "title": "Agentic Chain-of-Thought Steering for Efficient and Controllable LLM Reasoning",
+      "chinese_title": "自主思维链引导：实现高效可控的大语言模型推理",
+      "authors": "Yu Xia et al.",
+      "url": "https://arxiv.org/abs/2606.03965"
+    },
+    {
+      "id": "2606.03892",
+      "title": "Synthesize and Reward -- Reinforcement Learning for Multi-Step Tool Use in Live Environments",
+      "chinese_title": "合成与奖励：实时环境中多步工具使用的强化学习",
+      "authors": "Ibrahim Abdelaziz et al.",
+      "url": "https://arxiv.org/abs/2606.03892"
+    },
+    {
+      "id": "2606.03889",
+      "title": "RealClawBench: Live OpenClaw Benchmarks from Real Developer-Agent Sessions",
+      "chinese_title": "RealClawBench：真实开发者-智能体会话的实时开放基准测试",
+      "authors": "Zongwei Lv et al.",
+      "url": "https://arxiv.org/abs/2606.03889"
+    },
+    {
+      "id": "2606.03785",
+      "title": "Backdoor Unlearning Generalization: A Path Toward the Removal of Unknown Triggers in LLMs",
+      "chinese_title": "大模型后门遗忘泛化：消除未知触发器的路径",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.03785"
+    },
+    {
+      "id": "2606.03982",
+      "title": "Language Models Compare Quantities Using Number-specific and Unit-specific Heuristics",
+      "chinese_title": "语言模型运用数词与单位启发式比较数量",
+      "authors": "Mutsumi Sasaki et al.",
+      "url": "https://arxiv.org/abs/2606.03982"
+    }
+  ],
+  "generated_at": "2026-06-03T22:15:01.997Z",
+  "org": "AI研究室"
+}

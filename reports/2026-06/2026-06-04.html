@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型推理革新与安全防御 从可控思维到跨语言漏洞与后门泛化消 | 2026/6/4</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型推理革新与安全防御 从可控思维到跨语言漏洞与后门泛化消 | 2026/6/4</h1>
+                <div class="date">2026/6/4 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦大模型在推理可信性、安全对齐与智能体能力三个维度的深层挑战与突破。技术趋势显示，当前研究正从单一性能优化转向对模型内在机制、真实环境适应及可控性的系统性探索。<br><br>三大共性方向浮现：其一，<strong>推理过程的可解释与可控性</strong>，论文1与3分别从置信度校准与动态引导切入，揭示长思维链的忠实表达难题，并通过智能体干预实现推理效率与可控性的平衡；其二，<strong>真实环境适应与评估范式革新</strong>，论文4、5强调有状态环境重建与真实会话转化，突破合成数据与实验室基准的局限，暴露现有智能体在真实开发者场景中的显著能力缺口；其三，<strong>安全机制的深层脆弱性</strong>，论文2与6从跨语言攻击迁移与后门遗忘泛化两个角度，揭示当前安全对齐的表面性与防御策略的潜在突破口。<br><br>对行业而言，这些发现警示：扩展推理规模并非万能解药，模型在置信表达、多语言安全及数值推理等基础能力上仍存在结构性缺陷；同时，基于环境重建与实时状态绑定的训练范式，以及跨威胁的泛化防御思路，为构建更鲁棒、可部署的智能体系统提供了关键路径。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Quantifying Faithful Confidence Expression in Large Reasoning Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.03969</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">大推理模型中忠实置信度表达的量化研究</span>
+                        <span style="color:#666;font-size:12px;">Areeb Gani et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">可靠的不确定性沟通对LLM的可信度至关重要，但忠实校准（FC）——模型内在置信度与语言表达置信度之间的一致性——是一个持续的失败模式。对于大型推理模型（LRMs）而言，这一挑战尤为关键，因为其扩展的推理痕迹常被用户解读为审慎、能力和信心的证据。尽管FC很重要且LRMs使用广泛，但LRMs能在多大程度上忠实表达其置信度仍知之甚少。此外，衡量FC的主流范式难以推广到LRMs生成的长思维链输出，这些输出往往缺乏清晰的步骤边界、步骤结构不一致，并在整个痕迹中编码复杂的条件依赖关系——这使得内在置信度的估计变得复杂。为应对这一挑战，我们引入了一个新框架来系统量化LRMs的FC。该框架基于token概率、隐藏状态和采样响应一致性三种内部不确定性来源，分析语言果断性。我们还设计了一种前缀条件采样方法来控制痕迹中的条件和结构变化。将该框架应用于多种领先模型、数据集和提示，我们发现忠实置信度表达是LRMs面临的重大挑战。推理行为不会自动转化为FC的改善，针对非推理模型的提示干预也无法改善推理场景中的忠实度。不同的置信度估计器对同一痕迹产生分歧的评估，揭示了先前评估方法的脆弱性。总之，我们的工作将FC确立为LRMs的一个独特可靠性和对齐目标，尤其随着此类系统越来越多地部署于高风险场景中。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>三类内在不确定性</strong>：基于token概率、隐藏状态及采样响应一致性三种来源量化模型内部不确定性，为评估语言表达与内在置信度的对齐程度提供多维参照基准</li><li style="margin-bottom:0;"><strong>前缀条件采样</strong>：设计前缀条件采样方法控制推理痕迹中的条件依赖与结构变化，实现对复杂长思维链输出中置信度估计的有效隔离与对比分析</li><li style="margin-bottom:0;"><strong>语言果断性分析</strong>：系统分析推理痕迹中的语言果断性特征，建立从文本表达模式到置信度判断的映射机制，以识别模型是否如实反映其内在不确定性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>LRM专用FC框架</strong>：首次针对大型推理模型长思维链输出的结构特点，构建系统化的忠实校准量化框架，突破传统方法在步骤边界模糊和条件依赖复杂场景下的适用局限</li><li style="margin-bottom:0;"><strong>多源不确定性对齐</strong>：创新性地将语言表达与三种异质内部不确定性来源进行相对分析，克服单一估计指标在复杂推理痕迹中的评估偏差与信息不足问题</li><li style="margin-bottom:0;"><strong>推理痕迹控制方法</strong>：提出前缀条件采样技术以分离结构变异与条件依赖的混淆效应，为长推理链中内在置信度的可靠估计提供方法论支撑</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>FC挑战显著</strong>：忠实置信度表达是大型推理模型面临的重大挑战，扩展推理能力并未自动解决模型内在不确定性与语言表达之间的对齐问题</li><li style="margin-bottom:0;"><strong>推理行为局限</strong>：推理行为本身不会自动转化为忠实校准改善，且针对非推理模型的提示干预策略在推理场景中无法提升置信度表达的忠实性</li><li style="margin-bottom:0;"><strong>评估方法脆弱</strong>：不同置信度估计器对相同推理痕迹产生分歧评估，暴露先前评估方法论的根本性脆弱，亟需建立更稳健的FC测量标准</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.03969" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.03969</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Exploring Adversarial Robustness and Safety Alignment in Multilingual Multi-Modal Large Language Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.03793</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">多语言多模态大语言模型的对抗鲁棒性与安全对齐研究</span>
+                        <span style="color:#666;font-size:12px;">Hashmat Shadab Malik et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文系统研究了多语言多模态大语言模型（MLLMs）的对抗鲁棒性与多模态安全性，涵盖12种语言。研究发现对抗图像具有跨语言可迁移性，且多语言安全性与模型的语言理解能力密切相关：低资源语言看似更安全，实则是理解与视觉编码失败导致的"安全失效"假象；仅在指令微调阶段获得多语言能力的模型存在表面安全，而像Qwen3-VL这样在全训练阶段深度整合多语言的模型才具备真正的跨语言安全对齐。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨语言对抗攻击</strong>：通过梯度攻击优化单语言对抗图像，验证其在12种语言间的攻击迁移性，揭示多语言MLLMs存在可迁移的跨语言漏洞</li><li style="margin-bottom:0;"><strong>多模态安全评估</strong>：构建文本提示与图像嵌入两种有害指令注入方式，系统评估模型在不同语言下的安全响应与拒绝行为</li><li style="margin-bottom:0;"><strong>视觉编码分析</strong>：检测非英语文字在视觉编码器中的解析失败现象，揭示低资源语言安全表象背后的视觉理解缺陷</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>安全失效概念</strong>：首次提出safety-by-failure现象，指出低资源语言的安全表现源于模型理解与视觉编码失败，而非真正的价值对齐</li><li style="margin-bottom:0;"><strong>深度整合假说</strong>：揭示多语言能力的训练阶段深度决定安全对齐质量，全阶段训练模型展现主动拒绝，浅层微调仅产生幻觉式安全</li><li style="margin-bottom:0;"><strong>跨语言迁移发现</strong>：证明对抗图像优化存在强跨语言可迁移性，单一语言攻击即可诱导多语言场景下的模型失效</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>攻击迁移性</strong>：梯度优化的对抗图像在单语言训练后可在其他语言持续诱导失败，多语言MLLMs存在系统性跨语言脆弱性</li><li style="margin-bottom:0;"><strong>语言强弱分化</strong>：文本有害指令下，语言基础强的语种更易引发滥用响应；弱语言因理解不足产生更少不安全输出</li><li style="margin-bottom:0;"><strong>视觉编码偏见</strong>：图像嵌入文字时英文脚本被可靠识别执行，非英文脚本几乎无法被视觉编码器解析，形成虚假安全屏障</li><li style="margin-bottom:0;"><strong>训练深度决定安全</strong>：Qwen3-VL等全阶段多语言训练模型实现真正跨语言安全，浅层指令微调仅制造低资源语言的安全幻觉</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.03793" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.03793</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Agentic Chain-of-Thought Steering for Efficient and Controllable LLM Reasoning</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.03965</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">自主思维链引导：实现高效可控的大语言模型推理</span>
+                        <span style="color:#666;font-size:12px;">Yu Xia et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型通过扩展思维链推理提高最终答案准确率，但往往低效使用token且缺乏推理时控制能力。现有高效推理方法通过缩短、提前停止或压缩推理痕迹来控制思考长度，但模型如何思考仍不明确。本文提出Agentic Chain-of-Thought Steering（ACTS），将推理引导建模为马尔可夫决策过程，其中控制器智能体在推理过程中自适应地引导冻结的推理模型。每一步中，控制器观察推理痕迹和剩余思考预算，然后发出包含推理策略和引导短语的控制动作，以启动下一步推理。这实现了预算感知的策略控制以提高推理效率，同时保持推理模型的生成连续性。我们通过多预算增强构建的合成引导轨迹初始化控制器智能体，并通过预算条件奖励塑造的强化学习进一步优化。多个基准实验表明，ACTS在显著节省token的同时达到完整思考性能，并在不同推理模型和任务间实现可控的准确率-效率权衡。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>智能体引导框架</strong>：将推理引导形式化为马尔可夫决策过程，由控制器智能体在推理过程中动态干预冻结推理模型的生成过程，实现细粒度的推理时控制</li><li style="margin-bottom:0;"><strong>双组件控制动作</strong>：每个控制动作包含推理策略选择与引导短语生成，策略决定推理方向，短语直接注入推理模型以启动下一步思考</li><li style="margin-bottom:0;"><strong>多预算增强合成数据</strong>：构建覆盖多种思考预算的合成引导轨迹用于控制器初始化，使智能体学习在不同预算约束下的自适应引导策略</li><li style="margin-bottom:0;"><strong>预算条件强化学习</strong>：设计基于剩余预算的奖励塑造机制，通过强化学习优化控制器，使其在token限制内最大化推理质量</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>显式控制思考方式</strong>：区别于仅缩短或压缩推理痕迹的隐式方法，ACTS显式控制模型如何思考，通过策略选择和短语引导直接塑造推理过程</li><li style="margin-bottom:0;"><strong>动态预算感知调度</strong>：控制器实时观察剩余思考预算，自适应调整推理策略的激进程度，实现推理长度与质量的动态平衡</li><li style="margin-bottom:0;"><strong>保持生成连续性</strong>：通过引导短语而非强制截断来衔接推理步骤，避免破坏推理模型的自然生成流，维持连贯的思维链</li><li style="margin-bottom:0;"><strong>跨模型任务可迁移</strong>：框架设计兼容不同推理模型和任务类型，控制器可学习通用的推理引导策略并迁移到新场景</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>显著token节省</strong>：ACTS在匹配完整思考性能的前提下，实现大幅度的token消耗降低，提升推理效率</li><li style="margin-bottom:0;"><strong>可控精度效率权衡</strong>：通过调整思考预算，用户可灵活控制准确率与推理成本之间的权衡，满足不同应用场景需求</li><li style="margin-bottom:0;"><strong>跨基准一致有效</strong>：在多个推理基准测试上的实验验证了方法的普适性和稳定性，不依赖特定任务结构</li><li style="margin-bottom:0;"><strong>强化学习持续优化</strong>：相比仅使用合成数据初始化，进一步的强化学习训练能持续提升控制器的引导效果和预算利用效率</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.03965" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.03965</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Synthesize and Reward -- Reinforcement Learning for Multi-Step Tool Use in Live Environments</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.03892</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">合成与奖励：实时环境中多步工具使用的强化学习</span>
+                        <span style="color:#666;font-size:12px;">Ibrahim Abdelaziz et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">训练大语言模型编排多步工具调用面临三大障碍：真实有状态执行环境构建成本高、合成训练查询常与服务器实际状态脱节导致工具调用执行失败、基于召回的RL奖励激励冗长的工具调用模式。本文提出PROVE框架，包含三个贡献：(1)20个有状态MCP服务器库，暴露343个工具，支持带会话级状态隔离的实时执行RL训练；(2)自动化数据合成管道，通过依赖图引导的对话模拟，基于实时采样的服务器状态生成经验证的多轮工具调用轨迹，确保每个查询引用实际存在的实体；(3)多组件程序化奖励，包括渐进式有效性评分、依赖感知覆盖率、自适应效率惩罚（含复杂度缩放调用预算）、工具名称信号和参数值匹配奖励，无需外部评判模型。使用GRPO训练四个模型（Qwen3-4B、Qwen3-8B、Qwen2.5-7B、Granite-4.1-8B），仅调整学习率，在BFCL Multi-Turn、tau2-bench和T-Eval上分别取得最高+10.2、+6.8和+6.5的提升。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>状态隔离环境</strong>：构建20个有状态MCP服务器，提供343个工具，实现会话级状态隔离，支持多智能体并发训练时的实时执行与状态重置，解决真实环境构建成本高的问题</li><li style="margin-bottom:0;"><strong>依赖图合成</strong>：通过依赖图引导的对话模拟，基于实时采样的服务器状态生成多轮工具调用轨迹，确保查询引用实际存在的实体，避免合成数据与真实状态脱节</li><li style="margin-bottom:0;"><strong>程序化奖励</strong>：设计五组件奖励函数，包括渐进有效性评分、依赖感知覆盖率、自适应效率惩罚、工具名称信号和参数值匹配奖励，无需外部评判模型即可实现精细优化</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>实时状态绑定</strong>：将数据合成过程与实时服务器状态深度绑定，通过采样真实环境状态生成查询，从根本上解决合成查询与执行状态脱节导致调用失败的问题</li><li style="margin-bottom:0;"><strong>复杂度自适应</strong>：引入复杂度缩放的调用预算机制，根据任务难度动态调整效率惩罚阈值，避免简单任务过度惩罚或复杂任务奖励不足的不平衡现象</li><li style="margin-bottom:0;"><strong>跨族泛化训练</strong>：使用完全相同的奖励超参数和约13K训练样本，仅通过三点扫描调整学习率，实现在Qwen和Granite两个不同模型家族上的一致有效训练</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能显著提升</strong>：在BFCL Multi-Turn、tau2-bench和T-Eval三个基准测试上，PROVE分别实现最高+10.2、+6.8和+6.5点的性能提升，验证多步工具编排能力的实质性增强</li><li style="margin-bottom:0;"><strong>奖励设计高效</strong>：紧凑的程序化奖励函数无需外部评判模型，即可在多步工具调用任务上产生持续增益，降低训练成本与系统复杂度</li><li style="margin-bottom:0;"><strong>跨模型一致性</strong>：相同奖励超参数配置下，四个不同规模与架构的模型均取得正向提升，证明该方法具有良好的模型无关性与可迁移性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.03892" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.03892</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>RealClawBench: Live OpenClaw Benchmarks from Real Developer-Agent Sessions</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.03889</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">RealClawBench：真实开发者-智能体会话的实时开放基准测试</span>
+                        <span style="color:#666;font-size:12px;">Zongwei Lv et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现有智能体基准测试往往缺乏真实开发者-智能体会话的关键真实属性。本文提出RealClawBench，一个基于真实OpenClaw会话构建的实时基准测试框架，用于捕获部署智能体使用的分布、多样性和真实世界难度。该框架通过重建执行环境和确定性可验证评分器两个核心机制，将真实会话转化为可复现、自动评分的任务。最终发布包含281个可执行任务，保留源分布（最大Jensen-Shannon散度0.0448）。对14个当代模型的评估显示最佳系统仅解决65.8%的任务，表明在真实开发者-智能体工作负载上仍有巨大提升空间。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>环境重建机制</strong>：通过重构真实用户的本地执行环境，解决真实请求依赖特定运行环境的问题，使原本难以复现的真实会话转化为可在标准化环境中执行的基准任务</li><li style="margin-bottom:0;"><strong>确定性评分系统</strong>：设计可自动验证的评分器，处理用户意图隐式或欠规范化的挑战，确保任务完成情况的客观、一致评估</li><li style="margin-bottom:0;"><strong>分布保持采样</strong>：从大规模真实会话池中采样任务时严格控制分布偏差，使最终任务集与源分布的Jensen-Shannon散度不超过0.0448</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>真实会话转化</strong>：首次系统性地将部署中的真实开发者-智能体会话转化为可控的评估实例，弥合了实验室基准与实际部署场景之间的鸿沟</li><li style="margin-bottom:0;"><strong>实时基准框架</strong>：构建动态更新的实时基准测试框架，持续从真实OpenClaw会话中捕获不断演变的用户需求分布和难度特征</li><li style="margin-bottom:0;"><strong>隐式意图处理</strong>：创新性地解决真实用户请求中常见的意图隐式表达和任务欠规范化问题，无需人工补充规范即可自动验证</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能天花板显著</strong>：当前最佳系统在真实任务上仅达65.8%的解决率，表明现有智能体在真实开发者工作负载上存在35%左右的显著改进空间</li><li style="margin-bottom:0;"><strong>真实难度被低估</strong>：与现有合成基准相比，真实会话任务因环境依赖、意图隐式等因素呈现更高的实际难度，传统基准可能系统性高估智能体能力</li><li style="margin-bottom:0;"><strong>实用评估路径</strong>：证明将真实部署会话转化为可控评估实例的可行性，为构建更贴近实际使用的智能体能力测量体系提供了可操作的实践路径</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.03889" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.03889</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Backdoor Unlearning Generalization: A Path Toward the Removal of Unknown Triggers in LLMs</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.03785</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">大模型后门遗忘泛化：消除未知触发器的路径</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">后门攻击是大型语言模型的重大安全威胁，现有防御方法通常需要已知触发词且只能逐个消除，使防御者在面对未知后门时处于结构性劣势。本文发现通过遗忘学习消除单个后门能够泛化到其他从未显式针对的后门，即跨后门迁移现象。研究在三个模型家族上验证了该现象，并提出跨激活偏移距离来量化不同训练引起模型变化的距离。结果为LLM安全开辟新方向：防御者可故意注入受控后门再移除，利用跨后门迁移同时抑制攻击者可能引入的未知后门。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>遗忘学习泛化</strong>：通过训练模型忽略单一触发词，实现对多个从未显式针对的后门的同步抑制，突破传统逐个防御的局限</li><li style="margin-bottom:0;"><strong>跨激活偏移距离</strong>：新提出的量化指标，用于衡量不同训练过程所诱导模型变化之间的距离，解释跨后门迁移的内在机制</li><li style="margin-bottom:0;"><strong>受控后门注入</strong>：防御者主动在模型中植入可控后门作为'疫苗'，后续通过移除这些已知后门来触发泛化效应，间接清除攻击者的未知后门</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨后门迁移发现</strong>：首次揭示后门消除中的泛化现象，即针对单一后门的遗忘学习能够意外抑制其他独立注入的后门，改变防御者必须预知所有触发词的困境</li><li style="margin-bottom:0;"><strong>防御策略反转</strong>：将防御者从被动应对转为主动布局，通过故意注入并移除受控后门，利用迁移效应实现对未知攻击的主动免疫</li><li style="margin-bottom:0;"><strong>机制量化工具</strong>：设计跨激活偏移距离指标，为理解和预测哪些后门的遗忘会诱导其他后门抑制提供可计算的分析框架</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>泛化效应显著</strong>：在三个模型家族及预训练、持续预训练两种注入方式下，单一后门遗忘均表现出对多后门的交叉抑制效果，验证现象的广泛适用性</li><li style="margin-bottom:0;"><strong>机制距离可解释</strong>：跨激活偏移距离成功量化不同后门训练引起的模型变化差异，距离相近的后门更易产生迁移抑制，为策略选择提供依据</li><li style="margin-bottom:0;"><strong>安全范式革新</strong>：主动后门免疫策略使防御者首次获得结构性优势，无需知晓攻击者触发词即可潜在清除未知后门，重塑LLM后门攻防格局</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.03785" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.03785</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Language Models Compare Quantities Using Number-specific and Unit-specific Heuristics</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.03982</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">语言模型运用数词与单位启发式比较数量</span>
+                        <span style="color:#666;font-size:12px;">Mutsumi Sasaki et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究语言模型（LMs）如何比较带计量单位的数量（如110 cm与1.2 m）。在跨多种单位系统的控制实验中发现，模型在比较边界附近的准确率下降，错误具有系统性特征：线性替代模型可从数值差和单位尺度差预测LM偏好，且对这些变量对齐子空间的因果干预能改变模型输出。结果表明LMs通过基于数字和单位的启发式方法比较数量，而非先将两者转换为精确的共享尺度表示。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>边界精度分析</strong>：在比较阈值附近设置测试案例，量化语言模型在微小数值差异决定正确答案时的性能衰减，揭示模型推理的脆弱区域</li><li style="margin-bottom:0;"><strong>线性替代建模</strong>：构建可解释的线性模型，从数值差与单位尺度差两个维度预测语言模型的比较偏好，验证启发式策略的存在性</li><li style="margin-bottom:0;"><strong>因果子空间干预</strong>：识别与数值差和单位尺度差对齐的表示子空间，通过定向干预改变模型输出，建立变量与行为间的因果关系</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨单位系统控制</strong>：设计覆盖多种单位体系的受控实验框架，系统分离数字信息与单位信息对模型推理的独立贡献</li><li style="margin-bottom:0;"><strong>启发式机制揭示</strong>：首次证明语言模型采用基于数字和单位的启发式组合策略，而非人类常用的统一尺度转换方法</li><li style="margin-bottom:0;"><strong>系统性错误刻画</strong>：发现模型错误具有可预测的结构化模式，可通过简单线性规则解释，为理解模型数量推理提供新视角</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>启发式非转换</strong>：语言模型比较数量时依赖数字与单位的启发式组合，而非先将表达式转换为精确共享尺度表示</li><li style="margin-bottom:0;"><strong>边界敏感退化</strong>：准确率在小数值变化决定答案的比较边界附近显著下降，暴露模型推理的不稳定性</li><li style="margin-bottom:0;"><strong>因果可解释性</strong>：数值差与单位尺度差对应的子空间对模型输出具有因果影响，证实启发式变量的直接作用</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.03982" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.03982</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/4</p>
+        </div>
+    </div>
+</body>
+</html>
