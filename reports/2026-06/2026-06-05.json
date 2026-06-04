@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-05",
+  "title": "大模型能力探测与智能体博弈 从语言理解到推理规划的范式革新",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.05087",
+      "title": "Light or Full Verb? A Minimal-Pair Dataset for Probing Phraseological Competence in Language Models",
+      "chinese_title": "轻动词还是完整动词？探测语言模型短语能力的最小对立数据集",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.05087"
+    },
+    {
+      "id": "2606.05014",
+      "title": "Depth-Attention: Cross-Layer Value Mixing for Language Models",
+      "chinese_title": "深度注意力：语言模型的跨层价值混合",
+      "authors": "Boyi Zeng et al.",
+      "url": "https://arxiv.org/abs/2606.05014"
+    },
+    {
+      "id": "2606.04915",
+      "title": "Caliper: Probing Lexical Anchors versus Causal Structure in LLMs",
+      "chinese_title": "卡尺：探测大语言模型中的词汇锚点与因果结构",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.04915"
+    },
+    {
+      "id": "2606.04874",
+      "title": "Agent Planning Benchmark: A Diagnostic Framework for Planning Capabilities in LLM Agents",
+      "chinese_title": "LLM智能体规划能力诊断基准框架",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.04874"
+    },
+    {
+      "id": "2606.05009",
+      "title": "DAR: Deontic Reasoning with Agentic Harnesses",
+      "chinese_title": "DAR：基于智能体约束的义务推理",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.05009"
+    },
+    {
+      "id": "2606.05134",
+      "title": "Activation-Based Active Learning for In-Context Learning: Challenges and Insights",
+      "chinese_title": "基于激活度的主动学习在上下文学习中的挑战与启示",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.05134"
+    },
+    {
+      "id": "2606.05002",
+      "title": "GARL: Game-Theoretic Reinforcement Learning for Multi-Agent Strategic Prioritisation",
+      "chinese_title": "多智能体战略优先级博弈强化学习",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.05002"
+    }
+  ],
+  "generated_at": "2026-06-04T22:21:05.346Z",
+  "org": "AI研究室"
+}

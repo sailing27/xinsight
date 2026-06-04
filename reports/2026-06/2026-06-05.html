@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型能力探测与智能体博弈 从语言理解到推理规划的范式革新 | 2026/6/5</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型能力探测与智能体博弈 从语言理解到推理规划的范式革新 | 2026/6/5</h1>
+                <div class="date">2026/6/5 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了大语言模型研究正从"能力扩展"向"能力诊断与机制解构"深度转型。七篇论文共同聚焦于三个核心技术方向：一是<strong>认知能力的精细化评测</strong>，通过最小对控制（论文1）、词汇匿名化（论文3）及规划-执行解耦（论文4）等方法，剥离干扰变量以探测模型的真实能力边界；二是<strong>架构层面的信息流动优化</strong>，Depth-Attention将跨层选择嵌入注意力机制本身（论文2），突破传统模块间信息传递的局限；三是<strong>任务范式的交互化重构</strong>，从法规按需检索（论文5）到博弈论引导的多智能体优化（论文7），动态交互取代静态输入成为提升复杂推理效能的关键路径。<br><br>研究共同传递出重要警示：当前LLM在因果推理（论文3）、长程规划（论文4）等高层认知任务上存在系统性脆弱性，其表现高度依赖表面线索而非深层结构理解；同时，内部激活信号等"黑箱"指标尚未展现可解释的预测价值（论文6）。这些发现推动行业从追求基准分数转向构建诊断驱动的评估体系，为下一代模型的可信设计与能力补齐提供了方法论基础与关键突破口。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Light or Full Verb? A Minimal-Pair Dataset for Probing Phraseological Competence in Language Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.05087</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">轻动词还是完整动词？探测语言模型短语能力的最小对立数据集</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">频繁使用的英语动词如'have'和'make'既可作为轻动词结构中的搭配成分，也可作为完整词汇谓语，如'make a decision'与'make a cake'。语言模型是否表征这一区别尚不明确。本文引入大规模控制数据集，包含最小变化的英语句子序列，其中相同语境包含同一动词的轻动词和完整动词用法。两项探针实验表明，语言模型即使在最小语境中也能区分这些用法，并在宾语类型上呈现可分离的模式。研究发布数据集、生成代码和材料作为可复用资源，该框架支持扩展到更广语境、更多动词及其他语言。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>最小对数据集</strong>：构建大规模控制数据集，确保同一动词在相同语境下仅因宾语类型不同而呈现轻动词或完整动词用法，实现变量精确控制</li><li style="margin-bottom:0;"><strong>探针实验设计</strong>：采用两项探针实验评估语言模型对动词用法的区分能力，验证模型能否识别句法-语义层面的细微差异</li><li style="margin-bottom:0;"><strong>语境控制方法</strong>：通过最小变化句子系列固定上下文环境，隔离动词功能变化因素，排除无关变量干扰以精确测量模型表征</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>短语能力测评</strong>：首次系统探究语言模型是否具备短语学能力，即识别固定搭配与自由组合的能力，填补NLP评测空白</li><li style="margin-bottom:0;"><strong>轻动词语义区分</strong>：聚焦高频多功能动词的句法-语义歧解问题，揭示模型对'make a decision'与'make a cake'结构差异的内在表征</li><li style="margin-bottom:0;"><strong>可扩展框架设计</strong>：构建模块化数据集生成框架，支持向更多动词、更广语境及跨语言场景迁移，提升资源复用价值</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>用法区分能力</strong>：语言模型能够在最小语境条件下有效区分轻动词与完整动词用法，表明模型捕获了超越表层形式的深层语义信息</li><li style="margin-bottom:0;"><strong>宾语类型效应</strong>：模型在不同宾语类型上呈现可分离的激活模式，抽象名词与具体名词触发差异化的内部表征分布</li><li style="margin-bottom:0;"><strong>资源开放价值</strong>：发布的数据集与生成工具可作为标准基准，推动短语学表征研究及多语言轻动词现象的跨语言对比分析</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.05087" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.05087</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Depth-Attention: Cross-Layer Value Mixing for Language Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.05014</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">深度注意力：语言模型的跨层价值混合</span>
+                        <span style="color:#666;font-size:12px;">Boyi Zeng et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现有Transformer在深度方向上仅通过残差连接逐层叠加，无法选择性复用早期层表示。本文提出Depth-Attention，在注意力模块内部实现跨层选择：层的查询先与同一token位置早期层的键进行注意力计算，混合其值后再进行自注意力。该方法不增加参数和持久化推理状态，在1.5B和3B参数的Qwen3风格解码器上，困惑度最低且下游任务平均准确率最高，相比基线提升达2.3个百分点，额外算术FLOPs不足0.01%。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>深度注意力机制</strong>：在标准自注意力之前引入跨层注意力，使当前层查询与早期层的键交互，选择性混合各层值表示，实现深度方向的信息筛选</li><li style="margin-bottom:0;"><strong>原位值替换</strong>：将深度混合后的值直接存入标准KV缓存的原有槽位，不占用额外缓存空间，保持与原始解码器相同的缓存规模</li><li style="margin-bottom:0;"><strong>零参数设计</strong>：复用标准注意力的查询、键和值缓存结构，不引入任何新增可学习参数，降低模型复杂度与训练成本</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>注意力内跨层</strong>：突破现有跨层方法在注意力外操作隐藏状态的局限，将跨层选择嵌入注意力模块本身，与自注意力形成有机统一</li><li style="margin-bottom:0;"><strong>缓存零膨胀</strong>：区别于基于隐藏状态的跨层方法需要额外存储状态，本方法不增加任何持久化推理状态，适配现代LLM的KV缓存压缩趋势</li><li style="margin-bottom:0;"><strong>计算极轻量</strong>：额外引入的算术FLOPs不足0.01%，在几乎无计算开销前提下实现显著性能提升，兼顾效率与效果</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能全面领先</strong>：在1.5B和3B参数规模下，Depth-Attention取得最低困惑度和最高平均下游准确率，超越强跨层基线方法</li><li style="margin-bottom:0;"><strong>准确率显著提升</strong>：相比普通Transformer最高提升2.3个准确率点，且增益在360M至3B参数范围内稳定保持</li><li style="margin-bottom:0;"><strong>方法广泛适用</strong>：性能提升不仅适用于标准Transformer架构，还能有效扩展至循环Transformer等变体结构</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.05014" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.05014</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Caliper: Probing Lexical Anchors versus Causal Structure in LLMs</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.04915</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">卡尺：探测大语言模型中的词汇锚点与因果结构</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型在因果推理基准测试（如CLadder）上达到50%-70%的准确率，但这种表现是否反映结构推理还是词汇模式匹配尚不明确。本文提出Caliper方法，通过将语义变量名替换为占位符标记来保留因果图和概率规范，实现受控扰动。实验覆盖9个指令微调LLM（3.8B至671B参数）和三个因果推理基准，发现词汇匿名化导致准确率显著下降：本地3.8B-14B模型组下降+7.6、+27.0和+11.1个百分点，2024-2026代9个前沿模型在CRASS和e-CARE上下降+29.6和+18.0个百分点。40个模型-基准组合中有39个呈现正差距，且在CLadder伪词子集上差距缩小17倍。结构化支架和少样本上下文学习可缩小差距，但主要通过降低P0准确率而非恢复P1。当前指令微调LLM在零样本评估下，一旦移除词汇锚点，几乎无结构因果推理证据。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>词汇匿名化</strong>：将因果推理问题中的语义变量名替换为无意义占位符标记，在完全保留因果图结构与概率规范的前提下，消除词汇线索对模型的干扰</li><li style="margin-bottom:0;"><strong>受控扰动框架</strong>：构建P0（原始问题）与P1（匿名化问题）的对比评估体系，通过精确控制单一变量变化来隔离词汇匹配与结构推理的贡献</li><li style="margin-bottom:0;"><strong>多尺度验证</strong>：横跨3.8B至671B参数的9个指令微调模型、2024-2026三代前沿模型及三个独立基准，确保结论的泛化性与稳健性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>Caliper评估协议</strong>：首创系统性地剥离词汇锚点以探测LLM真实因果推理能力的实验范式，突破传统基准无法区分模式匹配与结构理解的瓶颈</li><li style="margin-bottom:0;"><strong>伪词对照设计</strong>：利用CLadder已有的伪词子集作为天然对照，验证匿名化效应的特异性——当原题本身无词汇语义时，P0与P1差距应趋于消失</li><li style="margin-bottom:0;"><strong>差距分解机制</strong>：区分差距缩小的两种路径——提升匿名化后P1准确率（真正恢复结构推理） versus 降低原始P0准确率（暴露词汇依赖），揭示现有方法的局限</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>词汇依赖主导</strong>：39/40模型-基准组合显示正差距，表明当前LLM的因果推理表现高度依赖语义变量名提供的词汇锚点，而非抽象的因果图结构</li><li style="margin-bottom:0;"><strong>规模效应悖论</strong>：更大规模的前沿模型（2024-2026代）在CRASS/e-CARE上展现更大绝对差距（+29.6/+18.0pp），暗示扩展参数未必增强结构因果推理</li><li style="margin-bottom:0;"><strong>干预手段局限</strong>：结构化支架与少样本学习虽能缩小差距，但主要机制是降低P0准确率而非提升P1，说明这些方法未能真正教会模型结构推理，仅削弱其词汇利用能力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.04915" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.04915</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Agent Planning Benchmark: A Diagnostic Framework for Planning Capabilities in LLM Agents</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.04874</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">LLM智能体规划能力诊断基准框架</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">规划是LLM智能体的核心能力：智能体在行动前必须分解目标、选择工具、推理约束条件并判断任务是否不可行。然而现有智能体评估通常仅报告端到端成功率，难以区分失败源于规划还是执行。本文提出Agent Planning Benchmark（APB），一个专门针对规划能力的诊断基准，包含4,209个多模态案例，覆盖22个领域和五种设置，包括整体规划、反馈条件逐步规划以及面对无关工具、损坏工具和不可解任务时的鲁棒性。在12个多模态大语言模型上的测试显示，模型在长程规划、工具噪声鲁棒性、校准拒绝和推理时细化方面存在系统性弱点。研究进一步在200个ToolSandbox任务和200个τ²-bench任务上验证APB，发现APB引导的细化能持续提升三个代表性模型的规划正确性、规划评分和下游执行指标。APB因此可作为执行基准的上游诊断补充。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>诊断式评估框架</strong>：构建专门针对规划能力的诊断基准APB，将规划与执行解耦，支持定位失败根源，涵盖整体规划、逐步规划和鲁棒性测试三种核心模式</li><li style="margin-bottom:0;"><strong>多维度测试场景</strong>：设计22个领域共4,209个多模态案例，覆盖正常规划、反馈条件规划、无关工具干扰、工具损坏及不可解任务五种关键设置</li><li style="margin-bottom:0;"><strong>跨基准验证方法</strong>：在ToolSandbox和τ²-bench两个外部基准上验证APB有效性，证明其引导的细化能提升规划正确性与下游执行表现</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>规划执行解耦</strong>：突破传统端到端评估局限，首创将规划能力单独剥离诊断的框架，使研究者能明确区分规划失败与执行失败，精准定位智能体瓶颈</li><li style="margin-bottom:0;"><strong>多模态长程覆盖</strong>：构建大规模跨领域测试集，首次系统覆盖长程规划、工具噪声、校准拒绝等复杂场景，填补现有基准在规划专项诊断方面的空白</li><li style="margin-bottom:0;"><strong>推理时细化机制</strong>：提出基于APB诊断结果的规划改进方法，验证上游规划诊断能有效传导至下游执行提升，建立规划质量与任务成功的因果关联</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>长程规划薄弱</strong>：12个多模态大语言模型在长程规划任务上表现系统性地不足，难以有效分解复杂目标并维持长期一致性，暴露当前模型的核心能力短板</li><li style="margin-bottom:0;"><strong>工具噪声敏感</strong>：模型面对无关工具干扰和工具损坏时鲁棒性显著下降，说明现有智能体在真实开放环境中的工具选择机制尚不成熟</li><li style="margin-bottom:0;"><strong>校准拒绝缺失</strong>：模型普遍缺乏对不可解任务的校准拒绝能力，常产生幻觉式规划而非正确判定任务不可行，存在严重安全性与可靠性隐患</li><li style="margin-bottom:0;"><strong>细化传导有效</strong>：APB诊断引导的推理时细化能持续提升规划正确性、规划评分及下游执行指标，验证上游规划诊断对整体智能体性能的关键价值</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.04874" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.04874</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>DAR: Deontic Reasoning with Agentic Harnesses</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.05009</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">DAR：基于智能体约束的义务推理</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">规范推理是通过将明确的规则和政策应用于具体事实来回答问题的任务，例如根据法规计算税务责任或确定移民上诉的结果。基于大语言模型的规范推理面临的一个关键技术挑战是相关规则集可能很长且相互交叉引用，导致模型难以定位特定推理步骤所需的规则。本文提出规范智能体推理（DAR），一种让模型按需与法规交互的智能体推理框架。作者在DeonticBench困难子集的多种测试框架下评估DAR，发现智能体框架能够推动规范推理任务的前沿，但改进并不均匀：较弱模型在数值任务上经常表现下降，同时消耗更多token。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>智能体交互框架</strong>：构建模型按需调用法规文本的交互机制，使大语言模型能够动态检索规则而非一次性加载全部规则集，解决长文本交叉引用导致的定位困难问题</li><li style="margin-bottom:0;"><strong>多框架评估体系</strong>：在多种测试框架下系统评估DAR性能，通过对比不同配置下的表现，全面验证智能体方法在规范推理任务中的有效性与局限性</li><li style="margin-bottom:0;"><strong>困难子集筛选</strong>：聚焦DeonticBench中的高难度子集进行评测，针对数值计算等复杂推理场景设计专门测试，揭示模型能力的边界与差异</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>按需检索机制</strong>：突破传统一次性输入全部规则的范式，创新性地让模型在推理过程中主动查询所需法规片段，模拟人类律师查阅法典的专业行为模式</li><li style="margin-bottom:0;"><strong>规范推理专用框架</strong>：首次将智能体架构引入规范推理领域，针对法律条文的层级结构和交叉引用特性设计专门的工具调用接口与交互协议</li><li style="margin-bottom:0;"><strong>动态上下文管理</strong>：通过智能体循环实现上下文窗口的动态优化，避免长规则集导致的注意力分散问题，提升模型对关键规则的定位精度</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>智能体提升前沿</strong>：智能体框架能够有效推动规范推理任务的整体性能边界，在复杂法律推理场景中展现出超越静态提示方法的潜力</li><li style="margin-bottom:0;"><strong>改进分布不均</strong>：性能提升在不同模型和任务类型间存在显著差异，较弱模型并未从智能体架构中普遍受益，暴露出架构适配性的关键问题</li><li style="margin-bottom:0;"><strong>数值推理退化</strong>：较弱模型在数值计算类任务上经常出现性能下降，同时伴随token消耗量大幅增加，揭示了智能体方法在资源效率与任务类型上的权衡挑战</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.05009" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.05009</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Activation-Based Active Learning for In-Context Learning: Challenges and Insights</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.05134</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">基于激活度的主动学习在上下文学习中的挑战与启示</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文探索了基于MLP激活的深度主动学习方法用于大语言模型上下文样本选择，系统分析了不同注意力掩码策略在多种分类和生成任务上的影响，使用Llama-3.2-3B和Qwen2.5-3B模型进行实验。研究发现MLP输出（包括巨大激活和前四阶矩）与示例质量或任务性能无显著相关性，Spearman相关系数绝对值最高仅0.33，表明基于激活的采样不适用于上下文学习。作者推测这可能源于超位置现象，并提出稀疏自编码器可能是未来有前景的研究方向。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>激活主动学习</strong>：利用模型MLP层激活信号作为采样依据，替代传统基于不确定性的主动学习策略，探索Transformer内部状态对上下文示例选择的指导价值</li><li style="margin-bottom:0;"><strong>注意力掩码分析</strong>：系统比较因果掩码与双向掩码对激活主动学习效果的影响，揭示不同掩码策略在分类与生成任务上的差异性表现</li><li style="margin-bottom:0;"><strong>矩统计特征</strong>：提取MLP激活的前四阶矩（均值、方差、偏度、峰度）作为示例表征，尝试捕捉激活分布的完整统计信息以预测示例质量</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>全面系统评估</strong>：首次对MLP激活主动学习方法进行最全面的实证分析，覆盖多种数据集类型、模型架构及掩码策略的组合验证</li><li style="margin-bottom:0;"><strong>负结果报告</strong>：突破性地公开报告负结果，证明MLP激活信号与上下文学习性能缺乏有效关联，为领域避免无效研究方向提供重要参考</li><li style="margin-bottom:0;"><strong>超位置假说</strong>：提出超位置现象导致激活信号失效的理论解释，将表示学习的理论概念与主动学习实践失败建立因果联系</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>激活采样无效</strong>：MLP激活输出无法可靠预测示例质量，所有任务和模型的Spearman相关系数绝对值不超过0.33，不具备实用价值</li><li style="margin-bottom:0;"><strong>矩特征失效</strong>：基于前四阶矩的激活统计特征同样与任务性能无关，表明激活分布的整体形状信息不足以表征示例优劣</li><li style="margin-bottom:0;"><strong>SAE前景可期</strong>：超位置导致的特征纠缠是激活失效的根因，稀疏自编码器通过解缠特征表示，可能成为突破该瓶颈的关键技术路径</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.05134" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.05134</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>GARL: Game-Theoretic Reinforcement Learning for Multi-Agent Strategic Prioritisation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.05002</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">多智能体战略优先级博弈强化学习</span>
+                        <span style="color:#666;font-size:12px;">et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">LLM-based多智能体系统日益用于战略决策任务，其性能不仅取决于个体模型能力，还取决于智能体交互与适应的策略。多智能体强化学习可优化这些交互策略，但其奖励设计往往任务特定且与交互结构关联薄弱。为此，本文提出GARL（博弈论强化学习框架），将战略优先排序形式化为两阶段博弈：竞争智能体首先在共享候选集上分配战略资源，然后高层仲裁者生成最终排名。博弈论效用被转换为角色特定的强化信号，使策略优化由结构化交互引导。作者在争议问题排序任务上实例化GARL，实验表明其提升排序性能，使小型开源LLM能在相同候选排序设置下与强闭源LLM竞争，并在法律领域能力和更广泛战略决策方面取得增益。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>两阶段博弈建模</strong>：将战略优先排序形式化为竞争智能体资源分配与仲裁者最终排名的两阶段博弈结构，实现交互过程的形式化刻画</li><li style="margin-bottom:0;"><strong>博弈效用转换</strong>：将博弈论效用函数转化为角色特定的强化学习信号，为不同智能体角色提供差异化的优化目标</li><li style="margin-bottom:0;"><strong>争议问题排序实例化</strong>：在法律诉讼核心问题优先排序任务上实现GARL框架，验证其在专业领域的适用性与有效性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>博弈结构目标化</strong>：突破传统任务特定奖励设计的局限，将博弈论交互结构直接转化为强化学习目标函数，实现策略优化的 principled 基础</li><li style="margin-bottom:0;"><strong>资源竞争机制</strong>：设计智能体在共享候选集上的战略资源分配机制，通过竞争动态揭示候选项的真实相对重要性</li><li style="margin-bottom:0;"><strong>仲裁融合决策</strong>：引入高层仲裁者整合多智能体竞争结果生成最终排名，实现分布式评估与集中式决策的有机结合</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>排序性能提升</strong>：GARL显著改善多智能体战略优先排序的任务性能，验证博弈论引导强化学习的优化有效性</li><li style="margin-bottom:0;"><strong>模型能力跃迁</strong>：小型开源LLM在GARL框架下可与强闭源LLM竞争，证明交互策略优化可弥补个体模型能力差距</li><li style="margin-bottom:0;"><strong>领域能力增益</strong>：GARL在法律领域专业能力和更广泛战略决策任务上均产生积极效果，展现良好的泛化性与应用前景</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.05002" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.05002</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/5</p>
+        </div>
+    </div>
+</body>
+</html>
