@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-06",
+  "title": "大模型认知边界与真实场景适配性深度解析",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.06306",
+      "title": "Decomposing Factual Sycophancy in Language Models: How Size and Instruction Tuning Shape Robustness",
+      "chinese_title": "语言模型事实谄媚的分解：规模与指令调优如何影响鲁棒性",
+      "authors": "Victor De Marez et al.",
+      "url": "https://arxiv.org/abs/2606.06306"
+    },
+    {
+      "id": "2606.06177",
+      "title": "Ouvia: A User-centered Framework for Measuring Usability of Speech Translation in Real-World Communication Scenarios",
+      "chinese_title": "Ouvia：面向真实场景语音翻译可用性的用户中心评估框架",
+      "authors": "Giuseppe Attanasio et al.",
+      "url": "https://arxiv.org/abs/2606.06177"
+    },
+    {
+      "id": "2606.06203",
+      "title": "Dense Contexts Are Hard Contexts: Lexical Density Limits Effective Context in LLMs",
+      "chinese_title": "高密度文本难为有效上下文：词汇密度限制大语言模型的上下文利用",
+      "authors": "Giovanni Dettori et al.",
+      "url": "https://arxiv.org/abs/2606.06203"
+    },
+    {
+      "id": "2606.06481",
+      "title": "Operation-Guided Progressive Human-to-AI Text Transformation Benchmark for Multi-Granularity AI-Text Detection",
+      "chinese_title": "面向多粒度AI文本检测的操作引导渐进式人机文本转换基准",
+      "authors": "Sondos Mahmoud Bsharat et al.",
+      "url": "https://arxiv.org/abs/2606.06481"
+    },
+    {
+      "id": "2606.06420",
+      "title": "A Komi-Yazva--Russian Parallel Corpus and Evaluation Protocol for Zero- and Few-Shot LLM Translation",
+      "chinese_title": "科米-亚兹瓦语-俄语平行语料库与零样本少样本LLM翻译评估协议",
+      "authors": "Petr Parshakov et al.",
+      "url": "https://arxiv.org/abs/2606.06420"
+    },
+    {
+      "id": "2606.06271",
+      "title": "FOXGLOVE: Understanding Goal-Oriented and Anchored Writing Feedback from Experts and LLMs on Argumentative Essays",
+      "chinese_title": "FOXGLOVE：专家与LLM对议论文的目标导向式锚定写作反馈研究",
+      "authors": "Yijun Liu et al.",
+      "url": "https://arxiv.org/abs/2606.06271"
+    },
+    {
+      "id": "2606.06266",
+      "title": "From Self to Other: Evaluating Demographic Perspective-Taking in LLM Hate Speech Annotation",
+      "chinese_title": "大语言模型仇恨言论标注中的人口统计学视角转换评估",
+      "authors": "Paloma Piot et al.",
+      "url": "https://arxiv.org/abs/2606.06266"
+    }
+  ],
+  "generated_at": "2026-06-05T22:10:45.850Z",
+  "org": "AI研究室"
+}
