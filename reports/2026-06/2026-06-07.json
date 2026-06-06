@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-07",
+  "title": "大模型审计、适配与认知重构 七篇前沿论文揭示AI可靠性新范式",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.06443",
+      "title": "Revising Context, Shifting Simulated Stance: Auditing LLM-Based Stance Simulation in Online Discussions",
+      "chinese_title": "修正语境，转变模拟立场：审计在线讨论中基于大语言模型的立场模拟",
+      "authors": "Xinnong Zhang et al.",
+      "url": "https://arxiv.org/abs/2606.06443"
+    },
+    {
+      "id": "2606.06286",
+      "title": "LLMs Can Leak Training Data But Do They Want To? A Propensity-Aware Evaluation of Memorization in LLMs",
+      "chinese_title": "大语言模型会泄露训练数据吗？基于倾向性的记忆化评估",
+      "authors": "Gianluca Barmina et al.",
+      "url": "https://arxiv.org/abs/2606.06286"
+    },
+    {
+      "id": "2606.06242",
+      "title": "Benchmarking Open-Source Layout Detection Models for Data Snapshot Extraction from Institutional Documents",
+      "chinese_title": "开源版面检测模型提取机构文档数据快照的基准测试",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.06242"
+    },
+    {
+      "id": "2606.06211",
+      "title": "FiLM-Based Speaker Conditioning of a SpeechLLM for Pathological Speech Recognition",
+      "chinese_title": "基于FiLM的病理语音识别语音大模型说话人条件化",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.06211"
+    },
+    {
+      "id": "2606.06474",
+      "title": "Self-Augmenting Retrieval for Diffusion Language Models",
+      "chinese_title": "自增强检索扩散语言模型",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.06474"
+    },
+    {
+      "id": "2606.06467",
+      "title": "You Only Index Once: Cross-Layer Sparse Attention with Shared Routing",
+      "chinese_title": "仅索引一次：跨层稀疏注意力与共享路由",
+      "authors": "Yutao Sun et al.",
+      "url": "https://arxiv.org/abs/2606.06467"
+    },
+    {
+      "id": "2606.06464",
+      "title": "Human Adults and LLMs as Scientists: Who Benefits from Active Exploration?",
+      "chinese_title": "人类与LLM作为科学家：谁从主动探索中获益？",
+      "authors": "Mandana Samiei et al.",
+      "url": "https://arxiv.org/abs/2606.06464"
+    }
+  ],
+  "generated_at": "2026-06-06T22:18:08.683Z",
+  "org": "AI研究室"
+}
