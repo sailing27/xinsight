@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型路由优化与可信评估技术突破 | 2026/6/8</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型路由优化与可信评估技术突破 | 2026/6/8</h1>
+                <div class="date">2026/6/8 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示大模型领域正从"规模驱动"向"效率与机制理解并重"的范式转型。七篇论文共同指向三个核心技术趋势：一是<strong>轻量高效化</strong>，IR3DE以岭回归线性路由器挑战复杂MoE路由架构，证明极简设计可实现媲美性能；二是<strong>显式机制设计</strong>，EDIT的两阶段诊断训练、SkillComposer的技能三元演化操作及ContextEA的锚桥跨图交互，均通过模块化、可解释的显式机制替代端到端黑箱，提升可控性与迁移能力；三是<strong>评估粒度重构</strong>，从电路发现的结构-功能解耦到多文化系统的多样性-对齐独立性度量，研究范式正从单一性能指标转向多维系统属性分析。<br><br>对行业而言，这些进展表明：模型效率优化存在显著的"简单性红利"，线性方法与显式机制在特定场景下可替代昂贵复杂方案；可解释性研究需警惕结构差异的误导性，功能等价性验证不可或缺；多智能体与跨领域应用中，系统级评估框架比个体优化更具战略价值。整体而言，该领域正加速走向"精致化工程"与"科学化理解"的深度融合。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>IR3DE: A Linear Router for Large Language Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.06098</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 the ICML 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">IR3DE：面向大语言模型的线性路由器</span>
+                        <span style="color:#666;font-size:12px;">Eros Fanì et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">基础大语言模型在通用任务上表现优异，并通过领域专家模型在各类专业任务上取得显著成果。随着可用LLM数量不断增长，推理路由器被提出用于为每个提示选择最合适的模型。然而，现有路由方法要么仅针对弱到强通用模型优化成本，要么需要大量训练来支持领域专家路由。本文提出IR3DE，一种基于岭回归的领域专家路由器，为每个提示提供廉价且快速的路由决策。该线性路由器在两种因果语言建模设置中表现与基线相当，在推理设置中以98.4%的归一化性能超越基线，且支持动态增删领域专家而无需从头重新训练。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>岭回归路由</strong>：采用岭回归作为核心分类机制，通过线性模型计算提示与各领域专家模型的匹配分数，实现高效轻量的路由决策</li><li style="margin-bottom:0;"><strong>动态专家管理</strong>：支持领域专家模型的动态添加与移除，路由器无需重新训练即可适应变化的模型集合，保证服务连续性</li><li style="margin-bottom:0;"><strong>提示特征编码</strong>：将输入提示转换为适合线性分类的特征表示，使简单线性模型能够有效区分不同领域任务的需求</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>轻量线性架构</strong>：突破现有方法依赖复杂训练或仅优化成本的局限，首次证明线性路由器可在领域专家路由中达到与复杂模型相当的性能</li><li style="margin-bottom:0;"><strong>零重训练扩展</strong>：创新性地实现路由器参数的增量更新能力，新专家加入时仅需局部调整，大幅降低系统维护成本与部署门槛</li><li style="margin-bottom:0;"><strong>跨场景通用性</strong>：统一框架同时适用于因果语言建模和推理任务，在保持结构简洁的同时展现广泛的任务适应能力</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能媲美复杂模型</strong>：在两种因果语言建模设置中，线性路由器IR3DE取得与基线相当的路由效果，证明简单模型的有效性</li><li style="margin-bottom:0;"><strong>推理任务显著领先</strong>：在领域专属推理任务设置中，IR3DE达到98.4%的归一化性能，明显超越现有基线方法</li><li style="margin-bottom:0;"><strong>训练效率优势突出</strong>：相比需要大量训练的路由方法，IR3DE以极低成本实现快速路由决策，兼具准确性与部署效率</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.06098" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.06098</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>EDIT: Evidence-Diagnosed Intervention Training for Rule-Faithful LLM Grading</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.06350</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">证据诊断式干预训练：实现规则忠实的LLM评分</span>
+                        <span style="color:#666;font-size:12px;">Zhihao Wu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">可靠的评分标准评分不仅需要准确的分数预测，还需要每个判断都基于评分方案和学生答案中的证据。现有的信用分配和干预方法主要针对数学推理等自包含推理任务设计，在评分场景中表现不佳，因为它们无法识别评分推理出错的位置或模型对最终分数的信念如何变化。本文提出证据诊断干预训练（EDIT），一个两阶段框架，用于训练更符合评分标准的LLM评分器。EDIT-SFT利用内部模型信号定位有问题的推理步骤并仅修订这些局部步骤；EDIT-RL通过信念引导的奖励塑造校准评分器，惩罚有害的信念漂移同时允许有益的探索。在两个真实多科目评分基准上的实验表明EDIT持续优于强基线。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>信念信号诊断</strong>：利用模型对最终分数的后验信念和输入 grounding 分数作为内部信号，自动定位评分推理中出现问题的具体步骤，实现对错误根源的精准识别</li><li style="margin-bottom:0;"><strong>局部步骤修订</strong>：仅针对诊断出的问题推理步骤进行修订，借助评分标准清单进行定向修正，避免全链重写带来的噪声和效率损失</li><li style="margin-bottom:0;"><strong>信念引导奖励</strong>：在强化学习阶段设计基于信念漂移的奖励塑形机制，区分有害漂移与有益探索，实现对评分器推理过程的精细校准</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>两阶段训练框架</strong>：首创将监督微调与强化学习有机结合的EDIT框架，SFT阶段解决定位与修正问题，RL阶段解决校准与泛化问题，形成完整闭环</li><li style="margin-bottom:0;"><strong>内部状态利用</strong>：突破传统仅依赖外部输出的干预方式，首次系统性地将LLM内部信念状态作为诊断依据，开辟模型自我纠错的新路径</li><li style="margin-bottom:0;"><strong>规则忠实度量</strong>：超越单纯准确率优化，将评分标准遵循度作为核心优化目标，使模型推理过程透明可解释且与人工评分逻辑一致</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能持续领先</strong>：在两个真实世界多科目评分基准上，EDIT在领域内和领域外划分上均持续优于强监督微调和强化学习基线方法</li><li style="margin-bottom:0;"><strong>内部诊断关键</strong>：消融实验证实基于内部状态的诊断机制是性能提升的核心驱动力，验证了信念信号在评分任务中的独特价值</li><li style="margin-bottom:0;"><strong>泛化能力显著</strong>：EDIT展现出良好的跨领域泛化性能，表明该框架能够有效捕捉评分标准的通用推理模式而非特定领域捷径</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.06350" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.06350</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Many Circuits, One Mechanism: Input Variation and Evaluation Granularity in Circuit Discovery</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.06267</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">多电路，同一机制：输入变异与评估粒度在回路发现中的作用</span>
+                        <span style="color:#666;font-size:12px;">Alireza Bayat Makou et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">电路发现方法识别解释特定模型行为的子图，发现电路之间的结构差异通常被解释为不同机制的证据。本文通过固定任务、改变输入统计量来检验这一假设，发现结构差异表现出明显的专业化但并不对应功能差异，这种模式称为"幻象专业化"。研究在五个Pythia模型（70M-1.4B）上使用字面序列复制任务，跨越四个token频率带加一个控制条件，提取75个电路，发现结构不同的电路实现相同计算：频带特定边跨频带广泛迁移，跨大多数频带共享的核心恢复至少99%的电路性能，因果互换干预证实内部表征跨频率带可互换。同一频带内的重复提取进一步表明发现算法从有效子图的等价类中采样，而非恢复唯一机制。标准评估实践掩盖了这一模式：源级评估夸大了表面忠实度，而边级评估揭示了从结构到功能的多对一映射。结果表明电路间的结构差异不足以证明不同机制，揭示这一点需要边级评估和跨条件迁移测试。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>幻象专业化</strong>：固定任务改变输入统计量时，电路结构差异呈现表面专业化却不对应功能差异的现象，挑战了结构差异即不同机制的传统解释</li><li style="margin-bottom:0;"><strong>跨频带迁移</strong>：验证频带特定边在其他频率带中广泛迁移的能力，证明结构不同的电路可实现相同计算功能</li><li style="margin-bottom:0;"><strong>因果互换干预</strong>：通过内部表征互换实验，证实不同频率带电路的表征具有可互换性，功能上等价</li><li style="margin-bottom:0;"><strong>等价类采样</strong>：发现同一条件下重复提取得到不同子图，表明算法从有效子图的等价类中随机采样</li><li style="margin-bottom:0;"><strong>边级评估法</strong>：细粒度评估单个边的重要性，揭示源级评估掩盖的多对一结构功能映射关系</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>输入变化控制</strong>：系统性地在固定任务下改变token频率统计量，建立控制实验框架分离结构与功能关系</li><li style="margin-bottom:0;"><strong>多尺度评估对比</strong>：比较源级与边级评估粒度，证明粗粒度评估会系统性高估电路忠实度</li><li style="margin-bottom:0;"><strong>核心子图提取</strong>：识别跨大多数频带共享的核心电路，验证其恢复99%以上性能，证明功能冗余性存在</li><li style="margin-bottom:0;"><strong>大规模电路提取</strong>：在五个模型规模、五个条件下提取75个电路，提供统计上可靠的实证基础</li><li style="margin-bottom:0;"><strong>机制等价验证</strong>：结合迁移测试与表征互换，建立判断结构差异是否对应功能差异的严格标准</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>结构非功能</strong>：电路间结构差异不足以作为不同机制的证据，结构多样性可能仅反映功能等价的实现变体</li><li style="margin-bottom:0;"><strong>评估粒度关键</strong>：源级评估夸大忠实度，边级评估才能暴露结构到功能的多对一映射本质</li><li style="margin-bottom:0;"><strong>算法采样偏差</strong>：电路发现算法从等价类中采样而非恢复唯一机制，重复提取结果不稳定</li><li style="margin-bottom:0;"><strong>表征可互换</strong>：不同输入条件下的内部表征具有功能等价性，支持机制统一而非分化的解释</li><li style="margin-bottom:0;"><strong>核心功能保守</strong>：跨条件存在高度共享的核心子图，保留绝大多数性能，边缘部分可替换而不影响功能</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.06267" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.06267</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Harnessing Structural Context for Entity Alignment Foundation Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.06109</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">结构上下文赋能实体对齐基础模型</span>
+                        <span style="color:#666;font-size:12px;">Xingyu Chen et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">实体对齐（EA）旨在识别异构知识图谱中的等价实体，是知识融合与跨KG推理的关键组件。近期EA基础模型表明对齐知识一旦预训练即可直接应用于多样的未见KG对，但仍存在两处结构上下文利用不足：编码阶段跨KG交互较弱，最终候选排序仍过于依赖粗粒度相似度。本文提出ContextEA，一种增强的可迁移EA编码器-解码器框架。编码器侧引入跨KG交互编码器，通过锚桥统一两个KG并执行更早的关系感知跨图传播；解码器侧引入结构校准解码器，利用实体级、邻域级、关系级和锚感知结构证据校准对齐分数。该设计在保持轻量化的同时强化了结构上下文构建与利用。在OpenEA、SRPRS和DBP的29个EA数据集上实验表明，ContextEA持续优于强可迁移基线，且预训练的ContextEA已在三个基准组上超越微调后的基线，展现出对未见KG的显著更强迁移能力。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨KG交互编码</strong>：通过锚桥统一两个知识图谱，实现更早的关系感知跨图传播，增强编码阶段的结构上下文交互，解决传统方法跨KG交互不足的问题</li><li style="margin-bottom:0;"><strong>结构校准解码</strong>：整合实体级、邻域级、关系级和锚感知四类结构证据，对对齐分数进行多粒度校准，降低对粗粒度相似度的过度依赖</li><li style="margin-bottom:0;"><strong>轻量化可迁移框架</strong>：在增强结构上下文构建与利用的同时保持模型轻量化，使预训练的对齐知识能够高效迁移至未见过的KG对</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>锚桥统一机制</strong>：创新性地利用锚点作为桥梁连接两个异构知识图谱，实现统一的图结构表示与早期跨图信息融合，突破传统分离编码的局限</li><li style="margin-bottom:0;"><strong>关系感知传播</strong>：在编码阶段引入关系感知的跨图传播机制，使结构上下文在更深层网络之前即可交互，提升结构信息的流动效率</li><li style="margin-bottom:0;"><strong>多证据校准策略</strong>：首创将实体、邻域、关系和锚点四类结构证据系统整合于解码阶段，实现对齐分数的精细化结构校准</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>预训练超越微调</strong>：预训练的ContextEA在全部三个基准组上均超过经过微调的强基线模型，证明结构上下文的显式利用可显著提升基础模型的迁移能力</li><li style="margin-bottom:0;"><strong>二十九项数据集验证</strong>：在OpenEA、SRPRS和DBP的29个EA数据集上取得一致的性能提升，验证方法具有良好的泛化性与鲁棒性</li><li style="margin-bottom:0;"><strong>结构上下文有效性</strong>：实验结果明确表明，显式利用结构上下文是改进实体对齐基础模型的有效方向，为后续研究提供重要启示</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.06109" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.06109</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Beyond Alignment: Value Diversity as a Collective Property in Multicultural Agent Systems</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.05985</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">超越对齐：多元文化智能体系统中的价值多样性作为一种集体属性</span>
+                        <span style="color:#666;font-size:12px;">Shaoyang Xu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出价值多样性作为多文化多智能体系统的系统级评估维度，通过世界价值观调查评估19种文化和18种基础模型，发现多样性与一致性基本无关，当前多文化智能体系统的价值多样性远低于人类社会，混合架构可缩小但无法弥合差距，社会交互会进一步侵蚀多样性并窄化集体决策范围。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>价值多样性度量</strong>：基于共享价值观调查中文化条件化智能体响应间的不相似性定义系统级评估指标，量化多文化系统的文化多元性保留程度</li><li style="margin-bottom:0;"><strong>世界价值观调查应用</strong>：利用涵盖19种文化的WVS数据集构建评估框架，为跨文化比较提供标准化测量基础</li><li style="margin-bottom:0;"><strong>多配置系统评估</strong>：对18种基础模型在广泛系统配置下进行大规模实验，涵盖不同文化组合与智能体规模设置</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>系统级评估视角</strong>：突破现有单智能体价值对齐的局限，首次将文化多样性作为整体系统属性进行量化评估，揭示对齐与多样性的互补关系</li><li style="margin-bottom:0;"><strong>多文化智能体建模</strong>：构建基于不同文化背景条件化的智能体群体，实现跨文化价值观念的计算化表示与系统性比较</li><li style="margin-bottom:0;"><strong>动态交互分析</strong>：引入社会交互过程研究多样性演化规律，发现共识驱动下的同质化机制及其对集体决策的负面影响</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>对齐多样性无关</strong>：价值多样性与价值对齐基本无相关性，二者捕获系统不同维度的属性，需同时作为独立评估轴</li><li style="margin-bottom:0;"><strong>人机差距显著</strong>：当前多文化智能体系统的价值多样性远低于真实人类社会，混合基础架构系统仅缩小差距未能弥合</li><li style="margin-bottom:0;"><strong>交互侵蚀多元</strong>：社会交互通过推动共识形成进一步削弱多样性，参与式预算案例证实同质化窄化集体决策的广度范围</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.05985" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.05985</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Measuring the sensitivity of LLM-based structured extraction to prompt, model, and schema choices in clinical discharge summaries</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.05970</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">大语言模型临床结构化提取对提示、模型和模式选择的敏感性测量</span>
+                        <span style="color:#666;font-size:12px;">Martin Murin et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">Large language models are increasingly used for structured extraction from clinical free-text notes, but the sensitivity of their output to upstream configuration choices is less understood than their accuracy on fixed benchmarks. This work measures that sensitivity without human-annotated ground truth, by holding the extraction task fixed and varying one choice at a time. The fixed schema comprises 17 clinical documentation flags on a three-way yes/no/not_documented value set and a 47-tag vocab</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">论文分析中...</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">论文分析中...</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">论文分析中...</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.05970" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.05970</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>SkillComposer: Learning to Evolve Agent Skills for Specification and Generalization</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.06079</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">SkillComposer：面向规范与泛化的智能体技能进化学习</span>
+                        <span style="color:#666;font-size:12px;">Qi Zhang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">智能体技能作为可复用的推理与行动策略，在推理阶段提升模型能力方面展现出巨大潜力。然而现有技能构建方法将其视为一次性提取问题，忽略了核心矛盾：针对特定任务的技能难以迁移，而抽象技能又缺乏足够指导。本文提出SkillComposer框架，将技能构建分解为创建、改进、合并三种可学习操作，通过系统性拒绝采样训练，使语言模型能在推理时自我进化技能，支持离线构建通用库、在线任务精调、混合三种部署模式，在多个基准上取得显著效果。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>技能三元操作</strong>：将技能构建分解为创建、改进、合并三种可学习操作，通过显式机制解决技能规范性与泛化性之间的根本张力，实现技能的有序演化与自我进化</li><li style="margin-bottom:0;"><strong>拒绝采样训练</strong>：采用系统性拒绝采样配方进行训练，使语言模型能够在推理时自主进化技能，无需人工干预即可迭代优化技能质量与适用性</li><li style="margin-bottom:0;"><strong>多模式部署</strong>：支持离线构建通用技能库、在线任务特定精调、以及混合结合两者三种部署模式，灵活适应不同应用场景与资源约束条件</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>显式演化机制</strong>：首次提出显式的技能规范与泛化机制，突破现有方法将技能构建视为一次性提取的局限，通过可学习的操作序列实现技能的动态演化与持续优化</li><li style="margin-bottom:0;"><strong>自我进化能力</strong>：使语言模型具备在推理时自我进化技能的能力，无需额外训练即可根据任务需求实时调整技能，实现技能增强推理的实用化方案</li><li style="margin-bottom:0;"><strong>跨域泛化性能</strong>：SkillComposer-4B模型能够提升27B执行器在智能体任务上达+4.5、代码任务上达+3.4，且在训练未见的领域和任务类型上展现强泛化能力</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>操作正交互补</strong>：合并与改进操作分别解决技能质量的不同维度，二者具有正交互补性，协同使用可全面提升技能库的覆盖率、精度与泛化能力</li><li style="margin-bottom:0;"><strong>元能力可迁移</strong>：技能组合是一种可迁移的元能力，一旦习得可在不同领域和任务类型间通用，为技能增强推理提供了可扩展的实用范式</li><li style="margin-bottom:0;"><strong>规模效率优势</strong>：小规模技能模型（4B）即可有效增强大规模执行器（27B），验证了技能学习与任务执行的解耦设计在计算效率与性能提升上的双重优势</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.06079" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.06079</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/8</p>
+        </div>
+    </div>
+</body>
+</html>

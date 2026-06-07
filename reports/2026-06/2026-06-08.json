@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-08",
+  "title": "大模型路由优化与可信评估技术突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.06098",
+      "title": "IR3DE: A Linear Router for Large Language Models",
+      "chinese_title": "IR3DE：面向大语言模型的线性路由器",
+      "authors": "Eros Fanì et al.",
+      "url": "https://arxiv.org/abs/2606.06098"
+    },
+    {
+      "id": "2606.06350",
+      "title": "EDIT: Evidence-Diagnosed Intervention Training for Rule-Faithful LLM Grading",
+      "chinese_title": "证据诊断式干预训练：实现规则忠实的LLM评分",
+      "authors": "Zhihao Wu et al.",
+      "url": "https://arxiv.org/abs/2606.06350"
+    },
+    {
+      "id": "2606.06267",
+      "title": "Many Circuits, One Mechanism: Input Variation and Evaluation Granularity in Circuit Discovery",
+      "chinese_title": "多电路，同一机制：输入变异与评估粒度在回路发现中的作用",
+      "authors": "Alireza Bayat Makou et al.",
+      "url": "https://arxiv.org/abs/2606.06267"
+    },
+    {
+      "id": "2606.06109",
+      "title": "Harnessing Structural Context for Entity Alignment Foundation Models",
+      "chinese_title": "结构上下文赋能实体对齐基础模型",
+      "authors": "Xingyu Chen et al.",
+      "url": "https://arxiv.org/abs/2606.06109"
+    },
+    {
+      "id": "2606.05985",
+      "title": "Beyond Alignment: Value Diversity as a Collective Property in Multicultural Agent Systems",
+      "chinese_title": "超越对齐：多元文化智能体系统中的价值多样性作为一种集体属性",
+      "authors": "Shaoyang Xu et al.",
+      "url": "https://arxiv.org/abs/2606.05985"
+    },
+    {
+      "id": "2606.05970",
+      "title": "Measuring the sensitivity of LLM-based structured extraction to prompt, model, and schema choices in clinical discharge summaries",
+      "chinese_title": "大语言模型临床结构化提取对提示、模型和模式选择的敏感性测量",
+      "authors": "Martin Murin et al.",
+      "url": "https://arxiv.org/abs/2606.05970"
+    },
+    {
+      "id": "2606.06079",
+      "title": "SkillComposer: Learning to Evolve Agent Skills for Specification and Generalization",
+      "chinese_title": "SkillComposer：面向规范与泛化的智能体技能进化学习",
+      "authors": "Qi Zhang et al.",
+      "url": "https://arxiv.org/abs/2606.06079"
+    }
+  ],
+  "generated_at": "2026-06-07T22:10:25.425Z",
+  "org": "AI研究室"
+}
