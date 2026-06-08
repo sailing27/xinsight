@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型评测革新与垂直场景智能进化 | 2026/6/9</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型评测革新与垂直场景智能进化 | 2026/6/9</h1>
+                <div class="date">2026/6/9 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦大语言模型在低资源语言理解、评估方法论革新及领域特异性应用三大前沿。七篇论文共同揭示：当前LLM发展正从"通用能力竞赛"转向"精细能力解构"与"本土知识深耕"的新阶段。<br><br>技术趋势呈现三重收敛：其一，<strong>评估粒度精细化</strong>——从Phun-Bench的三维音系评测到MADE的五阶段智能体诊断，研究者们正突破单一分数局限，构建多维、可解释的能力剖析框架；其二，<strong>语言公平性觉醒</strong>——乌尔都语、土耳其语及汉语语音等低资源场景研究集中涌现，暴露LLM在非英语语境下的"知识获取-语言能力"混淆困境，推动本土数据采集与能力剥离方法论创新；其三，<strong>领域知识结构化绑定</strong>——从医疗决策管道的进化优化到内联引用的证据跨度锚定，领域应用正从"黑箱生成"迈向"可追溯、可验证"的可靠推理。<br><br>对行业而言，这些研究共同警示：闭源模型的头部优势与低资源语言的系统性短板并存，提示工程敏感性量化与结构化诊断将成为模型选型的关键依据；同时，LLM作为"变异算子"嵌入专业工作流（如医疗分诊、证据溯源）的范式，标志着人工智能正从工具层向"认知基础设施"跃迁，其核心价值在于以可解释、可进化形态重塑高 stakes 决策的可靠性边界。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Supervision versus Demonstration-Based In-Context Learning for Multiword Expression Classification</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.07479</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ACL SRW 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">监督与示范上下文学习对比研究：多词表达分类</span>
+                        <span style="color:#666;font-size:12px;">Sercan Karakaş et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">土耳其习语性轻动词结构(LVCs)因与字面动词-宾语组合表面形式相同但功能为部分习语性单一谓语，给多词表达处理带来挑战。研究将土耳其LVC检测框定为二元分类任务（字面意义vs习语意义），在手动构建的控制集（N=147）上评估，包含匹配负例：域外随机句子和域内字面控制（NLVC）以及LVC正例。研究比较了监督式土耳其编码器基线（带分类器头的BERTurk）与三个不同家族的指令微调LLM在零样本、单样本和少样本提示下的表现，并分析演示如何改变错误分布。零样本时LLM在负例上表现良好但LVC召回率很低；单样本提示显著提升LVC检测但可能引发强烈的模型特异性偏差，导致过预测或欠预测LVC；更丰富的少样本提示改善校准并为GPT-OSS-20B和Qwen 2.5-14B带来稳健的整体表现。总体而言，结果凸显了土耳其元语言分类中显著的提示敏感性：监督基线仍具竞争力，而精心构建的演示可使提示LLM在LVC上匹配或超越基线。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>轻动词检测</strong>：将土耳其LVC识别形式化为字面与习语意义的二元分类任务，解决表面形式相同但语义功能不同的处理难题</li><li style="margin-bottom:0;"><strong>控制集构建</strong>：手动创建N=147的严格匹配数据集，包含域外随机负例、域内字面控制负例与LVC正例三类样本</li><li style="margin-bottom:0;"><strong>多模型对比</strong>：系统比较BERTurk监督基线与三个不同家族指令微调LLM在零样本、单样本、少样本设置下的性能</li><li style="margin-bottom:0;"><strong>错误分析</strong>：深入分析不同提示策略下模型错误分布的变化，特别是演示引入的模型特异性偏差模式</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>提示敏感性量化</strong>：首次系统揭示土耳其元语言分类任务中LLM对提示设计的极端敏感性，建立量化分析框架</li><li style="margin-bottom:0;"><strong>偏差诱导机制</strong>：发现单样本提示虽提升LVC召回但会触发模型特异性过预测或欠预测偏差的创新机制</li><li style="margin-bottom:0;"><strong>校准优化策略</strong>：提出 richer few-shot 提示设计原则，通过增加演示样本改善模型校准度而非仅提升准确率</li><li style="margin-bottom:0;"><strong>跨家族泛化</strong>：验证GPT-OSS-20B与Qwen 2.5-14B两种不同架构LLM在土耳其语LVC任务上均可达到稳健表现</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>基线竞争力</strong>：在土耳其语元语言分类中，BERTurk监督基线仍保持强劲竞争力，未被LLM全面超越</li><li style="margin-bottom:0;"><strong>零样本局限</strong>：零样本设置下LLM虽擅长识别负例，但LVC召回率极低，难以检测习语性轻动词结构</li><li style="margin-bottom:0;"><strong>单样本权衡</strong>：单样本提示显著提升LVC检测能力，但伴随强烈的模型特异性偏差风险，需谨慎设计</li><li style="margin-bottom:0;"><strong>少样本优势</strong>：精心构建的少样本提示可实现最佳校准，使GPT-OSS-20B与Qwen 2.5-14B达到稳健最优表现</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.07479" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.07479</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Phun-Bench: Evaluating LLMs on Phonological Understanding in Chinese</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.07300</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ACL 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">Phun-Bench：大语言模型汉语语音理解能力评测</span>
+                        <span style="color:#666;font-size:12px;">Xing Yue et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">语言与声音、符号和意义紧密相连，但现有大语言模型研究多聚焦于语义和拼写，忽视语音层面。现有语音能力基准测试存在依赖死记硬背或与其他能力混杂的问题。本文提出Phun-Bench，一个专门构建的中文基准测试，涵盖同音、押韵、语音相似性三个维度的多样化任务，系统评估LLMs的语音理解能力。结果显示LLMs虽擅长回忆正确发音，却难以像人类那样灵活直观地运用语音知识。研究还提出关于LLMs语音理解与"感知"内在机制的假设，指出未来研究的新前沿。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>三维评估体系</strong>：构建覆盖同音、押韵、语音相似性三个维度的评测框架，从不同角度系统考察模型对汉语音系结构的掌握程度，避免单一任务导致的评估偏差</li><li style="margin-bottom:0;"><strong>防死记硬背设计</strong>：专门设计无法通过简单记忆解决的测试任务，确保评估的是模型真正的语音理解能力而非训练语料中的表面统计规律</li><li style="margin-bottom:0;"><strong>灵活应用测试</strong>：设置需要直觉性、创造性运用语音知识的任务场景，对比人类 speaker 的自然处理方式，检验模型是否具备类似人类的语音直觉</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>专用中文基准</strong>：首创专门针对汉语语音理解的大规模评测基准Phun-Bench，填补LLMs在音系学能力评估领域的空白，为后续研究提供标准化工具</li><li style="margin-bottom:0;"><strong>机制分离方法</strong>：创新性地将语音知识与语义、拼写等其他能力解耦，设计纯净的音系学测试任务，实现对模型语音能力的独立精确测量</li><li style="margin-bottom:0;"><strong>人类对比范式</strong>：建立LLMs与人类说话者的直接对比框架，通过分析两者在语音任务上的差异表现，揭示模型处理机制与人类认知的本质区别</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>记忆强于理解</strong>：LLMs在回忆正确发音方面表现优异，但在需要灵活、直观运用语音知识的任务中普遍表现不佳，暴露出"知其然不知其所以然"的局限</li><li style="margin-bottom:0;"><strong>机制假说提出</strong>：基于详细分析提出关于LLMs语音理解与"感知"内在机制的假设，认为其处理方式可能与人类音系加工存在根本性差异</li><li style="margin-bottom:0;"><strong>前沿方向指明</strong>：强调语音理解是LLMs研究中一个被严重忽视且尚未充分探索的领域，呼吁未来研究关注模型如何真正获得类人的音系直觉能力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.07300" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.07300</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>UrduMMLU: A Massive Multitask Benchmark for Urdu Language Understanding</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.07167</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">乌尔都语大规模多任务语言理解基准</span>
+                        <span style="color:#666;font-size:12px;">Ahmer Tabassum et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出UrduMMLU，一个面向乌尔都语的大规模多任务语言理解基准，包含26,431道选择题，涵盖26个学科和5个领域，数据来源于本土乌尔都语题库和公共考试PDF。与基于翻译的资源不同，该基准涵盖标准学术科目及乌尔都语和区域特定内容。研究对30个大语言模型进行英语和乌尔都语提示下的零样本评估，并对4个开源模型进行多设置少样本评估，发现当前大语言模型在乌尔都语知识方面表现不均衡，尤其在区域特色内容上存在明显不足。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>本土数据采集</strong>：从乌尔都语MCQ题库和公共考试PDF原生收集26,431道选择题，确保题目来源于真实教育场景而非翻译转换，保持语言的地道性和文化语境</li><li style="margin-bottom:0;"><strong>双重人工标注</strong>：对考试衍生部分采用双人标注并经过严格共识过滤，通过多轮质量控制机制保证数据标签的准确性和可靠性</li><li style="margin-bottom:0;"><strong>双语提示评估</strong>：设计英语和乌尔都语两种提示语言，对30个大语言模型进行60组零样本评估，系统对比模型在不同语言提示下的性能差异</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>区域内容覆盖</strong>：突破传统翻译基准局限，纳入乌尔都语人文及区域特定内容，填补现有评测体系对南亚文化、历史、地理等本土知识评估的空白</li><li style="margin-bottom:0;"><strong>大规模学科覆盖</strong>：构建横跨26个学科、5大领域的综合评测体系，规模远超既往乌尔都语基准，实现从STEM到人文社科的全面语言能力诊断</li><li style="margin-bottom:0;"><strong>多维评估框架</strong>：结合零样本与少样本、英语与乌尔都语提示的多维设置，建立首个系统衡量大语言模型乌尔都语理解能力的标准化评测协议</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>头部模型领先</strong>：Gemini-3.5-Flash表现最优，准确率达90.20%和90.34%，但无其他模型突破85%，显示顶尖性能仍集中于闭源商业模型</li><li style="margin-bottom:0;"><strong>开源差距显著</strong>：最强开源模型落后7.79至8.92个百分点，开源与闭源模型在乌尔都语理解任务上存在明显性能鸿沟，制约本地部署应用</li><li style="margin-bottom:0;"><strong>人文科目薄弱</strong>：多数模型在乌尔都语人文类科目上较STEM损失25至40分，暴露大语言模型对区域文化、语言特色内容的理解严重不足</li><li style="margin-bottom:0;"><strong>少样本增益有限</strong>：少样本提示仅带来微弱提升，说明乌尔都语知识获取并非简单上下文学习可解决，需针对性预训练或微调优化</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.07167" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.07167</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>The Masked Advantage: Uncovering Local-Language Access to Cultural Knowledge in LLMs</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.07422</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">掩码优势：揭示大语言模型中的本地语言文化知识获取</span>
+                        <span style="color:#666;font-size:12px;">Yang Zhang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型越来越多地被用于跨语言回答文化相关问题，但本地文化知识通过英语还是本地语言更好地获取仍不清楚。现有评估存在两个关键局限：许多依赖平行模板问题，可能无法反映文化知识的自然呈现方式；原始准确率混淆了通用语言能力与语言条件化的知识获取。本研究构建了一个基于真实世界文化问题的控制框架，通过交叉问题类型（文化无关vs文化特定）与查询语言（英语vs本地语言），并使用共享的1PL项目反应理论模型估计能力，从而分离语言能力与本地化知识获取。在13个地区和约80个模型上，研究发现文化无关问题上英语始终具有优势，但在控制语言能力差距后，本地语言在几乎所有地区-模型设置中显示出积极的知识获取优势，这一优势对前沿、区域对齐或语言适应模型更为明显。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>真实问题采集</strong>：从区域基准和本地来源收集真实世界文化问题，替代平行模板问题，更自然反映文化知识实际呈现方式</li><li style="margin-bottom:0;"><strong>交叉实验设计</strong>：将问题类型（文化无关/文化特定）与查询语言（英语/本地语言）进行交叉，实现语言能力与知识获取的分离测量</li><li style="margin-bottom:0;"><strong>项目反应理论</strong>：采用共享1PL项目反应理论模型估计模型能力，控制题目难度差异，实现跨语言能力的可比估计</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语言能力剥离</strong>：突破原始准确率混淆语言能力与知识获取的局限，首次实现本地文化知识获取与通用语言能力的独立量化</li><li style="margin-bottom:0;"><strong>本地语言优势</strong>：发现本地语言存在被掩盖的知识获取优势，挑战英语作为文化知识查询默认语言的固有假设</li><li style="margin-bottom:0;"><strong>跨地区验证</strong>：覆盖13个地区的大规模实验，证明本地语言优势的普适性，并识别前沿与区域对齐模型中优势更显著</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>英语能力优势</strong>：文化无关问题上英语表现更强，反映当前大模型英语通用语言能力整体优于本地语言</li><li style="margin-bottom:0;"><strong>本地知识优势</strong>：控制语言能力后，本地语言在几乎所有设置中展现文化知识获取优势，该优势被有限语言能力所掩盖</li><li style="margin-bottom:0;"><strong>模型差异显著</strong>：前沿模型、区域对齐模型和语言适应模型的本地语言知识优势更为明显，模型优化方向影响知识获取效率</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.07422" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.07422</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Explicit Evidence Grounding via Structured Inline Citation Generation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.07130</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">结构化内联引用生成实现显式证据锚定</span>
+                        <span style="color:#666;font-size:12px;">Anar Yeginbergen et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">随着AI系统的广泛应用，对事实性和忠实性生成的需求日益增长，通过引用对信息进行归因变得至关重要。本文提出FullCite框架，与大多数先前工作不同，该框架生成结构化内联引用，将每个声明链接到其来源文档和支持证据。FullCite提出三种内联引用生成策略：基于提示的生成、引用语法约束解码和事后跨度对齐。使用ASQA、BioASQ和ExpertQA三个问答基准，从文档级正确性、证据跨度识别和声明-引用忠实性三个维度评估引用质量和忠实性。评估表明，虽然大语言模型通常能有效识别相关文档，但难以识别其中的精确支持跨度，这表明实现忠实的归因问答需要研究更加重视精确的证识跨度识别。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>提示生成策略</strong>：基于提示工程直接引导大语言模型生成包含文档来源和证据跨度的结构化内联引用，无需修改模型架构即可实现引用生成</li><li style="margin-bottom:0;"><strong>约束解码技术</strong>：通过构建引用语法规则，在解码过程中限制模型输出空间，确保生成的引用格式符合预定义的结构化规范</li><li style="margin-bottom:0;"><strong>跨度对齐方法</strong>：采用事后处理机制，将生成的引用声明与源文档中的实际证据跨度进行对齐匹配，提升引用定位精度</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>结构化内联引用</strong>：突破传统仅链接文档的粗粒度引用方式，创新性地同时关联声明、来源文档和精确证据跨度，实现三重结构化绑定</li><li style="margin-bottom:0;"><strong>引用语法设计</strong>：首次将形式化语法约束引入引用生成解码过程，通过定义引用文法规范模型输出结构，保证引用格式的正确性和一致性</li><li style="margin-bottom:0;"><strong>多维评估体系</strong>：构建涵盖文档正确性、证据识别和声明忠实性的三维评估框架，系统量化内联引用的质量与可信度</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>文档识别较强</strong>：大语言模型在识别相关来源文档方面表现良好，能够有效检索与声明相关的候选文档集合</li><li style="margin-bottom:0;"><strong>跨度识别薄弱</strong>：模型在定位文档内精确支持性证据跨度时存在明显困难，精确证据定位仍是技术瓶颈</li><li style="margin-bottom:0;"><strong>忠实生成待研</strong>：实现真正忠实的归因问答需要未来研究将重点放在精确证据跨度识别上，而非仅满足于文档级引用</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.07130" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.07130</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>MADE: Beyond Scoring via a Multilingual Agentic Diagnosing Engine for Fine-Grained Evaluation Insights</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.07020</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">MADE：超越评分，基于多语言智能诊断引擎的细粒度评估洞察</span>
+                        <span style="color:#666;font-size:12px;">Yilun Liu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现有跨语言多文化基准测试虽覆盖数十种语言与模型家族，但评估结果呈现分数丰富而洞察贫乏的状态，亟需细粒度的多语言后评估诊断。然而单一LLM与开放式智能体易被冗长嘈杂的诊断输入淹没，且缺乏可复用的分类体系。为此提出MADE，一种多语言智能诊断引擎，将后评估分析分解为规划、聚合分析、实例级案例检查、多语言文化反思与基于证据的报告合成五个阶段。MADE配套专家构建的54查询15语言诊断集，基于大规模多语言评估基底（33模型家族、11基准、26语言、34文化、866万评估记录）进行验证。实验表明MADE在诊断报告质量上超越最强共享基线47%，在成对比较中获得87.9%的多语言专家偏好。与多语言专家协作应用时，MADE进一步揭示部署、迭代与跨文化陷阱四项可操作建议，将基准分数表转化为模型选择与修复指导。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>智能体诊断架构</strong>：将后评估分析分解为规划、聚合分析、实例检查、文化反思与报告合成五个协同模块，形成结构化诊断流水线以处理冗长嘈杂输入</li><li style="margin-bottom:0;"><strong>大规模评估基底</strong>：构建涵盖33模型家族、11基准、26语言、34文化、866万条记录的跨语言评估基础设施，为诊断提供充足数据支撑</li><li style="margin-bottom:0;"><strong>专家诊断数据集</strong>：设计54个查询覆盖15种语言的专业诊断集合，建立可复用的多语言评估分类体系与标准化诊断协议</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分阶段诊断分解</strong>：突破单一LLM端到端处理模式，创新性地将复杂诊断任务拆解为五个递进阶段，每阶段聚焦特定分析维度以降低认知负荷</li><li style="margin-bottom:0;"><strong>多语言文化反思</strong>：引入跨文化视角的专门反思模块，超越单纯语言对齐，深入识别34种文化背景下的模型行为偏差与地域化陷阱</li><li style="margin-bottom:0;"><strong>grounded报告合成</strong>：强调诊断结论必须锚定具体评估证据，将抽象分数转化为可操作的模型选择建议与定向修复指导</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>质量显著提升</strong>：MADE在诊断报告质量上较最强共享基线提升47%，证明分阶段智能体架构对复杂评估分析的有效性</li><li style="margin-bottom:0;"><strong>专家高度认可</strong>：在成对比较中获得87.9%的多语言专家偏好率，验证诊断结果的专业可信度与实用价值</li><li style="margin-bottom:0;"><strong>实践洞察产出</strong>：应用过程中成功识别部署策略、迭代优化与跨文化陷阱四类关键问题，实现从分数展示到决策支持的范式转换</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.07020" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.07020</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>LLM-Guided Evolution for Medical Decision Pipelines</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.07342</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">LLM引导进化的医疗决策流程优化</span>
+                        <span style="color:#666;font-size:12px;">Ivan Sviridov et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出将LLM引导的MAP-Elites进化算法作为推理时替代方案，用于发现医疗决策策略，无需昂贵的微调或手动提示工程。研究将紧急分诊、交互式会诊和医学图像分类三个临床任务形式化为可执行构件的进化搜索，通过任务特定的适应度函数进行优化。实验表明，进化方法在所有三个场景下均优于人工设计的基线：分诊任务中Semigran准确率从77.3%提升至87.1%、紧急召回率从0.60提升至0.97；交互式会诊在多个LLM上改进了准确率-成本前沿；PneumoniaMNIST上仅进化提示即可提升冻结MedGemma VLM性能。定性分析显示增益源于可解释的程序级机制，而非表面提示重写。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>LLM引导进化</strong>：利用大语言模型作为变异算子，驱动MAP-Elites质量多样性算法在医疗决策空间中进行高效搜索与优化</li><li style="margin-bottom:0;"><strong>可执行构件编码</strong>：将医疗策略表示为可执行程序构件，支持分诊规则、会诊策略和视觉决策规则的灵活表达与进化</li><li style="margin-bottom:0;"><strong>任务适应度设计</strong>：针对分诊安全性、会诊成本效益和图像分类准确性分别定制多目标适应度函数指导进化方向</li><li style="margin-bottom:0;"><strong>推理时优化框架</strong>：在模型推理阶段而非训练阶段进行策略搜索，避免昂贵的LLM微调，实现即插即用的临床适配</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>医疗管道进化</strong>：首次将进化计算系统应用于完整医疗决策管道的自动发现，突破传统手动设计或提示工程的局限</li><li style="margin-bottom:0;"><strong>质量多样性保持</strong>：采用MAP-Elites算法在优化性能的同时维持行为多样性，发现多种有效策略供临床场景选择</li><li style="margin-bottom:0;"><strong>冻结模型提升</strong>：证明仅通过进化提示即可增强冻结视觉语言模型的医学图像分类能力，同时保持严格JSON输出格式</li><li style="margin-bottom:0;"><strong>跨模型可迁移</strong>：进化得到的交互式会诊策略在不同架构LLM间具有良好迁移性，从Llama-3、Qwen-3.5泛化至Gemma-4</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分诊性能跃升</strong>：进化程序在Semigran数据集上准确率提升9.8个百分点，紧急召回率从0.60大幅提升至0.97，显著改善安全加权表现</li><li style="margin-bottom:0;"><strong>会诊效率前沿</strong>：进化策略在多个开源LLM上同时优化准确率与查询成本，并在独立测试集iCRAFTMD验证跨数据集迁移能力</li><li style="margin-bottom:0;"><strong>视觉规则发现</strong>：PneumoniaMNIST实验揭示进化能发现面向病灶的视觉决策规则，而非依赖提示词的简单改写</li><li style="margin-bottom:0;"><strong>机制可解释性</strong>：定性分析证实增益源于校准的分诊边界、靶向证据获取和选择性承诺等可解释的程序级机制</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.07342" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.07342</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/9</p>
+        </div>
+    </div>
+</body>
+</html>

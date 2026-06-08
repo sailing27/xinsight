@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-09",
+  "title": "大模型评测革新与垂直场景智能进化",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.07479",
+      "title": "Supervision versus Demonstration-Based In-Context Learning for Multiword Expression Classification",
+      "chinese_title": "监督与示范上下文学习对比研究：多词表达分类",
+      "authors": "Sercan Karakaş et al.",
+      "url": "https://arxiv.org/abs/2606.07479"
+    },
+    {
+      "id": "2606.07300",
+      "title": "Phun-Bench: Evaluating LLMs on Phonological Understanding in Chinese",
+      "chinese_title": "Phun-Bench：大语言模型汉语语音理解能力评测",
+      "authors": "Xing Yue et al.",
+      "url": "https://arxiv.org/abs/2606.07300"
+    },
+    {
+      "id": "2606.07167",
+      "title": "UrduMMLU: A Massive Multitask Benchmark for Urdu Language Understanding",
+      "chinese_title": "乌尔都语大规模多任务语言理解基准",
+      "authors": "Ahmer Tabassum et al.",
+      "url": "https://arxiv.org/abs/2606.07167"
+    },
+    {
+      "id": "2606.07422",
+      "title": "The Masked Advantage: Uncovering Local-Language Access to Cultural Knowledge in LLMs",
+      "chinese_title": "掩码优势：揭示大语言模型中的本地语言文化知识获取",
+      "authors": "Yang Zhang et al.",
+      "url": "https://arxiv.org/abs/2606.07422"
+    },
+    {
+      "id": "2606.07130",
+      "title": "Explicit Evidence Grounding via Structured Inline Citation Generation",
+      "chinese_title": "结构化内联引用生成实现显式证据锚定",
+      "authors": "Anar Yeginbergen et al.",
+      "url": "https://arxiv.org/abs/2606.07130"
+    },
+    {
+      "id": "2606.07020",
+      "title": "MADE: Beyond Scoring via a Multilingual Agentic Diagnosing Engine for Fine-Grained Evaluation Insights",
+      "chinese_title": "MADE：超越评分，基于多语言智能诊断引擎的细粒度评估洞察",
+      "authors": "Yilun Liu et al.",
+      "url": "https://arxiv.org/abs/2606.07020"
+    },
+    {
+      "id": "2606.07342",
+      "title": "LLM-Guided Evolution for Medical Decision Pipelines",
+      "chinese_title": "LLM引导进化的医疗决策流程优化",
+      "authors": "Ivan Sviridov et al.",
+      "url": "https://arxiv.org/abs/2606.07342"
+    }
+  ],
+  "generated_at": "2026-06-08T22:10:51.034Z",
+  "org": "AI研究室"
+}
