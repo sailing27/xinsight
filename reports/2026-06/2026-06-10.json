@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-10",
+  "title": "大模型创新与应用全景洞察 从多语言数字化到因果可学习性的七维",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.09435",
+      "title": "MUDIDI: A Two-Stage Framework for Multilingual Dictionary Digitization with Language Models",
+      "chinese_title": "MUDIDI：基于语言模型的多语言词典数字化两阶段框架",
+      "authors": "David Setiawan et al.",
+      "url": "https://arxiv.org/abs/2606.09435"
+    },
+    {
+      "id": "2606.09590",
+      "title": "Clinically Grounded Privacy Evaluation of Medical LMs",
+      "chinese_title": "医学语言模型的临床隐私评估",
+      "authors": "Sasha Ronaghi et al.",
+      "url": "https://arxiv.org/abs/2606.09590"
+    },
+    {
+      "id": "2606.09570",
+      "title": "UXBench: Benchmarking User Experience in AI Assistants",
+      "chinese_title": "UXBench：AI助手用户体验基准测试",
+      "authors": "Mengze Hong et al.",
+      "url": "https://arxiv.org/abs/2606.09570"
+    },
+    {
+      "id": "2606.09459",
+      "title": "AbstRAG: Learning to Abstract for Retrieval Problems",
+      "chinese_title": "AbstRAG：面向检索问题的抽象学习",
+      "authors": "Lei Xu et al.",
+      "url": "https://arxiv.org/abs/2606.09459"
+    },
+    {
+      "id": "2606.09553",
+      "title": "OpenBibleTTS: Large-Scale Speech Resources and TTS Models for Low-Resource Languages",
+      "chinese_title": "OpenBibleTTS：低资源语言大规模语音资源与合成模型",
+      "authors": "David Guzmán et al.",
+      "url": "https://arxiv.org/abs/2606.09553"
+    },
+    {
+      "id": "2606.09822",
+      "title": "Causally Evaluating the Learnability of Formal Language Tasks",
+      "chinese_title": "因果评估形式语言任务的可学习性",
+      "authors": "Vésteinn Snæbjarnarson et al.",
+      "url": "https://arxiv.org/abs/2606.09822"
+    },
+    {
+      "id": "2606.09659",
+      "title": "End-to-End Context Compression at Scale",
+      "chinese_title": "大规模端到端上下文压缩",
+      "authors": "Ang Li et al.",
+      "url": "https://arxiv.org/abs/2606.09659"
+    }
+  ],
+  "generated_at": "2026-06-09T22:09:42.666Z",
+  "org": "AI研究室"
+}

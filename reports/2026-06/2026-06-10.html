@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型创新与应用全景洞察 从多语言数字化到因果可学习性的七维 | 2026/6/10</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型创新与应用全景洞察 从多语言数字化到因果可学习性的七维 | 2026/6/10</h1>
+                <div class="date">2026/6/10 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了2024-2025年大模型技术从"能力扩展"向"精准适配与可信评估"深化的关键转向。七篇论文共同指向三大技术趋势：一是<strong>任务范式的重构</strong>，AbstRAG将抽象操作显式化为检索目标、MUDIDI以两阶段框架重新定义词典数字化流程，体现从隐含匹配到结构化设计的范式跃迁；二是<strong>评估方法论的根本升级</strong>，UXBench建立用户中心基准、Clinically Grounded Privacy Evaluation构建临床威胁模型、Causally Evaluating引入因果干预，共同推动评估从相关性描述迈向因果推断与场景化威胁建模；三是<strong>效率与可信的协同优化</strong>，End-to-End Context Compression在精度-效率前沿实现帕累托改进，与低资源语言TTS的真实场景适配形成呼应。对行业而言，这些研究表明：大模型竞争正从通用能力基准转向垂直场景的深度适配与可信保障，隐私安全、用户体验与因果可解释性将成为下一代AI系统的核心差异化维度；同时，架构创新与评估方法论的双重突破，为低资源语言、医疗等高风险领域的负责任部署提供了关键技术路径。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>MUDIDI: A Two-Stage Framework for Multilingual Dictionary Digitization with Language Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.09435</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 EMNLP 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">MUDIDI：基于语言模型的多语言词典数字化两阶段框架</span>
+                        <span style="color:#666;font-size:12px;">David Setiawan et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">多语言词典是低资源和濒危语言最宝贵的文献资源之一，但许多仅以扫描件形式存在。由于语言特定文字、复杂多栏布局、缩写和交叉引用，其数字化和机器可读转换长期以来几乎不可能。近期视觉语言模型提供了有前景的解决方案，但其在字符保留、标记处理和词典结构处理方面的效果尚不明确。本文提出MUDIDI，一个两阶段多语言词典数字化框架：第一阶段评估字符识别和标记保留质量，第二阶段专注于词典条目分割并映射至机器可读词典模式SIL多词典格式化程序。研究发布了包含30本公共领域词典的人工标注词典条目数据集，涵盖 diverse 书写系统、语系和格式。研究对OCR系统、通用大语言模型和视觉语言模型进行基准测试，证明LLM在大多数书写系统和语言的两阶段任务中表现更优，并为更具挑战性的场景提供改进指南。最后，研究表明向LLM补充词典前言等额外信息可提升数字化质量。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>两阶段框架</strong>：将词典数字化分为字符识别与标记保留评估、条目分割与模式映射两个阶段，实现从扫描图像到结构化数据的完整处理流程</li><li style="margin-bottom:0;"><strong>多词典格式化</strong>：采用SIL开发的Multi-Dictionary Formatter作为目标模式，将分割后的词典条目映射为标准化的机器可读词典格式</li><li style="margin-bottom:0;"><strong>多模态模型融合</strong>：系统对比OCR系统、通用大语言模型和视觉语言模型在不同书写系统和语言上的性能表现</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨语言基准数据集</strong>：构建包含30本公共领域词典的人工标注条目数据集，覆盖 diverse 书写系统、语系和版式，填补多语言词典数字化评估资源空白</li><li style="margin-bottom:0;"><strong>上下文增强策略</strong>：创新性地将词典前言等补充信息输入LLM，利用外部语义上下文提升条目分割和结构解析的准确性</li><li style="margin-bottom:0;"><strong>书写系统适应性</strong>：系统验证LLM在大多数书写系统和语言中的优越性，同时识别挑战性场景并提供针对性改进指南</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>LLM综合优势</strong>：大语言模型在字符识别、标记保留和条目分割两阶段任务中，对大多数书写系统和语言均优于OCR系统和视觉语言模型</li><li style="margin-bottom:0;"><strong>上下文信息增益</strong>：向模型补充词典前言等背景信息能显著提升数字化质量，证明结构化外部知识对复杂文档理解的促进作用</li><li style="margin-bottom:0;"><strong>实践指导价值</strong>：研究为低资源语言词典数字化提供可操作的改进策略，推动濒危语言文献资源的保护与计算利用</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.09435" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.09435</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Clinically Grounded Privacy Evaluation of Medical LMs</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.09590</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">医学语言模型的临床隐私评估</span>
+                        <span style="color:#666;font-size:12px;">Sasha Ronaghi et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">医疗语言模型可能记忆并重现受保护的健康信息，但现有隐私评估多关注训练文本的恢复而非真实威胁模型下的信息泄露。本文提出一个临床基础的评估框架，沿分级对抗访问轴（从公开可推断的人口统计信息到泄露的笔记片段）评估信息泄露，测量逐字记忆和敏感诊断的语义泄露。将其应用于预训练于37.8万份临床笔记的语言模型，发现常规就诊元数据能引发高比率的逐字记忆和敏感诊断恢复，同时指出36%的记忆token反映模板化文档，强调纵向临床数据训练的风险。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分层威胁建模</strong>：构建从公开人口统计信息到泄露笔记片段的五级对抗访问轴，系统化评估不同攻击者能力下的隐私泄露风险</li><li style="margin-bottom:0;"><strong>双重泄露检测</strong>：同时测量逐字记忆（精确文本重现）和语义泄露（敏感诊断推断），全面捕获显性与隐性信息暴露</li><li style="margin-bottom:0;"><strong>临床元数据攻击</strong>：利用姓名、出生日期、提供者、就诊日期等常规 encounter 元数据作为提示，触发跨患者时间线的文本记忆</li><li style="margin-bottom:0;"><strong>模板过滤分析</strong>：识别并区分真实患者特异性内容与模板化文档，发现36%记忆token为模板文本，避免高估实际泄露</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>临床场景适配</strong>：首次将隐私评估从通用文本恢复转向医疗真实威胁模型，贴合临床数据纵向性、结构化与敏感性特征</li><li style="margin-bottom:0;"><strong>分级评估框架</strong>：建立沿对抗能力递进的连续评估轴，替代传统二元记忆判断，实现隐私风险的语境化、精细化度量</li><li style="margin-bottom:0;"><strong>语义泄露量化</strong>：超越逐字匹配范式，引入敏感诊断语义恢复指标（AUROC），捕捉非显性但高危害的信息推断</li><li style="margin-bottom:0;"><strong>纵向记忆揭示</strong>：证明常规元数据可激活患者全时间线记忆，暴露纵向临床数据训练带来的累积性隐私风险</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>元数据高风险</strong>：常规就诊元数据引发高比率逐字记忆，且能恢复敏感诊断（堕胎AUROC 0.91，HIV AUROC 0.81），构成严重隐私威胁</li><li style="margin-bottom:0;"><strong>模板记忆干扰</strong>：36%记忆token源于模板化文档，精确匹配记忆会夸大实际泄露，需区分患者特异性与通用模板内容</li><li style="margin-bottom:0;"><strong>纵向数据隐患</strong>：基于纵向临床笔记的预训练使模型形成患者时间线记忆，累积暴露风险远超单次记录场景</li><li style="margin-bottom:0;"><strong>评估范式转型</strong>：医疗语言模型隐私评估应从文本恢复转向语境化威胁建模，结合临床实际数据特征与攻击者能力分级度量</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.09590" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.09590</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>UXBench: Benchmarking User Experience in AI Assistants</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.09570</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">UXBench：AI助手用户体验基准测试</span>
+                        <span style="color:#666;font-size:12px;">Mengze Hong et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出UXBench，首个基于真实用户反馈信号、以用户为中心的AI助手用户体验评估基准。该基准包含UX Judge、UX Eval和UX Recovery三个关联任务，从7万多条交互日志中提取7400条测试实例，覆盖8种场景、83个领域及多种失败模式。通过对26个前沿语言模型的实验，研究发现用户反馈预测是可学习的能力，并系统记录了LLM-as-a-judge评估协议的偏差，为AI助手的用户体验优化提供了新的评估框架。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>三任务体系</strong>：构建UX Judge（偏好判断）、UX Eval（质量评估）、UX Recovery（回复优化）三个相互关联的任务，形成从感知到改进的完整用户体验评估流程</li><li style="margin-bottom:0;"><strong>真实数据提取</strong>：从7万余条真实交互日志中筛选7400条测试实例，确保数据分布贴近实际用户场景，覆盖多领域复杂失败模式</li><li style="margin-bottom:0;"><strong>反馈信号训练</strong>：利用野外收集的真实用户反馈信号训练奖励模型，实现用户体验预测能力的有效学习</li><li style="margin-bottom:0;"><strong>多模型评测</strong>：对26个前沿语言模型进行大规模实验，系统评估其在用户体验感知与对话生成方面的能力差异</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>用户中心基准</strong>：首次将评估重心从通用模型能力转向真实用户体验，建立以用户反馈为核心的评估范式，填补现有基准的评估盲区</li><li style="margin-bottom:0;"><strong>真实分布还原</strong>：数据集紧密反映真实用户分布，涵盖8种使用场景、83个垂直领域及多样化失败模式，具有高度现实挑战性</li><li style="margin-bottom:0;"><strong>可学习性验证</strong>：证明用户反馈预测是可学习的认知能力，奖励模型可实现良好校准的预测精度，为UX优化提供可行路径</li><li style="margin-bottom:0;"><strong>评估偏差揭示</strong>：系统记录LLM-as-a-judge协议的系统性偏差，对比分析直接影响用户体验的典型回复策略优劣</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>反馈预测可学</strong>：基于真实反馈信号训练的奖励模型能够达到良好校准的准确率，用户体验感知能力可通过监督学习有效获取</li><li style="margin-bottom:0;"><strong>能力不等于体验</strong>：模型通用能力提升与对话参与度改善之间存在非线性关系，单纯追求能力指标不足以保证优质用户体验</li><li style="margin-bottom:0;"><strong>评估存在偏差</strong>：LLM-as-a-judge评估协议存在系统性偏见，直接将其用于用户体验评判会产生误导性结论</li><li style="margin-bottom:0;"><strong>体验 scaling law</strong>：提出以用户为中心的扩展定律，强调针对性UX优化对AI助手商业成功的决定性作用，呼吁行业重视</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.09570" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.09570</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>AbstRAG: Learning to Abstract for Retrieval Problems</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.09459</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">AbstRAG：面向检索问题的抽象学习</span>
+                        <span style="color:#666;font-size:12px;">Lei Xu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">检索增强生成在查询、文档证据和用户意图处于不同抽象层次时常失败。本文定义抽象差距为对齐查询意图与可用证据所需的最小类型化假设集合，提出AbstRAG方法将抽象视为显式检索对象，通过分解查询-证据差距为表达、概念、意图-证据和事件类型四个组件，结合匹配质量、效用先验和桥接成本进行相关性评分，并采用反思性精炼机制诊断失败、定位抽象算子、提出最小化补丁，在三个基准测试中取得显著性能提升。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>抽象差距建模</strong>：将查询与证据间的语义不匹配定义为最小类型化假设集合，涵盖表达、概念、意图-证据和事件类型四个维度，为检索提供形式化分析框架</li><li style="margin-bottom:0;"><strong>反思性精炼机制</strong>：由批评模型诊断检索失败原因，定位失败的抽象算子，提出阶段特定的最小化补丁，并通过充分性和压缩控制条件进行验证筛选</li><li style="margin-bottom:0;"><strong>多因子相关性评分</strong>：综合匹配质量、查询无关的效用先验以及所需抽象桥接的计算成本，实现跨抽象层次的精细相关性评估</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>抽象即检索对象</strong>：突破传统检索将抽象视为隐含匹配副产品的做法，首次将抽象操作显式化为可学习、可评分的检索目标，从根本上重构检索增强生成的设计范式</li><li style="margin-bottom:0;"><strong>四组件差距分解</strong>：创新性地将查询-证据抽象差距拆解为表达、概念、意图-证据和事件类型四个正交组件，实现对复杂语义失配的结构化分析和精准桥接</li><li style="margin-bottom:0;"><strong>压缩控制防膨胀</strong>：引入专门的压缩控制机制约束抽象扩展过程，有效解决过度抽象导致的语义漂移问题，将过扩展假阳性从73.7%降至零</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>检索性能全面领先</strong>：在三个文档内检索基准对比七种基线方法，AbstRAG在21对配对自助法检验中18次取得nDCG@10最优，展现稳定卓越的检索效果</li><li style="margin-bottom:0;"><strong>生成质量显著提升</strong>：对应三个基准的生成准确率分别提高1.9%、5.2%和4.0%，证明抽象层次对齐对下游生成任务具有实质性增益价值</li><li style="margin-bottom:0;"><strong>反思精炼贡献核心增益</strong>：消融实验证实反思性精炼机制是检索性能提升的主要驱动因素，压缩控制单独即可完全消除过扩展假阳性，验证关键设计有效性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.09459" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.09459</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>OpenBibleTTS: Large-Scale Speech Resources and TTS Models for Low-Resource Languages</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.09553</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">OpenBibleTTS：低资源语言大规模语音资源与合成模型</span>
+                        <span style="color:#666;font-size:12px;">David Guzmán et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">Recent advances in neural text-to-speech (TTS) and multilingual speech generation have substantially improved synthetic speech quality, yet these gains remain unevenly distributed across the world's languages. Existing models are still dominated by a small set of high-resource languages, while many studies of low-resource TTS are simulated on artificially downsampled high-resource corpora that do not reflect the orthographic variation and limited phonetic coverage encountered in genuinely underrepresented settings. As such, we introduce OpenBibleTTS, which is a large-scale benchmark for low-resource speech synthesis spanning 37 underrepresented languages. Moreover, a systematic comparison of various TTS architectures and large-scale speech generation models is conducted across in-domain Biblical text and out-of-domain material. Results show that no single system dominates across languages and metrics: Gemini-TTS achieves the highest listener ratings on most evaluated languages, but monolingual EveryVoice models trained on OpenBibleTTS remain strongest for intelligibility and are preferred in several African languages, while open from-scratch systems degrade sharply on out-of-domain text, revealing a persistent gap between broad multilingual coverage and reliable synthesis quality in underserved linguistic communities. We complement automatic evaluation with subjective human judgments, and open-source all processed datasets, alignments, and trained models to support future low-resource TTS research.</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多语言TTS架构</strong>：系统对比了Gemini-TTS、EveryVoice等多种TTS架构及大规模语音生成模型，覆盖37种低资源语言的语音合成任务</li><li style="margin-bottom:0;"><strong>圣经文本对齐</strong>：构建基于圣经文本的大规模平行语料，实现跨语言文本与语音的精确对齐，为低资源语言提供可复用的数据基础</li><li style="margin-bottom:0;"><strong>主客观评估结合</strong>：同时采用自动评估指标和人工主观听感判断，全面衡量合成语音的自然度、可懂度和语言偏好性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>真实低资源场景</strong>：突破传统人工降采样高资源语料的模拟方式，真实反映低资源语言的正字法变异和有限语音覆盖问题</li><li style="margin-bottom:0;"><strong>大规模开源基准</strong>：发布涵盖37种代表性不足语言的OpenBibleTTS数据集，包含处理后数据、强制对齐信息及训练好的模型</li><li style="margin-bottom:0;"><strong>跨领域系统评测</strong>：首次在领域内圣经文本和领域外材料上系统比较各类TTS系统，揭示不同架构在真实应用场景中的性能差异</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>无绝对最优系统</strong>：没有任何单一系统在所有语言和指标上占主导，各模型优势呈现明显的语言依赖性和任务特异性</li><li style="margin-bottom:0;"><strong>Gemini-TTS领先</strong>：在多数评估语言上获得最高听众评分，展现出强大的多语言语音生成能力和自然度表现</li><li style="margin-bottom:0;"><strong>EveryVoice可懂度优</strong>：单语EveryVoice模型在可懂度方面表现最强，在多种非洲语言中更受用户偏好，适合特定区域应用</li><li style="margin-bottom:0;"><strong>开源系统域外退化</strong>：从零训练的开源系统在领域外文本上性能急剧下降，暴露多语言覆盖与可靠合成质量之间的持续差距</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.09553" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.09553</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Causally Evaluating the Learnability of Formal Language Tasks</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.09822</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">因果评估形式语言任务的可学习性</span>
+                        <span style="color:#666;font-size:12px;">Vésteinn Snæbjarnarson et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究语言模型学习特定任务所需的数据量问题。为避免自然语言任务难以界定且相互混淆的困难，作者采用概率有限自动机生成的形式语言作为受控实验环境，证明标准的相关性评估方法存在固有缺陷。研究引入分箱半环代数结构以控制目标属性在语料中的出现频率，构建因果图模型实验框架，并提出分解的KL散度指标来度量子任务可学习性。实验表明，缺乏因果干预的可学习性评估会因混杂因素导致错误结论，为自然语言研究中的相关性陷阱提供警示。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>形式语言测试</strong>：采用概率有限自动机诱导的形式语言构建受控实验环境，避免自然语言任务边界模糊和相互混淆的问题，为研究数据频率与可学习性的关系提供严格方法论基础</li><li style="margin-bottom:0;"><strong>分箱半环结构</strong>：创新设计代数对象分箱半环，实现对采样语料中目标属性出现频率的精确控制，为因果分析提供关键的技术工具和干预手段</li><li style="margin-bottom:0;"><strong>因果图模型</strong>：将实验流程形式化为因果图模型，建立明确的变量关系和干预路径，使研究者能够系统识别和控制混杂因素，实现真正的因果推断</li><li style="margin-bottom:0;"><strong>分解KL散度</strong>：推导分解的Kullback-Leibler散度指标，用于量化测量特定子任务的可学习程度，提供细粒度的评估工具以区分不同任务的学习效果</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>因果干预方法</strong>：突破传统相关性分析的局限，首次在形式语言任务中系统引入因果干预框架，通过主动控制目标属性的出现频率来建立数据量与可学习性之间的因果关系</li><li style="margin-bottom:0;"><strong>代数控制工具</strong>：发明分箱半环这一新型代数结构，为精确操控语料统计特性提供数学基础，解决了如何按需构造特定分布训练数据的关键技术难题</li><li style="margin-bottom:0;"><strong>评估指标分解</strong>：提出可分解的KL散度度量方案，实现对复杂任务中各子任务学习效果的独立评估，避免总体指标掩盖局部学习差异的问题</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>相关分析有偏</strong>：标准相关性评估实践存在固有缺陷，在不进行因果干预的情况下评估任务可学习性，会因混杂变量干扰而产生系统性偏误和错误结论</li><li style="margin-bottom:0;"><strong>因果方法必要</strong>：实验明确证明必须采用因果分析方法才能准确判定数据频率与任务学习效果之间的真实关系，相关性分析无法替代因果推断</li><li style="margin-bottom:0;"><strong>自然语言警示</strong>：形式语言环境中的发现对自然语言处理研究具有重要警示意义，提示当前广泛使用的相关性评估范式可能隐藏严重的方法论风险</li><li style="margin-bottom:0;"><strong>数据量非线性</strong>：任务可学习性与数据频率之间的关系并非简单线性，需要精细的因果实验设计才能揭示其真实模式，粗放的相关分析会误导认知</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.09822" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.09822</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>End-to-End Context Compression at Scale</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.09659</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">大规模端到端上下文压缩</span>
+                        <span style="color:#666;font-size:12px;">Ang Li et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">长上下文语言模型推理受内存限制，KV缓存随上下文长度增长。现有KV缓存压缩技术要么显著降低模型质量，要么需要大量时间和计算资源压缩单个长提示。许多方法要求输入适配目标模型的上下文窗口，且与现代生产推理引擎不兼容。编码器-解码器压缩器将长token序列映射为解码器消费的短潜在嵌入序列，是理论上有吸引力的替代方案，但现有方法在精度-效率前沿上无法与KV缓存压缩竞争。本研究重新审视编码器-解码器压缩并缩小这一差距，通过架构搜索预训练多种变体确定最佳设计和训练方式，基于发现持续预训练0.6B编码器/4B解码器模型家族（各超350B token，压缩比1:4、1:8、1:16），提出潜在上下文语言模型(LCLMs)，在通用任务性能、压缩速度和峰值内存使用上改进帕累托前沿，并证明LCLMs可作为长程智能体的高效骨干，使智能体快速浏览压缩长上下文并自适应按需展开相关片段。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>架构搜索</strong>：预训练多种编码器-解码器压缩器变体，系统探索最优架构设计与训练策略</li><li style="margin-bottom:0;"><strong>持续预训练</strong>：在350B+token上持续预训练0.6B-4B参数模型，建立规模化训练范式</li><li style="margin-bottom:0;"><strong>多级压缩</strong>：实现1:4/1:8/1:16三种压缩比，覆盖不同场景下的内存与效率需求</li><li style="margin-bottom:0;"><strong>潜在嵌入</strong>：将长token序列映射为短潜在嵌入序列，替代传统KV缓存机制</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>LCLMs模型族</strong>：首个在精度-效率前沿上超越KV缓存压缩的编码器-解码器压缩方案</li><li style="margin-bottom:0;"><strong>端到端压缩</strong>：突破输入需适配上下文窗口的限制，实现真正的端到端长上下文处理</li><li style="margin-bottom:0;"><strong>推理引擎兼容</strong>：设计兼容现代生产推理引擎的架构，解决现有方法的部署障碍</li><li style="margin-bottom:0;"><strong>自适应展开</strong>：支持智能体按需展开相关片段，实现压缩上下文的交互式细粒度访问</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>帕累托改进</strong>：LCLMs在通用性能、压缩速度、峰值内存三项指标上同时实现帕累托最优</li><li style="margin-bottom:0;"><strong>智能体赋能</strong>：压缩上下文支持高效浏览与自适应展开，成为长程智能体的有效骨干</li><li style="margin-bottom:0;"><strong>规模可扩展</strong>：0.6B-4B参数规模验证表明方法具备向更大模型扩展的潜力</li><li style="margin-bottom:0;"><strong>生产可用</strong>：编码器-解码器方案首次达到生产部署所需的精度与效率平衡</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.09659" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.09659</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/10</p>
+        </div>
+    </div>
+</body>
+</html>
