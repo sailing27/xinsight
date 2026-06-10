@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-11",
+  "title": "大模型可信审计与交互对齐 从推理安全到跨文化适配的技术前沿",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.10852",
+      "title": "Janus: A Benchmark for Goal-Conditioned Information Distortion in LLMs",
+      "chinese_title": "Janus：面向大语言模型目标条件信息扭曲的基准测试",
+      "authors": "Polydoros Giannouris et al.",
+      "url": "https://arxiv.org/abs/2606.10852"
+    },
+    {
+      "id": "2605.28062",
+      "title": "ConvMemory: A Lightweight Learned Memory Reranker, a Negative Attribution Result, and a Research-Preview Conflict Editor",
+      "chinese_title": "ConvMemory：轻量级学习记忆重排序器、负归因结果及研究预览冲突",
+      "authors": "Taiheng Pan et al.",
+      "url": "https://arxiv.org/abs/2605.28062"
+    },
+    {
+      "id": "2606.11127",
+      "title": "Provenance-Grounded Gating and Adaptive Recovery in Synthetic Post-Training Data Curation",
+      "chinese_title": "合成后训练数据精选中的来源门控与自适应恢复",
+      "authors": "Soham Bhattacharjee et al.",
+      "url": "https://arxiv.org/abs/2606.11127"
+    },
+    {
+      "id": "2606.11046",
+      "title": "Does Reasoning Preserve Alignment? On the Trustworthiness of Large Reasoning Models",
+      "chinese_title": "推理是否保持对齐？论大型推理模型的可信度",
+      "authors": "Prajakta Kini et al.",
+      "url": "https://arxiv.org/abs/2606.11046"
+    },
+    {
+      "id": "2606.11018",
+      "title": "Measuring Human Value Expression in Social Media Texts: Calibrated LLM Annotation and Encoder Transfer",
+      "chinese_title": "社交媒体文本中人类价值观表达测量：校准LLM标注与编码器迁移",
+      "authors": "Maria Milkova et al.",
+      "url": "https://arxiv.org/abs/2606.11018"
+    },
+    {
+      "id": "2606.11009",
+      "title": "Who Brought Easter Eggs to Eid? Auditing Cultural Translation of Math Word Problems Across Diverse Languages and Regions",
+      "chinese_title": "跨语言数学应用题的文化适配审计：谁把复活节彩蛋带到了开斋节？",
+      "authors": "Parisa Suchdev et al.",
+      "url": "https://arxiv.org/abs/2606.11009"
+    },
+    {
+      "id": "2606.11167",
+      "title": "Multi-Faceted Interactivity Alignment in Full-Duplex Speech Models",
+      "chinese_title": "全双工语音模型的多维度交互对齐",
+      "authors": "Atsumoto Ohashi et al.",
+      "url": "https://arxiv.org/abs/2606.11167"
+    }
+  ],
+  "generated_at": "2026-06-10T22:10:06.711Z",
+  "org": "AI研究室"
+}
