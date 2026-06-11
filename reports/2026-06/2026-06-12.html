@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型可信性与认知边界 从依赖审计到对抗韧性的全栈透视 | 2026/6/12</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型可信性与认知边界 从依赖审计到对抗韧性的全栈透视 | 2026/6/12</h1>
+                <div class="date">2026/6/12 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦大模型在鲁棒性、效率与可信性三大维度的深层瓶颈与范式突破。七篇论文共同揭示：当前大模型系统虽在标准场景表现优异，但其性能脆弱性、评估片面性与依赖复杂性被严重低估。<br><br>技术趋势呈现三个收敛方向：<strong>一是从粗粒度评估迈向步骤级/状态级精细诊断</strong>，论文1、3、7分别突破整体任务准确率、静态知识测试与单轮响应评估的传统范式，建立步骤敏感性、认知韧性与语义进展的细粒度测量框架；<strong>二是从孤立优化转向跨组件动态协同</strong>，论文2的跨轮记忆共享与论文4的注意力引导去噪均打破模块化处理惯性，通过信息流动机制重构实现系统级效能跃升；<strong>三是从显式监督走向隐式结构挖掘</strong>，论文5利用文本隐式信号去偏、论文6递归追踪隐形依赖，共同证明深层结构信息可替代昂贵显式标注。<br><br>行业启示显著：VLA多语言部署需识别关键瓶颈步骤而非均等投入；医学AI落地须引入对抗韧性作为核心安全指标；模型供应链审计亟需自动化工具应对许可风险的多跳传导。整体而言，大模型正从"能力展示"阶段进入"脆弱性治理"阶段，精细化诊断工具与动态协同机制将成为下一代基础设施的关键组件。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>When Does Language Matter? Multilingual Instructions Reveal Step-wise Language Sensitivity in Vision-Language-Action Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.11906</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ACL 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">多语言指令揭示视觉-语言-动作模型的逐步语言敏感性</span>
+                        <span style="color:#666;font-size:12px;">Xuan Dong et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文首次对Vision-Language-Action (VLA)模型进行系统性多语言评估，将LIBERO基准翻译为十种语言，发现非英语指令导致成功率下降30-50%。通过细粒度分析发现语言影响在执行步骤间高度非均匀，某些步骤具有强语言依赖性而主导任务失败，其他步骤则基本与语言无关。基于该发现，提出步骤级推理时干预方法，根据步骤语言敏感性对齐表示，显著提升语言变化下的性能。结果表明VLA模型的语言鲁棒性本质上是步骤级控制问题，强调时序结构化分析对可靠具身智能体的重要性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多语言基准构建</strong>：将LIBERO机器人操作基准翻译为十种语言，建立首个VLA模型多语言评估体系，系统量化非英语指令下的性能退化程度</li><li style="margin-bottom:0;"><strong>步骤级执行分析</strong>：对任务执行过程进行细粒度分解，追踪每个步骤的成功/失败模式，识别语言依赖性的时空分布特征</li><li style="margin-bottom:0;"><strong>表示对齐干预</strong>：设计推理时步骤自适应的表示对齐机制，根据实时检测的步骤语言敏感性动态调整视觉-语言融合策略</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>步骤敏感性发现</strong>：首次揭示VLA模型语言鲁棒性的步骤异质性，突破传统整体任务评估范式，识别出关键脆弱步骤与鲁棒步骤</li><li style="margin-bottom:0;"><strong>时序诊断框架</strong>：建立基于执行轨迹的语言影响诊断方法，将黑箱模型的语言处理能力解构为可解释的步骤级指标</li><li style="margin-bottom:0;"><strong>动态干预策略</strong>：提出无需重新训练的推理时适配机制，利用步骤级语言敏感性先验实现轻量级跨语言迁移</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语言退化非均匀</strong>：非英语指令导致30-50%性能下降，但损失集中于特定关键步骤，多数步骤保持语言无关性，整体失败由少数瓶颈步骤主导</li><li style="margin-bottom:0;"><strong>鲁棒性本质重构</strong>：VLA语言鲁棒性本质是步骤级控制问题而非全局语言理解问题，时序结构分析比聚合指标更能揭示模型真实能力</li><li style="margin-bottom:0;"><strong>干预策略有效</strong>：步骤级表示对齐显著提升多语言性能，验证针对性步骤干预优于全局模型调整，为高效跨语言部署提供新路径</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.11906" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.11906</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Context-Driven Incremental Compression for Multi-Turn Dialogue Generation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.12411</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ICML 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">上下文驱动的增量压缩多轮对话生成</span>
+                        <span style="color:#666;font-size:12px;">Yeongseo Jung et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现代对话智能体在每轮对话中依赖不断增长的对话历史，导致注意力与编码成本随对话长度增加而冗余上升。简单截断或摘要会降低保真度，而现有上下文压缩器缺乏跨轮记忆共享或修正机制，在长对话中造成信息损失与错误累积。本文重新审视对话动态下的上下文压缩问题，实证揭示其脆弱性。为此提出上下文驱动增量压缩（C-DIC），将对话视为交错的上下文线程，在紧凑对话记忆中存储可修订的每线程压缩状态；每轮通过轻量级检索-修正-写回循环实现跨轮信息共享与陈旧记忆更新，稳定长程行为。此外将截断时间反向传播（TBPTT）适配至多轮场景，无需全历史反向传播即可学习跨轮依赖。在长对话基准上的大量实验表明C-DIC性能与效率优越，数百轮对话中推理延迟与困惑度保持稳定，为高质量对话建模提供可扩展路径。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>线程化上下文建模</strong>：将连续对话解构为交错的多条上下文线程，突破单一线性序列的局限，使压缩状态按主题或功能分离存储，提升长对话的结构化管理能力</li><li style="margin-bottom:0;"><strong>增量压缩记忆</strong>：构建紧凑的单体对话记忆空间，存储各线程的可修订压缩状态，避免每轮全量重编码，实现上下文信息的持久化与高效复用</li><li style="margin-bottom:0;"><strong>检索修正循环</strong>：设计轻量级的检索-修订-写回机制，每轮激活相关线程并更新陈旧记忆，跨轮共享信息并抑制错误累积，保障长程对话稳定性</li><li style="margin-bottom:0;"><strong>截断反向传播</strong>：将TBPTT适配至多轮对话场景，以局部截断替代全历史梯度回传，在控制计算成本的同时有效学习跨轮长程依赖关系</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨轮记忆共享</strong>：突破现有压缩器孤立处理各轮的局限，通过统一记忆架构实现压缩状态在轮次间的动态共享与协同演化，从根本上解决信息孤岛问题</li><li style="margin-bottom:0;"><strong>可修订压缩状态</strong>：摒弃静态一次性压缩范式，赋予历史压缩表示以可修正性，允许后续对话信息对既有记忆进行回溯更新，逆转错误传播方向</li><li style="margin-bottom:0;"><strong>对话动态感知</strong>：首次系统揭示上下文压缩在对话场景下的脆弱性本质，将压缩策略与对话特有的动态性、交互动机深度耦合，重构问题建模框架</li><li style="margin-bottom:0;"><strong>效率稳定性解耦</strong>：实现推理延迟与对话长度的解耦，数百轮范围内保持近乎恒定的计算开销与生成质量，打破传统方法随长度劣化的瓶颈</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>长程稳定性验证</strong>：C-DIC在数百轮对话尺度上保持稳定的困惑度指标，证明增量修正机制有效抑制了长程误差累积，突破了现有方法的长对话天花板</li><li style="margin-bottom:0;"><strong>延迟可控性证明</strong>：推理延迟不随对话轮数线性增长，呈现近似常数特性，为实时高轮次对话应用提供了可预测的计算资源保障</li><li style="margin-bottom:0;"><strong>效率性能双优</strong>：在多项长对话基准上同时实现性能超越与效率提升，驳斥了压缩必然牺牲质量的权衡假设，达成帕累托改进</li><li style="margin-bottom:0;"><strong>TBPTT适配有效</strong>：截断式跨轮学习策略成功捕获关键长程依赖，无需承担全历史反向传播的 prohibitive 成本，验证了近似梯度优化的可行性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.12411" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.12411</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Measuring Epistemic Resilience of LLMs Under Misleading Medical Context</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.12291</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">误导性医学语境下大语言模型的认知韧性测量</span>
+                        <span style="color:#666;font-size:12px;">Hongjian Zhou et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大语言模型在医学执照考试中达到专家级分数，但高分数并不意味着安全的医学判断。本研究提出认知韧性概念，即模型在对抗性误导语境下维持正确判断的能力，并构建MedMisBench基准测试。该基准包含10,932道医学题目和48,889个误导语境-选项对，覆盖医学推理、代理能力和患者旅程评估。测试显示11种模型配置的平均准确率从原始问题的71.1%降至误导语境下的38.0%，攻击成功率达51.5%。最具破坏性的注入是形式化、规则式的虚构内容：权威框架的虚假信息攻击成功率达69.5%，例外中毒声明达64.1%。来自7个国家的14人临床专家组在38.2%的审查案例中识别出严重潜在危害。MedMisBench揭示了LLM医学评估中的结构性盲点：现有基准测量模型知道什么，而非其能否在误导语境下保持正确医学判断。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>认知韧性定义</strong>：提出大语言模型在对抗性误导语境中维持正确医学判断的能力，将其量化为可测量指标，弥补传统评估仅关注知识储备而忽略判断稳定性的缺陷</li><li style="margin-bottom:0;"><strong>MedMisBench构建</strong>：开发包含10,932道医学题目和48,889个误导语境-选项对的大规模基准，覆盖医学推理、代理能力与患者旅程三大评估维度</li><li style="margin-bottom:0;"><strong>误导语境设计</strong>：系统性地将误导信息注入原正确题目，设计多种攻击类型包括权威框架虚假陈述、例外中毒声明等形式化规则式虚构内容</li><li style="margin-bottom:0;"><strong>临床危害评估</strong>：组建14人跨国临床专家组对模型错误输出进行人工审查，量化评估潜在医疗危害的严重程度与发生比例</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>评估范式转变</strong>：从传统知识测量转向稳定性测量，首次将对抗鲁棒性概念引入医学AI评估领域，揭示高分通过考试不等于临床安全判断</li><li style="margin-bottom:0;"><strong>攻击类型发现</strong>：识别出形式化规则式虚构为最有效攻击模式，其中权威框架虚假陈述攻击成功率高达69.5%，显著高于其他误导类型</li><li style="margin-bottom:0;"><strong>多维评估体系</strong>：整合自动准确率测试与专家人工危害评估，建立从模型性能下降到实际临床风险转化的完整评估链条</li><li style="margin-bottom:0;"><strong>患者旅程模拟</strong>：突破单一问答测试局限，将评估扩展至完整患者就医流程，检验模型在多阶段交互中的判断稳定性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>韧性严重不足</strong>：11种模型配置平均准确率从71.1%骤降至38.0%，攻击成功率51.5%，证明当前LLM医学判断极易被误导语境颠覆</li><li style="margin-bottom:0;"><strong>权威误导最危险</strong>：形式化权威框架虚假信息攻击成功率达69.5%，例外中毒声明达64.1%，揭示模型对规则式权威信息的过度依赖</li><li style="margin-bottom:0;"><strong>临床危害高发</strong>：专家组在38.2%审查案例中识别严重潜在危害，表明模型错误输出具有真实医疗风险而非理论问题</li><li style="margin-bottom:0;"><strong>评估存在盲区</strong>：现有医学基准存在结构性缺陷，仅测量知识掌握程度，未能评估模型在真实复杂临床环境中保持正确判断的能力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.12291" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.12291</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Beyond Fully Random Masking: Attention-Guided Denoising and Optimization for Diffusion Language Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.12273</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ACL 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">注意力引导去噪优化赋能扩散语言模型</span>
+                        <span style="color:#666;font-size:12px;">Jia Deng et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">扩散大语言模型（dLLMs）通过并行解码为自回归模型提供了高效替代方案，但现有后训练方法主要依赖随机掩码策略，忽略了内在token依赖关系。本文通过实证分析发现，对未掩码上下文注意力更强的token具有更高的生成稳定性，并在推理中起关键作用。基于此，提出AGDO框架，将训练与优化与注意力导出的依赖关系对齐，在数学和编程基准测试中持续优于现有最先进后训练方法。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>注意力分析</strong>：通过实证分析dLLMs中的注意力机制，揭示token对未掩码上下文的注意力强度与其生成稳定性及推理重要性的正相关关系</li><li style="margin-bottom:0;"><strong>注意力引导去噪</strong>：基于注意力结构确定去噪顺序，替代传统随机掩码，使解码过程更符合模型内在的token依赖结构</li><li style="margin-bottom:0;"><strong>关键token强化</strong>：在监督微调和强化学习阶段重点强调注意力关键token，提升模型对重要推理步骤的学习效率</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>依赖感知掩码</strong>：突破完全随机掩码范式，首次将注意力导出的依赖关系系统性融入扩散语言模型的训练与优化全流程</li><li style="margin-bottom:0;"><strong>训练优化对齐</strong>：设计统一框架实现去噪顺序与训练目标的注意力对齐，解决现有方法训练与推理阶段目标不一致问题</li><li style="margin-bottom:0;"><strong>后训练增强</strong>：在不改变预训练模型架构的前提下，通过后训练优化显著提升dLLMs的数学推理与代码生成能力</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>注意力稳定性规律</strong>：对未掩码上下文注意力更强的token表现出更高的生成稳定性，该规律为设计非随机掩码策略提供理论依据</li><li style="margin-bottom:0;"><strong>推理性能提升</strong>：AGDO在数学和编程基准上持续超越现有最先进dLLMs后训练方法，验证注意力引导策略的有效性</li><li style="margin-bottom:0;"><strong>token重要性机制</strong>：注意力关键token在复杂推理任务中承担核心作用，针对性优化这些token可显著改善模型推理表现</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.12273" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.12273</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Debiasing Without Protected Attributes: Latent Concept Erasure from Textual Profiles</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.12088</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">无保护属性的去偏：文本画像中的潜在概念抹除</span>
+                        <span style="color:#666;font-size:12px;">Shun Shao et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现有NLP公平性研究大多假设可直接获取性别、种族等受保护属性，但实践中这些信息常因隐私、法律等原因不可用。本文提出H-SAL方法，利用自我描述文本作为隐式去偏信号进行事后概念消除，并构建了基于Stack Exchange的多领域公平性基准数据集。实验发现，基于隐式自我描述的去偏效果往往匹配甚至优于基于显式标签的去偏方法，为现实数据约束下的公平性研究提供了新方向。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>隐式信号利用</strong>：通过用户自我描述文本间接推断受保护属性信息，无需直接标注敏感标签即可实现模型去偏，解决隐私与合规场景下的数据缺失问题</li><li style="margin-bottom:0;"><strong>事后概念消除</strong>：采用后处理方法从模型表示中擦除特定概念，不改变原始训练流程，直接干预编码器或解码器的中间表示层</li><li style="margin-bottom:0;"><strong>H-SAL架构设计</strong>：构建层次化自描述属性学习框架，将文本轮廓中的隐式信号转化为可操作的公平性约束目标进行优化</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>无标签去偏范式</strong>：首次系统论证并验证了不依赖显式受保护属性的去偏可行性，打破传统公平性研究对敏感标签的强假设依赖</li><li style="margin-bottom:0;"><strong>Stack Exchange基准</strong>：创建涵盖显式与隐式信号的多领域帮助度预测数据集，为对比两种去偏模式提供标准化评估平台</li><li style="margin-bottom:0;"><strong>文本轮廓建模</strong>：将用户生成的自我描述文本作为新型公平性信号源，拓展了表示层公平性研究的数据利用边界</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>隐式优于显式</strong>：在编码器与解码器语言模型上，基于自我描述的隐式去偏在效果上经常匹配或超越传统显式标签去偏方法</li><li style="margin-bottom:0;"><strong>领域泛化有效</strong>：H-SAL在跨领域Stack Exchange数据中展现出稳定的去偏性能，证明隐式信号的鲁棒性与可迁移性</li><li style="margin-bottom:0;"><strong>实践价值显著</strong>：为隐私受限、法律禁止收集敏感属性的真实应用场景提供了可行的技术替代方案，推动公平性研究走向实用化</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.12088" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.12088</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Which Models Are Our Models Built On? Auditing Invisible Dependencies in Modern LLMs</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.12385</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">现代大语言模型中隐形依赖的审计：我们的模型建立在哪些模型之上？</span>
+                        <span style="color:#666;font-size:12px;">Sanjay Adhikesaven et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现代大语言模型训练流程日益依赖其他模型完成数据生成、语料过滤、输出评判和开发决策等任务，这些依赖关系具有递归性且分散在异构的公开产物中，难以人工追溯。本文提出ModSleuth智能体系统，通过来源可验证的证据递归重建LLM依赖图，形式化区分直接与间接依赖，以操作为中心表示异构管道角色，并跨名称、版本和仓库解析产物身份。应用于四个公开产物丰富的LLM发布版本，恢复1,060个经来源验证的依赖，构建现代LLM开发的大规模依赖图，揭示多跳许可义务、训练-评估耦合、发布产物与训练时产物差异及文档不一致性等问题。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>递归依赖重建</strong>：通过智能体系统自动遍历异构公开产物，递归追踪上游产物的依赖关系，以来源可验证的证据构建完整的依赖图谱，解决人工无法处理的高复杂度与递归深度问题</li><li style="margin-bottom:0;"><strong>产物身份解析</strong>：跨名称、版本和代码仓库解析同一产物的不同引用方式，解决文档不一致导致的身份混淆问题，确保依赖图中节点标识的准确性和一致性</li><li style="margin-bottom:0;"><strong>操作关系建模</strong>：以操作为中心表示异构管道角色，区分数据生成、语料过滤、输出评判等不同功能依赖类型，统一描述现代LLM训练流程中多样化的模型交互方式</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>依赖形式化定义</strong>：提出直接依赖与间接依赖的形式化区分框架，明确界定依赖关系的语义边界，解决依赖审计中核心概念模糊的根本难题</li><li style="margin-bottom:0;"><strong>来源证据锚定</strong>：所有依赖关系均附带来源可验证的证据，确保重建结果的透明性和可审计性，区别于传统基于推测或推断的依赖分析方法</li><li style="margin-bottom:0;"><strong>文档不一致调和</strong>：设计跨产物引用协调机制，处理分散在不同发布版本和产物中的碎片化文档信息，实现异构数据源的有效整合与一致性推理</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>许可义务多跳传导</strong>：依赖图揭示许可证义务通过多跳依赖关系广泛传导，上游模型的许可约束可能影响下游衍生模型，形成复杂的合规风险网络</li><li style="margin-bottom:0;"><strong>训练评估紧耦合</strong>：发现训练阶段与评估阶段存在深度依赖耦合，评估所用模型与裁判模型同样构成关键依赖，传统仅关注训练数据的审计视角存在盲区</li><li style="margin-bottom:0;"><strong>文档发布存偏差</strong>：识别发布产物与训练时实际使用产物之间存在显著差异，公开文档未能完整反映真实开发状态，透明度声明与实际实践存在脱节</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.12385" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.12385</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Measuring Semantic Progress in Multi-turn Dialogue via Information Gain</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.12332</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">基于信息增益的多轮对话语义进展度量</span>
+                        <span style="color:#666;font-size:12px;">Paul He et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对多轮对话评估难题，提出语义进展（semantic progress）的信息论度量方法，将其形式化为问题条件化的不确定性缩减，并在嵌入空间中以高斯形式实现高效计算。该方法具有单调性、可加分解性和冗余递减等理论性质，无需自回归推理即可评估。在MT-Bench、Chatbot Arena和UltraFeedback上的实验表明，该指标与人类判断具有竞争性一致性，且在轻量级嵌入模型CPU运行下仍保持有效。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语义进展定义</strong>：将对话中的语义进展定义为问题相关、非冗余的新信息累积，突破单轮响应评估局限，捕捉跨轮次质量涌现</li><li style="margin-bottom:0;"><strong>信息增益度量</strong>：基于问题条件化不确定性缩减，在嵌入空间中近似计算信息增益，避免LLM-as-judge的高昂推理成本</li><li style="margin-bottom:0;"><strong>高斯闭式估计</strong>：采用可处理的高斯公式实现闭合形式更新，保证计算高效性与理论可分析性</li><li style="margin-bottom:0;"><strong>最大熵论证</strong>：通过最大熵原理证明仅保留二阶嵌入信息时，对数行列式结构的广泛适用性</li><li style="margin-bottom:0;"><strong>可加分解性质</strong>：总信息增益可按轮次加性分解，支持细粒度分析各轮贡献与冗余证据的边际递减效应</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>理论形式化创新</strong>：首次将多轮对话语义进展严格形式化为信息论问题，建立不确定性缩减与对话质量的数学联系</li><li style="margin-bottom:0;"><strong>嵌入空间计算</strong>：设计无需自回归推理的纯嵌入空间计算方法，实现固定模型下的完全可复现评估</li><li style="margin-bottom:0;"><strong>轻量高效实现</strong>：证明语义进展捕捉无需大模型容量，轻量嵌入模型在CPU环境下即可有效运行</li><li style="margin-bottom:0;"><strong>结构性质保证</strong>：导出单调性、可加分解和边际递减等理想理论性质，为评估指标提供公理化基础</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>人类判断对齐</strong>：所提指标在MT-Bench和UltraFeedback上相比多个LLM-based judge实现更优的人类判断对齐</li><li style="margin-bottom:0;"><strong>计算效率优势</strong>：完全避免评估时的自回归推理，显著降低计算开销，提升评估速度与确定性</li><li style="margin-bottom:0;"><strong>模型规模无关</strong>：轻量级嵌入模型在纯CPU执行下仍保持有效，打破评估质量与模型容量的必然关联</li><li style="margin-bottom:0;"><strong>维度聚焦有效</strong>：仅针对语义进展单一维度，即可在整体对话评估中取得竞争性表现，验证维度分解策略价值</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.12332" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.12332</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/12</p>
+        </div>
+    </div>
+</body>
+</html>

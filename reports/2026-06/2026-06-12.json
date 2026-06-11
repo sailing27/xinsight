@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-12",
+  "title": "大模型可信性与认知边界 从依赖审计到对抗韧性的全栈透视",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.11906",
+      "title": "When Does Language Matter? Multilingual Instructions Reveal Step-wise Language Sensitivity in Vision-Language-Action Models",
+      "chinese_title": "多语言指令揭示视觉-语言-动作模型的逐步语言敏感性",
+      "authors": "Xuan Dong et al.",
+      "url": "https://arxiv.org/abs/2606.11906"
+    },
+    {
+      "id": "2606.12411",
+      "title": "Context-Driven Incremental Compression for Multi-Turn Dialogue Generation",
+      "chinese_title": "上下文驱动的增量压缩多轮对话生成",
+      "authors": "Yeongseo Jung et al.",
+      "url": "https://arxiv.org/abs/2606.12411"
+    },
+    {
+      "id": "2606.12291",
+      "title": "Measuring Epistemic Resilience of LLMs Under Misleading Medical Context",
+      "chinese_title": "误导性医学语境下大语言模型的认知韧性测量",
+      "authors": "Hongjian Zhou et al.",
+      "url": "https://arxiv.org/abs/2606.12291"
+    },
+    {
+      "id": "2606.12273",
+      "title": "Beyond Fully Random Masking: Attention-Guided Denoising and Optimization for Diffusion Language Models",
+      "chinese_title": "注意力引导去噪优化赋能扩散语言模型",
+      "authors": "Jia Deng et al.",
+      "url": "https://arxiv.org/abs/2606.12273"
+    },
+    {
+      "id": "2606.12088",
+      "title": "Debiasing Without Protected Attributes: Latent Concept Erasure from Textual Profiles",
+      "chinese_title": "无保护属性的去偏：文本画像中的潜在概念抹除",
+      "authors": "Shun Shao et al.",
+      "url": "https://arxiv.org/abs/2606.12088"
+    },
+    {
+      "id": "2606.12385",
+      "title": "Which Models Are Our Models Built On? Auditing Invisible Dependencies in Modern LLMs",
+      "chinese_title": "现代大语言模型中隐形依赖的审计：我们的模型建立在哪些模型之上？",
+      "authors": "Sanjay Adhikesaven et al.",
+      "url": "https://arxiv.org/abs/2606.12385"
+    },
+    {
+      "id": "2606.12332",
+      "title": "Measuring Semantic Progress in Multi-turn Dialogue via Information Gain",
+      "chinese_title": "基于信息增益的多轮对话语义进展度量",
+      "authors": "Paul He et al.",
+      "url": "https://arxiv.org/abs/2606.12332"
+    }
+  ],
+  "generated_at": "2026-06-11T22:11:26.667Z",
+  "org": "AI研究室"
+}
