@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型幻觉检测与跨域应用创新全景 | 2026/6/13</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型幻觉检测与跨域应用创新全景 | 2026/6/13</h1>
+                <div class="date">2026/6/13 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦大模型可靠性增强与跨领域应用拓展两大核心主题，揭示当前研究正从单一性能优化转向系统性风险管控与专业化适配。技术趋势呈现三个共性方向：一是<strong>几何与代数结构驱动的可解释性诊断</strong>，论文1的最优传输理论与论文2的Operad理论均跳出传统统计方法，利用数学结构的内在约束实现无监督/无标签的模型失败检测，为幻觉与推理错误的机理理解开辟新范式；二是<strong>混合与并行架构的效率-质量协同优化</strong>，论文4的嵌入插值与论文5的流水线并行化分别针对检索与实时交互场景，通过细粒度操控计算流程突破单一模态或串行处理的瓶颈；三是<strong>领域专用数据基础设施的精细化构建</strong>，论文6-7针对生物伦理立场与多法域合同等高风险专业领域，建立语境保留与跨司法管辖的数据集，填补垂直应用的数据空白。<br><br>对行业而言，这些研究共同指向一个关键转向：大模型落地亟需从"通用能力展示"迈向"可控可信部署"——无论是网页内容污染揭示的检索增强系统脆弱性（论文3），还是层特异性注意力机制对幻觉检测的启示（论文1），均表明系统级鲁棒性设计优先于单纯规模扩张。数学形式化工具与领域知识的深度耦合，将成为下一代AI系统可信评估与专业应用的核心竞争力。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Layer-Resolved Optimal Transport for Hallucination Detection in NMT and Abstractive Summarization</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.13216</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ICML Mechanistic Interpretability Workshop 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">分层最优传输用于神经机器翻译与摘要生成中的幻觉检测</span>
+                        <span style="color:#666;font-size:12px;">Mariia Onyshchuk et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文将最优传输（OT）方法从神经机器翻译（NMT）中的幻觉检测扩展至所有六个解码器层，发现Wass-to-Unif与Wass-to-Data是互补的检测器，检测集中于L1-L4层，L5层对细微类型呈反预测性。同时将该几何信号迁移至抽象摘要的事实性检测，在CNN/XSum上达到57.2%/57.6%的平衡准确率，虽高于随机但显著低于监督方法。研究揭示了基于注意力的OT指标的根本局限：当不忠实摘要正确关注源标记但错误表征其内容时，此类失败模式对基于浓度的OT指标不可见。T5-base的结构实验证实了解码器组织在深度上的一致性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>最优传输检测</strong>：利用最优传输理论测量交叉注意力分布与参考分布之间的几何距离，无需监督即可检测NMT中的幻觉现象，为幻觉检测提供纯几何视角</li><li style="margin-bottom:0;"><strong>分层解析分析</strong>：将OT分析扩展至Fairseq DE-EN模型的全部六个解码器层（N=3,414），系统揭示不同层对幻觉检测的差异化贡献与专门化分工</li><li style="margin-bottom:0;"><strong>双参考分布对比</strong>：采用Wass-to-Unif（均匀分布）和Wass-to-Data（数据驱动分布）两种参考分布，发现二者具有互补性，分别针对不同类型幻觉实现专门化检测</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>层特异性发现</strong>：揭示幻觉检测集中于L1-L4层，L5层对细微类型呈反预测性，且幻觉翻译缺乏正确翻译从第一步解码即存在的探索性注意力阶段</li><li style="margin-bottom:0;"><strong>跨任务迁移验证</strong>：首次将OT几何信号迁移至抽象摘要的事实性检测，在AggreFact数据集（N=1,116）上验证其跨任务适用性与性能边界</li><li style="margin-bottom:0;"><strong>失败模式归因</strong>：提出基于注意力的OT指标的根本局限——当不忠实摘要正确关注源标记但错误表征内容时，此类下游语义失败对基于浓度的OT指标不可见</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>源脱离检测可靠</strong>：当失败模式为源脱离（source disengagement）时，交叉注意力上的OT是可靠的幻觉检测器，这确立了其作为有原则的可解释性工具的地位</li><li style="margin-bottom:0;"><strong>任务无关性工具</strong>：OT作为可解释性工具具有任务无关性，但其有效性取决于具体失败模式是否表现为注意力分布的异常，而非所有事实性失败</li><li style="margin-bottom:0;"><strong>注意力下游局限</strong>：基于浓度的OT指标无法检测注意力正确但语义错误表征的失败模式，这一局限是构造性的，解释了与监督方法（MiniCheck-Flan-T5-L达69.9%/74.3%）之间的性能差距</li><li style="margin-bottom:0;"><strong>深度组织一致性</strong>：T5-base结构实验证实解码器组织在深度上具有一致性，Layer 3显示峰值浓度，Layer 12对生成质量最为关键</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.13216" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.13216</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Operadic consistency: a label-free signal for compositional reasoning failures in LLMs</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.13649</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">LLM组合推理失效的Operadic一致性：无标签信号</span>
+                        <span style="color:#666;font-size:12px;">Nathaniel Bottman et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">针对无需真值标签即可在推理时检测LLM推理失败的问题，本文提出基于Operad理论的组合一致性（OC）方法。该方法通过比较模型对组合查询的直接回答与通过分解组合得到的回答是否一致，作为诊断信号。在12个指令微调LLM和4个多跳QA数据集上，OC与准确率强相关（Pearson r 0.86-0.94），且是唯一在所有数据集上r>0.85的信号。OC在问题层面提供超越CoT-SC和语义熵的额外信息，并在选择性预测中优于调优的CoT-SC基线。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>Operad理论应用</strong>：将数学中的Operad理论（迭代替换系统的形式化工具）引入LLM推理诊断，利用组合结构的对称性约束作为一致性检验基础</li><li style="margin-bottom:0;"><strong>组合一致性检测</strong>：通过对比模型对组合问题的直接回答与按分解步骤组合后的回答，构建无需真值标签的推理失败检测信号</li><li style="margin-bottom:0;"><strong>分解感知基线</strong>：构建考虑问题分解结构的对比基线方法，验证OC信号在控制分解感知因素后仍具有独立解释力</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>标签-free诊断框架</strong>：突破现有自一致性、语义熵等方法依赖问题内采样的局限，开创基于问题分解结构的全新诊断维度，无需外部标签即可检测推理失败</li><li style="margin-bottom:0;"><strong>跨尺度模型验证</strong>：在4B至671B参数的12个开源与闭源模型上系统验证，证明OC具有跨模型架构和规模的普适性</li><li style="margin-bottom:0;"><strong>思维链分解提取</strong>：针对前沿思考模型，创新性地从其自身思维链中自动提取问题分解结构，实现无需人工设计分解的自动化应用</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>相关性优势显著</strong>：OC与准确率在所有四个数据集上均保持强相关（r∈[0.86,0.94]），而CoT-SC在MuSiQue和StrategyQA上骤降至r<<0.45，显示OC对组合推理失败更鲁棒</li><li style="margin-bottom:0;"><strong>增量信息贡献</strong>：在问题层面，OC对CoT-SC和语义熵具有显著增量信息（聚类稳健p<<10^{-16}），且控制分解感知基线后结论依然稳健（p<<10^{-13}）</li><li style="margin-bottom:0;"><strong>选择性预测提升</strong>：在K=3等成本预算下，OC对调优CoT-SC基线实现AUARC提升+0.086至+0.096、AUROC提升+0.092至+0.164，95%置信区间均排除零值</li><li style="margin-bottom:0;"><strong>思维链场景有效</strong>：对5个前沿思考模型，16个测试单元中全部取得正向点估计提升，其中12个单元95%置信区间排除零值，验证自动提取分解的可行性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.13649" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.13649</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>One Polluted Page Is Enough: Evaluating Web Content Pollution in Generative Recommenders</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.13610</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">单页污染足矣：评估生成式推荐器中的网页内容污染</span>
+                        <span style="color:#666;font-size:12px;">Minghao Luo et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">搜索增强型大语言模型日益通过检索实时网页内容来中介日常消费推荐，这带来了新风险：生成式推荐系统可能消费被污染的网页内容，如虚假评论和为误导推荐而制作的推广页面。本文提出FORGE基准，用于在受控网页内容污染条件下测量虚假产品推广程度。该基准覆盖225个真实产品、15个类别和5个消费场景，测试了12个商业和开源模型，发现所有模型均存在脆弱性，单个污染页面可导致高达27%的受骗率，而完整的前3个结果替换可将此提升至73.8%。研究还评估了三种防御机制，发现怀疑提示和共识过滤各有局限。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>搜索增强架构</strong>：利用实时检索网页内容增强大语言模型推荐能力，使模型依赖外部动态信息而非仅依靠内部参数知识进行消费决策</li><li style="margin-bottom:0;"><strong>本地内容重写</strong>：在保留原始网页结构的前提下，将检索结果中的真实产品替换为虚假产品，实现可控的网页内容污染模拟</li><li style="margin-bottom:0;"><strong>多维度评估体系</strong>：覆盖225个真实产品、15个商品类别和5种消费场景，构建全面的虚假产品推广脆弱性测试框架</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>FORGE基准构建</strong>：首创专门评估生成式推荐系统中网页内容污染风险的基准测试，实现从搜索输入到推荐输出的端到端脆弱性量化</li><li style="margin-bottom:0;"><strong>污染模拟方法</strong>：提出局部重写技术，仅修改产品实体而保持页面上下文完整，精确隔离内容污染对推荐决策的因果影响</li><li style="margin-bottom:0;"><strong>防御机制评估</strong>：系统测试怀疑提示、基于模型先验的共识过滤和跨文档证据的共识过滤三种防御策略的实际效果与局限</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>普遍脆弱性</strong>：所有12个测试模型均易受网页内容污染影响，单个污染页面最高产生27%虚假推荐率，前3结果全替换可达73.8%</li><li style="margin-bottom:0;"><strong>知识依赖性</strong>：模型对目标产品缺乏稳定先验知识时脆弱性显著增加，说明外部检索内容对低置信度决策具有过度影响力</li><li style="margin-bottom:0;"><strong>推理反效果</strong>：显式推理不仅未缓解脆弱性，反而常生成虚假社会证明为错误推荐辩护，形成自我强化的误导机制</li><li style="margin-bottom:0;"><strong>防御困境</strong>：怀疑提示可能加剧脆弱性，共识过滤虽有效但存在压制合法产品的风险，当前防御手段均不完美</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.13610" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.13610</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>When Does Mixing Help? Analyzing Query Embedding Interpolation in Multilingual Dense Retrieval</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.13537</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">混合何时有效？多语言稠密检索中的查询嵌入插值分析</span>
+                        <span style="color:#666;font-size:12px;">Tongyao Zhu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究多语言混合查询对稠密检索器的影响，通过在mMARCO上构建比例可控的嵌入插值实验，发现最优混合比例在88/105种情况下优于最佳单语查询；揭示英语主导导致的非对称性：非英语文档索引混合有益，含英语索引则纯英语最优；英语是所有非英语文档语言的最强混合伙伴；控制英语主导后，混合增益与类型学距离负相关。研究表明语言混合敏感性具有结构化、可预测性，并在不同模型族和规模上得到验证。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>嵌入插值法</strong>：在嵌入层面将单语查询向量按比例线性插值，构建比例精确可控的混合查询表示，实现查询语言混合的细粒度操控</li><li style="margin-bottom:0;"><strong>比例控制实验</strong>：系统变化平行查询翻译的混合比例，在mMARCO上大规模评估检索性能，建立混合比例与检索效果的定量关系</li><li style="margin-bottom:0;"><strong>类型学距离控制</strong>：控制英语主导因素后，分析语言混合增益与语言类型学距离的相关性，分离结构相似性与英语优势的独立效应</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>非对称混合效应</strong>：首次发现混合查询的效果存在方向性不对称——对非英语文档索引普遍有益，但对含英语索引则纯英语最优</li><li style="margin-bottom:0;"><strong>英语主导机制</strong>：揭示英语作为最强混合伙伴的普适性，其主导作用掩盖了其他语言对的交互模式，需控制后才能观测类型学效应</li><li style="margin-bottom:0;"><strong>结构化敏感性</strong>：证明语言混合敏感性并非随机噪声，而是遵循可预测的规律，为混合查询策略设计提供理论依据</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>最优混合优势</strong>：BGE-M3模型上最优混合比例在88/105种情况中超越最佳单语端点，混合查询具有系统性提升潜力</li><li style="margin-bottom:0;"><strong>英语霸权效应</strong>：英语在所有非英语文档语言中均为最强混合伙伴，且含英语文档索引时纯英语查询始终最优</li><li style="margin-bottom:0;"><strong>距离负相关律</strong>：排除英语主导干扰后，语言混合增益与类型学距离呈负相关，结构相近语言混合收益更高</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.13537" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.13537</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Low-Latency Real-Time Audio Game Commentary System via LLM-Based Parallel Text Generation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.13322</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 IJCAI</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">基于大语言模型的低延迟实时音频游戏解说系统</span>
+                        <span style="color:#666;font-size:12px;">Ryota Kawamatsu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出一种低延迟实时音频游戏解说系统，可直接从实时游戏画面生成语音解说。传统顺序处理流程（捕获画面→生成文本→合成语音）存在累积等待时间，导致 utterance 间出现长达9.6秒的不自然沉默。本文通过文本生成与语音播放并行化，并提前缓存多个候选 utterance，实现播放边界处的即时合成，将平均 inter-utterance 沉默从9.6秒降至0.3秒，专业解说节奏相似度提升40%以上，120名资深玩家的用户研究证实了显著改善的感知说话节奏。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>并行生成架构</strong>：打破传统顺序处理流程，将文本生成与语音合成解耦为并行线程，使LLM文本生成与TTS语音播放同步执行，消除串行等待造成的累积延迟</li><li style="margin-bottom:0;"><strong>候选 utterance 缓存</strong>：预先缓冲多个候选解说文本，在语音播放期间持续生成后续内容，确保播放边界处可立即调用已准备好的文本进行合成</li><li style="margin-bottom:0;"><strong>端到端视频理解</strong>：直接从原始游戏画面输入到语音输出，无需人工撰写脚本，实现全流程自动化实时解说生成</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>流水线并行化设计</strong>：将传统串行三步流程（视觉捕获→文本生成→语音合成）重构为时间重叠的并行模式，使各环节在时间上重叠执行，从根本上消除跨 utterance 的累积等待瓶颈</li><li style="margin-bottom:0;"><strong>预生成缓冲策略</strong>：突破传统必须等待前句播放完毕才启动下句生成的限制，通过前瞻式多候选生成与动态调度，实现零等待切换的连续解说体验</li><li style="margin-bottom:0;"><strong>节奏感知优化</strong>：不仅关注绝对延迟降低，更针对专业解说员的沉默时间模式进行建模优化，使系统输出符合人类自然说话节奏的时间结构</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>延迟大幅降低</strong>：并行设计将平均 utterance 间沉默从9.6秒降至0.3秒，降幅达97%，基本消除传统系统的长时间不自然停顿</li><li style="margin-bottom:0;"><strong>节奏相似度提升</strong>：与专业解说员沉默时间模式的相似度提高超过40%，系统输出在时序特征上更接近真人专业解说风格</li><li style="margin-bottom:0;"><strong>用户感知验证</strong>：120名经验丰富的游戏玩家参与的用户研究确认，系统在感知说话节奏方面获得显著改善的主观评价，验证了技术优化的实际体验价值</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.13322" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.13322</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>A Context-Aware Dataset for Stance Detection in Bioethical Controversies on Reddit</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.13187</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">Reddit生物伦理争议中立场的语境感知数据集</span>
+                        <span style="color:#666;font-size:12px;">Hu Huang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">生物伦理辩论日益在社交媒体展开，但立场检测研究缺乏大规模领域特定资源来建模此类依赖语境的话语。本文提出BioStance数据集，包含39,600条来自Reddit生物伦理讨论的帖子-评论对，涵盖六个争议性目标，跨越生物伦理争议的三个维度：基本价值冲突、个人自由与集体责任、技术不确定性。每个实例保留层级对话语境，由三名独立标注者使用支持、反对、无立场三分类方案标注，平均Krippendorff's α达0.82，表明标注具有实质性可靠性。该数据集通过主题多样性、对话结构和高质量人工标注的结合，支持语境感知立场检测、论证挖掘和生物伦理话语计算分析研究。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语境保留架构</strong>：采用帖子-评论对层级结构完整保存Reddit对话语境，使模型能利用上下文信息推断立场而非仅依赖孤立文本</li><li style="margin-bottom:0;"><strong>三维度覆盖</strong>：围绕基本价值冲突、个人自由与集体责任、技术不确定性三大生物伦理争议维度选取六个代表性争议目标</li><li style="margin-bottom:0;"><strong>多轮独立标注</strong>：每条实例由三名独立标注者进行标注，通过多数投票或一致性分析确保立场标签的客观性与可靠性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>领域专用资源</strong>：首次构建面向生物伦理社交媒体辩论的大规模立场检测数据集，填补该交叉领域长期缺乏专用资源的空白</li><li style="margin-bottom:0;"><strong>语境感知设计</strong>：突破传统立场检测忽略对话结构的局限，将层级会话语境作为核心特征纳入数据集构建与标注框架</li><li style="margin-bottom:0;"><strong>三分类细粒度</strong>：针对生物伦理争议复杂性设计支持、反对、无立场三类标签，比二分类更能捕捉社交媒体中常见的模糊或中立态度</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>标注质量可靠</strong>：三名独立标注者达成平均Krippendorff's α=0.82的实质性一致性，证明标注方案清晰且生物伦理立场可被稳定识别</li><li style="margin-bottom:0;"><strong>主题结构兼备</strong>：数据集同时实现主题多样性（六目标三维度）与结构完整性（层级语境），为多维分析提供坚实基础</li><li style="margin-bottom:0;"><strong>多维研究支撑</strong>：BioStance不仅服务立场检测，还可扩展至论证挖掘、话语分析等任务，推动计算伦理学交叉研究发展</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.13187" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.13187</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>LAUKIN: A Multi-jurisdictional Common Law Contract Dataset</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.13184</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">LAUKIN：多法域普通法合同数据集</span>
+                        <span style="color:#666;font-size:12px;">Amrita Singh et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">跨国企业日益需要跨司法管辖区合同审查，但现有法律NLP数据集大多局限于单一司法管辖区。本文介绍LAUKIN（澳大利亚、英国和印度的法律等价数据集），这是一个跨司法管辖区（AU-UK、UK-IN、IN-AU）的条款对数据集，标注了布尔法律等价关系。研究开发了多阶段检索和重排序流水线构建初始条款对映射，并由法律专家标注部分条款对为等价或不等价。数据集包含14,727个条款对，来自204份合同、8种协议类型，其中3,000个手动标注：900训练、600开发、1,500测试。研究评估了12个模型、4种技术，最佳宏F1为65.11%，证明LAUKIN是一个具有挑战性的基准。结果显示尽管共享法律传统，各司法管辖区的起草惯例差异显著，跨司法管辖区等价分类并非易事。LAUKIN还包含11,727个未标注训练对，支持未来法律NLP半监督学习研究。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多阶段检索流水线</strong>：开发新颖的多阶段检索与重排序流水线，自动构建跨司法管辖区条款对的初始映射，为大规模数据集构建提供可扩展的技术方案</li><li style="margin-bottom:0;"><strong>专家标注机制</strong>：采用法律专家人工标注策略，从自动匹配的条款对中筛选子集进行等价/不等价标注，确保数据质量与标注可靠性</li><li style="margin-bottom:0;"><strong>跨法域配对技术</strong>：针对AU-UK、UK-IN、IN-AU三种法域组合设计专门的条款配对算法，处理不同司法管辖区合同文本的结构差异</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多法域合同数据集</strong>：首次构建覆盖澳大利亚、英国、印度三个普通法司法管辖区的合同条款等价数据集，突破现有法律NLP数据集单一法域的局限</li><li style="margin-bottom:0;"><strong>法律等价标注任务</strong>：创新性地定义跨司法管辖区条款的布尔法律等价标注任务，为法律NLP研究提供新的任务范式和研究方向</li><li style="margin-bottom:0;"><strong>半监督学习支持</strong>：设计包含3,000标注对与11,727未标注对的混合数据结构，专门为未来半监督学习研究提供数据基础设施</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨法域差异显著</strong>：尽管澳大利亚、英国、印度共享普通法法律传统，但各司法管辖区的合同起草惯例存在显著分歧，跨法域等价判断具有高度复杂性</li><li style="margin-bottom:0;"><strong>基准挑战性确立</strong>：12个模型4种技术的最佳宏F1仅为65.11%，证明LAUKIN是法律NLP领域中一个具有挑战性且值得深入研究的基准数据集</li><li style="margin-bottom:0;"><strong>应用价值明确</strong>：研究结果直接回应跨国企业跨司法管辖区合同审查的实际需求，为法律科技商业化应用提供数据和技术基础</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.13184" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.13184</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/13</p>
+        </div>
+    </div>
+</body>
+</html>

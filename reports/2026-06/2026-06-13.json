@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-13",
+  "title": "大模型幻觉检测与跨域应用创新全景",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.13216",
+      "title": "Layer-Resolved Optimal Transport for Hallucination Detection in NMT and Abstractive Summarization",
+      "chinese_title": "分层最优传输用于神经机器翻译与摘要生成中的幻觉检测",
+      "authors": "Mariia Onyshchuk et al.",
+      "url": "https://arxiv.org/abs/2606.13216"
+    },
+    {
+      "id": "2606.13649",
+      "title": "Operadic consistency: a label-free signal for compositional reasoning failures in LLMs",
+      "chinese_title": "LLM组合推理失效的Operadic一致性：无标签信号",
+      "authors": "Nathaniel Bottman et al.",
+      "url": "https://arxiv.org/abs/2606.13649"
+    },
+    {
+      "id": "2606.13610",
+      "title": "One Polluted Page Is Enough: Evaluating Web Content Pollution in Generative Recommenders",
+      "chinese_title": "单页污染足矣：评估生成式推荐器中的网页内容污染",
+      "authors": "Minghao Luo et al.",
+      "url": "https://arxiv.org/abs/2606.13610"
+    },
+    {
+      "id": "2606.13537",
+      "title": "When Does Mixing Help? Analyzing Query Embedding Interpolation in Multilingual Dense Retrieval",
+      "chinese_title": "混合何时有效？多语言稠密检索中的查询嵌入插值分析",
+      "authors": "Tongyao Zhu et al.",
+      "url": "https://arxiv.org/abs/2606.13537"
+    },
+    {
+      "id": "2606.13322",
+      "title": "Low-Latency Real-Time Audio Game Commentary System via LLM-Based Parallel Text Generation",
+      "chinese_title": "基于大语言模型的低延迟实时音频游戏解说系统",
+      "authors": "Ryota Kawamatsu et al.",
+      "url": "https://arxiv.org/abs/2606.13322"
+    },
+    {
+      "id": "2606.13187",
+      "title": "A Context-Aware Dataset for Stance Detection in Bioethical Controversies on Reddit",
+      "chinese_title": "Reddit生物伦理争议中立场的语境感知数据集",
+      "authors": "Hu Huang et al.",
+      "url": "https://arxiv.org/abs/2606.13187"
+    },
+    {
+      "id": "2606.13184",
+      "title": "LAUKIN: A Multi-jurisdictional Common Law Contract Dataset",
+      "chinese_title": "LAUKIN：多法域普通法合同数据集",
+      "authors": "Amrita Singh et al.",
+      "url": "https://arxiv.org/abs/2606.13184"
+    }
+  ],
+  "generated_at": "2026-06-12T22:10:28.141Z",
+  "org": "AI研究室"
+}
