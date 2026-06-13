@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-14",
+  "title": "大模型评测革新与多模态应用突破全景报告",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.13111",
+      "title": "MÖVE: A Holistic LLM Benchmark for the German Public Sector",
+      "chinese_title": "MÖVE：德国公共部门全方位大语言模型基准测试",
+      "authors": "Camilla Dalerci et al.",
+      "url": "https://arxiv.org/abs/2606.13111"
+    },
+    {
+      "id": "2606.13189",
+      "title": "SICI: A Semantic-Pragmatic Complexity Index Reveals Regime Shifts in LLM Stance Detection",
+      "chinese_title": "SICI：语义-语用复杂度指数揭示LLM立场检测的范式转变",
+      "authors": "Fuqiang Niu et al.",
+      "url": "https://arxiv.org/abs/2606.13189"
+    },
+    {
+      "id": "2606.13681",
+      "title": "EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments",
+      "chinese_title": "EvoArena：动态环境中追踪记忆演化以增强大语言模型智能体鲁棒性",
+      "authors": "Jundong Xu et al.",
+      "url": "https://arxiv.org/abs/2606.13681"
+    },
+    {
+      "id": "2606.13680",
+      "title": "Learning to Reason by Analogy via Retrieval-Augmented Reinforcement Fine-Tuning",
+      "chinese_title": "基于检索增强强化微调的类比推理学习",
+      "authors": "Zilin Xiao et al.",
+      "url": "https://arxiv.org/abs/2606.13680"
+    },
+    {
+      "id": "2606.13624",
+      "title": "Beyond Uniform Tokens: Adaptive Compression for Time Series Language Models",
+      "chinese_title": "超越均匀分词：时序语言模型的自适应压缩",
+      "authors": "Jialin Gan et al.",
+      "url": "https://arxiv.org/abs/2606.13624"
+    },
+    {
+      "id": "2606.13507",
+      "title": "Leveraging Audio-LLMs to Filter Speech-to-Speech Training Data",
+      "chinese_title": "利用音频大语言模型过滤语音对语音训练数据",
+      "authors": "Qixu Chen et al.",
+      "url": "https://arxiv.org/abs/2606.13507"
+    },
+    {
+      "id": "2606.13171",
+      "title": "NTS-CoT: Mitigating Hallucinations in LLM-based News Timeline Summarization with Chain-of-Thought Reasoning",
+      "chinese_title": "基于思维链推理缓解大语言模型新闻时间线摘要幻觉",
+      "authors": "Feng Lyu et al.",
+      "url": "https://arxiv.org/abs/2606.13171"
+    }
+  ],
+  "generated_at": "2026-06-13T22:09:12.902Z",
+  "org": "AI研究室"
+}
