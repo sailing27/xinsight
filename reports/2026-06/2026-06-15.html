@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型评测攻防与垂直场景应用突破 | 2026/6/15</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型评测攻防与垂直场景应用突破 | 2026/6/15</h1>
+                <div class="date">2026/6/15 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">当前大模型研究正呈现"能力深化"与"风险暴露"并行的技术态势。七篇论文共同揭示了三个关键趋势：其一，<strong>呈现层操纵成为新型安全威胁</strong>，AI评审系统可被"对抗性重新包装"系统性欺骗，且存在"易打动难说服"的不对称偏差，对学术诚信与自动化评估可靠性构成严峻挑战；其二，<strong>垂直领域评测基础设施加速完善</strong>，从斯洛伐克语嵌入、企业年报金融检索到政治偏见量化，研究者们正构建更贴近真实场景、更具可复现性的评估体系，弥补通用基准与专业应用之间的鸿沟；其三，<strong>动态上下文处理与技能进化机制成为应用落地关键</strong>，多轮对话中的"Lost in Conversation"现象导致性能骤降65%，而滚动记忆与闭环技能自动化管理为电商助手等场景提供了工程化解决方案。<br><br>这些发现对行业具有双重启示：一方面，大模型在垂直领域的部署亟需"评测先行"，金融、政治敏感等场景必须建立严格的长上下文与偏见评估框架；另一方面，系统的脆弱性正从隐藏提示攻击向更隐蔽的呈现层操纵迁移，安全研究需超越传统攻防范式，关注认知偏差与不对称操纵空间。低资源语言与多模态文档处理的突破，也为全球化应用与知识密集型行业的大模型落地提供了可复用的方法论基础。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>No Hidden Prompts Needed! You Can Game AI Peer Review with Presentation-Only Revisions</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.13044</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">无需隐藏提示，仅修改格式即可操纵AI同行评审</span>
+                        <span style="color:#666;font-size:12px;">Xu Yang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">随着AI生成评审从实验工具进入同行评审基础设施，本研究关注一种更隐蔽且更具政策相关性的失败模式：攻击者仅修改呈现层面内容（如摘要、贡献框架、相关工作、讨论和叙事结构），而不改变方法、实验、图表、方程、证明或数值结果。研究提出对抗性重新包装攻击，利用AI评审反馈闭环搜索呈现层面的修订，在三种主流AI评审器上实现75.1%的攻击成功率和平均+1.21/10的分数提升。研究发现改变评审者对论文解读策略（如相关工作重新定位和分析性讨论扩展）显著优于表面编辑，并揭示两个深层结构失败模式：AI评审器更易被打动而非被说服，且易混淆解决局限性的表象与实际解决。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>对抗性重新包装</strong>：仅修改论文呈现层面内容如摘要、贡献框架和叙事结构，保持科学证据完全不变，形成闭环攻击机制持续优化评审分数</li><li style="margin-bottom:0;"><strong>闭环反馈搜索</strong>：利用AI评审器的反馈迭代调整呈现策略，自动寻找最能提升评审分数的表述方式而非实质改进研究质量</li><li style="margin-bottom:0;"><strong>多评审器验证</strong>：在三种主流AI评审系统上测试攻击效果，确保结果的普适性和对现有AI评审基础设施的威胁评估可靠性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>无隐藏文本攻击</strong>：突破现有研究聚焦的隐藏指令和提示注入等显式攻击，证明无需任何隐藏内容即可系统性操纵AI评审结果</li><li style="margin-bottom:0;"><strong>证据锚定约束</strong>：创新性地将攻击限定为完全不改变方法、实验、图表、方程、证明和数值结果，严格隔离呈现效应与科学贡献</li><li style="margin-bottom:0;"><strong>重新定位策略</strong>：发现相关工作重新定位和分析性讨论扩展等深层叙事策略，其效果远超局部润色、表格格式和算法框等表面编辑</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>易打动难说服</strong>：AI评审器存在系统性偏差，突出优势能可靠提升感知价值，而试图消解弱点反而经常适得其反，呈现不对称操纵空间</li><li style="margin-bottom:0;"><strong>表象混淆实质</strong>：AI评审器易将解决局限性的外观与实际解决相混淆，使未改变的证据被重新解读为更强的科学贡献，造成评审失真</li><li style="margin-bottom:0;"><strong>优化表面浮现</strong>：部署风险不仅在于恶意隐藏指令，更在于论文呈现本身成为可优化的攻击面，威胁同行评审的科学内容锚定性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.13044" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.13044</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>SkMTEB: Slovak Massive Text Embedding Benchmark and Model Adaptation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.13647</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">SkMTEB：斯洛伐克大规模文本嵌入基准与模型适配</span>
+                        <span style="color:#666;font-size:12px;">Marek Šuppa et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文介绍SkMTEB，首个面向斯洛伐克语的综合性MTEB风格文本嵌入基准，涵盖7类任务31个数据集，覆盖深度达现有基准近4倍。评估31个嵌入模型发现大型指令调优多语言模型表现最强，而现有斯洛伐克语NLU模型迁移效果差。为此开发e5-sk-small（45M参数）和e5-sk-large（365M）模型，通过词表裁剪和微调实现最高62%的体积缩减，在保持本地可部署的同时达到与商业API竞争的性能，适用于语义搜索和RAG场景。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>基准构建技术</strong>：构建首个斯洛伐克语MTEB风格嵌入基准SkMTEB，涵盖7种任务类型31个数据集，覆盖深度达到现有斯洛伐克语多语言基准的4倍，为低资源语言嵌入评估提供完整框架</li><li style="margin-bottom:0;"><strong>词表裁剪技术</strong>：对多语言E5模型进行斯洛伐克语针对性词表裁剪，去除低频冗余词元，在保持核心语义能力前提下实现模型体积最高缩减62%，显著降低部署资源需求</li><li style="margin-bottom:0;"><strong>领域微调技术</strong>：基于裁剪后的多语言E5模型进行斯洛伐克语嵌入任务专项微调，优化语义搜索和检索增强生成场景下的向量表示质量，适配本地部署环境</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>低资源基准创新</strong>：开创性地为斯洛伐克语建立大规模文本嵌入基准，突破现有低资源语言嵌入评估数据匮乏的瓶颈，提供可复用的低资源语言基准构建方法论</li><li style="margin-bottom:0;"><strong>模型压缩创新</strong>：创新性地将词表裁剪与任务微调结合应用于多语言嵌入模型，在极小参数量下实现接近商业API的性能，为边缘设备部署开辟新路径</li><li style="margin-bottom:0;"><strong>NLU迁移发现</strong>：首次系统揭示斯洛伐克语专用NLU模型向嵌入任务迁移失效的现象，指出低资源语言中自然语言理解与语义表示存在显著能力鸿沟</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模型规模规律</strong>：大型指令调优多语言模型在斯洛伐克语嵌入任务中表现最强，参数量与跨语言迁移能力呈正相关，通用多语言训练优于单语专用模型</li><li style="margin-bottom:0;"><strong>迁移失效结论</strong>：现有斯洛伐克语NLU专用模型向嵌入任务迁移效果极差，证明低资源语言中NLU与嵌入表示属于不同能力维度，需专项训练而非简单迁移</li><li style="margin-bottom:0;"><strong>效能平衡结论</strong>：e5-sk-small和e5-sk-large以最高62%体积缩减实现与商业API竞争性能，验证模型压缩与专项微调可有效平衡低资源语言的效率与效果需求</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.13647" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.13647</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>LEDGER: A Long-Context Benchmark of Corporate Annual Reports for Grounded Financial Retrieval and Extraction</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.13100</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">LEDGER：基于年报长文本的财务检索与抽取基准测试</span>
+                        <span style="color:#666;font-size:12px;">Charles Moslonka et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">LEDGER是一个面向长上下文金融文档理解的新型基准数据集，包含4,999份完整的企业年度报告（含图表、表格和叙述文本），而非仅含纯文本的SEC 10-K文件。每份报告标注了31项合并财务KPI，并与财报发布日的市场反应关联。基于此构建三个难度递进的评测任务：页面级KPI检索（118,048个自然语言问题）、对话式"大海捞针"单值查找、以及完整KPI提取任务。同时提供人工OCR质量标注、标注者一致性数据及完整的提取验证评分工具链，并通过CEO信函修辞与市场影响的关联分析展示数据集的研究价值。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多模态文档处理</strong>：整合年度报告中的图表、表格与叙述文本，突破传统仅处理纯文本SEC文件的局限，实现完整财务文档的结构化理解</li><li style="margin-bottom:0;"><strong>KPI自动提取</strong>：设计31项标准化财务关键绩效指标的自动提取与验证机制，支持从长文本密集数值报告中精准定位并抽取核心财务数据</li><li style="margin-bottom:0;"><strong>三层评测体系</strong>：构建难度渐进的评估框架，涵盖检索、单值查找与完整提取三类任务，全面检验模型在长上下文金融场景下的能力边界</li><li style="margin-bottom:0;"><strong>市场反应关联</strong>：建立财务指标与财报发布日市场反应的映射机制，为金融NLP研究提供可量化验证的预测性分析基础</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>真实文档基准</strong>：首次发布近五千份完整数字化年报，保留原始排版与视觉结构，而非简化后的监管申报文本，更贴近实际金融分析场景</li><li style="margin-bottom:0;"><strong>TREC式相关性标注</strong>：采用信息检索领域标准的TREC评测范式，为11.8万个自然语言查询提供页面级相关性判断，支持细粒度检索性能评估</li><li style="margin-bottom:0;"><strong>对话式针海测试</strong>：创新设计交互式单值查找任务，模拟金融分析师多轮追问场景，检验模型在超长文档中的精准定位与推理能力</li><li style="margin-bottom:0;"><strong>完整工具链开源</strong>：提供从数据提取、质量验证到自动评分的全流程开源工具，配套人工OCR质量标注与多标注者一致性数据，确保结果可复现</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>长上下文金融评测迫切性</strong>：现有大语言模型的超长上下文能力与企业年报的复杂长文档特性形成天然契合，亟需建立严格评估体系以推动领域发展</li><li style="margin-bottom:0;"><strong>视觉信息不可或缺</strong>：完整年报中的图表、表格等视觉元素对财务理解至关重要，纯文本简化会显著损失关键信息，多模态处理是技术突破方向</li><li style="margin-bottom:0;"><strong>CEO修辞影响市场</strong>：案例研究证实首席执行官信函中的语言修辞风格与年报发布后的市场反应存在显著关联，揭示文本分析对金融预测的实际价值</li><li style="margin-bottom:0;"><strong>现有基准存在局限</strong>：当前公开金融资源过度依赖简化文本与少量问答对，无法充分检验模型在真实复杂场景下的长上下文理解与数值推理能力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.13100" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.13100</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Polar: A Benchmark for Evaluating Political Bias in LLMs</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.12922</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">POLAR：大语言模型政治偏见评估基准</span>
+                        <span style="color:#666;font-size:12px;">Sangho Kim et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">Polar是一个包含4,026个实例的多选题基准测试，通过选项级似然度而非基于提示的生成来测量大型语言模型中的政治偏见。该基准涵盖两个意识形态轴和八个议题类别，源自Manifesto Project，并在美国和韩国政治语境中并行评估模型。研究发现，38个LLM的测量偏见随政治语境、议题类别、模型组别和呈现语言系统性变化，所有模型在美国政治内容上倾向左派进步，但在韩国内容上表现更为中立和混合，翻译实验进一步表明仅呈现语言即可改变测量偏见。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>选项级似然测量</strong>：通过计算多选题各选项的似然度而非生成文本，实现更精确、可复现的政治偏见量化，避免提示工程带来的偏差</li><li style="margin-bottom:0;"><strong>跨语境并行评估</strong>：同时在美国和韩国政治语境中测试模型，使用源自Manifesto Project的两轴八类议题框架，确保跨文化可比性</li><li style="margin-bottom:0;"><strong>翻译对照实验</strong>：将同一内容翻译为不同语言进行测试，分离语言呈现与实质内容对偏见测量的独立影响</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>可复现偏见基准</strong>：构建4,026实例的标准化数据集，解决政治偏见测量难以跨研究复现的核心难题，提供量化评估基础设施</li><li style="margin-bottom:0;"><strong>语境敏感性揭示</strong>：首次系统证明LLM政治偏见高度依赖政治语境，同一模型在不同国家语境中呈现截然不同的偏见模式</li><li style="margin-bottom:0;"><strong>语言效应发现</strong>：发现呈现语言本身可独立改变测量偏见，揭示多语言模型内部存在与语言相关的政治立场表征</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>美国语境左倾一致</strong>：全部38个LLM在美国政治内容上均表现左派进步倾向，显示训练数据中存在系统性西方自由主义偏差</li><li style="margin-bottom:0;"><strong>韩国语境混合中立</strong>：模型在韩国政治内容上呈现更为居中且分散的偏见模式，反映非西方语境下政治立场表征的不稳定性</li><li style="margin-bottom:0;"><strong>语言独立影响</strong>：翻译实验证明仅改变呈现语言即可显著移动偏见测量值，表明多语言LLM的政治偏见具有语言依赖性维度</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.12922" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.12922</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>PiDA: Phonetically-Informed Data Augmentation for Robust Vietnamese Speech Translation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.12911</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">基于语音信息的数据增强用于鲁棒越南语语音翻译</span>
+                        <span style="color:#666;font-size:12px;">Giang Son Nguyen et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">级联语音翻译系统因ASR错误传播而受损。本文首次系统分类越南语ST中的ASR错误，按语音原因归类替换错误，并用线性混合效应模型量化其对NMT的影响。发现大多数ASR替换错误源于语音混淆而非随机噪声，且显著降低ST质量。据此提出语音感知数据增强（PiDA），利用语音词嵌入生成类ASR损坏。在FLEURS越南语-英语PiDA增强数据上微调，翻译错误ASR输出提升高达+2.04 BLEU，同时略提升干净文本性能。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>错误系统分类</strong>：首次对越南语语音翻译中的ASR替换错误进行语音学层面的系统分类，明确错误来源与性质</li><li style="margin-bottom:0;"><strong>语音混淆量化</strong>：采用线性混合效应模型精确测量语音错误对下游神经机器翻译性能的具体影响程度</li><li style="margin-bottom:0;"><strong>语音词嵌入</strong>：构建基于语音相似性的词嵌入表示，用于识别和生成音似替代词以模拟ASR错误模式</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语音感知增强</strong>：提出PiDA方法，突破传统随机噪声增强范式，基于语音学原理定向生成类ASR错误样本</li><li style="margin-bottom:0;"><strong>音似词替换机制</strong>：利用语音词嵌入寻找发音相近词进行替换，使增强数据更贴近真实ASR错误分布</li><li style="margin-bottom:0;"><strong>双向性能提升</strong>：同时优化错误输入鲁棒性与干净文本翻译质量，实现抗干扰与基础性能的双重改进</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语音错误主导</strong>：证实越南语ASR替换错误主要源于语音混淆而非随机噪声，为针对性改进提供依据</li><li style="margin-bottom:0;"><strong>显著性能退化</strong>：语音类错误对下游翻译质量造成显著负面影响，错误传播问题在级联架构中尤为严重</li><li style="margin-bottom:0;"><strong>增强效果突出</strong>：PiDA在错误ASR输出翻译上提升达2.04 BLEU，且对干净文本亦有轻微改善，验证方法有效性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.12911" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.12911</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>SkillChain: Closing the Loop on Skill Evolution for Image-Based E-Commerce AI Assistants</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.12984</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">SkillChain：闭环追踪技能演进的图像电商AI助手</span>
+                        <span style="color:#666;font-size:12px;">Yimin Hu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">针对电商图像AI助手面临的多种用户意图（产品搜索、风格推荐、视觉百科、工具调用）难以统一处理的问题，本文提出SkillChain框架，通过Skill Creator、Route Optimizer和Body Refiner三个阶段实现技能的自动化生命周期管理，并在生产环境部署验证，显著提升响应质量、结构合规性和用户参与度。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>技能创建器</strong>：基于任务规格和轨迹数据自动初始化技能定义，实现从原始需求到可执行技能的原型构建，解决意图空间广度带来的手动工程不可行问题</li><li style="margin-bottom:0;"><strong>路由优化器</strong>：专门优化意图路由对齐机制，确保上传图像能准确触发对应技能路径，避免LLM系统将异构模式混淆，保障不同意图的响应格式正确性</li><li style="margin-bottom:0;"><strong>躯体精炼器</strong>：采用双路径LLM-Judge评估进行迭代式技能体优化，通过自动化评判机制持续改进技能内容质量，形成闭环自我进化能力</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>闭环进化机制</strong>：首次实现技能从创建到优化的全生命周期自动化闭环，打破传统手动维护模式，使系统能够自适应动态变化的电商意图空间</li><li style="margin-bottom:0;"><strong>双路评判体系</strong>：创新设计双路径LLM-Judge评估框架，从结构合规与内容质量两个维度并行评判，为技能迭代提供多视角反馈信号</li><li style="margin-bottom:0;"><strong>生产级部署</strong>：将框架完整部署于大规模电商图像助手实际生产环境，通过真实用户交互数据驱动技能进化，验证工业场景可行性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>质量显著提升</strong>：SkillChain在聚合响应质量上取得实质性改进，尤其在结构合规性和内容质量两个维度表现最为突出，验证自动化技能管理的有效性</li><li style="margin-bottom:0;"><strong>用户行为优化</strong>：为期一周的在线A/B实验证实，系统在用户参与度、内容消费量和长期留存率三个核心指标上均获得显著增长</li><li style="margin-bottom:0;"><strong>异构意图处理</strong>：明确证明无行为约束的LLM系统无法满足领域质量标准，而按意图分离的技能化架构是解决电商多模态交互的关键路径</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.12984" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.12984</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Multi-Turn Reasoning When Context Arrives in Pieces: Scalable Sharding and Memory-Augmented RL</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.12941</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">上下文分片到达时的多轮推理：可扩展分片与记忆增强强化学习</span>
+                        <span style="color:#666;font-size:12px;">Shu Tong Luo et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">当用户在多轮对话中逐步揭示任务关键信息时，尽管完整上下文始终可用，大语言模型的准确率却下降高达65%。本文提出通过训练模型维护紧凑的滚动记忆而非关注不断增长的历史，来缓解这种"Lost in Conversation"退化现象。为降低训练成本，作者设计了低成本分片流水线，将单轮QA数据集自动转换为多轮碎片化信息片段，无需数小时人工标注。仅在分片后的GSM8K上训练，记忆增强策略显著提升了多轮准确率，并能零样本泛化到更难的数学问题和域外长上下文QA任务。此外，记忆训练模型即使在测试时获得完整历史，仍优于全历史基线模型，表明学习压缩比单纯暴露于完整上下文能产生更鲁棒的增量推理能力。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>滚动记忆机制</strong>：训练模型维护紧凑的滚动记忆状态，替代对完整对话历史的直接关注，解决多轮对话中信息逐步揭示导致的性能退化问题</li><li style="margin-bottom:0;"><strong>自动分片流水线</strong>：将单轮QA数据集低成本转换为多轮碎片化信息片段，消除人工标注需求，使多轮推理训练具备可扩展性</li><li style="margin-bottom:0;"><strong>记忆增强强化学习</strong>：通过强化学习训练记忆策略，使模型学会在对话过程中动态压缩和更新关键信息，而非被动存储所有历史内容</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分片数据生成</strong>：提出可扩展的自动分片方法，将现有单轮数据集转化为多轮对话格式，突破多轮训练数据稀缺的瓶颈</li><li style="margin-bottom:0;"><strong>增量推理压缩</strong>：创新性地让模型学习信息压缩而非依赖完整上下文，证明压缩式推理比全上下文暴露更具鲁棒性</li><li style="margin-bottom:0;"><strong>零样本跨域泛化</strong>：记忆训练模型无需额外微调即可泛化到更难数学问题和域外长上下文QA，展现强泛化能力</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>对话性能退化</strong>：用户在多轮中逐步揭示关键信息时，LLM准确率最高下降65%，即使完整上下文始终可用，存在显著的Lost in Conversation现象</li><li style="margin-bottom:0;"><strong>记忆优于全历史</strong>：记忆增强模型在测试时即使获得完整历史，仍 outperform 全历史基线，说明学习压缩能产生更鲁棒的增量推理</li><li style="margin-bottom:0;"><strong>低成本高效训练</strong>：仅使用自动分片的GSM8K训练即可实现显著的多轮准确率提升和跨域泛化，无需昂贵的人工多轮数据标注</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.12941" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.12941</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/15</p>
+        </div>
+    </div>
+</body>
+</html>

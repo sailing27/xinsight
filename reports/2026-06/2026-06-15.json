@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-15",
+  "title": "大模型评测攻防与垂直场景应用突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.13044",
+      "title": "No Hidden Prompts Needed! You Can Game AI Peer Review with Presentation-Only Revisions",
+      "chinese_title": "无需隐藏提示，仅修改格式即可操纵AI同行评审",
+      "authors": "Xu Yang et al.",
+      "url": "https://arxiv.org/abs/2606.13044"
+    },
+    {
+      "id": "2606.13647",
+      "title": "SkMTEB: Slovak Massive Text Embedding Benchmark and Model Adaptation",
+      "chinese_title": "SkMTEB：斯洛伐克大规模文本嵌入基准与模型适配",
+      "authors": "Marek Šuppa et al.",
+      "url": "https://arxiv.org/abs/2606.13647"
+    },
+    {
+      "id": "2606.13100",
+      "title": "LEDGER: A Long-Context Benchmark of Corporate Annual Reports for Grounded Financial Retrieval and Extraction",
+      "chinese_title": "LEDGER：基于年报长文本的财务检索与抽取基准测试",
+      "authors": "Charles Moslonka et al.",
+      "url": "https://arxiv.org/abs/2606.13100"
+    },
+    {
+      "id": "2606.12922",
+      "title": "Polar: A Benchmark for Evaluating Political Bias in LLMs",
+      "chinese_title": "POLAR：大语言模型政治偏见评估基准",
+      "authors": "Sangho Kim et al.",
+      "url": "https://arxiv.org/abs/2606.12922"
+    },
+    {
+      "id": "2606.12911",
+      "title": "PiDA: Phonetically-Informed Data Augmentation for Robust Vietnamese Speech Translation",
+      "chinese_title": "基于语音信息的数据增强用于鲁棒越南语语音翻译",
+      "authors": "Giang Son Nguyen et al.",
+      "url": "https://arxiv.org/abs/2606.12911"
+    },
+    {
+      "id": "2606.12984",
+      "title": "SkillChain: Closing the Loop on Skill Evolution for Image-Based E-Commerce AI Assistants",
+      "chinese_title": "SkillChain：闭环追踪技能演进的图像电商AI助手",
+      "authors": "Yimin Hu et al.",
+      "url": "https://arxiv.org/abs/2606.12984"
+    },
+    {
+      "id": "2606.12941",
+      "title": "Multi-Turn Reasoning When Context Arrives in Pieces: Scalable Sharding and Memory-Augmented RL",
+      "chinese_title": "上下文分片到达时的多轮推理：可扩展分片与记忆增强强化学习",
+      "authors": "Shu Tong Luo et al.",
+      "url": "https://arxiv.org/abs/2606.12941"
+    }
+  ],
+  "generated_at": "2026-06-14T22:09:42.695Z",
+  "org": "AI研究室"
+}
