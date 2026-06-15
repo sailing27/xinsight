@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-16",
+  "title": "大模型七维突破 从认知对齐到具身智能与全双工交互",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.14691",
+      "title": "CORA: Analyzing and bridging thinking-answer gap in Multimodal RLVR via Consistency-Oriented Reasoning Alignment",
+      "chinese_title": "CORA：通过一致性推理对齐缩小多模态RLVR中的思维-答案鸿沟",
+      "authors": "Jiayue Cao et al.",
+      "url": "https://arxiv.org/abs/2606.14691"
+    },
+    {
+      "id": "2606.14199",
+      "title": "OdysSim: Building Foundation Models for Human Behavior Simulation",
+      "chinese_title": "OdysSim：构建人类行为模拟基础模型",
+      "authors": "Xuhui Zhou et al.",
+      "url": "https://arxiv.org/abs/2606.14199"
+    },
+    {
+      "id": "2606.13995",
+      "title": "Dialogue SWE-Bench: A Benchmark for Dialogue-Driven Coding Agents",
+      "chinese_title": "对话式SWE-Bench：面向对话驱动编码智能体的基准测试",
+      "authors": "Brendan King et al.",
+      "url": "https://arxiv.org/abs/2606.13995"
+    },
+    {
+      "id": "2606.14528",
+      "title": "BayLing-Duplex: Native Full-Duplex Speech Dialogue with a Single Autoregressive LLM",
+      "chinese_title": "百聆双工：单自回归大语言模型实现原生全双工语音对话",
+      "authors": "Qingkai Fang et al.",
+      "url": "https://arxiv.org/abs/2606.14528"
+    },
+    {
+      "id": "2606.14674",
+      "title": "AgentSpec: Understanding Embodied Agent Scaffolds Through Controlled Composition",
+      "chinese_title": "AgentSpec：通过受控组合理解具身智能体脚手架",
+      "authors": "Jixuan Chen et al.",
+      "url": "https://arxiv.org/abs/2606.14674"
+    },
+    {
+      "id": "2606.14626",
+      "title": "Characterizing Cultural Localization in AI-Generated Stories",
+      "chinese_title": "AI生成故事的文化本土化特征研究",
+      "authors": "Shaily Bhatt et al.",
+      "url": "https://arxiv.org/abs/2606.14626"
+    },
+    {
+      "id": "2606.14574",
+      "title": "SIMMER: Benchmarking Latent Failures in LLM Executable Planning with a World Model",
+      "chinese_title": "SIMMER：基于世界模型的LLM可执行规划潜在失败基准测试",
+      "authors": "Xiaoxin Lu et al.",
+      "url": "https://arxiv.org/abs/2606.14574"
+    }
+  ],
+  "generated_at": "2026-06-15T22:10:10.460Z",
+  "org": "AI研究室"
+}

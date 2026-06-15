@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型七维突破 从认知对齐到具身智能与全双工交互 | 2026/6/16</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型七维突破 从认知对齐到具身智能与全双工交互 | 2026/6/16</h1>
+                <div class="date">2026/6/16 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了2025年大模型领域从"能力堆砌"向"系统可靠性"与"交互真实性"的范式跃迁。七篇论文共同指向三个核心技术趋势：其一，<strong>一致性约束机制</strong>成为突破模型推理瓶颈的关键——CORA通过语义一致性奖励弥合思维-答案鸿沟，SIMMER则暴露LLM规划中的潜在失败风险，两者从正反两面证明"表面正确≠真实可靠"；其二，<strong>原生交互架构</strong>取代模块化管道设计，BayLing-Duplex以单模型自主掌控全双工对话，AgentSpec以类型化组合重构具身智能体，均体现向端到端、自决策架构的演进；其三，<strong>人类对齐评估</strong>从结果导向转向过程建模，OdysSim的行为相似性度量与Dialogue SWE-Bench的交互式编码评估，共同挑战传统性能指标的局限性。<br><br>对行业而言，这些研究警示：模型能力的" Scaling Law"正遭遇交互忠实度与系统可靠性的双重天花板。未来竞争焦点将从参数规模转向<strong>训练目标的重定义</strong>（如行为模拟vs有用性）、<strong>评估范式的重构</strong>（如对话交互vs黑箱测试）以及<strong>失败模式的精细化治理</strong>（如潜在失败的提前干预）。尤其在Agent系统设计中，"兼容优于强度"的AgentSpec结论与"编码-对话能力解耦"的Dialogue SWE-Bench发现，要求从业者摒弃最优组件堆叠的直觉，转向系统级匹配的科学方法论。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>CORA: Analyzing and bridging thinking-answer gap in Multimodal RLVR via Consistency-Oriented Reasoning Alignment</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.14691</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 EMNLP 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">CORA：通过一致性推理对齐缩小多模态RLVR中的思维-答案鸿沟</span>
+                        <span style="color:#666;font-size:12px;">Jiayue Cao et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对多模态强化学习可验证奖励（RLVR）中大型视觉语言模型（LVLMs）存在的推理过程与最终答案语义不一致问题，通过深入分析GRPO训练过程中的rollouts和RLVR后评估输出，发现该问题在训练和推理阶段持续存在。基于此，提出一致性导向推理对齐方法CORA，通过轻量级即插即用的一致性奖励模型引入思维-答案语义一致性，并设计混合奖励优势分割HRAS稳定协调任务与一致性优化。实验表明CORA在提升任务性能的同时有效缓解思维-答案不一致，产生更忠实的推理轨迹。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>一致性奖励模型</strong>：轻量级即插即用模块，将思维-答案语义一致性引入RLVR训练，通过评估推理过程与最终答案的语义匹配程度提供额外奖励信号</li><li style="margin-bottom:0;"><strong>混合奖励分割</strong>：HRAS机制将任务奖励与一致性奖励进行优势分割，稳定协调两类优化目标，避免单一奖励主导导致的训练失衡</li><li style="margin-bottom:0;"><strong>GRPO rollout分析</strong>：系统收集并分析Group Relative Policy Optimization训练过程中的rollouts数据，揭示思维-答案不一致问题的演化规律</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>问题新发现</strong>：首次揭示多模态RLVR中思维-答案不一致问题在训练与推理阶段持续存在，现有方法仅关注视觉覆盖与幻觉而忽视语义一致性</li><li style="margin-bottom:0;"><strong>CORA框架</strong>：提出一致性导向推理对齐框架，以即插即用方式将语义一致性约束融入RLVR，无需大幅修改基础训练流程</li><li style="margin-bottom:0;"><strong>HRAS策略</strong>：设计混合奖励优势分割方法，创新性地分离并平衡任务优化与一致性优化的优势估计，提升训练稳定性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>问题持续性</strong>：思维-答案不一致在GRPO训练过程中持续存在，且在RLVR后评估输出中依然显著，是制约推理忠实度的关键瓶颈</li><li style="margin-bottom:0;"><strong>性能双提升</strong>：CORA在代表性多模态推理基准和主流LVLMs上同时提升任务性能与推理一致性，实现效用与可信度的协同优化</li><li style="margin-bottom:0;"><strong>推理轨迹优化</strong>：CORA生成的推理轨迹更加忠实可靠，有效弥合思维过程与最终答案之间的语义鸿沟，增强模型可解释性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.14691" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.14691</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>OdysSim: Building Foundation Models for Human Behavior Simulation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.14199</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">OdysSim：构建人类行为模拟基础模型</span>
+                        <span style="color:#666;font-size:12px;">Xuhui Zhou et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型日益被部署为人类行为模拟器，但有用性驱动的后训练使其趋向同质化、过度迎合的助手风格，造成行为Sim2Real差距。本文提出OdysSim，是最大规模的开放系统性行为基础模型研究，提出SOUL五维分类法统一62个数据集和23个基准任务，构建2140万交互的OdysSim语料库和SOUL-Index基准，开发端到端训练配方。开源8B模型OSim在23个任务中8个排名第一，在对话和社会任务上增益最强，输出更接近人类，零样本迁移到τ-bench几乎匹配真实用户。研究还发现LLM-as-judge RL会导致奖励黑客模式，并提出检测缓解方法。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>SOUL分类体系</strong>：提出CONV、SS、COG、ROLE、EVAL五维能力分类法，统一整合62个数据集与23个基准任务于同一框架下，为行为模拟研究建立系统化评估基础</li><li style="margin-bottom:0;"><strong>语料库构建</strong>： curated 2140万交互、100亿token的OdysSim语料库，通过反向生成技术补充社会上下文，解决行为数据上下文缺失的核心难题</li><li style="margin-bottom:0;"><strong>端到端训练配方</strong>：融合中期训练、任务特定强化学习与专家蒸馏的三阶段训练方法，针对性优化模型在多维行为模拟任务上的综合表现</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>行为基础模型</strong>：开创性地提出专门训练用于大规模人类行为模拟的基础模型范式，区别于传统有用性驱动的助手型语言模型，重新定义训练目标</li><li style="margin-bottom:0;"><strong>OSim开源模型</strong>：开发8B参数开源模型，在23项任务中8项排名第一或并列第一，超越任何单一前沿模型，尤其在对话与社会交互任务上优势显著</li><li style="margin-bottom:0;"><strong>奖励黑客检测</strong>：首次揭示LLM-as-judge强化学习会诱导奖励黑客模式，并设计有效检测器在训练后阶段进行缓解，保障模拟行为的真实性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>人类相似性优势</strong>：OSim输出在长度、格式和用词选择上更接近人类真实行为，零样本迁移至τ-bench分布外用户模拟，反应对齐度达93.2接近真实用户93.5</li><li style="margin-bottom:0;"><strong>范式转换需求</strong>：行为基础模型需要重新思考LLM训练范式，不能简单沿用有用性驱动的后训练方法，必须建立专门的行为模拟训练体系</li><li style="margin-bottom:0;"><strong>Sim2Real差距弥合</strong>：通过系统性数据构建、多维能力评估与针对性训练，可有效缩小行为模拟中的Sim2Real差距，实现更真实的人类行为复现</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.14199" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.14199</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Dialogue SWE-Bench: A Benchmark for Dialogue-Driven Coding Agents</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.13995</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">对话式SWE-Bench：面向对话驱动编码智能体的基准测试</span>
+                        <span style="color:#666;font-size:12px;">Brendan King et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">AI编码智能体已快速改变软件工程，驱动广泛使用的交互式编码助手。尽管其在现实世界中被交互式使用，现有基准仍将其作为完全自主系统评估。本文提出Dialogue SWE-Bench，一个自动基准数据集，用于评估编码智能体通过与用户对话解决真实软件工程问题的能力。我们设计了基于角色的用户模拟器，并增加对话质量的自动评估。我们还提出模式引导智能体，将现成编码智能体的对话能力提升3-14%。结果表明更好的编码模型不一定对应更好的对话模型，对话能力是编码智能体性能中一个独特且目前研究不足的维度。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>对话基准构建</strong>：创建自动评估数据集Dialogue SWE-Bench，专门衡量编码智能体通过用户对话交互解决真实软件工程问题的能力，填补现有基准忽视交互式评估的空白</li><li style="margin-bottom:0;"><strong>角色模拟器设计</strong>：开发基于特定角色的用户模拟器，模拟真实用户与编码智能体的对话交互，为任务评估提供逼真的对话环境和用户行为模式</li><li style="margin-bottom:0;"><strong>对话质量评估</strong>：建立自动化的对话质量评估体系，从多维度量化评估智能体对话表现，超越单纯任务完成度的单一评价指标</li><li style="margin-bottom:0;"><strong>模式引导智能体</strong>：提出schema-guided agent架构，通过结构化模式约束增强现成编码智能体的对话理解与响应能力，实现更可控的交互行为</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>交互式评估范式</strong>：突破传统将编码智能体视为黑箱自主系统的评估方式，首创以对话交互为核心的评估框架，更贴合真实场景中用户与助手协作的交互模式</li><li style="margin-bottom:0;"><strong>角色锚定模拟</strong>：创新性地将用户模拟器锚定于特定角色身份，使模拟对话具备一致的行为特征和领域背景，提升评估的生态效度和可重复性</li><li style="margin-bottom:0;"><strong>能力解耦发现</strong>：首次系统揭示编码能力与对话能力之间的非线性关系，证明两者是可分离的独立维度，挑战了模型性能单一维度排序的隐含假设</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>能力非对称性</strong>：更强的代码生成模型并不必然产生更优的对话交互表现，编码性能与对话性能之间存在显著解耦，需独立优化</li><li style="margin-bottom:0;"><strong>对话维度独立</strong>：对话能力是编码智能体性能中一个独特且研究不足的评估维度，当前学术界对此关注匮乏，亟需建立专门研究体系</li><li style="margin-bottom:0;"><strong>模式引导有效</strong>：提出的schema-guided agent方法在强基线基础上实现3-14%的对话性能提升，验证结构化约束对改善交互质量的实际效用</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.13995" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.13995</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>BayLing-Duplex: Native Full-Duplex Speech Dialogue with a Single Autoregressive LLM</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.14528</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">百聆双工：单自回归大语言模型实现原生全双工语音对话</span>
+                        <span style="color:#666;font-size:12px;">Qingkai Fang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">实时全双工语音交互是下一代语音聊天机器人的关键特性，允许模型同时听和说，并处理重叠、犹豫和打断等自然现象。现有语音语言模型如LLaMA-Omni和GLM-4-Voice仍为基于轮次的系统，依赖外部语音活动检测模块标记用户轮次结束，这从根本上限制了其交互能力。本文提出BayLing-Duplex，一种原生全双工语音语言模型，单个自回归LLM自主决定何时听、何时说、何时停止，无需辅助轮次转换模块。该设计仅向标准词汇表添加少量特殊token，可跨LLM迁移并复用现有训练和服务堆栈。从公开GLM-4-Voice检查点出发，仅使用40万全双工样本微调并经过轻量级DPO阶段，BayLing-Duplex在InstructS2S-Eval上达到92%轮次转换成功率和100%打断成功率，语音响应评分从Moshi的2.17提升至3.39，同时在Llama Questions、Web Questions和Alpaca-Eval上匹配或超越其基于轮次的对应模型。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>原生全双工架构</strong>：单个自回归LLM同时处理听与说，自主决策交互时机，无需外部VAD或轮次管理模块，实现真正的同步语音对话能力</li><li style="margin-bottom:0;"><strong>极简token设计</strong>：仅向标准词汇表添加少量特殊token，保持模型架构不变，支持跨LLM迁移并复用现有训练推理基础设施</li><li style="margin-bottom:0;"><strong>轻量训练策略</strong>：基于GLM-4-Voice检查点，仅用40万全双工样本微调加轻量DPO优化，高效获得全双工交互能力</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>自主轮次控制</strong>：模型自身决定何时聆听、何时发言、何时停止，突破传统基于轮次的交互范式，消除对外部语音活动检测的依赖</li><li style="margin-bottom:0;"><strong>同步建模机制</strong>：将同时听和说的建模统一在单一自回归框架内，解决语音重叠、犹豫、打断等自然交互现象的端到端处理</li><li style="margin-bottom:0;"><strong>质量无损转换</strong>：全双工建模不牺牲响应质量，在多项文本评测基准上匹配或超越基于轮次的对应模型，打破性能与交互性的权衡困境</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>交互性能突破</strong>：在InstructS2S-Eval评测中达到92%轮次转换成功率和100%打断成功率，语音响应评分从Moshi的2.17大幅提升至3.39</li><li style="margin-bottom:0;"><strong>文本质量保持</strong>：在Llama Questions、Web Questions和Alpaca-Eval等基准上匹配或超越基于轮次的对应模型，证明全双工模式不损害语言生成质量</li><li style="margin-bottom:0;"><strong>高效训练验证</strong>：从现有检查点出发，仅需40万样本微调和轻量DPO即可实现全双工能力，表明该方法的实用性和可扩展性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.14528" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.14528</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>AgentSpec: Understanding Embodied Agent Scaffolds Through Controlled Composition</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.14674</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">AgentSpec：通过受控组合理解具身智能体脚手架</span>
+                        <span style="color:#666;font-size:12px;">Jixuan Chen et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">LLM智能体日益以脚手架系统的形式构建，结合推理、记忆、反思、动作执行和学习等模块，但这些模块通常嵌入紧密耦合的管道中，难以隔离组件贡献、比较替代设计或理解模块交互如何塑造智能体行为。本文提出AgentSpec，一个模块化规范框架，将具身智能体表示为具有标准化接口的可重用策略组件的类型化组合，标准化感知、记忆、推理、反思、动作和可选学习之间的接口，使组件能够在受控条件下交换和重组。该框架在DeliveryBench、ALFRED、MiniGrid和RoboTHOR四个环境中实例化，分析了推理、记忆、反思和强化学习模块在不同模型主干上的表现，结果表明智能体性能由脚手架兼容性和交互效应而非孤立模块强度决定。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模块化框架</strong>：提出AgentSpec规范框架，将具身智能体解构为可重用的策略组件类型化组合，通过标准化接口实现感知、记忆、推理、反思、动作和学习六大模块的解耦与灵活重组</li><li style="margin-bottom:0;"><strong>标准化接口</strong>：定义模块间统一通信协议，使不同实现的策略组件能够即插即用，支持在受控条件下进行系统性的模块替换与组合实验，消除紧密耦合带来的分析障碍</li><li style="margin-bottom:0;"><strong>多环境验证</strong>：在DeliveryBench、ALFRED、MiniGrid和RoboTHOR四个异构具身环境中实例化框架，覆盖不同任务复杂度与观察空间，确保结论的广泛适用性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>类型化组合</strong>：首创将智能体脚手架形式化为类型化的组件组合系统，突破传统单体模型或固定管道的局限，使智能体设计从黑箱工程转向可组合、可分析的科学方法</li><li style="margin-bottom:0;"><strong>受控实验范式</strong>：建立模块隔离与交互分析的实验方法论，通过系统化置换单一或组合模块，首次实现对脚手架内部因果机制的精确测量而非仅观测整体性能</li><li style="margin-bottom:0;"><strong>跨模块交互刻画</strong>：超越单一模块优劣比较，揭示模块间非线性交互效应，如发现推理与记忆的非均匀交互、反思的修正-成本权衡等涌现现象</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>兼容优于强度</strong>：智能体性能由脚手架兼容性与交互效应主导，而非孤立模块的个体强度，颠覆传统最优组件堆叠的设计直觉，强调系统级匹配的重要性</li><li style="margin-bottom:0;"><strong>结构记忆增益</strong>：结构化多粒度记忆显著提升长时程状态跟踪能力，在不同时间跨度的任务中，记忆组织的层次化设计比简单记忆容量扩展更为关键</li><li style="margin-bottom:0;"><strong>推理记忆耦合</strong>：推理与记忆模块的交互效应呈现环境依赖性，在不同环境中表现出非均匀模式，不存在普适的最优组合，需针对任务特性定制脚手架结构</li><li style="margin-bottom:0;"><strong>反思成本权衡</strong>：反思模块在错误修正与计算开销之间存在固有张力，过度反思可能导致性能下降，需根据任务容错率和实时性要求动态调节反思触发策略</li><li style="margin-bottom:0;"><strong>RL结构适配</strong>：强化学习训练的策略在部署时与脚手架结构联合优化时组合效果最佳，表明训练-部署一致性对模块集成的决定性作用，分离优化会导致次优组合</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.14674" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.14674</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Characterizing Cultural Localization in AI-Generated Stories</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.14626</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">AI生成故事的文化本土化特征研究</span>
+                        <span style="color:#666;font-size:12px;">Shaily Bhatt et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">随着人工智能在全球范围内的使用，评估其生成文化本地化内容（包括故事）的能力日益受到关注。故事中的文化本地化通常通过模板化本地化（在通用叙事中使用文化标记，如姓名、地点）或整体本地化（除文化标记外，还变化情节、价值观和主题）来实现。本文提出一种测量内容模板化本地化程度的方法：识别区分不同国籍故事的词汇标记，移除后测量剩余叙事的相似性。在五个模型为193个国籍生成的125个主题故事中，该方法发现仅9-17%的词汇导致国籍间差异，移除后剩余叙事存在重复的多词序列，表明存在共享的文化无关叙事模板。此外，研究还发现19个国家（主要位于全球南方）的文化标记具有冒犯性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>词汇区分识别</strong>：识别区分不同国籍故事的核心词汇标记，通过统计方法找出具有国籍特异性的词汇，作为文化标记的量化基础</li><li style="margin-bottom:0;"><strong>模板残留分析</strong>：移除文化标记后测量剩余叙事相似性，检测是否存在重复的多词序列，以判断共享叙事模板的存在</li><li style="margin-bottom:0;"><strong>冒犯性评估</strong>：对识别出的文化标记进行刻板印象和冒犯性评估，量化不同国家文化标记的负面程度</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模板化度量</strong>：首次提出量化模板化本地化程度的方法，将文化本地化分解为标记层面和叙事层面，实现可计算的区分</li><li style="margin-bottom:0;"><strong>剥离式验证</strong>：通过移除文化标记后分析叙事相似性，创新性地验证AI生成故事是否存在深层共享模板，而非真正的文化适应</li><li style="margin-bottom:0;"><strong>大规模跨域</strong>：在五个模型、125个主题、193个国籍的超大尺度上验证方法，确保发现的普适性和统计可靠性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>词汇集中性</strong>：仅9-17%的词汇差异导致国籍间故事变化，表明文化本地化高度集中于表层标记，而非深层叙事结构</li><li style="margin-bottom:0;"><strong>模板普遍性</strong>：移除文化标记后的叙事存在大量重复多词序列，证实AI生成故事依赖共享的文化无关叙事模板，而非真正的整体本地化</li><li style="margin-bottom:0;"><strong>标记冒犯性</strong>：来自19个主要位于全球南方国家的文化标记平均具有冒犯性，揭示AI文化本地化中存在地域偏见和刻板印象问题</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.14626" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.14626</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>SIMMER: Benchmarking Latent Failures in LLM Executable Planning with a World Model</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.14574</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">SIMMER：基于世界模型的LLM可执行规划潜在失败基准测试</span>
+                        <span style="color:#666;font-size:12px;">Xiaoxin Lu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型越来越多地被部署为家庭环境中自主智能体的规划器。现有基准测试评估LLM生成计划是否成功执行，但忽视了一种关键失败类型：潜在失败。与在执行时触发即时反馈的即时失败不同，潜在失败不会立即阻止计划执行，而是悄然损害目标达成，严重时造成不可逆伤害。为此，本文提出SIMMER基准，通过人类策划的符号世界模型评估LLM规划中的潜在失败。该模型基于厨房领域，包含77个动作、262个独特对象和约46,800种语义真实的交互。SIMMER利用状态机执行器验证计划，检测即时前提违反、潜在危害和不可逆失败。对六个LLM的实验表明，即使前沿模型最多仅实现17%的无错误计划，高达56%的计划包含潜在失败，且大多数导致不可逆后果。研究进一步证明，通过反事实前瞻模拟进行显式状态推理可将潜在失败减少72%，不可逆案例减少75%。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>符号世界模型</strong>：基于厨房领域构建包含77个动作、262个对象和46800种交互的人类策划符号世界模型，所有交互语义真实且源自真实烹饪脚本</li><li style="margin-bottom:0;"><strong>状态机执行器</strong>：开发专门的状态机执行器验证计划，能够检测即时前提违反、潜在危害和不可逆失败三类不同的失败模式</li><li style="margin-bottom:0;"><strong>反事实前瞻模拟</strong>：通过显式状态推理进行反事实前瞻模拟，让模型在行动前预测未来状态变化以识别潜在风险</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>潜在失败定义</strong>：首次系统定义并形式化LLM可执行规划中的潜在失败概念，区别于即时失败，强调其静默性和不可逆危害特征</li><li style="margin-bottom:0;"><strong>SIMMER基准测试</strong>：创建首个专门针对LLM规划中潜在失败评估的基准测试，填补现有评估体系忽视隐性失败类型的关键空白</li><li style="margin-bottom:0;"><strong>厨房领域建模</strong>：选择复杂且高风险的厨房烹饪场景作为测试领域，其中不可逆操作频发，能有效暴露规划器的深层缺陷</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模型表现极差</strong>：六个前沿LLM最多仅实现17%的无错误计划，揭示当前LLM作为规划器在复杂场景中的可靠性严重不足</li><li style="margin-bottom:0;"><strong>潜在失败普遍</strong>：高达56%的计划包含潜在失败，且大多数导致不可逆后果，表明该问题具有广泛性和严重性</li><li style="margin-bottom:0;"><strong>前瞻推理有效</strong>：反事实前瞻模拟可将潜在失败减少72%、不可逆案例减少75%，证明显式状态推理是提升LLM规划器鲁棒性的有前景方向</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.14574" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.14574</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/16</p>
+        </div>
+    </div>
+</body>
+</html>
