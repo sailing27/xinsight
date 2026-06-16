@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型安全评估与效率优化 从语言偏差到智能体可信度的全栈创新 | 2026/6/17</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型安全评估与效率优化 从语言偏差到智能体可信度的全栈创新 | 2026/6/17</h1>
+                <div class="date">2026/6/17 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了2024-2025年大模型技术从"能力扩展"向"可靠性深耕"的关键转向。七篇论文共同指向一个核心命题：当前LLM系统在规模化部署中面临的瓶颈已从"能否完成"转向"在何种条件下失败"以及"失败是否可控"。<br><br>三大技术趋势尤为突出。<strong>其一，评估方法论的系统化升级</strong>，从P3B3的语言变体无关设计到MetaSyn的全流程真实数据构建，再到SearchGEO的对抗性安全评估，学界正从单一准确率指标转向覆盖偏见、组合性、安全性等多维度的结构化诊断框架。<strong>其二，推理机制的可解释性干预</strong>，KVEraser的KV缓存学习式编辑与ContextRL的上下文选择辅助目标，共同表明针对Transformer内部状态的精细化操控正成为提升效率与长程推理能力的新范式。<strong>其三，组合性瓶颈的实证化验证</strong>，临床EHR问答中的"跳数效应"首次将理论层面的Transformer组合性限制转化为可量化的失败预测指标，为高风险场景下的能力边界划定提供了科学依据。<br><br>这些进展对行业具有双重启示：一方面，评估基准的"去聚合化"（disaggregation）趋势要求产品团队建立分层能力地图，而非依赖单一综合得分；另一方面，针对特定失败模式（如筛选瓶颈、组合深度、背书脆弱性）的定向优化，可能比通用能力提升更具投入产出比。对于研究社区，跨领域方法论迁移——如将KV缓存编辑技术扩展至安全擦除场景，或把跳数分类法应用于法律、金融等复杂推理领域——将成为高价值创新方向。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>P3B3: A Multi-Turn Conversational Benchmark for Measuring European and Brazilian Portuguese Variety Bias in LLMs</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.16753</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 MeLLM Workshop at ACL 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">P3B3：衡量大语言模型欧洲与巴西葡萄牙语偏差的对话基准测试</span>
+                        <span style="color:#666;font-size:12px;">Rafael Ferreira et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">随着大语言模型嵌入日常交流，捕捉区域语言变体对可靠和公平的语言使用至关重要。葡萄牙语中，欧洲葡萄牙语（pt-PT）和巴西葡萄牙语（pt-BR）的表征不均衡，pt-BR在数据量上占主导，而LLM对葡萄牙语变体的偏好尚未充分探索。为此，本文提出P3B3——一个专家策划的、语言变体无关的多轮对话基准测试集，以及用于测量变体偏见和可控性的评估框架。对多个模型的实验表明，大多数LLM对pt-BR存在强烈偏见，且不同模型的可控性存在差异。这些结果凸显了在语言变体之间实现更平衡的多语言表征的必要性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>专家策划基准</strong>：构建语言变体无关的多轮对话提示集，覆盖欧洲和巴西葡萄牙语，确保评估不受特定变体表达预设影响</li><li style="margin-bottom:0;"><strong>偏见测量框架</strong>：设计系统化评估方法，量化LLM在生成响应时对pt-PT或pt-BR的无意识偏好程度</li><li style="margin-bottom:0;"><strong>可控性评估</strong>：检验模型在明确指令下切换或维持特定语言变体的能力，衡量其受控生成表现</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>P3B3基准测试</strong>：首创专门针对葡萄牙语双变体的多轮对话评估集，填补语言变体偏见测量领域的空白</li><li style="margin-bottom:0;"><strong>变体无关设计</strong>：采用语言中立策略编写提示，避免引入特定变体线索，确保偏见测量的纯净性和准确性</li><li style="margin-bottom:0;"><strong>双向评估维度</strong>：同时考察模型固有偏见与指令可控性两个互补维度，全面刻画变体处理能力</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>BR偏见主导</strong>：大多数LLM表现出对巴西葡萄牙语的强烈固有偏见，反映训练数据分布失衡对模型行为的深层影响</li><li style="margin-bottom:0;"><strong>可控性差异</strong>：不同模型在遵循变体切换指令时表现参差不齐，表明架构或训练策略对可控生成具有显著影响</li><li style="margin-bottom:0;"><strong>平衡需求迫切</strong>：研究结果强调需在语言变体层面加强多语言表征，以提升LLM的公平性和区域适用性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.16753" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.16753</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Benchmarking LLM Agents on Meta-Analysis Articles from Nature Portfolio</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.17041</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">大语言模型智能体Meta分析文献基准测试</span>
+                        <span style="color:#666;font-size:12px;">Anzhe Xie et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">Meta-analysis是一种要求严格的证据综合形式，结合文献检索、PI/ECO引导的研究筛选和统计聚合。其结构化、可验证的工作流程使其成为评估系统性科学推理的理想基准，但现有基准缺乏覆盖完整检索-筛选-综合流程的真实数据。本文提出MetaSyn数据集，包含442篇来自Nature Portfolio期刊的专家策划的Meta-analysis，每条记录包含研究问题、PI/ECO标准、14万篇PubMed文献的检索库、验证的阳性研究、主题相似但PI/ECO不合格的困难负样本，以及完整的检索策略和日期范围。对12种流程配置（9种RAG变体和1种协议驱动智能体）的基准测试揭示了关键的筛选瓶颈：尽管K=200时检索上限达到90.9%的召回率，但没有任何系统能恢复超过52.7%的真实纳入文献。当前LLM无法可靠地从主题相关性相当的池中区分合格研究与PI/ECO失败的干扰项。分阶段归因指标能够捕捉系统成功和失败的位置，而单一的端到端分数则不能。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>PI/ECO标准框架</strong>：采用Population/Intervention/Exposure/Comparison/Outcome结构化框架指导研究筛选，确保系统评估的科学严谨性与可复现性</li><li style="margin-bottom:0;"><strong>困难负样本构造</strong>：构建主题相似但PI/ECO不合格的干扰文献，测试LLM在高度混淆场景下的精确区分能力</li><li style="margin-bottom:0;"><strong>分阶段归因评估</strong>：将检索-筛选-综合流程拆解为独立阶段，分别度量各环节性能以定位系统瓶颈所在</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>MetaSyn专家数据集</strong>：首次构建覆盖完整检索-筛选-综合流程的442篇Meta-analysis基准，填补现有基准缺乏全流程真实数据的空白</li><li style="margin-bottom:0;"><strong>协议驱动智能体</strong>：设计遵循完整检索策略与日期约束的自主智能体，超越传统RAG的被动检索模式实现主动科学推理</li><li style="margin-bottom:0;"><strong>硬负样本挑战集</strong>：引入经专家验证的PI/ECO不合格干扰文献，建立评估LLM科学筛选能力的严格测试标准</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>筛选瓶颈突出</strong>：检索召回率达90.9%但综合召回率仅52.7%，揭示当前系统的核心缺陷在于筛选阶段而非检索阶段</li><li style="margin-bottom:0;"><strong>LLM区分失效</strong>：现有大语言模型无法可靠识别PI/ECO合规研究，在主题相似文献池中表现脆弱且不稳定</li><li style="margin-bottom:0;"><strong>端到端评分误导</strong>：单一综合指标掩盖系统真实能力分布，必须采用分阶段归因指标才能准确诊断性能瓶颈</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.17041" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.17041</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>KVEraser: Learning to Steer KV Cache for Efficient Localized Context Erasing</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.17034</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">KVEraser：学习引导KV缓存实现高效局部上下文擦除</span>
+                        <span style="color:#666;font-size:12px;">Mufei Li et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">KVEraser是一种针对KV缓存的局部上下文擦除方法，解决后验上下文擦除中局部编辑具有全局影响的问题。该方法通过用学习得到的引导状态替换被擦除区间的KV状态，同时复用其余缓存，实现高效擦除。采用两阶段训练：通用跨度邻域预训练抑制被擦除跨度的影响，任务特定微调适应下游场景。实验表明，在1K-32K上下文长度上，KVEraser几乎达到完全重计算的性能，延迟仅增加24%（完全重计算增加17.6倍），并在未见过的长文档QA任务上取得最佳性能。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>KV缓存编辑</strong>：仅替换被擦除区间的KV状态为学习得到的引导状态，保持前后缓存不变，避免全局重计算</li><li style="margin-bottom:0;"><strong>两阶段训练</strong>：先进行通用跨度邻域预训练学习抑制擦除影响，再任务微调适应具体下游场景</li><li style="margin-bottom:0;"><strong>局部化控制</strong>：通过设计引导状态阻断被擦除跨度向后续token的隐式传播，实现局部编辑局部影响</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>学习式引导状态</strong>：提出可学习的KV状态替代方案，而非依赖启发式规则或注意力掩码修改</li><li style="margin-bottom:0;"><strong>可迁移擦除机制</strong>：构建通用预训练使模型掌握跨任务可迁移的跨度抑制能力，降低适配成本</li><li style="margin-bottom:0;"><strong>恒定时间开销</strong>：将擦除计算复杂度从依赖后缀长度转为仅依赖被擦除区间长度，实现亚线性加速</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能逼近重计算</strong>：在领域内任务1K-32K长度上，后擦除性能几乎匹配完全重计算基准</li><li style="margin-bottom:0;"><strong>延迟显著降低</strong>：相比完全重计算17.6倍延迟增长，KVEraser仅增加24%推理时间</li><li style="margin-bottom:0;"><strong>跨任务泛化优异</strong>：在含有害事实干扰项的未见长文档QA任务上，超越所有近似基线并提速3-4倍</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.17034" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.17034</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Compositional Reasoning Depth Predicts Clinical AI Failure: Empirical Evidence Consistent with Transformer Compositionality Limits in Electronic Health Record Question Answering</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.16890</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">组合推理深度预测临床AI失效：电子健康记录问答中Transformer</span>
+                        <span style="color:#666;font-size:12px;">Sanjay Basu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">聚合准确率基准掩盖了大型语言模型在电子健康记录问答中失败的系统性结构：需要更多推理步骤的问题产生不成比例的错误。基于Transformer组合性限制的理论结果，作者引入预指定的跳数分类法作为模型失败的原则性预测指标。对313个临床医生生成的MedAlign EHR问答对进行四级跳数标注，并在Claude Sonnet、GPT-4o和GPT-5.4上进行评估，所有模型均显示随跳数增加准确率单调下降，且扩展思考未能显著平缓准确率-深度曲线，跳数成为跨架构的临床AI错误预测因子。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跳数分类法</strong>：构建基于回答临床问题所需独立推理步骤数的四级分类体系，将组合推理深度操作化为可量化的预测变量，用于系统性评估EHR问答难度</li><li style="margin-bottom:0;"><strong>临床EHR标注</strong>：由临床医生对313个MedAlign电子健康记录问答对进行跳数标注，建立从单步事实检索到四步多条件推理的标准化测试基准</li><li style="margin-bottom:0;"><strong>跨架构验证</strong>：在Claude Sonnet、GPT-4o和GPT-5.4三个模型上复现实验，覆盖两个提供商和两代OpenAI架构，确保发现的稳健性与泛化性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>理论驱动预测</strong>：首次将Transformer组合性限制的理论成果转化为可验证的临床AI失败预测指标，突破传统聚合准确率基准对系统性错误结构的掩盖</li><li style="margin-bottom:0;"><strong>预指定审计设计</strong>：采用预注册的分析方案，包括上下文充分性审计排除EHR截断混淆因素，确保观察到的准确率下降反映组合推理难度而非数据可得性</li><li style="margin-bottom:0;"><strong>计算成本量化</strong>：通过扩展思考模式下的思维令牌使用量与跳数的相关性分析，实证验证组合推理的O(k)线性计算需求理论预测</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跳数单调效应</strong>：三个模型均显示随跳数增加准确率显著下降，Claude从30.6%降至17.6%，GPT-4o从37.8%降至14.7%，GPT-5.4从37.8%降至23.5%，优势比均显著小于1</li><li style="margin-bottom:0;"><strong>截断非混淆</strong>：上下文充分性审计显示高跳数问题未因EHR截断而处于劣势，跳数2-4答案可获取率93-95%反优于跳数1的79%，排除数据长度解释</li><li style="margin-bottom:0;"><strong>扩展思考局限</strong>：扩展思考模式未显著平缓准确率-深度曲线，且思维令牌消耗与跳数正相关，表明当前推理增强技术未能克服Transformer深层组合推理的根本限制</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.16890" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.16890</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>How Much Can We Trust LLM Search Agents? Measuring Endorsement Vulnerability to Web Content Manipulation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.16821</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">大语言模型搜索智能体的可信度：网络内容操纵下的背书脆弱性测量</span>
+                        <span style="color:#666;font-size:12px;">Yimeng Chen et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究了基于大语言模型的搜索代理因网络内容被操纵而产生错误背书的风险，提出了SearchGEO评估框架，通过网页证据操纵管道、五种攻击模式分类及多维度输出指标，对13个LLM后端各308个案例进行测试，发现不同后端的漏洞模式差异显著，攻击成功率从0.0%到31.4%不等，且同一部署架构对不同后端的影响方向相反，辅助代理技能探测进一步揭示稳健后端间存在过度拒绝与过度信任的分化现象。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>搜索代理评估</strong>：构建针对LLM网络搜索代理的系统性安全评估方法论，聚焦对抗性场景下的推荐可靠性测量</li><li style="margin-bottom:0;"><strong>证据操纵管道</strong>：设计自动化网页内容篡改流程，实现可控的恶意信息注入以模拟真实攻击场景</li><li style="margin-bottom:0;"><strong>五模式攻击法</strong>：建立涵盖不同操纵策略的攻击分类体系，支持对多种攻击向量的标准化比较测试</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>SearchGEO框架</strong>：首创专门针对LLM搜索代理背书腐败问题的综合评估平台，整合操纵管道、攻击分类与度量指标</li><li style="margin-bottom:0;"><strong>跨后端差异分析</strong>：揭示不同模型家族在攻击脆弱性模式上的根本性差异，打破安全评估的一刀切假设</li><li style="margin-bottom:0;"><strong>部署架构效应</strong>：发现相同脚手架配置对不同后端产生放大或抑制攻击成功率的相反作用，强调系统级交互复杂性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>攻击成功率悬殊</strong>：各后端整体攻击成功率差异巨大，Claude-Sonnet-4.6为0.0%而Gemini-3-Flash达31.4%，安全性能分布极不均匀</li><li style="margin-bottom:0;"><strong>最优攻击因模而异</strong>：最强攻击模式随模型家族变化，不存在普适性最优攻击策略，需针对性防御设计</li><li style="margin-bottom:0;"><strong>稳健后端两极分化</strong>：在代理技能探测中，原本稳健的后端呈现Claude过度拒绝与GPT过度信任的尖锐对立，暴露评估维度单一化的风险</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.16821" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.16821</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Context-Aware RL for Agentic and Multimodal LLMs</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.17053</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">上下文感知强化学习赋能多模态智能体大模型</span>
+                        <span style="color:#666;font-size:12px;">Peiyang Xu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出ContextRL，一种上下文感知强化学习方法，通过间接辅助目标提升长程推理和多模态性能。该方法不仅监督最终答案，而是让模型从两个高度相似的上下文中选择支持查询-答案对的上下文，从而实现细粒度 grounding。研究在编码智能体（1K对）和多模态推理（7K对）两个领域构建对比上下文数据，实验表明ContextRL在长程基准上平均提升+2.2%，在视觉问答基准上提升+1.8%，且消融实验证实收益源于上下文选择目标而非对比数据本身。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>对比上下文构建</strong>：通过条件过滤生成编码轨迹的对比数据，以及通过生成编辑和相似搜索生成图像对比数据，构造高度相似但关键细节不同的上下文对</li><li style="margin-bottom:0;"><strong>上下文选择奖励</strong>：设计间接辅助目标，奖励模型从两个相似上下文中识别出支持查询-答案对的正确上下文，强化细粒度证据定位能力</li><li style="margin-bottom:0;"><strong>条件过滤策略</strong>：针对编码智能体领域，利用执行条件过滤轨迹生成机制，自动构建1K高质量对比上下文训练对</li><li style="margin-bottom:0;"><strong>生成编辑技术</strong>：针对多模态推理领域，结合图像生成编辑与相似性搜索，系统性地构建7K视觉对比上下文数据</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>间接辅助目标</strong>：突破仅监督最终答案的传统范式，引入上下文选择作为辅助任务，迫使模型关注决定性证据而非表面模式匹配</li><li style="margin-bottom:0;"><strong>细粒度 grounding</strong>：通过高度相似上下文的判别任务，显式训练模型定位长上下文中的关键细节，解决复杂证据识别难题</li><li style="margin-bottom:0;"><strong>数据解耦设计</strong>：将对比上下文数据同时用于标准查询-上下文-答案示例和ContextRL目标，严格分离数据增益与方法增益</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>长程推理提升</strong>：ContextRL在5个长程基准上平均超越标准GRPO达+2.2%，验证上下文选择目标对复杂推理的有效性</li><li style="margin-bottom:0;"><strong>多模态性能增益</strong>：在12个多样视觉问答基准上平均提升+1.8%，证明方法跨模态迁移能力</li><li style="margin-bottom:0;"><strong>方法优于数据</strong>：数据增强基线几乎无改进，明确收益来源于上下文选择目标机制而非对比数据量的简单增加</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.17053" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.17053</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>IMPACTeen: Intentions, Manipulation, Persuasion, Annotations, and Consequences in Teen Communication Dataset</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.16910</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">IMPACTeen：青少年通信中的意图、操纵、说服、标注与后果数据集</span>
+                        <span style="color:#666;font-size:12px;">Aleksander Szczęsny et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">IMPACTeen是一个青少年社交影响场景文本数据集，涵盖人际、媒体和数字环境，包含1,021个文本、5,100条个人标注记录及社交影响技术金标签。每个文本由青少年、家长、心理学家、沟通专家和教师五种视角进行标注，通过约束性LLM生成结合两步人工编辑验证构建，多维标注涵盖影响存在、技术、意图、后果、抵抗、反应和置信度，支持社交影响检测、标注者分歧、跨语言建模及语言模型训练评估研究，原始数据为波兰语并附英语版本。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多视角标注体系</strong>：构建青少年、家长、心理学家、沟通专家和教师五种专业视角的独立标注框架，实现同一文本的多维度社会认知差异量化</li><li style="margin-bottom:0;"><strong>约束性LLM生成</strong>：采用受控大语言模型生成初始文本，结合两步人工编辑验证流程，确保青少年语境真实性与场景自然度</li><li style="margin-bottom:0;"><strong>多维标注框架</strong>：覆盖影响存在性、影响技术、意图类型、后果评估、抵抗策略、反应类型及标注置信度七层分析维度</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>青少年语境专精</strong>：首次聚焦青少年群体的社交影响场景，填补现有社会影响力数据集在未成年人群体中的空白领域</li><li style="margin-bottom:0;"><strong>跨群体认知分歧</strong>：系统捕捉五种标注群体对同一社交影响场景的认知差异，为标注者分歧研究提供结构化实证基础</li><li style="margin-bottom:0;"><strong>双语平行资源</strong>：构建波兰语原始数据与英语翻译版本的对照体系，支撑跨语言社会影响力计算模型的开发与验证</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>群体视角差异显著</strong>：五种标注群体在社交影响识别、技术判定和后果评估上存在系统性认知分歧，青少年与专家视角差异最为突出</li><li style="margin-bottom:0;"><strong>LLM生成经人工校验可行</strong>：约束性大语言模型生成结合专业人工编辑，能够有效平衡数据规模与青少年语境真实性需求</li><li style="margin-bottom:0;"><strong>多维标注支撑深度分析</strong>：七层标注维度协同揭示社交影响的复杂机制，为检测模型训练提供细粒度监督信号与评估基准</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.16910" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.16910</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/17</p>
+        </div>
+    </div>
+</body>
+</html>

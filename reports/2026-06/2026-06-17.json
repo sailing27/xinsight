@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-17",
+  "title": "大模型安全评估与效率优化 从语言偏差到智能体可信度的全栈创新",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.16753",
+      "title": "P3B3: A Multi-Turn Conversational Benchmark for Measuring European and Brazilian Portuguese Variety Bias in LLMs",
+      "chinese_title": "P3B3：衡量大语言模型欧洲与巴西葡萄牙语偏差的对话基准测试",
+      "authors": "Rafael Ferreira et al.",
+      "url": "https://arxiv.org/abs/2606.16753"
+    },
+    {
+      "id": "2606.17041",
+      "title": "Benchmarking LLM Agents on Meta-Analysis Articles from Nature Portfolio",
+      "chinese_title": "大语言模型智能体Meta分析文献基准测试",
+      "authors": "Anzhe Xie et al.",
+      "url": "https://arxiv.org/abs/2606.17041"
+    },
+    {
+      "id": "2606.17034",
+      "title": "KVEraser: Learning to Steer KV Cache for Efficient Localized Context Erasing",
+      "chinese_title": "KVEraser：学习引导KV缓存实现高效局部上下文擦除",
+      "authors": "Mufei Li et al.",
+      "url": "https://arxiv.org/abs/2606.17034"
+    },
+    {
+      "id": "2606.16890",
+      "title": "Compositional Reasoning Depth Predicts Clinical AI Failure: Empirical Evidence Consistent with Transformer Compositionality Limits in Electronic Health Record Question Answering",
+      "chinese_title": "组合推理深度预测临床AI失效：电子健康记录问答中Transformer",
+      "authors": "Sanjay Basu et al.",
+      "url": "https://arxiv.org/abs/2606.16890"
+    },
+    {
+      "id": "2606.16821",
+      "title": "How Much Can We Trust LLM Search Agents? Measuring Endorsement Vulnerability to Web Content Manipulation",
+      "chinese_title": "大语言模型搜索智能体的可信度：网络内容操纵下的背书脆弱性测量",
+      "authors": "Yimeng Chen et al.",
+      "url": "https://arxiv.org/abs/2606.16821"
+    },
+    {
+      "id": "2606.17053",
+      "title": "Context-Aware RL for Agentic and Multimodal LLMs",
+      "chinese_title": "上下文感知强化学习赋能多模态智能体大模型",
+      "authors": "Peiyang Xu et al.",
+      "url": "https://arxiv.org/abs/2606.17053"
+    },
+    {
+      "id": "2606.16910",
+      "title": "IMPACTeen: Intentions, Manipulation, Persuasion, Annotations, and Consequences in Teen Communication Dataset",
+      "chinese_title": "IMPACTeen：青少年通信中的意图、操纵、说服、标注与后果数据集",
+      "authors": "Aleksander Szczęsny et al.",
+      "url": "https://arxiv.org/abs/2606.16910"
+    }
+  ],
+  "generated_at": "2026-06-16T22:09:20.943Z",
+  "org": "AI研究室"
+}
