@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-18",
+  "title": "大模型创新突破 从代码智能到人文计算的七维跃迁",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.17683",
+      "title": "Bridging Functional Correctness and Runtime Efficiency Gaps in LLM-Based Code Translation",
+      "chinese_title": "弥合LLM代码翻译中的功能正确性与运行时效率鸿沟",
+      "authors": "Longhui Zhang et al.",
+      "url": "https://arxiv.org/abs/2606.17683"
+    },
+    {
+      "id": "2606.17687",
+      "title": "SuCo: Sufficiency-guided Continuous Adaptive Reasoning",
+      "chinese_title": "SuCo：充分性引导的持续自适应推理",
+      "authors": "Jiahao Wang et al.",
+      "url": "https://arxiv.org/abs/2606.17687"
+    },
+    {
+      "id": "2606.18222",
+      "title": "Darshana Graph: A Parallel Commentary Corpus for Comparative Indian Philosophy, with Stylometric and Exploratory Graph Analyses",
+      "chinese_title": "《达善图谱：印度比较哲学平行评注语料库与计量风格学分析》",
+      "authors": "Joy Bose et al.",
+      "url": "https://arxiv.org/abs/2606.18222"
+    },
+    {
+      "id": "2606.18216",
+      "title": "Zone of Proximal Policy Optimization: Teacher in Prompts, Not Gradients",
+      "chinese_title": "近端策略优化区：提示中的教师，而非梯度中的教师",
+      "authors": "Byung-Kwan Lee et al.",
+      "url": "https://arxiv.org/abs/2606.18216"
+    },
+    {
+      "id": "2606.18205",
+      "title": "Analyzing and Encoding the Al-Mawrid Arabic-English Dictionary with the ISO Language Markup Framework and TEI Lex-0",
+      "chinese_title": "基于ISO语言标记框架与TEI Lex-0的Al-Mawrid阿英词典",
+      "authors": "Diaa Fayed et al.",
+      "url": "https://arxiv.org/abs/2606.18205"
+    },
+    {
+      "id": "2606.18103",
+      "title": "HistoRAG: Embedding Historical Methodology in Retrieval-Augmented Generation Through Critical Technical Practice",
+      "chinese_title": "HistoRAG：通过批判性技术实践将历史方法论嵌入检索增强生成",
+      "authors": "Noah J. Kim-Baumann et al.",
+      "url": "https://arxiv.org/abs/2606.18103"
+    },
+    {
+      "id": "2606.18062",
+      "title": "Security and Privacy Prompts in the Wild: What Users Ask LLMs and How LLMs Respond",
+      "chinese_title": "野外安全与隐私提示：用户如何询问LLM及LLM如何回应",
+      "authors": "Hobin Kim et al.",
+      "url": "https://arxiv.org/abs/2606.18062"
+    }
+  ],
+  "generated_at": "2026-06-17T22:09:33.981Z",
+  "org": "AI研究室"
+}

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型创新突破 从代码智能到人文计算的七维跃迁 | 2026/6/18</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型创新突破 从代码智能到人文计算的七维跃迁 | 2026/6/18</h1>
+                <div class="date">2026/6/18 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示大模型技术正从"能力扩展"转向"效率优化与领域适配"的深化阶段。核心趋势体现为三个共同方向：一是<strong>自适应控制机制</strong>，SuCo的最小充分思维链与ZPPO的最近发展区动态适配均突破固定模式约束，实现推理与训练过程的精细化调节；二是<strong>多视角/并行架构</strong>，MpTranslator的多路径生成与Darshana Graph的跨注释对齐均采用并行比较策略，以多样性克服单一输出的局限性；三是<strong>领域方法论嵌入</strong>，HistoRAG将史学认识论转化为RAG架构决策，Al-Mawrid词典编码以双标准框架消解纸质遗产的结构歧义，均体现垂直领域知识的形式化整合。<br><br>对行业的关键启示在于：第一，效率维度正成为独立优化目标——代码翻译的运行时损失与推理token的冗余消耗表明，"能运行"不等于"可用"，精度与效率的帕累托前沿需联合优化；第二，小模型蒸馏与开源安全能力存在显著瓶颈，ZPPO的提示内嵌教师机制与商业模型98% vs 47%的安全响应差距提示，架构创新与对齐策略比规模扩张更具杠杆效应；第三，解释性学科（人文、历史）的AI融合需重构默认技术假设，标准RAG的事实问答导向与史学的诠释性实践存在深层冲突，领域特定化改造是突破"数字人文"表层应用的关键。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Bridging Functional Correctness and Runtime Efficiency Gaps in LLM-Based Code Translation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.17683</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ICML 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">弥合LLM代码翻译中的功能正确性与运行时效率鸿沟</span>
+                        <span style="color:#666;font-size:12px;">Longhui Zhang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">虽然大语言模型显著提升了自动代码翻译的功能正确性，但翻译后程序的运行时效率却受到较少关注。随着摩尔定律衰退，运行时效率已成为程序质量的重要维度。初步研究发现LLM翻译程序常比人工编写程序慢，且仅靠提示工程无法解决。为此提出SwiftTrans框架，包含多视角探索（MpTranslator利用并行上下文学习生成多样翻译候选）和差异感知选择（DiffSelector通过显式比较差异识别最优候选）两个阶段，并引入层次化引导和序数引导增强适应性。同时扩展现有基准CodeNet和F2SBench，并引入新基准SwiftBench以支持运行时效率评估。实验结果表明SwiftTrans在正确性和运行时效率上均有持续提升。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多视角探索</strong>：MpTranslator利用并行上下文学习机制，从多个角度同时生成多样化的代码翻译候选，突破单一翻译路径的局限性，为后续最优选择提供丰富基础</li><li style="margin-bottom:0;"><strong>差异感知选择</strong>：DiffSelector通过显式比较不同翻译候选之间的结构差异和性能特征，而非仅依赖独立评分，从而精准识别综合最优的翻译结果</li><li style="margin-bottom:0;"><strong>层次化引导</strong>：为MpTranslator设计的多层级指导策略，帮助大语言模型在不同抽象层次上理解翻译任务，提升生成候选的多样性和质量覆盖</li><li style="margin-bottom:0;"><strong>序数引导</strong>：为DiffSelector设计的排序型指导方法，使模型能够基于相对优劣进行候选比较，克服绝对评分困难，增强选择决策的可靠性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>效率问题揭示</strong>：首次系统揭示LLM代码翻译在运行时效率上的显著缺陷，证明翻译程序普遍慢于人工编写代码，且该问题无法通过简单提示工程修复</li><li style="margin-bottom:0;"><strong>双阶段架构</strong>：创新性地将翻译过程解耦为生成与选择两个阶段，通过多候选生成与差异感知选择的协同机制，同时优化功能正确性和运行时效率</li><li style="margin-bottom:0;"><strong>专用基准构建</strong>：扩展现有CodeNet和F2SBench基准并新建SwiftBench，首次为代码翻译领域的运行时效率评估提供系统化的测试基础设施</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>效率损失显著</strong>：LLM翻译代码存在明确的运行时效率损失，这一发现确立了效率优化作为代码翻译研究独立价值维度的必要性</li><li style="margin-bottom:0;"><strong>提示工程不足</strong>：单纯依赖提示工程无法解决效率问题，表明需要架构层面的创新设计而非仅优化输入提示</li><li style="margin-bottom:0;"><strong>框架有效性</strong>：SwiftTrans在三项基准测试上均实现一致改进，验证了其提升功能正确性和运行时效率的双重能力，展现出良好的泛化性能</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.17683" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.17683</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>SuCo: Sufficiency-guided Continuous Adaptive Reasoning</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.17687</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ICML 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">SuCo：充分性引导的持续自适应推理</span>
+                        <span style="color:#666;font-size:12px;">Jiahao Wang et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">尽管大型推理模型（LRMs）在复杂任务上表现卓越，但常生成过长的思维链（CoT），即使简单查询也导致计算成本激增。现有缓解方法多依赖离散推理模式或固定预算层级，缺乏判断推理何时充分的准则。本文提出最小充分思维链（MSC），定义为能正确回答问题的最短CoT前缀，实证表明MSC既减少推理token又提升各难度准确率。基于此提出SuCo框架，通过两阶段训练实现连续谱上的自主推理控制：第一阶段MSC对齐微调（MFT）构建随问题难度自适应缩放的MSC数据并微调模型；第二阶段充分性感知策略优化（SAPO）通过动态复杂度跟踪和充分性感知奖励的强化学习进一步优化，惩罚过度与不足思考。在数学、代码和科学基准上的广泛实验表明SuCo持续提升准确率与推理效率。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>最小充分思维链</strong>：定义为能产出正确答案的最短CoT前缀，作为推理充分性的形式化准则，为自适应推理控制提供可量化的优化目标</li><li style="margin-bottom:0;"><strong>问题自适应阈值</strong>：根据题目难度动态调整充分性阈值，使MSC数据自然随难度缩放，避免一刀切式的推理长度限制</li><li style="margin-bottom:0;"><strong>动态复杂度跟踪</strong>：在强化学习阶段实时监测问题复杂度变化，为不同难度样本提供差异化的充分性判断与奖励计算依据</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>连续自适应推理</strong>：突破离散模式与固定预算的局限，使模型能在连续谱上自主调节推理深度，实现灵活且精细的推理控制</li><li style="margin-bottom:0;"><strong>充分性感知奖励</strong>：设计同时惩罚过度思考与不足思考的双向奖励机制，引导模型学习精准把握推理的充分边界</li><li style="margin-bottom:0;"><strong>MSC对齐微调</strong>：通过构建最小充分思维链数据并微调，使模型内化解题简洁而充分的推理模式，奠定高效推理的基础能力</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>效率精度双提升</strong>：SuCo在数学、代码和科学等多领域基准上，一致实现推理准确率提高与推理token减少的双重优化</li><li style="margin-bottom:0;"><strong>充分性优于截断</strong>：基于充分性准则的MSC不仅降低长度，还通过保留关键推理步骤提升各难度级别的最终答案正确率</li><li style="margin-bottom:0;"><strong>两阶段协同有效</strong>：MFT与SAPO的连续训练框架成功将充分性概念内化并策略优化，使模型获得稳定的自主推理控制能力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.17687" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.17687</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Darshana Graph: A Parallel Commentary Corpus for Comparative Indian Philosophy, with Stylometric and Exploratory Graph Analyses</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.18222</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">《达善图谱：印度比较哲学平行评注语料库与计量风格学分析》</span>
+                        <span style="color:#666;font-size:12px;">Joy Bose et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文介绍Darshana Graph语料库，包含超过125,000条文本记录，涵盖印度教、佛教和耆那教哲学传统。其核心创新在于约8,500条印度教和耆那教记录的跨注释者对齐结构，使同一源文本在18位历史注释者之间实现直接比较。研究包含两项分析：一是基于引用密度、反驳率和句子复杂度的透明文体计量分析；二是利用约束大语言模型提取哲学概念关系的图构建方法。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨注释对齐</strong>：将同一源文本在18位代表五大吠檀多学派及其他见部的历史注释者之间进行结构化对齐，实现独立解释传统的直接比较</li><li style="margin-bottom:0;"><strong>文体计量分析</strong>：无需机器学习，通过经文引用密度、明确反驳率和句子复杂度三项指标测量论证风格，确保分析透明可解释</li><li style="margin-bottom:0;"><strong>关系提取管道</strong>：采用约束大语言模型结合预定义关系词表和确定性后验验证，提取概念间的类型化哲学关系</li><li style="margin-bottom:0;"><strong>嵌入对比验证</strong>：独立嵌入分析用于与图提取结果进行交叉验证，识别提取方法的局限性和分歧案例</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>大规模对齐语料</strong>：构建约8,500条跨注释者对齐记录，据作者所知尚无公开资源提供同等规模的跨注释者对齐</li><li style="margin-bottom:0;"><strong>透明风格测量</strong>：设计无需机器学习的文体计量方法，通过可解释指标实现跨学派、跨传统的论证风格比较</li><li style="margin-bottom:0;"><strong>约束知识提取</strong>：采用预定义关系词表约束大语言模型输出，并以确定性规则后验验证，平衡自动化与可靠性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>引用反驳负相关</strong>：文体计量发现引用密度与反驳率之间存在中度负相关，揭示注释策略的权衡模式</li><li style="margin-bottom:0;"><strong>传承反驳递增</strong>：同一教义传承中的三位注释者表现出反驳率的显著上升，反映学派内部的发展张力</li><li style="margin-bottom:0;"><strong>藏经文类差异</strong>：巴利藏内部存在可测量的文类级别差异，同一传统内部亦非均质整体</li><li style="margin-bottom:0;"><strong>提取存在局限</strong>：LLM提取图与嵌入分析存在分歧，揭示自动化关系提取的重要边界和验证必要性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.18222" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.18222</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Zone of Proximal Policy Optimization: Teacher in Prompts, Not Gradients</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.18216</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">近端策略优化区：提示中的教师，而非梯度中的教师</span>
+                        <span style="color:#666;font-size:12px;">Byung-Kwan Lee et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">知识蒸馏将教师能力迁移到小模型，但在小模型场景下易迫使学生模仿大教师的最尖锐模式，损害泛化。强化学习避免模仿logit，但在所有rollout均失败的问题上零优势被静默丢弃，注入教师响应会破坏on-policy假设。本文提出ZPPO，受维果茨基最近发展区启发，将教师置于prompt而非策略梯度中。对难题构造BCQ（配对正确教师与错误学生响应作为匿名候选）和NCQ（聚合学生错误rollout暴露共享失败模式），通过prompt重放缓冲区循环难题直至达标或淘汰。在Qwen3.5系列0.8B-9B学生与27B教师的视觉语言模型后训练中，31项基准测试显示ZPPO超越离/在策略蒸馏和GRPO，最小规模增益最大。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>提示内嵌教师</strong>：将教师响应嵌入prompt而非策略梯度，保持策略优化的on-policy特性，避免注入外部响应导致的分布漂移问题</li><li style="margin-bottom:0;"><strong>二元候选问题</strong>：构造匿名化候选对，让学生判别一个正确教师响应与一个错误学生响应，训练其识别能力而非直接模仿</li><li style="margin-bottom:0;"><strong>负例聚合提示</strong>：将学生多次错误rollout聚合成单一提示，显式暴露共享失败模式，针对性纠正系统性错误</li><li style="margin-bottom:0;"><strong>重放缓冲机制</strong>：循环难题直至学生平均rollout准确率达半或FIFO淘汰，确保训练聚焦最近发展区内的问题</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>最近发展区适配</strong>：借鉴维果茨基理论，动态识别学生可突破的难题区间，避免过易无效训练或过难完全失败的问题浪费</li><li style="margin-bottom:0;"><strong>梯度解耦设计</strong>：教师信息仅通过prompt文本进入，不直接修改策略梯度计算，从根本上保持PPO的on-policy数学保证</li><li style="margin-bottom:0;"><strong>匿名判别范式</strong>：BCQ的匿名候选设计迫使学生基于内容质量判断而非来源标签学习，培养真正的问题解决能力而非教师依赖</li><li style="margin-bottom:0;"><strong>自动难度调度</strong>：毕业机制与淘汰机制结合，实现无需人工标注难度的自适应课程学习，持续匹配学生能力成长</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>小模型优势显著</strong>：ZPPO在0.8B-9B四个学生规模上均有效，且规模越小相对增益越大，解决了小模型蒸馏的核心瓶颈</li><li style="margin-bottom:0;"><strong>跨模态泛化优秀</strong>：在16个VLM、10个LLM、5个Video共31项基准上全面超越off-policy蒸馏、on-policy蒸馏和GRPO方法</li><li style="margin-bottom:0;"><strong>教师规模脱敏</strong>：27B教师对0.8B学生的极端规模差距下仍有效，突破传统蒸馏的师生比例限制</li><li style="margin-bottom:0;"><strong>视觉语言验证</strong>：经视觉语言模型后训练验证，证明方法在多模态场景下的实用性与广泛适用性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.18216" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.18216</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Analyzing and Encoding the Al-Mawrid Arabic-English Dictionary with the ISO Language Markup Framework and TEI Lex-0</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.18205</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">基于ISO语言标记框架与TEI Lex-0的Al-Mawrid阿英词典</span>
+                        <span style="color:#666;font-size:12px;">Diaa Fayed et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出了一种将Al-Mawrid阿英词典从纸质遗产资源转化为标准化计算词典的系统化数字化与编码方法。研究采用ISO词汇标记框架（LMF）与TEI Lex-0指南的双标准框架，通过编辑视角处理词典的宏观与微观结构，解决了20世纪双语词典中典型的结构歧义和标点不一致问题。基于代表性样本（Ayn字母，占总卷4.6%）的实证分析，结构解析准确率达91%，同义词提取精确率85%、召回率98%，其他形态语义特征精确率88%。研究还批判性比较了现有阿拉伯语词汇资源，探讨了TEI Lex-0在建模阿拉伯语隐式开放集语义关系和分散形态线索时的局限性，并建立了可扩展的前缀引用系统以实现语言关联开放数据（LLOD）集成。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双标准框架</strong>：采用ISO词汇标记框架与TEI Lex-0指南协同编码，实现阿英双语词典的结构化数字化与跨标准互操作</li><li style="margin-bottom:0;"><strong>编辑视角解析</strong>：从宏观结构和微观结构双重编辑视角切入，系统处理20世纪纸质词典的排版歧义与标点混乱问题</li><li style="margin-bottom:0;"><strong>实证抽样分析</strong>：以Ayn字母为代表性样本开展词汇知识密度实证研究，为大规模编码提供科学依据与质量基准</li><li style="margin-bottom:0;"><strong>规则信息提取</strong>：设计同义词与形态语义特征的自动提取规则，实现高精确率与高召回率的结构化信息抽取</li><li style="margin-bottom:0;"><strong>前缀引用系统</strong>：构建可扩展的URI前缀引用机制，支持词典资源向语义网和语言关联开放数据的平滑集成</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>结构歧义消解</strong>：针对传统双语词典的版式模糊与标点变异，创新性地建立编辑驱动的结构化解析方法，突破纸质遗产的数字化瓶颈</li><li style="margin-bottom:0;"><strong>阿拉伯语特型建模</strong>：首次深入揭示TEI Lex-0在处理阿拉伯语隐式开放集语义关系与分散形态线索时的建模盲区与适配局限</li><li style="margin-bottom:0;"><strong>遗产词典复用范式</strong>：形成可复现的复杂遗产双语词典逆向数字化工作流，为阿拉伯语自然语言处理与数字人文领域提供标准化模板</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>解析性能优异</strong>：Ayn字母样本的结构解析准确率达91%，证明方法论对复杂纸质词典具有可靠的自动化处理能力</li><li style="margin-bottom:0;"><strong>提取规则高效</strong>：同义词提取精确率85%、召回率98%，其他形态语义特征精确率88%，验证信息抽取规则的有效性与鲁棒性</li><li style="margin-bottom:0;"><strong>标准适配存限</strong>：TEI Lex-0在阿拉伯语隐式语义关系与分散形态线索建模方面存在结构性局限，需针对性扩展或补充方案</li><li style="margin-bottom:0;"><strong>语义网就绪</strong>：前缀引用系统成功打通LLOD集成路径，使遗产词典成为可互操作、机器可处理的语义网络资源</li><li style="margin-bottom:0;"><strong>领域范式价值</strong>：整套工作流为阿拉伯语词汇基础设施填补了关键空白，确立了遗产双语词典计算化的可复现标准</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.18205" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.18205</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>HistoRAG: Embedding Historical Methodology in Retrieval-Augmented Generation Through Critical Technical Practice</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.18103</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">HistoRAG：通过批判性技术实践将历史方法论嵌入检索增强生成</span>
+                        <span style="color:#666;font-size:12px;">Noah J. Kim-Baumann et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出HistoRAG框架，将历史学方法论原则转化为检索增强生成(RAG)的具体架构干预。通过分离检索与生成、时间窗口平衡和LLM作为评判者等设计，解决标准RAG在解释性学科中的适用性缺陷，并以《明镜周刊》1950-1979年102,189篇文章构建的SPIEGELragged数据集进行验证。同时引入Zwischentexte（中间文本）概念，为LLM生成文本在学术实践中的负责任整合提供框架。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分离检索生成</strong>：将源文献发现与解释解耦，使检索层专注于史料发掘，生成层独立承担诠释工作，避免单一模型同时执行发现与解释的双重任务</li><li style="margin-bottom:0;"><strong>时间窗口机制</strong>：按历史时期强制平衡源文献分布，确保研究时段内各年代史料均等呈现，消除因术语时代差异导致特定时期文献检索为零的偏差</li><li style="margin-bottom:0;"><strong>LLM评判评估</strong>：以LLM作为评判者使相关性判断过程透明化且可争议，替代传统黑箱式评估，让学者能够审视并挑战系统的相关性判定依据</li><li style="margin-bottom:0;"><strong>双层检索架构</strong>：关键词检索与语义检索作为互补检索层并行运作，共享LLM评估过滤器，融合两种检索方式各自覆盖的差异化源文献池</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>史学方法论嵌入</strong>：首次将历史学科认识论承诺系统性转化为RAG设计决策，为解释性人文学科与大语言模型技术的深度整合提供可迁移的架构范式</li><li style="margin-bottom:0;"><strong>时间偏差量化</strong>：通过SPIEGELragged实证揭示年代术语差异导致1950年代文献零检索现象，以数据驱动方式论证时间窗口机制的方法论必要性</li><li style="margin-bottom:0;"><strong>相关性判据分离</strong>：发现向量相似度与LLM评估相关性仅弱相关（Spearman ρ=0.275），证明检索阶段与评估阶段需采用不同判据，突破传统RAG的单一相关性假设</li><li style="margin-bottom:0;"><strong>中间文本概念</strong>：提出Zwischentexte作为解释性提案而非最终发现的文本形态，为LLM生成内容在学术 workflow 中的伦理整合建立理论框架</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>标准RAG存在偏差</strong>：主流RAG评估范式与默认配置面向事实问答，其嵌入假设与历史等解释性学科学术实践存在深层冲突，需领域特定化改造</li><li style="margin-bottom:0;"><strong>术语时代差异显著</strong>：1970年代术语检索1950年代文献返回零结果，证实历史研究中词汇历时演变对语义检索的系统性干扰，时间窗口为必要纠偏机制</li><li style="margin-bottom:0;"><strong>双检索互补验证</strong>：关键词与语义检索返回 largely disjoint 的源文献池，单一检索模式存在覆盖盲区，双层架构可显著提升史料发掘的完备性</li><li style="margin-bottom:0;"><strong>弱相关性需分层处理</strong>：向量相似度与LLM相关性评估弱相关，表明检索与评估应解耦为独立环节，避免将相似度直接等同于学术相关性</li><li style="margin-bottom:0;"><strong>领域认识论可迁移</strong>：HistoRAG架构为其他解释性学科的大型语料库工作提供模型，证明特定学科认识论承诺可向技术设计决策进行系统性转化</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.18103" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.18103</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Security and Privacy Prompts in the Wild: What Users Ask LLMs and How LLMs Respond</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.18062</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">野外安全与隐私提示：用户如何询问LLM及LLM如何回应</span>
+                        <span style="color:#666;font-size:12px;">Hobin Kim et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型（LLMs）被广泛用于满足用户信息需求，但在数字安全与隐私（S&P）领域研究不足。本研究基于WildChat数据集（320万用户对话），识别出14,727个S&P提示并分为九类，对450个样本进行主题分析，并针对270个寻求建议的S&P提示测量LLM响应质量与一致性。研究发现商业LLM（GPT 5.5）表现优于开源模型（Llama 4），但商业模型存在响应矛盾性问题。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>大规模数据筛选</strong>：从WildChat 320万对话中识别14,727个安全隐私提示，建立首个真实用户S&P查询数据集</li><li style="margin-bottom:0;"><strong>主题分析编码</strong>：对450个样本进行系统主题分析，将用户S&P问题归纳为九大类别覆盖广泛安全隐私主题</li><li style="margin-bottom:0;"><strong>多轮质量评估</strong>：对270个建议寻求型提示重复查询10次，测量响应质量与跨运行一致性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>真实场景驱动</strong>：首次基于用户真实查询而非专家编写的误解或FAQ研究LLM安全隐私响应质量</li><li style="margin-bottom:0;"><strong>多维评估框架</strong>：同时评估响应质量（good enough标准）与一致性（跨运行矛盾风险），揭示商业模型隐藏缺陷</li><li style="margin-bottom:0;"><strong>跨模型对比</strong>：系统比较商业模型与开源权重模型在安全隐私领域的性能差距与特性差异</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>商业模型优势</strong>：GPT 5.5在98%提示上提供足够好响应，显著优于Llama 4的47%，显示商业LLM安全隐私建议能力领先</li><li style="margin-bottom:0;"><strong>一致性隐患</strong>：高质量响应的提示中商业模型仍产生矛盾回答，存在混淆或误导用户的风险</li><li style="margin-bottom:0;"><strong>开源模型短板</strong>：开源权重模型在安全隐私建议质量上明显不足，需改进以满足用户安全信息需求</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.18062" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.18062</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/18</p>
+        </div>
+    </div>
+</body>
+</html>
