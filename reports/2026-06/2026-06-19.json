@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-19",
+  "title": "大模型创新突破 从语义对齐到临床接口的七维跃迁",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.18989",
+      "title": "G-IdiomAlign: A Gloss-Pivoted Benchmark for Cross-Lingual Idiom Alignment",
+      "chinese_title": "G-IdiomAlign：基于释义的多语言习语对齐基准",
+      "authors": "Fengying Ye et al.",
+      "url": "https://arxiv.org/abs/2606.18989"
+    },
+    {
+      "id": "2606.18767",
+      "title": "Output Vector Editing for Memorization Mitigation in Large Language Models",
+      "chinese_title": "大语言模型输出向量编辑缓解记忆化",
+      "authors": "Ahmad Dawar Hakimi et al.",
+      "url": "https://arxiv.org/abs/2606.18767"
+    },
+    {
+      "id": "2606.18728",
+      "title": "LegalWorld: A Life-Cycle Interactive Environment for Legal Agents",
+      "chinese_title": "LegalWorld：法律智能体的全生命周期交互环境",
+      "authors": "Songhan Zuo et al.",
+      "url": "https://arxiv.org/abs/2606.18728"
+    },
+    {
+      "id": "2606.19005",
+      "title": "Sumi: Open Uniform Diffusion Language Model from Scratch",
+      "chinese_title": "墨：从零构建的开放均匀扩散语言模型",
+      "authors": "Mengyu Ye et al.",
+      "url": "https://arxiv.org/abs/2606.19005"
+    },
+    {
+      "id": "2606.18946",
+      "title": "SenFlow: Inter-Sentence Flow Modeling for AI-Generated Text Detection in Hybrid Documents",
+      "chinese_title": "SenFlow：混合文档中AI生成文本检测的跨句流建模",
+      "authors": "Jingkun Luo et al.",
+      "url": "https://arxiv.org/abs/2606.18946"
+    },
+    {
+      "id": "2606.18781",
+      "title": "Lost in a Single Vector: Improving Long-Document Retrieval with Chunk Evidence Aggregation",
+      "chinese_title": "单向量之困：基于分块证据聚合的长文档检索优化",
+      "authors": "Shanshan Lyu et al.",
+      "url": "https://arxiv.org/abs/2606.18781"
+    },
+    {
+      "id": "2606.19183",
+      "title": "Language Models as Interfaces, Not Oracles: A Hybrid LLM-ML System for Pediatric Appendicitis",
+      "chinese_title": "语言模型作接口非预言：混合LLM-ML儿童阑尾炎系统",
+      "authors": "Soheyl Bateni et al.",
+      "url": "https://arxiv.org/abs/2606.19183"
+    }
+  ],
+  "generated_at": "2026-06-18T22:10:33.869Z",
+  "org": "AI研究室"
+}

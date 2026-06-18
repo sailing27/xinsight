@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型创新突破 从语义对齐到临床接口的七维跃迁 | 2026/6/19</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型创新突破 从语义对齐到临床接口的七维跃迁 | 2026/6/19</h1>
+                <div class="date">2026/6/19 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察揭示了2024年大模型技术从"能力扩展"向"结构优化与角色重构"的深层演进。七篇论文共同指向三个技术趋势：一是<strong>表示与编辑范式的精细化</strong>，从输出向量编辑到块级证据聚合，研究者正突破黑箱操作，在神经元权重与文档嵌入层面实现可解释、可度量的精准干预；二是<strong>序列建模的结构性突破</strong>，均匀扩散机制与句间流图分别打破自回归顺序依赖和孤立分类假设，为非线性生成与上下文感知检测开辟新路径；三是<strong>领域应用的架构解耦</strong>，法律生命周期建模与临床混合系统均拒绝端到端幻觉风险，通过因果状态链或LLM-ML接口分离实现专业场景的可靠性保障。<br><br>这些创新对行业具有双重启示：技术上，"编辑什么"比"能否编辑"更重要，输出向量、释义锚点等中介对象的识别成为效能分水岭；应用上，高 stakes 领域正形成"LLM负责语言理解、专用模型负责决策"的共识架构，推动大模型从通用神谕向可信基础设施转型。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>G-IdiomAlign: A Gloss-Pivoted Benchmark for Cross-Lingual Idiom Alignment</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.18989</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ACL 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">G-IdiomAlign：基于释义的多语言习语对齐基准</span>
+                        <span style="color:#666;font-size:12px;">Fengying Ye et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">习语因其非组合性和弱表面形式 grounding 难以跨语言迁移。本文提出 G-IdiomAlign，一个以英语释义（gloss）为锚点的跨语言习语对齐基准，基于 Wiktionary 构建高置信度参考对齐集。该基准支持两种评估协议：多项选择习语等价（含类型化干扰项）和释义对比生成（对比无释义/有释义输入）。实验表明，字面翻译偏见是主要失败模式，释义对生成任务有提升但空间仍大，Qwen3-8B 分析发现跨条件差异集中于注意力头而非层。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>释义锚点构建</strong>：以 Wiktionary 英语释义为语义枢纽，为每条习语建立跨语言对齐的稳定锚点，缓解表面形式不可靠问题</li><li style="margin-bottom:0;"><strong>高置信度对齐集</strong>：构建可复现评估的参考对齐集合，确保基准测试的一致性与可靠性，支持严格实验对比</li><li style="margin-bottom:0;"><strong>多项选择协议</strong>：设计含类型化干扰项的习语等价判断任务，实现错误归因分析，精准定位模型失败模式</li><li style="margin-bottom:0;"><strong>释义对比生成</strong>：通过 No-gloss 与 With-gloss 输入对比，隔离显式语义枢轴对跨语言习语生成的因果效应</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语义枢轴范式</strong>：突破字面映射局限，首创以释义为跨语言中介的习语对齐框架，为非组合表达提供可解释的语义桥梁</li><li style="margin-bottom:0;"><strong>可控干扰设计</strong>：引入类型化干扰项的多项选择机制，使错误分析从单一准确率扩展至结构化归因，增强诊断价值</li><li style="margin-bottom:0;"><strong>对比生成协议</strong>：建立 Gloss-Contrastive 生成范式，通过条件控制分离释义贡献，为语义枢轴研究提供方法论工具</li><li style="margin-bottom:0;"><strong>低资源覆盖</strong>：聚焦低资源语言作为目标语时的习语迁移，揭示并量化字面翻译偏见的资源不对称性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>字面翻译主导</strong>：跨多样 LLM 的实验表明，字面翻译偏见是习语跨语言迁移的首要失败模式，低资源目标语下尤为严重</li><li style="margin-bottom:0;"><strong>释义生成增益</strong>：释义在嵌入语义代理下持续提升 Gloss-Contrastive Generation，但绝对性能仍 modest，开放输出空间存在显著改进余地</li><li style="margin-bottom:0;"><strong>头层差异分布</strong>：Qwen3-8B 的后续分析显示，跨条件差异更多集中于注意力头而非层，提示精细干预应瞄准头级别</li><li style="margin-bottom:0;"><strong>释义锚定关联</strong>：更优的 With-gloss 生成与更强的释义锚定效应同步出现，验证语义枢轴机制的有效性及其可追踪性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.18989" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.18989</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Output Vector Editing for Memorization Mitigation in Large Language Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.18767</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">大语言模型输出向量编辑缓解记忆化</span>
+                        <span style="color:#666;font-size:12px;">Ahmad Dawar Hakimi et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大型语言模型会记忆并复现训练数据中的序列，带来隐私、版权和安全风险。现有神经元级缓解方法将编辑等同于将神经元激活置零，但激活仅控制神经元是否参与，而输出向量才是写入残差流并通过叠加编码多个特征的关键。本文提出输出向量编辑，一种约束优化权重编辑方法，定位少量负责记忆续写的MLP神经元，并最小化修改其输出向量以在词汇空间中引入干扰项，重定向其残差流贡献同时保持激活不变。在360M到7B参数的四个模型上评估，以OLMo-7B为中心，挖掘6831条记忆序列，实现最高87.9%的抑制率。与相同定位神经元上的零消融相比2.7%的差距表明抑制来自输出向量编辑而非仅定位。四种编辑模式覆盖从激进抑制到最小重定向的频谱；集成可覆盖96.5%的记忆序列，推荐单模式配置达81.5%且无灾难性局部性失败。约14%序列无法通过仅MLP编辑到达，这些失败并非由注意力驱动，消融顶部贡献注意力头可恢复60-64%，对从前缀复制token的续写恢复更强，注意力作为补充回退机制而非主要机制。编辑模式排序和成功-局部性权衡跨四个模型迁移，成功率随模型规模而非家族缩放。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>输出向量编辑</strong>：提出约束优化权重编辑方法，定位少量MLP神经元并最小化修改其输出向量，在词汇空间引入干扰项重定向残差流贡献，同时保持神经元激活不变，区别于传统零消融方法</li><li style="margin-bottom:0;"><strong>记忆序列挖掘</strong>：以OLMo-7B为中心，利用其开放权重和预训练语料库进行系统性挖掘，共识别6831条记忆序列，为后续编辑评估提供大规模测试基础</li><li style="margin-bottom:0;"><strong>四种编辑模式</strong>：设计覆盖从激进抑制到最小重定向频谱的四种编辑模式，通过集成策略覆盖96.5%记忆序列，单模式推荐配置达81.5%抑制率且无灾难性局部性失败</li><li style="margin-bottom:0;"><strong>注意力头消融</strong>：针对约14%无法通过MLP编辑到达的序列，采用顶部贡献注意力头消融作为补充机制，可恢复60-64%的失败案例，定位注意力为回退而非主要机制</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>输出向量本质认知</strong>：突破现有方法将编辑等同于激活置零的局限，揭示输出向量才是写入残差流并编码多特征的关键，提出针对输出向量而非激活的编辑新范式</li><li style="margin-bottom:0;"><strong>约束优化编辑</strong>：将记忆缓解形式化为约束优化问题，最小化修改输出向量以引入词汇空间干扰项，实现精准重定向而非粗暴抑制，平衡成功率和局部性</li><li style="margin-bottom:0;"><strong>跨模型迁移验证</strong>：在SmolLM-360M、OLMo-1B、OLMo-7B、Llama2-7B四个不同家族模型上验证，证明编辑模式排序和成功-局部性权衡具有跨模型通用性，成功率随规模缩放</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>输出向量编辑有效</strong>：相比相同定位神经元的零消融，输出向量编辑带来2.7%额外抑制增益，证明抑制效果源于输出向量修改本身而非仅神经元定位</li><li style="margin-bottom:0;"><strong>集成覆盖率高</strong>：四种编辑模式集成可覆盖96.5%记忆序列，推荐单模式配置达81.5%成功率，且无灾难性局部性失败，兼顾效率与效果</li><li style="margin-bottom:0;"><strong>MLP编辑边界</strong>：约14%序列存在MLP-only编辑不可达边界，这些失败非注意力整体驱动，注意力头消融可恢复60-64%，对前缀复制型续写恢复更强，作为补充机制</li><li style="margin-bottom:0;"><strong>规模缩放规律</strong>：编辑模式排序和成功-局部性权衡跨四个模型迁移，成功率随模型规模而非模型家族缩放，具有可预测的扩展特性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.18767" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.18767</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>LegalWorld: A Life-Cycle Interactive Environment for Legal Agents</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.18728</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">LegalWorld：法律智能体的全生命周期交互环境</span>
+                        <span style="color:#666;font-size:12px;">Songhan Zuo et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">民事诉讼本质上是生命周期过程：律师首日起草的内容会在数月后的庭审中产生约束。然而现有法律基准仅评估孤立子任务，先前法律智能体模拟器从共享真值重新初始化每个场景，导致跨阶段因果依赖未被建模。本文提出LegalWorld，一个生命周期交互环境，将民事诉讼建模为五个阶段（七个子场景）的因果连接状态链，基于75,309份配对民事判决。配套可复用基础设施（本地记忆、全局案件记忆、技能/工具库）确保每个纠纷在全生命周期保持一致性。在此基础上构建LongJud-Bench评估智能体跨五个连接阶段的能力。217名法律背景评估者的18,992条评分确认LegalWorld轨迹在程序忠实性和角色一致性方面表现优异；能力级跨模型评估揭示了聚合分数无法暴露的显著差异，没有单一骨干模型在咨询、起草和法庭辩论三方面均领先。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>生命周期建模</strong>：将民事诉讼抽象为五个阶段七个场景的状态链，实现跨阶段因果依赖的形式化表达，突破传统孤立子任务评估范式</li><li style="margin-bottom:0;"><strong>记忆基础设施</strong>：设计本地记忆与全局案件记忆双层架构，配合技能工具库，确保智能体在多阶段交互中维持案件状态一致性</li><li style="margin-bottom:0;"><strong>配对判决驱动</strong>：基于75,309份真实配对民事判决构建环境，使模拟场景具备法律程序真实性和裁判结果可验证性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>因果连接状态链</strong>：首创将法律程序建模为连续因果状态转换，前期行为对后期阶段产生真实约束，而非每次重新初始化共享真值</li><li style="margin-bottom:0;"><strong>全周期一致性保障</strong>：通过可复用基础设施实现案件信息跨阶段流动，解决智能体在长程法律任务中的状态漂移与角色不一致问题</li><li style="margin-bottom:0;"><strong>细粒度能力评估</strong>：构建LongJud-Bench揭示不同模型在咨询、起草、法庭辩论等细分能力上的差异化表现，超越单一聚合分数</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>程序角色双保真</strong>：18,992条专家评分证实LegalWorld生成的交互轨迹在程序忠实性和角色一致性两方面均达到可信水平</li><li style="margin-bottom:0;"><strong>能力分化显著</strong>：跨模型比较显示不存在全能领先模型，不同骨干在咨询、起草、法庭辩论三类任务上呈现明显的能力分化格局</li><li style="margin-bottom:0;"><strong>聚合分数失效</strong>：传统单一评分指标无法捕捉模型在法律多阶段任务中的真实能力差异，细粒度评估框架具有必要性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.18728" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.18728</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Sumi: Open Uniform Diffusion Language Model from Scratch</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.19005</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">墨：从零构建的开放均匀扩散语言模型</span>
+                        <span style="color:#666;font-size:12px;">Mengyu Ye et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">扩散模型已成为自回归模型的有前景替代方案。均匀扩散语言模型（UDLMs）允许任何token在任何步骤被更新，理论上实现更灵活的生成。然而，目前尚无UDLM在大型参数规模和大型token预算下从零开始预训练。自回归建模和掩码扩散建模已有大规模可用模型，而均匀扩散没有。本文提出Sumi（日语中'墨水'之意），一个完全开源的7B参数均匀扩散语言模型，在1.5T token上从零预训练。Sumi在知识、推理和编程基准上与同等token预算训练的自回归模型表现相当，但在常识基准上表现较差，可能与其教育导向的数据混合有关。研究团队发布了模型权重、检查点和完整训练配方，包括公开语料库的数据混合完整规范。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>均匀扩散机制</strong>：允许任意token在任意时间步被更新，突破自回归模型的顺序生成限制，实现更灵活的并行生成与迭代优化</li><li style="margin-bottom:0;"><strong>大规模预训练</strong>：在1.5T token上从零训练7B参数模型，填补均匀扩散领域无大规模基础模型的空白，建立可研究的基准参照</li><li style="margin-bottom:0;"><strong>完整开源发布</strong>：公开模型权重、训练检查点及数据配方，包括公开语料库的完整数据混合比例，确保研究可复现</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>从零训练范式</strong>：首次实现大规模参数与大数据量双重扩展的均匀扩散语言模型，区别于此前小规模或基于现有模型微调的UDLM工作</li><li style="margin-bottom:0;"><strong>教育导向数据</strong>：采用偏重教育内容的数据混合策略，虽影响常识任务表现，但为研究数据配方对扩散模型性能影响提供独特案例</li><li style="margin-bottom:0;"><strong>统一生成框架</strong>：任何位置可同时更新，支持灵活控制生成过程，为探索扩散语言模型的可控性与生成动态提供原生平台</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能竞争力</strong>：在知识、推理和编程基准上，Sumi与同等token预算的自回归模型表现相当，验证均匀扩散在大规模下的有效性</li><li style="margin-bottom:0;"><strong>常识任务短板</strong>：在常识基准上表现较弱，推测与数据混合中教育内容占比过高有关，揭示数据配方对模型能力分布的关键影响</li><li style="margin-bottom:0;"><strong>研究催化价值</strong>：大规模开源UDLM为社区研究均匀扩散的扩展规律、生成动态、可控性及与自回归/掩码扩散的权衡提供基础工具</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.19005" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.19005</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>SenFlow: Inter-Sentence Flow Modeling for AI-Generated Text Detection in Hybrid Documents</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.18946</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">SenFlow：混合文档中AI生成文本检测的跨句流建模</span>
+                        <span style="color:#666;font-size:12px;">Jingkun Luo et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对混合文档中句子级AI生成文本检测（S-AGTD）问题，提出现有方法孤立分类句子而忽略句间依赖、现有基准缺少最新生成器的两个缺陷。构建MOSAIC基准（16,000篇混合文档，基于PubMed和XSum，由DeepSeek-V3.2和Kimi K2生成，含困惑度一致性过滤），将S-AGTD重构为文档句子序列的结构化预测，提出SenFlow模型（图神经网络句间传播+线性链CRF解码），在跨域迁移 hardest 协议上取得+4.15 pp平均Macro-F1提升，并发现即使困惑度过滤后AI插入仍存在生成器相关的句长差异。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>句图传播</strong>：构建文档级句子图，通过图神经网络实现句间信息传播，捕获相邻及非相邻句子的依赖关系，替代孤立句子分类</li><li style="margin-bottom:0;"><strong>CRF解码</strong>：采用线性链条件随机场进行全局结构化解码，在单遍文档级推理中优化句子标签序列的一致性</li><li style="margin-bottom:0;"><strong>困惑过滤</strong>：设计困惑度一致性过滤器筛选高质量混合文档，消除显式统计线索，提升检测鲁棒性与公平性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>问题重构</strong>：将句子级检测从独立分类重构为结构化序列预测，首次显式建模句间流动依赖，突破孤立决策局限</li><li style="margin-bottom:0;"><strong>统一架构</strong>：SenFlow整合图传播与CRF解码于单文档级前向过程，实现局部句间交互与全局标签一致性的联合优化</li><li style="margin-bottom:0;"><strong>基准升级</strong>：MOSAIC覆盖最新生成器DeepSeek-V3.2与Kimi K2，引入困惑度过滤机制，填补现有基准的技术时效空白</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能领先</strong>：SenFlow在MOSAIC基准上达到最优性能，跨域迁移 hardest 协议平均Macro-F1领先现有方法4.15个百分点</li><li style="margin-bottom:0;"><strong>句长残留</strong>：即使困惑度过滤均衡显式线索后，AI插入句子仍保留生成器依赖的句长差异，句子级检测器仍可利用该偏差</li><li style="margin-bottom:0;"><strong>依赖关键</strong>：句间依赖建模是混合文档检测的关键，结构化预测显著优于孤立分类，尤其在跨域场景优势更明显</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.18946" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.18946</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Lost in a Single Vector: Improving Long-Document Retrieval with Chunk Evidence Aggregation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.18781</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">单向量之困：基于分块证据聚合的长文档检索优化</span>
+                        <span style="color:#666;font-size:12px;">Shanshan Lyu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">密集检索将单个查询向量与单个文档向量进行排序。在长文档上，当短但关键的片段在文档编码过程中被弱化时，这种接口会失效。本文将这一失效模式研究为文档侧早期压缩，并引入证据稀释指数（EDI）来衡量文档级表示与同一份黄金文档中最强块级证据之间的差距。基于此视角，提出DICE（通过块证据进行文档推理），一种无需训练的文档侧策略，将文档分割为块，用冻结模型独立编码，再聚合回单个向量，同时保留标准的单查询-单文档接口。在LongEmbed上，DICE在四个骨干网络上均提升检索效果，超过4k标记的切片增益最大：Dream的Passkey >4k从30.0提升至90.0，Needle >4k从23.3提升至74.0。在12,779个过滤样本中，DICE在92.8%的情况下EDI低于单向量基线。这些结果确立了文档级编码作为长文档检索中一个实用且尚未充分探索的杠杆。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>证据稀释指数</strong>：提出EDI量化指标，衡量文档级表示相对于最强块级证据的弱化程度，为诊断长文档检索失效模式提供精确测量工具</li><li style="margin-bottom:0;"><strong>分块独立编码</strong>：将长文档切分为多个块，使用冻结模型分别独立编码，避免关键信息在全局聚合过程中被稀释或弱化</li><li style="margin-bottom:0;"><strong>向量聚合策略</strong>：设计无需训练的聚合机制，将多个块向量合并为单一文档向量，保持标准检索接口的兼容性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>问题重构视角</strong>：将长文档检索失效重新定义为文档侧早期压缩问题，而非传统查询侧或交互式方法的改进路径</li><li style="margin-bottom:0;"><strong>训练无关设计</strong>：DICE完全无需训练或微调，直接利用现有冻结编码模型，具备即插即用的实用性和部署便利性</li><li style="margin-bottom:0;"><strong>接口兼容保留</strong>：在内部采用分块处理的同时，对外维持单查询-单向量的标准排序接口，不改动现有检索系统架构</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>长程显著增益</strong>：在超过4k标记的长文档切片上取得最大提升，Dream的Passkey >4k从30.0跃升至90.0，Needle >4k从23.3提升至74.0</li><li style="margin-bottom:0;"><strong>广泛模型适用</strong>：在LongEmbed基准的四个不同骨干网络上均实现检索性能提升，验证方法的通用性与鲁棒性</li><li style="margin-bottom:0;"><strong>EDI主导降低</strong>：在12,779个过滤样本中，92.8%的情况下DICE的EDI低于单向量基线，证实块证据聚合有效缓解证据稀释问题</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.18781" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.18781</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Language Models as Interfaces, Not Oracles: A Hybrid LLM-ML System for Pediatric Appendicitis</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.19183</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">语言模型作接口非预言：混合LLM-ML儿童阑尾炎系统</span>
+                        <span style="color:#666;font-size:12px;">Soheyl Bateni et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出ClaMPAPP系统，将大语言模型作为临床自然语言接口而非诊断引擎，通过从自由文本病历中提取结构化特征并输入XGBoost分类器，实现儿童阑尾炎诊断。该系统在德国两家医院的两组独立儿科队列上进行验证，与端到端LLM基线相比，在内部和外部验证中均取得最佳诊断性能，同时最小化漏诊病例，且对叙事文本重排序具有更强的鲁棒性。研究支持LLM-as-interface、ML-as-predictor的混合架构设计，将自然语言可用性与预测推理分离，为临床决策支持提供更可审计的路径。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>混合架构设计</strong>：采用LLM作为自然语言接口提取结构化特征，XGBoost作为稳定预测引擎，分离语言理解与临床推理，避免LLM直接诊断的幻觉风险</li><li style="margin-bottom:0;"><strong>特征提取约束</strong>：通过模式约束从类病历叙事中提取临床特征，并施加确定性合理性检查，确保输入ML模型的特征质量与临床一致性</li><li style="margin-bottom:0;"><strong>叙事鲁棒性测试</strong>：利用模板渲染和约束LLM重写从结构化电子病历生成叙事文本，并进行句子顺序置换，以评估系统对输入顺序变化的稳定性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>接口角色重定义</strong>：突破LLM作为诊断神谕的传统用法，创新性地将其定位为临床语言接口，专注于自然语言理解与结构化转换而非最终决策</li><li style="margin-bottom:0;"><strong>确定性验证机制</strong>：在LLM提取与ML预测之间插入确定性合理性检查层，建立可审计的中间验证环节，增强临床决策支持的透明度与安全性</li><li style="margin-bottom:0;"><strong>叙事到结构闭环</strong>：设计从结构化数据生成自然语言叙事再回归结构化特征的完整测试流程，在保留真实标签的同时评估自由文本输入场景下的系统性能</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能优势显著</strong>：ClaMPAPP在内部和外部验证中均实现最强整体诊断性能，同时最小化漏诊病例，直接回应急性分诊中的关键安全关切</li><li style="margin-bottom:0;"><strong>端到端LLM不稳定</strong>：直接作为诊断引擎的LLM表现出不稳定的敏感性-特异性权衡，且在叙事重排序下性能退化更严重，验证其不适合独立临床决策</li><li style="margin-bottom:0;"><strong>架构设计可推广</strong>：LLM-as-interface、ML-as-predictor的分离式设计为临床决策支持提供了更鲁棒、可审计的路径，具有跨疾病场景的应用潜力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.19183" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.19183</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/19</p>
+        </div>
+    </div>
+</body>
+</html>
