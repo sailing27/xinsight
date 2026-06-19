@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-20",
+  "title": "大模型安全与效率突破 从偏好优化到跨设备智能体系统创新",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.19744",
+      "title": "Beyond Uniform Forgetting: A Study of Sequential Direct Preference Optimization Across Preference Settings",
+      "chinese_title": "非均匀遗忘：序列直接偏好优化在不同偏好设置中的研究",
+      "authors": "Pranav Bhandari et al.",
+      "url": "https://arxiv.org/abs/2606.19744"
+    },
+    {
+      "id": "2606.20369",
+      "title": "CATCH-ME if you RAG: a dataset of Contextually Annotated multi-Turn Counterspeech against Hate and Misinformation Exchanges",
+      "chinese_title": "对抗仇恨与错误信息的多轮反言论语境标注数据集",
+      "authors": "Helena Bonaldi et al.",
+      "url": "https://arxiv.org/abs/2606.20369"
+    },
+    {
+      "id": "2606.19946",
+      "title": "GEMS: Geometric Constraints Enable Multi-Semantic Superposition in LLMs",
+      "chinese_title": "大语言模型中几何约束实现多语义叠加",
+      "authors": "Yu Deng et al.",
+      "url": "https://arxiv.org/abs/2606.19946"
+    },
+    {
+      "id": "2606.19881",
+      "title": "REDACT: A Systematically Controlled Multilingual Benchmark for Personal Information Detection",
+      "chinese_title": "REDACT：系统性控制的多语言个人信息检测基准",
+      "authors": "Guneesh Vats et al.",
+      "url": "https://arxiv.org/abs/2606.19881"
+    },
+    {
+      "id": "2606.20527",
+      "title": "StylisticBias: A Few Human Visual Cues Drive Most Social Biases in MLLMs",
+      "chinese_title": "风格偏见：少量人类视觉线索驱动多模态大语言模型中的主要社会偏见",
+      "authors": "Shaghayegh Kolli et al.",
+      "url": "https://arxiv.org/abs/2606.20527"
+    },
+    {
+      "id": "2606.20113",
+      "title": "When Does Streaming Tool Use Help? Characterizing Tool-Intent Stabilization in Streaming Retrieval-Augmented Generation",
+      "chinese_title": "流式检索增强生成中的工具使用何时有效：工具意图稳定化机制研究",
+      "authors": "Elroy Galbraith et al.",
+      "url": "https://arxiv.org/abs/2606.20113"
+    },
+    {
+      "id": "2606.20487",
+      "title": "Beyond Global Replanning: Hierarchical Recovery for Cross-Device Agent Systems",
+      "chinese_title": "跨设备智能体系统的分层恢复：超越全局重规划",
+      "authors": "Shu Yao et al.",
+      "url": "https://arxiv.org/abs/2606.20487"
+    }
+  ],
+  "generated_at": "2026-06-19T22:09:25.048Z",
+  "org": "AI研究室"
+}

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型安全与效率突破 从偏好优化到跨设备智能体系统创新 | 2026/6/20</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型安全与效率突破 从偏好优化到跨设备智能体系统创新 | 2026/6/20</h1>
+                <div class="date">2026/6/20 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦大模型在训练动态、推理效率、安全可控与多模态理解等维度的前沿突破，呈现出从"全局统一假设"走向"精细异构建模"的技术范式转移。核心趋势体现为三方面：其一，<strong>非均匀性与分层解耦</strong>成为主流方法论——序列DPO的偏好异质性迁移、GEMS的双源分解、H-RePlan的分层恢复均拒绝粗粒度统一处理，转而建立情境敏感的精细化机制；其二，<strong>延迟感知与投机执行</strong>重塑推理架构，流式RAG将工具调用嵌入用户输入时间窗口，实现检索延迟的隐性消化；其三，<strong>受控生成与系统归因</strong>驱动安全评估升级，从九轴PII基准到属性隔离的视觉偏差框架，评测方法论正从"结果描述"迈向"因果定位"。<br><br>对行业而言，这些研究表明：大模型优化需摒弃"平均 case"思维，建立关系感知、层次化、情境自适应的技术栈；RAG系统应前置流式架构设计以捕获交互红利；安全评测必须配套系统化控制机制，否则规则型防护的高危失效（如Presidio召回率仅0.07）将持续暴露于非逐字攻击面。整体而言，该领域正从规模驱动转向结构精巧性与因果可解释性并重的成熟阶段。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Beyond Uniform Forgetting: A Study of Sequential Direct Preference Optimization Across Preference Settings</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.19744</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 EMNLP 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">非均匀遗忘：序列直接偏好优化在不同偏好设置中的研究</span>
+                        <span style="color:#666;font-size:12px;">Pranav Bhandari et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究序列化直接偏好优化（DPO）在四种偏好设置下的表现，发现后续训练并非均匀遗忘先前偏好，而是呈现部分退化、稳定、配对重分布或正向迁移等多样化模式，取决于目标关系、信号强度和训练顺序。通过Llama-3.1-8B-Instruct与LoRA适配器实验，结合配对级分析和机械诊断，揭示聚合指标可能掩盖异质性变化，且梯度正交性并非主要驱动因素。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>序列DPO训练</strong>：采用LoRA适配器在Llama-3.1-8B-Instruct上实现多阶段直接偏好优化，每阶段固定基模型参考，系统评估跨四种偏好设置的顺序训练效果</li><li style="margin-bottom:0;"><strong>配对级分析</strong>：运用长度归一化策略边际进行配对级分析，通过四分位分解揭示高置信度配对在不同设置下的退化或改善模式，弥补聚合指标的掩盖效应</li><li style="margin-bottom:0;"><strong>梯度正交诊断</strong>：计算第二阶段梯度与适配器更新相对于先前目标的正交性，从机制层面验证直接梯度对立并非偏好变化的主要驱动因素</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>非均匀遗忘框架</strong>：突破传统均匀遗忘假设，首次系统证明序列DPO的偏好变化具有高度异质性，涵盖退化、稳定、重分布和正向迁移四种典型模式</li><li style="margin-bottom:0;"><strong>多维度偏好设置</strong>：构建覆盖分布冲突、多属性交互、强安全信号和兼容响应质量的四类偏好设置，为客观关系研究提供标准化评估体系</li><li style="margin-bottom:0;"><strong>机械可解释分析</strong>：将宏观性能指标与微观梯度动力学结合，通过适配器更新的几何特性解释多目标优化的内在机制，提升对齐过程透明度</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>关系依赖效应</strong>：序列DPO的偏好变化强烈依赖目标间关系，兼容目标产生正向迁移，冲突目标导致选择性退化，不存在统一的后续训练影响模式</li><li style="margin-bottom:0;"><strong>信号强度调制</strong>：目标信号强度与训练顺序共同决定偏好稳定性，强安全信号设置呈现独特保护效应，弱信号目标更易受后续训练干扰</li><li style="margin-bottom:0;"><strong>聚合指标局限</strong>：传统聚合评估指标显著掩盖配对级异质性变化，四分位分解显示高置信度配对可能同时出现改善与退化，需采用细粒度评价方法</li><li style="margin-bottom:0;"><strong>梯度非对立性</strong>：机械诊断表明第二阶段梯度与先前目标近乎正交，直接梯度对立假设缺乏实证支持，偏好变化源于更复杂的参数空间动态重配置</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.19744" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.19744</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>CATCH-ME if you RAG: a dataset of Contextually Annotated multi-Turn Counterspeech against Hate and Misinformation Exchanges</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.20369</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">对抗仇恨与错误信息的多轮反言论语境标注数据集</span>
+                        <span style="color:#666;font-size:12px;">Helena Bonaldi et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">在线仇恨言论与虚假信息频繁重叠，但NLP研究主要将其孤立处理。LLM虽可辅助生成反驳言论，但零样本模型常产生重复模糊回应，亟需高质量示例引导生成。现有数据集稀缺且仅限单轮英语对话，而真实交互多为多轮多语言。为此，本文推出首个大规模、专家策划的多语言对话数据集，聚焦仇恨与虚假信息交叉领域，涵盖五种语言、针对七个边缘化群体，并基于事实核查文章和NGO报告等验证知识，包含文档及片段级跨度标注，可直接用于RAG系统，助力训练更具说服力、事实基础的反驳模型。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多轮对话构建</strong>：突破现有单轮对话限制，构建真实场景下的多轮交互式反驳言论数据集，模拟实际对话动态</li><li style="margin-bottom:0;"><strong>知识锚定标注</strong>：将对话锚定于经核实的外部知识源，提供文档级与片段级双重跨度标注确保事实准确性</li><li style="margin-bottom:0;"><strong>多语言覆盖设计</strong>：涵盖五种语言的数据采集与标注，支持跨语言反驳言论模型的训练与评估</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>交叉领域首创</strong>：首次专门针对仇恨言论与虚假信息重叠领域构建数据集，填补NLP研究中长期存在的孤立处理空白</li><li style="margin-bottom:0;"><strong>RAG直接适配</strong>：通过结构化知识标注设计使数据集可直接应用于检索增强生成系统，无需额外转换处理</li><li style="margin-bottom:0;"><strong>专家质量把控</strong>：采用专家策划模式确保数据质量，针对七个边缘化群体的仇恨目标进行精准定向采集</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>零样本局限明显</strong>：现有LLM零样本生成反驳言论存在重复性与模糊性缺陷，必须依赖高质量示例进行生成引导</li><li style="margin-bottom:0;"><strong>真实场景复杂</strong>：实际社交交互呈现多轮跨语言特征，单轮英语数据集无法有效支撑真实应用需求</li><li style="margin-bottom:0;"><strong>事实基础关键</strong>：外部验证知识的深度整合是提升反驳言论说服力与可信度的核心要素，RAG架构具有显著优势</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.20369" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.20369</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>GEMS: Geometric Constraints Enable Multi-Semantic Superposition in LLMs</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.19946</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">大语言模型中几何约束实现多语义叠加</span>
+                        <span style="color:#666;font-size:12px;">Yu Deng et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究激活引导技术中的多语义叠加问题。现有方法仅能处理单一方向注入，多语义无约束叠加会导致模型崩溃。作者将崩溃分解为两个独立来源：分布偏移（逐层扰动累积使激活偏离训练分布）和方向干扰（非正交语义向量相互抑制）。基于此提出GEMS方法，通过范数保持加权叠加、注意力路径注入和实时正交化三个几何约束解决上述问题，在GSM8K上实现三方向并发注入时准确率保持98%（无约束仅4%），并通过组件消融和层探针验证各约束的因果作用。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>范数保持叠加</strong>：通过加权超位置保持激活范数稳定，防止逐层扰动累积导致激活分布外溢，解决分布偏移问题</li><li style="margin-bottom:0;"><strong>注意力路径注入</strong>：将语义向量靶向注入注意力路径，控制干预信号的传输通道，确保信号精准到达目标层</li><li style="margin-bottom:0;"><strong>实时正交化</strong>：对多语义方向进行动态格拉姆-施密特正交化处理，消除向量间的相互干扰与阻尼效应</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>双源分解框架</strong>：首次将多语义叠加崩溃分解为分布偏移与方向干扰两个独立作用源，为训练无关干预建立理论约束</li><li style="margin-bottom:0;"><strong>几何约束映射</strong>：将两个崩溃来源对应映射为具体几何操作，实现原理驱动的干预设计而非经验调参</li><li style="margin-bottom:0;"><strong>跨架构可迁移</strong>：正交化语义信号经FFN通路保持特异性，定性引导效果从3B到31B参数规模均有效迁移</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>三向并发可行</strong>：GSM8K上同时注入三个非数学语义方向，准确率维持98%接近基线92%，无约束叠加暴跌至4%</li><li style="margin-bottom:0;"><strong>困惑度代价低</strong>：Wikitext-2上同等注入仅增加2.2%困惑度，证明正交约束对语言建模能力损伤极小</li><li style="margin-bottom:0;"><strong>约束因果明确</strong>：组件消融实验证实每个几何约束独立发挥因果作用，层探针验证正交信号完整抵达输出分布</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.19946" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.19946</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>REDACT: A Systematically Controlled Multilingual Benchmark for Personal Information Detection</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.19881</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">REDACT：系统性控制的多语言个人信息检测基准</span>
+                        <span style="color:#666;font-size:12px;">Guneesh Vats et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现有个人可识别信息（PII）检测基准存在覆盖实体类型少、生成条件随意、无法定位失败原因等问题。本文提出REDACT，一个系统化控制的多语言PII基准，包含13,427条记录、324,078个实体标注、51种实体类型、4,127种表面形式模式，涵盖25种语言9种文字系统。采用强度-2覆盖阵列采样器控制九个生成维度，并引入三个实体级元数据字段支持分层评估。在1,000条锁定样本上评估五种检测器，发现聚合F1掩盖了架构依赖的失败结构，规则型检测器在高风险数据上表现极差，而LLM检测器更为稳健。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>覆盖阵列采样</strong>：采用强度-2覆盖阵列方法系统控制领域、格式、难度、长度、密度、语码转换、语言、邻接和共现九个生成轴，确保测试空间全面且高效覆盖</li><li style="margin-bottom:0;"><strong>分层评估框架</strong>：引入披露状态、披露形式和GDPR对齐敏感度等级三个实体级元数据字段，支持超越聚合或逐类型F1的分层评估</li><li style="margin-bottom:0;"><strong>LLM评判验证</strong>：设计三模型无参考LLM-as-judge评估机制，交叉验证敏感度等级分配是任务最困难的维度</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>系统控制生成</strong>：突破现有语料库随意生成局限，首创九轴系统化控制的多语言PII基准构建方法，实现失败原因的精确归因</li><li style="margin-bottom:0;"><strong>多维元数据设计</strong>：创新性地将GDPR合规敏感度分级与披露形式纳入基准标注，打通技术评估与隐私监管需求的关联</li><li style="margin-bottom:0;"><strong>跨架构失败解析</strong>：首次揭示规则型与LLM检测器在敏感度层级上的反向性能结构，颠覆聚合指标的传统认知</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>规则检测器高危失效</strong>：基于规则的Presidio在高敏感度类别召回率仅0.07，对非逐字披露形式极度脆弱，存在严重安全风险</li><li style="margin-bottom:0;"><strong>LLM检测器层级优势</strong>：GPT-4.1与Claude Sonnet 4.6等LLM检测器将高敏感度层级作为最强性能切片，呈现与规则系统相反的能力结构</li><li style="margin-bottom:0;"><strong>敏感度分配最难</strong>：三模型LLM-as-judge一致证实敏感度等级分配是PII检测任务中最困难的决策轴，超越实体识别本身</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.19881" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.19881</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>StylisticBias: A Few Human Visual Cues Drive Most Social Biases in MLLMs</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.20527</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">风格偏见：少量人类视觉线索驱动多模态大语言模型中的主要社会偏见</span>
+                        <span style="color:#666;font-size:12px;">Shaghayegh Kolli et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">多模态大语言模型（MLLMs）越来越多地部署在个人和社会重要场景中，但驱动这些模型评判他人的视觉线索仍 poorly understood。先前工作常比较不同群体个体，难以分离外观效应与身份差异。本文提出StylisticBias，一个用于评估MLLMs属性级社会偏差的控制基准。生成500张真实感基础人脸，每张创建约50种单属性变体，共约25K张图像。该设计固定身份、每次改变一个视觉属性，以测量特定线索如何偏移模型判断。在25种二元社会判断场景中评估六种MLLMs，发现年龄和体型主导身份级效应，而时尚风格和其他视觉线索驱动最大的属性级偏移。约15个属性占总变异的近80%，表明偏差集中在少量视觉线索中。敏感性在语义上与外观对齐的判断中最强，尤其是社会经济地位和风格相关判断。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>属性控制生成</strong>：基于500张真实感基础人脸，系统生成约25K张单属性变化图像，精确隔离各视觉属性对模型判断的独立影响</li><li style="margin-bottom:0;"><strong>身份固定设计</strong>：保持人物核心身份不变，仅改变单一视觉属性，有效解耦外观效应与身份差异的混淆问题</li><li style="margin-bottom:0;"><strong>细粒度偏差测量</strong>：在25种二元社会判断场景中量化属性级偏移，实现对MLLMs社会偏差的精细化评估</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>StylisticBias基准</strong>：首个在属性层面控制评估多模态大模型社会偏差的系统框架，突破传统群体比较方法的局限</li><li style="margin-bottom:0;"><strong>单变量控制范式</strong>：每次仅改变一个视觉属性（如发型、服饰、配饰等），建立因果推断式的偏差归因机制</li><li style="margin-bottom:0;"><strong>大规模属性库</strong>：构建约50种单属性变体×500张人脸的数据集，覆盖社会判断中关键视觉线索的完整谱系</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>年龄体型主导</strong>：年龄和体型是驱动身份级社会偏差效应的最强视觉线索，构成模型人物判断的基础偏差来源</li><li style="margin-bottom:0;"><strong>风格偏移显著</strong>：时尚风格等可控视觉属性引发最大的属性级判断偏移，表明模型对表层风格线索高度敏感</li><li style="margin-bottom:0;"><strong>偏差高度集中</strong>：仅约15个视觉属性即解释近80%的总变异，社会偏差在视觉空间中呈现严重的稀疏分布特征</li><li style="margin-bottom:0;"><strong>语义对齐效应</strong>：模型对与社会经济地位、风格相关的判断表现出最强敏感性，偏差与任务语义存在系统性关联</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.20527" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.20527</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>When Does Streaming Tool Use Help? Characterizing Tool-Intent Stabilization in Streaming Retrieval-Augmented Generation</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.20113</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">流式检索增强生成中的工具使用何时有效：工具意图稳定化机制研究</span>
+                        <span style="color:#666;font-size:12px;">Elroy Galbraith et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">流式检索增强生成（Streaming RAG）通过在用户输入完成前并行发出工具查询来降低感知延迟。本文提出工具意图稳定化概念，即在输入流中投机性查询的检索结果收敛到包含答案结果的时间点。在CRAG基准（1371个验证问题）上，测量稳定化分布、推导模型无关的延迟隐藏上界H、验证实际流式管道节省效果，并识别预测早/晚稳定化的查询属性。无需模型训练，可在普通CPU硬件运行。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>流式RAG架构</strong>：在用户完整表达前并行执行工具查询，将检索延迟隐藏在用户继续输入的时间窗口内，降低端到端感知延迟</li><li style="margin-bottom:0;"><strong>工具意图稳定化</strong>：定义输入流中投机查询的检索结果收敛到答案承载结果的时间点，是衡量流式RAG有效性的核心度量指标</li><li style="margin-bottom:0;"><strong>延迟隐藏上界</strong>：推导模型无关的理论界H，表示可隐藏在用户剩余输入后的工具延迟比例，取决于工具延迟L和输入速率δ</li><li style="margin-bottom:0;"><strong>稳定化预测特征</strong>：识别查询属性（问题类型、证据可得性等）对稳定化早晚的预测作用，为学习型投机触发器提供决策依据</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>概念形式化创新</strong>：首次将流式RAG的聚合收益分解为查询内禀属性，提出工具意图稳定化概念，建立投机有效性的精确数学刻画</li><li style="margin-bottom:0;"><strong>理论分析框架</strong>：建立模型无关的延迟隐藏上界H，统一工具延迟、输入速率与稳定化比例的关系，为系统设计提供理论指导</li><li style="margin-bottom:0;"><strong>双模式稳定化机制</strong>：区分充分性稳定化（gold证据可BM25检索）与无 grounding 的top-1集稳定化，扩展流式RAG适用场景</li><li style="margin-bottom:0;"><strong>实证验证体系</strong>：构建完整工作流式管道验证理论界，证明实际节省达到或超过理论下界，确保分析结论的工程可靠性</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>高延迟隐藏比例</strong>：在 realistic 操作点（L=600ms, δ=3w/s, θ=0.8），全基准73.9%查询支持显著延迟隐藏，流式RAG具有广泛适用性</li><li style="margin-bottom:0;"><strong>证据可得性分层</strong>：21.3%问题gold证据逐字可BM25检索（有利切片），其中95.2%可流式处理；其余依赖无grounding回退机制</li><li style="margin-bottom:0;"><strong>稳定化位置区间</strong>：有利切片上充分性稳定化φ_suf被精确grounding和松弛grounding限定在[0.26, 0.281]，均属早期稳定化</li><li style="margin-bottom:0;"><strong>问题类型影响</strong>：问题类型对早/晚稳定化产生显著但粗粒度分割（Kruskal-Wallis p=0.017, ε²=0.04），直接决定学习型投机触发器的成本效益</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.20113" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.20113</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>Beyond Global Replanning: Hierarchical Recovery for Cross-Device Agent Systems</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.20487</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">跨设备智能体系统的分层恢复：超越全局重规划</span>
+                        <span style="color:#666;font-size:12px;">Shu Yao et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">现实世界中的计算机使用任务通常跨越多个应用程序和设备，要求智能体在动态运行时故障下协调异构环境。现有的多设备智能体系统支持任务分解和跨设备分配，但恢复机制仍然较为粗粒度：当执行失败时，它们通常重试相同策略、重新分配子任务或修订全局计划，而未能系统性地建模设备本地策略空间。这限制了其区分可在当前设备内修复的故障与需要跨设备重新规划的故障的能力。本文提出H-RePlan，一种面向多设备智能体的分层重新规划框架，支持统一的API-CLI-GUI执行。H-RePlan为每个设备配备可互换的执行策略，并通过紧凑的跨层故障抽象将设备本地策略恢复与编排器级全局重新规划分离。为评估该能力，本文引入HeraBench，一种故障注入基准测试，在Linux和Android设备上构建跨设备工作流并注入策略级和设备级故障。实验表明，H-RePlan显著优于单策略和粗粒度多设备基线，在实现更高完成率、指令遵循率和完美通过率的同时，降低了可靠端到端成功所需的token成本。这些结果表明，范围感知的分层恢复对于稳健的多设备智能体执行至关重要。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分层恢复框架</strong>：将设备本地策略恢复与编排器级全局重新规划分离，通过紧凑的跨层故障抽象实现两层协同的故障处理机制</li><li style="margin-bottom:0;"><strong>可互换执行策略</strong>：为每个设备配备API、CLI、GUI多种可互换执行策略，支持统一执行模式下的灵活策略切换与本地修复</li><li style="margin-bottom:0;"><strong>故障注入基准</strong>：构建HeraBench跨设备工作流基准，在Linux和Android设备上系统注入策略级和设备级故障以评估恢复能力</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨层故障抽象</strong>：提出紧凑的跨层故障抽象机制，使编排器能够基于设备本地策略空间信息判断故障修复范围，避免不必要的全局重新规划</li><li style="margin-bottom:0;"><strong>范围感知恢复</strong>：首创区分设备本地可修复故障与需跨设备重新规划故障的层次化恢复范式，突破现有粗粒度恢复方法的局限</li><li style="margin-bottom:0;"><strong>统一执行模式</strong>：设计API-CLI-GUI统一执行架构，支持异构设备环境下的多模态策略集成与无缝切换</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能显著领先</strong>：H-RePlan在任务完成率、指令遵循率和完美通过率上大幅超越单策略及粗粒度多设备基线方法</li><li style="margin-bottom:0;"><strong>成本效率优化</strong>：在实现可靠端到端成功的同时，显著降低了所需的token成本，提升多设备智能体的经济可行性</li><li style="margin-bottom:0;"><strong>分层恢复必要性</strong>：实验证明范围感知的分层恢复机制对于构建稳健的多设备智能体执行系统具有本质重要性</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.20487" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.20487</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/20</p>
+        </div>
+    </div>
+</body>
+</html>
