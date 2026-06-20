@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-21",
+  "title": "大模型技术突破 从注意力机制到多语言应用的全景创新",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.20179",
+      "title": "ReNikud: Audio-Supervised Hebrew Grapheme-to-Phoneme Conversion",
+      "chinese_title": "ReNikud：音频监督的希伯来语字素到音素转换",
+      "authors": "Maxim Melichov et al.",
+      "url": "https://arxiv.org/abs/2606.20179"
+    },
+    {
+      "id": "2606.19667",
+      "title": "CacheWeaver: Cache-Aware Evidence Ordering for Efficient Grounded RAG Inference",
+      "chinese_title": "CacheWeaver：缓存感知的证据排序实现高效接地RAG推理",
+      "authors": "Kaizhen Tan et al.",
+      "url": "https://arxiv.org/abs/2606.19667"
+    },
+    {
+      "id": "2606.19659",
+      "title": "SAGE-OPD: Selective Agent-Guided Intervention for Multi-Turn On-Policy Distillation",
+      "chinese_title": "SAGE-OPD：面向多轮同策略蒸馏的选择性智能体引导干预方法",
+      "authors": "Yuhang Zhou et al.",
+      "url": "https://arxiv.org/abs/2606.19659"
+    },
+    {
+      "id": "2606.19640",
+      "title": "Creating Multilingual Mental Health Dialogue Datasets: Limits of Persona-Based Localization via Nationality and Language",
+      "chinese_title": "构建多语言心理健康对话数据集：基于国籍与语言的角色定位局限性",
+      "authors": "Yunkai Xu et al.",
+      "url": "https://arxiv.org/abs/2606.19640"
+    },
+    {
+      "id": "2606.20152",
+      "title": "From Texts to Scores: Tracing the Emergence of Essay Quality Representations in Large Language Models",
+      "chinese_title": "从文本到分数：追踪大语言模型中作文质量表征的涌现",
+      "authors": "Jiaxu Zuo et al.",
+      "url": "https://arxiv.org/abs/2606.20152"
+    },
+    {
+      "id": "2606.20097",
+      "title": "HydraHead: From Head-Level Functional Heterogeneity to Specialized Attention Hybridization",
+      "chinese_title": "HydraHead：从头部功能异质性到专业化注意力混合",
+      "authors": "Zhentao Tan et al.",
+      "url": "https://arxiv.org/abs/2606.20097"
+    },
+    {
+      "id": "2606.20093",
+      "title": "Self-Preference Is Weak or Absent in Verifiable Instruction-Following Revision: A Four-Model Test Under Genuine Authorship",
+      "chinese_title": "可验证指令遵循修订中的自我偏好弱或缺失：真实作者身份下的四模型检验",
+      "authors": "William Guey et al.",
+      "url": "https://arxiv.org/abs/2606.20093"
+    }
+  ],
+  "generated_at": "2026-06-20T22:10:03.669Z",
+  "org": "AI研究室"
+}
