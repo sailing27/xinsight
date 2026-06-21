@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-22",
+  "title": "大模型评估革新与多语言智能 从信度危机到语境认知的七大突破",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.19544",
+      "title": "Reliability without Validity: A Systematic, Large-Scale Evaluation of LLM-as-a-Judge Models Across Agreement, Consistency, and Bias",
+      "chinese_title": "有效度缺失的可靠性：大语言模型评判者在大规模系统评估中的信度、一致性与",
+      "authors": "Justin D. Norman et al.",
+      "url": "https://arxiv.org/abs/2606.19544"
+    },
+    {
+      "id": "2606.19668",
+      "title": "Code-Switching Reveals Language Anchoring in Multilingual LLMs",
+      "chinese_title": "多语大模型中的语言锚定：语码转换揭示机制",
+      "authors": "Jeonghyun Park et al.",
+      "url": "https://arxiv.org/abs/2606.19668"
+    },
+    {
+      "id": "2606.19637",
+      "title": "Before the Labels: How Dataset Construction Shapes Suicidality Detection in Clinical Text",
+      "chinese_title": "数据集构建如何影响临床文本自杀倾向检测",
+      "authors": "Priyanshi Garg et al.",
+      "url": "https://arxiv.org/abs/2606.19637"
+    },
+    {
+      "id": "2606.19468",
+      "title": "Characterizing Narrative Content in Web-scale LLM Pretraining Data",
+      "chinese_title": "网络规模LLM预训练数据的叙事内容特征分析",
+      "authors": "Teagan Johnson et al.",
+      "url": "https://arxiv.org/abs/2606.19468"
+    },
+    {
+      "id": "2606.20255",
+      "title": "The Register Gap: A Meaning Intelligence Framework for Nigerian Public Discourse",
+      "chinese_title": "尼日利亚公共话语的语域鸿沟：意义智能框架",
+      "authors": "Celestine Achi et al.",
+      "url": "https://arxiv.org/abs/2606.20255"
+    },
+    {
+      "id": "2606.20198",
+      "title": "Pitch Spelling Jazz Lead Sheets, Solo Transcriptions, Classical Piano and Monophonic Scores",
+      "chinese_title": "爵士与古典乐谱的音高拼写研究",
+      "authors": "Augustin Bouquillard et al.",
+      "url": "https://arxiv.org/abs/2606.20198"
+    },
+    {
+      "id": "2606.20089",
+      "title": "IHUBERT: Vector-Based Semantic Deduplication and Domain-Balanced Pretraining for Persian Resources",
+      "chinese_title": "IHUBERT：基于向量的语义去重与领域平衡预训练用于波斯语资源",
+      "authors": "Arash Ghafouri et al.",
+      "url": "https://arxiv.org/abs/2606.20089"
+    }
+  ],
+  "generated_at": "2026-06-21T22:10:00.662Z",
+  "org": "AI研究室"
+}
