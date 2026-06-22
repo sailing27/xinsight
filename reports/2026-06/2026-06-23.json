@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-23",
+  "title": "大模型技术突破 从语义革新到零样本智能应用",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.19352",
+      "title": "Sign-Language Datasets at Scale: A Comprehensive Survey on Resources, Benchmarks, and Annotation Standards",
+      "chinese_title": "大规模手语数据集：资源、基准与标注标准综述",
+      "authors": "Yiming Ni et al.",
+      "url": "https://arxiv.org/abs/2606.19352"
+    },
+    {
+      "id": "2606.19353",
+      "title": "Quantifying Aleatoric Uncertainty of In-Context Learning for Robust Measure of LLM Prediction Confidence",
+      "chinese_title": "上下文学习偶然不确定性的量化：LLM预测置信度的鲁棒度量",
+      "authors": "Jinseok Chung et al.",
+      "url": "https://arxiv.org/abs/2606.19353"
+    },
+    {
+      "id": "2606.19350",
+      "title": "Pruning via Causal Attribution Preserves Reasoning Performance in Large Language Models",
+      "chinese_title": "基于因果归因的剪枝保持大语言模型推理性能",
+      "authors": "Amogh Sheth et al.",
+      "url": "https://arxiv.org/abs/2606.19350"
+    },
+    {
+      "id": "2606.19857",
+      "title": "Large Language Models Do Not Always Need Readable Language",
+      "chinese_title": "大语言模型并非总需可读语言",
+      "authors": "Jiayi Zhu et al.",
+      "url": "https://arxiv.org/abs/2606.19857"
+    },
+    {
+      "id": "2606.19910",
+      "title": "Light-weight Pronunciation Assessment via Discrete Speech Token Surprisal",
+      "chinese_title": "轻量发音评估：基于离散语音令牌惊奇度",
+      "authors": "Syeda Faiza Ahmed Sara et al.",
+      "url": "https://arxiv.org/abs/2606.19910"
+    },
+    {
+      "id": "2606.19852",
+      "title": "Prompt, Plan, Extract: Zero-Shot Agentic LLMs Workflows for Lung Pathology Extraction from Clinical Narratives",
+      "chinese_title": "零样本智能体工作流提取临床叙述肺部病理信息",
+      "authors": "Aman Pathak et al.",
+      "url": "https://arxiv.org/abs/2606.19852"
+    },
+    {
+      "id": "2606.19819",
+      "title": "CREDENCE: Claim Reduction for Decomposition &amp; Enhanced Credibility -- Semantic Metrics and Convergence Analysis",
+      "chinese_title": "CREDENCE：声明分解与可信度增强的语义度量及收敛分析",
+      "authors": "Phuong Huu Vu Tran et al.",
+      "url": "https://arxiv.org/abs/2606.19819"
+    }
+  ],
+  "generated_at": "2026-06-22T22:09:32.259Z",
+  "org": "AI研究室"
+}

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型技术突破 从语义革新到零样本智能应用 | 2026/6/23</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型技术突破 从语义革新到零样本智能应用 | 2026/6/23</h1>
+                <div class="date">2026/6/23 | AI研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本次洞察聚焦大模型在表示学习、效率优化与跨模态应用的前沿突破，揭示AI系统正从"人类中心设计"向"模型原生优化"范式演进。技术趋势呈现三大共性方向：一是<strong>表示空间的语义解耦与紧凑化</strong>——从BabelTele的非标准文本表示到离散语音token，均通过牺牲人类可读性换取模型处理效率，打破自然语言作为唯一中介的固有假设；二是<strong>不确定性量化与因果归因的精细化</strong>——贝叶斯框架下的偶然不确定性估计与注意力头的因果干预剪枝，共同推动模型内部机制的可解释性与决策可靠性；三是<strong>零样本/低资源场景的能力释放</strong>——从母语数据训练的语音评估到智能体病理提取，大幅降低领域部署的数据门槛。<br><br>这些创新对行业具有双重启示：研究层面，语义度量革新（Semantic-F1）与因果剪枝（CAP）为模型评估与压缩提供了更贴合神经网络本质的方法论；应用层面，手语资源索引与医疗零样本工作流证明，系统性资源整合与智能体架构可有效突破数据瓶颈，加速AI在无障碍沟通与临床场景的普惠落地。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2026</div>
+                    <div class="stat-label">最新发布</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">原文精读</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">AI</div>
+                    <div class="stat-label">技术洞察</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">1</div>
+                    <h2>Sign-Language Datasets at Scale: A Comprehensive Survey on Resources, Benchmarks, and Annotation Standards</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.19352</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ACL 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">大规模手语数据集：资源、基准与标注标准综述</span>
+                        <span style="color:#666;font-size:12px;">Yiming Ni et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文对 sign language 数据集进行全面综述，涵盖35种手语的120个资源，分析模态不平衡、标注粒度、Signer 偏差等关键挑战，提出24字段手语数据表并发布GitHub仓库，为开发包容、鲁棒、可扩展的手语技术提供统一基础。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>大规模资源索引</strong>：系统梳理120个手语数据集资源，覆盖35种不同手语，建立目前最全面的手语数据资源目录，解决领域资源分散难检索问题</li><li style="margin-bottom:0;"><strong>多维挑战分析</strong>：深入剖析模态不平衡、标注粒度差异、Signer偏差等核心技术挑战，揭示现有数据集制约模型性能的关键因素</li><li style="margin-bottom:0;"><strong>标准化数据文档</strong>：设计24字段手语数据表规范，统一数据集描述格式，提升文档标准化程度和实验可复现性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>综合资源索引</strong>：首次构建跨35种手语的120个数据集全景图谱，填补手语领域缺乏系统性数据综述的空白，建立领域基准参考框架</li><li style="margin-bottom:0;"><strong>公开协作平台</strong>：发布Open-Sign-Language开源仓库，提供标准化文档模板和评估工具，促进社区协作与资源共享</li><li style="margin-bottom:0;"><strong>真实场景导向</strong>：突破现有基准脱离实际沟通需求的局限，从包容性、鲁棒性、可扩展性维度重构数据集设计准则</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>资源碎片化严重</strong>：现有手语数据集高度分散且缺乏统一标准，严重制约识别翻译与生成技术的协同进步与跨语言迁移</li><li style="margin-bottom:0;"><strong>标注质量瓶颈</strong>：不一致的标注规范和有限的语言学覆盖导致模型难以捕捉手语的空间语法和表情韵律等核心特征</li><li style="margin-bottom:0;"><strong>标准化迫在眉睫</strong>：建立统一的数据文档标准和评估体系是推动手语技术从实验室走向真实世界应用的关键基础</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.19352" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.19352</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">2</div>
+                    <h2>Quantifying Aleatoric Uncertainty of In-Context Learning for Robust Measure of LLM Prediction Confidence</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.19353</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 ACL 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">上下文学习偶然不确定性的量化：LLM预测置信度的鲁棒度量</span>
+                        <span style="color:#666;font-size:12px;">Jinseok Chung et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">上下文学习（ICL）使大语言模型能够从少量示例适应新任务，但其可靠性令人担忧：预测对提示设计和模型理解能力高度敏感，难以区分失败源于数据特性还是模型局限。不确定性分解（将偶然不确定性与认知不确定性分离）在此场景中尤为关键，但现有方法未能捕捉ICL的独特动态。本文基于贝叶斯视角和ICL的机械可解释性，提出自函数向量概念，利用内部模型表示建模上下文提示期间学习的潜在概念，从而在贝叶斯框架内直接估计偶然不确定性，避免依赖脆弱的输入或解码操作。鉴于缺乏成熟基准和评估方案，本文还提出首个严格评估协议，以受控方式操纵数据以精确量化偶然不确定性。通过从合成任务到真实数据集的验证，证明该方法比现有方法更可靠地测量ICL预测不确定性，并可应用于幻觉检测等可信应用。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>自函数向量</strong>：基于贝叶斯视角和ICL机械可解释性构建，利用模型内部表示建模上下文提示中学习的潜在概念，实现偶然不确定性的直接估计</li><li style="margin-bottom:0;"><strong>不确定性分解</strong>：将偶然不确定性（数据固有随机性）与认知不确定性（模型知识局限）分离，解决ICL场景中失败归因不清的核心问题</li><li style="margin-bottom:0;"><strong>评估协议设计</strong>：首创严格评估框架，通过受控数据操纵精确量化偶然不确定性，从合成任务扩展到真实数据集验证方法有效性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>贝叶斯框架估计</strong>：突破现有方法依赖输入或解码操作的局限，直接基于模型内部表示在贝叶斯框架内估计偶然不确定性，提升估计稳健性</li><li style="margin-bottom:0;"><strong>机械可解释性融合</strong>：将定量不确定性分析与模型行为机制理解相结合，建立不确定性量化与模型内部运作机制的理论连接</li><li style="margin-bottom:0;"><strong>受控评估基准</strong>：针对ICL场景缺乏标准评估的问题，设计首个可精确分离两类不确定性的严格实验协议，填补领域空白</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>估计可靠性</strong>：所提方法在合成与真实数据集上均比现有替代方法更可靠地测量ICL预测不确定性，验证了其理论设计的优越性</li><li style="margin-bottom:0;"><strong>幻觉检测应用</strong>：方法可作为实用工具应用于可信相关场景，如幻觉检测，展示其实际部署价值和广泛适用性</li><li style="margin-bottom:0;"><strong>新方向奠基</strong>：研究结果首次连接不确定性的定量视角与模型行为的机制理解，为后续研究开辟新方向，推动ICL可靠性理论发展</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.19353" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.19353</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">3</div>
+                    <h2>Pruning via Causal Attribution Preserves Reasoning Performance in Large Language Models</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.19350</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        <span style="background:linear-gradient(135deg,#ffd700 0%,#ffaa00 100%);color:#333;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 the ICLR 2026</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">基于因果归因的剪枝保持大语言模型推理性能</span>
+                        <span style="color:#666;font-size:12px;">Amogh Sheth et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">大语言模型在多步推理方面表现出色，但推理成本高昂。本文提出因果归因剪枝（CAP），一种无需训练的方法，通过测量注意力头对推理任务的因果影响来识别关键头，并利用这些头级别分数指导细粒度权重剪枝。CAP在20%稀疏度下于ARC-Challenge上相比Wanda实现最高61%的相对准确率提升。在GSM8K、StrategyQA和ARC-Challenge上的评估表明，在中等稀疏度（10-20%）下，CAP在多数模型-基准配置中优于Wanda，但50%稀疏度下受限于粗粒度MLP归因。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>因果归因估计</strong>：对每个注意力头，通过在小规模推理问题校准集上掩蔽该头进行前向传播，估计预期性能下降，直接量化头的功能贡献而非仅依赖相关性指标</li><li style="margin-bottom:0;"><strong>头级分数转换</strong>：将注意力头级别的因果分数转换为对应投影矩阵的权重级别重要性值，实现从粗粒度结构重要性到细粒度权重剪枝的映射</li><li style="margin-bottom:0;"><strong>干预式测量</strong>：采用干预而非观察的方法，直接捕获每个注意力头在推理任务中的实际功能贡献，避免激活或幅度指标可能遗漏的关键结构</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>训练无关剪枝</strong>：CAP完全无需训练或微调，仅通过前向传播干预即可确定重要性，大幅降低剪枝方法的应用门槛和计算开销</li><li style="margin-bottom:0;"><strong>结构感知归因</strong>：突破传统仅基于权重幅度或激活值的剪枝范式，引入注意力头这一中间结构层级的因果分析，实现更精准的模型压缩</li><li style="margin-bottom:0;"><strong>推理专项优化</strong>：专门针对多步推理任务设计评估协议，使剪枝标准与目标能力对齐，区别于通用任务上的压缩方法</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>显著性能优势</strong>：在ARC-Challenge上20%稀疏度时，CAP相比Wanda实现最高61%相对准确率提升，Llama-3-8B表现尤为突出</li><li style="margin-bottom:0;"><strong>适用稀疏范围</strong>：CAP在10-20%中等稀疏度下多数配置优于Wanda，但在50%高稀疏度时效果受限，表明MLP粗粒度归因仍需改进</li><li style="margin-bottom:0;"><strong>方法有效性验证</strong>：注意力头级别的因果归因比同等稀疏度下的相关性剪枝标准更能保持下游推理基准性能，验证了干预式测量的实用价值</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.19350" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.19350</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">4</div>
+                    <h2>Large Language Models Do Not Always Need Readable Language</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.19857</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">大语言模型并非总需可读语言</span>
+                        <span style="color:#666;font-size:12px;">Jiayi Zhu et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文探讨大型语言模型（LLM）是否必须依赖人类可读的自然语言进行交互。研究提出BabelTele——一种以模型为中心的非标准文本表示形式，通过牺牲人类可读性来换取紧凑性，同时保持语义可被LLM恢复。实验表明，BabelTele可将文本压缩至原长的27.9%，仍保持99.5%的语义保真度，并在跨模型迁移、智能体记忆和多智能体通信等场景验证了其语义鲁棒性，证明人类可读性、自然语言典型性与模型端语义可恢复性可以部分解耦。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>BabelTele表示</strong>：以模型为中心的非标准紧凑文本形式，牺牲人类可读性但保留LLM可恢复的语义信息，作为任务无关的表示范式</li><li style="margin-bottom:0;"><strong>多维度评估</strong>：结合可读性诊断、模型似然度测量、人类问卷和下游任务评估，系统验证非标准文本的语义保持能力</li><li style="margin-bottom:0;"><strong>跨场景验证</strong>：在跨模型迁移、智能体记忆压缩和多智能体通信等场景测试语义鲁棒性，检验其实际应用价值</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>可读性解耦</strong>：首次系统证明人类可读性与模型语义可恢复性可以部分分离，打破LLM必须使用自然语言的固有假设</li><li style="margin-bottom:0;"><strong>高密度编码</strong>：实现文本体积压缩至27.9%而语义保真度达99.5%，显著提升信息密度与上下文效率</li><li style="margin-bottom:0;"><strong>模型原生表示</strong>：提出面向LLM系统的模型原生表示路径，为未来LLM架构优化和交互协议设计开辟新方向</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语义保持有效</strong>：BabelTele在大幅偏离自然语言的同时，能为指令微调LLM保留核心语义，验证非标准表示的可行性</li><li style="margin-bottom:0;"><strong>性能依赖配对</strong>：其有效性取决于压缩器-阅读器模型配对及任务设置，并非所有组合均能稳定保持下游性能</li><li style="margin-bottom:0;"><strong>上下文开销降低</strong>：作为任务无关范式，BabelTele可减少上下文开销，在多智能体通信和记忆场景展现应用潜力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.19857" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.19857</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">5</div>
+                    <h2>Light-weight Pronunciation Assessment via Discrete Speech Token Surprisal</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.19910</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">轻量发音评估：基于离散语音令牌惊奇度</span>
+                        <span style="color:#666;font-size:12px;">Syeda Faiza Ahmed Sara et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出了一种轻量级发音评估框架，仅使用母语语音资源进行训练，可无监督运行或通过少量评分话语进行轻量校准。推理时，学习者语音通过SSL编码器和K-means码本离散化，母语序列上训练的token语言模型计算惊奇值以检测音位偏差；同时引入文本引导的Text2DUnit-DTW模块预测母语token序列并与声学token对齐，提取误差敏感特征。惊奇值与对齐特征通过简单回归融合，在SpeechOcean762上PCC从0.60提升至0.66，接近监督基线，在L2-ARCTIC跨数据集评估中表现一致。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>离散语音表示</strong>：使用SSL自监督编码器与K-means码本将学习者语音转换为离散token序列，实现声学信号的高效压缩与结构化表示</li><li style="margin-bottom:0;"><strong>惊奇值计算</strong>：基于母语token序列训练的语言模型计算学习者语音的惊奇值，利用概率差异量化音位规则偏离程度</li><li style="margin-bottom:0;"><strong>文本引导对齐</strong>：通过Text2DUnit-DTW模块从参考文本预测母语token序列，并与声学token动态时间规整对齐</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>母语资源训练</strong>：突破传统方法对标注学习者错误或非母语语料的依赖，仅使用易获取的母语数据完成模型训练</li><li style="margin-bottom:0;"><strong>无监督轻校准</strong>：支持完全无监督模式或仅用少量评分样本进行轻量校准，大幅降低数据收集与标注成本</li><li style="margin-bottom:0;"><strong>多特征融合</strong>：将概率层面的惊奇值与对齐层面的误差敏感特征相结合，通过简单回归实现综合发音质量评估</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能显著提升</strong>：引入文本引导后SpeechOcean762数据集PCC从0.60提升至0.66，证明对齐信息对评估精度的重要贡献</li><li style="margin-bottom:0;"><strong>接近监督水平</strong>：所提轻量级方法性能逼近监督基线，验证了仅母语资源训练的可行性与有效性</li><li style="margin-bottom:0;"><strong>跨域泛化稳定</strong>：在L2-ARCTIC数据集上的跨数据集评估显示一致增益，表明方法具有良好的领域迁移与泛化能力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.19910" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.19910</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">6</div>
+                    <h2>Prompt, Plan, Extract: Zero-Shot Agentic LLMs Workflows for Lung Pathology Extraction from Clinical Narratives</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.19852</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">零样本智能体工作流提取临床叙述肺部病理信息</span>
+                        <span style="color:#666;font-size:12px;">Aman Pathak et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本研究针对肺癌病理报告信息提取难题，开发了零样本智能体工作流，评估五种开源生成式大语言模型从肺切除病理报告中提取13个美国病理学家学会结构化字段。与最先进的GatorTron NER-RE基线（Micro-F1: 0.960）相比，最佳零样本模型GPT-OSS-20B达到Micro-F1 0.893（召回率0.949），无需任务特定训练即可准确提取病理分期等复杂关系，证明开源零样本智能体LLM是低成本提取肺癌病理信息的可行方案。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>智能体工作流</strong>：设计提示-规划-提取三阶段零样本工作流，通过智能体架构实现病理报告自动化解析，无需人工标注数据即可执行复杂信息提取任务</li><li style="margin-bottom:0;"><strong>生成式LLM评估</strong>：系统测试五种开源大语言模型，筛选最优模型进行病理字段提取，建立开源模型在医学信息提取领域的性能基准</li><li style="margin-bottom:0;"><strong>结构化字段提取</strong>：针对美国病理学家学会13个肺癌切除报告结构化字段，实现从自由文本到标准化数据元素的精准映射与填充</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>零样本无标注</strong>：突破传统监督学习依赖昂贵人工标注的瓶颈，实现无需训练数据的病理信息提取，显著降低医疗AI部署成本</li><li style="margin-bottom:0;"><strong>级联错误规避</strong>：解决传统NER-RE管道因上游实体遗漏导致下游关系提取级联失效的问题，通过端到端生成提升系统鲁棒性</li><li style="margin-bottom:0;"><strong>分期关系提取</strong>：创新实现病理分期等复杂复合关系的直接提取，超越传统流水线式实体识别再关系抽取的两阶段架构局限</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>性能接近监督</strong>：零样本GPT-OSS-20B模型Micro-F1达0.893，虽略低于全监督基线0.960，但召回率0.949表现优异，证明零样本方法具有临床实用价值</li><li style="margin-bottom:0;"><strong>高召回率优势</strong>：零样本模型召回率接近监督方法，在肿瘤登记等强调信息完整性的场景中，可有效减少关键病理信息遗漏</li><li style="margin-bottom:0;"><strong>低成本可部署</strong>：开源零样本智能体LLM为医疗资源有限机构提供可行替代方案，无需专业标注团队即可实现肺癌病理信息自动化提取</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.19852" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.19852</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="section-header">
+                    <div class="section-number">7</div>
+                    <h2>CREDENCE: Claim Reduction for Decomposition &amp; Enhanced Credibility -- Semantic Metrics and Convergence Analysis</h2>
+                </div>
+                <div class="paper-card">
+                    <div class="paper-meta" style="display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;line-height:1.6;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;white-space:nowrap;">arXiv:2606.19819</span>
+                        <span style="background:linear-gradient(135deg,#E53935 0%,#C62828 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">LLM</span>
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">CREDENCE：声明分解与可信度增强的语义度量及收敛分析</span>
+                        <span style="color:#666;font-size:12px;">Phuong Huu Vu Tran et al.</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">将复合句分解为原子化、可验证的声明是可靠自动事实核查的前提。先前工作依赖Jaccard分词重叠指标，系统性地低估了释义声明的分解质量，且缺乏修复循环的形式化终止分析。本文提出Credence框架，贡献包括：(1)语义F1指标——采用BGE-large余弦相似度解决Jaccard惩罚问题；(2)收敛定理——形式化刻画修复管道的四个性质，证明基于规则的修复在oracle解析器假设下单调且有限终止，LLM自修复非单调需早退保护；(3)跨社交媒体、百科、新闻三域基准测试；(4)四款开源模型(3.8B-12B)及闭源API模型的多模型基准。实验显示Semantic-F1较Jaccard-F1提升15-32个百分点，SocialClaimSplit与WikiSplitBench的EPR达0.94-1.00，ClaimDecompBench因新闻域更难而EPR低至0.824，规则修复使原子性违反率相对降低47-100%且不损害保真度。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语义F1度量</strong>：采用BGE-large嵌入模型的余弦相似度作为保真度指标，替代传统Jaccard分词重叠，有效识别释义改写声明，解决Jaccard对语义等价但词汇不同声明的系统性低估问题</li><li style="margin-bottom:0;"><strong>规则修复管道</strong>：基于规则的形式化修复流程，在oracle解析器假设下证明具有单调性和有限终止性，通过确定性规则迭代修正原子性违规，保证分解过程收敛到合法状态</li><li style="margin-bottom:0;"><strong>LLM自修复机制</strong>：利用大语言模型进行自主修复，但理论证明其具有非单调性，需引入早退保护机制防止无限循环或质量退化，平衡自动化与可控性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语义度量革新</strong>：突破传统token重叠指标的局限，建立基于稠密向量空间的语义相似度评估体系，使分解质量评估与下游事实核查准确率提升形成闭环，首次实现释义声明的公平评价</li><li style="margin-bottom:0;"><strong>收敛理论奠基</strong>：首次对声明分解修复循环进行形式化分析，建立规则修复与LLM修复的终止性定理，明确单调性条件与早退必要性，为自动分解系统的可靠性提供理论保障</li><li style="margin-bottom:0;"><strong>跨域泛化基准</strong>：构建覆盖社交媒体、百科全书、新闻三大领域的评测体系，特别引入高难度新闻领域构造，系统评估分解模型在不同语言风格和复杂度场景下的泛化能力</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>语义指标优势</strong>：Semantic-F1在三个基准上较Jaccard-F1提升15-32个百分点，验证基于嵌入的语义相似度能更准确捕捉声明间的等价关系，显著改善分解质量评估与下游任务表现</li><li style="margin-bottom:0;"><strong>规则修复高效</strong>：基于规则的修复在SocialClaimSplit和WikiSplitBench上EPR达0.94-1.00，且将原子性违反率降低47-100%同时不损害保真度，证明形式化方法在约束修复中的有效性</li><li style="margin-bottom:0;"><strong>新闻域挑战显著</strong>：ClaimDecompBench因新闻领域复杂句式结构导致基础EPR低至0.824，揭示当前分解模型在处理隐含逻辑、嵌套修饰等复杂新闻语言时的瓶颈，指明未来改进方向</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2606.19819" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2606.19819</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">AI研究室</div>
+            <p>本报告基于深度分析生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/6/23</p>
+        </div>
+    </div>
+</body>
+</html>
