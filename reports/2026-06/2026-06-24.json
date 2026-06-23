@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-24",
+  "title": "大模型认知边界突破 从记忆机制到安全对齐的七维创新图谱",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.23459",
+      "title": "TriggerBench: Investigating Prospective Memory for Large Language Models",
+      "chinese_title": "TriggerBench：大语言模型前瞻记忆能力研究",
+      "authors": "Tianhua Zhang et al.",
+      "url": "https://arxiv.org/abs/2606.23459"
+    },
+    {
+      "id": "2606.23583",
+      "title": "Evaluation Awareness Is Not One Capability: Evidence from Open Language Models",
+      "chinese_title": "评估意识并非单一能力：来自开放语言模型的证据",
+      "authors": "Nilesh Nayan et al.",
+      "url": "https://arxiv.org/abs/2606.23583"
+    },
+    {
+      "id": "2606.23462",
+      "title": "War in the Abstract: The Rise and Consequences of Militarized Language in Scientific Communication",
+      "chinese_title": "抽象中的战争：科学交流中军事化语言的兴起与影响",
+      "authors": "Sovesh Mohapatra et al.",
+      "url": "https://arxiv.org/abs/2606.23462"
+    },
+    {
+      "id": "2606.23382",
+      "title": "Energy-Based Transformers as Predictors of Reading Difficulty",
+      "chinese_title": "基于能量的Transformer阅读难度预测模型",
+      "authors": "Jakub Dotlacil et al.",
+      "url": "https://arxiv.org/abs/2606.23382"
+    },
+    {
+      "id": "2606.23375",
+      "title": "Measuring &amp; Mitigating Over-Alignment for LLMs in Multilingual Criminal Law Courts",
+      "chinese_title": "多语种刑事法庭中LLMs过度对齐的测量与缓解",
+      "authors": "Arthur Wuhrmann et al.",
+      "url": "https://arxiv.org/abs/2606.23375"
+    },
+    {
+      "id": "2606.23196",
+      "title": "When Does Intrinsic Self-Correction Help? A Task-Sensitive Analysis",
+      "chinese_title": "内在自我修正何时有效？任务敏感性分析",
+      "authors": "Elroy Stav et al.",
+      "url": "https://arxiv.org/abs/2606.23196"
+    },
+    {
+      "id": "2606.23092",
+      "title": "PIVOTSBench: Evaluating Fine-Grained Interpersonal Relationship Reasoning in Multimodal Large Language Models",
+      "chinese_title": "PIVOTSBench：多模态大语言模型细粒度人际关系推理评测",
+      "authors": "Shuxiang Zhang et al.",
+      "url": "https://arxiv.org/abs/2606.23092"
+    }
+  ],
+  "generated_at": "2026-06-23T22:09:44.114Z",
+  "org": "AI研究室"
+}
