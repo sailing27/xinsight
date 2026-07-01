@@ -1,0 +1,68 @@
+{
+  "date": "2026-07-02_1",
+  "title": "AI技术每日洞察报告",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.32029",
+      "title": "When LLMs Read Tables Carelessly: Measuring and Reducing Data Referencing Errors",
+      "chinese_title": "When LLMs Read Tables Carelessly: Measuring and Reducing Data Referencing Errors",
+      "authors": "Yuqing Yang et al.",
+      "url": "https://arxiv.org/abs/2606.32029"
+    },
+    {
+      "id": "2606.31980",
+      "title": "DigitalCoach: Communication and Grounding Gaps in Human and Agentic Computer Use Coaching",
+      "chinese_title": "DigitalCoach: Communication and Grounding Gaps in Human and Agentic Computer Use Coaching",
+      "authors": "Meng Chen et al.",
+      "url": "https://arxiv.org/abs/2606.31980"
+    },
+    {
+      "id": "2606.31947",
+      "title": "LuxEmo: Expressive Text-to-Speech Corpus for Luxembourgish",
+      "chinese_title": "LuxEmo: Expressive Text-to-Speech Corpus for Luxembourgish",
+      "authors": "Nina Hosseini-Kivanani et al.",
+      "url": "https://arxiv.org/abs/2606.31947"
+    },
+    {
+      "id": "2606.31845",
+      "title": "Explicit Fuzzy Logic in the Feed-Forward Layer: Self-Forgetting Quantifiers Discover Legible Grammatical-Licensing Detectors",
+      "chinese_title": "Explicit Fuzzy Logic in the Feed-Forward Layer: Self-Forgetting Quantifiers Discover Legible Grammatical-Licensing Detectors",
+      "authors": "Mark Oskin et al.",
+      "url": "https://arxiv.org/abs/2606.31845"
+    },
+    {
+      "id": "2606.31722",
+      "title": "Adapting Foundation ASR Models to Dysarthric Speech: A Case Study",
+      "chinese_title": "Adapting Foundation ASR Models to Dysarthric Speech: A Case Study",
+      "authors": "Christian Huber et al.",
+      "url": "https://arxiv.org/abs/2606.31722"
+    },
+    {
+      "id": "2606.31719",
+      "title": "Seeing Is Not Sharing: Some Vision-Language Models Overestimate Common Ground in Asymmetric Dialogue",
+      "chinese_title": "Seeing Is Not Sharing: Some Vision-Language Models Overestimate Common Ground in Asymmetric Dialogue",
+      "authors": "Nan Li et al.",
+      "url": "https://arxiv.org/abs/2606.31719"
+    },
+    {
+      "id": "2606.31718",
+      "title": "Cross-lingual Relation Extraction with Large Language Models: Zero-Shot, Few-Shot, and Fine-Tuned Evaluation on Romanian",
+      "chinese_title": "Cross-lingual Relation Extraction with Large Language Models: Zero-Shot, Few-Shot, and Fine-Tuned Evaluation on Romanian",
+      "authors": "Dragos-Mitrut Vasile et al.",
+      "url": "https://arxiv.org/abs/2606.31718"
+    }
+  ],
+  "generated_at": "2026-07-01T22:33:23.700Z",
+  "org": "AI研究室"
+}
