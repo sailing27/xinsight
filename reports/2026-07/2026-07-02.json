@@ -1,0 +1,68 @@
+{
+  "date": "2026-07-02",
+  "title": "AI技术每日洞察报告",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2606.32038",
+      "title": "Introspective Coupling: Self-Explanation Training Tracks Behavioral Change Despite Fixed Supervision",
+      "chinese_title": "Introspective Coupling: Self-Explanation Training Tracks Behavioral Change Despite Fixed Supervision",
+      "authors": "Zifan Carl Guo et al.",
+      "url": "https://arxiv.org/abs/2606.32038"
+    },
+    {
+      "id": "2606.32032",
+      "title": "Reinforcement Learning with Metacognitive Feedback Elicits Faithful Uncertainty Expression in LLMs",
+      "chinese_title": "Reinforcement Learning with Metacognitive Feedback Elicits Faithful Uncertainty Expression in LLMs",
+      "authors": "Gabrielle Kaili-May Liu et al.",
+      "url": "https://arxiv.org/abs/2606.32032"
+    },
+    {
+      "id": "2606.32025",
+      "title": "Generative Skill Composition for LLM Agents",
+      "chinese_title": "Generative Skill Composition for LLM Agents",
+      "authors": "Xinyu Zhao et al.",
+      "url": "https://arxiv.org/abs/2606.32025"
+    },
+    {
+      "id": "2606.32014",
+      "title": "Scalable Behaviour Cloning on Browser Using via Skill Distillation",
+      "chinese_title": "Scalable Behaviour Cloning on Browser Using via Skill Distillation",
+      "authors": "Kaisen Yang et al.",
+      "url": "https://arxiv.org/abs/2606.32014"
+    },
+    {
+      "id": "2606.31916",
+      "title": "Theory of Mind and Persuasion Beyond Conversation: Assessing the Capacity of LLMs to Induce Belief States via Planning and Action",
+      "chinese_title": "Theory of Mind and Persuasion Beyond Conversation: Assessing the Capacity of LLMs to Induce Belief States via Planning and Action",
+      "authors": "Ben Slater et al.",
+      "url": "https://arxiv.org/abs/2606.31916"
+    },
+    {
+      "id": "2606.31796",
+      "title": "CHERRY: Compressed Hierarchical Experts with Recurrent Representational Yield",
+      "chinese_title": "CHERRY: Compressed Hierarchical Experts with Recurrent Representational Yield",
+      "authors": "Dohyeon Kwon et al.",
+      "url": "https://arxiv.org/abs/2606.31796"
+    },
+    {
+      "id": "2606.31741",
+      "title": "STEB: Style Text Embedding Benchmark",
+      "chinese_title": "STEB: Style Text Embedding Benchmark",
+      "authors": "et al.",
+      "url": "https://arxiv.org/abs/2606.31741"
+    }
+  ],
+  "generated_at": "2026-07-01T22:19:39.224Z",
+  "org": "AI研究室"
+}
