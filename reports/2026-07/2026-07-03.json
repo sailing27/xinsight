@@ -1,0 +1,68 @@
+{
+  "date": "2026-07-03",
+  "title": "AI技术每日洞察报告",
+  "topic": "大模型创新与应用全景洞察",
+  "directions": [
+    "llm",
+    "agentic",
+    "infra",
+    "multimodal",
+    "continual",
+    "posttraining",
+    "rl"
+  ],
+  "paper_count": 7,
+  "papers": [
+    {
+      "id": "2607.01208",
+      "title": "Distill to Detect: Exposing Stealth Biases in LLMs through Cartridge Distillation",
+      "chinese_title": "Distill to Detect: Exposing Stealth Biases in LLMs through Cartridge Distillation",
+      "authors": "Shayan Talaei et al.",
+      "url": "https://arxiv.org/abs/2607.01208"
+    },
+    {
+      "id": "2607.00862",
+      "title": "CAT: Confidence-Adaptive Thinking for Efficient Reasoning of Large Reasoning Models",
+      "chinese_title": "CAT: Confidence-Adaptive Thinking for Efficient Reasoning of Large Reasoning Models",
+      "authors": "Qizhi Jiang et al.",
+      "url": "https://arxiv.org/abs/2607.00862"
+    },
+    {
+      "id": "2607.01000",
+      "title": "KnowledgeDebugger -- an Exploration Tool for Knowledge Localization and Editing in Transformers",
+      "chinese_title": "KnowledgeDebugger -- an Exploration Tool for Knowledge Localization and Editing in Transformers",
+      "authors": "Eric Benz et al.",
+      "url": "https://arxiv.org/abs/2607.01000"
+    },
+    {
+      "id": "2607.01233",
+      "title": "Measuring the Gap Between Human and LLM Research Ideas",
+      "chinese_title": "Measuring the Gap Between Human and LLM Research Ideas",
+      "authors": "Ziyu Chen et al.",
+      "url": "https://arxiv.org/abs/2607.01233"
+    },
+    {
+      "id": "2607.01218",
+      "title": "The State-Prediction Separation Hypothesis",
+      "chinese_title": "状态-预测分离假说",
+      "authors": "Giovanni Monea et al.",
+      "url": "https://arxiv.org/abs/2607.01218"
+    },
+    {
+      "id": "2607.01152",
+      "title": "AGC-Bench: Measuring Artificial General Creativity",
+      "chinese_title": "AGC-Bench: Measuring Artificial General Creativity",
+      "authors": "Roger Beaty et al.",
+      "url": "https://arxiv.org/abs/2607.01152"
+    },
+    {
+      "id": "2607.01127",
+      "title": "$\\text{Log}_\\text{b}$Quant: Quantizing Language Models in Logarithmic Space",
+      "chinese_title": "$\\text{Log}_\\text{b}$Quant: Quantizing Language Models in Logarithmic Space",
+      "authors": "Jeremias Bohn et al.",
+      "url": "https://arxiv.org/abs/2607.01127"
+    }
+  ],
+  "generated_at": "2026-07-02T22:36:24.838Z",
+  "org": "AI研究室"
+}
