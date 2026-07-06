@@ -1,0 +1,178 @@
+{
+  "title": "AI技术每日洞察报告 | 2026/7/7",
+  "date": "2026/7/7",
+  "topic": "大模型创新与应用全景洞察",
+  "papers": [
+    {
+      "id": "2607.02329",
+      "title": "Grounded autonomous research: a fault-tolerant LLM pipeline from corpus to manuscript in frontier computational physics",
+      "chinese_title": "Grounded autonomous research: a fault-tolerant LLM pipeline from corpus to manuscript in frontier computational physics",
+      "url": "https://arxiv.org/abs/2607.02329",
+      "authors": "Haonan Huang",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 6,
+          "practicality": 6,
+          "rigor": 6,
+          "total": 18,
+          "reason": "默认评分"
+        },
+        "citationCount": 0,
+        "venue": "the ICML  2026",
+        "isTopVenue": true,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 23
+      }
+    },
+    {
+      "id": "2607.02186",
+      "title": "UA-ChatDev: Uncertainty-Aware Multi-Agent Collaboration for Reliable Software Development",
+      "chinese_title": "UA-ChatDev: Uncertainty-Aware Multi-Agent Collaboration for Reliable Software Development",
+      "url": "https://arxiv.org/abs/2607.02186",
+      "authors": "Temitayo Olamilekan Ogunsusi, Lijun Qian, Xishuang Dong",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 6,
+          "practicality": 6,
+          "rigor": 6,
+          "total": 18,
+          "reason": "默认评分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "hasNotableAuthor": false,
+        "hasNotableInstitution": true,
+        "notableAuthors": [],
+        "notableInstitutions": [
+          "MIT"
+        ],
+        "weightedScore": 20
+      }
+    },
+    {
+      "id": "2607.02116",
+      "title": "ContextNest: Verifiable Context Governance for Autonomous AI Agent",
+      "chinese_title": "ContextNest: Verifiable Context Governance for Autonomous AI Agent",
+      "url": "https://arxiv.org/abs/2607.02116",
+      "authors": "Misha Sulpovar, Benn R. Konsynski, Qaish Kanchwala, Gabe Goodhart",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 6,
+          "practicality": 6,
+          "rigor": 6,
+          "total": 18,
+          "reason": "默认评分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "hasNotableAuthor": false,
+        "hasNotableInstitution": true,
+        "notableAuthors": [],
+        "notableInstitutions": [
+          "IBM Research"
+        ],
+        "weightedScore": 20
+      }
+    },
+    {
+      "id": "2607.02514",
+      "title": "Distributed Attacks in Persistent-State AI Control",
+      "chinese_title": "持久状态人工智能控制中的分布式攻击",
+      "url": "https://arxiv.org/abs/2607.02514",
+      "authors": "Josh Hills, Ida Caspary, Asa Cooper Stickland",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 6,
+          "practicality": 6,
+          "rigor": 6,
+          "total": 18,
+          "reason": "默认评分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 18
+      }
+    },
+    {
+      "id": "2607.02510",
+      "title": "Online Safety Monitoring for LLMs",
+      "chinese_title": "大语言模型在线安全监测",
+      "url": "https://arxiv.org/abs/2607.02510",
+      "authors": "Mona Schirmer, Metod Jazbec, Alexander Timans, Christian Naesseth, Maja Waldron, Eric Nalisnick",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 6,
+          "practicality": 6,
+          "rigor": 6,
+          "total": 18,
+          "reason": "默认评分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 18
+      }
+    },
+    {
+      "id": "2607.02509",
+      "title": "ReContext: Recursive Evidence Replay as LLM Harness for Long-Context Reasoning",
+      "chinese_title": "ReContext: Recursive Evidence Replay as LLM Harness for Long-Context Reasoning",
+      "url": "https://arxiv.org/abs/2607.02509",
+      "authors": "Yanjun Zhao, Ruizhong Qiu, Tianxin Wei, Yuanchen Bei, Zhining Liu, Lingjie Chen, Ismini Lourentzou, Hanghang Tong, Jingrui He",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 6,
+          "practicality": 6,
+          "rigor": 6,
+          "total": 18,
+          "reason": "默认评分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 18
+      }
+    },
+    {
+      "id": "2607.02507",
+      "title": "What LLM Agents Say When No One Is Watching: Social Structure and Latent Objective Emergence in Multi-Agent Debates",
+      "chinese_title": "What LLM Agents Say When No One Is Watching: Social Structure and Latent Objective Emergence in Multi-Agent Debates",
+      "url": "https://arxiv.org/abs/2607.02507",
+      "authors": "Arman Ghaffarizadeh, Danyal Mohaddes, Aliakbar Izadkhah, Shahriar Noroozizadeh",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 6,
+          "practicality": 6,
+          "rigor": 6,
+          "total": 18,
+          "reason": "默认评分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 18
+      }
+    }
+  ],
+  "generated_at": "2026-07-06T22:15:57.069Z",
+  "org": "AI研究室"
+}
