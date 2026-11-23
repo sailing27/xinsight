@@ -1,0 +1,172 @@
+{
+  "title": "大模型融合推理优化与多智能体安全训练新进展 | 2026/11/24",
+  "date": "2026/11/24",
+  "topic": "大模型训练与推理技术",
+  "papers": [
+    {
+      "id": "2611.27369",
+      "title": "AMARIS: Merging Generalist and Specialist LLMs via Adaptive Subspace Inheritance",
+      "chinese_title": "AMARIS: Merging Generalist and Specialist LLMs via Adaptive Subspace Inheritance",
+      "url": "https://arxiv.org/abs/2611.27369",
+      "authors": "Hwee Young Kang, Irwin De Tao Chin, Wen-Haw Chong, Hai Leong Chieu",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 6,
+          "total": 21,
+          "reason": "方法清晰有新意，但证据限于自报设置"
+        },
+        "citationCount": 0,
+        "venue": "NeurIPS  2026",
+        "isTopVenue": true,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 26
+      }
+    },
+    {
+      "id": "2611.27631",
+      "title": "Learning Inside Types: Epistemic Typestates for Safe Multi-Agent Reinforcement Learning",
+      "chinese_title": "Learning Inside Types: Epistemic Typestates for Safe Multi-Agent Reinforcement Learning",
+      "url": "https://arxiv.org/abs/2611.27631",
+      "authors": "Lorenzo Bacchiani, Mario Bravetti, Giovanni Pau, Roberto Girau",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 9,
+          "practicality": 7,
+          "rigor": 9,
+          "total": 25,
+          "reason": "理论创新强，验证严谨，应用仍偏实验"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 25
+      }
+    },
+    {
+      "id": "2611.27738",
+      "title": "Average-Depth Variable Execution via Request-Local Token Routing",
+      "chinese_title": "基于请求局部令牌路由的平均深度可变执行",
+      "url": "https://arxiv.org/abs/2611.27738",
+      "authors": "Pengjie Zheng, Mengwei Xie, Huan Yang, Si Wu, Pengfei Hu, Feng Li",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 7,
+          "practicality": 8,
+          "rigor": 9,
+          "total": 24,
+          "reason": "思路较新，实验充分且实用性强"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "hasNotableAuthor": false,
+        "hasNotableInstitution": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.27489",
+      "title": "Efficient Natural Language to Temporal Logic Translation for Real-Time Physical AI",
+      "chinese_title": "Efficient Natural Language to Temporal Logic Translation for Real-Time Physical AI",
+      "url": "https://arxiv.org/abs/2611.27489",
+      "authors": "Oliver Schön, Adrien Banse, John Lygeros, Lars Lindemann",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 8,
+          "total": 24,
+          "reason": "将翻译重构为问答分类，思路新颖，边缘部署实用，实验较充分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.27463",
+      "title": "Supervaluationism about vagueness and indeterminacy: A judgment-aggregation perspective",
+      "chinese_title": "模糊性与不确定性之超赋值主义：判断聚合视角",
+      "url": "https://arxiv.org/abs/2611.27463",
+      "authors": "Christian List, Paul Egré, Franz Dietrich",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 9,
+          "total": 24,
+          "reason": "跨领域创新，公理化严谨，应用边界较窄"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.27401",
+      "title": "Beyond Linear Decodability: Understanding and Improving Instruction Following in World Action Models",
+      "chinese_title": "超越线性可解码：改进世界行动模型的指令遵循",
+      "url": "https://arxiv.org/abs/2611.27401",
+      "authors": "Bokai Ji, Jiapeng Chen, Yi Zhang, Zeyuan Ding, Yong Dai, Xiaozhu Ju, Jian Tang, Lemao Liu, Dejing Dou, Yong Li",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 8,
+          "total": 24,
+          "reason": "提出线性可解码性监督与先验-指令竞争机制，因果证据充分，提升显著"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.27350",
+      "title": "GRACE: Controlled Evidence Interventions for Diagnosing and Improving Knowledge Integration in GraphRAG",
+      "chinese_title": "GRACE: Controlled Evidence Interventions for Diagnosing and Improving Knowledge Integration in GraphRAG",
+      "url": "https://arxiv.org/abs/2611.27350",
+      "authors": "Minh Pham, Quang Nguyen, Phong Kieu, Cong Tran",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 9,
+          "total": 24,
+          "reason": "干预设计新颖严谨，基准规模大，方法有效但泛用性待验证"
+        },
+        "citationCount": 0,
+        "venue": "2026",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    }
+  ],
+  "generated_at": "2026-11-23T22:47:50.578Z",
+  "org": "老许 AI 研究室"
+}
