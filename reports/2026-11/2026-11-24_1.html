@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI技术每日洞察报告 | 2026/11/24</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>AI技术每日洞察报告 | 2026/11/24</h1>
+                <div class="date">2026/11/24 | 老许 AI 研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本批论文揭示了大模型技术向"结构约束、效率优化与机制理解"三位一体演进的趋势。其一，显式结构化约束成为提升复杂系统可靠性的共性手段：模式驱动知识图谱以金融本体规范约束抽取过程，弥补RAG在表示多维度依赖事实上的不足；策略逻辑引导的多智能体强化学习则在策略层面引入形式化推理，突破部分可观测对抗场景的学习瓶颈。其二，推理效率优化走向细粒度化：请求局部令牌路由通过逐token动态跳过Transformer块，并以连续预算实现请求级平均执行深度的精确控制，在234项对比中206项取得最优，验证了自适应计算分配的巨大潜力。其三，集成化与因果化方法持续验证其价值：集成学习在化工故障检测中以80%-100%的检测率稳定优于单模型，恒等消融框架则揭示功能性深度源于多层协同计算而非简单叠加。整体而言，领域知识显式编码、计算资源按需分配与模型内部机制可解释性，将成为下一代大模型落地工业与金融等高要求场景的关键支撑。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-card">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">9</div>
+                    <div class="stat-label">关注方向</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">arXiv</div>
+                    <div class="stat-label">数据来源</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">2026/11/24</div>
+                    <div class="stat-label">报告日期</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            <div class="summary-section" style="background:#ffffff;border-left:4px solid #c00000;border-radius:8px;padding:24px;margin:24px 0;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+  <h2 style="color:#c00000;margin-top:0;">🏭 工业界大厂动向</h2>
+
+  <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed #e0c0c0;">
+    <strong style="color:#c00000;">Google DeepMind 发布 Gemini 4 Neon 并开放 Genie 4</strong>
+    <p style="margin:6px 0 4px;">Gemini 4 Neon 定位中端价位（$3/$15 每百万 token），第三方 Artificial Analysis 评分 61 分位列第三；Genie 4 世界模型已向 AI Ultra 订阅用户和 Gemini API 开放。</p>
+    <span style="color:#888;font-size:13px;">来源：Google DeepMind / Silicon AI News</span>
+  </div>
+
+  <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed #e0c0c0;">
+    <strong style="color:#c00000;">OpenAI 发布 GPT-6.2 Astra 与 GPT-6.2 Sol</strong>
+    <p style="margin:6px 0 4px;">新一代模型在专业输出、编码、Computer Use 方面增强，同时以更低成本覆盖 ChatGPT Work、Codex 和 API 全线。</p>
+    <span style="color:#888;font-size:13px;">来源：OpenAI</span>
+  </div>
+
+  <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed #e0c0c0;">
+    <strong style="color:#c00000;">阿里千问发布 Qwen4-Max（2.4T 参数）并接入十款第三方模型</strong>
+    <p style="margin:6px 0 4px;">Qwen4-Max 面向多步骤复杂推理任务；千问办公同步上线 Kimi、GLM、DeepSeek、MiniMax、Step 等第三方模型，办公 Agent 全面走向多模型聚合。</p>
+    <span style="color:#888;font-size:13px;">来源：华尔街见闻 / 阿里巴巴</span>
+  </div>
+
+  <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed #e0c0c0;">
+    <strong style="color:#c00000;">字节豆包工作向个人用户开放第三方模型</strong>
+    <p style="margin:6px 0 4px;">豆包工作接入 Kimi K3.1 Pro、GLM 5.3、DeepSeek V4.1 Flash，并推出额度消耗倍率与优惠机制，国内四大办公 Agent 全部转向多模型聚合路线。</p>
+    <span style="color:#888;font-size:13px;">来源：澎湃 / AIBase</span>
+  </div>
+
+  <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed #e0c0c0;">
+    <strong style="color:#c00000;">NVIDIA Vera Rubin NVL72 在 MLPerf Endpoints v1.0 领跑代理式推理</strong>
+    <p style="margin:6px 0 4px;">在 Kimi K3 上每千瓦吞吐量为 GB300 NVL72 的 10 倍以上、端到端交互性提升 3 倍，DeepSeek-V4.1-Flash 与 Qwen3.6-35B-A3B 分别提升 9 倍和 5 倍。</p>
+    <span style="color:#888;font-size:13px;">来源：NVIDIA 技术博客</span>
+  </div>
+
+  <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed #e0c0c0;">
+    <strong style="color:#c00000;">英伟达财报：Vera Rubin 首季贡献近 200 亿美元收入，Token 价格半年降 60%</strong>
+    <p style="margin:6px 0 4px;">FY2027 Q3 营收 1158 亿美元（同比 +103%），数据中心收入 1076 亿美元；Token 降价驱动用量暴涨，OpenRouter 周处理 Token 量达去年同期 35 倍。</p>
+    <span style="color:#888;font-size:13px;">来源：新浪财经 / 中国证券报</span>
+  </div>
+
+  <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed #e0c0c0;">
+    <strong style="color:#c00000;">NVIDIA SC26 发布 Nemotron for Science、Rubin HPC GPU 与扩展 Vera CPU 平台</strong>
+    <p style="margin:6px 0 4px;">Rubin HPC 支持 FP64 至 FP4 精度、超 5 万个 CUDA 核心（约 Hopper 3 倍），Nemotron for Science 让科学智能体在本地规划实验并核验结果。</p>
+    <span style="color:#888;font-size:13px;">来源：NVIDIA 博客</span>
+  </div>
+
+  <div style="margin-bottom:0;">
+    <strong style="color:#c00000;">大模型融资持续高热：Kimi 半年融资超 39 亿美元，估值 200 亿美元</strong>
+    <p style="margin:6px 0 4px;">月之暗面完成约 20 亿美元新一轮融资，ARR 已超 2 亿美元；DeepSeek 被传洽谈国家队大基金领投，估值一度报 450 亿美元，行业分化加剧。</p>
+    <span style="color:#888;font-size:13px;">来源：36氪 / 经济参考报</span>
+  </div>
+</div>
+
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:3px;margin-right:8px;font-size:12px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">1</span>
+                        
+                        <span style="background:linear-gradient(135deg,#FFD700 0%,#FFA000 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 顶会</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">Auditable Financial Knowledge Graphs: Schema-Driven Construction and Intrinsic Quality Evaluation</span>
+                        <span style="color:#666;font-size:12px;">Samarth Sarin, Lovepreet Singh, Dhagash Mehta</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出了一种可审计、模式驱动的时序金融知识图谱构建方法，通过分阶段大语言模型抽取结构性实体、量化观测和领域关系，并结合多策略实体消解、时间合并约束、边去重、冲突管理与细粒度溯源机制，从异构金融文档构建证据驱动的时序知识图谱；同时提出包含七个加权维度、两个硬性验证门和结构诊断的内生质量评估框架，将图谱质量评估与下游检索生成解耦，支持系统性诊断与迭代优化。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分阶段抽取</strong>：采用重叠文档窗口处理机制，分阶段调用大语言模型抽取结构性实体、量化观测值及领域特定关系，充分利用文档语义上下文，提升从叙述性披露与财务报表中提取信息的完整性与准确性。</li><li style="margin-bottom:0;"><strong>多策略消解</strong>：融合精确匹配、规范化匹配、模糊匹配、嵌入向量与LLM辅助五种实体消解方法，并引入范围感知机制，在合并候选图谱元素时保持发行人身份唯一性与数据一致性。</li><li style="margin-bottom:0;"><strong>时序约束合并</strong>：通过时间合并约束维护报告期有效性，确保同一实体在不同时期的属性与关系正确归并，避免跨期事实混淆，保留金融数据的时间依赖特性。</li><li style="margin-bottom:0;"><strong>溯源冲突管理</strong>：实施确定性边去重与冲突感知属性管理，细粒度溯源机制将每个图谱元素追踪至源文档证据，支持审计验证与错误定位。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模式驱动构建</strong>：以预定义模式约束候选图谱元素的验证过程，将领域知识显式编码进构建流水线，保证图谱结构符合金融本体规范，区别于无模式约束的传统抽取式构建方法。</li><li style="margin-bottom:0;"><strong>内生质量框架</strong>：提出独立于下游检索与生成的图谱质量评估框架，从七个加权维度、两个硬性验证门及结构诊断三方面系统度量图谱质量，避免评估结果被问答效果掩盖。</li><li style="margin-bottom:0;"><strong>审计可溯源性</strong>：全链路保留至源文档证据的细粒度溯源，结合时序合并与冲突管理，使构建过程可审计、可验证、可解释，满足金融领域对数据可信度的严格要求。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>图谱优于检索</strong>：传统基于分块的检索增强生成系统难以有效表示金融文档中叙述、指标、企业结构与时间依赖事实的组合，模式驱动的知识图谱方法提供了更优的表示方案。</li><li style="margin-bottom:0;"><strong>解耦促进迭代</strong>：将图谱质量评估与下游检索和答案生成分离，使构建过程中的缺陷可被系统性诊断并针对性迭代优化，形成可重复的质量改进闭环。</li><li style="margin-bottom:0;"><strong>可审计成体系</strong>：时序约束、确定性去重、冲突管理与溯源机制的结合，证明了从异构金融文档构建证据驱动、可审计的时序知识图谱在方法论上的可行性。</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2611.27835" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.27835</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:3px;margin-right:8px;font-size:12px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">2</span>
+                        
+                        <span style="background:linear-gradient(135deg,#FFD700 0%,#FFA000 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 顶会</span><span style="background:linear-gradient(135deg,#2196F3 0%,#1565C0 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏫 知名机构</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">Comparative Performance of Machine Learning Architectures for Fault Detection and Diagnosis in Chemical Processes</span>
+                        <span style="color:#666;font-size:12px;">Rayane Ammar Khodja, Alexandre Voisin, Victor Costa, Benoit Celse, Fanny Casteran, Benoît Iung</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本研究针对化工过程故障检测与诊断（FDD）问题，基于田纳西伊士曼过程（TEP）基准数据集，系统比较了多种机器学习架构的性能。检测任务采用MS-PCA、自编码器、集成学习和LSTM模型，诊断任务采用随机森林、XGBoost和双向LSTM模型。结果表明，集成学习方法检测率达80%至100%，BLSTM诊断准确率达98.76%，验证了集成方法与双向LSTM在化工过程FDD中的优越性。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>集成学习检测</strong>：通过组合多个基础模型的预测结果进行故障检测，能够融合多种模型视角，检测率在各类故障场景下达到80%至100%，表现出对复杂多变量化工数据的高鲁棒性</li><li style="margin-bottom:0;"><strong>双向LSTM建模</strong>：利用双向长短时记忆网络同时捕捉序列数据中的前向与后向时间依赖关系，能够完整刻画故障模式随时间的复杂演化特征，特别适用于化工过程的时序数据</li><li style="margin-bottom:0;"><strong>多尺度PCA分析</strong>：采用多尺度主成分分析方法对过程变量进行多分辨率分解与降维，能够有效分离不同频率的故障信号成分，为故障检测提供多尺度特征表示</li><li style="margin-bottom:0;"><strong>TEP基准评测</strong>：基于田纳西伊士曼过程这一标准化化工过程仿真平台开展大规模基准实验，涵盖多种连续运行工况、不同传感器和故障类型，保证评估结果的广泛代表性</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多模型系统对比</strong>：在同一TEP数据集上对检测和诊断任务的多种学习架构进行大规模统一基准比较，为化工FDD方法的选型提供系统的实证依据，填补了以往单一方法研究的不足</li><li style="margin-bottom:0;"><strong>检测诊断一体化</strong>：研究同时覆盖故障检测与故障诊断两个环节，分别设计最优模型组合，形成完整的FDD流程，贴近IFPEN等中试装置的实际工业应用需求</li><li style="margin-bottom:0;"><strong>时序依赖深度挖掘</strong>：引入双向LSTM捕捉故障模式中过去与未来的双向时间依赖关系，突破了传统单向模型仅能利用历史信息的局限，显著提升了对复杂时序故障模式的识别能力</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>集成方法更优</strong>：集成学习方法在故障检测任务中持续优于单一模型，得益于其融合多模型视角、全面捕获数据和局部化检测的能力，检测率稳定在80%至100%区间</li><li style="margin-bottom:0;"><strong>BLSTM诊断领先</strong>：双向LSTM在故障诊断任务中取得98.76%的准确率，其优势源于能同时利用序列过去与未来的时间依赖信息，契合化工故障复杂的时序表现模式</li><li style="margin-bottom:0;"><strong>中试场景适用</strong>：研究结果对IFP Energies Nouvelles等短期运行、参数频繁变化的中试装置具有直接参考价值，为实际化工过程FDD应用中的模型选择提供了经验证据</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2611.27696" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.27696</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:3px;margin-right:8px;font-size:12px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">3</span>
+                        
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">BioEmu2：可扩展生物分子动力学模拟</span>
+                        <span style="color:#666;font-size:12px;">Michael Gastegger, Adam E. Foster, José Jiménez-Luna, Tim Hempel, Sarah Lewis, Yu Xie, Lixin Sun, Iryna Zaporozhets, J. Thorben Frank, Yaoyi Chen, Michael Plainer, Ludwig Winkler, Pedro B. P. S. Reis, Sven H. Giese, Roberto Sordillo, Victor García Satorras, Eray Inanc, Kacper Kapuśniak, Soojung Yang, Rishwanth Raghu, Rachel Kim, Gabriel Dernbach, Deniz Gunceler, Hannes Schulz, Bonnie Kruft, Marwin Segler, Christopher M. Bishop, Cecilia Clementi, Ryota Tomioka, Frank Noé</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">Despite major advances in structure prediction, modelling the motions and interactions that drive biomolecular function at scale remains a central challenge. We introduce BioEmu2, a generative model for atomically resolved biomolecular structures combining static structure prediction, equilibrium sampling and time evolution, that samples orders of magnitude faster than molecular dynamics (MD). Trained on experimental and synthetic structures and extensive MD data, it supports multi-component sys</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">基于论文摘要的分析方法</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">创新方法框架</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">详细内容请查看原文</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2611.27924" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.27924</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:3px;margin-right:8px;font-size:12px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">4</span>
+                        
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">投机解码并不如你所想那般投机</span>
+                        <span style="color:#666;font-size:12px;">Guanning Zeng, Andrea Zanette</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">Speculative decoding accelerates language-model inference by preparing candidate continuations before the target model generates them. Its efficiency depends on how well limited drafting computation anticipates the path the target will actually follow. Anticipating this path involves two sources of uncertainty: the target model's predictions and the randomness of sampling. Yet the former requires a target-model forward pass, while the latter can be fixed before drafting. Building on this observa</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">基于论文摘要的分析方法</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">创新方法框架</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">详细内容请查看原文</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2611.27891" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.27891</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:3px;margin-right:8px;font-size:12px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">5</span>
+                        
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">基于请求局部令牌路由的平均深度可变执行</span>
+                        <span style="color:#666;font-size:12px;">Pengjie Zheng, Mengwei Xie, Huan Yang, Si Wu, Pengfei Hu, Feng Li</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出AVERT方法，允许模型中不同token执行不同数量的层，同时使每个请求的平均执行深度匹配连续预算。在每个路由层，路由器读取当前token状态及其请求预算，决定是否执行Transformer块；跳过的token通过轻量级残差适配器传递，且不在该层写入K/V条目。单一检查点可在同一批次中服务不同预算的请求。在三个LLaMA骨干网络、六项质量指标和13个预算上，AVERT在234项对比中有206项最优或并列最优；单预算和混合预算批次的每请求预算平均绝对误差不超过1.15个百分点；当按预算分组导致批次填充不足时，混合预算可将每输出token的解码时间（TPOT）降低4.3%至21.2%。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>请求局部路由</strong>：路由器在每个路由层读取当前token状态及其所属请求的预算信息，动态决定该token是否执行Transformer块，实现细粒度的逐token层跳过控制。</li><li style="margin-bottom:0;"><strong>残差适配器</strong>：跳过的token不执行Transformer块，而是通过一个轻量级残差适配器传递，保持表征流的连续性，同时避免引入额外计算开销。</li><li style="margin-bottom:0;"><strong>无K/V写入</strong>：被跳过的token在对应层不写入键值缓存条目，减少KV缓存的内存占用与后续注意力计算量，进一步降低推理成本。</li><li style="margin-bottom:0;"><strong>平均深度对齐</strong>：通过对token级执行决策的聚合控制，使每个请求的平均执行层数精确匹配连续预算值，预算平均绝对误差不超过1.15个百分点。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>连续预算匹配</strong>：突破传统整数层跳过的限制，首次实现请求平均执行深度与连续预算值的精确对齐，为请求级预算分配提供了新的细粒度控制机制。</li><li style="margin-bottom:0;"><strong>单点多预算服务</strong>：单一模型检查点即可在同一批次内同时服务多个不同预算的请求，无需为不同预算训练或存储多个模型版本，显著降低部署成本。</li><li style="margin-bottom:0;"><strong>混合预算批处理</strong>：当按预算分组导致批次填充不足时，允许不同预算请求混合组批，在保持质量的同时提升GPU利用率，实现推理效率的进一步优化。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>质量优势显著</strong>：在三个LLaMA骨干、六项质量指标、13个预算的共234项对比中，AVERT有206项达到最优或并列最优，展现出稳定且广泛的质量领先性。</li><li style="margin-bottom:0;"><strong>预算控制精准</strong>：无论是在单一预算批次还是混合预算批次中，每个请求的平均执行深度与目标预算的偏差平均不超过1.15个百分点，验证了预算匹配机制的高精度。</li><li style="margin-bottom:0;"><strong>解码加速明显</strong>：混合预算批处理策略可将每输出token的解码时间降低4.3%至21.2%，尤其在分组批次填充不足的场景下，有效缓解计算资源浪费问题。</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2611.27738" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.27738</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:3px;margin-right:8px;font-size:12px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">6</span>
+                        
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">Functional Depth Is Learned: Isolating the Computation That Layers Produce Only Together</span>
+                        <span style="color:#666;font-size:12px;">JaeSeong Kim, KyungTae Lim</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">该论文研究Transformer在预训练过程中如何形成“功能深度”：深度并不只等于层数机会，而在于跨层协同。作者用精确的包含-排除分解，在恒等消融下隔离仅由指定层集合共同产生的“连通分量”，并追踪Pythia、OLMo、Amber公开检查点，发现预训练会增强跨层协调、删除连通分量显著伤害困惑度，且表征相似度与连通协调总体负相关但不可互换。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>恒等消融框架</strong>：在同一位点进行逐层替换与保留，构造可重复的因果干预条件，使多组Transformer结构可在相同输入轨迹下比较，排除激活幅度与任务漂移带来的混杂。</li><li style="margin-bottom:0;"><strong>包含排除分解</strong>：将多层联合效应精确拆成单效应、成对项、高阶连通项，得到“仅当指定层共同作用才出现”的计算量，用于量化功能性跨层依赖。</li><li style="margin-bottom:0;"><strong>跨检查点追踪</strong>：系统读取Pythia、OLMo、Amber等公开权重快照，按训练步数估计同一连通分量随预训练演化的趋势，避免仅比较最终模型。</li><li style="margin-bottom:0;"><strong>行为因果验证</strong>：不只观察相关性，还直接删除连通方向或匹配范数的随机方向，比较删除前后困惑度变化，以检验该计算是否承担关键功能。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>功能深度定义</strong>：把“层数很深”与“层间形成依赖”区分开，提出功能性深度只应计入需要多层联合才产生的计算，而非把每层独立改进简单相加。</li><li style="margin-bottom:0;"><strong>精确高阶隔离</strong>：用包含-排除而非近似探针或相关指标，识别成对、三元乃至更高阶的连通成分，弥补相似度无法证明协同因果的不足。</li><li style="margin-bottom:0;"><strong>训练动态视角</strong>：将连通协调作为随预训练增长的组织过程来测量，连接架构提供的机会与优化塑造出的跨层结构，深化对深度收益来源的理解。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>协同逐渐增强</strong>：相对于初始化或最早检查点基线，写入端相对的连通协调随预训练增强，并且在所有测得的交互阶数上都呈现一致趋势。</li><li style="margin-bottom:0;"><strong>干预后果显著</strong>：删除连通分量造成的困惑度损伤，大于在同一位置删除范数匹配随机方向，在35个模型-阶数组合中全部成立，说明其具有行为重要性。</li><li style="margin-bottom:0;"><strong>相似度并不可靠</strong>：成对表征相似度与连通协调在七个模型中稳定负相关，但二者不可互换；在Pythia上相似度与协调标准常一致，在Amber上却明显分歧。</li><li style="margin-bottom:0;"><strong>深度提供机会</strong>：架构深度主要提供顺序计算的机会，真正使深度发挥效能的是预训练逐步组织起来的跨层依赖与协同计算。</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2611.27911" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.27911</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:3px;margin-right:8px;font-size:12px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">7</span>
+                        
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">SLICR: Strategy Logic-Guided Multi-Agent Reinforcement Learning</span>
+                        <span style="color:#666;font-size:12px;">Arshia Rafieioskouie, Matthew Lucas, Tzu-Han Hsu, Borzoo Bonakdarpour</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出SLICR，一种基于策略逻辑的规范引导多智能体强化学习框架，首次将规范引导RL扩展到部分可观测的对抗场景。该框架采用策略逻辑（SL）显式量化智能体策略，并结合线性时序逻辑（LTL）描述目标与约束，使智能体不仅能学习如何满足规范，还能推理如何响应对手的策略与行为。研究在捕食者-猎物、谷歌足球和SMAC-HARD扩展等三个基准上验证了SLICR的有效性、可扩展性及对多样对抗策略的适应能力。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>策略逻辑量化</strong>：利用策略逻辑（SL）对多智能体策略进行显式量词化表达，使框架能在策略层面而非仅动作层面进行推理，支持对对手策略的假设、响应与博弈式分析</li><li style="margin-bottom:0;"><strong>时序规范描述</strong>：采用线性时序逻辑（LTL）精确刻画智能体目标与行为约束，将形式化行为需求转化为可计算的奖励塑形信号，保证学习行为符合高层规范要求</li><li style="margin-bottom:0;"><strong>奖励塑形机制</strong>：将SL与LTL规范自动转化为结构化塑形奖励，引导多智能体强化学习过程，在稀疏奖励的对抗环境中提升探索效率与策略收敛质量</li><li style="margin-bottom:0;"><strong>对抗推理框架</strong>：使智能体学习如何针对其他智能体的策略和行为进行最优响应，在部分可观测条件下实现对对手策略的推断、适应与反制</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>范式迁移创新</strong>：首次将规范引导RL从协作或单智能体设定推进到部分可观测的对抗多智能体场景，实现该领域的显著范式转变，拓展了规格引导学习的适用范围</li><li style="margin-bottom:0;"><strong>策略层推理能力</strong>：突破现有方法仅能指定'如何行动'的局限，通过SL显式量化策略，使智能体能够推理'如何响应他人策略'，赋予系统博弈论层面的策略交互能力</li><li style="margin-bottom:0;"><strong>形式化与学习的统一</strong>：将形式化方法中的策略逻辑与深度强化学习有机结合，以严谨的逻辑语义保障行为正确性，同时借助RL实现复杂环境下的可扩展策略学习</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多基准有效性</strong>：在捕食者-猎物、谷歌研究足球及自研SMAC-HARD扩展三个主流基准上均取得优异表现，充分验证SLICR方法的有效性与广泛适用性</li><li style="margin-bottom:0;"><strong>方法可扩展性</strong>：实验结果表明框架能够随智能体数量与环境复杂度增长保持良好性能，展现出在多智能体对抗场景下的良好可扩展性</li><li style="margin-bottom:0;"><strong>对抗策略适应</strong>：SLICR能够识别并适应多样化的对手对抗策略，在对手策略变化时动态调整自身行为，体现出卓越的鲁棒性与策略应变能力</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2611.27865" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.27865</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">老许 AI 研究室</div>
+            <p>本报告基于 arXiv 最新论文与当日工业界新闻自动生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/11/24</p>
+        </div>
+    </div>
+</body>
+</html>

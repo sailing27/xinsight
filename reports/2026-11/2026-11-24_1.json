@@ -1,0 +1,176 @@
+{
+  "title": "AI技术每日洞察报告 | 2026/11/24",
+  "date": "2026/11/24",
+  "topic": "大模型训练与推理技术",
+  "papers": [
+    {
+      "id": "2611.27835",
+      "title": "Auditable Financial Knowledge Graphs: Schema-Driven Construction and Intrinsic Quality Evaluation",
+      "chinese_title": "Auditable Financial Knowledge Graphs: Schema-Driven Construction and Intrinsic Quality Evaluation",
+      "url": "https://arxiv.org/abs/2611.27835",
+      "authors": "Samarth Sarin, Lovepreet Singh, Dhagash Mehta",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 7,
+          "practicality": 8,
+          "rigor": 8,
+          "total": 23,
+          "reason": "集成度高、可审计性强，实证细节略少"
+        },
+        "citationCount": 0,
+        "venue": "ICAIF Conference  2026",
+        "isTopVenue": true,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 28
+      }
+    },
+    {
+      "id": "2611.27696",
+      "title": "Comparative Performance of Machine Learning Architectures for Fault Detection and Diagnosis in Chemical Processes",
+      "chinese_title": "Comparative Performance of Machine Learning Architectures for Fault Detection and Diagnosis in Chemical Processes",
+      "url": "https://arxiv.org/abs/2611.27696",
+      "authors": "Rayane Ammar Khodja, Alexandre Voisin, Victor Costa, Benoit Celse, Fanny Casteran, Benoît Iung",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 6,
+          "practicality": 7,
+          "rigor": 6,
+          "total": 19,
+          "reason": "方法成熟但缺乏新颖性，缺少工业验证与显著性检验。"
+        },
+        "citationCount": 0,
+        "venue": "Proceedings of the 13th IMA International Conference on Modelling in Industrial Maintenance and Reliability",
+        "isTopVenue": true,
+        "hasNotableAuthor": false,
+        "hasNotableInstitution": true,
+        "notableAuthors": [],
+        "notableInstitutions": [
+          "CAS"
+        ],
+        "weightedScore": 26
+      }
+    },
+    {
+      "id": "2611.27924",
+      "title": "BioEmu2: Scalable Emulation of Biomolecular Dynamics",
+      "chinese_title": "BioEmu2：可扩展生物分子动力学模拟",
+      "url": "https://arxiv.org/abs/2611.27924",
+      "authors": "Michael Gastegger, Adam E. Foster, José Jiménez-Luna, Tim Hempel, Sarah Lewis, Yu Xie, Lixin Sun, Iryna Zaporozhets, J. Thorben Frank, Yaoyi Chen, Michael Plainer, Ludwig Winkler, Pedro B. P. S. Reis, Sven H. Giese, Roberto Sordillo, Victor García Satorras, Eray Inanc, Kacper Kapuśniak, Soojung Yang, Rishwanth Raghu, Rachel Kim, Gabriel Dernbach, Deniz Gunceler, Hannes Schulz, Bonnie Kruft, Marwin Segler, Christopher M. Bishop, Cecilia Clementi, Ryota Tomioka, Frank Noé",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 9,
+          "practicality": 8,
+          "rigor": 8,
+          "total": 25,
+          "reason": "统一结构预测与动力学采样，速度快精度高，多组分体系应用广泛，定量验证充分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 25
+      }
+    },
+    {
+      "id": "2611.27891",
+      "title": "Speculative Decoding Is Less Speculative Than You Think",
+      "chinese_title": "投机解码并不如你所想那般投机",
+      "url": "https://arxiv.org/abs/2611.27891",
+      "authors": "Guanning Zeng, Andrea Zanette",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 9,
+          "total": 25,
+          "reason": "思路新颖，预同步采样随机性优化投机解码，实验充分且结果显著，实用性强。"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 25
+      }
+    },
+    {
+      "id": "2611.27738",
+      "title": "Average-Depth Variable Execution via Request-Local Token Routing",
+      "chinese_title": "基于请求局部令牌路由的平均深度可变执行",
+      "url": "https://arxiv.org/abs/2611.27738",
+      "authors": "Pengjie Zheng, Mengwei Xie, Huan Yang, Si Wu, Pengfei Hu, Feng Li",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 9,
+          "total": 25,
+          "reason": "请求级逐层路由与预算对齐机制新颖，实验覆盖全面，实用价值高"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 25
+      }
+    },
+    {
+      "id": "2611.27911",
+      "title": "Functional Depth Is Learned: Isolating the Computation That Layers Produce Only Together",
+      "chinese_title": "Functional Depth Is Learned: Isolating the Computation That Layers Produce Only Together",
+      "url": "https://arxiv.org/abs/2611.27911",
+      "authors": "JaeSeong Kim, KyungTae Lim",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 9,
+          "total": 24,
+          "reason": "指标新颖且证据充分，但应用转化有限。"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "hasNotableAuthor": false,
+        "hasNotableInstitution": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.27865",
+      "title": "SLICR: Strategy Logic-Guided Multi-Agent Reinforcement Learning",
+      "chinese_title": "SLICR: Strategy Logic-Guided Multi-Agent Reinforcement Learning",
+      "url": "https://arxiv.org/abs/2611.27865",
+      "authors": "Arshia Rafieioskouie, Matthew Lucas, Tzu-Han Hsu, Borzoo Bonakdarpour",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 9,
+          "practicality": 7,
+          "rigor": 8,
+          "total": 24,
+          "reason": "策略逻辑引入新颖，但多为摘要级陈述，验证与可复现性待确认"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    }
+  ],
+  "generated_at": "2026-11-23T23:04:54.193Z",
+  "org": "老许 AI 研究室"
+}
