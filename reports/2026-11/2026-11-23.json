@@ -1,0 +1,170 @@
+{
+  "title": "AI技术每日洞察报告 | 2026/11/23",
+  "date": "2026/11/23",
+  "topic": "大模型训练与推理技术",
+  "papers": [
+    {
+      "id": "2611.27835",
+      "title": "Auditable Financial Knowledge Graphs: Schema-Driven Construction and Intrinsic Quality Evaluation",
+      "chinese_title": "Auditable Financial Knowledge Graphs: Schema-Driven Construction and Intrinsic Quality Evaluation",
+      "url": "https://arxiv.org/abs/2611.27835",
+      "authors": "Samarth Sarin, Lovepreet Singh, Dhagash Mehta",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 7,
+          "practicality": 7,
+          "rigor": 8,
+          "total": 22,
+          "reason": "方法体系完整可审计，评估严谨，但技术创新偏组合式"
+        },
+        "citationCount": 0,
+        "venue": "ICAIF Conference  2026",
+        "isTopVenue": true,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 27
+      }
+    },
+    {
+      "id": "2611.27710",
+      "title": "Abstract What Varies, Reuse Longer Patterns: Efficient Offline Chain-of-Thought Compression",
+      "chinese_title": "提炼变化，复用长模式：高效离线思维链压缩",
+      "url": "https://arxiv.org/abs/2611.27710",
+      "authors": "Shibo Wang, Yuzhe He, Yifeng Zhao, Yunjiao Zhou, Zepeng Ning, Hanzhang Zhou, Kezhi Mao, Junlang Qian",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 8,
+          "total": 24,
+          "reason": "抽象槽位挖掘共享模板，压缩预算降九成，方法新颖且验证充分。"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.27495",
+      "title": "Trained on Harm, Still Refusing: A Training-Time Defense for Code Generation",
+      "chinese_title": "Trained on Harm, Still Refusing: A Training-Time Defense for Code Generation",
+      "url": "https://arxiv.org/abs/2611.27495",
+      "authors": "Miaoqing Tian, Ruohan Li, Qian Lu, Haipeng Qu",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 9,
+          "total": 24,
+          "reason": "视角新颖，证据充分，部署受限"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.27865",
+      "title": "SLICR: Strategy Logic-Guided Multi-Agent Reinforcement Learning",
+      "chinese_title": "SLICR：策略逻辑引导的多智能体强化学习",
+      "url": "https://arxiv.org/abs/2611.27865",
+      "authors": "Arshia Rafieioskouie, Matthew Lucas, Tzu-Han Hsu, Borzoo Bonakdarpour",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 9,
+          "practicality": 7,
+          "rigor": 7,
+          "total": 23,
+          "reason": "形式化策略逻辑较强，实验细节不足"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 23
+      }
+    },
+    {
+      "id": "2611.27839",
+      "title": "Beyond Self-Critique: Epistemic Convergence Control for Multi-Agent Research Verification",
+      "chinese_title": "Beyond Self-Critique: Epistemic Convergence Control for Multi-Agent Research Verification",
+      "url": "https://arxiv.org/abs/2611.27839",
+      "authors": "Unknown",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 7,
+          "practicality": 7,
+          "rigor": 8,
+          "total": 22,
+          "reason": "方法系统、实验扎实，创新多为组合改进"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 22
+      }
+    },
+    {
+      "id": "2611.27554",
+      "title": "Vega-Fafnir: Is Greedy Decoding the Same Decoding? Where Rounding Noise in Speculative Verification Comes From and What Removing It Costs",
+      "chinese_title": "Vega-Fafnir: Is Greedy Decoding the Same Decoding? Where Rounding Noise in Speculative Verification Comes From and What Removing It Costs",
+      "url": "https://arxiv.org/abs/2611.27554",
+      "authors": "Mohammed Nayeem Khan, Navin Kumar R",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 7,
+          "practicality": 6,
+          "rigor": 8,
+          "total": 21,
+          "reason": "问题重要且实验细致，但规模与模型覆盖有限"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 21
+      }
+    },
+    {
+      "id": "2611.27483",
+      "title": "From Manufacturing Event Logs to Simulation: Enabling SMEs with Agentic AI for SimPy Simulation Generation",
+      "chinese_title": "From Manufacturing Event Logs to Simulation: Enabling SMEs with Agentic AI for SimPy Simulation Generation",
+      "url": "https://arxiv.org/abs/2611.27483",
+      "authors": "Richard Reider, Lina Döring, Sebastian Lang, Tobias Reggelin, Sebastian Trojahn, Pascal Reusch",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 7,
+          "practicality": 8,
+          "rigor": 6,
+          "total": 21,
+          "reason": "选题实用、方法合理，但实验规模小、验证数据集单一，泛化性存疑"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 21
+      }
+    }
+  ],
+  "generated_at": "2026-11-23T12:58:58.075Z",
+  "org": "老许 AI 研究室"
+}

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI技术每日洞察报告 | 2026/11/23</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 15px 10px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>AI技术每日洞察报告 | 2026/11/23</h1>
+                <div class="date">2026/11/23 | 老许 AI 研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本批研究共同指向大模型从“通用生成”走向“可控、可信、高效工程系统”：一方面，模式驱动图谱与全程溯源将非结构化金融知识转化为可审计资产；跨样本槽位抽象与长思维链复用则以极低预算压缩推理过程。另一方面，非对称认知指令与多智能体分工提升复杂验证、代码和仿真任务的结构化协作能力；对投机解码舍入噪声的精细拆分表明，加速与数值一致性可通过缓存重建等机制兼顾。对行业而言，其价值在于以更低成本实现私有化部署、过程可审计和输出可验证，为金融合规、制造仿真及高可靠推理提供可复用范式。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-card">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">9</div>
+                    <div class="stat-label">关注方向</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">arXiv</div>
+                    <div class="stat-label">数据来源</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">2026/11/23</div>
+                    <div class="stat-label">报告日期</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            <div class="summary-section" style="background:#ffffff;border-left:4px solid #c00000;border-radius:8px;padding:24px;margin:24px 0;box-shadow:0 2px 8px rgba(0,0,0,0.06);">
+  <h2 style="color:#c00000;margin-top:0;">🏭 工业界大厂动向</h2>
+
+  <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed #e0c0c0;">
+    <strong style="color:#c00000;">Anthropic 完成纳斯达克 IPO，募资约 1073 亿美元创全球纪录</strong>
+    <p style="margin:6px 0 4px;">Anthropic 11 月 19 日以每股 83 美元挂牌（代码 ANT），公开发售约 935 亿美元加 260 亿美元配套私募，首日收涨 17%，市值达 1.27 万亿美元，成为首个上市的前沿大模型公司；上市次日智谱、MiniMax 股价大跌，市场开始重估大模型定价逻辑。</p>
+    <span style="color:#888;font-size:13px;">来源：新浪科技 / AI Daily Insights 投融资周报</span>
+  </div>
+
+  <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed #e0c0c0;">
+    <strong style="color:#c00000;">DeepSeek 完成千亿级第二轮融资，筹备科创板 IPO</strong>
+    <p style="margin:6px 0 4px;">DeepSeek 运营主体完成工商变更，新增 31 家合伙人（腾讯、宁德时代并列第一大外部出资方），本轮融资约 1055 亿元、投后估值约 6155 亿元，梁文锋保留约 67% 控制权；已选定中信证券担任上市辅导机构，筹备科创板上市。</p>
+    <span style="color:#888;font-size:13px;">来源：IT之家 / 每日经济新闻</span>
+  </div>
+
+  <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed #e0c0c0;">
+    <strong style="color:#c00000;">OpenAI 发布 GPT-6.2 Astra / Sol，旗舰降价 20%</strong>
+    <p style="margin:6px 0 4px;">OpenAI 于 11 月 17 日发布 GPT-6.2 Astra 和 Sol，主打专业输出、编程与计算机操作能力，API 定价 $8/$40 每百万 token，较上代便宜 20%，在 Artificial Analysis 智能指数得分 62 位居第二。</p>
+    <span style="color:#888;font-size:13px;">来源：OpenAI / Silicon AI News</span>
+  </div>
+
+  <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed #e0c0c0;">
+    <strong style="color:#c00000;">Google DeepMind 发布 Gemini 4 Neon，1M 上下文、$3 输入定价</strong>
+    <p style="margin:6px 0 4px;">Gemini 4 Neon 面向复杂软件工程、知识工作与科学工作流，支持 100 万 token 上下文，输入 $3/百万 token（缓存 $0.15），编程智能体指数排名第一；同期 Genie 4 世界模型向 AI Ultra 订阅者开放。</p>
+    <span style="color:#888;font-size:13px;">来源：Google DeepMind / AIHeat Daily</span>
+  </div>
+
+  <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed #e0c0c0;">
+    <strong style="color:#c00000;">阿里发布 Qwen4-Max，国产模型密集迭代</strong>
+    <p style="margin:6px 0 4px;">阿里 11 月 16 日发布 Qwen4-Max 旗舰模型，腾讯同期推出 Hy4 及 Hy4 flash，百度发布 ERNIE 5.5 Flash Preview；中信建投研报指出大模型竞争正转向商业兑现，国产模型持续追赶性价比与 Agent 场景。</p>
+    <span style="color:#888;font-size:13px;">来源：ModelHunt / 第一财经</span>
+  </div>
+
+  <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed #e0c0c0;">
+    <strong style="color:#c00000;">vLLM / SGLang 追平并反超 DeepSeek DeepInfer，开源推理竞速白热化</strong>
+    <p style="margin:6px 0 4px;">DeepSeek 开源生产级推理引擎 DeepInfer（仅支持 V4.1-Flash、SM100/昇腾 950）后，vLLM 与 SGLang 一周内整合 Mega 系列 kernel 与 SWA bounded replay，在 GB300 NVL72 上追平甚至反超其性能；vLLM v0.34.0 发布并 Day-0 支持 Inkling 2，SGLang 强调其在 KV 缓存、P/D 分离与负载均衡服务层的完整性。</p>
+    <span style="color:#888;font-size:13px;">来源：量子位（36氪出海）/ vLLM 官方博客</span>
+  </div>
+
+  <div style="margin-bottom:16px;padding-bottom:12px;border-bottom:1px dashed #e0c0c0;">
+    <strong style="color:#c00000;">Google 推出基于 TorchTPU 的 vLLM / SGLang TPU 原生推理引擎</strong>
+    <p style="margin:6px 0 4px;">Google 联合 Inferact 与 RadixArk 发布 vLLM-TorchTPU 与 SGLang-TorchTPU，让 PyTorch 开发者原生在 TPU 上部署模型，支持前缀缓存、投机解码（MTP/EAGLE-3/DFlash/DSpark）、P/D 分离等生产能力，覆盖 Qwen、DeepSeek、GLM、Kimi 等主流开源模型。</p>
+    <span style="color:#888;font-size:13px;">来源：Google Developers Blog</span>
+  </div>
+
+  <div style="margin-bottom:0;">
+    <strong style="color:#c00000;">英伟达重启 Rubin CPX 推理专用 GPU，SC26 发布 Rubin HPC</strong>
+    <p style="margin:6px 0 4px;">英伟达重启面向预填充（Prefill）优化的 Rubin CPX 项目，配 168GB HBM4、最高 2300W 功耗，预计 2027 年 Q1 量产，长上下文推理效率最高达 GB300 NVL72 的 6.5 倍；SC26 上另发布面向科学计算的 Rubin HPC GPU，押注 AI 智能体重塑超算。</p>
+    <span style="color:#888;font-size:13px;">来源：艾媒网 / 36氪</span>
+  </div>
+</div>
+
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:3px;margin-right:8px;font-size:12px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">1</span>
+                        
+                        <span style="background:linear-gradient(135deg,#FFD700 0%,#FFA000 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 顶会</span>
+                        <span style="color:#333;font-weight:600;font-size:13px;">Auditable Financial Knowledge Graphs: Schema-Driven Construction and Intrinsic Quality Evaluation</span>
+                        <span style="color:#666;font-size:12px;">Samarth Sarin, Lovepreet Singh, Dhagash Mehta</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出一种可审计、模式驱动的时序金融知识图谱构建方法。针对金融文档融合叙述性披露、会计指标、公司结构、管理层评论及时间依赖事实、难以被传统分块检索增强生成系统表示的问题，该方法从通用文档智能服务解析的分页文档出发，对重叠文档窗口进行分阶段大语言模型抽取，提取结构化实体、量化观测及领域特定关系。候选图元素经预定义模式验证，并通过作用域感知的精确、归一化、模糊、嵌入及LLM辅助实体解析进行合并；时序合并约束、确定性边去重、冲突感知属性管理与细粒度溯源共同保证发行人身份、报告期有效性及来源证据可追溯。贡献包括构建方法论、基于异构金融文档的证据锚定时序知识图谱，以及七个加权维度、两个硬性验证门与结构诊断构成的内在质量评估框架。该框架将图质量评估与下游检索和答案生成分离，支持对图谱的系统诊断与迭代优化。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模式驱动抽取</strong>：通过预定义schema约束大语言模型的分阶段抽取流程，将重叠文档窗口中的叙述文本转化为结构化实体、量化观测与领域关系，保证候选图元素的规范性</li><li style="margin-bottom:0;"><strong>多策略实体解析</strong>：融合作用域感知的精确匹配、归一化、模糊匹配、嵌入相似度与LLM辅助判定，实现跨窗口候选实体的高精度归并与发行人身份一致性维护</li><li style="margin-bottom:0;"><strong>时序合并约束</strong>：引入报告期有效期约束的时序合并机制，管理时间依赖事实的生命周期，防止不同时期数据的错误融合，保障图谱的时间一致性</li><li style="margin-bottom:0;"><strong>冲突属性管理</strong>：采用冲突感知策略处理同一实体多来源属性冲突，结合确定性边去重消除冗余关系，维护图谱的简洁性与数据可靠性</li><li style="margin-bottom:0;"><strong>细粒度溯源机制</strong>：为每个图元素记录来源证据与解析轨迹，实现从图谱节点、边、属性到原始文档片段的完整可追溯审计链条</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>可审计构建流程</strong>：将schema验证、确定性去重与全程溯源嵌入构建流水线，使每个图谱决策可回溯至证据，满足金融场景对审计合规的严苛要求</li><li style="margin-bottom:0;"><strong>时序图谱建模</strong>：突破静态知识图谱局限，显式建模发行人身份与报告期维度，支持时间敏感财务事实的有效期表示与演化追踪</li><li style="margin-bottom:0;"><strong>内在质量评估</strong>：提出独立于下游检索与生成的图谱质量评估框架，包含七个加权评估维度，避免答案质量对图结构诊断的干扰</li><li style="margin-bottom:0;"><strong>双门验证机制</strong>：设置两个硬性验证门作为质量底线，结合结构诊断指标，形成分层递进的多尺度图质量度量体系</li><li style="margin-bottom:0;"><strong>证据锚定构建</strong>：以原始文档证据为锚点构建图谱，确保所有结构化知识均有出处支撑，从根本上缓解金融领域幻觉与无据断言问题</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>分块方案不足</strong>：传统基于chunk的检索增强生成系统难以表示金融文档中交织的叙述、指标、结构与时间事实，需要结构化图谱化表示方法</li><li style="margin-bottom:0;"><strong>图谱质量可分离评估</strong>：将图质量评估与下游任务解耦后，可系统定位图谱构建缺陷，支持迭代式改进而非端到端黑箱调优</li><li style="margin-bottom:0;"><strong>构建可靠性关键</strong>：schema验证、时序约束与多策略实体解析是保障金融知识图谱准确性、一致性与可审计性的核心环节</li><li style="margin-bottom:0;"><strong>多维度评估必要</strong>：单一指标不足以刻画图谱质量，七个加权维度与硬门、结构诊断的组合能全面覆盖金融图谱的合规需求</li><li style="margin-bottom:0;"><strong>方法论可推广</strong>：以通用文档智能服务加分阶段LLM抽取的流水线设计，为其他复杂文档领域的知识图谱构建提供了可复用范式</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2611.27835" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.27835</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:3px;margin-right:8px;font-size:12px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">2</span>
+                        
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">提炼变化，复用长模式：高效离线思维链压缩</span>
+                        <span style="color:#666;font-size:12px;">Shibo Wang, Yuzhe He, Yifeng Zhao, Yunjiao Zhou, Zepeng Ning, Hanzhang Zhou, Kezhi Mao, Junlang Qian</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">CRAFT 针对离线 CoT 压缩中相似表达被逐题重复处理的问题，将名称、数字与公式抽象为槽位，挖掘部分词汇化表达模板并聚类为族；对每个族代表压缩一次，获得删除或改写编辑，再按各出现位置还原细节，形成更短、语义保留的普通文本训练目标。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>槽位抽象</strong>：把问题特定的名称、数值、符号和公式替换成可泛化槽位，使句式结构暴露，跨题差异不再掩盖共享表达骨架。</li><li style="margin-bottom:0;"><strong>模板挖掘</strong>：基于抽象后的表达识别部分词汇化表达模板，保留稳定词序与语义角色，只替换会随题目变化的局部细节。</li><li style="margin-bottom:0;"><strong>族簇复用</strong>：将措辞变体聚成表达族，仅压缩族代表一次，再推导可迁移的删除或重写规则，避免每个样本独立运行昂贵压缩器。</li><li style="margin-bottom:0;"><strong>编辑迁移</strong>：把族级编辑映射回各实例自身槽位填充，保证输出仍是自然普通文本，不引入特殊标记，利于直接监督推理模型。</li><li style="margin-bottom:0;"><strong>预算控制</strong>：以加权压缩器预算衡量成本，复用长模式显著减少调用次数与token处理量，同时兼顾长度、保真度与下游精度。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>跨例复用</strong>：核心思想不是压缩单条链，而是发现并复用跨样本更长的共同模式，将“相似但不同词”的表达纳入同一压缩单元。</li><li style="margin-bottom:0;"><strong>抽象泛化</strong>：通过槽位化把表面词形差异转成结构等价，突破仅匹配完全相同文本的限制，捕获因换名、改数、变公式而分散的模板。</li><li style="margin-bottom:0;"><strong>族级编辑</strong>：以表达族为单位产生一次压缩决策，形成可应用、可校验的删除或改写编辑，兼顾压缩效率与逐样本语义忠实。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>预算降九成</strong>：相对逐例改写，CRAFT Rewrite 使加权压缩器预算中位数下降 90.7%，同时只产生约 1.21 个百分点的中位精度损失。</li><li style="margin-bottom:0;"><strong>全面更短</strong>：相比跨样本编码方法，在八个模型—数据集设置上推理长度平均缩短 25.3%，说明复用长模式能稳定生成更紧凑监督。</li><li style="margin-bottom:0;"><strong>精度占优</strong>：在八个设置中的五个设置上提升准确率，表明压缩不是单纯删字，而是通过模板化编辑在更短链中保留关键推理信息。</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2611.27710" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.27710</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:3px;margin-right:8px;font-size:12px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">3</span>
+                        
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">Trained on Harm, Still Refusing: A Training-Time Defense for Code Generation</span>
+                        <span style="color:#666;font-size:12px;">Miaoqing Tian, Ruohan Li, Qian Lu, Haipeng Qu</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">Fine-tuning enables safety-aligned code language models to adapt to diverse downstream tasks. However, training on untrusted data can severely undermine their ability to refuse harmful requests. Notably, we find that models comply with harmful requests even though harmfulness information remains highly decodable from their internal representations. Moreover, an initial preference for refusal does not necessarily translate into sustained refusal behavior throughout generation. Together, these fin</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">基于论文摘要的分析方法</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">创新方法框架</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">详细内容请查看原文</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2611.27495" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.27495</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:3px;margin-right:8px;font-size:12px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">4</span>
+                        
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">SLICR：策略逻辑引导的多智能体强化学习</span>
+                        <span style="color:#666;font-size:12px;">Arshia Rafieioskouie, Matthew Lucas, Tzu-Han Hsu, Borzoo Bonakdarpour</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">Specification-guided reinforcement learning (RL) translates formal specifications of desired behavior of agents into shaped rewards. This paper introduces SLICR, a significant paradigm shift that advances the state of the art to specification-guided RL in adversarial settings under partial observability. We employ Strategy Logic (SL), which allows explicit quantification over agents' strategies and uses the linear temporal logic (LTL) to specify the agents' objectives and constraints. This enabl</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">基于论文摘要的分析方法</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">创新方法框架</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">详细内容请查看原文</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2611.27865" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.27865</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:3px;margin-right:8px;font-size:12px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">5</span>
+                        
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">Beyond Self-Critique: Epistemic Convergence Control for Multi-Agent Research Verification</span>
+                        <span style="color:#666;font-size:12px;">Unknown</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">论文提出一种多智能体科研论断核验框架，用非对称角色、信念差分停止规则与NLI证据审计，缓解同基模型自批评偏差、过度迭代与不可追溯幻觉，在DeepSeek-R1-32B上兼顾效率与可审计核验。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>非对称角色架构</strong>：采用Advocate、Skeptic、Arbitrator三类角色并赋予相互冲突的认知指令，降低角色嵌入相似度至0.852，使辩论更实质而非自我复述。</li><li style="margin-bottom:0;"><strong>信念差分停止</strong>：用Belief-Delta衡量相邻轮证据与立场变化，达到阈值即停，消除62.5%的过度迭代并将LLM调用降低约2.4倍。</li><li style="margin-bottom:0;"><strong>逐句证据锚定</strong>：每个被支持论断绑定原文片段，再由独立NLI分类器核验蕴含关系，建立可检查、可追责的文献证据链。</li><li style="margin-bottom:0;"><strong>双偏差协同控制</strong>：同时处理结构同源导致的自批评偏差与固定轮次造成的算力浪费，统一优化收敛、成本与证据质量。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>认知指令对立</strong>：让角色持有相反证明义务而非表面分工，从表征层面拉开立场距离，显式暴露22.0%的争议论断。</li><li style="margin-bottom:0;"><strong>动态收敛判据</strong>：以证据驱动的信念差分替代固定迭代，避免过早截断或空转，形成可解释的停止边界。</li><li style="margin-bottom:0;"><strong>独立审计闭环</strong>：由外部NLI而非参与辩论的模型判定证据支持，降低自我评分与相互迁就风险，增强可信度。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>表征差异显著</strong>：非对称角色嵌入相似度0.852低于对称MAD的0.918，且 contested claims 22.0%高于15.4%。</li><li style="margin-bottom:0;"><strong>效率收益明确</strong>：Belief-Delta将过度迭代从62.5%降至0，并减少约2.4倍LLM调用，成本与稳定性同时改善。</li><li style="margin-bottom:0;"><strong>幻觉率可接受</strong>：审计后支持论断幻觉率21.7%，接近Self-Refine的25.9%，同时获得可审计证据锚定优势。</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2611.27839" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.27839</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:3px;margin-right:8px;font-size:12px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">6</span>
+                        
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">Vega-Fafnir: Is Greedy Decoding the Same Decoding? Where Rounding Noise in Speculative Verification Comes From and What Removing It Costs</span>
+                        <span style="color:#666;font-size:12px;">Mohammed Nayeem Khan, Navin Kumar R</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">论文挑战服务引擎中贪心解码可互换的假设，量化Qwen3-0.6B在bfloat16下因缓存、填充、批处理与投机验证造成的舍入差异，并提出固定宽度解码在近乎投机加速的同时保持逐位一致。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>差异度量</strong>：以每次只解码一个token的bfloat16文本为参考，比较128个新token在GSM8K、ARC及移位MMLU/HellaSwag提示上的首次分歧位置与logit间隔。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>噪声拆分</strong>：把投机验证误差分解为单次前向计算噪声与多token写入缓存的污染，显示缓存条目近似继承多token前向的舍入噪声。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>速度一致权衡</strong>：重建缓存可达零分歧但每token约7.2次模型前向，固定宽度解码以0.75次前向实现零分歧，显示精确性可与投机加速兼得。</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2611.27554" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.27554</a>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">
+                        <span style="background:#c00000;color:#fff;padding:2px 8px;border-radius:3px;margin-right:8px;font-size:12px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">7</span>
+                        
+                        
+                        <span style="color:#333;font-weight:600;font-size:13px;">From Manufacturing Event Logs to Simulation: Enabling SMEs with Agentic AI for SimPy Simulation Generation</span>
+                        <span style="color:#666;font-size:12px;">Richard Reider, Lina Döring, Sebastian Lang, Tobias Reggelin, Sebastian Trojahn, Pascal Reusch</span>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">针对离散事件仿真高门槛阻碍中小企业应用的问题，论文提出GenAI4SimPy多智能体框架，基于开源大模型Qwen 3.6（27B）将制造事件日志自动转化为可执行SimPy仿真，并结合工具调用与人工校验。在公开智能工厂数据集三个执行块上，平均绝对百分比误差为7.9%，能覆盖全部故障率与两个块吞吐率；同时揭示流程级参数准确并不必然带来系统级行为保真。研究表明本地开源模型可达到接近云端方案的DES生成精度，但参数提取只是行为有效性的必要非充分条件。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>多智能体编排</strong>：采用GenAI4SimPy多智能体架构，将日志理解、参数估计、代码生成与校验分工给专门角色，协调完成从原始制造事件日志到可运行SimPy模型的端到端自动化生成。</li><li style="margin-bottom:0;"><strong>工具增强推理</strong>：让Qwen 3.6在推理中调用统计分析、分布拟合与代码执行等外部工具，减少纯文本推断造成的数值漂移，提高到达间隔、服务时间与故障率等参数提取的可靠性。</li><li style="margin-bottom:0;"><strong>人机闭环校验</strong>：在关键节点引入人工确认与修正，使业务约束、观测窗口和校准假设可被显式审阅，降低模型语义偏差并提升生成仿真在工程上的可交付性。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>开放模型落地</strong>：使用27B开源权重模型Qwen 3.6完成DES生成，摆脱对云端API与专有模型依赖，为数据敏感或预算受限的中小企业提供可私有化部署的仿真生成路径。</li><li style="margin-bottom:0;"><strong>端到端自动化</strong>：贯通事件日志解析、流程抽象、参数估计、SimPy代码合成与实验执行，形成可复现流水线，显著降低传统DES建模所需专家工时与试错成本。</li><li style="margin-bottom:0;"><strong>保真悖论发现</strong>：首次系统指出流程级参数估计准确并不能保证系统级吞吐与流转时间一致，误读观测窗口截断与缺乏系统级校准会造成看似合理却行为失真的模型。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>精度表现可接受</strong>：三个执行块平均绝对百分比误差为7.9%，故障率全部覆盖，吞吐率覆盖两块，说明开源本地模型在受控制造日志上具备接近云端替代方案的可用精度。</li><li style="margin-bottom:0;"><strong>参数提取不充分</strong>：参数识别是必要条件而非充分条件，流转时间与吞吐误差主要源于观测窗口截断误判以及缺少把局部参数回填到系统动力学层面的校准机制。</li><li style="margin-bottom:0;"><strong>工程需行为校准</strong>：有效DES生成必须显式处理截断、预热、并发资源与瓶颈反馈，在生成后加入系统级标定与灵敏度验证，才能从“能跑”提升到“行为可信”。</li></ul>
+                        </div>
+                    </div>
+
+                    <a href="https://arxiv.org/abs/2611.27483" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.27483</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">老许 AI 研究室</div>
+            <p>本报告基于 arXiv 最新论文与当日工业界新闻自动生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/11/23</p>
+        </div>
+    </div>
+</body>
+</html>
