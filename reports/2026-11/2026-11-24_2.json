@@ -1,0 +1,172 @@
+{
+  "title": "大模型训推技术每日洞察 | 2026/11/24",
+  "date": "2026/11/24",
+  "topic": "大模型训练与推理技术",
+  "papers": [
+    {
+      "id": "2611.27369",
+      "title": "AMARIS: Merging Generalist and Specialist LLMs via Adaptive Subspace Inheritance",
+      "chinese_title": "AMARIS: Merging Generalist and Specialist LLMs via Adaptive Subspace Inheritance",
+      "url": "https://arxiv.org/abs/2611.27369",
+      "authors": "Hwee Young Kang, Irwin De Tao Chin, Wen-Haw Chong, Hai Leong Chieu",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 7,
+          "practicality": 8,
+          "rigor": 6,
+          "total": 21,
+          "reason": "思路新颖实用，但摘要缺乏理论证明与对比细节"
+        },
+        "citationCount": 0,
+        "venue": "NeurIPS  2026",
+        "isTopVenue": true,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 26
+      }
+    },
+    {
+      "id": "2611.27489",
+      "title": "Efficient Natural Language to Temporal Logic Translation for Real-Time Physical AI",
+      "chinese_title": "Efficient Natural Language to Temporal Logic Translation for Real-Time Physical AI",
+      "url": "https://arxiv.org/abs/2611.27489",
+      "authors": "Oliver Schön, Adrien Banse, John Lygeros, Lars Lindemann",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 9,
+          "rigor": 8,
+          "total": 25,
+          "reason": "以分类替代文本生成实现高效NL-LTL转换，方法新颖且实验充分，工程价值突出"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 25
+      }
+    },
+    {
+      "id": "2611.27810",
+      "title": "SLP-Bench: Evaluating and Improving Acoustic Claims of Reasoning Audio Language Models on Clinical Speech",
+      "chinese_title": "SLP-Bench: Evaluating and Improving Acoustic Claims of Reasoning Audio Language Models on Clinical Speech",
+      "url": "https://arxiv.org/abs/2611.27810",
+      "authors": "Côme Hosxe, Rachid Riad, Quentin Spinat",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 9,
+          "total": 24,
+          "reason": "首次评估推理音频模型声学声明，设计严谨，临床应用价值明确"
+        },
+        "citationCount": 0,
+        "venue": "2027",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.27783",
+      "title": "A Benchmark Protocol and Fairness Analysis Towards Open-Set EEG Seizure Type Classification",
+      "chinese_title": "A Benchmark Protocol and Fairness Analysis Towards Open-Set EEG Seizure Type Classification",
+      "url": "https://arxiv.org/abs/2611.27783",
+      "authors": "Targol Bakhtiarvand, Terrance E. Boult, Jugal Kalita, Adham Atyabi",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 9,
+          "total": 24,
+          "reason": "问题新颖，实验严谨但性能有限"
+        },
+        "citationCount": 0,
+        "venue": "the IEEE",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.27631",
+      "title": "Learning Inside Types: Epistemic Typestates for Safe Multi-Agent Reinforcement Learning",
+      "chinese_title": "Learning Inside Types: Epistemic Typestates for Safe Multi-Agent Reinforcement Learning",
+      "url": "https://arxiv.org/abs/2611.27631",
+      "authors": "Lorenzo Bacchiani, Mario Bravetti, Giovanni Pau, Roberto Girau",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 9,
+          "total": 24,
+          "reason": "理论创新性强，证明严谨且机械化，扩展性好，但需类型规约与综合，实际部署有门槛"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.27495",
+      "title": "Trained on Harm, Still Refusing: A Training-Time Defense for Code Generation",
+      "chinese_title": "Trained on Harm, Still Refusing: A Training-Time Defense for Code Generation",
+      "url": "https://arxiv.org/abs/2611.27495",
+      "authors": "Miaoqing Tian, Ruohan Li, Qian Lu, Haipeng Qu",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 9,
+          "total": 24,
+          "reason": "视角新颖，实验充分，落地成本待验证"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.27401",
+      "title": "Beyond Linear Decodability: Understanding and Improving Instruction Following in World Action Models",
+      "chinese_title": "Beyond Linear Decodability: Understanding and Improving Instruction Following in World Action Models",
+      "url": "https://arxiv.org/abs/2611.27401",
+      "authors": "Bokai Ji, Jiapeng Chen, Yi Zhang, Zeyuan Ding, Yong Dai, Xiaozhu Ju, Jian Tang, Lemao Liu, Dejing Dou, Yong Li",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 8,
+          "total": 24,
+          "reason": "机制解释清晰，方法简单有效，实验严谨充分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "hasNotableAuthor": false,
+        "hasNotableInstitution": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    }
+  ],
+  "generated_at": "2026-11-24T01:35:50.346Z",
+  "org": "老许 AI 研究室"
+}
