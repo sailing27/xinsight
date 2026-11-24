@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型训推技术每日洞察 | 2026/11/25</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 10px 6px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 17px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+            .stat-item { padding: 8px 4px; }
+            .stat-value { font-size: 14px; }
+            .stat-label { font-size: 10px; }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型训推技术每日洞察 | 2026/11/25</h1>
+                <div class="date">2026/11/25 | 老许 AI 研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本批论文共同揭示了大模型领域一个正在加速演进的范式：从追求"更强的推理能力"转向追求"更可靠的决策与更高效的资源利用"。三个共性方向尤为突出。其一，推理与判断的解耦成为新共识：论文3通过求解与弃答的模块分离实现单次rollout的成本受控决策，论文7则以大规模实证证明监控与控制是相互独立的能力——模型口头化置信度近乎随机（AUROC 0.500–0.561），却能被外部注入的怀疑信号有效驱动纠错，这意味着"会做"与"知道自己是否做对"是两种需要分别训练的技能。其二，不确定性治理从辅助功能上升为核心设计目标：论文1的低后悔早承诺、论文3的风险控制机制均指向同一判断——模型输出的质量不在答案本身，而在对输出边界的校准。其三，效率与评测体系走向量化与可优化：论文4首次将GPU浪费转化为可测量基准，揭示忙碌GPU仅52%时间服务于有效计算，与论文3"生成成本降低3.5至12.6个百分点"的成本意识相呼应，印证算力效率已成为可优化的一等目标。<br><br>对行业而言，启示明确：一是未来模型架构应显式分离推理、置信度评估与资源调度模块，而非依赖端到端的隐性权衡；二是评测范式需从任务正确率扩展至决策质量与算力效率的联合度量；三是"教模型何时说不、何时停下来"或可成为比单纯扩大规模更具性价比的研究杠杆。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">10</div>
+                    <div class="stat-label">工业界动态</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">关注方向</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">11/25</div>
+                    <div class="stat-label">报告日期</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div style="margin:30px 0 18px 0;padding:12px 16px;background:#c00000;color:#fff;border-radius:6px;">
+                <div style="font-size:16px;font-weight:700;letter-spacing:1px;">🏭 工业界大厂动向</div>
+                <div style="font-size:11px;opacity:0.85;margin-top:3px;">近24-48小时大厂模型发布、商业化与训推基础设施动态</div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">1</span>
+                            <span style="color:#1a1a1a;">英伟达发布黄仁勋离职后首份财报：单季营收1158亿美元，同比增103%</span>
+                        </div>
+                        <span style="background:linear-gradient(135deg,#FF7043 0%,#E64A19 100%);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:nowrap;">英伟达</span>
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">英伟达第三财季营收与利润双双超预期，数据中心业务营收1076亿美元，Vera Rubin NVL72首季出货即贡献近200亿美元收入，并上调下财年营收增速指引至75%。</div>
+                    <div style="font-size:11px;color:#888;">来源：21世纪经济报道 ｜ <a href="https://www.21jingji.com/article/20261119/2134f6f7b49ba14077ff03f51b0597e9.html" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">2</span>
+                            <span style="color:#1a1a1a;">GPU租赁价格全面上行：B300涨超60%，Hopper续租最高翻倍</span>
+                        </div>
+                        <span style="background:linear-gradient(135deg,#FF7043 0%,#E64A19 100%);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:nowrap;">英伟达</span>
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">AI推理需求激增推动跨代际GPU租赁价格同步上涨，英伟达称供给云厂商的算力处于满负荷状态，算力供需缺口持续扩大。</div>
+                    <div style="font-size:11px;color:#888;">来源：腾讯新闻 ｜ <a href="https://news.qq.com/rain/a/20261119A06SJC00" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">3</span>
+                            <span style="color:#1a1a1a;">谷歌发布 Gemini 4 Neon：主打复杂编程与科研，成本比 Carbon 降 32%</span>
+                        </div>
+                        <span style="background:linear-gradient(135deg,#FF7043 0%,#E64A19 100%);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:nowrap;">谷歌</span>
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">Gemini 4 Neon 支持百万级上下文窗口，API 定价每百万输入 3 美元、输出 15 美元，编程智能体指数登顶，速度达 Carbon 的 3 倍，已上线 Gemini 应用与 Antigravity 等平台。</div>
+                    <div style="font-size:11px;color:#888;">来源：SegmentFault AI日报 ｜ <a href="https://segmentfault.com/a/1190000048406313" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">4</span>
+                            <span style="color:#1a1a1a;">OpenAI 推出 GPT-6.2 Astra 与 Sol：价格下调 20%，上下文扩至 1.05M</span>
+                        </div>
+                        <span style="background:linear-gradient(135deg,#FF7043 0%,#E64A19 100%);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:nowrap;">OpenAI</span>
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">Astra 面向复杂专业工作场景并支持 105 万 token 上下文，Sol 主打日常高效任务，两款模型已覆盖 ChatGPT、Codex 与 API 渠道。</div>
+                    <div style="font-size:11px;color:#888;">来源：CSDN AI资讯日报 ｜ <a href="https://damodev.csdn.net/6aff8bb2e5f4ca4eff92a8eb.html" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">5</span>
+                            <span style="color:#1a1a1a;">Anthropic 完成史上最大 AI IPO：定价每股 83 美元，估值约 1.5 万亿美元</span>
+                        </div>
+                        <span style="background:linear-gradient(135deg,#FF7043 0%,#E64A19 100%);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:nowrap;">Anthropic</span>
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">Anthropic 以超 940 亿美元总融资登陆纳斯达克（代码 ANT），超越 SpaceX 纪录，其年化收入运行率已达 810 亿美元。</div>
+                    <div style="font-size:11px;color:#888;">来源：CSDN AI资讯日报 ｜ <a href="https://damodev.csdn.net/6aff8bb2e5f4ca4eff92a8eb.html" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">6</span>
+                            <span style="color:#1a1a1a;">vLLM v0.33.0 与 SGLang v0.5.23 同周发布：平台广度对阵负载深度</span>
+                        </div>
+                        
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">vLLM 升级到 PyTorch 2.14、支持十大硬件平台并发布稳定二进制接口；SGLang 聚焦智能体与强化学习负载，DeepSeek-V4.1 在 GB300 上预填充吞吐提升 1.5 倍、单用户解码最高提速 75%。</div>
+                    <div style="font-size:11px;color:#888;">来源：SaaS Feeds / GitHub ｜ <a href="https://saasfeeds.com/en/news/vllm-v0-33-0-and-sglang-v0-5-23-shipped-the-same-week-where-the-two-inference-en-75820" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">7</span>
+                            <span style="color:#1a1a1a;">SGLang v1.0 在 SGLang Summit 2026 发布：统一内存管理与分层缓存成核心</span>
+                        </div>
+                        
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">v1.0 聚焦生产可扩展性与智能体状态管理，HiCache 分层缓存使中位 TTFT 降低 60%，科大讯飞生产环境缓存命中率从 30% 提升至 95%。</div>
+                    <div style="font-size:11px;color:#888;">来源：Locsic ｜ <a href="https://locsic.com/zh/thinking/inference-engine-consolidation/" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">8</span>
+                            <span style="color:#1a1a1a;">豆包工作、千问办公全面开放第三方模型：办公智能体进入多模型聚合时代</span>
+                        </div>
+                        <span style="background:linear-gradient(135deg,#FF7043 0%,#E64A19 100%);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:nowrap;">字节跳动</span>
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">字节豆包工作接入 Kimi K3.1 Pro、GLM 5.3、DeepSeek V4.1 Flash 等模型；四天后阿里千问办公一次性上线 10 款模型含 Qwen4-Max，国内四大办公 Agent 全部转向多模型路线。</div>
+                    <div style="font-size:11px;color:#888;">来源：新浪财经 ｜ <a href="https://finance.sina.com.cn/stock/t/2026-11-23/doc-inizsuwh2355444.shtml" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">9</span>
+                            <span style="color:#1a1a1a;">阿里云 AI 商业化加速：云收入同比增 40%，MaaS 年化收入将超 300 亿元</span>
+                        </div>
+                        <span style="background:linear-gradient(135deg,#FF7043 0%,#E64A19 100%);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:nowrap;">阿里</span>
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">阿里云外部商业化收入增速领先 AWS 与 Azure，AI 相关产品单季收入达 89.71 亿元，占云外部商业化收入 30%，商业化拐点已至。</div>
+                    <div style="font-size:11px;color:#888;">来源：钛媒体 ｜ <a href="https://www.tmtpost.com/7988745.html" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">10</span>
+                            <span style="color:#1a1a1a;">英伟达 RTX Spark 迷你 AI 工作站上市：128GB 统一内存本地跑 1200 亿参数模型</span>
+                        </div>
+                        <span style="background:linear-gradient(135deg,#FF7043 0%,#E64A19 100%);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:nowrap;">英伟达</span>
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">华硕、戴尔、微星等厂商推出搭载 Blackwell 架构 RTX GPU 的桌面工作站，AI 算力最高 1 Petaflop，支持本地推理以减少云端 API 依赖与 token 费用。</div>
+                    <div style="font-size:11px;color:#888;">来源：财联社 ｜ <a href="https://news.qq.com/rain/a/20261118A0HECK00" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div style="margin:30px 0 18px 0;padding:12px 16px;background:#c00000;color:#fff;border-radius:6px;">
+                <div style="font-size:16px;font-weight:700;letter-spacing:1px;">📚 学术界论文精析</div>
+                <div style="font-size:11px;opacity:0.85;margin-top:3px;">arXiv 最新论文 · 按加权质量分取前 7 篇</div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">1</span>
+                            <span style="color:#333;font-weight:600;font-size:13px;">SayWhen: Set-Valued Semantic Commitment for Low-Regret Early Speech</span>
+                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">SayWhen: Set-Valued Semantic Commitment for Low-Regret Early Speech</div>
+                            <span style="color:#666;font-size:12px;">Tianyi Huang, Lucas Su, Fred Zhang, Andy Liang, Gordon Li</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.31101" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.31101</a></div>
+                        </div>
+                        <div style="text-align:right;line-height:1.9;"><span style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">大语言模型</span><span style="background:linear-gradient(135deg,#FFD700 0%,#FFA000 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 顶会</span></div>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">过早开口会把一个预测变成不可撤销的公开承诺。我们提出 SayWhen：一种</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">基于论文摘要的分析方法</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">创新方法框架</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">详细内容请查看原文</li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">2</span>
+                            <span style="color:#333;font-weight:600;font-size:13px;">Seeking in Space: Benchmarking Purposeful Active Exploration of Vision-Language Models for Spatial Reasoning</span>
+                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Seeking in Space: Benchmarking Purposeful Active Exploration of Vision-Language Models for Spatial Reasoning</div>
+                            <span style="color:#666;font-size:12px;">Xiwei Liu, Yulong Li, Xuhui Li, Xinlin Zhuang, Zhixiang Lu, Haolin Yang, Jianxu Chen, Yifan Lu, Zhiran Zhang, Yutong Xie</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.31215" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.31215</a></div>
+                        </div>
+                        <div style="text-align:right;line-height:1.9;"><span style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">大语言模型</span></div>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">人类会有目的地探索陌生空间，决定看向何处，直到收集到空间问题所需的证据。然而，视觉-语言模型（VLM）在精选图像和视频上的推理能力日益增强，当证据并未直接呈现给它们时，它们是否也能在空间中进行主动搜寻？我们提出 ActSpace-Bench：该基准包含 72 个真实扫描室内场景中的 234 个探索回合、共 994 个问题；模型从单一视角出发，在真实采集的帧序列中导航，并必须先收集证据再作答。为评估此类探索是否具有目的性，我们引入一种受控评估</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">基于论文摘要的分析方法</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">创新方法框架</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">详细内容请查看原文</li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">3</span>
+                            <span style="color:#333;font-weight:600;font-size:13px;">Decoupling Solving from Abstention: Single-Rollout Conformal Risk Control for Hard-Budget LLM Reasoning</span>
+                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Decoupling Solving from Abstention: Single-Rollout Conformal Risk Control for Hard-Budget LLM Reasoning</div>
+                            <span style="color:#666;font-size:12px;">Qianyi Chen, Bo Li</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.31065" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.31065</a></div>
+                        </div>
+                        <div style="text-align:right;line-height:1.9;"><span style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">大语言模型</span></div>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">针对硬token预算导致LLM推理中断的问题，本文提出Tail-CRC框架，将答案生成与提交控制解耦。先用纯二元正确性奖励通过强化学习适配预算强制求解器，冻结后对上尾token惊讶度应用共形风险控制，单次rollout同时产出答案与不确定性分数，实现有限样本下的错误提交期望控制，无需重训练即可跨风险目标和域重新校准。实验在Qwen3.5-4B与Qwen3-8B上显著提升正确提交率、降低生成成本与错误提交率。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>预算强制求解</strong>：通过纯二元正确性奖励的强化学习使模型适应token预算截断，50轮更新基于400题训练，避免错误惩罚抑制探索，提升预算内完成推理的能力</li><li style="margin-bottom:0;"><strong>共形风险控制</strong>：冻结求解器后，对答案区间的上尾token惊讶度应用共形风险控制，单次rollout利用token对数概率得到不确定性分数，实现有限样本错误率保证</li><li style="margin-bottom:0;"><strong>失败比较分析</strong>：理论证明错误答案惩罚在组相对RL中造成仅失败样本间的比较，推导探索饥饿边界，并识别长度引起的排名反转与单token尖峰敏感性</li><li style="margin-bottom:0;"><strong>免训重新校准</strong>：在交换性假设下，校准一次即可跨风险目标与不同领域重新调整阈值，无需重新训练模型，支持目标域校准迁移到分布外场景</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>求解与弃答解耦</strong>：将候选答案生成与提交决策分离为独立模块，单次rollout同时输出答案和不确定性分数，避免多采样共形方法带来的推理成本倍增</li><li style="margin-bottom:0;"><strong>单轮共形控制</strong>：提出Tail-CRC仅需一次推理即可应用共形风险控制，在可交换性假设下提供有限样本的错误提交期望上界保证，兼顾效率与可靠性</li><li style="margin-bottom:0;"><strong>奖励设计规避探索抑制</strong>：采用纯二元正确性奖励而非错误惩罚进行RL训练，规避组相对优化中的失败样本比较问题，防止探索饥饿导致性能退化</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>正确率显著提升</strong>：50轮RL更新使DAPO上正确提交率提升15.0至29.6个百分点，域外Omni-MATH提升4.3至12.8个百分点，同时生成成本降低3.5至12.6个百分点</li><li style="margin-bottom:0;"><strong>错误提交大幅下降</strong>：8B模型Omni-MATH上目标域校准将错误提交率从30.3%降至5.8%（4K预算）、从41.8%降至6.5%（8K预算），控制效果稳定且显著</li><li style="margin-bottom:0;"><strong>推理速度明显加快</strong>：4K预算下生成速度较无强制8K解码，4B模型提升2.05倍、8B模型提升2.23倍（本地摊销批处理时间），实现高效可靠的预算推理</li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">4</span>
+                            <span style="color:#333;font-weight:600;font-size:13px;">ComputeWise：AI研究智能体的GPU浪费度量与修复</span>
+                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">ComputeWise: Measuring and Fixing GPU Waste by AI Research Agents</div>
+                            <span style="color:#666;font-size:12px;">Egor Pakhomov, Nina Pakhomova, Anurag Koul, Shafiq Joty, Erik Nijkamp</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.31027" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.31027</a></div>
+                        </div>
+                        <div style="text-align:right;line-height:1.9;"><span style="background:linear-gradient(135deg,#00897B 0%,#004D40 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">训推基础设施</span></div>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文针对AI研究智能体使用GPU的效率问题，提出开放基准ComputeWise，并开发模拟GPU回放真实运行记录，发现无辅助时智能体仅52%的GPU时间用于必要计算，22%为冗余工作，26%空闲。作者构建了结合提示与确定性代码的开源执行框架，跨五个模型消除了超过80%的冗余计算时间。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>模拟GPU回放技术</strong>：构建虚拟GPU环境，将录制的真实运行记录回放给智能体代码执行，无需真实GPU即可运行数百次实验，大幅扩展评测规模。</li><li style="margin-bottom:0;"><strong>真实需求归因分析</strong>：区分GPU时间中用于得到答案的必要计算与不必要的冗余计算，建立可量化的GPU浪费度量标准，替代简单的利用率指标。</li><li style="margin-bottom:0;"><strong>提示代码混合框架</strong>：结合提示工程与确定性代码控制的研究执行框架，通过结构化约束引导智能体高效调度GPU资源，减少冗余实验运行。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>ComputeWise基准</strong>：首个专门衡量AI研究智能体GPU浪费的开放基准，包含真实研究任务，使GPU利用效率成为可测量、可优化的目标。</li><li style="margin-bottom:0;"><strong>模拟驱动评测方法</strong>：以模拟GPU回放替代真实硬件测试，突破真实GPU成本限制，支持规模化、可重复的实验效率评估。</li><li style="margin-bottom:0;"><strong>开源效率提升方案</strong>：公开prompting与确定性代码相结合的混合执行框架，无需更换模型即可显著降低研究过程中的GPU时间浪费。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>GPU利用率误导性强</strong>：忙碌GPU不代表高效，智能体仅将52%的GPU时间用于得出答案真正需要的计算，其余为冗余或空闲。</li><li style="margin-bottom:0;"><strong>常规优化手段失效</strong>：要求加速完成、保持GPU全忙或引入作业调度器等方法均无法有效减少不必要的GPU时间开销。</li><li style="margin-bottom:0;"><strong>混合框架成效显著</strong>：所提开源框架跨五个模型消除了超过80%的冗余计算时间，证明系统性执行优化优于简单指令干预。</li><li style="margin-bottom:0;"><strong>资源成本结构倾斜</strong>：智能体的token成本远低于其实验所占用的GPU成本，优化GPU使用对降低研究成本具有更大杠杆效应。</li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">5</span>
+                            <span style="color:#333;font-weight:600;font-size:13px;">Unpacking the Evaluators: How Configuration Shapes the Evaluation of Alignment in Explainable AI</span>
+                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Unpacking the Evaluators: How Configuration Shapes the Evaluation of Alignment in Explainable AI</div>
+                            <span style="color:#666;font-size:12px;">Gizem Karagoz, Tanir Ozcelebi, Nirvana Meratnia</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.30816" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.30816</a></div>
+                        </div>
+                        <div style="text-align:right;line-height:1.9;"><span style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">大语言模型</span><span style="background:linear-gradient(135deg,#FFD700 0%,#FFA000 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 顶会</span></div>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">可解释人工智能（XAI）的评估从根本上要求以人为中心的评估，即考察解释是否与人类的推理方式及专家知识相一致。然而，此类评估往往需要专家主导的人工验证，难以规模化，因此基于对齐的度量方法被广泛使用，即通过将归因图与预定义的真值（GT）表示进行对比来评估。尽管这类对齐评估应用广泛，但它们会隐性地偏向评估过程中的多种设计选择，例如真值表示、度量方法族、度量公式形式（软性与硬性）以及阈值化策略等。本文将形式化地把对齐评估界定为一个结构化的评估配置空间，通过该空间来考察这些设计（选择）的影响。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">基于论文摘要的分析方法</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">创新方法框架</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">详细内容请查看原文</li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">6</span>
+                            <span style="color:#333;font-weight:600;font-size:13px;">ChiProgramBench：LLM能否借引脚级实验重建高效电路？</span>
+                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">ChiProgramBench: Can LLM Agents Rebuild Efficient Circuits from Pin-Level Experiments?</div>
+                            <span style="color:#666;font-size:12px;">Tianrun Gou, Qingyao Yang, Wendong Xu, Liang Chen, Kuan Li, Ngai Wong</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.31082" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.31082</a></div>
+                        </div>
+                        <div style="text-align:right;line-height:1.9;"><span style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">大语言模型</span></div>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">理解一个可以运行但无法检查的系统是一项核心工程技能：需要设计实验，对隐藏的状态与时序提出假设，抛弃那些被观察结果证伪的假设，最终构建出一个既可用又高效的替代实现。为评估 LLM 智能体在硬件领域的这一能力，我们提出了 ChiProgramBench——涵盖 18 个任务，源自开源的处理器、加速器、编解码器、变换电路、互连电路和控制电路。智能体只能驱动并读取一个隐藏的、具有状态的模拟参考设计的引脚，随后提交一个由公开库单元构成的门级网表。智能体在两种设定下工作：黑盒发现仅提供匿名化的功能引脚和固定存储器的接口，而功能引导重建则会额外给出该电路的……</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">基于论文摘要的分析方法</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">创新方法框架</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;">详细内容请查看原文</li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">7</span>
+                            <span style="color:#333;font-weight:600;font-size:13px;">Language Models Steer on Injected Uncertainty Tokens, but Fail to Self-Monitor In Situ</span>
+                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Language Models Steer on Injected Uncertainty Tokens, but Fail to Self-Monitor In Situ</div>
+                            <span style="color:#666;font-size:12px;">Daniel Theron</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.31228" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.31228</a></div>
+                        </div>
+                        <div style="text-align:right;line-height:1.9;"><span style="background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">大语言模型</span></div>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文考察语言模型在推理过程中逐步口头化数值置信度的方法，发现其存在监控与控制的解耦现象。研究对四款开源模型在15,200次数学基准测试中隔离出2,017个推理错误，并通过27,568次反事实续写实验证明：模型无法通过自我口头化置信度发现自身错误（AUROC近随机水平），但能对外部注入的低置信度标记做出响应，主动回溯并修正错误；然而对正确步骤注入怀疑也会导致其放弃有效推理。结论表明，推理时自我修正的瓶颈在于过程中的错误检测能力，而非下游修复能力。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>大规模错误隔离</strong>：在15,200次数学基准尝试中，针对四款开源模型（Qwen2.5-7B、Llama-3.1-8B、Mistral-7B、Phi-4）的能力边界，精确隔离出2,017个真实推理错误样本，确保错误位于模型可解决范围内。</li><li style="margin-bottom:0;"><strong>反事实续写实验</strong>：在错误发生点应用27,568次反事实续写，通过对比注入不同置信度标签后的下游轨迹，因果性地检验不确定性token对模型回溯与纠错行为的引导效果。</li><li style="margin-bottom:0;"><strong>置信度监控度量</strong>：采用逐步口头化数值置信度，并以AUROC衡量置信度区分错误步骤与正确推理的能力，同时统计首次错误点轨迹置信度的饱和程度与显著下降比例。</li><li style="margin-bottom:0;"><strong>控制对照设计</strong>：设置格式匹配的95%置信度对照组及主动反思指令条件，确保观测到的纠错率提升源于不确定性注入本身，而非提示格式或格式扰动因素。</li><li style="margin-bottom:0;"><strong>双能力解耦框架</strong>：将推理时自我修正拆分为过程内监控保真度（错误时置信度是否下降）与下游引导控制力（不确定性token是否驱动修复）两个独立可测能力进行评估。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>监控控制解耦</strong>：首次系统论证并量化语言模型推理中监控与控制的解耦现象，证明口头化置信度无法反映错误，但外部注入的怀疑却能有效驱动纠错行为，二者是相互独立的能力。</li><li style="margin-bottom:0;"><strong>因果性证据链</strong>：利用27,568次反事实续写在同一错误点上直接操纵置信度注入，获得外部怀疑注入因果提升纠错的强证据，超越此前相关性观察研究的局限。</li><li style="margin-bottom:0;"><strong>负面引导风险揭示</strong>：发现对正确推理步骤注入低置信度会使模型放弃有效推理，解题率最高下降22.8个百分点，提示盲目注入不确定性存在反噬风险。</li><li style="margin-bottom:0;"><strong>瓶颈定位诊断</strong>：将推理时自我修正的失败归因于过程内错误检测能力缺失，而非下游修复能力不足，为后续改进方向（如外部校验器）提供明确依据。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>自我监控失效</strong>：四款模型的口头化置信度均无法区分错误步骤与正确推理，过程内AUROC介于0.500至0.561，接近随机水平，表明模型缺乏基本的自我错误感知能力。</li><li style="margin-bottom:0;"><strong>置信度高度饱和</strong>：即使发生首次推理错误，轨迹置信度仍维持在95.1%至99.9%的高位，置信度显著下降仅在Llama上少于9%的错误中出现，其余三模型低于1.6%。</li><li style="margin-bottom:0;"><strong>外部引导有效</strong>：在错误点注入10%低置信度标签显著提升下游纠错率（相对95%置信度对照提高3.7至22.5个百分点），在主动反思指令下纠错率最高达38.5%。</li><li style="margin-bottom:0;"><strong>盲目怀疑有害</strong>：对正确步骤注入怀疑导致模型丢弃有效推理，解题率最高下降22.8个百分点，说明不确定性引导必须建立在准确的错误定位基础上，否则适得其反。</li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">老许 AI 研究室</div>
+            <p>本报告基于 arXiv 最新论文与当日工业界新闻自动生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/11/25</p>
+        </div>
+    </div>
+</body>
+</html>

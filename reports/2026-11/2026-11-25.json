@@ -1,0 +1,172 @@
+{
+  "title": "大模型训推技术每日洞察 | 2026/11/25",
+  "date": "2026/11/25",
+  "topic": "大模型训练与推理技术",
+  "papers": [
+    {
+      "id": "2611.31101",
+      "title": "SayWhen: Set-Valued Semantic Commitment for Low-Regret Early Speech",
+      "chinese_title": "SayWhen: Set-Valued Semantic Commitment for Low-Regret Early Speech",
+      "url": "https://arxiv.org/abs/2611.31101",
+      "authors": "Tianyi Huang, Lucas Su, Fred Zhang, Andy Liang, Gordon Li",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 6,
+          "rigor": 8,
+          "total": 22,
+          "reason": "概念新颖，指标细，但落地偏仿真"
+        },
+        "citationCount": 0,
+        "venue": "the NeurIPS  2026",
+        "isTopVenue": true,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 27
+      }
+    },
+    {
+      "id": "2611.31215",
+      "title": "Seeking in Space: Benchmarking Purposeful Active Exploration of Vision-Language Models for Spatial Reasoning",
+      "chinese_title": "Seeking in Space: Benchmarking Purposeful Active Exploration of Vision-Language Models for Spatial Reasoning",
+      "url": "https://arxiv.org/abs/2611.31215",
+      "authors": "Xiwei Liu, Yulong Li, Xuhui Li, Xinlin Zhuang, Zhixiang Lu, Haolin Yang, Jianxu Chen, Yifan Lu, Zhiran Zhang, Yutong Xie",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 9,
+          "practicality": 8,
+          "rigor": 9,
+          "total": 26,
+          "reason": "选题新颖，实验严谨，应用价值明确"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 26
+      }
+    },
+    {
+      "id": "2611.31065",
+      "title": "Decoupling Solving from Abstention: Single-Rollout Conformal Risk Control for Hard-Budget LLM Reasoning",
+      "chinese_title": "Decoupling Solving from Abstention: Single-Rollout Conformal Risk Control for Hard-Budget LLM Reasoning",
+      "url": "https://arxiv.org/abs/2611.31065",
+      "authors": "Qianyi Chen, Bo Li",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 9,
+          "total": 25,
+          "reason": "解耦求解与弃答，单次推理结合共形风险控制和RL理论分析，创新扎实且有严格保证。"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "hasNotableAuthor": false,
+        "hasNotableInstitution": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 25
+      }
+    },
+    {
+      "id": "2611.31027",
+      "title": "ComputeWise: Measuring and Fixing GPU Waste by AI Research Agents",
+      "chinese_title": "ComputeWise：AI研究智能体的GPU浪费度量与修复",
+      "url": "https://arxiv.org/abs/2611.31027",
+      "authors": "Egor Pakhomov, Nina Pakhomova, Anurag Koul, Shafiq Joty, Erik Nijkamp",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 9,
+          "rigor": 8,
+          "total": 25,
+          "reason": "选题新颖，模拟GPU与开源落地强；统计细节略少"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 25
+      }
+    },
+    {
+      "id": "2611.30816",
+      "title": "Unpacking the Evaluators: How Configuration Shapes the Evaluation of Alignment in Explainable AI",
+      "chinese_title": "Unpacking the Evaluators: How Configuration Shapes the Evaluation of Alignment in Explainable AI",
+      "url": "https://arxiv.org/abs/2611.30816",
+      "authors": "Gizem Karagoz, Tanir Ozcelebi, Nirvana Meratnia",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 7,
+          "practicality": 6,
+          "rigor": 7,
+          "total": 20,
+          "reason": "系统揭示评估配置偏差，方法规范但创新偏增量，依赖合成实验。"
+        },
+        "citationCount": 0,
+        "venue": "NeurIPS  2026",
+        "isTopVenue": true,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 25
+      }
+    },
+    {
+      "id": "2611.31082",
+      "title": "ChiProgramBench: Can LLM Agents Rebuild Efficient Circuits from Pin-Level Experiments?",
+      "chinese_title": "ChiProgramBench：LLM能否借引脚级实验重建高效电路？",
+      "url": "https://arxiv.org/abs/2611.31082",
+      "authors": "Tianrun Gou, Qingyao Yang, Wendong Xu, Liang Chen, Kuan Li, Ngai Wong",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 9,
+          "total": 24,
+          "reason": "黑盒逆向重建电路基准新颖，实验规模大且评估严格"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.31228",
+      "title": "Language Models Steer on Injected Uncertainty Tokens, but Fail to Self-Monitor In Situ",
+      "chinese_title": "Language Models Steer on Injected Uncertainty Tokens, but Fail to Self-Monitor In Situ",
+      "url": "https://arxiv.org/abs/2611.31228",
+      "authors": "Daniel Theron",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 8,
+          "total": 23,
+          "reason": "因果反事实设计巧妙，监测与控制解耦有新意，样本量充足，但verbalized confidence效度存疑"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 23
+      }
+    }
+  ],
+  "generated_at": "2026-11-24T22:46:07.257Z",
+  "org": "老许 AI 研究室"
+}
