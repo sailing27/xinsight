@@ -1,0 +1,172 @@
+{
+  "title": "大模型训推技术每日洞察 | 2026/11/26",
+  "date": "2026/11/26",
+  "topic": "大模型训练与推理技术",
+  "papers": [
+    {
+      "id": "2611.32830",
+      "title": "PtychoFM: A Foundation Model for Ptychographic Imaging",
+      "chinese_title": "PtychoFM: A Foundation Model for Ptychographic Imaging",
+      "url": "https://arxiv.org/abs/2611.32830",
+      "authors": "Aileen Luo, Emon Dey, Ming Du, Tao Zhou, Peco Myint, Himanshu Goel, Shashank Subramanian, Xiangyu Yin, Tekin Bicer, Siniša Veseli, Cheng-Chu Chung, Jeffrey A. Klug, Aldo Peña Pérez, Llorenç Fanals-i-Batllori, Christopher Kenney, Henry Shi, Lorenzo Rota, Angelo Dragone, Zirui Gao, Douglas A. Bennett, John A. B. Mates, Leila R. Vale, Michael R. Vissers, Yi Jiang, Junjing Deng, Tejas Guruswamy, Varuni K. Sastry, Bowen Zheng, Takenori Shimamura, Oliver Hoidn, Aashwin Mishra, Hannah Parraga, Brandon Stone, Jonathan Baldwin, Aaron Michelson, Michael Wojcik, Xiaoyin Zheng, Robert Underwood, Yijiang Li, Jinxing Jiang, Nicholas Schwarz, Apurva Mehta, Johanna Nelson Weker, Hassina Bilheux, Joel N. Ullom, Alexander Hexemer, Antonino Miceli, Kibaek Kim, Hanfei Yan, Mathew J. Cherukara, Alec R. Sandy, Stefan Vogt, Laurent C. Chapon",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 9,
+          "rigor": 7,
+          "total": 24,
+          "reason": "物理感知基础模型实现实时叠层成像重建，创新性强但仅见摘要，实验细节待考"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.33062",
+      "title": "Understanding Clipping In Zeroth-Order Optimization",
+      "chinese_title": "理解零阶优化",
+      "url": "https://arxiv.org/abs/2611.33062",
+      "authors": "Saket Gollapudi, Elisa Bertino, Sewoong Oh",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 8,
+          "total": 23,
+          "reason": "系统揭示裁剪机制，实验充分，创新较好"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 23
+      }
+    },
+    {
+      "id": "2611.33048",
+      "title": "Latent Merger: Latent-Space Composition of Hypernetwork-Generated LoRAs",
+      "chinese_title": "Latent Merger: Latent-Space Composition of Hypernetwork-Generated LoRAs",
+      "url": "https://arxiv.org/abs/2611.33048",
+      "authors": "Yanlai Yang, Minki Kang, Divyam Madaan, Sung Ju Hwang, Mengye Ren",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 6,
+          "practicality": 6,
+          "rigor": 6,
+          "total": 18,
+          "reason": "默认评分"
+        },
+        "citationCount": 0,
+        "venue": "NeurIPS  2026",
+        "isTopVenue": true,
+        "hasNotableAuthor": false,
+        "hasNotableInstitution": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 23
+      }
+    },
+    {
+      "id": "2611.32815",
+      "title": "E(n)-Equivariant Spherical Decision Surfaces",
+      "chinese_title": "E(n)-Equivariant Spherical Decision Surfaces",
+      "url": "https://arxiv.org/abs/2611.32815",
+      "authors": "Pavlo Melnyk, Michael Felsberg, Kostas Daniilidis",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 6,
+          "practicality": 6,
+          "rigor": 6,
+          "total": 18,
+          "reason": "默认评分"
+        },
+        "citationCount": 0,
+        "venue": "the ICLR  2026",
+        "isTopVenue": true,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 23
+      }
+    },
+    {
+      "id": "2611.33133",
+      "title": "A Bias in Disguise: Tiny Gradient Edits Stop a Small Language Model's Thinking Loops and Complement a Frontier Model's Weight Edit",
+      "chinese_title": "A Bias in Disguise: Tiny Gradient Edits Stop a Small Language Model's Thinking Loops and Complement a Frontier Model's Weight Edit",
+      "url": "https://arxiv.org/abs/2611.33133",
+      "authors": "Hussamuddin Syed",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 6,
+          "practicality": 6,
+          "rigor": 6,
+          "total": 18,
+          "reason": "默认评分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 18
+      }
+    },
+    {
+      "id": "2611.33111",
+      "title": "Draft Calibration for Speculative Decoding: Accelerating LLM Serving by Matching Draft and Target Distributions",
+      "chinese_title": "Draft Calibration for Speculative Decoding: Accelerating LLM Serving by Matching Draft and Target Distributions",
+      "url": "https://arxiv.org/abs/2611.33111",
+      "authors": "Yuxing Liu, Wei Zuo, Walid Krichene, Tong Zhang, Li Zhang",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 6,
+          "practicality": 6,
+          "rigor": 6,
+          "total": 18,
+          "reason": "默认评分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 18
+      }
+    },
+    {
+      "id": "2611.33102",
+      "title": "Reinforcement Learning Can Be Recovered From Its Own Rollouts",
+      "chinese_title": "Reinforcement Learning Can Be Recovered From Its Own Rollouts",
+      "url": "https://arxiv.org/abs/2611.33102",
+      "authors": "Jiayi Sheng, Jingwen Gu, Guanning Zeng, Zhaoyi Zhou, Stefano Viel, Qianqian Wang, Fahim Tajwar, Andrea Zanette",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 6,
+          "practicality": 6,
+          "rigor": 6,
+          "total": 18,
+          "reason": "默认评分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 18
+      }
+    }
+  ],
+  "generated_at": "2026-11-25T22:54:44.966Z",
+  "org": "老许 AI 研究室"
+}
