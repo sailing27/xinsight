@@ -1,0 +1,170 @@
+{
+  "title": "大模型训推技术每日洞察 | 2026/11/25",
+  "date": "2026/11/25",
+  "topic": "大模型训练与推理技术",
+  "papers": [
+    {
+      "id": "2611.31105",
+      "title": "LiveLoRA: Exact KV Cache Migration Across LoRA Updates for LLM Agents",
+      "chinese_title": "LiveLoRA：LoRA更新间KV缓存的精确迁移",
+      "url": "https://arxiv.org/abs/2611.31105",
+      "authors": "Tianyi Huang, Samuel Xu, Ivy Gu, Nathan Huang, Siqi Zhang",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 6,
+          "total": 21,
+          "reason": "思路新颖且含等价性证明，但关键数值缺失，假设受限"
+        },
+        "citationCount": 0,
+        "venue": "the NeurIPS  2026",
+        "isTopVenue": true,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 26
+      }
+    },
+    {
+      "id": "2611.30685",
+      "title": "How Many Parameters Does Forecasting Need? A Survey and Code-Level Audit of Lightweight Long-Term Time Series Forecasting",
+      "chinese_title": "How Many Parameters Does Forecasting Need? A Survey and Code-Level Audit of Lightweight Long-Term Time Series Forecasting",
+      "url": "https://arxiv.org/abs/2611.30685",
+      "authors": "Issam Ait Yahia, Abdelkader El Mahdaouy, Ismail Berrada",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 9,
+          "rigor": 9,
+          "total": 26,
+          "reason": "视角新颖，审计严谨，指导实用"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 26
+      }
+    },
+    {
+      "id": "2611.31051",
+      "title": "Automatic Occupational Coding through Retrieval-Augmented Generation",
+      "chinese_title": "基于检索增强生成的自动职业编码",
+      "url": "https://arxiv.org/abs/2611.31051",
+      "authors": "Mathijs A. Langezaal, Egon L. van den Broek, Lukas P. A. Arts, Marcel Goldberg, Grégoire Rey, Melissa C. Friesen, Sarah J. Locke, Nathaniel Rothman, Qing Lan, Roel C. H. Vermeulen, Susan Peters",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 9,
+          "rigor": 8,
+          "total": 25,
+          "reason": "RAG实现通用职业编码，大规模真实数据验证，实用性强"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 25
+      }
+    },
+    {
+      "id": "2611.30742",
+      "title": "Transport-Safe Evaluation of LLM Agents: Trajectory-Dependent Judge Error and Anytime-Valid Auditing",
+      "chinese_title": "Transport-Safe Evaluation of LLM Agents: Trajectory-Dependent Judge Error and Anytime-Valid Auditing",
+      "url": "https://arxiv.org/abs/2611.30742",
+      "authors": "Yulliwas Ameur, Samia Bouzefrane, Soumya Banerjee",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 9,
+          "total": 25,
+          "reason": "选题新颖，理论严谨，校正与审计方法实用"
+        },
+        "citationCount": 0,
+        "venue": "ICAART  2027",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 25
+      }
+    },
+    {
+      "id": "2611.31190",
+      "title": "Know When to Abstain: Conformal Confidence Estimation for Text-to-SQL",
+      "chinese_title": "Know When to Abstain: Conformal Confidence Estimation for Text-to-SQL",
+      "url": "https://arxiv.org/abs/2611.31190",
+      "authors": "Avinash Kumar Singh, Bhaskarjit Sarmah, Stefano Pasquali",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 7,
+          "practicality": 8,
+          "rigor": 9,
+          "total": 24,
+          "reason": "校准保障严谨、实验充分，创新在于组合已有方法"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.31117",
+      "title": "Self-Upgrading Embodied Agents",
+      "chinese_title": "自我升级的具身智能体",
+      "url": "https://arxiv.org/abs/2611.31117",
+      "authors": "Jiajun Fan, Neil He, Qinglong Zheng, Changyi Yang, Tong Wei, Andy Mao, Zetian Li, Chaoran Cheng, Hui Ren, Ruihan Guo, Xianrui Zhong, Xizheng Yu, Jingyuan Li, Xi Zhu, Kaiqu Liang, Chang Xu, Zun Qian, Zidi Xiong, Yuezhu Zhao, Xu Huang, Ge Liu",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 9,
+          "practicality": 7,
+          "rigor": 8,
+          "total": 24,
+          "reason": "权重自编辑具创新性，但仅27B可行，验证待加强"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.31044",
+      "title": "Grower-in-the-loop AI for Deployable Precision Fertilisation in Sustainable Agriculture",
+      "chinese_title": "可部署精准施肥的人机协同AI助力可持续农业",
+      "url": "https://arxiv.org/abs/2611.31044",
+      "authors": "Xulong Wang, Yu Zhang, Gaoshan Bi, Menghui Zhou, Simon Jeffery, Max Davis, Sam Maycock, Paul Harris, Po Yang",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 9,
+          "rigor": 7,
+          "total": 24,
+          "reason": "人机协同框架新颖，多场景验证实用性强，方法细节待确认"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    }
+  ],
+  "generated_at": "2026-11-25T01:37:25.364Z",
+  "org": "老许 AI 研究室"
+}
