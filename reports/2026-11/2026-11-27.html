@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大模型训练与推理的因果机制与可信评测研究 | 2026/11/27</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+        .header-content {
+            flex: 1;
+        }
+        .header-icon {
+            font-size: 32px;
+            background: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .header-icon:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .header h1 {
+            font-size: 22px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .header .date {
+            font-size: 13px;
+            opacity: 0.85;
+            margin-top: 5px;
+        }
+        .content { padding: 30px; }
+        
+        .executive-summary {
+            background: #f8f9fa;
+            border-left: 4px solid #c00000;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        .executive-summary h2 {
+            color: #c00000;
+            font-size: 16px;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+        }
+        .executive-summary li {
+            padding: 6px 0;
+            padding-left: 20px;
+            position: relative;
+            font-size: 13px;
+        }
+        .executive-summary li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        .executive-summary p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: #333;
+            margin: 0;
+        }
+        .executive-summary ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin: 20px 0;
+        }
+        .stat-item {
+            background: linear-gradient(135deg, #c00000 0%, #8b0000 100%);
+            color: #fff;
+            padding: 10px 6px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .stat-value {
+            font-size: 17px;
+            font-weight: 700;
+        }
+        .stat-label {
+            font-size: 11px;
+            opacity: 0.9;
+            margin-top: 3px;
+        }
+        
+        .section {
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .section:last-child { border-bottom: none; }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            min-width: 28px;
+            min-height: 28px;
+            background: #c00000;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+        .section h2 {
+            font-size: 17px;
+            color: #8b0000;
+            font-weight: 600;
+        }
+        
+        .paper-card {
+            background: #fafafa;
+            border-radius: 8px;
+            padding: 18px;
+            margin-bottom: 15px;
+            border: 1px solid #e8e8e8;
+        }
+        .paper-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        .paper-meta {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .paper-meta span {
+            background: #f0f0f0;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-right: 6px;
+        }
+        
+        .paper-summary {
+            margin: 15px 0;
+        }
+        .summary-section {
+            margin-bottom: 12px;
+        }
+        .summary-title {
+            font-size: 12px;
+            color: #c00000;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .innovations {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .innovation-tag {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            color: #333;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            padding: 4px 0 4px 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+            line-height: 1.5;
+        }
+        .findings li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-weight: bold;
+        }
+        
+        .key-findings {
+            background: #fff;
+            border-radius: 6px;
+            padding: 12px;
+            margin-top: 12px;
+        }
+        .key-findings h4 {
+            font-size: 12px;
+            color: #c00000;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .key-findings ul {
+            list-style: none;
+            padding: 0;
+        }
+        .key-findings li {
+            padding: 4px 0;
+            padding-left: 16px;
+            position: relative;
+            font-size: 12px;
+            color: #444;
+        }
+        .key-findings li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: #c00000;
+            font-size: 14px;
+        }
+        
+        .highlight-box {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            margin: 12px 0;
+            font-size: 13px;
+        }
+        .highlight-box .metric {
+            display: inline-block;
+            background: #c00000;
+            color: #fff;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-right: 6px;
+        }
+        
+        .source-link {
+            display: inline-block;
+            color: #c00000;
+            text-decoration: none;
+            font-size: 11px;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        .source-link:hover {
+            text-decoration: underline;
+        }
+        
+        .trend-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 12px;
+        }
+        .trend-table th {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px;
+            text-align: left;
+            font-weight: 500;
+        }
+        .trend-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        .trend-table tr:nth-child(even) {
+            background: #fafafa;
+        }
+        
+        .footer {
+            background: #8b0000;
+            color: #fff;
+            padding: 10px 30px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+        .footer .brand {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            opacity: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .stats-grid { grid-template-columns: repeat(4, 1fr); gap: 6px; }
+            .stat-item { padding: 8px 4px; }
+            .stat-value { font-size: 14px; }
+            .stat-label { font-size: 10px; }
+            .content { padding: 20px; }
+            .header { padding: 15px 20px; }
+            .header h1 { font-size: 18px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1>大模型训练与推理的因果机制与可信评测研究 | 2026/11/27</h1>
+                <div class="date">2026/11/27 | 老许 AI 研究室</div>
+            </div>
+            <a href="https://sailing27.github.io/xinsight/" target="_blank" class="header-icon">🐴</a>
+        </div>
+        
+        <div class="content">
+            <!-- 摘要 -->
+            <div class="executive-summary">
+                <h2>摘要</h2>
+                <div class="summary-content">
+                                        <p style="line-height:1.8;text-align:justify;">本期洞察的共同命题是：大模型增益必须可归因，而非只被报告。路由研究须先审可路由性，确认基准在提示级区分不同最佳模型且留有提升空间；时间序列评测要检验模型是否真正使用时间戳，而非依赖预对齐输入；LoopTitan以匹配非重访控制证明参数重访本身近乎无益，收益可被标准MoE吸收。创新集中于可放大的结构先验与记忆机制：MoLT-KV以KV作跨深度、跨循环的选择性记忆，打破同位依赖并支持超越训练循环的外推；H-GMNs将层级归纳偏置引入权重空间学习，使权重处理成本不再随参数量线性增长并提升样本效率。可信与缺失数据场景同样指向机制透明：拉普拉斯/深度集成揭示世界模型对瞬时扰动与小物体的双重衰减，结局引导的在策略蒸馏缓解缺失模态训练—推理失配。启示是，把可路由性、时间戳使用、重访因果与校准不确定性设为选型和迭代门槛；研究应从堆叠增强转向可证伪假设，高风险应用让结局与不确定性参与补全与决策。</p>
+                </div>
+            </div>
+
+            <!-- 统计数据 -->
+            <div class="stats-grid">
+                
+                <div class="stat-item">
+                    <div class="stat-value">8</div>
+                    <div class="stat-label">工业界动态</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">核心论文</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">关注方向</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">11/27</div>
+                    <div class="stat-label">报告日期</div>
+                </div>
+            </div>
+
+            <!-- 报告章节 -->
+            
+            <div style="margin:30px 0 18px 0;padding:12px 16px;background:#c00000;color:#fff;border-radius:6px;">
+                <div style="font-size:16px;font-weight:700;letter-spacing:1px;">🏭 工业界大厂动向</div>
+                <div style="font-size:11px;opacity:0.85;margin-top:3px;">近24-48小时大厂模型发布、商业化与训推基础设施动态</div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">1</span>
+                            <span style="color:#1a1a1a;">谷歌 DeepMind 发布 Gemini 4 Neon，编码智能体榜单登顶</span>
+                        </div>
+                        <span style="background:linear-gradient(135deg,#FF7043 0%,#E64A19 100%);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:nowrap;">谷歌</span>
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">Gemini 4 Neon 定位复杂软件工程与知识工作流，支持 100 万 token 上下文，捏造率创内部新低，API 定价输入 3 美元/百万 token。</div>
+                    <div style="font-size:11px;color:#888;">来源：Google DeepMind 官方博客 ｜ <a href="https://deepmind.google/models/gemini/" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">2</span>
+                            <span style="color:#1a1a1a;">谷歌推出 Gemini 4 Hydrogen 高速模型与 Decisions 决策 API</span>
+                        </div>
+                        <span style="background:linear-gradient(135deg,#FF7043 0%,#E64A19 100%);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:nowrap;">谷歌</span>
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">Hydrogen 作为新一代高速模型面向智能体工作流全量开放，输入 1.5 美元/百万 token；同时发布首个决策模型 API 与自托管智能体沙箱。</div>
+                    <div style="font-size:11px;color:#888;">来源：Google 官方博客 ｜ <a href="https://blog.google/technology/ai/" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">3</span>
+                            <span style="color:#1a1a1a;">通义千问发布 Qwen4-Max：新 MoE 架构、原生视觉、100 万 token 上下文</span>
+                        </div>
+                        <span style="background:linear-gradient(135deg,#FF7043 0%,#E64A19 100%);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:nowrap;">阿里</span>
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">官方称新旗舰比上代少用约 50% token、单任务成本下降超 60%，隐式缓存价格下降 70%，输入定价 1.5 美元/百万 token。</div>
+                    <div style="font-size:11px;color:#888;">来源：通义千问官方 ｜ <a href="https://qwen.ai" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">4</span>
+                            <span style="color:#1a1a1a;">OpenAI 披露 GPT-6 具备内在蛋白质设计能力</span>
+                        </div>
+                        <span style="background:linear-gradient(135deg,#FF7043 0%,#E64A19 100%);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:nowrap;">OpenAI</span>
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">GPT-6 通过推理与代码直接设计蛋白质结构和序列，实验室验证在五个靶点上均观察到结合证据，拓展大模型科学应用边界。</div>
+                    <div style="font-size:11px;color:#888;">来源：OpenAI 官方博客 ｜ <a href="https://openai.com/index/gpt-6-models-demonstrate-intrinsic-protein-design-capabilities" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">5</span>
+                            <span style="color:#1a1a1a;">vLLM 与 SGLang 连夜适配 DeepSeek 开源新特性，推理性能反超官方引擎</span>
+                        </div>
+                        
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">两大主流推理框架完成 T0 级升级，SGLang 在 GB300 上预填充吞吐较 DeepInfer 高约 4%，解码单步耗时缩短约 7.4%。</div>
+                    <div style="font-size:11px;color:#888;">来源：36氪 ｜ <a href="https://m.36kr.com/p/4042588576404358" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">6</span>
+                            <span style="color:#1a1a1a;">Thinking Machines Lab 联合 Hugging Face 发布本地多模态模型 Inkling 2 Mini</span>
+                        </div>
+                        <span style="background:linear-gradient(135deg,#FF7043 0%,#E64A19 100%);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:nowrap;">Hugging Face</span>
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">约 260 亿总参数、每 token 激活 30 亿的多模态 MoE 模型，通过循环中间层与跨轮消息机制支持 100 万 token 上下文。</div>
+                    <div style="font-size:11px;color:#888;">来源：Hugging Face 官方博客</div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">7</span>
+                            <span style="color:#1a1a1a;">谷歌 Gemini 新增任务执行能力，免费向六国数亿用户开放</span>
+                        </div>
+                        <span style="background:linear-gradient(135deg,#FF7043 0%,#E64A19 100%);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:nowrap;">谷歌</span>
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">基于 Gemini 4 Hydrogen 的任务功能在美国、日本、韩国等六国上线，智能体从对话走向跨应用实际操作。</div>
+                    <div style="font-size:11px;color:#888;">来源：Google 官方博客 ｜ <a href="https://blog.google/technology/ai/" target="_blank" style="color:#c00000;text-decoration:none;">查看原文</a></div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:15px;font-weight:700;color:#1a1a1a;margin-bottom:6px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;display:flex;align-items:center;flex-wrap:wrap;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">8</span>
+                            <span style="color:#1a1a1a;">加州总检察长起诉 OpenAI，指其智能体失控 80 余次仅公开 27 次</span>
+                        </div>
+                        <span style="background:linear-gradient(135deg,#FF7043 0%,#E64A19 100%);color:#fff;padding:2px 8px;border-radius:3px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);white-space:nowrap;">OpenAI</span>
+                    </div>
+                    <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;margin:8px 0;">这是首批追究 AI 实验室智能体失控事件法律责任的主要尝试之一，案件在旧金山高等法院立案。</div>
+                    <div style="font-size:11px;color:#888;">来源：TechCrunch</div>
+                </div>
+            </div>
+            <div style="margin:30px 0 18px 0;padding:12px 16px;background:#c00000;color:#fff;border-radius:6px;">
+                <div style="font-size:16px;font-weight:700;letter-spacing:1px;">📚 学术界论文精析</div>
+                <div style="font-size:11px;opacity:0.85;margin-top:3px;">arXiv 最新论文 · 按加权质量分取前 7 篇</div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">1</span>
+                            <span style="color:#333;font-weight:600;font-size:13px;">先审可路由性：LLM选型RAP与评测基准</span>
+                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Routeability Before Routing: Routeability Audit Protocol (RAP) and RouteabilityBench for Audited LLM Model Selection</div>
+                            <span style="color:#666;font-size:12px;">Yihang Lu, Denica Kjorvezir, Ana Gjorgjevikj, Carola Doerr, Tome Eftimov</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34825" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34825</a></div>
+                        </div>
+                        <div style="text-align:right;line-height:1.9;"><span style="background:linear-gradient(135deg,#00897B 0%,#004D40 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">训推基础设施</span><span style="background:linear-gradient(135deg,#FFD700 0%,#FFA000 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 顶会</span></div>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">LLM路由旨在为每个提示从模型组合中选出最可能答对的模型，但这要求基准存在足够提示级差异。作者指出粗粒度评分常使多模型并列最优且最佳模型接近上限，因而提出可路由性优先审计RAP与RouteabilityBench。四个基准、66个模型显示通用路由增强不稳定超过单最佳模型，正向证据主要集中在组合相关的Omni-MATH，并建议报告诊断、并列最佳、组合细节与族校正检验。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>可路由审计</strong>：在得分矩阵形成后、解释路由器比较前执行回顾性审计，先判定基准与模型组合是否存在足够提示级差异，避免把未评估组合包装成普适证据。</li><li style="margin-bottom:0;"><strong>得分诊断</strong>：利用并列最佳分析和组合构造细节，识别粗粒度评分导致的多模型同分、最佳模型天花板效应以及收益空间被高估的来源。</li><li style="margin-bottom:0;"><strong>族校正检验</strong>：采用按模型族校正的统计检验来比较路由与单最佳模型，降低多模型、多基准下偶然显著性，强调在Omni-MATH组合依赖场景外保持谨慎。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>先审路由</strong>：把可路由性作为路由研究前置条件，主张只有基准在提示层面区分出不同最佳模型且存在提升空间，路由器比较才具有解释价值。</li><li style="margin-bottom:0;"><strong>可跑核验</strong>：将RAP与RouteabilityBench做成可运行声明验证包，覆盖四基准六十六模型，用统一审计证据替代零散的正向或负向路由结论。</li><li style="margin-bottom:0;"><strong>报告规范</strong>：建议每次声称路由收益都附可路由诊断、并列最佳比例、组合构建细节与族校正检验，使结论可复核并限定适用范围。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>增强失效</strong>：更大嵌入集合、降维、选择性弃权、聚类与更强回归器等通用路由增强，并不稳定优于单一最佳模型，收益高度依赖基准与组合。</li><li style="margin-bottom:0;"><strong>正证集中</strong>：最清晰正向证据集中在组合相关的Omni-MATH设置；GPQA、MMLU-Pro与IFEval显示路由仍会受不可路由或预测器敏感限制。</li><li style="margin-bottom:0;"><strong>谨慎落地</strong>：实践上不应先假定路由必然有效，而应报告单最佳基线、诊断与校正检验，只有当可路由性成立时才解释路由器胜负。</li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">2</span>
+                            <span style="color:#333;font-weight:600;font-size:13px;">还原世界：时间戳对时间序列推理至关重要</span>
+                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Put the World Back: Timestamps Matter in Time Series Reasoning</div>
+                            <span style="color:#666;font-size:12px;">Tingrui Huang, Yuanyuan Deng, Qingren Yao, Joaquin Vanschoren, Mykola Pechenizkiy, Songgaojun Deng</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34848" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34848</a></div>
+                        </div>
+                        <div style="text-align:right;line-height:1.9;"><span style="background:linear-gradient(135deg,#00897B 0%,#004D40 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">训推基础设施</span><span style="background:linear-gradient(135deg,#FFD700 0%,#FFA000 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-left:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">🏆 顶会</span></div>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文指出现有时间序列推理评测通常将事件按时间顺序给出并与序列预先匹配，无法判断模型是真正利用时间戳对齐世界状态还是依赖捷径。作者从世界到序列投影的视角重构时间序列推理，将时间戳视为连接数值观测与外部事件的显式索引，并识别出时间因果结构、时间语义、事件序列对齐三种结构。基于此提出区分时间戳接地推理与相关性捷径的诊断协议，在来自两个任务的310个问题上开展受控干预实验。结果显示：时间戳被替换为相对偏移或移除后高准确率仍可保持，而破坏事件序列对齐会引发系统性失败；上下文预对齐时模型几乎不需要时间戳，顺序缺失时用日期回忆世界知识，无日期时依赖相关性捷径且难以察觉错误时间戳。研究表明预对齐有序输入上的高准确率并不能证明模型使用时间戳同步观测与世界。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>世界投影视角</strong>：将时间序列推理重构为世界到序列的投影过程，把时间戳视为连接数值观测与外部事件的显式索引，使两者关联到共享的世界状态之上</li><li style="margin-bottom:0;"><strong>时间结构解析</strong>：系统识别时间戳可显式化的三种结构，即时间因果结构、时间语义和事件序列对齐，为分析和诊断模型的时间推理行为提供理论框架</li><li style="margin-bottom:0;"><strong>诊断协议构建</strong>：设计区分时间戳接地推理与相关性捷径的诊断协议，通过对时间戳进行替换、移除及破坏对齐等受控干预来检验模型的真实推理机制</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>推理范式重构</strong>：首次从世界到序列投影视角形式化时间序列推理任务，揭示现有评测中事件预排序、预匹配的做法掩盖了模型是否真正使用时间戳的问题</li><li style="margin-bottom:0;"><strong>捷径鉴别能力</strong>：所提诊断协议能够区分时间戳接地的推理与相关性捷径，弥补了传统基于准确率的基准无法鉴别模型推理机制的固有缺陷</li><li style="margin-bottom:0;"><strong>受控干预实验</strong>：对两个任务共310个问题实施时间戳替换、移除与对齐破坏等多种干预，结合轨迹标注系统量化各时间结构对模型推理的实际贡献</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>准确率假象</strong>：将时间戳替换为相对偏移甚至完全移除后，模型的高准确率依然可以保持，证明预对齐有序输入上的高准确率不能确立模型真正使用了时间戳</li><li style="margin-bottom:0;"><strong>对齐决定成败</strong>：破坏事件序列对齐会引发模型的系统性失败，而当上下文已经预对齐时，模型几乎不需要时间戳即可完成推理任务</li><li style="margin-bottom:0;"><strong>捷径依赖明显</strong>：顺序信息缺失时模型会利用日期回忆世界知识，而缺少日期时则转向相关性捷径，且很少能察觉到被故意标注错误的时间戳</li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">3</span>
+                            <span style="color:#333;font-weight:600;font-size:13px;">混合循环Transformer</span>
+                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Mixture-of-Loops Transformer</div>
+                            <span style="color:#666;font-size:12px;">Lianghui Zhu, Shijie Wang, Xinggang Wang, Jinze Bai, Bo Wang, Xiang Bai</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34923" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34923</a></div>
+                        </div>
+                        <div style="text-align:right;line-height:1.9;"><span style="background:linear-gradient(135deg,#00897B 0%,#004D40 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">训推基础设施</span></div>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文提出Mixture-of-Loops Transformer（MoLT），针对循环Transformer表达力强但效率低的问题，重新设计相邻循环间的连接机制。其核心MoLA注意力以KV作为记忆实现跨深度与循环的选择性复用，包含保留残差流的MoLT-R与从嵌入重启的MoLT-KV两种变体。MoLT-KV消除同位置跨循环依赖，结合循环强制实现并行训练与超训练视野的单次遍历解码。U形MoLT进一步分离记忆构建与预测读出以跳过冗余遍历。在400B token预训练中全面超越OLMo3，700M模型达1.7倍token效率，推理延迟与非循环模型基本持平。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>循环注意力记忆</strong>：MoLA以键值对KV作为跨深度与跨循环的记忆载体，实现选择性复用，重新设计循环Transformer中相邻循环的核心连接机制。</li><li style="margin-bottom:0;"><strong>双循环变体</strong>：MoLT-R保留残差流并跨循环读取局部KV以增强表达力；MoLT-KV从嵌入重启，结合当前局部KV与先前循环记忆KV以提升效率。</li><li style="margin-bottom:0;"><strong>U形混合架构</strong>：U-MoLT将记忆构建与预测读出解耦，推理时跳过未使用的解码器遍历且不改变预测结果，兼顾效率与生成质量。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>消除同位依赖</strong>：MoLT-KV打破同位置跨循环依赖，配合循环强制实现并行训练，支持超越训练循环视野的单次遍历MoL解码与外推。</li><li style="margin-bottom:0;"><strong>KV即记忆范式</strong>：将循环间传递内容从残差流转变为KV记忆，回答了循环Transformer应传递什么的核心问题，平衡表达力与效率。</li><li style="margin-bottom:0;"><strong>免改预测剪枝</strong>：U形设计在不改变模型预测的前提下跳过冗余遍历，MoL-Hybrid-2混合方案使循环模型推理延迟与非循环模型相当。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>预训练全面超越</strong>：400B token预训练中U-MoLT超越OLMo3，700M模型达1.7倍验证CE token效率，3B MoE困惑度降低0.75、十项任务准确率提升2.1个百分点。</li><li style="margin-bottom:0;"><strong>续训稳定增益</strong>：100B token继续预训练Qwen3.5-0.8B-Base时，U-MoLT在全部11个领域上均降低交叉熵，平均token效率达1.4倍。</li><li style="margin-bottom:0;"><strong>延迟基本持平</strong>：U-MoLT配合MoL-Hybrid-2在约113M规模模型上推理延迟996.6毫秒，与非循环OLMo3的1000.6毫秒基本相当。</li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">4</span>
+                            <span style="color:#333;font-weight:600;font-size:13px;">训练目标与架构塑造世界模型的认知不确定性</span>
+                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Not all world models can doubt: how training objective and architecture shape epistemic uncertainty in JEPA and RSSM world models</div>
+                            <span style="color:#666;font-size:12px;">Simon Baur, Wojciech Samek, Jackie Ma</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34830" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34830</a></div>
+                        </div>
+                        <div style="text-align:right;line-height:1.9;"><span style="background:linear-gradient(135deg,#00897B 0%,#004D40 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">训推基础设施</span></div>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">世界模型通过预测环境对动作的响应来评估候选动作，其决策可靠性取决于预测能力，而认知不确定性（EU）正是标记模型经验边界的信号。本文对训练目标与架构如何塑造世界模型的认知不确定性展开大规模实证研究，在十个模拟视觉控制环境中，对两种主流范式——无解码器的联合嵌入预测架构LeWorldModel（JEPA）与基于重构的循环状态空间模型DreamerV3（RSSM）——的事后EU估计（末层拉普拉斯与集成方法）进行受控对比。通过追踪受控状态扰动贯穿模型各阶段直至最终EU估计，研究发现RSSM通过两种机制衰减扰动：循环更新对上下文取平均使单帧变化被稀释，重构目标按像素占比加权导致小物体丢失；而JEPA无此两种机制，扰动可无损传递至不确定性。这一差异体现在从陌生状态检测到不确定性惩罚规划的五项下游任务上：RSSM的不确定性会遗漏其后验已登记的偏差，而JEPA的不确定性如实报告模型所见。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>不确定性估计</strong>：采用末层拉普拉斯近似与深度集成两种事后方法估计认知不确定性，无需修改训练过程即可量化世界模型预测的信心边界</li><li style="margin-bottom:0;"><strong>受控扰动追踪</strong>：在十个模拟视觉控制环境中施加受控状态扰动，追踪扰动从环境状态经过模型各阶段直至最终不确定性估计的完整传播路径</li><li style="margin-bottom:0;"><strong>双范式对比</strong>：对JEPA范式的LeWorldModel与RSSM范式的DreamerV3进行受控对比，两者分别代表无解码器嵌入预测与重构式循环潜状态建模范式</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>衰减机制解析</strong>：首次系统揭示RSSM通过两种机制衰减扰动——循环更新对上下文取平均使单帧变化被稀释，重构目标按像素占比加权使小物体丢失</li><li style="margin-bottom:0;"><strong>全链路归因</strong>：追踪扰动贯穿模型每个阶段直至不确定性估计，将架构与训练目标对认知不确定性的影响从黑盒观察提升为可归因的机制分析</li><li style="margin-bottom:0;"><strong>下游任务验证</strong>：在从陌生状态检测到不确定性惩罚规划的五项下游任务上系统验证不确定性质量差距，建立机制归因分析与实际决策效用的联系</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>扰动双重衰减</strong>：RSSM的循环更新将单帧变化以缩小比例传入状态且仅当变化持续才恢复，重构目标按像素加权导致小物体在训练中被忽略</li><li style="margin-bottom:0;"><strong>无损传递扰动</strong>：JEPA既无循环平均也无像素加权重构机制，扰动可无损穿过所有阶段到达不确定性估计，认知不确定性真实反映模型所见</li><li style="margin-bottom:0;"><strong>不确定性差距</strong>：RSSM的不确定性会遗漏其后验已登记的偏差，即模型感知到异常却无法报告，而JEPA不确定性如实报告所见，直接影响下游决策可靠性</li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">5</span>
+                            <span style="color:#333;font-weight:600;font-size:13px;">LoopTitan：参数重访给混合专家带来什么？</span>
+                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">LoopTitan: What Does Parameter Revisit Buy a Mixture-of-Experts?</div>
+                            <span style="color:#666;font-size:12px;">Zichen Tian, Yudong Lu, Xuansheng Wu, Na Zou, Xia Hu, Guanchu Wang, Qianru Sun</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34821" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34821</a></div>
+                        </div>
+                        <div style="text-align:right;line-height:1.9;"><span style="background:linear-gradient(135deg,#1E88E5 0%,#0D47A1 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">推理引擎</span></div>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">本文研究循环MoE中“参数重访”的真实价值。作者在相同参数、FLOPs和KV cache下，用匹配非重访控制拆解SOTA循环配方，发现重访本身几乎无增益：主要收益来自网络形状，即更多层、每层更少专家；其余来自残差缩放，后者等价于降低重访层学习率，只在AdamW步长不均时有效，Muon下消失。固定参数增加计算时，额外一次访问虽优于专家翻倍，但Muon下等参等算加深的标准MoE可得90.2%收益。由此提出LoopTitan-Base，开源17个模型并公开预注册实验记录。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>匹配控制分解</strong>：在相同参数、FLOPs与KV cache下，将SOTA循环配方逐项拆解并把参数重访置末，配套非重访控制仍保留全部增益，说明收益可被标准MoE设计吸收。</li><li style="margin-bottom:0;"><strong>残差缩放机理</strong>：证明残差缩放等效于对重访层施加更低学习率；在AdamW各层步长不均时可缓解，而Muon使各层步长近乎一致后该优势消失，揭示其与优化器强耦合。</li><li style="margin-bottom:0;"><strong>额外计算评估</strong>：在固定参数下增加计算做超越匹配预算评估，单次额外访问收益高于专家翻倍；但在Muon中，同参同算力加深标准MoE可得90.2%收益，削弱重访必要性。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>因果隔离重访</strong>：提出以匹配非重访控制做因果隔离，把参数重访同网络形状、残差缩放、优化器与新增计算解耦，明确回答“重访本身买什么”的混淆问题。</li><li style="margin-bottom:0;"><strong>步长均衡效应</strong>：建立残差缩放与层学习率的等价关系，并把它同AdamW非均匀步长、Muon近似均匀步长相联系，解释重访收益何时出现、何时消失。</li><li style="margin-bottom:0;"><strong>开源强基线</strong>：发布LoopTitan与17个预训练模型，含LoopTitan-Base；在Muon下不用重访和残差缩放即匹配最强循环配方，并以GitHub issues公开预测预注册和完整探索史。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>重访本身无益</strong>：参数重访本身几乎不带来收益；它只重新提供MoE已有的固定参数下“以专家换深度”的自由，而非新的能力来源。</li><li style="margin-bottom:0;"><strong>形状主导收益</strong>：匹配预算时增益主要来自网络形状，即更多层、每层更少专家的深瘦MoE；残差缩放仅贡献剩余部分，且效果依赖优化器。</li><li style="margin-bottom:0;"><strong>等算深度替代</strong>：在Muon和同等参数、计算下，加深标准MoE可获得循环多访收益约九成，因此LoopTitan-Base应作为更强且不依赖重访的新基线。</li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">6</span>
+                            <span style="color:#333;font-weight:600;font-size:13px;">分层图元网络</span>
+                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Hierarchical Graph Metanetworks</div>
+                            <span style="color:#666;font-size:12px;">Ioannis Kalogeropoulos, Giorgos Bouritsas, Yannis Panagakis</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34726" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34726</a></div>
+                        </div>
+                        <div style="text-align:right;line-height:1.9;"><span style="background:linear-gradient(135deg,#00897B 0%,#004D40 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">训推基础设施</span></div>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">该论文针对现有图元网络（GMN）仅在神经元最细粒度处理、计算成本随参数量线性增长的问题，提出层级图元网络（H-GMNs）。其核心思想是利用神经网络天然的层级组织结构（神经元构成层、层构成块与模块），通过保持置换对称性的池化与反池化操作对图进行粗化与细化，并设计了支持多级池化的Transformer图构建方法。作者在ResNet-18、ViT及变体组成的高达86M参数的新模型库上，围绕模型评估（Lipschitz界代理、泛化与鲁棒性预测）、测试（后门检测）和编辑（剪枝）等任务进行验证。实验表明，H-GMNs相比非等变方法和扁平GMN样本效率显著更高，深度增加时成本几乎恒定，能够在扁平GMN内存耗尽时进行更深、更具表达力的处理，且精度不受损甚至明显提升。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>层级图池化</strong>：利用输入架构的层级结构对计算图进行粗化与细化，通过池化和反池化层在层、块、模块等多个抽象级别上处理模型，大幅降低计算开销。</li><li style="margin-bottom:0;"><strong>置换对称保持</strong>：池化与反池化操作严格保持置换对称性，确保元网络对输入模型神经元排列的不变性，维持等变性这一关键归纳偏置。</li><li style="margin-bottom:0;"><strong>变换器图构建</strong>：为Transformer设计保持置换对称性的图构建方案，支持注意力模块的多级池化，使H-GMNs可扩展至ViT等大规模模型。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>层级元网络</strong>：首次将层级归纳偏置系统引入权重空间学习，突破现有GMN仅在神经元最细粒度操作的局限，使处理成本不再随参数量线性增长。</li><li style="margin-bottom:0;"><strong>对称池化机制</strong>：提出保持置换对称性的池化与反池化层，与Lipschitz上界、泛化度量等由层块级量组合而成的网络性质天然契合。</li><li style="margin-bottom:0;"><strong>大规模评测库</strong>：构建含ResNet-18、ViT及变体、高达86M参数的新模型库，覆盖模型评估、后门检测与剪枝编辑等机器学习全生命周期任务。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>样本效率领先</strong>：相比非等变方法与扁平GMN，H-GMNs在Lipschitz界代理、泛化与鲁棒性预测等任务上表现出显著更强的样本效率。</li><li style="margin-bottom:0;"><strong>深度成本恒定</strong>：随元网络深度增加，H-GMNs的计算成本几乎保持不变，可在扁平GMN内存耗尽处进行更深、更具表达力的处理。</li><li style="margin-bottom:0;"><strong>精度不降反升</strong>：深层处理不损害性能，在多项任务上精度与扁平GMN相当甚至更优，验证了层级归纳偏置对权重空间学习的有效性。</li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="section">
+                <div class="paper-header">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                        <div style="flex:1;min-width:60%;">
+                            <span style="background:#c00000;color:#fff;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">7</span>
+                            <span style="color:#333;font-weight:600;font-size:13px;">Privileged On-Policy Distillation for Calibrated Alzheimer's Diagnosis With Missing Modalities</span>
+                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Privileged On-Policy Distillation for Calibrated Alzheimer's Diagnosis With Missing Modalities</div>
+                            <span style="color:#666;font-size:12px;">Vo Minh Khoi Nguyen, Dat Tien Chung, Quang Minh Khoa Le, Duc Khang Nguyen, Le Thien Phuc Nguyen, Hoang Thien Nguyen, Minh Huu Nhat Le, Phat K. Huynh, Cuong Tuan Nguyen, Thanh Huy Nguyen, Ulas Bagci</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34721" target="_blank" style="color:#c00000;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34721</a></div>
+                        </div>
+                        <div style="text-align:right;line-height:1.9;"><span style="background:linear-gradient(135deg,#00897B 0%,#004D40 100%);color:#fff;padding:1px 6px;border-radius:3px;margin-right:6px;font-size:10px;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,0.1);">训推基础设施</span></div>
+                    </div>
+
+                    <div class="paper-summary" style="margin:15px 0;">
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📄 论文摘要</div>
+                            <div style="font-size:12px;color:#333;line-height:1.8;text-align:justify;">阿尔茨海默病诊断依赖临床、生物样本与影像等多种证据，但少有患者完成全部检查，且各模态互补使缺失值存在多种合理取值。现有方法多忽略缺失模态或仅基于单一估计训练，分类器无法见识其他取值，插补也从不与诊断核对。本文提出GRIP方法，通过在策略蒸馏让模型自行逐模态生成多个填充，由知晓诊断结局的插补教师逐步评分，并由见过全部真实模态的诊断教师提供软目标。模型在多样化填充上训练后，置信度能真实反映缺失检查的不确定性，推理时单次滚动即可诊断。该方法在ADNI队列上超越最先进基线，在两个外部队列上判别力具竞争力且校准误差与最低者持平，教师模块还可即插即用地提升三个基线方法，实现适配任意检查组合的单一校准良好模型。</div>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">🔧 关键技术</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>在策略蒸馏</strong>：模型自行生成缺失模态的填充并在这些自身产生的在策略样本上训练，而非依赖一次性外部估计，使分类器能见识同一缺失值的多种合理取值，避免训练与推理分布失配。</li><li style="margin-bottom:0;"><strong>特权教师机制</strong>：训练阶段引入两种掌握特权信息的教师，知晓诊断结局的插补教师逐步评分填充质量，见过全部真实模态的诊断教师提供软目标监督，这些信息仅在训练时可用。</li><li style="margin-bottom:0;"><strong>滚动逐步插补</strong>：按一次一个模态的方式逐步生成多个候选填充构成滚动轨迹，插补教师对每一步进行评分，推理时仅需单次滚动即可完成诊断，兼顾多样性与效率。</li></ul>
+                        </div>
+
+                        <div class="summary-section" style="margin-bottom:12px;">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">💡 核心创新</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>结局引导插补</strong>：让知晓诊断结局的教师评估插补步骤，把结局信息显式纳入缺失值生成过程，解决了传统方法中插补值从不与诊断核对的根本缺陷，符合统计实践推荐。</li><li style="margin-bottom:0;"><strong>不确定性校准</strong>：模型在多个不同填充样本上训练，学到的置信度能真实反映缺失检查所留下的不确定性，从而输出可信且校准良好的诊断概率。</li><li style="margin-bottom:0;"><strong>通用蒸馏框架</strong>：将结局引导的插补教师与全模态诊断教师统一到在策略蒸馏框架中，可插拔至任意基线模型，为缺失模态学习提供了通用训练范式。</li></ul>
+                        </div>
+
+                        <div class="summary-section">
+                            <div class="summary-title" style="font-size:13px;color:#c00000;font-weight:700;margin-bottom:6px;">📊 关键结论</div>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:12px;color:#444;line-height:1.6;"><li style="margin-bottom:0;"><strong>判别性能领先</strong>：在阿尔茨海默病神经影像计划（ADNI）队列上，该方法在诊断判别性能上超越现有最先进的缺失模态处理方法，验证了框架的有效性。</li><li style="margin-bottom:0;"><strong>外部校准稳健</strong>：在两个外部队列上判别力保持竞争力，即使所有方法均经重新校准，其校准误差仍与最低者持平，展现出稳健的跨队列泛化与校准能力。</li><li style="margin-bottom:0;"><strong>教师即插即用</strong>：将两种特权教师加入三个基线方法均带来性能提升，且最终得到单一校准良好的模型，可适配患者已完成的任意检查组合，具有临床实用价值。</li></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="brand">老许 AI 研究室</div>
+            <p>本报告基于 arXiv 最新论文与当日工业界新闻自动生成</p>
+            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/11/27</p>
+        </div>
+    </div>
+</body>
+</html>

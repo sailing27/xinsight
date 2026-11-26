@@ -1,0 +1,170 @@
+{
+  "title": "大模型训练与推理的因果机制与可信评测研究 | 2026/11/27",
+  "date": "2026/11/27",
+  "topic": "大模型训练与推理技术",
+  "papers": [
+    {
+      "id": "2611.34825",
+      "title": "Routeability Before Routing: Routeability Audit Protocol (RAP) and RouteabilityBench for Audited LLM Model Selection",
+      "chinese_title": "先审可路由性：LLM选型RAP与评测基准",
+      "url": "https://arxiv.org/abs/2611.34825",
+      "authors": "Yihang Lu, Denica Kjorvezir, Ana Gjorgjevikj, Carola Doerr, Tome Eftimov",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 8,
+          "total": 23,
+          "reason": "前置审计有价值，实证扎实，落地细节待补"
+        },
+        "citationCount": 0,
+        "venue": "NeurIPS  2026",
+        "isTopVenue": true,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 28
+      }
+    },
+    {
+      "id": "2611.34848",
+      "title": "Put the World Back: Timestamps Matter in Time Series Reasoning",
+      "chinese_title": "还原世界：时间戳对时间序列推理至关重要",
+      "url": "https://arxiv.org/abs/2611.34848",
+      "authors": "Tingrui Huang, Yuanyuan Deng, Qingren Yao, Joaquin Vanschoren, Mykola Pechenizkiy, Songgaojun Deng",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 6,
+          "rigor": 8,
+          "total": 22,
+          "reason": "视角新颖、诊断协议严谨，但样本仅310题且任务少，泛化性受限"
+        },
+        "citationCount": 0,
+        "venue": "the NeurIPS  2026",
+        "isTopVenue": true,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 27
+      }
+    },
+    {
+      "id": "2611.34923",
+      "title": "Mixture-of-Loops Transformer",
+      "chinese_title": "混合循环Transformer",
+      "url": "https://arxiv.org/abs/2611.34923",
+      "authors": "Lianghui Zhu, Shijie Wang, Xinggang Wang, Jinze Bai, Bo Wang, Xiang Bai",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 9,
+          "total": 25,
+          "reason": "KV记忆循环机制新颖，大规模实验验证充分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 25
+      }
+    },
+    {
+      "id": "2611.34830",
+      "title": "Not all world models can doubt: how training objective and architecture shape epistemic uncertainty in JEPA and RSSM world models",
+      "chinese_title": "训练目标与架构塑造世界模型的认知不确定性",
+      "url": "https://arxiv.org/abs/2611.34830",
+      "authors": "Simon Baur, Wojciech Samek, Jackie Ma",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 9,
+          "total": 24,
+          "reason": "机制明确，控制实验充分，外推待证。"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.34821",
+      "title": "LoopTitan: What Does Parameter Revisit Buy a Mixture-of-Experts?",
+      "chinese_title": "LoopTitan：参数重访给混合专家带来什么？",
+      "url": "https://arxiv.org/abs/2611.34821",
+      "authors": "Zichen Tian, Yudong Lu, Xuansheng Wu, Na Zou, Xia Hu, Guanchu Wang, Qianru Sun",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 9,
+          "total": 24,
+          "reason": "控制实验严谨，预注册规范，开源充分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.34726",
+      "title": "Hierarchical Graph Metanetworks",
+      "chinese_title": "分层图元网络",
+      "url": "https://arxiv.org/abs/2611.34726",
+      "authors": "Ioannis Kalogeropoulos, Giorgos Bouritsas, Yannis Panagakis",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 8,
+          "total": 24,
+          "reason": "层次化设计新颖，扩展性强，实验充分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.34721",
+      "title": "Privileged On-Policy Distillation for Calibrated Alzheimer's Diagnosis With Missing Modalities",
+      "chinese_title": "Privileged On-Policy Distillation for Calibrated Alzheimer's Diagnosis With Missing Modalities",
+      "url": "https://arxiv.org/abs/2611.34721",
+      "authors": "Vo Minh Khoi Nguyen, Dat Tien Chung, Quang Minh Khoa Le, Duc Khang Nguyen, Le Thien Phuc Nguyen, Hoang Thien Nguyen, Minh Huu Nhat Le, Phat K. Huynh, Cuong Tuan Nguyen, Thanh Huy Nguyen, Ulas Bagci",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 8,
+          "total": 24,
+          "reason": "方法新颖，多队列验证充分，校准表现突出"
+        },
+        "citationCount": 0,
+        "venue": "IEEE Transactions on Medical Imaging",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    }
+  ],
+  "generated_at": "2026-11-26T22:55:10.208Z",
+  "org": "老许 AI 研究室"
+}
