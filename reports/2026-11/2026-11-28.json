@@ -1,0 +1,172 @@
+{
+  "title": "另一候选：\"复杂场景下鲁棒智能体决策训练与可信评估\" 数：复 | 2026/11/28",
+  "date": "2026/11/28",
+  "topic": "大模型训练与推理技术",
+  "papers": [
+    {
+      "id": "2611.34629",
+      "title": "Predicting acute food crises and discovering actionable drivers with causal machine learning",
+      "chinese_title": "驱动因素",
+      "url": "https://arxiv.org/abs/2611.34629",
+      "authors": "Mélissande Machefer, Michele Ronco, Michele Meroni, Jordi Cerdà-Bautista, Francesco Collivignarelli, Chungmann Kim, Nicolas Rost, Alessia Matanó, Esther Rodrigo-Bonet, Philipp Zimmer, Gustau Camps-Valls, Christina Corbane, Felix Rembold",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 9,
+          "practicality": 8,
+          "rigor": 9,
+          "total": 26,
+          "reason": "数据新颖，预测与因果结合严谨，应用价值高"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 26
+      }
+    },
+    {
+      "id": "2611.34687",
+      "title": "Evacuation Traffic Prediction for Dynamic Transportation Networks over Multiple Hurricanes: A Generalized Graph Learning Approach",
+      "chinese_title": "多飓风动态路网疏散交通预测的图学习方法",
+      "url": "https://arxiv.org/abs/2611.34687",
+      "authors": "Md Nafees Fuad Rafi, Samiul Hasan",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 9,
+          "rigor": 8,
+          "total": 25,
+          "reason": "多飓风泛化与实测检验充分，架构新意中等"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 25
+      }
+    },
+    {
+      "id": "2611.34777",
+      "title": "When Every Rollout Fails: Splicing Learner-Conditioned Options into Long-Horizon Agent RL",
+      "chinese_title": "采样全败时拼接学习条件选项于长时程RL",
+      "url": "https://arxiv.org/abs/2611.34777",
+      "authors": "Haowen Hou, Yicheng Liu, Zhen Huang, Jiaqi Wang",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 8,
+          "total": 24,
+          "reason": "全败组在线拼接局部目标新颖，四组实验充分，但任务覆盖有限"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.34703",
+      "title": "Maco-RL: Scaling Agent Capabilities with Mixed-Task Reinforcement Learning",
+      "chinese_title": "Maco-RL：混合任务强化学习扩展智能体能力",
+      "url": "https://arxiv.org/abs/2611.34703",
+      "authors": "Jiacheng Zhang, Qixing Zhou, Haiyang Wang, Qipeng Gu, Shuzhe Wu, Feiyang Pan, Lue Fan, Dandan Tu, Zhaoxiang Zhang",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 7,
+          "practicality": 9,
+          "rigor": 8,
+          "total": 24,
+          "reason": "异步配额调度与三层采样实用，多基准验证充分"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.34678",
+      "title": "Provably Efficient Concave Utility Reinforcement Learning with Linear Function Approximation",
+      "chinese_title": "线性函数逼近下可证明高效的凹效用强化学习",
+      "url": "https://arxiv.org/abs/2611.34678",
+      "authors": "Max Qiushi Lin, Ahmed Magd, Sharan Vaswani",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 9,
+          "practicality": 6,
+          "rigor": 9,
+          "total": 24,
+          "reason": "理论新颖严谨，假设较强实用性有限"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 24
+      }
+    },
+    {
+      "id": "2611.34934",
+      "title": "Attack Policy Selection can Mislead Monitor Evaluators",
+      "chinese_title": "攻击策略选择可误导监控评估者",
+      "url": "https://arxiv.org/abs/2611.34934",
+      "authors": "Charlie Griffin, Oliver Makins, Asa Cooper Stickland, Alessandro Abate, Yarin Gal, Abby D'Cruz, Xander Davies",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 7,
+          "practicality": 8,
+          "rigor": 8,
+          "total": 23,
+          "reason": "揭示攻击策略选择误导监控评估，实证扎实但案例单一"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 23
+      }
+    },
+    {
+      "id": "2611.34779",
+      "title": "Adaptive Reliability Reserves for Residential Battery Fleets",
+      "chinese_title": "居民电池群的自适应可靠性备用",
+      "url": "https://arxiv.org/abs/2611.34779",
+      "authors": "Maruthi Vemula, Neeraj Praneeth Gajula",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 8,
+          "total": 23,
+          "reason": "自纠开源，然仿真条件化且增益不显著。"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "hasNotableAuthor": false,
+        "hasNotableInstitution": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 23
+      }
+    }
+  ],
+  "generated_at": "2026-11-27T22:45:43.654Z",
+  "org": "老许 AI 研究室"
+}
