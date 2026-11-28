@@ -4,184 +4,170 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.loli.net">
-<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;600;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;600;900&display=swap">
     <title>复杂场景下鲁棒智能体决策训练与可信评估 | 2026/11/28</title>
     <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { font-size: 15px; }
-  body {
-    font-family: "Noto Serif SC", "Source Serif SC", "Songti SC", "SimSun", Georgia, serif;
-    background: #f8f6f1;
-    line-height: 1.75;
-    color: #23211c;
-    -webkit-font-smoothing: antialiased;
-  }
-  .container {
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 14px 24px 64px;
-    background: #f8f6f1;
-  }
-  /* 头部由自定义 masthead 替代 */
-  .header { display: none; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { font-size: 15px; }
+        body {
+            font-family: "Noto Serif SC", "Source Serif SC", "Songti SC", "SimSun", Georgia, serif;
+            background: #f8f6f1;
+            line-height: 1.75;
+            color: #23211c;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 14px 24px 64px;
+            background: #f8f6f1;
+        }
 
-  .content { padding: 0; }
+        .masthead {
+            display: flex; justify-content: space-between; align-items: baseline;
+            padding-bottom: 0; margin-bottom: 6px;
+        }
+        .masthead .brand { font-size: .85rem; font-weight: 700; letter-spacing: .22em; color: #23211c; }
+        .masthead .meta { font-size: .72rem; color: #8d8578; letter-spacing: .08em; }
+        .report-title {
+            text-align: center; font-size: 1.65rem; font-weight: 900; line-height: 1.5;
+            margin-bottom: 0; padding: 2px 0 10px; border-bottom: 2px solid #23211c;
+        }
 
-  .executive-summary {
-    border-bottom: 1px solid #d9d3c6;
-    padding: 4px 0 10px;
-    margin-bottom: 0;
-    background: transparent;
-  }
-  .executive-summary h2 {
-    color: #a4342a;
-    font-size: .8rem;
-    letter-spacing: .3em;
-    margin-bottom: 8px;
-    font-weight: 600;
-  }
-  .executive-summary p {
-    font-size: .92rem;
-    line-height: 1.9;
-    color: #33302a;
-    margin: 0;
-    text-align: justify;
-  }
+        .content { padding: 0; }
 
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    margin: 0 0 8px 0;
-    border-bottom: 1px solid #d9d3c6;
-  }
-  .stat-item {
-    background: transparent;
-    color: #23211c;
-    padding: 14px 4px;
-    text-align: center;
-    border-right: 1px dotted #d9d3c6;
-    border-radius: 0;
-  }
-  .stat-item:last-child { border-right: none; }
-  .stat-value {
-    font-size: 1.25rem;
-    font-weight: 900;
-    color: #a4342a;
-    font-variant-numeric: tabular-nums;
-  }
-  .stat-label {
-    font-size: .68rem;
-    color: #8d8578;
-    letter-spacing: .12em;
-    margin-top: 2px;
-  }
+        .executive-summary {
+            border-bottom: 1px solid #d9d3c6;
+            padding: 4px 0 10px;
+            margin-bottom: 0;
+            background: transparent;
+        }
+        .executive-summary h2 {
+            color: #a4342a;
+            font-size: .8rem;
+            letter-spacing: .3em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .executive-summary p {
+            font-size: .92rem;
+            line-height: 1.9;
+            color: #33302a;
+            margin: 0;
+            text-align: justify;
+        }
 
-  .section {
-    border-bottom: 1px dotted #d9d3c6;
-    padding: 18px 0;
-  }
-  .section:last-child { border-bottom: none; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            margin: 0 0 8px 0;
+            border-bottom: 1px solid #d9d3c6;
+        }
+        .stat-item {
+            background: transparent;
+            color: #23211c;
+            padding: 14px 4px;
+            text-align: center;
+            border-right: 1px dotted #d9d3c6;
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: #a4342a;
+            font-variant-numeric: tabular-nums;
+        }
+        .stat-label {
+            font-size: .68rem;
+            color: #8d8578;
+            letter-spacing: .12em;
+            margin-top: 2px;
+        }
 
-  .paper-header { }
-  .paper-title { }
+        .sec-head {
+            display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px;
+            border-top: 2px solid #23211c;
+            padding-top: 10px;
+            margin: 36px 0 4px 0;
+        }
+        .sec-head-t { font-size: 1.05rem; font-weight: 900; letter-spacing: .12em; }
+        .sec-head-s { font-size: .72rem; color: #8d8578; letter-spacing: .06em; }
 
-  .paper-summary { margin: 12px 0 0 0; }
-  .summary-section { margin-bottom: 14px; }
+        .section {
+            border-bottom: 1px dotted #d9d3c6;
+            padding: 18px 0;
+            margin-bottom: 0;
+        }
+        .section:last-child { border-bottom: none; }
 
-  .findings li {
-    margin-bottom: 6px !important;
-    padding-left: 14px;
-    position: relative;
-    font-size: .88rem !important;
-    color: #33302a !important;
-    line-height: 1.8 !important;
-  }
-  .findings li::before {
-    content: '';
-    position: absolute;
-    left: 0; top: .62em;
-    width: 5px; height: 5px;
-    background: #a4342a;
-  }
-  .findings strong { color: #23211c; }
-  .paper-title a:hover { color: #a4342a !important; }
+        .paper-summary { margin: 12px 0 0 0; }
+        .summary-section { margin-bottom: 14px; }
 
-  .footer {
-    margin-top: 48px;
-    padding-top: 16px;
-    border-top: 1px solid #d9d3c6;
-    text-align: center;
-    font-size: .75rem;
-    color: #a49c8f;
-    letter-spacing: .06em;
-    line-height: 1.9;
-  }
-  .footer .brand {
-    font-size: .85rem;
-    color: #23211c;
-    letter-spacing: .2em;
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-  .footer a { color: #a4342a; }
+        .findings {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .findings li {
+            margin-bottom: 6px;
+            padding-left: 14px;
+            position: relative;
+            font-size: .88rem;
+            color: #33302a;
+            line-height: 1.8;
+        }
+        .findings li::before {
+            content: '';
+            position: absolute;
+            left: 0; top: .62em;
+            width: 5px; height: 5px;
+            background: #a4342a;
+        }
+        .findings strong { color: #23211c; }
+        .paper-title a:hover { color: #a4342a !important; }
 
-  @media (max-width: 640px) {
-    html { font-size: 14px; }
-    .container { padding: 32px 16px 48px; }
-    .stats-grid { grid-template-columns: repeat(4, 1fr); }
-    .stat-value { font-size: 1.05rem; }
-  }
+        .footer {
+            margin-top: 48px;
+            padding-top: 16px;
+            border-top: 1px solid #d9d3c6;
+            text-align: center;
+            font-size: .75rem;
+            color: #a49c8f;
+            letter-spacing: .06em;
+            line-height: 1.9;
+        }
+        .footer .brand {
+            font-size: .85rem;
+            color: #23211c;
+            letter-spacing: .2em;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .footer a { color: #a4342a; }
 
-  .masthead {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding-bottom: 0; margin-bottom: 6px;
-  }
-  .masthead .brand { font-size: .85rem; font-weight: 700; letter-spacing: .22em; color: #23211c; }
-  .masthead .meta { font-size: .72rem; color: #8d8578; letter-spacing: .08em; }
-  .report-title {
-    text-align: center; font-size: 1.65rem; font-weight: 900; line-height: 1.5;
-    margin-bottom: 0; padding: 2px 0 10px; border-bottom: 2px solid #23211c;
-  }
-  @media (max-width: 640px) {
-    .report-title { font-size: 1.25rem; }
-  }
-  .masthead h1 { font-size: 1.05rem; font-weight: 600; letter-spacing: .3em; text-indent: .3em; color: #6f695e; margin-bottom: 10px; }
-  .masthead .rule { height: 3px; border-top: 1px solid #23211c; border-bottom: 1px solid #23211c; margin-bottom: 10px; }
-  .masthead .sub { font-size: .76rem; color: #6f695e; letter-spacing: .12em; display: flex; justify-content: space-between; }
-  .report-title {
-    text-align: center; font-size: 1.65rem; font-weight: 900; line-height: 1.5;
-    margin-bottom: 36px; padding: 30px 0 24px; border-bottom: 2px solid #23211c;
-  }
-  @media (max-width: 640px) {
-    .masthead h1 { font-size: .95rem; }
-    .report-title { font-size: 1.25rem; }
-  }
-
-  .sec-head {
-    display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px;
-    border-top: 2px solid #23211c;
-    padding-top: 10px;
-    margin: 36px 0 4px 0;
-  }
-  .sec-head-t { font-size: 1.05rem; font-weight: 900; letter-spacing: .12em; }
-  .sec-head-s { font-size: .72rem; color: #8d8578; letter-spacing: .06em; }
-</style>
+        @media (max-width: 640px) {
+            html { font-size: 14px; }
+            .container { padding: 32px 16px 48px; }
+            .report-title { font-size: 1.25rem; }
+            .stat-value { font-size: 1.05rem; }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <header class="masthead">
-    <span class="brand">技术洞察</span>
-    <span class="meta">老许 AI 研究室 · 2026 / 11 / 28</span>
-  </header>
-  <div class="report-title">复杂场景下鲁棒智能体决策训练与可信评估</div>
-        
+            <span class="brand">技术洞察</span>
+            <span class="meta">老许 AI 研究室 · 2026/11/28</span>
+        </header>
+        <div class="report-title">复杂场景下鲁棒智能体决策训练与可信评估 | 2026/11/28</div>
+
         <div class="content">
             <!-- 摘要 -->
             <div class="executive-summary">
-                <h2>摘要</h2>
+                <h2>摘 要</h2>
                 <div class="summary-content">
-                                        <p style="line-height:1.8;text-align:justify;">本期洞察聚焦大模型训练与智能决策系统的泛化性、训练效率与评估可信性。七篇论文横跨危机预测、交通疏散、智能体强化学习与能源调度，呈现三条共性主线：其一，分布外泛化成为核心诉求——动态图学习实现跨飓风迁移，缺失数据鲁棒管道支撑80国危机预测，混任务RL以单一策略持续扩展智能体能力；其二，强化学习</p>
+                                        <p style="line-height:1.9;text-align:justify;">本期洞察聚焦大模型训练与智能决策系统的泛化性、训练效率与评估可信性。七篇论文横跨危机预测、交通疏散、智能体强化学习与能源调度，呈现三条共性主线：其一，分布外泛化成为核心诉求——动态图学习实现跨飓风迁移，缺失数据鲁棒管道支撑80国危机预测，混任务RL以单一策略持续扩展智能体能力；其二，强化学习</p>
                 </div>
             </div>
 
@@ -208,7 +194,10 @@
 
             <!-- 报告章节 -->
             
-            <div class="sec-head"><div class="sec-head-t">工业界大厂动向</div><div class="sec-head-s">近24-48小时大厂模型发布、商业化与训推基础设施动态</div></div>
+            <div class="sec-head">
+                <div class="sec-head-t">工业界大厂动向</div>
+                <div class="sec-head-s">近24-48小时大厂模型发布、商业化与训推基础设施动态</div>
+            </div>
             <div class="section">
                 <div class="paper-header">
                     <div class="paper-title" style="font-size:15px;font-weight:700;color:#23211c;margin-bottom:6px;overflow:hidden;">
@@ -219,7 +208,7 @@
                         </div>
                     </div>
                     <div style="font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;margin:8px 0;">高盛调研后维持 MiniMax“买入”评级并给出 760 港元目标价，称公司两个国产芯片超级节点方案将于四季度爬坡用于推理，原生 FP4 精度下部分国产芯片推理负载投资回报已优于海外替代品。</div>
-                    <div style="font-size:11px;color:#888;">来源：新浪财经/财联社 ｜ <a href="https://cj.sina.cn/articles/view/2868676035/aafc85c30200205re" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
+                    <div style="font-size:.75rem;color:#8d8578;letter-spacing:.05em;">来源：新浪财经/财联社 ｜ <a href="https://cj.sina.cn/articles/view/2868676035/aafc85c30200205re" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
                 </div>
             </div>
             <div class="section">
@@ -232,7 +221,7 @@
                         </div>
                     </div>
                     <div style="font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;margin:8px 0;">智谱原定本月发布的约 3 万亿参数旗舰 GLM-5.5 尚未推出，月之暗面预计若无法获取海外算力，重大模型发布间隔或从六个月延长至一年，OpenAI 与 Anthropic 的防蒸馏措施被指已产生影响。</div>
-                    <div style="font-size:11px;color:#888;">来源：路透社（倍可亲转载） ｜ <a href="https://backchina.com/news/2026/11/27/1058577.html" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
+                    <div style="font-size:.75rem;color:#8d8578;letter-spacing:.05em;">来源：路透社（倍可亲转载） ｜ <a href="https://backchina.com/news/2026/11/27/1058577.html" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
                 </div>
             </div>
             <div class="section">
@@ -245,7 +234,7 @@
                         </div>
                     </div>
                     <div style="font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;margin:8px 0;">商汤大装置 Token 工厂获得中国信通院 Token 工厂智算能力评估“全栈服务型·领先级”评级认证，为全国首批首家。</div>
-                    <div style="font-size:11px;color:#888;">来源：量子位 ｜ <a href="https://www.qbitai.com/2026/11/513346.html" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
+                    <div style="font-size:.75rem;color:#8d8578;letter-spacing:.05em;">来源：量子位 ｜ <a href="https://www.qbitai.com/2026/11/513346.html" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
                 </div>
             </div>
             <div class="section">
@@ -258,7 +247,7 @@
                         </div>
                     </div>
                     <div style="font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;margin:8px 0;">Google 与 IBM 主导的 Kubernetes 推理编排项目 llm-d 发布 1.0，SGLang 与 vLLM 并列成为可选引擎，支持逐 DP rank 路由、前缀感知调度与跨主机内存/共享存储的分层 KV 缓存，保障长 Agent 会话高可用。</div>
-                    <div style="font-size:11px;color:#888;">来源：llm-d 官方博客 ｜ <a href="https://llm-d.ai/blog/serving-glm-5-2-sglang-tiered-kv-cache-on-llm-d" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
+                    <div style="font-size:.75rem;color:#8d8578;letter-spacing:.05em;">来源：llm-d 官方博客 ｜ <a href="https://llm-d.ai/blog/serving-glm-5-2-sglang-tiered-kv-cache-on-llm-d" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
                 </div>
             </div>
             <div class="section">
@@ -271,7 +260,7 @@
                         </div>
                     </div>
                     <div style="font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;margin:8px 0;">DeepSeek 网页与 App 双端突然亮出聊天账单页面，网友猜测官方 API 之外的 C 端服务或将开启收费模式。</div>
-                    <div style="font-size:11px;color:#888;">来源：量子位 ｜ <a href="https://www.qbitai.com/2026/11/513305.html" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
+                    <div style="font-size:.75rem;color:#8d8578;letter-spacing:.05em;">来源：量子位 ｜ <a href="https://www.qbitai.com/2026/11/513305.html" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
                 </div>
             </div>
             <div class="section">
@@ -284,7 +273,7 @@
                         </div>
                     </div>
                     <div style="font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;margin:8px 0;">汤森路透宣布年底前推出 Thomson 1.1，放弃 Thomson 1.0 所依赖的阿里 Qwen 系列，改为分别基于智谱 GLM 与谷歌 Gemma 构建不同业务版本，面向法律、税务等专业场景。</div>
-                    <div style="font-size:11px;color:#888;">来源：新浪财经 ｜ <a href="https://finance.sina.com.cn/wm/2026-11-27/doc-inkaenea7864011.shtml" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
+                    <div style="font-size:.75rem;color:#8d8578;letter-spacing:.05em;">来源：新浪财经 ｜ <a href="https://finance.sina.com.cn/wm/2026-11-27/doc-inkaenea7864011.shtml" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
                 </div>
             </div>
             <div class="section">
@@ -297,7 +286,7 @@
                         </div>
                     </div>
                     <div style="font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;margin:8px 0;">腾讯混元发布新一代 3D 大模型 Hy3D 3.6，重点优化高模与 PBR 材质贴图生成，已上线腾讯云 Token Hub 并接入腾讯游戏 LAP、WorkRally 等专业平台。</div>
-                    <div style="font-size:11px;color:#888;">来源：新浪科技 ｜ <a href="https://portal.sina.com.hk/technology/sina/2026/11/27/1999182/" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
+                    <div style="font-size:.75rem;color:#8d8578;letter-spacing:.05em;">来源：新浪科技 ｜ <a href="https://portal.sina.com.hk/technology/sina/2026/11/27/1999182/" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
                 </div>
             </div>
             <div class="section">
@@ -310,258 +299,261 @@
                         </div>
                     </div>
                     <div style="font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;margin:8px 0;">中国电信 11 月 27 日至 29 日在新华网推出“大模型是怎样炼成的”训练直播，公开 285B 模型预训练监控看板、数据配比与万卡集群防空转实践，主打过程透明而非跑分。</div>
-                    <div style="font-size:11px;color:#888;">来源：新华网 ｜ <a href="https://news.cn/info/20261126/2f916e41ad0642829a17f44ab11b0217/c.html" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
+                    <div style="font-size:.75rem;color:#8d8578;letter-spacing:.05em;">来源：新华网 ｜ <a href="https://news.cn/info/20261126/2f916e41ad0642829a17f44ab11b0217/c.html" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a></div>
                 </div>
             </div>
-            <div class="sec-head"><div class="sec-head-t">学术界论文精析</div><div class="sec-head-s">arXiv 最新论文 · 按加权质量分取前 7 篇</div></div>
+            <div class="sec-head">
+                <div class="sec-head-t">学术界论文精析</div>
+                <div class="sec-head-s">arXiv 最新论文 · 按加权质量分取前 7 篇</div>
+            </div>
             <div class="section">
                 <div class="paper-header">
-                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#23211c;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
                         <div style="flex:1;min-width:60%;">
                             <span style="background:#23211c;color:#f8f6f1;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">1</span>
-                            <a href="https://arxiv.org/abs/2611.34629" target="_blank" style="color:#333;font-weight:600;font-size:13px;text-decoration:none;">驱动因素</a>
-                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Predicting acute food crises and discovering actionable drivers with causal machine learning</div>
-                            <span style="color:#666;font-size:12px;">Mélissande Machefer, Michele Ronco, Michele Meroni, Jordi Cerdà-Bautista, Francesco Collivignarelli, Chungmann Kim, Nicolas Rost, Alessia Matanó, Esther Rodrigo-Bonet, Philipp Zimmer, Gustau Camps-Valls, Christina Corbane, Felix Rembold</span>
-                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34629" target="_blank" style="color:#a4342a;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34629</a></div>
+                            <a href="https://arxiv.org/abs/2611.34629" target="_blank" style="color:#23211c;font-weight:700;font-size:.95rem;text-decoration:none;">驱动因素</a>
+                            <div style="color:#8d8578;font-size:.75rem;font-weight:400;margin-top:2px;line-height:1.5;">Predicting acute food crises and discovering actionable drivers with causal machine learning</div>
+                            <span style="color:#6f695e;font-size:.78rem;">Mélissande Machefer, Michele Ronco, Michele Meroni, Jordi Cerdà-Bautista, Francesco Collivignarelli, Chungmann Kim, Nicolas Rost, Alessia Matanó, Esther Rodrigo-Bonet, Philipp Zimmer, Gustau Camps-Valls, Christina Corbane, Felix Rembold</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34629" target="_blank" style="color:#a4342a;text-decoration:none;font-size:.75rem;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34629</a></div>
                         </div>
-                        <div style="text-align:right;line-height:1.9;"><span style="border:1px solid #6f695e;color:#6f695e;padding:1px 8px;margin-right:6px;font-size:10px;font-weight:600;letter-spacing:.05em;background:transparent;">训推基础设施</span></div>
+                        <div style="text-align:right;line-height:2;"><span style="border:1px solid #6f695e;color:#6f695e;padding:1px 8px;margin-right:6px;font-size:10px;font-weight:600;letter-spacing:.05em;background:transparent;">训推基础设施</span></div>
                     </div>
 
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
+                    <div class="paper-summary">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">论文摘要</div>
                             <div style="font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;">本研究针对由冲突、气候灾害、流离失所和经济冲击共同驱动的急性粮食不安全危机，对开放获取的协调粮食不安全数据集进行驱动变量增强（月度、次国家尺度、覆盖80个国家、2007-2024年），构建了抗缺失数据的机器学习管道，在3、6、9个月前瞻期预测危机发生，并首次大规模应用IPC/CH分类体系。嵌套交叉验证显示模型PR-AUC超越无技巧基线15至50个百分点。TreeSHAP解释揭示复合型、地理特异的预测信号画像及三种预测原型；与双重稳健因果估计对比发现，急性冲突事件预测信号最弱却是首要因果驱动因素，农业气候是唯一预测重要性与因果效应一致的维度。</div>
                         </div>
 
-                        <div class="summary-section" style="margin-bottom:12px;">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>缺失数据鲁棒</strong>：构建可容忍数据缺失的机器学习管道，在覆盖80国、2007-2024年月度次国家尺度驱动变量数据上实现稳健的危机预测能力。</li><li style="margin-bottom:0;"><strong>SHAP模型解释</strong>：采用TreeSHAP方法解析模型预测机制，揭示复合型且地理特异性的预测信号画像，并归纳出三种反复出现的预测原型。</li><li style="margin-bottom:0;"><strong>双重稳健估计</strong>：运用双重稳健因果估计方法量化可干预驱动因素的真实因果效应，与预测重要性形成对照，配合嵌套交叉验证保障评估严谨性。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>缺失数据鲁棒</strong>：构建可容忍数据缺失的机器学习管道，在覆盖80国、2007-2024年月度次国家尺度驱动变量数据上实现稳健的危机预测能力。</li><li><strong>SHAP模型解释</strong>：采用TreeSHAP方法解析模型预测机制，揭示复合型且地理特异性的预测信号画像，并归纳出三种反复出现的预测原型。</li><li><strong>双重稳健估计</strong>：运用双重稳健因果估计方法量化可干预驱动因素的真实因果效应，与预测重要性形成对照，配合嵌套交叉验证保障评估严谨性。</li></ul>
                         </div>
 
-                        <div class="summary-section" style="margin-bottom:12px;">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>IPC规模预测</strong>：首次在大规模范围内基于IPC/CH分类体系开展粮食危机预测，同时兼容FEWS NET分类，验证了跨分类体系的普适预测能力。</li><li style="margin-bottom:0;"><strong>预测因果对照</strong>：创新性地将预测重要性与双重稳健因果估计系统对比，揭示预测信号强弱与因果效应大小之间的系统性错位现象。</li><li style="margin-bottom:0;"><strong>多时域预测框架</strong>：构建覆盖3、6、9个月三种前瞻期的多时域危机预测框架，实现对急性粮食危机发生的中短期前瞻性预警能力。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>IPC规模预测</strong>：首次在大规模范围内基于IPC/CH分类体系开展粮食危机预测，同时兼容FEWS NET分类，验证了跨分类体系的普适预测能力。</li><li><strong>预测因果对照</strong>：创新性地将预测重要性与双重稳健因果估计系统对比，揭示预测信号强弱与因果效应大小之间的系统性错位现象。</li><li><strong>多时域预测框架</strong>：构建覆盖3、6、9个月三种前瞻期的多时域危机预测框架，实现对急性粮食危机发生的中短期前瞻性预警能力。</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>性能显著领先</strong>：模型在PR-AUC指标上超越无技巧基线15至50个百分点，且预测性能与危机流行率相关，而非取决于所采用的分类体系。</li><li style="margin-bottom:0;"><strong>冲突因果主导</strong>：急性冲突事件虽然预测信号最弱，却涌现为粮食危机分类的首要因果驱动因素，表明因果效应与预测能力并不等同。</li><li style="margin-bottom:0;"><strong>农业气候一致</strong>：农业气候学是唯一预测重要性与因果效应相一致的维度，为可干预驱动因素的选择与政策制定提供了明确方向指引。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>性能显著领先</strong>：模型在PR-AUC指标上超越无技巧基线15至50个百分点，且预测性能与危机流行率相关，而非取决于所采用的分类体系。</li><li><strong>冲突因果主导</strong>：急性冲突事件虽然预测信号最弱，却涌现为粮食危机分类的首要因果驱动因素，表明因果效应与预测能力并不等同。</li><li><strong>农业气候一致</strong>：农业气候学是唯一预测重要性与因果效应相一致的维度，为可干预驱动因素的选择与政策制定提供了明确方向指引。</li></ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="section">
                 <div class="paper-header">
-                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#23211c;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
                         <div style="flex:1;min-width:60%;">
                             <span style="background:#23211c;color:#f8f6f1;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">2</span>
-                            <a href="https://arxiv.org/abs/2611.34687" target="_blank" style="color:#333;font-weight:600;font-size:13px;text-decoration:none;">多飓风动态路网疏散交通预测的图学习方法</a>
-                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Evacuation Traffic Prediction for Dynamic Transportation Networks over Multiple Hurricanes: A Generalized Graph Learning Approach</div>
-                            <span style="color:#666;font-size:12px;">Md Nafees Fuad Rafi, Samiul Hasan</span>
-                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34687" target="_blank" style="color:#a4342a;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34687</a></div>
+                            <a href="https://arxiv.org/abs/2611.34687" target="_blank" style="color:#23211c;font-weight:700;font-size:.95rem;text-decoration:none;">多飓风动态路网疏散交通预测的图学习方法</a>
+                            <div style="color:#8d8578;font-size:.75rem;font-weight:400;margin-top:2px;line-height:1.5;">Evacuation Traffic Prediction for Dynamic Transportation Networks over Multiple Hurricanes: A Generalized Graph Learning Approach</div>
+                            <span style="color:#6f695e;font-size:.78rem;">Md Nafees Fuad Rafi, Samiul Hasan</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34687" target="_blank" style="color:#a4342a;text-decoration:none;font-size:.75rem;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34687</a></div>
                         </div>
-                        <div style="text-align:right;line-height:1.9;"><span style="border:1px solid #6f695e;color:#6f695e;padding:1px 8px;margin-right:6px;font-size:10px;font-weight:600;letter-spacing:.05em;background:transparent;">训推基础设施</span></div>
+                        <div style="text-align:right;line-height:2;"><span style="border:1px solid #6f695e;color:#6f695e;padding:1px 8px;margin-right:6px;font-size:10px;font-weight:600;letter-spacing:.05em;background:transparent;">训推基础设施</span></div>
                     </div>
 
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
+                    <div class="paper-summary">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">论文摘要</div>
                             <div style="font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;">本研究针对飓风疏散期间交通需求激增导致严重拥堵、且疏散交通高度动态不确定的问题，提出了基于GCN-LSTM的广义动态图学习框架。该框架利用12场历史飓风的交通检测器与疏散数据训练模型，实现最长提前6小时的疏散交通预测。在未见过的新飓风Milton（2024）上，模型展现出强泛化能力：1小时预测RMSE为280.6、R²达0.96，6小时预测RMSE为459.8、R²达0.89，整体性能优于现有最先进基线模型。消融实验表明动态图建模较静态版本RMSE改善8.4%，模型可辅助交通管理部门提前掌握路况、主动采取缓解措施。</div>
                         </div>
 
-                        <div class="summary-section" style="margin-bottom:12px;">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>动态图卷积</strong>：采用图卷积网络与长短期记忆网络相结合的GCN-LSTM模型，捕捉交通检测器网络的时空依赖特征，实现未来6小时疏散交通流的精准预测。</li><li style="margin-bottom:0;"><strong>多源数据融合</strong>：整合12场历史飓风的交通检测器数据与疏散数据，构建跨飓风的大规模训练数据集，为模型跨场景泛化能力奠定坚实的数据基础。</li><li style="margin-bottom:0;"><strong>模块化训练</strong>：设计模块化训练策略，按顺序逐步纳入多场飓风数据并评估性能改进效果，量化验证数据积累对模型预测能力与泛化性的增益。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>动态图卷积</strong>：采用图卷积网络与长短期记忆网络相结合的GCN-LSTM模型，捕捉交通检测器网络的时空依赖特征，实现未来6小时疏散交通流的精准预测。</li><li><strong>多源数据融合</strong>：整合12场历史飓风的交通检测器数据与疏散数据，构建跨飓风的大规模训练数据集，为模型跨场景泛化能力奠定坚实的数据基础。</li><li><strong>模块化训练</strong>：设计模块化训练策略，按顺序逐步纳入多场飓风数据并评估性能改进效果，量化验证数据积累对模型预测能力与泛化性的增益。</li></ul>
                         </div>
 
-                        <div class="summary-section" style="margin-bottom:12px;">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>泛化学习框架</strong>：提出面向多场飓风的广义动态图学习框架，突破传统模型仅在单一飓风数据上训练、难以迁移泛化至新飓风场景的根本性限制。</li><li style="margin-bottom:0;"><strong>动态网络建模</strong>：充分利用交通网络的动态特性进行图结构建模，有效应对不同飓风事件中检测器网络结构变化带来的空间拓扑差异问题。</li><li style="margin-bottom:0;"><strong>超前预测能力</strong>：实现最长提前6小时的疏散交通实时预测，为交通管理部门提供充足的决策响应时间窗口，支持 evacuation 期间主动管控。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>泛化学习框架</strong>：提出面向多场飓风的广义动态图学习框架，突破传统模型仅在单一飓风数据上训练、难以迁移泛化至新飓风场景的根本性限制。</li><li><strong>动态网络建模</strong>：充分利用交通网络的动态特性进行图结构建模，有效应对不同飓风事件中检测器网络结构变化带来的空间拓扑差异问题。</li><li><strong>超前预测能力</strong>：实现最长提前6小时的疏散交通实时预测，为交通管理部门提供充足的决策响应时间窗口，支持 evacuation 期间主动管控。</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>泛化性能优异</strong>：对完全未见的2024年Milton飓风，模型1小时预测RMSE为280.6、R²达0.96，6小时整体预测RMSE为459.8、R²达0.89，泛化能力强。</li><li style="margin-bottom:0;"><strong>超越基线模型</strong>：所提动态GCN-LSTM模型在6小时整体预测时域上优于现有最先进基线模型，验证了广义图学习方法在疏散交通预测任务中的优越性。</li><li style="margin-bottom:0;"><strong>动态建模优势</strong>：消融实验显示动态GCN-LSTM相比静态版本RMSE改善8.4%，证明动态图结构建模对提升疏散交通预测精度的关键作用。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>泛化性能优异</strong>：对完全未见的2024年Milton飓风，模型1小时预测RMSE为280.6、R²达0.96，6小时整体预测RMSE为459.8、R²达0.89，泛化能力强。</li><li><strong>超越基线模型</strong>：所提动态GCN-LSTM模型在6小时整体预测时域上优于现有最先进基线模型，验证了广义图学习方法在疏散交通预测任务中的优越性。</li><li><strong>动态建模优势</strong>：消融实验显示动态GCN-LSTM相比静态版本RMSE改善8.4%，证明动态图结构建模对提升疏散交通预测精度的关键作用。</li></ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="section">
                 <div class="paper-header">
-                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#23211c;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
                         <div style="flex:1;min-width:60%;">
                             <span style="background:#23211c;color:#f8f6f1;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">3</span>
-                            <a href="https://arxiv.org/abs/2611.34777" target="_blank" style="color:#333;font-weight:600;font-size:13px;text-decoration:none;">采样全败时拼接学习条件选项于长时程RL</a>
-                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">When Every Rollout Fails: Splicing Learner-Conditioned Options into Long-Horizon Agent RL</div>
-                            <span style="color:#666;font-size:12px;">Haowen Hou, Yicheng Liu, Zhen Huang, Jiaqi Wang</span>
-                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34777" target="_blank" style="color:#a4342a;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34777</a></div>
+                            <a href="https://arxiv.org/abs/2611.34777" target="_blank" style="color:#23211c;font-weight:700;font-size:.95rem;text-decoration:none;">采样全败时拼接学习条件选项于长时程RL</a>
+                            <div style="color:#8d8578;font-size:.75rem;font-weight:400;margin-top:2px;line-height:1.5;">When Every Rollout Fails: Splicing Learner-Conditioned Options into Long-Horizon Agent RL</div>
+                            <span style="color:#6f695e;font-size:.78rem;">Haowen Hou, Yicheng Liu, Zhen Huang, Jiaqi Wang</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34777" target="_blank" style="color:#a4342a;text-decoration:none;font-size:.75rem;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34777</a></div>
                         </div>
-                        <div style="text-align:right;line-height:1.9;"><span style="border:1px solid #6f695e;color:#6f695e;padding:1px 8px;margin-right:6px;font-size:10px;font-weight:600;letter-spacing:.05em;background:transparent;">训推基础设施</span></div>
+                        <div style="text-align:right;line-height:2;"><span style="border:1px solid #6f695e;color:#6f695e;padding:1px 8px;margin-right:6px;font-size:10px;font-weight:600;letter-spacing:.05em;background:transparent;">训推基础设施</span></div>
                     </div>
 
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
+                    <div class="paper-summary">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">论文摘要</div>
                             <div style="font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;">针对长程智能体任务中组相对强化学习方法（如GRPO）频繁出现全失败组、所有轨迹零奖励从而无法产生策略梯度的问题，本文提出SPLICE方法：对每个全失败组，由提议模型在当前策略轨迹中选择拼接点并生成若干有界选项，再通过当前策略的重复续写估计各选项价值，将正估计转化为回报加权的局部目标以拟合当前策略。在SWE-bench Verified与BrowseComp-Plus两类任务、两种策略家族的全部四种设置上，SPLICE均优于GRPO及全轨迹引导基线，提升2.8至9.8个百分点，并降低了提议模型计算开销。</div>
                         </div>
 
-                        <div class="summary-section" style="margin-bottom:12px;">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>拼接点选择</strong>：提议模型在全失败组的当前策略轨迹中选取合适的拼接位置，从该点起生成有界长度的局部选项，避免引入完整解答轨迹，减少长程离策略历史带来的分布偏移风险。</li><li style="margin-bottom:0;"><strong>选项价值估计</strong>：利用当前策略对每个候选选项进行多次重复续写，基于续写回报估计选项的真实价值，将正估计转化为回报加权的局部训练目标，使监督信号与学习者当前能力相匹配。</li><li style="margin-bottom:0;"><strong>局部目标拟合</strong>：将失败轨迹上构造的局部选项作为在线训练目标拟合当前策略，仅需局部监督而非完整解答，显著降低提议模型调用成本，保持策略更新在学习者自身分布附近进行。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>拼接点选择</strong>：提议模型在全失败组的当前策略轨迹中选取合适的拼接位置，从该点起生成有界长度的局部选项，避免引入完整解答轨迹，减少长程离策略历史带来的分布偏移风险。</li><li><strong>选项价值估计</strong>：利用当前策略对每个候选选项进行多次重复续写，基于续写回报估计选项的真实价值，将正估计转化为回报加权的局部训练目标，使监督信号与学习者当前能力相匹配。</li><li><strong>局部目标拟合</strong>：将失败轨迹上构造的局部选项作为在线训练目标拟合当前策略，仅需局部监督而非完整解答，显著降低提议模型调用成本，保持策略更新在学习者自身分布附近进行。</li></ul>
                         </div>
 
-                        <div class="summary-section" style="margin-bottom:12px;">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>局部监督范式</strong>：提出从当前策略失败轨迹中在线构造局部训练目标的新范式，替代强模型完整解答蒸馏的传统做法，首次为全失败组问题提供低开销、低分布偏移的系统性解决方案。</li><li style="margin-bottom:0;"><strong>条件选项生成</strong>：SPLICE的选项以学习者当前轨迹为条件生成，从拼接点延伸有界片段而非完整轨迹，使监督信号贴合学习者状态分布，缓解长程离策略历史对策略学习的干扰。</li><li style="margin-bottom:0;"><strong>回报加权目标</strong>：将重复续写得到的正价值估计转化为回报加权的局部目标，实现选项层面的细粒度信用分配，无需额外价值网络即可为全失败组恢复有效的策略梯度信号。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>局部监督范式</strong>：提出从当前策略失败轨迹中在线构造局部训练目标的新范式，替代强模型完整解答蒸馏的传统做法，首次为全失败组问题提供低开销、低分布偏移的系统性解决方案。</li><li><strong>条件选项生成</strong>：SPLICE的选项以学习者当前轨迹为条件生成，从拼接点延伸有界片段而非完整轨迹，使监督信号贴合学习者状态分布，缓解长程离策略历史对策略学习的干扰。</li><li><strong>回报加权目标</strong>：将重复续写得到的正价值估计转化为回报加权的局部目标，实现选项层面的细粒度信用分配，无需额外价值网络即可为全失败组恢复有效的策略梯度信号。</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>全面性能优势</strong>：在两种策略家族与两类长程任务（SWE-bench Verified、BrowseComp-Plus）的全部四种设置中，SPLICE均超越GRPO与全轨迹引导基线，提升幅度达2.8至9.8个百分点。</li><li style="margin-bottom:0;"><strong>失败任务转化</strong>：在初始全部失败的软件工程任务上，SPLICE将GRPO的任务毕业率提高10.8个百分点，证明其能将原本不可学习的全零奖励样本有效转化为可利用的训练信号。</li><li style="margin-bottom:0;"><strong>计算成本降低</strong>：进一步实验表明SPLICE在提升性能的同时减少了昂贵的提议模型计算量，验证了局部拼接监督相比完整轨迹引导在训练效率与最终效果上的双重优势。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>全面性能优势</strong>：在两种策略家族与两类长程任务（SWE-bench Verified、BrowseComp-Plus）的全部四种设置中，SPLICE均超越GRPO与全轨迹引导基线，提升幅度达2.8至9.8个百分点。</li><li><strong>失败任务转化</strong>：在初始全部失败的软件工程任务上，SPLICE将GRPO的任务毕业率提高10.8个百分点，证明其能将原本不可学习的全零奖励样本有效转化为可利用的训练信号。</li><li><strong>计算成本降低</strong>：进一步实验表明SPLICE在提升性能的同时减少了昂贵的提议模型计算量，验证了局部拼接监督相比完整轨迹引导在训练效率与最终效果上的双重优势。</li></ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="section">
                 <div class="paper-header">
-                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#23211c;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
                         <div style="flex:1;min-width:60%;">
                             <span style="background:#23211c;color:#f8f6f1;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">4</span>
-                            <a href="https://arxiv.org/abs/2611.34703" target="_blank" style="color:#333;font-weight:600;font-size:13px;text-decoration:none;">Maco-RL：混合任务强化学习扩展智能体能力</a>
-                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Maco-RL: Scaling Agent Capabilities with Mixed-Task Reinforcement Learning</div>
-                            <span style="color:#666;font-size:12px;">Jiacheng Zhang, Qixing Zhou, Haiyang Wang, Qipeng Gu, Shuzhe Wu, Feiyang Pan, Lue Fan, Dandan Tu, Zhaoxiang Zhang</span>
-                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34703" target="_blank" style="color:#a4342a;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34703</a></div>
+                            <a href="https://arxiv.org/abs/2611.34703" target="_blank" style="color:#23211c;font-weight:700;font-size:.95rem;text-decoration:none;">Maco-RL：混合任务强化学习扩展智能体能力</a>
+                            <div style="color:#8d8578;font-size:.75rem;font-weight:400;margin-top:2px;line-height:1.5;">Maco-RL: Scaling Agent Capabilities with Mixed-Task Reinforcement Learning</div>
+                            <span style="color:#6f695e;font-size:.78rem;">Jiacheng Zhang, Qixing Zhou, Haiyang Wang, Qipeng Gu, Shuzhe Wu, Feiyang Pan, Lue Fan, Dandan Tu, Zhaoxiang Zhang</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34703" target="_blank" style="color:#a4342a;text-decoration:none;font-size:.75rem;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34703</a></div>
                         </div>
-                        <div style="text-align:right;line-height:1.9;"><span style="border:1px solid #6f695e;color:#6f695e;padding:1px 8px;margin-right:6px;font-size:10px;font-weight:600;letter-spacing:.05em;background:transparent;">训推基础设施</span></div>
+                        <div style="text-align:right;line-height:2;"><span style="border:1px solid #6f695e;color:#6f695e;padding:1px 8px;margin-right:6px;font-size:10px;font-weight:600;letter-spacing:.05em;background:transparent;">训推基础设施</span></div>
                     </div>
 
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
+                    <div class="paper-summary">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">论文摘要</div>
                             <div style="font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;">针对混任务强化学习在稳定训练、rollout计算分配与持续域扩展上的难题，Maco-RL以配额调度器均衡多域异步rollout的梯度贡献并缓解离策略影响，用Tri-Buffer Sampling按掌握程度分配计算以兼顾前沿探索与能力保留；在五项基准上将Qwen3.5-27B总分由43.6提至54.2、持续扩展后再至60.1，触及并再外推Qwen3.8-27B前沿+5.7，且以更少策略更新计算优于单任务RL。</div>
                         </div>
 
-                        <div class="summary-section" style="margin-bottom:12px;">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>配额调度</strong>：采用基于配额的异步rollout调度器，跨多个任务域均衡各域梯度贡献，并缓解异步采样带来的离策略偏差，从而稳定混任务训练。</li><li style="margin-bottom:0;"><strong>三缓冲采样</strong>：设计Tri-Buffer Sampling，按样本掌握程度在已会、前沿与困难区间分配计算，持续探索能力边界并保留已习得能力。</li><li style="margin-bottom:0;"><strong>异步多域采样</strong>：以异步方式并行收集多域轨迹，解耦生成与策略更新节奏，提高rollout计算利用并支撑持续域扩展。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>配额调度</strong>：采用基于配额的异步rollout调度器，跨多个任务域均衡各域梯度贡献，并缓解异步采样带来的离策略偏差，从而稳定混任务训练。</li><li><strong>三缓冲采样</strong>：设计Tri-Buffer Sampling，按样本掌握程度在已会、前沿与困难区间分配计算，持续探索能力边界并保留已习得能力。</li><li><strong>异步多域采样</strong>：以异步方式并行收集多域轨迹，解耦生成与策略更新节奏，提高rollout计算利用并支撑持续域扩展。</li></ul>
                         </div>
 
-                        <div class="summary-section" style="margin-bottom:12px;">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>统一混训范式</strong>：用单一策略直接做跨域混任务强化学习，不训练独立专家模型，也不需要额外蒸馏阶段，持续扩展智能体通用能力。</li><li style="margin-bottom:0;"><strong>正交双轴优化</strong>：在稳定学习与高效分配计算两个正交方向协同设计，同时处理梯度均衡、离策略校正与熟练度感知采样。</li><li style="margin-bottom:0;"><strong>持续扩张机制</strong>：把continual domain expansion作为一等目标，旧域能力被保留，新域前沿探索被强化，能力前沿可持续外推。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>统一混训范式</strong>：用单一策略直接做跨域混任务强化学习，不训练独立专家模型，也不需要额外蒸馏阶段，持续扩展智能体通用能力。</li><li><strong>正交双轴优化</strong>：在稳定学习与高效分配计算两个正交方向协同设计，同时处理梯度均衡、离策略校正与熟练度感知采样。</li><li><strong>持续扩张机制</strong>：把continual domain expansion作为一等目标，旧域能力被保留，新域前沿探索被强化，能力前沿可持续外推。</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>总分阶梯提升</strong>：五个基准上Qwen3.5-27B总评分从43.6提升到54.2，持续扩张后再到60.1，达到Qwen3.8-27B所持前沿。</li><li style="margin-bottom:0;"><strong>前沿继续外推</strong>：达到同规模模型所持前沿后，Maco-RL仍再向外推+5.7，说明其可在强基线之上继续扩大智能体能力边界。</li><li style="margin-bottom:0;"><strong>更省更新计算</strong>：Maco-RL以更少策略更新计算超越单任务RL，支持MixRL成为实用且计算高效的通用智能体后训练方案。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>总分阶梯提升</strong>：五个基准上Qwen3.5-27B总评分从43.6提升到54.2，持续扩张后再到60.1，达到Qwen3.8-27B所持前沿。</li><li><strong>前沿继续外推</strong>：达到同规模模型所持前沿后，Maco-RL仍再向外推+5.7，说明其可在强基线之上继续扩大智能体能力边界。</li><li><strong>更省更新计算</strong>：Maco-RL以更少策略更新计算超越单任务RL，支持MixRL成为实用且计算高效的通用智能体后训练方案。</li></ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="section">
                 <div class="paper-header">
-                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#23211c;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
                         <div style="flex:1;min-width:60%;">
                             <span style="background:#23211c;color:#f8f6f1;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">5</span>
-                            <a href="https://arxiv.org/abs/2611.34678" target="_blank" style="color:#333;font-weight:600;font-size:13px;text-decoration:none;">线性函数逼近下可证明高效的凹效用强化学习</a>
-                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Provably Efficient Concave Utility Reinforcement Learning with Linear Function Approximation</div>
-                            <span style="color:#666;font-size:12px;">Max Qiushi Lin, Ahmed Magd, Sharan Vaswani</span>
-                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34678" target="_blank" style="color:#a4342a;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34678</a></div>
+                            <a href="https://arxiv.org/abs/2611.34678" target="_blank" style="color:#23211c;font-weight:700;font-size:.95rem;text-decoration:none;">线性函数逼近下可证明高效的凹效用强化学习</a>
+                            <div style="color:#8d8578;font-size:.75rem;font-weight:400;margin-top:2px;line-height:1.5;">Provably Efficient Concave Utility Reinforcement Learning with Linear Function Approximation</div>
+                            <span style="color:#6f695e;font-size:.78rem;">Max Qiushi Lin, Ahmed Magd, Sharan Vaswani</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34678" target="_blank" style="color:#a4342a;text-decoration:none;font-size:.75rem;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34678</a></div>
                         </div>
-                        <div style="text-align:right;line-height:1.9;"><span style="border:1px solid #6f695e;color:#6f695e;padding:1px 8px;margin-right:6px;font-size:10px;font-weight:600;letter-spacing:.05em;background:transparent;">训推基础设施</span></div>
+                        <div style="text-align:right;line-height:2;"><span style="border:1px solid #6f695e;color:#6f695e;padding:1px 8px;margin-right:6px;font-size:10px;font-weight:600;letter-spacing:.05em;background:transparent;">训推基础设施</span></div>
                     </div>
 
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
+                    <div class="paper-summary">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">论文摘要</div>
                             <div style="font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;">本文研究凹效用强化学习（CURL）在有限时域双线性MDP中的高效求解问题。CURL统一了标准RL、模仿学习和最大熵探索等问题，但通常需要估计高维状态-动作占用测度，导致现有方法或回避探索问题、或局限于表格情形、或缺乏计算高效的策略优化。作者利用双线性结构通过低维特征期望高效估计占用测度，提出基于模型的乐观凹效用策略优化（OCUPO）框架，分别给出在策略与离策略两种实例化算法，其中离策略版本通过新颖的逆向特征回归子程序复用历史策略轨迹。理论证明两类算法均具有样本复杂度保证，且可扩展至线性MDP，维度依赖与标准线性函数逼近RL相匹配，同时摆脱了对既往工作所需积分预言机的依赖。</div>
                         </div>
 
-                        <div class="summary-section" style="margin-bottom:12px;">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>双线性建模</strong>：将有限时域回合制MDP的转移模型表示为已知低维特征空间中的双线性形式，从而把高维占用测度估计转化为低维特征期望的估计，显著降低样本与计算开销。</li><li style="margin-bottom:0;"><strong>OCUPO框架</strong>：提出基于模型的乐观凹效用策略优化框架，将对占用测度的乐观估计与凹效用目标下的策略梯度迭代相结合，统一处理探索与策略优化两大难题。</li><li style="margin-bottom:0;"><strong>在策略估计</strong>：在策略版本中每次迭代利用独立采样轨迹估计凹效用策略梯度，保证估计的无偏性与集中性，并据此证明相应的样本复杂度上界。</li><li style="margin-bottom:0;"><strong>逆向特征回归</strong>：离策略版本设计新颖的逆向特征回归子程序，通过回归方式复用历史策略收集的轨迹来估计当前策略的占用测度，大幅提升样本利用效率。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>双线性建模</strong>：将有限时域回合制MDP的转移模型表示为已知低维特征空间中的双线性形式，从而把高维占用测度估计转化为低维特征期望的估计，显著降低样本与计算开销。</li><li><strong>OCUPO框架</strong>：提出基于模型的乐观凹效用策略优化框架，将对占用测度的乐观估计与凹效用目标下的策略梯度迭代相结合，统一处理探索与策略优化两大难题。</li><li><strong>在策略估计</strong>：在策略版本中每次迭代利用独立采样轨迹估计凹效用策略梯度，保证估计的无偏性与集中性，并据此证明相应的样本复杂度上界。</li><li><strong>逆向特征回归</strong>：离策略版本设计新颖的逆向特征回归子程序，通过回归方式复用历史策略收集的轨迹来估计当前策略的占用测度，大幅提升样本利用效率。</li></ul>
                         </div>
 
-                        <div class="summary-section" style="margin-bottom:12px;">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>高效CURL求解</strong>：首次在带线性函数逼近的CURL中同时实现可证明的样本效率与计算效率，突破了以往方法只能回避探索、限于表格情形或优化低效的局限。</li><li style="margin-bottom:0;"><strong>轨迹复用机制</strong>：通过逆向特征回归实现跨策略的轨迹复用，在策略类满足适当假设（如特征表达力足够的对数线性策略）时显著降低样本需求，仅需可控的投影误差。</li><li style="margin-bottom:0;"><strong>去除积分预言机</strong>：所提算法不依赖既往工作必需的积分预言机，降低了实现假设强度，使方法在实际函数逼近场景下更具可行性与通用性。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>高效CURL求解</strong>：首次在带线性函数逼近的CURL中同时实现可证明的样本效率与计算效率，突破了以往方法只能回避探索、限于表格情形或优化低效的局限。</li><li><strong>轨迹复用机制</strong>：通过逆向特征回归实现跨策略的轨迹复用，在策略类满足适当假设（如特征表达力足够的对数线性策略）时显著降低样本需求，仅需可控的投影误差。</li><li><strong>去除积分预言机</strong>：所提算法不依赖既往工作必需的积分预言机，降低了实现假设强度，使方法在实际函数逼近场景下更具可行性与通用性。</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>样本复杂度保证</strong>：在策略实例化证明了Õ(√T)量级的样本复杂度；离策略实例化在适当技术假设下取得更优样本效率，且投影误差可控。</li><li style="margin-bottom:0;"><strong>维度依赖最优</strong>：在双线性MDP与线性MDP中，算法样本复杂度对特征维度的依赖与标准线性函数逼近RL的最优结果相匹配，表明CURL未引入额外统计代价。</li><li style="margin-bottom:0;"><strong>框架可扩展性</strong>：OCUPO框架可从双线性MDP自然推广至线性MDP，离策略算法保持相同样本复杂度，显示出框架的普适性与理论稳健性。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>样本复杂度保证</strong>：在策略实例化证明了Õ(√T)量级的样本复杂度；离策略实例化在适当技术假设下取得更优样本效率，且投影误差可控。</li><li><strong>维度依赖最优</strong>：在双线性MDP与线性MDP中，算法样本复杂度对特征维度的依赖与标准线性函数逼近RL的最优结果相匹配，表明CURL未引入额外统计代价。</li><li><strong>框架可扩展性</strong>：OCUPO框架可从双线性MDP自然推广至线性MDP，离策略算法保持相同样本复杂度，显示出框架的普适性与理论稳健性。</li></ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="section">
                 <div class="paper-header">
-                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#23211c;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
                         <div style="flex:1;min-width:60%;">
                             <span style="background:#23211c;color:#f8f6f1;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">6</span>
-                            <a href="https://arxiv.org/abs/2611.34934" target="_blank" style="color:#333;font-weight:600;font-size:13px;text-decoration:none;">攻击策略选择可误导监控评估者</a>
-                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Attack Policy Selection can Mislead Monitor Evaluators</div>
-                            <span style="color:#666;font-size:12px;">Charlie Griffin, Oliver Makins, Asa Cooper Stickland, Alessandro Abate, Yarin Gal, Abby D'Cruz, Xander Davies</span>
-                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34934" target="_blank" style="color:#a4342a;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34934</a></div>
+                            <a href="https://arxiv.org/abs/2611.34934" target="_blank" style="color:#23211c;font-weight:700;font-size:.95rem;text-decoration:none;">攻击策略选择可误导监控评估者</a>
+                            <div style="color:#8d8578;font-size:.75rem;font-weight:400;margin-top:2px;line-height:1.5;">Attack Policy Selection can Mislead Monitor Evaluators</div>
+                            <span style="color:#6f695e;font-size:.78rem;">Charlie Griffin, Oliver Makins, Asa Cooper Stickland, Alessandro Abate, Yarin Gal, Abby D'Cruz, Xander Davies</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34934" target="_blank" style="color:#a4342a;text-decoration:none;font-size:.75rem;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34934</a></div>
                         </div>
-                        <div style="text-align:right;line-height:1.9;"><span style="border:1px solid #6f695e;color:#6f695e;padding:1px 8px;margin-right:6px;font-size:10px;font-weight:600;letter-spacing:.05em;background:transparent;">训推基础设施</span></div>
+                        <div style="text-align:right;line-height:2;"><span style="border:1px solid #6f695e;color:#6f695e;padding:1px 8px;margin-right:6px;font-size:10px;font-weight:600;letter-spacing:.05em;background:transparent;">训推基础设施</span></div>
                     </div>
 
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
+                    <div class="paper-summary">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">论文摘要</div>
                             <div style="font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;">本研究以已退役的OpenAI生产监控器为案例，系统考察攻击策略选择对AI监控器评估的影响。研究发现，测得的假阴性率对攻击策略生成方法及优化水平高度敏感：单一强化学习方法在不同优化水平下假阴性率从0.5%到20.8%，不同方法（优化提示词与转录编辑）在最佳优化水平下从6.4%到23.0%。所有攻击仅针对代理监控器开发，均成功迁移至留出的GPT-5.4目标监控器。研究指出，仅用基础攻击方法的评估可能带来虚假信心；攻击转录作为部署危险行为的代理会引入可见伪迹，影响监控判断；将评估结果解读为部署性能证据需要单独的合法性论证，而这仍是开放问题。</div>
                         </div>
 
-                        <div class="summary-section" style="margin-bottom:12px;">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>攻击策略生成</strong>：采用强化学习、优化提示词和转录编辑等多种方法生成攻击策略，系统考察不同生成路径对监控器假阴性率测量结果的影响</li><li style="margin-bottom:0;"><strong>代理迁移验证</strong>：所有攻击策略仅针对代理监控器开发，验证其向留出的GPT-5.4目标监控器的迁移能力，确保评估反映真实检测难度</li><li style="margin-bottom:0;"><strong>优化水平消融</strong>：在同一方法内部系统改变优化程度，强化学习优化水平变化使假阴性率从0.5%升至20.8%，量化评估的优化敏感性</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>攻击策略生成</strong>：采用强化学习、优化提示词和转录编辑等多种方法生成攻击策略，系统考察不同生成路径对监控器假阴性率测量结果的影响</li><li><strong>代理迁移验证</strong>：所有攻击策略仅针对代理监控器开发，验证其向留出的GPT-5.4目标监控器的迁移能力，确保评估反映真实检测难度</li><li><strong>优化水平消融</strong>：在同一方法内部系统改变优化程度，强化学习优化水平变化使假阴性率从0.5%升至20.8%，量化评估的优化敏感性</li></ul>
                         </div>
 
-                        <div class="summary-section" style="margin-bottom:12px;">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>敏感性实证</strong>：首次系统证明监控器假阴性率对攻击策略选择高度敏感，单一方法内跨度0.5%至20.8%，跨方法达6.4%至23.0%</li><li style="margin-bottom:0;"><strong>代理伪迹识别</strong>：揭示攻击策略生成的转录会引入可见伪迹，如对监控器不可见的次要任务进行推理，这些伪迹会直接影响监控器判断</li><li style="margin-bottom:0;"><strong>合法性论证框架</strong>：提出将评估结果解读为部署证据需单独的合法性论证，包括代理信息性论证及保守性论证，并指出该问题尚未解决</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>敏感性实证</strong>：首次系统证明监控器假阴性率对攻击策略选择高度敏感，单一方法内跨度0.5%至20.8%，跨方法达6.4%至23.0%</li><li><strong>代理伪迹识别</strong>：揭示攻击策略生成的转录会引入可见伪迹，如对监控器不可见的次要任务进行推理，这些伪迹会直接影响监控器判断</li><li><strong>合法性论证框架</strong>：提出将评估结果解读为部署证据需单独的合法性论证，包括代理信息性论证及保守性论证，并指出该问题尚未解决</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>评估易误导</strong>：仅使用基础攻击方法的监控评估可能产生虚假信心，使评估者误以为监控器足够强大，而更强攻击可显著降低检测率</li><li style="margin-bottom:0;"><strong>代理选择关键</strong>：攻击策略转录是部署危险行为的代理，代理的选择可能直接改变评估结论，解读任何特定结果都需要额外论证支撑</li><li style="margin-bottom:0;"><strong>部署推断困难</strong>：要让评估结果对部署性能有说服力，必须论证代理为何具有信息性并提供保守性理由，构建此类论证仍是开放问题</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>评估易误导</strong>：仅使用基础攻击方法的监控评估可能产生虚假信心，使评估者误以为监控器足够强大，而更强攻击可显著降低检测率</li><li><strong>代理选择关键</strong>：攻击策略转录是部署危险行为的代理，代理的选择可能直接改变评估结论，解读任何特定结果都需要额外论证支撑</li><li><strong>部署推断困难</strong>：要让评估结果对部署性能有说服力，必须论证代理为何具有信息性并提供保守性理由，构建此类论证仍是开放问题</li></ul>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="section">
                 <div class="paper-header">
-                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+                    <div class="paper-title" style="font-size:16px;font-weight:700;color:#23211c;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
                         <div style="flex:1;min-width:60%;">
                             <span style="background:#23211c;color:#f8f6f1;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;">7</span>
-                            <a href="https://arxiv.org/abs/2611.34779" target="_blank" style="color:#333;font-weight:600;font-size:13px;text-decoration:none;">居民电池群的自适应可靠性备用</a>
-                            <div style="color:#999;font-size:11px;font-weight:400;margin-top:2px;line-height:1.4;">Adaptive Reliability Reserves for Residential Battery Fleets</div>
-                            <span style="color:#666;font-size:12px;">Maruthi Vemula, Neeraj Praneeth Gajula</span>
-                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34779" target="_blank" style="color:#a4342a;text-decoration:none;font-size:11px;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34779</a></div>
+                            <a href="https://arxiv.org/abs/2611.34779" target="_blank" style="color:#23211c;font-weight:700;font-size:.95rem;text-decoration:none;">居民电池群的自适应可靠性备用</a>
+                            <div style="color:#8d8578;font-size:.75rem;font-weight:400;margin-top:2px;line-height:1.5;">Adaptive Reliability Reserves for Residential Battery Fleets</div>
+                            <span style="color:#6f695e;font-size:.78rem;">Maruthi Vemula, Neeraj Praneeth Gajula</span>
+                            <div style="margin-top:5px;"><a href="https://arxiv.org/abs/2611.34779" target="_blank" style="color:#a4342a;text-decoration:none;font-size:.75rem;font-weight:500;">查看源文：https://arxiv.org/abs/2611.34779</a></div>
                         </div>
-                        <div style="text-align:right;line-height:1.9;"><span style="border:1px solid #6f695e;color:#6f695e;padding:1px 8px;margin-right:6px;font-size:10px;font-weight:600;letter-spacing:.05em;background:transparent;">训推基础设施</span></div>
+                        <div style="text-align:right;line-height:2;"><span style="border:1px solid #6f695e;color:#6f695e;padding:1px 8px;margin-right:6px;font-size:10px;font-weight:600;letter-spacing:.05em;background:transparent;">训推基础设施</span></div>
                     </div>
 
-                    <div class="paper-summary" style="margin:15px 0;">
-                        <div class="summary-section" style="margin-bottom:12px;">
+                    <div class="paper-summary">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">论文摘要</div>
                             <div style="font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;">本文研究住宅电池车队在电力市场收益与家庭停电备用之间的权衡，提出以县级风险阈值替代固定20%备用比例的自适应策略。基于休斯顿2024年回放，该策略将五小时备用覆盖率从75.0%提升至86.5%，每户年均建模边际收益增加10.2美元。论文发布HomeFleet-ERCOT基准，融合观测电价、县级停电与仿真家庭数据，系统比较独立优化与21次PPO训练的控制器，并通过时序、地理、车队、风暴迁移测试及合成压力测试验证稳健性。</div>
                         </div>
 
-                        <div class="summary-section" style="margin-bottom:12px;">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">关键技术</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>风险阈值备用</strong>：以县级停电风险动态确定电池备用下限，替代固定20%预留策略，在休斯顿2024回放中兼顾市场放电收益与家庭应急供电需求。</li><li style="margin-bottom:0;"><strong>强化学习控制</strong>：采用21次PPO训练生成承诺成本候选控制器，覆盖31.1%至96.3%备用水平，与独立家庭优化对比评估收益与可靠性的权衡关系。</li><li style="margin-bottom:0;"><strong>告警充电覆盖</strong>：设计预警触发的充电覆盖机制，具备条件性能量与功率充足性保证，并针对短预警、漏报、误报、负载上升等情形开展合成测试。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>风险阈值备用</strong>：以县级停电风险动态确定电池备用下限，替代固定20%预留策略，在休斯顿2024回放中兼顾市场放电收益与家庭应急供电需求。</li><li><strong>强化学习控制</strong>：采用21次PPO训练生成承诺成本候选控制器，覆盖31.1%至96.3%备用水平，与独立家庭优化对比评估收益与可靠性的权衡关系。</li><li><strong>告警充电覆盖</strong>：设计预警触发的充电覆盖机制，具备条件性能量与功率充足性保证，并针对短预警、漏报、误报、负载上升等情形开展合成测试。</li></ul>
                         </div>
 
-                        <div class="summary-section" style="margin-bottom:12px;">
+                        <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">核心创新</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>开放基准构建</strong>：发布HomeFleet-ERCOT基准，融合观测电价、县级停电记录、可识别仿真家庭与因果控制器输入，提供可复现的车队权衡评估基础。</li><li style="margin-bottom:0;"><strong>多维迁移评估</strong>：通过时间顺序、地理区域、车队构成与风暴事件四类测试检验控制器迁移能力，辅以合成故障注入与静态AC潮流审计揭示模型敏感性。</li><li style="margin-bottom:0;"><strong>联合价值评估</strong>：将市场边际收益与五小时家庭备用覆盖率纳入统一框架，量化固定备用与自适应策略的成对差异、置信区间及其不确定性来源。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>开放基准构建</strong>：发布HomeFleet-ERCOT基准，融合观测电价、县级停电记录、可识别仿真家庭与因果控制器输入，提供可复现的车队权衡评估基础。</li><li><strong>多维迁移评估</strong>：通过时间顺序、地理区域、车队构成与风暴事件四类测试检验控制器迁移能力，辅以合成故障注入与静态AC潮流审计揭示模型敏感性。</li><li><strong>联合价值评估</strong>：将市场边际收益与五小时家庭备用覆盖率纳入统一框架，量化固定备用与自适应策略的成对差异、置信区间及其不确定性来源。</li></ul>
                         </div>
 
                         <div class="summary-section">
                             <div class="summary-title" style="font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;">关键结论</div>
-                            <ul class="findings" style="list-style:none;padding:0;margin:0;font-size:.88rem;color:#33302a;line-height:1.8;"><li style="margin-bottom:0;"><strong>覆盖显著提升</strong>：县级风险阈值策略使五小时备用覆盖率由75.0%升至86.5%，但成对覆盖率增益的置信区间包含零，统计显著性有限。</li><li style="margin-bottom:0;"><strong>收益温和增加</strong>：自适应策略每户年均建模边际收益增加10.2美元，95%成对区间为+1.7至+21.7美元，属条件仿真结果而非实测公司可靠性。</li><li style="margin-bottom:0;"><strong>预警能力不足</strong>：41次县级大面积停电事件中仅19.5%能为所有电池预设提供足够连续预警，且静态审计保留既有馈线越限，老化比较暴露模型敏感性。</li></ul>
+                            <ul class="findings" style="list-style:none;padding:0;margin:0;"><li><strong>覆盖显著提升</strong>：县级风险阈值策略使五小时备用覆盖率由75.0%升至86.5%，但成对覆盖率增益的置信区间包含零，统计显著性有限。</li><li><strong>收益温和增加</strong>：自适应策略每户年均建模边际收益增加10.2美元，95%成对区间为+1.7至+21.7美元，属条件仿真结果而非实测公司可靠性。</li><li><strong>预警能力不足</strong>：41次县级大面积停电事件中仅19.5%能为所有电池预设提供足够连续预警，且静态审计保留既有馈线越限，老化比较暴露模型敏感性。</li></ul>
                         </div>
                     </div>
                 </div>
@@ -571,7 +563,7 @@
         <div class="footer">
             <div class="brand">老许 AI 研究室</div>
             <p>本报告基于 arXiv 最新论文与当日工业界新闻自动生成</p>
-            <p style="margin-top: 8px; opacity: 0.7;">sailing27@foxmail.com | 2026/11/28</p>
+            <p style="margin-top: 8px;">sailing27@foxmail.com | 2026/11/28</p>
         </div>
     </div>
 </body>
