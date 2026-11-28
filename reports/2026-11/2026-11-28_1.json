@@ -1,0 +1,179 @@
+{
+  "title": "大模型推理优化、安全对齐与能力评测前沿",
+  "date": "2026/11/28",
+  "topic": "大模型训练与推理技术",
+  "papers": [
+    {
+      "id": "2611.34746",
+      "title": "BRIAR: Martingale Belief Smoothing on Bifurcation-Guided Reasoning Trees",
+      "chinese_title": "BRIAR：分叉引导推理树上的鞅信念平滑",
+      "url": "https://arxiv.org/abs/2611.34746",
+      "authors": "Tianyi Yang, Haoran Zhang, Yifan Chen, Zixuan Li",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 8,
+          "relevance": 10,
+          "total": 33,
+          "reason": "鞅几何+RTS平滑创新性强，直击RLVR痛点，实证待验证"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 43
+      }
+    },
+    {
+      "id": "2611.28849",
+      "title": "Guarding with Judgment: Learning to Intervene for Multimodal Safety",
+      "chinese_title": "审慎守护：面向多模态安全的干预学习",
+      "url": "https://arxiv.org/abs/2611.28849",
+      "authors": "Jipei He, Cheng Cheng, Liuguo Wang, Zihan Wen, Changlin Yu, Wentao Song, Suyun Zhao",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 8,
+          "relevance": 9,
+          "total": 33,
+          "reason": "四动作安全护栏与证据化审查机制创新，直击多模态安全训练推理，基准验证充分。"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 42.2
+      }
+    },
+    {
+      "id": "2611.30723",
+      "title": "BiSAT: Bidirectionally Aligned Semantic-Acoustic Tokenization for Speech Language Models",
+      "chinese_title": "BiSAT：双向对齐语义声学词元化",
+      "url": "https://arxiv.org/abs/2611.30723",
+      "authors": "Y. Lu, L. Wang, S. Okada",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 8,
+          "relevance": 9,
+          "total": 32,
+          "reason": "语音Tokenization双向对齐机制创新，直接服务语音大模型训练，实验充分。"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 41.2
+      }
+    },
+    {
+      "id": "2611.34760",
+      "title": "One Model, Many Modes: Evolving System Prompt Ensembles for Creative Generation",
+      "chinese_title": "一模多态：面向创意生成的演化系统提示集成",
+      "url": "https://arxiv.org/abs/2611.34760",
+      "authors": "Daiwei Chen, Anda He, Binwei Yao, Junjie Hu, Ramya Korlakai Vinayak",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 7,
+          "relevance": 9,
+          "total": 32,
+          "reason": "紧扣推理技术，免训练实用，评测依赖LLM"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "hasNotableAuthor": false,
+        "hasNotableInstitution": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 41
+      }
+    },
+    {
+      "id": "2611.34758",
+      "title": "Reading Fine-Tuning Diffs Through Lenses: Model Diffing for Backdoor Detection",
+      "chinese_title": "多视角解读微调差异：模型差分检测后门",
+      "url": "https://arxiv.org/abs/2611.34758",
+      "authors": "Maximilian Petrowitsch, Ben Connors, Chris Kapulkin",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 8,
+          "relevance": 9,
+          "total": 32,
+          "reason": "后门检测方法系统评估，改进有效，高度切题"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 41
+      }
+    },
+    {
+      "id": "2611.31619",
+      "title": "What a Forecasting Leaderboard Can Establish: Resolution Reporting for Zero-Shot Time-Series Models",
+      "chinese_title": "预测榜单确立什么：零样本时序模型分辨率报告",
+      "url": "https://arxiv.org/abs/2611.31619",
+      "authors": "Arya Sikder, Sriram Pillutla",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 8,
+          "relevance": 6,
+          "total": 30,
+          "reason": "提出榜单分辨率概念与Vernier工具，实证扎实，但偏时序模型评测而非大模型训练推理技术本身"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 41
+      }
+    },
+    {
+      "id": "2611.30494",
+      "title": "Revisiting LLMs as Context Engineers",
+      "chinese_title": "再探大语言模型作为上下文工程师",
+      "url": "https://arxiv.org/abs/2611.30494",
+      "authors": "Junrui Zhang, Zeyu Xu, Runchuan Zhu, Jie Peng, Long Zhang, Zixin Ding, Jiaxin Lin, Kai Wang, Jianmin Ji, Junyuan Hong",
+      "direction": "",
+      "quality": {
+        "score": {
+          "innovation": 7,
+          "practicality": 7,
+          "rigor": 8,
+          "relevance": 9,
+          "total": 31,
+          "reason": "系统评测LCE方法，揭示失败模式多样性瓶颈，属分析型研究"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 40.4
+      }
+    }
+  ],
+  "generated_at": "2026-11-28T09:30:13.707Z",
+  "org": "老许 AI 研究室"
+}
