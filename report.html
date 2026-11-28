@@ -94,6 +94,18 @@ const BODY_TEXT = 'font-size:.88rem;color:#33302a;line-height:1.9;text-align:jus
 
 const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 
+
+// 过滤空板块：栏头(banner)后面若没有任何条目(news/paper)就连栏头一起去掉
+function filterEmptySections(sections) {
+  return (sections || []).filter((s, i, arr) => {
+    if (s.type !== 'banner') return true;
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[j].type === 'banner') return false;      // 到下一个栏头都没条目
+      if (arr[j].type === 'news' || arr[j].type === 'paper') return true;
+    }
+    return false;                                       // 到末尾都没条目
+  });
+}
 // 从当天数据推导关键字：论文方向（中文名）+ 新闻涉及大厂，去重
 function renderKeywords(data) {
   const kws = [];
@@ -192,7 +204,7 @@ async function main() {
       `<p style="line-height:1.9;text-align:justify;">${(data.summary || []).map(esc).join('<br><br>')}</p>` + renderKeywords(data);
 
     let newsIdx = 0, paperIdx = 0;
-    document.getElementById('sections').innerHTML = (data.sections || []).map(s => {
+    document.getElementById('sections').innerHTML = filterEmptySections(data.sections).map(s => {
       if (s.type === 'banner') return renderBanner(s);
       if (s.type === 'news')   return renderNews(s, ++newsIdx);
       if (s.type === 'paper')  return renderPaper(s, ++paperIdx);
