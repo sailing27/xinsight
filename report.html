@@ -36,6 +36,7 @@
         .sec-head-s { font-size: .72rem; color: #8d8578; letter-spacing: .06em; }
         .section { border-bottom: 1px dotted #d9d3c6; padding: 18px 0; margin-bottom: 0; }
         .section:last-child { border-bottom: none; }
+        .section:has(+ .sec-head) { border-bottom: none; }
         .paper-summary { margin: 12px 0 0 0; }
         .summary-section { margin-bottom: 14px; }
         .findings { list-style: none; padding: 0; margin: 0; }
@@ -43,7 +44,7 @@
         .findings li::before { content: ''; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; background: #a4342a; }
         .findings strong { color: #23211c; }
         .paper-title a:hover { color: #a4342a !important; }
-        .footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid #d9d3c6; text-align: center; font-size: .75rem; color: #a49c8f; letter-spacing: .06em; line-height: 1.9; }
+        .footer { margin-top: 16px; padding-top: 16px; border-top: 1px solid #d9d3c6; text-align: center; font-size: .75rem; color: #a49c8f; letter-spacing: .06em; line-height: 1.9; }
         .footer .brand { font-size: .85rem; color: #23211c; letter-spacing: .2em; font-weight: 600; margin-bottom: 6px; }
         .footer a { color: #a4342a; }
         #loading { text-align: center; color: #8d8578; padding: 80px 0; font-size: .9rem; letter-spacing: .2em; }
