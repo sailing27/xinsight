@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.loli.net">
+    <link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;600;900&display=swap">
+    <title>技术洞察</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { font-size: 15px; }
+        body {
+            font-family: "Noto Serif SC", "Source Serif SC", "Songti SC", "SimSun", Georgia, serif;
+            background: #f8f6f1;
+            line-height: 1.75;
+            color: #23211c;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container { max-width: 760px; margin: 0 auto; padding: 14px 24px 64px; background: #f8f6f1; }
+        .masthead { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 0; margin-bottom: 6px; }
+        .masthead .brand { font-size: .85rem; font-weight: 700; letter-spacing: .22em; color: #23211c; text-decoration: none; }
+        .masthead .brand:hover { color: #a4342a; }
+        .masthead .meta { font-size: .72rem; color: #8d8578; letter-spacing: .08em; }
+        .report-title { text-align: center; font-size: 1.65rem; font-weight: 900; line-height: 1.5; margin-bottom: 0; padding: 2px 0 10px; border-bottom: 2px solid #23211c; }
+        .executive-summary { border-bottom: 1px solid #d9d3c6; padding: 4px 0 10px; margin-bottom: 0; background: transparent; }
+        .executive-summary h2 { color: #a4342a; font-size: .8rem; letter-spacing: .3em; margin-bottom: 8px; font-weight: 600; }
+        .executive-summary p { font-size: .92rem; line-height: 1.9; color: #33302a; margin: 0; text-align: justify; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin: 0 0 8px 0; border-bottom: 1px solid #d9d3c6; }
+        .stat-item { background: transparent; color: #23211c; padding: 14px 4px; text-align: center; border-right: 1px dotted #d9d3c6; }
+        .stat-item:last-child { border-right: none; }
+        .stat-value { font-size: 1.25rem; font-weight: 900; color: #a4342a; font-variant-numeric: tabular-nums; }
+        .stat-label { font-size: .68rem; color: #8d8578; letter-spacing: .12em; margin-top: 2px; }
+        .sec-head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px; border-top: 2px solid #23211c; padding-top: 10px; margin: 36px 0 4px 0; }
+        .sec-head-t { font-size: 1.05rem; font-weight: 900; letter-spacing: .12em; }
+        .sec-head-s { font-size: .72rem; color: #8d8578; letter-spacing: .06em; }
+        .section { border-bottom: 1px dotted #d9d3c6; padding: 18px 0; margin-bottom: 0; }
+        .section:last-child { border-bottom: none; }
+        .paper-summary { margin: 12px 0 0 0; }
+        .summary-section { margin-bottom: 14px; }
+        .findings { list-style: none; padding: 0; margin: 0; }
+        .findings li { margin-bottom: 6px; padding-left: 14px; position: relative; font-size: .88rem; color: #33302a; line-height: 1.8; }
+        .findings li::before { content: ''; position: absolute; left: 0; top: .62em; width: 5px; height: 5px; background: #a4342a; }
+        .findings strong { color: #23211c; }
+        .paper-title a:hover { color: #a4342a !important; }
+        .footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid #d9d3c6; text-align: center; font-size: .75rem; color: #a49c8f; letter-spacing: .06em; line-height: 1.9; }
+        .footer .brand { font-size: .85rem; color: #23211c; letter-spacing: .2em; font-weight: 600; margin-bottom: 6px; }
+        .footer a { color: #a4342a; }
+        #loading { text-align: center; color: #8d8578; padding: 80px 0; font-size: .9rem; letter-spacing: .2em; }
+        #error { text-align: center; color: #a4342a; padding: 80px 20px; font-size: .9rem; display: none; }
+        @media (max-width: 640px) {
+            html { font-size: 14px; }
+            .container { padding: 32px 16px 48px; }
+            .report-title { font-size: 1.25rem; }
+            .stat-value { font-size: 1.05rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="masthead">
+            <a class="brand" href="./index.html">技术洞察</a>
+            <span class="meta" id="masthead-meta"></span>
+        </header>
+        <div class="report-title" id="report-title"></div>
+        <div class="content" id="content" style="display:none;">
+            <div class="executive-summary">
+                <h2>摘 要</h2>
+                <div class="summary-content" id="summary"></div>
+            </div>
+            <div class="stats-grid" id="stats"></div>
+            <div id="sections"></div>
+        </div>
+        <div id="loading">载 入 中 …</div>
+        <div id="error"></div>
+        <div class="footer">
+            <div class="brand" id="footer-org"></div>
+            <p id="footer-text"></p>
+            <p style="margin-top: 8px;" id="footer-contact"></p>
+        </div>
+    </div>
+
+<script>
+// ===== 数据/页面分离：本页是纯壳，内容全部来自 JSON =====
+const DIRECTION_NAMES = {
+  llm:'大语言模型', agent:'AI智能体', multimodal:'多模态', efficient:'高效模型',
+  infra:'训推基础设施', reasoning:'推理', safety:'安全', continual:'持续学习',
+  posttraining:'后训练', rl:'强化学习', serving:'推理引擎', rsi:'自我改进', cloud:'公有云服务'
+};
+const NUM_CHIP = 'background:#23211c;color:#f8f6f1;display:inline-block;min-width:18px;height:18px;line-height:18px;text-align:center;border-radius:50%;margin-right:8px;font-size:11px;font-weight:600;';
+const COMPANY_TAG = 'border:1px solid #a4342a;color:#a4342a;padding:1px 8px;font-size:10px;font-weight:600;letter-spacing:.05em;white-space:nowrap;background:transparent;';
+const OUTLINE_TAG = 'border:1px solid #6f695e;color:#6f695e;padding:1px 8px;margin-right:6px;font-size:10px;font-weight:600;letter-spacing:.05em;background:transparent;';
+const SEC_TITLE = 'font-size:.8rem;color:#a4342a;font-weight:600;letter-spacing:.15em;margin-bottom:8px;';
+const BODY_TEXT = 'font-size:.88rem;color:#33302a;line-height:1.9;text-align:justify;';
+
+const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+function renderBanner(s) {
+  const sub = s.subtitle ? `<div class="sec-head-s">${esc(s.subtitle)}</div>` : '';
+  const title = String(s.title || '').replace(/[🏭📚]\s*/gu, '').trim();
+  return `<div class="sec-head"><div class="sec-head-t">${esc(title)}</div>${sub}</div>`;
+}
+
+function renderNews(s, idx) {
+  const companyTag = s.company ? `<span style="${COMPANY_TAG}float:right;margin-left:10px;">${esc(s.company)}</span>` : '';
+  const srcLink = s.url ? ` ｜ <a href="${esc(s.url)}" target="_blank" style="color:#a4342a;text-decoration:none;">查看原文</a>` : '';
+  const titleHtml = s.url
+    ? `<a href="${esc(s.url)}" target="_blank" style="color:#23211c;text-decoration:none;">${esc(s.title)}</a>`
+    : `<span style="color:#23211c;">${esc(s.title)}</span>`;
+  return `<div class="section"><div class="paper-header">
+    <div class="paper-title" style="font-size:15px;font-weight:700;color:#23211c;margin-bottom:6px;overflow:hidden;">
+      ${companyTag}
+      <div style="position:relative;padding-left:26px;">
+        <span style="${NUM_CHIP}position:absolute;left:0;top:3px;">${idx}</span>
+        ${titleHtml}
+      </div>
+    </div>
+    <div style="${BODY_TEXT}margin:8px 0;">${esc(s.summary)}</div>
+    <div style="font-size:.75rem;color:#8d8578;letter-spacing:.05em;">来源：${esc(s.source || '公开报道')}${srcLink}</div>
+  </div></div>`;
+}
+
+function renderPointList(points, fallback) {
+  const arr = (points || []).map(p => String(p).trim()).filter(Boolean);
+  if (arr.length === 0) return `<li>${fallback}</li>`;
+  return arr.map(k => {
+    const m = k.match(/^([^：:]+)[：:](.*)$/);
+    return m ? `<li><strong>${esc(m[1])}</strong>：${esc(m[2])}</li>` : `<li>${esc(k)}</li>`;
+  }).join('');
+}
+
+function renderPaper(s, idx) {
+  const summary = s.summary || {};
+  let dirTag = '';
+  if (s.direction) dirTag = `<span style="${OUTLINE_TAG}">${esc(DIRECTION_NAMES[s.direction] || s.direction)}</span>`;
+  const q = s.quality || {};
+  let qTags = '';
+  if (q.isTopVenue) qTags += `<span style="${OUTLINE_TAG}">顶会</span>`;
+  if (q.hasNotableAuthor) qTags += `<span style="${OUTLINE_TAG}">知名学者</span>`;
+  if (q.hasNotableInstitution) qTags += `<span style="${OUTLINE_TAG}">知名机构</span>`;
+  if (q.citationCount > 0) qTags += `<span style="${OUTLINE_TAG}">引用 ${q.citationCount}</span>`;
+  const abstract = summary.abstract || '详细内容请查看原文';
+  return `<div class="section"><div class="paper-header">
+    <div class="paper-title" style="font-size:16px;font-weight:700;color:#23211c;margin-bottom:4px;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:6px;">
+      <div style="flex:1;min-width:60%;">
+        <span style="${NUM_CHIP}">${idx}</span>
+        <a href="${esc(s.url)}" target="_blank" style="color:#23211c;font-weight:700;font-size:.95rem;text-decoration:none;">${esc(s.chineseTitle)}</a>
+        <div style="color:#8d8578;font-size:.75rem;font-weight:400;margin-top:2px;line-height:1.5;">${esc(s.title)}</div>
+        <span style="color:#6f695e;font-size:.78rem;">${esc(s.authors)}</span>
+        <div style="margin-top:5px;"><a href="${esc(s.url)}" target="_blank" style="color:#a4342a;text-decoration:none;font-size:.75rem;font-weight:500;">查看源文：https://arxiv.org/abs/${esc(s.arxivId)}</a></div>
+      </div>
+      <div style="text-align:right;line-height:2;">${dirTag}${qTags}</div>
+    </div>
+    <div class="paper-summary">
+      <div class="summary-section"><div class="summary-title" style="${SEC_TITLE}">论文摘要</div><div style="${BODY_TEXT}">${esc(abstract)}</div></div>
+      <div class="summary-section"><div class="summary-title" style="${SEC_TITLE}">关键技术</div><ul class="findings">${renderPointList(summary.keyTech, '基于论文摘要的分析方法')}</ul></div>
+      <div class="summary-section"><div class="summary-title" style="${SEC_TITLE}">核心创新</div><ul class="findings">${renderPointList(summary.innovation, '创新方法框架')}</ul></div>
+      <div class="summary-section"><div class="summary-title" style="${SEC_TITLE}">关键结论</div><ul class="findings">${renderPointList(summary.conclusion, '详细内容请查看原文')}</ul></div>
+    </div>
+  </div></div>`;
+}
+
+async function main() {
+  const params = new URLSearchParams(location.search);
+  let d = params.get('d');
+  try {
+    if (!d) {
+      const idx = await (await fetch('data/index.json')).json();
+      d = idx.reports[0].date;
+    }
+    const url = `reports/${d.slice(0,7)}/${d}.json`;
+    const data = await (await fetch(url)).json();
+    const meta = data.meta || {};
+
+    document.title = `${meta.title || ''} | 技术洞察`;
+    document.getElementById('masthead-meta').textContent = `${meta.org || ''} · ${meta.date || ''}`;
+    document.getElementById('report-title').textContent = meta.title || '';
+    document.getElementById('summary').innerHTML =
+      `<p style="line-height:1.9;text-align:justify;">${(data.summary || []).map(esc).join('<br><br>')}</p>`;
+    document.getElementById('stats').innerHTML = (data.stats || []).map(s =>
+      `<div class="stat-item"><div class="stat-value">${esc(s.value)}</div><div class="stat-label">${esc(s.label)}</div></div>`).join('');
+
+    let newsIdx = 0, paperIdx = 0;
+    document.getElementById('sections').innerHTML = (data.sections || []).map(s => {
+      if (s.type === 'banner') return renderBanner(s);
+      if (s.type === 'news')   return renderNews(s, ++newsIdx);
+      if (s.type === 'paper')  return renderPaper(s, ++paperIdx);
+      return '';
+    }).join('');
+
+    document.getElementById('footer-org').textContent = meta.org || '';
+    document.getElementById('footer-text').textContent = meta.footerText || '';
+    document.getElementById('footer-contact').textContent = `${meta.contact || ''} | ${meta.date || ''}`;
+
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('content').style.display = '';
+  } catch (e) {
+    document.getElementById('loading').style.display = 'none';
+    const err = document.getElementById('error');
+    err.style.display = '';
+    err.textContent = `报告数据加载失败（${d || '未知日期'}）：${e.message}`;
+  }
+}
+main();
+</script>
+</body>
+</html>

@@ -1,160 +1,255 @@
 {
-  "title": "另一候选：\"复杂场景下鲁棒智能体决策训练与可信评估\" 数：复 | 2026/11/28",
-  "date": "2026/11/28",
-  "topic": "大模型训练与推理技术",
-  "papers": [
+  "meta": {
+    "title": "大模型推理优化、安全对齐与能力评测前沿",
+    "date": "2026/11/28",
+    "org": "老许 AI 研究室",
+    "footerText": "本报告基于 arXiv 最新论文与当日工业界新闻自动生成",
+    "contact": "sailing27@foxmail.com"
+  },
+  "summary": [
+    "本期洞察共同指向大模型从“规模驱动”转向“结构、边界与评估分辨率驱动”的精细化阶段。一是以可证明结构替代启发式控制：BRIAR将RLVR推理树信用分配归结为Doob鞅，给出方差守恒与端点消失规律；BiSAT以语义—声学双向对齐在低码率单流中保留语言与声学结构；SEPO与上下文工程研究则表明，提示演化与LCE可在不训练模型的情况下重塑输出分布，但不存在跨任务通吃方案。二是安全与可信评估走向分级、可证伪：四级干预区分已确认危害与待核实条件，统一token读出与“权重透镜”显著提升后门检测，榜单分辨率研究更警示小于分辨率的排名差异不具统计意义。对行业的启示是：与其追逐更大模型与更细名次，不如建立守恒约束、分辨率下限与任务条件化框架，把“何时干预、何时信任排名、何时调用何种推理策略”变成可度量工程问题。"
+  ],
+  "stats": [
     {
-      "id": "2611.34629",
-      "title": "Predicting acute food crises and discovering actionable drivers with causal machine learning",
-      "chinese_title": "驱动因素",
-      "url": "https://arxiv.org/abs/2611.34629",
-      "authors": "Mélissande Machefer, Michele Ronco, Michele Meroni, Jordi Cerdà-Bautista, Francesco Collivignarelli, Chungmann Kim, Nicolas Rost, Alessia Matanó, Esther Rodrigo-Bonet, Philipp Zimmer, Gustau Camps-Valls, Christina Corbane, Felix Rembold",
-      "direction": "",
-      "quality": {
-        "score": {
-          "innovation": 9,
-          "practicality": 8,
-          "rigor": 9,
-          "total": 26,
-          "reason": "数据新颖，预测与因果结合严谨，应用价值高"
-        },
-        "citationCount": 0,
-        "venue": "",
-        "isTopVenue": false,
-        "notableAuthors": [],
-        "notableInstitutions": [],
-        "weightedScore": 26
-      }
+      "value": "8",
+      "label": "工业界动态"
     },
     {
-      "id": "2611.34687",
-      "title": "Evacuation Traffic Prediction for Dynamic Transportation Networks over Multiple Hurricanes: A Generalized Graph Learning Approach",
-      "chinese_title": "多飓风动态路网疏散交通预测的图学习方法",
-      "url": "https://arxiv.org/abs/2611.34687",
-      "authors": "Md Nafees Fuad Rafi, Samiul Hasan",
-      "direction": "",
-      "quality": {
-        "score": {
-          "innovation": 8,
-          "practicality": 9,
-          "rigor": 8,
-          "total": 25,
-          "reason": "多飓风泛化与实测检验充分，架构新意中等"
-        },
-        "citationCount": 0,
-        "venue": "",
-        "isTopVenue": false,
-        "notableAuthors": [],
-        "notableInstitutions": [],
-        "weightedScore": 25
-      }
+      "value": 7,
+      "label": "核心论文"
     },
     {
-      "id": "2611.34777",
-      "title": "When Every Rollout Fails: Splicing Learner-Conditioned Options into Long-Horizon Agent RL",
-      "chinese_title": "采样全败时拼接学习条件选项于长时程RL",
-      "url": "https://arxiv.org/abs/2611.34777",
-      "authors": "Haowen Hou, Yicheng Liu, Zhen Huang, Jiaqi Wang",
-      "direction": "",
-      "quality": {
-        "score": {
-          "innovation": 8,
-          "practicality": 8,
-          "rigor": 8,
-          "total": 24,
-          "reason": "全败组在线拼接局部目标新颖，四组实验充分，但任务覆盖有限"
-        },
-        "citationCount": 0,
-        "venue": "",
-        "isTopVenue": false,
-        "notableAuthors": [],
-        "notableInstitutions": [],
-        "weightedScore": 24
-      }
+      "value": 6,
+      "label": "关注方向"
     },
     {
-      "id": "2611.34703",
-      "title": "Maco-RL: Scaling Agent Capabilities with Mixed-Task Reinforcement Learning",
-      "chinese_title": "Maco-RL：混合任务强化学习扩展智能体能力",
-      "url": "https://arxiv.org/abs/2611.34703",
-      "authors": "Jiacheng Zhang, Qixing Zhou, Haiyang Wang, Qipeng Gu, Shuzhe Wu, Feiyang Pan, Lue Fan, Dandan Tu, Zhaoxiang Zhang",
-      "direction": "",
-      "quality": {
-        "score": {
-          "innovation": 7,
-          "practicality": 9,
-          "rigor": 8,
-          "total": 24,
-          "reason": "异步配额调度与三层采样实用，多基准验证充分"
-        },
-        "citationCount": 0,
-        "venue": "",
-        "isTopVenue": false,
-        "notableAuthors": [],
-        "notableInstitutions": [],
-        "weightedScore": 24
-      }
+      "value": "11/28",
+      "label": "报告日期"
+    }
+  ],
+  "sections": [
+    {
+      "type": "banner",
+      "icon": "🏭",
+      "title": "工业界大厂动向",
+      "subtitle": "近24-48小时大厂模型发布、商业化与训推基础设施动态"
     },
     {
-      "id": "2611.34678",
-      "title": "Provably Efficient Concave Utility Reinforcement Learning with Linear Function Approximation",
-      "chinese_title": "线性函数逼近下可证明高效的凹效用强化学习",
-      "url": "https://arxiv.org/abs/2611.34678",
-      "authors": "Max Qiushi Lin, Ahmed Magd, Sharan Vaswani",
-      "direction": "",
-      "quality": {
-        "score": {
-          "innovation": 9,
-          "practicality": 6,
-          "rigor": 9,
-          "total": 24,
-          "reason": "理论新颖严谨，假设较强实用性有限"
-        },
-        "citationCount": 0,
-        "venue": "",
-        "isTopVenue": false,
-        "notableAuthors": [],
-        "notableInstitutions": [],
-        "weightedScore": 24
-      }
+      "type": "news",
+      "title": "MiniMax 加速采用华为、阿里国产 AI 芯片，高盛称部分国产芯片推理投资回报已优于海外",
+      "summary": "高盛调研后维持 MiniMax“买入”评级并给出 760 港元目标价，称公司两个国产芯片超级节点方案将于四季度爬坡用于推理，原生 FP4 精度下部分国产芯片推理负载投资回报已优于海外替代品。",
+      "company": "MiniMax",
+      "source": "新浪财经/财联社",
+      "url": "https://cj.sina.cn/articles/view/2868676035/aafc85c30200205re"
     },
     {
-      "id": "2611.34934",
-      "title": "Attack Policy Selection can Mislead Monitor Evaluators",
-      "chinese_title": "攻击策略选择可误导监控评估者",
-      "url": "https://arxiv.org/abs/2611.34934",
-      "authors": "Charlie Griffin, Oliver Makins, Asa Cooper Stickland, Alessandro Abate, Yarin Gal, Abby D'Cruz, Xander Davies",
-      "direction": "",
-      "quality": {
-        "score": {
-          "innovation": 7,
-          "practicality": 8,
-          "rigor": 8,
-          "total": 23,
-          "reason": "揭示攻击策略选择误导监控评估，实证扎实但案例单一"
-        },
-        "citationCount": 0,
-        "venue": "",
-        "isTopVenue": false,
-        "notableAuthors": [],
-        "notableInstitutions": [],
-        "weightedScore": 23
-      }
+      "type": "news",
+      "title": "路透社：防蒸馏与芯片管制拖慢国产模型节奏，智谱 GLM-5.5 旗舰延迟、月之暗面发布周期或翻倍",
+      "summary": "智谱原定本月发布的约 3 万亿参数旗舰 GLM-5.5 尚未推出，月之暗面预计若无法获取海外算力，重大模型发布间隔或从六个月延长至一年，OpenAI 与 Anthropic 的防蒸馏措施被指已产生影响。",
+      "company": "智谱",
+      "source": "路透社（倍可亲转载）",
+      "url": "https://backchina.com/news/2026/11/27/1058577.html"
     },
     {
-      "id": "2611.34779",
-      "title": "Adaptive Reliability Reserves for Residential Battery Fleets",
-      "chinese_title": "居民电池群的自适应可靠性备用",
-      "url": "https://arxiv.org/abs/2611.34779",
-      "authors": "Maruthi Vemula, Neeraj Praneeth Gajula",
-      "direction": "",
+      "type": "news",
+      "title": "商汤大装置获全国首批首家 Token 工厂智算能力最高评级",
+      "summary": "商汤大装置 Token 工厂获得中国信通院 Token 工厂智算能力评估“全栈服务型·领先级”评级认证，为全国首批首家。",
+      "company": "商汤",
+      "source": "量子位",
+      "url": "https://www.qbitai.com/2026/11/513346.html"
+    },
+    {
+      "type": "news",
+      "title": "llm-d 发布 1.0 版本并引入 SGLang 一等支持：PD 分离、宽专家并行与分层 KV 缓存落地生产",
+      "summary": "Google 与 IBM 主导的 Kubernetes 推理编排项目 llm-d 发布 1.0，SGLang 与 vLLM 并列成为可选引擎，支持逐 DP rank 路由、前缀感知调度与跨主机内存/共享存储的分层 KV 缓存，保障长 Agent 会话高可用。",
+      "company": "谷歌",
+      "source": "llm-d 官方博客",
+      "url": "https://llm-d.ai/blog/serving-glm-5-2-sglang-tiered-kv-cache-on-llm-d"
+    },
+    {
+      "type": "news",
+      "title": "DeepSeek App 与网页端上线聊天账单功能，引发商业化收费猜测",
+      "summary": "DeepSeek 网页与 App 双端突然亮出聊天账单页面，网友猜测官方 API 之外的 C 端服务或将开启收费模式。",
+      "company": "DeepSeek",
+      "source": "量子位",
+      "url": "https://www.qbitai.com/2026/11/513305.html"
+    },
+    {
+      "type": "news",
+      "title": "汤森路透下一代自研大模型换底座：从阿里 Qwen 转向智谱 GLM 与谷歌 Gemma",
+      "summary": "汤森路透宣布年底前推出 Thomson 1.1，放弃 Thomson 1.0 所依赖的阿里 Qwen 系列，改为分别基于智谱 GLM 与谷歌 Gemma 构建不同业务版本，面向法律、税务等专业场景。",
+      "company": "智谱",
+      "source": "新浪财经",
+      "url": "https://finance.sina.com.cn/wm/2026-11-27/doc-inkaenea7864011.shtml"
+    },
+    {
+      "type": "news",
+      "title": "腾讯混元发布 3D 大模型 Hy3D 3.6，上线腾讯云 Token Hub 对外提供 API",
+      "summary": "腾讯混元发布新一代 3D 大模型 Hy3D 3.6，重点优化高模与 PBR 材质贴图生成，已上线腾讯云 Token Hub 并接入腾讯游戏 LAP、WorkRally 等专业平台。",
+      "company": "腾讯",
+      "source": "新浪科技",
+      "url": "https://portal.sina.com.hk/technology/sina/2026/11/27/1999182/"
+    },
+    {
+      "type": "news",
+      "title": "中国电信连续三晚直播星辰万亿参数大模型训练：预训练、数据配比、万卡集群效率全公开",
+      "summary": "中国电信 11 月 27 日至 29 日在新华网推出“大模型是怎样炼成的”训练直播，公开 285B 模型预训练监控看板、数据配比与万卡集群防空转实践，主打过程透明而非跑分。",
+      "company": "中国电信",
+      "source": "新华网",
+      "url": "https://news.cn/info/20261126/2f916e41ad0642829a17f44ab11b0217/c.html"
+    },
+    {
+      "type": "banner",
+      "icon": "📚",
+      "title": "学术界论文精析",
+      "subtitle": "arXiv 最新论文 · 按加权质量分取前 7 篇"
+    },
+    {
+      "type": "paper",
+      "chineseTitle": "BRIAR：分叉引导推理树上的鞅信念平滑",
+      "title": "BRIAR: Martingale Belief Smoothing on Bifurcation-Guided Reasoning Trees",
+      "authors": "Tianyi Yang, Haoran Zhang, Yifan Chen, Zixuan Li",
+      "url": "https://arxiv.org/abs/2611.34746",
+      "arxivId": "2611.34746",
+      "direction": "infra",
       "quality": {
         "score": {
           "innovation": 8,
           "practicality": 7,
           "rigor": 8,
-          "total": 23,
-          "reason": "自纠开源，然仿真条件化且增益不显著。"
+          "relevance": 10,
+          "total": 33,
+          "reason": "鞅几何+RTS平滑创新性强，直击RLVR痛点，实证待验证"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 43
+      },
+      "summary": {
+        "abstract": "本文针对RLVR长链推理中信用分配盲目与算力浪费的问题，指出其根源在于一个结构事实：策略验证器下的前缀通过概率沿推理轨迹构成有界Doob鞅，信用方差严格守恒且在脱轨与吸收边界处消失。据此提出BRIAR框架，结合分叉引导的树扩展、线性时间RTS树信念平滑与吸收后零和后缀优势，实现高效rollout调度与精确信用分配。",
+        "keyTech": [
+          "鞅结构建模：将推理前缀的通过概率建模为有界Doob鞅，其可学习信用方差严格守恒且以边界为上界，在脱轨与吸收两端趋于消失，奠定树搜索的鞅几何基础。",
+          "分叉引导扩展：沿上置信界结果分叉前沿扩展话语对齐的推理树，将rollout算力从已吸收节点的冗余验证转向未解决的关键决策点，显著提升探索效率。",
+          "树信念平滑：以边界缩放的异方差边方差建模节点隐值，通过两遍Rauch-Tung-Striebel平滑以线性时间计算精确全局后验，消除矩阵求逆并门控虚假边界噪声。"
+        ],
+        "innovation": [
+          "鞅几何框架：首次将RLVR信用分配病理统一归因于鞅结构，前缀通过率构成Doob鞅且方差守恒受边界约束，一并解释早期错误脱轨与冗余验证两大失效模式。",
+          "吸收后优势：自动检测最小吸收前沿节点，仅在吸收后施加零和、对数长度中心化的后缀优势，可证明地保证吸收前的正确推导完全不受影响。",
+          "线性时间推断：提出BRIAR树结构RLVR框架，将RTS信念平滑、分叉rollout与吸收后优势统一于鞅几何之下，实现精确高效且无矩阵求逆的信用分配。"
+        ],
+        "conclusion": [
+          "方差守恒律：可学习信用方差沿推理轨迹严格守恒，其上界由鞅边界决定，在脱轨状态与答案已确定状态处趋于零，揭示盲目信用分配的根本缺陷。",
+          "算力重定向：沿分叉前沿的定向rollout避免在已解决轨迹上生成冗余验证，显著节约推理算力，同时将探索聚焦于未决分支以提升困难问题求解能力。",
+          "信用精确化：线性时间树平滑在不引入矩阵求逆的情况下给出精确全局后验，有效过滤边界处虚假噪声，为节点价值估计提供稳健的低方差信用信号。"
+        ]
+      }
+    },
+    {
+      "type": "paper",
+      "chineseTitle": "审慎守护：面向多模态安全的干预学习",
+      "title": "Guarding with Judgment: Learning to Intervene for Multimodal Safety",
+      "authors": "Jipei He, Cheng Cheng, Liuguo Wang, Zihan Wen, Changlin Yu, Wentao Song, Suyun Zhao",
+      "url": "https://arxiv.org/abs/2611.28849",
+      "arxivId": "2611.28849",
+      "direction": "infra",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 8,
+          "relevance": 9,
+          "total": 33,
+          "reason": "四动作安全护栏与证据化审查机制创新，直击多模态安全训练推理，基准验证充分。"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 42.2
+      },
+      "summary": {
+        "abstract": "针对多模态场景下安全拒答一刀切、用户需求难以满足的问题，本文提出防护模型JudiAct。其核心是将干预决策形式化为允许、警告、审查、拒绝四种动作，通过陈述来源确认的事实、支配帮助的条件与规则适用方式三项审查内容，并对照原始输入核验以做出证据驱动的判断。作者构建了包含20126条训练审计的语料与JudiBench基准，采用两阶段训练：先监督学习个体判断并对比相关案例标签，再逐项替换审查内容利用审计反馈优化。实验显示，JudiAct在JudiBench上Macro-F1较4B骨干提升超28个百分点，在九个公开基准上超越SOTA，将MM-SafetyBench攻击成功率从40.78%降至25.30%。",
+        "keyTech": [
+          "四级干预决策：将多模态安全干预形式化为允许、警告、审查、拒绝四种动作，区分已确认危害与需验证条件，突破二元安全标签的局限。",
+          "三项审查推理：JudiAct分别陈述来源确认的事实、支配帮助的条件与规则适用方式，再对照原始输入核验这三项内容，预测诊断标签与处理动作。",
+          "两阶段训练法：第一阶段监督学习个体判断并对比相关案例间的标签分配，第二阶段逐项替换审查内容，利用审计反馈迭代优化审查生成。"
+        ],
+        "innovation": [
+          "安全分级干预：提出超越二元标签的细粒度干预范式，将确定性危害与待核实条件明确区分，使系统在拒答之外保留有条件帮助的空间。",
+          "审计基准构建：构建含20126条训练审计的语料库与JudiBench基准，将每个动作与诊断判断、来源证据及受控上下文变化显式连接。",
+          "证据核验机制：安全判断基于可核验的三项审查内容，通过与原始输入对照实现自我审计，使干预决策有据可依且过程可解释。"
+        ],
+        "conclusion": [
+          "诊断性能跃升：在JudiBench上，JudiAct相对其4B骨干模型的请求与回答Macro-F1提升超过28个百分点，验证方法有效性。",
+          "全面超越基线：在九个公开基准上，无论生成前还是生成后设置，JudiAct均在平均交付答案得分上超越最先进的多模态防护模型。",
+          "攻击率显著下降：将MM-SafetyBench上的攻击成功率从40.78%降至25.30%，表明细粒度判断干预可实质增强多模态系统安全性。"
+        ]
+      }
+    },
+    {
+      "type": "paper",
+      "chineseTitle": "BiSAT：双向对齐语义声学词元化",
+      "title": "BiSAT: Bidirectionally Aligned Semantic-Acoustic Tokenization for Speech Language Models",
+      "authors": "Y. Lu, L. Wang, S. Okada",
+      "url": "https://arxiv.org/abs/2611.30723",
+      "arxivId": "2611.30723",
+      "direction": "infra",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 8,
+          "relevance": 9,
+          "total": 32,
+          "reason": "语音Tokenization双向对齐机制创新，直接服务语音大模型训练，实验充分。"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 41.2
+      },
+      "summary": {
+        "abstract": "本文提出BiSAT（双向对齐的语义-声学标记化）框架，解决语音语言模型中离散标记需同时保留声学细节与语言内容的难题。该框架包含独立的声学与语义分支，通过共享索引机制耦合，在每帧最小化两分支的联合量化误差，无需固定语义教师即可联合优化双编码器，输出单一位流。基于此构建的BiSAT-TTS结合自回归文本-语音LM与条件流匹配声学解码器实现零样本TTS，以更少训练数据匹配或超越SOTA基线，证明可访问的代码结构比单纯重建质量更利于自回归语音建模。",
+        "keyTech": [
+          "双分支分词架构：声学与语义分支各自配备独立的编码器、码本与解码器，在连续空间中分别学习表征，避免统一特征空间中的相互干扰，同时输出单离散码流。",
+          "共享索引机制：在每一帧通过共享索引最小化声学分支与语义分支的联合量化误差，实现两分支的耦合对齐，是连接分离空间与统一码流的核心纽带。",
+          "联合优化训练：双向对齐策略使两个编码器无需依赖冻结的语义教师即可同步训练，摆脱现有方法单向对齐固定目标的局限，学习得到互补的配对码本。",
+          "流匹配声解码器：BiSAT-TTS将自回归文本-语音语言模型与条件流匹配声学解码器相结合，实现高质量的零样本文本到语音合成。"
+        ],
+        "innovation": [
+          "双向对齐范式：首次提出语义与声学特征的双向对齐机制，取代传统单向对齐冻结语义教师的做法，实现两分支的协同演化与相互增强。",
+          "单流双流兼得：以单一低码率离散码流同时编码声学与语义信息，通过共享索引机制化解双特征编码的干扰问题，兼顾语言建模友好性与声学保真度。",
+          "结构导向理念：提出可访问代码结构对自回归建模至关重要的观点，通过诊断分析证明代码的可解释结构而非重建质量是提升语音语言模型性能的关键。"
+        ],
+        "conclusion": [
+          "低码率高保真：重建实验、冻结码理解实验与诊断分析表明，BiSAT在低码率单流中有效保留了可访问的语言结构与声学结构，验证了框架设计的有效性。",
+          "泛化性能卓越：BiSAT对野外真实场景语音和域外语音均展现出强大的泛化能力，并学习到互补的配对码本，说明双向对齐具有良好的鲁棒性与通用性。",
+          "数据效率领先：BiSAT-TTS以更少的训练数据匹配或超越现有最优的语音LM类TTS基线，证实可访问的代码结构而非单纯重建质量才是自回归语音建模的受益者。"
+        ]
+      }
+    },
+    {
+      "type": "paper",
+      "chineseTitle": "一模多态：面向创意生成的演化系统提示集成",
+      "title": "One Model, Many Modes: Evolving System Prompt Ensembles for Creative Generation",
+      "authors": "Daiwei Chen, Anda He, Binwei Yao, Junjie Hu, Ramya Korlakai Vinayak",
+      "url": "https://arxiv.org/abs/2611.34760",
+      "arxivId": "2611.34760",
+      "direction": "infra",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 7,
+          "relevance": 9,
+          "total": 32,
+          "reason": "紧扣推理技术，免训练实用，评测依赖LLM"
         },
         "citationCount": 0,
         "venue": "",
@@ -163,10 +258,159 @@
         "hasNotableInstitution": false,
         "notableAuthors": [],
         "notableInstitutions": [],
-        "weightedScore": 23
+        "weightedScore": 41
+      },
+      "summary": {
+        "abstract": "本文针对偏好对齐LLM存在的模式坍塌问题，将创造性生成形式化为多目标分布优化问题，提出免训练框架SEPO。该框架结合提示演化与贪心max-min选择，在质量约束下识别行为上互不相同的系统提示，推理时每条响应均匀采样一个提示。在四个创造性任务和三个开源模型上，SEPO在12个设置中的8个于质量-多样性-新颖性调和均值上排名第一，将多样性从1.92提升至3.43、新颖性从1.00提升至3.34（1-5分制），质量从3.72略降至3.30。",
+        "keyTech": [
+          "提示演化优化：通过进化算法迭代生成和筛选系统提示，探索提示空间中的多样化行为模式，无需任何模型训练即可在推理时扩展输出分布的覆盖范围。",
+          "贪心极值选择：采用贪心max-min选择策略，在保证质量约束的前提下挑选行为差异最大的系统提示，确保集成中各提示诱导的响应分布彼此充分分离。",
+          "均匀提示采样：推理阶段从优化后的提示集成中均匀采样一个系统提示生成单条响应，以极低推理开销实现质量、新颖性与多样性兼顾的创造性输出。"
+        ],
+        "innovation": [
+          "问题形式化：首次将创造性生成形式化为质量、新颖性、多样性三目标联合的分布层面优化问题，超越以往仅关注多样性而忽视单条响应质量与新颖性的方法。",
+          "免训练框架：提出SEPO系统提示集成优化框架，仅通过演化系统提示即可在推理时对抗模式坍塌，无需微调模型参数，具有良好的通用性和即插即用性。",
+          "单响应优势：与侧重批量多样性的测试时方法不同，SEPO面向用户只需一条高质量原创响应的实际场景，优化单条输出在三个维度上的综合表现。"
+        ],
+        "conclusion": [
+          "综合性能领先：在四个任务、三个开源模型的12个设置中，SEPO有8个设置在质量-多样性-新颖性调和均值上排名第一，而无基线方法能在超过两个设置中领先。",
+          "显著收益代价：相比基础采样，SEPO将LLM评判的多样性从1.92提升至3.43、新颖性从1.00提升至3.34（1-5分制），质量仅从3.72降至3.30，权衡合理。",
+          "分布分离验证：实验表明扩大优化后的提示集成规模会增强各提示条件响应分布之间的分离度，证实提示集成优化是推理时提升LLM创造力的有效途径。"
+        ]
+      }
+    },
+    {
+      "type": "paper",
+      "chineseTitle": "多视角解读微调差异：模型差分检测后门",
+      "title": "Reading Fine-Tuning Diffs Through Lenses: Model Diffing for Backdoor Detection",
+      "authors": "Maximilian Petrowitsch, Ben Connors, Chris Kapulkin",
+      "url": "https://arxiv.org/abs/2611.34758",
+      "arxivId": "2611.34758",
+      "direction": "infra",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 7,
+          "rigor": 8,
+          "relevance": 9,
+          "total": 32,
+          "reason": "后门检测方法系统评估，改进有效，高度切题"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 41
+      },
+      "summary": {
+        "abstract": "本文提出一种基于token读出的统一评分体系，用于公平评估权重、激活和输出三类模型差异分析方法在后门检测中的效果。研究将tuned-lens及其改进logit-lens引入现有权重与激活方法，在比较后门模型与基座模型的12种实验设置中测试。结果表明经tuned-lens解码的权重差异是最强单一方法，11次将后门token排入前十；不同方法对不同攻击各有脆弱性，不存在能同时抵抗两类攻击的万能方法。",
+        "keyTech": [
+          "统一评分体系：提出基于token读出的通用评分框架，将权重、激活、输出三类模型差异方法置于同一标准下比较，衡量其将命名后门的token排入前列的能力。",
+          "透镜解码技术：将tuned-lens与logit-lens引入权重和激活差异分析，把中间层表示和权重差异映射到词表空间，显著提升后门相关token的可读性。",
+          "模型差异对比：通过比较后门微调模型与其基座模型的差异进行检测，在12种实验设置下系统测试各类方法揭示后门触发机制的实际能力。"
+        ],
+        "innovation": [
+          "权重透镜解码：将基座模型的tuned-lens作用于权重差W2-W1进行解码，在全部实验设置中一致改进权重检测方法，构成最强单一检测信号。",
+          "层内排序优化：利用logit-lens改进单个层内部的token排序效果，提升在特定层中识别后门相关token的精度，作为tuned-lens的有效细化补充。",
+          "双向攻击评估：设计针对输出与激活方法的惩罚性微调攻击和针对权重方法的隐藏单元置换攻击，系统性刻画各类检测方法的鲁棒性边界。"
+        ],
+        "conclusion": [
+          "权重透镜最强：最强单一方法为经基座模型tuned-lens解码的权重差异，在12种实验设置中的11次将命名后门的token排入前十位。",
+          "输出方法脆弱：当后门模型在微调中因在干净输入上赋予后门词概率而受惩罚时，ADL与Diff Mining等输出和激活方法容易失效，而权重方法不受影响。",
+          "无万能方法：置换隐藏单元或仅训练读取残差流的层可对权重方法隐藏后门，但无法欺骗ADL与Diff Mining，因此没有单一方法能同时抵抗两类攻击。"
+        ]
+      }
+    },
+    {
+      "type": "paper",
+      "chineseTitle": "预测榜单确立什么：零样本时序模型分辨率报告",
+      "title": "What a Forecasting Leaderboard Can Establish: Resolution Reporting for Zero-Shot Time-Series Models",
+      "authors": "Arya Sikder, Sriram Pillutla",
+      "url": "https://arxiv.org/abs/2611.31619",
+      "arxivId": "2611.31619",
+      "direction": "infra",
+      "quality": {
+        "score": {
+          "innovation": 8,
+          "practicality": 8,
+          "rigor": 8,
+          "relevance": 6,
+          "total": 30,
+          "reason": "提出榜单分辨率概念与Vernier工具，实证扎实，但偏时序模型评测而非大模型训练推理技术本身"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 41
+      },
+      "summary": {
+        "abstract": "本文针对零样本时间序列基础模型的评估问题，指出公开排行榜虽承载主要模型比较，却未说明其数据集能检测多小的性能差异。作者提出'榜单分辨率'概念并开发Vernier工具，仅利用榜单已公开的文件即可计算分辨率、识别无法与领先者区分的条目、检验排名对提交池的敏感性。实验显示GIFT-Eval分辨率仅6.8个名次，前十名不足两个可分辨步长；fev-bench等榜单分辨率是相邻差距的3.6至19倍；仅BOOM能分辨其前十。四个榜单中43对前十条目因池内相对排名规则被反转。此外缩短输入历史使四个开源模型中三个误差上升。",
+        "keyTech": [
+          "分辨率度量：定义榜单分辨率为数据集可检测的最小性能差异，以名次步长量化，从榜单已发布的逐数据集得分文件中直接计算，无需重新运行任何模型。",
+          "独立性建模：将每个测试序列视为独立信息源来估计分辨率的统计下界，BOOM凭借2554条独立序列成为唯一能分辨前十名的榜单，揭示序列数量决定榜单判别力。",
+          "稳定性检验：通过模拟无关方提交导致的提交池变化，检验榜单排名顺序的稳健性，采用池内相对排名规则重放历史更新，量化排名反转的频率与规模。",
+          "历史审计法：审查榜单是否记录模型获得的输入历史长度，并在70种配置上系统缩短历史窗口，测量对开源零样本模型预测误差的影响程度。"
+        ],
+        "innovation": [
+          "首提分辨率：首次将光学仪器分辨率概念引入预测榜单评估，指出榜单如同游标卡尺，其判别能力存在物理下限，低于此限的排名差异不具统计学意义。",
+          "零成本审计：Vernier工具仅需一条命令即可对任何发布逐数据集得分的排行榜生成分辨率报告，无需访问模型或重新评测，实现完全非侵入式的榜单诊断。",
+          "揭示池依赖：证明池内相对排名规则使名次依赖同场竞争者而非绝对能力，四个榜单中每七次更新就有一次反转43对前十条目，且双方均未重新运行。",
+          "历史缺失披露：首次指出榜单普遍不记录模型输入历史长度这一关键变量，并通过受控实验证明其对零样本模型性能有实质性影响，暴露评估协议的盲区。"
+        ],
+        "conclusion": [
+          "分辨率不足：GIFT-Eval分辨率仅6.8个名次而相邻条目平均仅差0.91，前十名不足两个可分辨步长；fev-bench等榜单分辨率为相邻差距的3.6至19倍。",
+          "排名不可靠：低于分辨率的排名顺序实质上由提交池构成决定，四个榜单中相对排名规则在无重跑情况下反转43对前十条目，发生率约为每七次更新一次。",
+          "BOOM独可靠：在所有受测榜单中，仅拥有2554条独立序列的BOOM能真正分辨其前十名，证明足够的独立测试序列是榜单具备判别能力的必要条件。",
+          "历史影响显著：缩短输入历史使四个开源模型中三个误差上升，其中两个误差增幅达15%，而榜单不记录该变量，导致不同历史条件下得分的可比性存疑。"
+        ]
+      }
+    },
+    {
+      "type": "paper",
+      "chineseTitle": "再探大语言模型作为上下文工程师",
+      "title": "Revisiting LLMs as Context Engineers",
+      "authors": "Junrui Zhang, Zeyu Xu, Runchuan Zhu, Jie Peng, Long Zhang, Zixin Ding, Jiaxin Lin, Kai Wang, Jianmin Ji, Junyuan Hong",
+      "url": "https://arxiv.org/abs/2611.30494",
+      "arxivId": "2611.30494",
+      "direction": "infra",
+      "quality": {
+        "score": {
+          "innovation": 7,
+          "practicality": 7,
+          "rigor": 8,
+          "relevance": 9,
+          "total": 31,
+          "reason": "系统评测LCE方法，揭示失败模式多样性瓶颈，属分析型研究"
+        },
+        "citationCount": 0,
+        "venue": "",
+        "isTopVenue": false,
+        "notableAuthors": [],
+        "notableInstitutions": [],
+        "weightedScore": 40.4
+      },
+      "summary": {
+        "abstract": "本文系统考察大语言模型作为上下文工程师（LCE）从离线试验中提炼指令与经验的能力。作者构建涵盖多种推理模式的基准数据集，在8B规模的不同模型家族上对比多种LCE方法，发现没有单一方法能在所有任务上胜出，甚至不敌思维链等简单基线；扩大参数量或生成迭代次数也未能稳定提升性能。分析表明，LCE的性能增益与推理轨迹失败模式多样性呈显著负相关，指令遵循度的提升仅能解释部分成功，而从原生多样化失败中提炼有效经验是主要瓶颈，为后续研究提供了方向性指引。",
+        "keyTech": [
+          "上下文工程：通过构造指令提示或元数据来高效引导大语言模型完成新任务，无需进行密集训练，是自动化任务求解的重要手段。",
+          "基准构建：建立由不同推理模式数据集组成的评测基准，对8B规模的不同模型家族与多种LCE方法进行系统全面的比较分析。",
+          "失败模式分析：统计推理轨迹失败模式的多样性，量化LCE性能增益与其负相关关系，并检验指令遵循度对成功的解释作用。",
+          "经验提炼机制：将LLM自身作为工程师，从离线试验中抽取可泛化的指令或经验作为上下文，模拟人类从经验中学习的过程。"
+        ],
+        "innovation": [
+          "系统评测框架：首次跨任务、跨模型家族系统比较多种LCE方法与简单基线，全面揭示上下文工程方法的真实能力边界与适用条件。",
+          "相关性发现：发现LCE性能增益与推理轨迹失败模式多样性之间存在显著负相关，为判断上下文工程何时有效提供了量化依据。",
+          "作用机制剖析：深入分析LCE工作原理，指出指令遵循度提升可解释部分成功，而从多样化失败中提炼有效经验是核心瓶颈。"
+        ],
+        "conclusion": [
+          "无通用赢家：没有任何单一LCE方法能在所有任务上胜出，思维链等简单基线在部分任务上仍具竞争力，方法选择需因任务而异。",
+          "扩展收益有限：通过增加模型参数量或生成迭代次数来扩展模型能力，并不能稳定持续提升LCE方法已有的性能表现。",
+          "抽象能力受限：LCE从多样化失败模式中抽象原则性上下文的能力存在明显局限，失败模式越多样，其增益越低，亟需针对性改进。"
+        ]
       }
     }
-  ],
-  "generated_at": "2026-11-27T22:45:43.654Z",
-  "org": "老许 AI 研究室"
+  ]
 }
