@@ -4,94 +4,112 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>技术洞察 · 每日存档</title>
+<link rel="preconnect" href="https://fonts.loli.net">
+<link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@400;600;900&display=swap">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { font-size: 15px; }
+  html { font-size: 15.5px; }
   body {
-    font-family: "Source Serif SC", "Noto Serif SC", "Songti SC", "SimSun", Georgia, serif;
-    background: #f7f5f0;
-    color: #22201c;
-    line-height: 1.7;
+    font-family: "Noto Serif SC", "Source Serif SC", "Songti SC", "SimSun", Georgia, serif;
+    background: #f8f6f1;
+    color: #23211c;
+    line-height: 1.75;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 24px 64px; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 56px 24px 72px; }
 
-  header.masthead {
-    border-bottom: 3px double #22201c;
-    padding-bottom: 18px;
-    margin-bottom: 40px;
+  .masthead { text-align: center; margin-bottom: 52px; }
+  .masthead .en {
+    font-size: .68rem; letter-spacing: .42em; color: #8d8578;
+    text-transform: uppercase; margin-bottom: 14px;
   }
   .masthead h1 {
-    font-size: 2rem;
-    letter-spacing: .12em;
-    font-weight: 700;
+    font-size: 2.6rem; font-weight: 900; letter-spacing: .3em;
+    text-indent: .3em;
+    margin-bottom: 14px;
+  }
+  .masthead .rule {
+    height: 3px; border-top: 1px solid #23211c; border-bottom: 1px solid #23211c;
+    margin: 0 auto 12px;
   }
   .masthead .sub {
-    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px;
-    margin-top: 6px;
-    font-size: .78rem; color: #6b655c; letter-spacing: .08em;
+    font-size: .78rem; color: #6f695e; letter-spacing: .14em;
+    display: flex; justify-content: space-between;
   }
 
-  .latest {
-    margin-bottom: 48px;
+  .latest { text-align: center; margin-bottom: 64px; }
+  .latest .issue {
+    display: inline-flex; align-items: center; gap: 12px;
+    font-size: .75rem; letter-spacing: .3em; color: #a4342a;
+    margin-bottom: 20px;
   }
-  .latest .tag {
-    display: inline-block;
-    font-size: .72rem; letter-spacing: .25em;
-    color: #a4342a; border: 1px solid #a4342a;
-    padding: 2px 10px; margin-bottom: 14px;
+  .latest .issue::before, .latest .issue::after {
+    content: ""; width: 32px; height: 1px; background: #a4342a;
   }
-  .latest a {
-    display: block;
-    font-size: 1.45rem; font-weight: 700; line-height: 1.45;
-    color: #22201c; text-decoration: none;
-    border-bottom: 1px solid #22201c;
-    padding-bottom: 16px;
+  .latest h2 { margin-bottom: 16px; }
+  .latest h2 a {
+    color: #23211c; text-decoration: none;
+    font-size: 1.8rem; font-weight: 900; line-height: 1.5;
+    background-image: linear-gradient(#a4342a, #a4342a);
+    background-size: 0 2px; background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size .35s ease, color .2s;
   }
-  .latest a:hover { color: #a4342a; border-color: #a4342a; }
-  .latest .date { font-size: .8rem; color: #6b655c; margin-top: 10px; letter-spacing: .1em; }
-
-  h2.arch-title {
-    font-size: .85rem; letter-spacing: .3em; color: #6b655c;
-    border-top: 1px solid #22201c;
-    padding-top: 10px; margin-bottom: 28px;
-  }
-
-  section.month { margin-bottom: 36px; }
-  section.month h3 {
-    font-size: 1.05rem; font-weight: 700;
-    margin-bottom: 10px;
-    color: #22201c;
-  }
-  section.month ul { list-style: none; }
-  section.month li {
-    display: flex; gap: 14px; align-items: baseline;
-    padding: 7px 0;
-    border-bottom: 1px dotted #d6d0c4;
-  }
-  section.month li:last-child { border-bottom: none; }
-  section.month .d {
-    flex: none; width: 2.2em; text-align: right;
-    font-size: .8rem; color: #a49c8f;
+  .latest h2 a:hover { color: #a4342a; background-size: 100% 2px; }
+  .latest .date {
+    font-size: .8rem; color: #8d8578; letter-spacing: .2em;
     font-variant-numeric: tabular-nums;
   }
-  section.month a {
-    color: #33302a; text-decoration: none;
-    font-size: .95rem;
+
+  .arch-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-top: 2px solid #23211c; padding-top: 12px; margin-bottom: 32px;
   }
-  section.month a:hover { color: #a4342a; text-decoration: underline; text-underline-offset: 3px; }
+  .arch-head .t { font-size: .85rem; letter-spacing: .35em; color: #23211c; font-weight: 600; }
+  .arch-head .n { font-size: .75rem; color: #8d8578; letter-spacing: .1em; }
+
+  .months { display: grid; grid-template-columns: 1fr 1fr; column-gap: 48px; }
+  section.month { margin-bottom: 40px; break-inside: avoid; }
+  section.month h3 {
+    display: flex; align-items: baseline; justify-content: space-between;
+    border-bottom: 1px solid #23211c;
+    padding-bottom: 6px; margin-bottom: 4px;
+  }
+  section.month .ym { font-size: 1rem; font-weight: 600; letter-spacing: .06em; }
+  section.month .cnt { font-size: .7rem; color: #a49c8f; letter-spacing: .1em; }
+  section.month ul { list-style: none; }
+  section.month li {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px dotted #d9d3c6;
+  }
+  section.month li:last-child { border-bottom: none; }
+  section.month a {
+    flex: 1; min-width: 0;
+    color: #33302a; text-decoration: none;
+    font-size: .92rem; line-height: 1.6;
+  }
+  section.month a:hover { color: #a4342a; }
+  section.month .d {
+    flex: none;
+    font-size: .72rem; color: #b3aa9a;
+    font-variant-numeric: tabular-nums; letter-spacing: .05em;
+  }
 
   footer {
-    margin-top: 56px; padding-top: 16px;
-    border-top: 1px solid #d6d0c4;
-    font-size: .75rem; color: #a49c8f; letter-spacing: .06em;
-    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 16px;
+    margin-top: 64px; padding-top: 18px;
+    border-top: 1px solid #d9d3c6;
+    font-size: .72rem; color: #a49c8f; letter-spacing: .08em;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px 16px;
   }
 
   @media (max-width: 640px) {
-    html { font-size: 14px; }
-    .wrap { padding: 32px 18px 48px; }
-    .latest a { font-size: 1.2rem; }
+    html { font-size: 14.5px; }
+    .wrap { padding: 36px 18px 56px; }
+    .masthead h1 { font-size: 2rem; }
+    .latest h2 a { font-size: 1.35rem; }
+    .months { grid-template-columns: 1fr; column-gap: 0; }
   }
 </style>
 </head>
@@ -99,162 +117,169 @@
 <div class="wrap">
 
   <header class="masthead">
+    <div class="en">Daily Technical Insights</div>
     <h1>技术洞察</h1>
+    <div class="rule"></div>
     <div class="sub">
       <span>大模型训练与推理 · 每日存档</span>
-      <span>自 2026-03-25 起 · 共 107 期</span>
+      <span>自 2026-03-25 起</span>
     </div>
   </header>
 
   <section class="latest">
-    <span class="tag">最新一期</span>
-    <a href="reports/2026-11/2026-11-28.html">复杂场景下鲁棒智能体决策训练与可信评估</a>
+    <div class="issue">第 107 期 · 最新</div>
+    <h2><a href="reports/2026-11/2026-11-28.html">复杂场景下鲁棒智能体决策训练与可信评估</a></h2>
     <div class="date">2026-11-28</div>
   </section>
 
-  <h2 class="arch-title">往 期 存 档</h2>
+  <div class="arch-head">
+    <span class="t">往 期 存 档</span>
+    <span class="n">共 107 期</span>
+  </div>
 
+  <div class="months">
         <section class="month">
-        <h3>2026 年 11 月</h3>
-        <ul>
-          <li><span class="d">28</span><a href="reports/2026-11/2026-11-28.html">复杂场景下鲁棒智能体决策训练与可信评估</a></li>
-          <li><span class="d">27</span><a href="reports/2026-11/2026-11-27.html">大模型训练与推理的因果机制与可信评测研究</a></li>
-          <li><span class="d">26</span><a href="reports/2026-11/2026-11-26.html">大模型训推技术每日洞察</a></li>
-          <li><span class="d">25</span><a href="reports/2026-11/2026-11-25_1.html">大模型训推技术每日洞察</a></li>
-          <li><span class="d">25</span><a href="reports/2026-11/2026-11-25.html">大模型训推技术每日洞察</a></li>
-          <li><span class="d">24</span><a href="reports/2026-11/2026-11-24_2.html">大模型训推技术每日洞察</a></li>
-          <li><span class="d">24</span><a href="reports/2026-11/2026-11-24_1.html">AI技术每日洞察报告</a></li>
-          <li><span class="d">24</span><a href="reports/2026-11/2026-11-24.html">大模型融合推理优化与多智能体安全训练新进展</a></li>
-          <li><span class="d">23</span><a href="reports/2026-11/2026-11-23.html">AI技术每日洞察报告</a></li>
-        </ul>
-      </section>
+          <h3><span class="ym">2026 年 11 月</span><span class="cnt">9 期</span></h3>
+          <ul>
+            <li><a href="reports/2026-11/2026-11-28.html">复杂场景下鲁棒智能体决策训练与可信评估</a><span class="d">28日</span></li>
+            <li><a href="reports/2026-11/2026-11-27.html">大模型训练与推理的因果机制与可信评测研究</a><span class="d">27日</span></li>
+            <li><a href="reports/2026-11/2026-11-26.html">大模型训推技术每日洞察</a><span class="d">26日</span></li>
+            <li><a href="reports/2026-11/2026-11-25_1.html">大模型训推技术每日洞察</a><span class="d">25日</span></li>
+            <li><a href="reports/2026-11/2026-11-25.html">大模型训推技术每日洞察</a><span class="d">25日</span></li>
+            <li><a href="reports/2026-11/2026-11-24_2.html">大模型训推技术每日洞察</a><span class="d">24日</span></li>
+            <li><a href="reports/2026-11/2026-11-24_1.html">AI技术每日洞察报告</a><span class="d">24日</span></li>
+            <li><a href="reports/2026-11/2026-11-24.html">大模型融合推理优化与多智能体安全训练新进展</a><span class="d">24日</span></li>
+            <li><a href="reports/2026-11/2026-11-23.html">AI技术每日洞察报告</a><span class="d">23日</span></li>
+          </ul>
+        </section>
         <section class="month">
-        <h3>2026 年 7 月</h3>
-        <ul>
-          <li><span class="d">07</span><a href="reports/2026-07/2026-07-07.html">AI技术每日洞察报告</a></li>
-          <li><span class="d">03</span><a href="reports/2026-07/2026-07-03.html">AI技术每日洞察报告</a></li>
-          <li><span class="d">02</span><a href="reports/2026-07/2026-07-02_1.html">AI技术每日洞察报告</a></li>
-          <li><span class="d">02</span><a href="reports/2026-07/2026-07-02.html">AI技术每日洞察报告</a></li>
-        </ul>
-      </section>
+          <h3><span class="ym">2026 年 7 月</span><span class="cnt">4 期</span></h3>
+          <ul>
+            <li><a href="reports/2026-07/2026-07-07.html">AI技术每日洞察报告</a><span class="d">7日</span></li>
+            <li><a href="reports/2026-07/2026-07-03.html">AI技术每日洞察报告</a><span class="d">3日</span></li>
+            <li><a href="reports/2026-07/2026-07-02_1.html">AI技术每日洞察报告</a><span class="d">2日</span></li>
+            <li><a href="reports/2026-07/2026-07-02.html">AI技术每日洞察报告</a><span class="d">2日</span></li>
+          </ul>
+        </section>
         <section class="month">
-        <h3>2026 年 6 月</h3>
-        <ul>
-          <li><span class="d">24</span><a href="reports/2026-06/2026-06-24.html">大模型认知边界突破 从记忆机制到安全对齐的七维创新图谱</a></li>
-          <li><span class="d">23</span><a href="reports/2026-06/2026-06-23.html">大模型技术突破 从语义革新到零样本智能应用</a></li>
-          <li><span class="d">22</span><a href="reports/2026-06/2026-06-22.html">大模型评估革新与多语言智能 从信度危机到语境认知的七大突破</a></li>
-          <li><span class="d">21</span><a href="reports/2026-06/2026-06-21.html">大模型技术突破 从注意力机制到多语言应用的全景创新</a></li>
-          <li><span class="d">20</span><a href="reports/2026-06/2026-06-20.html">大模型安全与效率突破 从偏好优化到跨设备智能体系统创新</a></li>
-          <li><span class="d">19</span><a href="reports/2026-06/2026-06-19.html">大模型创新突破 从语义对齐到临床接口的七维跃迁</a></li>
-          <li><span class="d">18</span><a href="reports/2026-06/2026-06-18.html">大模型创新突破 从代码智能到人文计算的七维跃迁</a></li>
-          <li><span class="d">17</span><a href="reports/2026-06/2026-06-17.html">大模型安全评估与效率优化 从语言偏差到智能体可信度的全栈创新</a></li>
-          <li><span class="d">16</span><a href="reports/2026-06/2026-06-16.html">大模型七维突破 从认知对齐到具身智能与全双工交互</a></li>
-          <li><span class="d">15</span><a href="reports/2026-06/2026-06-15.html">大模型评测攻防与垂直场景应用突破</a></li>
-          <li><span class="d">14</span><a href="reports/2026-06/2026-06-14.html">大模型评测革新与多模态应用突破全景报告</a></li>
-          <li><span class="d">13</span><a href="reports/2026-06/2026-06-13.html">大模型幻觉检测与跨域应用创新全景</a></li>
-          <li><span class="d">12</span><a href="reports/2026-06/2026-06-12.html">大模型可信性与认知边界 从依赖审计到对抗韧性的全栈透视</a></li>
-          <li><span class="d">11</span><a href="reports/2026-06/2026-06-11.html">大模型可信审计与交互对齐 从推理安全到跨文化适配的技术前沿</a></li>
-          <li><span class="d">10</span><a href="reports/2026-06/2026-06-10.html">大模型创新与应用全景洞察 从多语言数字化到因果可学习性的七维</a></li>
-          <li><span class="d">09</span><a href="reports/2026-06/2026-06-09.html">大模型评测革新与垂直场景智能进化</a></li>
-          <li><span class="d">08</span><a href="reports/2026-06/2026-06-08.html">大模型路由优化与可信评估技术突破</a></li>
-          <li><span class="d">07</span><a href="reports/2026-06/2026-06-07.html">大模型审计、适配与认知重构 七篇前沿论文揭示AI可靠性新范式</a></li>
-          <li><span class="d">06</span><a href="reports/2026-06/2026-06-06.html">大模型认知边界与真实场景适配性深度解析</a></li>
-          <li><span class="d">05</span><a href="reports/2026-06/2026-06-05.html">大模型能力探测与智能体博弈 从语言理解到推理规划的范式革新</a></li>
-          <li><span class="d">04</span><a href="reports/2026-06/2026-06-04.html">大模型推理革新与安全防御 从可控思维到跨语言漏洞与后门泛化消</a></li>
-          <li><span class="d">03</span><a href="reports/2026-06/2026-06-03.html">大模型安全与效率攻坚 从细粒度压缩到多轮风险防控</a></li>
-          <li><span class="d">02</span><a href="reports/2026-06/2026-06-02.html">大模型能力边界突破与可信评估新范式</a></li>
-          <li><span class="d">01</span><a href="reports/2026-06/2026-06-01.html">大模型"黑箱"诊断革命 从神经表征到数据血缘的全栈穿透</a></li>
-        </ul>
-      </section>
+          <h3><span class="ym">2026 年 6 月</span><span class="cnt">24 期</span></h3>
+          <ul>
+            <li><a href="reports/2026-06/2026-06-24.html">大模型认知边界突破 从记忆机制到安全对齐的七维创新图谱</a><span class="d">24日</span></li>
+            <li><a href="reports/2026-06/2026-06-23.html">大模型技术突破 从语义革新到零样本智能应用</a><span class="d">23日</span></li>
+            <li><a href="reports/2026-06/2026-06-22.html">大模型评估革新与多语言智能 从信度危机到语境认知的七大突破</a><span class="d">22日</span></li>
+            <li><a href="reports/2026-06/2026-06-21.html">大模型技术突破 从注意力机制到多语言应用的全景创新</a><span class="d">21日</span></li>
+            <li><a href="reports/2026-06/2026-06-20.html">大模型安全与效率突破 从偏好优化到跨设备智能体系统创新</a><span class="d">20日</span></li>
+            <li><a href="reports/2026-06/2026-06-19.html">大模型创新突破 从语义对齐到临床接口的七维跃迁</a><span class="d">19日</span></li>
+            <li><a href="reports/2026-06/2026-06-18.html">大模型创新突破 从代码智能到人文计算的七维跃迁</a><span class="d">18日</span></li>
+            <li><a href="reports/2026-06/2026-06-17.html">大模型安全评估与效率优化 从语言偏差到智能体可信度的全栈创新</a><span class="d">17日</span></li>
+            <li><a href="reports/2026-06/2026-06-16.html">大模型七维突破 从认知对齐到具身智能与全双工交互</a><span class="d">16日</span></li>
+            <li><a href="reports/2026-06/2026-06-15.html">大模型评测攻防与垂直场景应用突破</a><span class="d">15日</span></li>
+            <li><a href="reports/2026-06/2026-06-14.html">大模型评测革新与多模态应用突破全景报告</a><span class="d">14日</span></li>
+            <li><a href="reports/2026-06/2026-06-13.html">大模型幻觉检测与跨域应用创新全景</a><span class="d">13日</span></li>
+            <li><a href="reports/2026-06/2026-06-12.html">大模型可信性与认知边界 从依赖审计到对抗韧性的全栈透视</a><span class="d">12日</span></li>
+            <li><a href="reports/2026-06/2026-06-11.html">大模型可信审计与交互对齐 从推理安全到跨文化适配的技术前沿</a><span class="d">11日</span></li>
+            <li><a href="reports/2026-06/2026-06-10.html">大模型创新与应用全景洞察 从多语言数字化到因果可学习性的七维</a><span class="d">10日</span></li>
+            <li><a href="reports/2026-06/2026-06-09.html">大模型评测革新与垂直场景智能进化</a><span class="d">9日</span></li>
+            <li><a href="reports/2026-06/2026-06-08.html">大模型路由优化与可信评估技术突破</a><span class="d">8日</span></li>
+            <li><a href="reports/2026-06/2026-06-07.html">大模型审计、适配与认知重构 七篇前沿论文揭示AI可靠性新范式</a><span class="d">7日</span></li>
+            <li><a href="reports/2026-06/2026-06-06.html">大模型认知边界与真实场景适配性深度解析</a><span class="d">6日</span></li>
+            <li><a href="reports/2026-06/2026-06-05.html">大模型能力探测与智能体博弈 从语言理解到推理规划的范式革新</a><span class="d">5日</span></li>
+            <li><a href="reports/2026-06/2026-06-04.html">大模型推理革新与安全防御 从可控思维到跨语言漏洞与后门泛化消</a><span class="d">4日</span></li>
+            <li><a href="reports/2026-06/2026-06-03.html">大模型安全与效率攻坚 从细粒度压缩到多轮风险防控</a><span class="d">3日</span></li>
+            <li><a href="reports/2026-06/2026-06-02.html">大模型能力边界突破与可信评估新范式</a><span class="d">2日</span></li>
+            <li><a href="reports/2026-06/2026-06-01.html">大模型"黑箱"诊断革命 从神经表征到数据血缘的全栈穿透</a><span class="d">1日</span></li>
+          </ul>
+        </section>
         <section class="month">
-        <h3>2026 年 5 月</h3>
-        <ul>
-          <li><span class="d">31</span><a href="reports/2026-05/2026-05-31.html">大模型评估革新与跨域应用突破 从统计诊断到临床推理与数学生成</a></li>
-          <li><span class="d">30</span><a href="reports/2026-05/2026-05-30.html">大模型智能体认知跃迁 从多语言感知到类人心理的全景突破</a></li>
-          <li><span class="d">29</span><a href="reports/2026-05/2026-05-29.html">大模型推理进化与多模态应用突破 从结构化解析到自主智能体</a></li>
-          <li><span class="d">28</span><a href="reports/2026-05/2026-05-28.html">大模型可信评估与知识治理 从反事实推理到动态监督的范式革新</a></li>
-          <li><span class="d">27</span><a href="reports/2026-05/2026-05-27.html">大模型评测革新与低资源应用突破 从梯度冲突到流式画像的全景演</a></li>
-          <li><span class="d">26</span><a href="reports/2026-05/2026-05-26.html">大模型评测革新与智能进化 从基准诊断到自主提升的技术跃迁</a></li>
-          <li><span class="d">25</span><a href="reports/2026-05/2026-05-25.html">大模型创新突破 分词架构、具身语义与智能体安全新范式</a></li>
-          <li><span class="d">24</span><a href="reports/2026-05/2026-05-24.html">大模型效率革命与认知边界突破 从提示优化到超拟合新范式</a></li>
-          <li><span class="d">23</span><a href="reports/2026-05/2026-05-23.html">大模型效率革命 从增量智能体到物理先验融合</a></li>
-          <li><span class="d">22</span><a href="reports/2026-05/2026-05-22.html">大模型效率革命 从解码优化到记忆范式的七维突破</a></li>
-          <li><span class="d">21</span><a href="reports/2026-05/2026-05-21.html">大模型推理革新与垂直场景深度应用新范式</a></li>
-          <li><span class="d">20</span><a href="reports/2026-05/2026-05-20.html">多维偏好建模与模型蒸馏 大模型轻量化与评估革新之路</a></li>
-          <li><span class="d">18</span><a href="reports/2026-05/2026-05-18.html">大模型技术突破 从推理优化到科学发现与安全可控</a></li>
-          <li><span class="d">17</span><a href="reports/2026-05/2026-05-17.html">大模型可信评估与智能体进化 从噪声解耦到群体记忆的技术突围</a></li>
-          <li><span class="d">16</span><a href="reports/2026-05/2026-05-16.html">大模型效能革新 从数据自动化到决策架构解耦</a></li>
-          <li><span class="d">15</span><a href="reports/2026-05/2026-05-15.html">大模型从理论根基到应用前沿 权重通信、编译优化与长上下文推理</a></li>
-          <li><span class="d">14</span><a href="reports/2026-05/2026-05-14.html">大模型溯源、评估与纠偏 七篇前沿论文透视技术突破与治理新范式</a></li>
-          <li><span class="d">13</span><a href="reports/2026-05/2026-05-13.html">大模型对齐与评估 从文化分歧到多维质量重构</a></li>
-          <li><span class="d">12</span><a href="reports/2026-05/2026-05-12.html">大模型创新突破 从反事实推理到自主架构设计与可信评估</a></li>
-          <li><span class="d">11</span><a href="reports/2026-05/2026-05-11_1.html">大模型安全、效率与智能体能力边界突破</a></li>
-          <li><span class="d">11</span><a href="reports/2026-05/2026-05-11.html">大模型认知重构 从问题前设到注意力重塑的安全进化</a></li>
-          <li><span class="d">09</span><a href="reports/2026-05/2026-05-09_2.html">大模型推理优化与可信评估 从智能体协同到统计理论突破</a></li>
-          <li><span class="d">09</span><a href="reports/2026-05/2026-05-09_1.html">大模型推理革新 从深度强化学习到多模态泛化的七维突破</a></li>
-          <li><span class="d">09</span><a href="reports/2026-05/2026-05-09.html">位置编码革新与压缩模型对齐 大模型效率优化的双重突破</a></li>
-          <li><span class="d">08</span><a href="reports/2026-05/2026-05-08.html">大模型技术突破七维 从几何感知到智能体进化</a></li>
-          <li><span class="d">07</span><a href="reports/2026-05/2026-05-07.html">大模型全栈革新 从量子认知到E级算力的七维突破</a></li>
-          <li><span class="d">06</span><a href="reports/2026-05/2026-05-06.html">大模型高效归因与多模态手语理解新范式</a></li>
-          <li><span class="d">05</span><a href="reports/2026-05/2026-05-05.html">大模型效能革命 从训练优化到推理可信的全栈突破</a></li>
-          <li><span class="d">04</span><a href="reports/2026-05/2026-05-04.html">流匹配视频生成 解耦双目标实现多样与一致兼得</a></li>
-          <li><span class="d">03</span><a href="reports/2026-05/2026-05-03.html">最大似然强化学习 突破RL低阶近似瓶颈的新范式</a></li>
-          <li><span class="d">02</span><a href="reports/2026-05/2026-05-02.html">大模型安全、认知与智能体技术前沿突破</a></li>
-          <li><span class="d">01</span><a href="reports/2026-05/2026-05-01.html">大模型创新与应用全景洞察 从理论根基到智能体实践</a></li>
-        </ul>
-      </section>
+          <h3><span class="ym">2026 年 5 月</span><span class="cnt">32 期</span></h3>
+          <ul>
+            <li><a href="reports/2026-05/2026-05-31.html">大模型评估革新与跨域应用突破 从统计诊断到临床推理与数学生成</a><span class="d">31日</span></li>
+            <li><a href="reports/2026-05/2026-05-30.html">大模型智能体认知跃迁 从多语言感知到类人心理的全景突破</a><span class="d">30日</span></li>
+            <li><a href="reports/2026-05/2026-05-29.html">大模型推理进化与多模态应用突破 从结构化解析到自主智能体</a><span class="d">29日</span></li>
+            <li><a href="reports/2026-05/2026-05-28.html">大模型可信评估与知识治理 从反事实推理到动态监督的范式革新</a><span class="d">28日</span></li>
+            <li><a href="reports/2026-05/2026-05-27.html">大模型评测革新与低资源应用突破 从梯度冲突到流式画像的全景演</a><span class="d">27日</span></li>
+            <li><a href="reports/2026-05/2026-05-26.html">大模型评测革新与智能进化 从基准诊断到自主提升的技术跃迁</a><span class="d">26日</span></li>
+            <li><a href="reports/2026-05/2026-05-25.html">大模型创新突破 分词架构、具身语义与智能体安全新范式</a><span class="d">25日</span></li>
+            <li><a href="reports/2026-05/2026-05-24.html">大模型效率革命与认知边界突破 从提示优化到超拟合新范式</a><span class="d">24日</span></li>
+            <li><a href="reports/2026-05/2026-05-23.html">大模型效率革命 从增量智能体到物理先验融合</a><span class="d">23日</span></li>
+            <li><a href="reports/2026-05/2026-05-22.html">大模型效率革命 从解码优化到记忆范式的七维突破</a><span class="d">22日</span></li>
+            <li><a href="reports/2026-05/2026-05-21.html">大模型推理革新与垂直场景深度应用新范式</a><span class="d">21日</span></li>
+            <li><a href="reports/2026-05/2026-05-20.html">多维偏好建模与模型蒸馏 大模型轻量化与评估革新之路</a><span class="d">20日</span></li>
+            <li><a href="reports/2026-05/2026-05-18.html">大模型技术突破 从推理优化到科学发现与安全可控</a><span class="d">18日</span></li>
+            <li><a href="reports/2026-05/2026-05-17.html">大模型可信评估与智能体进化 从噪声解耦到群体记忆的技术突围</a><span class="d">17日</span></li>
+            <li><a href="reports/2026-05/2026-05-16.html">大模型效能革新 从数据自动化到决策架构解耦</a><span class="d">16日</span></li>
+            <li><a href="reports/2026-05/2026-05-15.html">大模型从理论根基到应用前沿 权重通信、编译优化与长上下文推理</a><span class="d">15日</span></li>
+            <li><a href="reports/2026-05/2026-05-14.html">大模型溯源、评估与纠偏 七篇前沿论文透视技术突破与治理新范式</a><span class="d">14日</span></li>
+            <li><a href="reports/2026-05/2026-05-13.html">大模型对齐与评估 从文化分歧到多维质量重构</a><span class="d">13日</span></li>
+            <li><a href="reports/2026-05/2026-05-12.html">大模型创新突破 从反事实推理到自主架构设计与可信评估</a><span class="d">12日</span></li>
+            <li><a href="reports/2026-05/2026-05-11_1.html">大模型安全、效率与智能体能力边界突破</a><span class="d">11日</span></li>
+            <li><a href="reports/2026-05/2026-05-11.html">大模型认知重构 从问题前设到注意力重塑的安全进化</a><span class="d">11日</span></li>
+            <li><a href="reports/2026-05/2026-05-09_2.html">大模型推理优化与可信评估 从智能体协同到统计理论突破</a><span class="d">9日</span></li>
+            <li><a href="reports/2026-05/2026-05-09_1.html">大模型推理革新 从深度强化学习到多模态泛化的七维突破</a><span class="d">9日</span></li>
+            <li><a href="reports/2026-05/2026-05-09.html">位置编码革新与压缩模型对齐 大模型效率优化的双重突破</a><span class="d">9日</span></li>
+            <li><a href="reports/2026-05/2026-05-08.html">大模型技术突破七维 从几何感知到智能体进化</a><span class="d">8日</span></li>
+            <li><a href="reports/2026-05/2026-05-07.html">大模型全栈革新 从量子认知到E级算力的七维突破</a><span class="d">7日</span></li>
+            <li><a href="reports/2026-05/2026-05-06.html">大模型高效归因与多模态手语理解新范式</a><span class="d">6日</span></li>
+            <li><a href="reports/2026-05/2026-05-05.html">大模型效能革命 从训练优化到推理可信的全栈突破</a><span class="d">5日</span></li>
+            <li><a href="reports/2026-05/2026-05-04.html">流匹配视频生成 解耦双目标实现多样与一致兼得</a><span class="d">4日</span></li>
+            <li><a href="reports/2026-05/2026-05-03.html">最大似然强化学习 突破RL低阶近似瓶颈的新范式</a><span class="d">3日</span></li>
+            <li><a href="reports/2026-05/2026-05-02.html">大模型安全、认知与智能体技术前沿突破</a><span class="d">2日</span></li>
+            <li><a href="reports/2026-05/2026-05-01.html">大模型创新与应用全景洞察 从理论根基到智能体实践</a><span class="d">1日</span></li>
+          </ul>
+        </section>
         <section class="month">
-        <h3>2026 年 4 月</h3>
-        <ul>
-          <li><span class="d">30</span><a href="reports/2026-04/2026-04-30_1.html">大模型基础设施革新 从智能体原生服务到绿色算力协同</a></li>
-          <li><span class="d">30</span><a href="reports/2026-04/2026-04-30.html">Tsallis损失统一训练范式，递归多智能体开启系统级缩放，</a></li>
-          <li><span class="d">29</span><a href="reports/2026-04/2026-04-29_1.html">记忆增强与语义重构 大模型跨模态编辑、长上下文三维重建及AI</a></li>
-          <li><span class="d">29</span><a href="reports/2026-04/2026-04-29.html">大模型创新与应用全景洞察 从视觉架构革新到分布式训练优化的七</a></li>
-          <li><span class="d">28</span><a href="reports/2026-04/2026-04-28_2.html">大模型创新纵深突破 从对齐安全到算力基建的七维重构</a></li>
-          <li><span class="d">28</span><a href="reports/2026-04/2026-04-28_1.html">大模型安全攻防与系统优化前沿突破</a></li>
-          <li><span class="d">28</span><a href="reports/2026-04/2026-04-28.html">数据逆向重建与智能体光学控制双突破</a></li>
-          <li><span class="d">27</span><a href="reports/2026-04/2026-04-27.html">大模型推理革新与跨域应用 从隐空间对齐到金融决策智能</a></li>
-          <li><span class="d">26</span><a href="reports/2026-04/2026-04-26.html">大模型记忆机制与多域应用创新全景报告</a></li>
-          <li><span class="d">25</span><a href="reports/2026-04/2026-04-25.html">大模型革新 从训练机制到多模态应用突破</a></li>
-          <li><span class="d">24</span><a href="reports/2026-04/2026-04-24.html">大模型技术突破 从语言理解到安全评估的七维跃迁</a></li>
-          <li><span class="d">23</span><a href="reports/2026-04/2026-04-23.html">预训练模型跨域自适应与免训练部署新范式</a></li>
-          <li><span class="d">22</span><a href="reports/2026-04/2026-04-22.html">大模型从中心到边缘 推理瓶颈、智能体主权与去中心化新范式</a></li>
-          <li><span class="d">21</span><a href="reports/2026-04/2026-04-21.html">大模型技术突破 从预报校正到自我进化</a></li>
-          <li><span class="d">20</span><a href="reports/2026-04/2026-04-20_1.html">跨模态对齐与多维评测 AI能力验证的新基准</a></li>
-          <li><span class="d">20</span><a href="reports/2026-04/2026-04-20.html">大模型效率革命 从量化压缩到可信评估的七维突破</a></li>
-          <li><span class="d">19</span><a href="reports/2026-04/2026-04-19.html">大模型评估、学习与推理的前沿突破与范式革新</a></li>
-          <li><span class="d">18</span><a href="reports/2026-04/2026-04-18.html">大模型创新与应用全景洞察 从量子学习等价到智能体合作机制与推</a></li>
-          <li><span class="d">17</span><a href="reports/2026-04/2026-04-17.html">大模型智能体纵深突破 从长程推理到端云协同</a></li>
-          <li><span class="d">16</span><a href="reports/2026-04/2026-04-16_1.html">大模型突破七维 从训练范式到推理可信的全景革新</a></li>
-          <li><span class="d">16</span><a href="reports/2026-04/2026-04-16.html">空间智能、自博弈与代码解析 大模型创新七篇洞察</a></li>
-          <li><span class="d">15</span><a href="reports/2026-04/2026-04-15.html">大模型推理机制突破与多域智能体应用新范式</a></li>
-          <li><span class="d">14</span><a href="reports/2026-04/2026-04-14_1.html">大模型跨界突破 从人格神经到物理推理与真实世界评测</a></li>
-          <li><span class="d">14</span><a href="reports/2026-04/2026-04-14.html">大模型事实性、效率与多模态创新的六大前沿突破</a></li>
-          <li><span class="d">11</span><a href="reports/2026-04/2026-04-11.html">多模态智能体评估与推理优化 从音视频生成到脑机接口的技术突破</a></li>
-          <li><span class="d">10</span><a href="reports/2026-04/2026-04-10.html">大模型安全评估与跨域智能应用新范式</a></li>
-          <li><span class="d">09</span><a href="reports/2026-04/2026-04-09_1.html">大模型创新突破 从个性化对齐到多模态智能与高效架构</a></li>
-          <li><span class="d">09</span><a href="reports/2026-04/2026-04-09.html">智能体可信化与治理框架崛起 从环境构建到全链路评估的新范式</a></li>
-          <li><span class="d">08</span><a href="reports/2026-04/2026-04-08.html">智能体范式重塑图学习 端到端联合决策突破传统分离边界</a></li>
-          <li><span class="d">07</span><a href="reports/2026-04/2026-04-07.html">大模型技术瓶颈突破与数据驱动创新趋势洞察</a></li>
-          <li><span class="d">03</span><a href="reports/2026-04/2026-04-03.html">大模型架构革新与推理效率跃升全景洞察</a></li>
-          <li><span class="d">02</span><a href="reports/2026-04/2026-04-02.html">大模型后训练与推理优化开启可监督性与效率新范式</a></li>
-          <li><span class="d">01</span><a href="reports/2026-04/2026-04-01.html">大模型智能体迈向专业化评估与动态技能进化新范式</a></li>
-        </ul>
-      </section>
+          <h3><span class="ym">2026 年 4 月</span><span class="cnt">33 期</span></h3>
+          <ul>
+            <li><a href="reports/2026-04/2026-04-30_1.html">大模型基础设施革新 从智能体原生服务到绿色算力协同</a><span class="d">30日</span></li>
+            <li><a href="reports/2026-04/2026-04-30.html">Tsallis损失统一训练范式，递归多智能体开启系统级缩放，</a><span class="d">30日</span></li>
+            <li><a href="reports/2026-04/2026-04-29_1.html">记忆增强与语义重构 大模型跨模态编辑、长上下文三维重建及AI</a><span class="d">29日</span></li>
+            <li><a href="reports/2026-04/2026-04-29.html">大模型创新与应用全景洞察 从视觉架构革新到分布式训练优化的七</a><span class="d">29日</span></li>
+            <li><a href="reports/2026-04/2026-04-28_2.html">大模型创新纵深突破 从对齐安全到算力基建的七维重构</a><span class="d">28日</span></li>
+            <li><a href="reports/2026-04/2026-04-28_1.html">大模型安全攻防与系统优化前沿突破</a><span class="d">28日</span></li>
+            <li><a href="reports/2026-04/2026-04-28.html">数据逆向重建与智能体光学控制双突破</a><span class="d">28日</span></li>
+            <li><a href="reports/2026-04/2026-04-27.html">大模型推理革新与跨域应用 从隐空间对齐到金融决策智能</a><span class="d">27日</span></li>
+            <li><a href="reports/2026-04/2026-04-26.html">大模型记忆机制与多域应用创新全景报告</a><span class="d">26日</span></li>
+            <li><a href="reports/2026-04/2026-04-25.html">大模型革新 从训练机制到多模态应用突破</a><span class="d">25日</span></li>
+            <li><a href="reports/2026-04/2026-04-24.html">大模型技术突破 从语言理解到安全评估的七维跃迁</a><span class="d">24日</span></li>
+            <li><a href="reports/2026-04/2026-04-23.html">预训练模型跨域自适应与免训练部署新范式</a><span class="d">23日</span></li>
+            <li><a href="reports/2026-04/2026-04-22.html">大模型从中心到边缘 推理瓶颈、智能体主权与去中心化新范式</a><span class="d">22日</span></li>
+            <li><a href="reports/2026-04/2026-04-21.html">大模型技术突破 从预报校正到自我进化</a><span class="d">21日</span></li>
+            <li><a href="reports/2026-04/2026-04-20_1.html">跨模态对齐与多维评测 AI能力验证的新基准</a><span class="d">20日</span></li>
+            <li><a href="reports/2026-04/2026-04-20.html">大模型效率革命 从量化压缩到可信评估的七维突破</a><span class="d">20日</span></li>
+            <li><a href="reports/2026-04/2026-04-19.html">大模型评估、学习与推理的前沿突破与范式革新</a><span class="d">19日</span></li>
+            <li><a href="reports/2026-04/2026-04-18.html">大模型创新与应用全景洞察 从量子学习等价到智能体合作机制与推</a><span class="d">18日</span></li>
+            <li><a href="reports/2026-04/2026-04-17.html">大模型智能体纵深突破 从长程推理到端云协同</a><span class="d">17日</span></li>
+            <li><a href="reports/2026-04/2026-04-16_1.html">大模型突破七维 从训练范式到推理可信的全景革新</a><span class="d">16日</span></li>
+            <li><a href="reports/2026-04/2026-04-16.html">空间智能、自博弈与代码解析 大模型创新七篇洞察</a><span class="d">16日</span></li>
+            <li><a href="reports/2026-04/2026-04-15.html">大模型推理机制突破与多域智能体应用新范式</a><span class="d">15日</span></li>
+            <li><a href="reports/2026-04/2026-04-14_1.html">大模型跨界突破 从人格神经到物理推理与真实世界评测</a><span class="d">14日</span></li>
+            <li><a href="reports/2026-04/2026-04-14.html">大模型事实性、效率与多模态创新的六大前沿突破</a><span class="d">14日</span></li>
+            <li><a href="reports/2026-04/2026-04-11.html">多模态智能体评估与推理优化 从音视频生成到脑机接口的技术突破</a><span class="d">11日</span></li>
+            <li><a href="reports/2026-04/2026-04-10.html">大模型安全评估与跨域智能应用新范式</a><span class="d">10日</span></li>
+            <li><a href="reports/2026-04/2026-04-09_1.html">大模型创新突破 从个性化对齐到多模态智能与高效架构</a><span class="d">9日</span></li>
+            <li><a href="reports/2026-04/2026-04-09.html">智能体可信化与治理框架崛起 从环境构建到全链路评估的新范式</a><span class="d">9日</span></li>
+            <li><a href="reports/2026-04/2026-04-08.html">智能体范式重塑图学习 端到端联合决策突破传统分离边界</a><span class="d">8日</span></li>
+            <li><a href="reports/2026-04/2026-04-07.html">大模型技术瓶颈突破与数据驱动创新趋势洞察</a><span class="d">7日</span></li>
+            <li><a href="reports/2026-04/2026-04-03.html">大模型架构革新与推理效率跃升全景洞察</a><span class="d">3日</span></li>
+            <li><a href="reports/2026-04/2026-04-02.html">大模型后训练与推理优化开启可监督性与效率新范式</a><span class="d">2日</span></li>
+            <li><a href="reports/2026-04/2026-04-01.html">大模型智能体迈向专业化评估与动态技能进化新范式</a><span class="d">1日</span></li>
+          </ul>
+        </section>
         <section class="month">
-        <h3>2026 年 3 月</h3>
-        <ul>
-          <li><span class="d">31</span><a href="reports/2026-03/2026-03-31.html">模型压缩与推理革新 边缘智能与自适应学习并进</a></li>
-          <li><span class="d">28</span><a href="reports/2026-03/2026-03-28.html">模型自演进与可信计算引领AI技术新范式</a></li>
-          <li><span class="d">27</span><a href="reports/2026-03/2026-03-27.html">大模型推理进化与安全博弈 多智能体协作与自主进化重塑AI可靠性</a></li>
-          <li><span class="d">26</span><a href="reports/2026-03/2026-03-26.html">智能体自主演进与涌现优化重塑人机协作新范式</a></li>
-          <li><span class="d">25</span><a href="reports/2026-03/2026-03-25.html">AI Agent与自主系统洞察报告</a></li>
-        </ul>
-      </section>
+          <h3><span class="ym">2026 年 3 月</span><span class="cnt">5 期</span></h3>
+          <ul>
+            <li><a href="reports/2026-03/2026-03-31.html">模型压缩与推理革新 边缘智能与自适应学习并进</a><span class="d">31日</span></li>
+            <li><a href="reports/2026-03/2026-03-28.html">模型自演进与可信计算引领AI技术新范式</a><span class="d">28日</span></li>
+            <li><a href="reports/2026-03/2026-03-27.html">大模型推理进化与安全博弈 多智能体协作与自主进化重塑AI可靠性</a><span class="d">27日</span></li>
+            <li><a href="reports/2026-03/2026-03-26.html">智能体自主演进与涌现优化重塑人机协作新范式</a><span class="d">26日</span></li>
+            <li><a href="reports/2026-03/2026-03-25.html">AI Agent与自主系统洞察报告</a><span class="d">25日</span></li>
+          </ul>
+        </section>
+  </div>
 
   <footer>
     <span>数据源自 arXiv 与公开新闻 · 自动整理</span>
-    <span>更新于 2026/11/28 09:12</span>
+    <span>更新于 2026/11/28 09:36</span>
   </footer>
 
 </div>
